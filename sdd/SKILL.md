@@ -1,5 +1,6 @@
 ---
 name: sdd
+version: 1.0.0
 description: Spec-Driven Development. Modular, adaptive, and scalable workflow with Auto-Sizing and persistent State management.
 category: development-workflow
 ---
