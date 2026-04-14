@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-2-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-3-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)](#-roadmap)
 
@@ -22,6 +22,7 @@ Cada skill possui seu próprio diretório com documentação completa — inclui
 |---|-------|-----------|--------|
 | 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo para desenvolvimento orientado a especificações. | `1.0.0` |
 | 2 | **[Skill Factory](skill-factory/)** | Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados. | `1.0.0` |
+| 3 | **[Python com UV](python-uv/)** | Skill para uso e boas práticas de Python utilizando UV como gerenciador de pacotes e versionamento. | `1.0.0` |
 
 > 💡 Clique no nome da skill para acessar sua documentação completa.
 
@@ -95,9 +96,10 @@ Consulte o [ROADMAP.md](.specs/project/ROADMAP.md) para a visão completa de evo
 
 ### Próximos Passos
 - [x] Core Framework para criação padronizada de novas skills
-- [ ] Skill de Pesquisa Avançada
+- [x] Skill de Python com UV (boas práticas e gerenciamento moderno)
 - [ ] Skill de Automação de Infraestrutura
 - [ ] Conectores para APIs externas
+- [ ] Skill de Análise de Dados com Python
 
 ---
 
