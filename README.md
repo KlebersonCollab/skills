@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-1-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-2-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)](#-roadmap)
 
@@ -21,6 +21,7 @@ Cada skill possui seu próprio diretório com documentação completa — inclui
 | # | Skill | Descrição | Versão |
 |---|-------|-----------|--------|
 | 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo para desenvolvimento orientado a especificações. | `1.0.0` |
+| 2 | **[Skill Factory](skill-factory/)** | Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados. | `1.0.0` |
 
 > 💡 Clique no nome da skill para acessar sua documentação completa.
 
@@ -50,13 +51,16 @@ skills/
 
 ## 📐 Como Criar uma Nova Skill
 
-1. **Crie um diretório** com o nome da skill na raiz do repositório.
-2. **Crie o arquivo `SKILL.md`** — a definição técnica principal da skill.
-3. **Crie o `README.md`** — documentação detalhada, sub-skills e exemplos de uso.
-4. **Crie o `CHANGELOG.md`** — histórico de versões seguindo [Keep a Changelog](https://keepachangelog.com/pt-BR/).
-5. **Atualize este `README.md`** adicionando a nova skill na tabela [Skills Disponíveis](#-skills-disponíveis).
+Utilize a skill **[Skill Factory](skill-factory/)** para criar novas skills de forma padronizada:
 
-### Template Mínimo para `SKILL.md`
+1. **Invoque a Skill Factory** informando `skill_name`, `description`, `category` e opcionalmente `sub_skills`.
+2. O **Bootstrap** gera automaticamente todos os arquivos (`SKILL.md`, `README.md`, `CHANGELOG.md` e sub-skills).
+3. O **Validator** audita a conformidade da skill gerada.
+4. O **Registry** atualiza este `README.md` com a nova skill na tabela.
+
+> 📖 Consulte a [documentação completa do Skill Factory](skill-factory/) para exemplos e detalhes.
+
+### Template Mínimo para `SKILL.md` (referência)
 
 ```markdown
 ---
@@ -90,7 +94,7 @@ category: categoria
 Consulte o [ROADMAP.md](.specs/project/ROADMAP.md) para a visão completa de evolução do projeto.
 
 ### Próximos Passos
-- [ ] Core Framework para criação padronizada de novas skills
+- [x] Core Framework para criação padronizada de novas skills
 - [ ] Skill de Pesquisa Avançada
 - [ ] Skill de Automação de Infraestrutura
 - [ ] Conectores para APIs externas
