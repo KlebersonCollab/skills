@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-3-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-4-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)](#-roadmap)
 
@@ -23,6 +23,7 @@ Cada skill possui seu próprio diretório com documentação completa — inclui
 | 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo para desenvolvimento orientado a especificações. | `1.0.0` |
 | 2 | **[Skill Factory](skill-factory/)** | Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados. | `1.1.0` |
 | 3 | **[Python com UV](python-uv/)** | Desenvolvimento Python profissional com UV — gerenciador de pacotes, ambientes e projetos 10-100x mais rápido. | `2.0.0` |
+| 4 | **[API Designer](api-designer/)** | Projetista de APIs REST e GraphQL — guia o agente a criar contratos de API intuitivos, escaláveis e consistentes, desde a modelagem de recursos até a documentação OpenAPI. | `1.0.0` |
 
 > 💡 Clique no nome da skill para acessar sua documentação completa.
 
