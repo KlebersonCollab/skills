@@ -1,10 +1,10 @@
 ---
-name: sdd-v2
-description: Spec-Driven Development v2.0. Modular, adaptive, and scalable workflow with Auto-Sizing and persistent State management.
+name: sdd
+description: Spec-Driven Development. Modular, adaptive, and scalable workflow with Auto-Sizing and persistent State management.
 category: development-workflow
 ---
 
-# SDD v2: Modular & Adaptive Workflow
+# SDD: Modular & Adaptive Workflow
 
 > Precision at scale. Rigor when needed, speed when possible.
 
