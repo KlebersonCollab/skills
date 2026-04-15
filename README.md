@@ -95,9 +95,7 @@ category: categoria
 
 Consulte o [ROADMAP.md](.specs/project/ROADMAP.md) para a visão completa de evolução do projeto.
 
-### Próximos Passos
-- [x] Core Framework para criação padronizada de novas skills
-- [x] Skill de Python com UV (boas práticas e gerenciamento moderno)
+
 
 ---
 
