@@ -1,7 +1,7 @@
 ---
 name: sdd
-version: 1.2.0
-description: Spec-Driven Development. Modular, adaptive, and scalable workflow with Auto-Sizing and persistent State management.
+version: 1.3.0
+description: Spec-Driven Development. Modular, adaptive, and scalable workflow with PRD/RFC integration and BDD-based verification.
 category: development-workflow
 ---
 
@@ -19,9 +19,9 @@ The depth of the workflow is determined by the **Complexity** of the task, not a
 |---|---|---|---|---|
 | **Quick** | Bug fixes, config, <3 files | (Implement) + (Verify) | `sdd-implementer` | Root |
 | **Small** | Clear feature, <5 tasks | (Spec) + Impl + Verify | `ork-orchestrator`, `sdd-implementer` | `spec/` |
-| **Medium** | Feature + UI, <10 tasks | Explorer + Spec + Impl + Verify | `sdd-explorer`, `sdd-orchestrator` | `spec/` |
-| **Large** | Multi-component, new module | Planner + Explorer + Spec + Design + Impl + Verify | All modules | `.specs/` |
-| **Complex** | Ambiguity, high risk | Same as Large + Interactive UAT | All modules + `sdd-reviewer` | `.specs/` |
+| **Medium** | Feature + UI, <10 tasks | Explorer + Spec (BDD) + Impl + Verify | `sdd-explorer`, `sdd-orchestrator` | `spec/` |
+| **Large** | Multi-component, new module | Planner + Explorer + RFC + Spec (BDD) + Impl + Verify | All modules | `.specs/` |
+| **Complex** | Ambiguity, high risk | Same as Large + PRD Audit + Interactive UAT | All modules + `sdd-reviewer` | `.specs/` |
 
 ---
 
@@ -33,19 +33,21 @@ O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 1.  **Explorar o Terreno**: Utilizar `sdd-explorer` para entender a stack e arquitetura atual.
 2.  **Definir Visão**: Utilizar `sdd-planner` para alinhar os objetivos no `PROJECT.md` e `ROADMAP.md`.
 3.  **Captura de Memória**: Reidratar o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
+4.  **Requisitos de Produto**: Para tarefas **Complex**, auditar o PRD (Product Requirements Document) existente.
 
 ### Fase 2: SPECIFY — Contratos e Planejamento
-1.  **Escrever a Spec**: Utilizar `sdd-orchestrator` para definir requisitos técnicos (`spec.md`).
-2.  **Desenhar a Solução**: Elaborar o `plan.md` com arquitetura e schemas.
-3.  **Atomic Tasks**: Gerar a lista de tarefas (`tasks.md`) para execução.
+1.  **Escrever a Spec**: Utilizar `sdd-orchestrator` para definir requisitos técnicos (`spec.md`). Para níveis **Medium+**, utilizar formato **BDD** (Given/When/Then) nos Critérios de Aceitação.
+2.  **Proposta Técnica (RFC)**: Para níveis **Large+**, elaborar uma **RFC** (Request for Comments) detalhando a arquitetura e trade-offs antes do `plan.md`.
+3.  **Desenhar a Solução**: Elaborar o `plan.md` com arquitetura e schemas.
+4.  **Atomic Tasks**: Gerar a lista de tarefas (`tasks.md`) para execução.
 
 ### Fase 3: IMPLEMENT — Execução Atômica
-1.  **Ciclo de Código**: Utilizar `sdd-implementer` para escrever código test-driven (TDD).
+1.  **Ciclo de Código**: Utilizar `sdd-implementer` para escrever código test-driven (TDD) alinhado aos cenários BDD.
 2.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes.
 
 ### Fase 4: REVIEW — Auditoria e Finalização
-1.  **Veredito**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md`.
-2.  **UAT**: Validar com o usuário se os critérios de aceitação foram atendidos.
+1.  **Veredito**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md` e cenários BDD.
+2.  **UAT**: Validar com o usuário se os critérios de aceitação (BDD) foram atendidos.
 3.  **Persistência**: Atualizar os logs de memória e estado no Planner antes do encerramento.
 
 ---
@@ -56,9 +58,9 @@ This skill delegates tasks to specialized sub-skills for maximum scalability:
 
 - **[Explorer](sdd-explorer.skill.md)**: Maps existing codebases (`STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`).
 - **[Planner](sdd-planner.skill.md)**: Manages project vision (`ROADMAP.md`) and session memory (`STATE.md`).
-- **[Orchestrator](sdd-orchestrator.skill.md)**: Translates requirements into technical specifications (`spec.md`, `plan.md`).
+- **[Orchestrator](sdd-orchestrator.skill.md)**: Translates requirements (PRD) into technical specifications (`spec.md` com BDD, `plan.md`/`RFC`).
 - **[Implementer](sdd-implementer.skill.md)**: Writes atomic, test-driven code and manages git commits.
-- **[Reviewer](sdd-reviewer.skill.md)**: Audits implementation against ACs with evidence and UAT.
+- **[Reviewer](sdd-reviewer.skill.md)**: Audits implementation against BDD scenarios with evidence.
 
 ---
 
