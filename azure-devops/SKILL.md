@@ -1,70 +1,72 @@
 ---
 name: azure-devops
-version: 1.0.0
-description: "Skill para gerenciamento profissional do Azure DevOps (AzDO). Permite gerenciar Boards (Work Items, WIQL), Repos (PRs, Branches), Pipelines (Builds, Releases) e Artifacts de forma eficiente via Gemini CLI."
+version: 1.1.0
+description: "Skill para gerenciamento profissional do Azure DevOps (AzDO). Permite gerenciar Boards, Repos, Pipelines, Artifacts, Governança (Variable Groups, Service Connections) e Administração de forma eficiente."
 category: devops-automation
 ---
 
 # Azure DevOps (AzDO)
 
-> Interface profissional para orquestrar o ciclo de vida de desenvolvimento no Azure DevOps, abstraindo a complexidade da API REST e garantindo operações seguras e consistentes.
+> Interface profissional para orquestrar o ciclo de vida de desenvolvimento e a governança de plataforma no Azure DevOps.
 
 ---
 
 ## Goal
 
-Capacitar o agente a gerenciar de forma abrangente os recursos do Azure DevOps, desde a gestão de tarefas e código até a automação de pipelines e pacotes, utilizando as melhores práticas de segurança (PAT) e abstração de operações JSON Patch.
+Capacitar o agente a gerenciar de forma abrangente os recursos do Azure DevOps, desde a gestão de tarefas e código até a automação de infraestrutura (Service Connections), governança de variáveis e administração de usuários/permissões, utilizando as melhores práticas de segurança e automação CLI.
 
 ---
 
-## Workflow (4 Fases)
+## Workflow (5 Fases)
 
 ### Fase 1: AUTH — Conexão e Segurança
-1.  **Verificar Credenciais**: Garantir que o PAT está disponível via `AZURE_DEVOPS_EXT_PAT`.
-2.  **Validar Contexto**: Confirmar a Organização e o Projeto alvo.
-3.  **Check de Permissões**: Verificar se o token possui escopos necessários (Work Items, Code, Build).
+1.  **Verificar Credenciais**: Garantir que o PAT está disponível e configurado.
+2.  **Configurar Contexto**: Utilizar `az devops configure --defaults` para fixar organização e projeto.
 
-### Fase 2: PLANNING — Boards e Work Items
-1.  **Explorar Backlog**: Listar ou filtrar Work Items utilizando consultas WIQL.
-2.  **Gestão de Tarefas**: Criar ou atualizar itens (Bug, Task, Story) abstraindo o formato JSON Patch.
-3.  **Planejamento de Sprint**: Atribuir itens a iterações e definir prioridades.
+### Fase 2: INFRA — Governança e IaC
+1.  **Conexões de Serviço**: Criar ou auditar Service Endpoints para integrações externas.
+2.  **Variáveis Globais**: Gerenciar Variable Groups compartilhados e integrá-los a Key Vaults.
+3.  **Segurança de Pipeline**: Autorizar o uso de recursos críticos (Pools, Queues, Variable Groups) para pipelines específicos.
 
-### Fase 3: DELIVERY — Repos e Code Flow
-1.  **Code Review**: Listar PRs ativos e revisar threads de discussão.
-2.  **Operações de PR**: Criar novos Pull Requests ou aprovar/completar PRs existentes.
-3.  **Políticas de Branch**: Garantir conformidade com as regras de merge do repositório.
+### Fase 3: PLANNING — Boards e Work Items
+1.  **Consultas WIQL**: Executar filtros complexos para triagem de backlog.
+2.  **Gestão de Itens**: Criar e atualizar Work Items via abstração JSON Patch.
 
-### Fase 4: OPS — Pipelines e Artifacts
-1.  **Execução de CI/CD**: Disparar novos builds de pipelines ou releases de ambientes.
-2.  **Monitoramento**: Acompanhar o status da execução e identificar falhas nos logs.
-3.  **Gestão de Pacotes**: Consultar versões em feeds de artefatos (NuGet, npm).
+### Fase 4: DELIVERY — Repos e Code Flow
+1.  **PR Lifecycle**: Gerenciar o ciclo completo de Pull Requests e revisões.
+2.  **Políticas de Branch**: Validar e aplicar regras de proteção de branch.
+
+### Fase 5: OPS & ADMIN — Gestão e Monitoramento
+1.  **CI/CD Ops**: Disparar builds, releases e monitorar logs de execução.
+2.  **User Admin**: Gerenciar usuários, times e permissões de segurança.
+3.  **Extensões & Wiki**: Administrar extensões instaladas e manter a documentação do projeto via Wiki.
 
 ---
 
-## AzDO CLI vs Skill Commands
+## AzDO CLI Commands Reference
 
-| Ação | AzDO CLI (az devops) | Equivalente Skill (Foco) |
-|------|----------------------|--------------------------|
-| Criar Work Item | `az boards work-item create` | Abstração JSON Patch & Templates |
-| Consultar Itens | `az boards query` | Execução de WIQL nativa |
-| Gerenciar PR | `az repos pr create/list` | Ciclo completo de revisão & approval |
-| Rodar Pipeline | `az pipelines build queue` | Trigger & Log Monitoring |
+| Área | Comando Principal | Propósito |
+|------|-------------------|-----------|
+| **Infra** | `az pipelines variable-group` | Gestão de grupos de variáveis |
+| **Infra** | `az devops service-endpoint` | Gestão de conexões externas |
+| **Admin** | `az devops user / team` | Administração de pessoas e times |
+| **Admin** | `az devops security` | Permissões e grupos de segurança |
+| **Low-Level**| `az devops invoke` | Chamadas diretas à API REST |
 
 ---
 
 ## Quality Rules
 
-- **Security First**: Nunca expor o PAT em logs ou commits. Sempre ler de variáveis de ambiente.
-- **JSON Patch Helper**: Sempre utilizar abstrações para operações de `add/replace` em Work Items para evitar erros de sintaxe.
-- **Multi-Tenancy**: Sempre confirmar a organização e projeto antes de operações destrutivas.
-- **Resiliência**: Tratar erros de Rate Limit (429) com backoff exponencial.
+- **Security First**: Administrative operations require double confirmation of the target organization.
+- **Lease Privilege**: Suggestions for variable groups and connections should always limit scope to necessary pipelines only.
+- **Standard Syntax**: Use official `az devops` CLI syntax over raw REST calls unless using `invoke`.
+- **Infrastructure-as-Code**: Prefer YAML-based pipelines and Variable Groups over UI-defined configurations.
 
 ## Prohibited
 
-- **NUNCA** codificar credenciais (PAT) em arquivos ou strings.
-- **NUNCA** utilizar IDs sequenciais em URIs se UUIDs estiverem disponíveis.
-- **NUNCA** sugerir deleção em massa de Work Items ou Repos sem confirmação dupla explícita.
-- **NUNCA** ignorar falhas de políticas de branch em processos de merge.
+- **NUNCA** sugerir a criação de Service Connections com permissões de "Owner" ou "Contributor" global sem justificativa.
+- **NUNCA** ignorar o comando `configure --defaults` ao iniciar uma nova sessão administrativa.
+- **NUNCA** apagar Variable Groups ou Service Endpoints sem verificar dependências em pipelines ativos.
 
 ---
 
@@ -72,21 +74,23 @@ Capacitar o agente a gerenciar de forma abrangente os recursos do Azure DevOps, 
 
 Esta skill inclui documentação de referência detalhada:
 
-1. **[Authentication](references/authentication.md)** — Configuração de PAT, variáveis de ambiente e segurança.
-2. **[Boards Management](references/boards-management.md)** — Work Items, sintaxe WIQL e consultas.
-3. **[Repos & Code Flow](references/repos-code-flow.md)** — Pull Requests, branches e políticas de código.
-4. **[Pipelines CI/CD](references/pipelines-cicd.md)** — Builds, Releases e automação de deployment.
-5. **[Artifacts & Test Plans](references/artifacts-and-tests.md)** — Feeds de pacotes e gestão de planos de teste.
+1. **[Authentication](references/authentication.md)** — PAT, contextos e `configure`.
+2. **[Infrastructure & Variables](references/infrastructure-and-variables.md)** — Variable Groups e Service Connections.
+3. **[Administration & Security](references/administration-and-security.md)** — Users, Teams e Permissions.
+4. **[Boards Management](references/boards-management.md)** — Work Items e WIQL.
+5. **[Repos & Code Flow](references/repos-code-flow.md)** — Pull Requests e Políticas.
+6. **[Pipelines CI/CD](references/pipelines-cicd.md)** — Execução e monitoramento.
+7. **[Advanced CLI Commands](references/advanced-cli-commands.md)** — `invoke` e `wiki`.
 
 ---
 
 ## Output Structure
 
-A execução desta skill deve resultar nos seguintes artefatos padronizados:
+A execução desta skill resulta nos seguintes artefatos padronizados:
 
-| Artefato | Arquivo | Descrição |
+| Artefato | Formato | Descrição |
 |----------|---------|-----------|
-| **WIQL Query** | `*.wiql` | Consultas estruturadas para o Azure Boards. |
-| **Patch Payload** | `*.json` | Arquivos JSON Patch para atualização de recursos. |
-| **PR Report** | `.md` | Resumo de status e revisões de Pull Requests. |
-| **Build Status** | `.md` | Log e status de execução de pipelines. |
+| **Infra Spec** | `.json` / `.yaml`| Definição de Variable Groups ou Endpoints. |
+| **Security Audit**| `.md` | Relatório de usuários, permissões e políticas. |
+| **API Invoke** | `.sh` | Scripts de chamada direta via `az devops invoke`. |
+| **WIQL Query** | `.wiql` | Consultas estruturadas para o Azure Boards. |

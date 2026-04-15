@@ -27,7 +27,7 @@ Cada skill possui seu próprio diretório com documentação completa — inclui
 | 5 | **[Brainstorming](brainstorming/)** | Facilitador de design e resolução de problemas — exploração profunda e validação antes da implementação. | `1.1.0` |
 | 6 | **[Architecture](architecture/)** | Arquiteto de Sistemas — design pragmático, análise de trade-offs e registros de decisão (ADR). | `2.0.1` |
 | 7 | **[Flutter com FVM](flutter-fvm/)** | Desenvolvimento Flutter profissional com FVM — gerenciador de versões SDK por projeto. | `1.0.0` |
-| 8 | **[Azure DevOps](azure-devops/)** | Gerenciamento profissional de Boards, Repos, Pipelines e Artifacts no AzDO. | `1.0.0` |
+| 8 | **[Azure DevOps](azure-devops/)** | Gerenciamento profissional de Boards, Repos, Pipelines e Artifacts no AzDO. | `1.1.0` |
 | 9 | **[Clean Code Mentor](clean-code-mentor/)** | Mentor técnico e revisor de código focado em SOLID, YAGNI, DRY e KISS. | `1.0.0` |
 | 10 | **[Observability Expert](observability-expert/)** | Especialista em SRE — Logs Estruturados, OpenTelemetry e Confiabilidade (SLI/SLO). | `1.0.0` |
 | 11 | **[Onboarding Navigator](onboarding-navigator/)** | Guia interativo de cultura e engenharia para novos membros e projetos Skynet. | `1.0.0` |
