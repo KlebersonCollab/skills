@@ -34,7 +34,7 @@ Este arquivo contém mandatos e diretrizes fundamentais para agentes de IA neste
 
 9. **Observability-First**: Todo novo serviço ou módulo deve nascer com **Logging Estruturado** (JSON) e **SLIs** (Service Level Indicators) definidos desde a fase de especificação, conforme detalhado na skill `observability-expert`.
 
-10. **Navigation & Culture**: Antes de propor mudanças em processos globais ou iniciar novos módulos de grande escala, o agente **DEVE** consultar as diretrizes da skill `onboarding-navigator` para garantir alinhamento com a cultura do projeto.
+10. **Navigation & Culture**: Antes de propor mudanças em processos globais ou iniciar novos módulos de grande escala, o agente **DEVE** consultar as diretrizes da skill `onboarding-navigator` para garantir alinhamento com a cultura e o catálogo de padrões do projeto.
 
 ---
 *Mandato atualizado em 14 de Abril de 2026.*
