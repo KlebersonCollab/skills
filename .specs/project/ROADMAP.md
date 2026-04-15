@@ -11,3 +11,4 @@
 - [x] Skill **Azure DevOps** (Boards, Repos, Pipelines, Artifacts).
 - [x] Skill **Clean Code Mentor** (SOLID, YAGNI, DRY, KISS).
 - [x] Skill **Observability Expert** (SRE, OTel, SLI/SLO).
+- [x] Skill **Onboarding Navigator** (Cultura, Guia interativo e Decisões).
