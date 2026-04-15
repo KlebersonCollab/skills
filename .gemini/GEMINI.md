@@ -4,11 +4,11 @@ Este arquivo contém mandatos e diretrizes fundamentais para o Gemini CLI neste 
 
 ## SDD Workflow Mandates
 
-1.  **Proactive Phase 4 (Persistence)**: Sempre que uma tarefa ou feature for concluída tecnicamente, o agente **DEVE** realizar proativamente a Fase 4 do SDD (Review & Persistence).
-    *   **Atualizar Specs**: Marcar tarefas como concluídas em `tasks.md` e `plan.md`.
+1.  **Proactive Phase 4 (Persistence)**: Sempre que uma tarefa ou feature for concluída tecnicamente, o agente **DEVE** realizar proativamente a Fase 4 do SDD (Review & Persistence) antes de declarar a finalização ao usuário.
+    *   **Atualizar Specs**: Marcar obrigatoriamente **TODAS** as tarefas como concluídas no arquivo `tasks.md` da feature, além de atualizar o `plan.md`.
     *   **Relatórios**: Gerar ou atualizar `validation-report.md` e `verification-report.md`.
     *   **Roadmap**: Atualizar o `ROADMAP.md` e `PROJECT.md` se necessário.
-    *   **NÃO** esperar por solicitação explícita do usuário para estas atualizações de encerramento.
+    *   **NÃO** declarar uma tarefa como "finalizada" ou "concluída" sem que os arquivos de rastreio (`tasks.md`) reflitam 100% do progresso.
 
 2.  **State Management**: Manter o `STATE.md`, `MEMORY.md` e `LEARNINGS.md` atualizados para garantir a continuidade do contexto entre sessões.
 
