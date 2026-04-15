@@ -1,7 +1,7 @@
 ---
 name: skill-factory
-version: 1.0.0
-description: "Core Framework para criação padronizada de novas skills. Automatiza scaffolding, validação e registro de skills no hub."
+version: 1.1.0
+description: "Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados."
 category: skill-management
 ---
 
@@ -11,13 +11,13 @@ category: skill-management
 
 ---
 
-## 1. Goal
+## Goal
 
 Automatizar a criação padronizada de novas skills com qualidade garantida, eliminando erros humanos no scaffolding e assegurando conformidade com os padrões do Skills Hub.
 
 ---
 
-## 2. Auto-Sizing
+## Auto-Sizing
 
 A profundidade do scaffolding é determinada pela **estrutura** da skill:
 
@@ -34,7 +34,7 @@ Após o scaffolding, a validação é **sempre** executada (ambos os modos):
 
 ---
 
-## 3. Parameters
+## Parameters
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
@@ -45,7 +45,7 @@ Após o scaffolding, a validação é **sempre** executada (ambos os modos):
 
 ---
 
-## 4. The Modular Engine
+## The Modular Engine
 
 Esta skill delega tarefas para sub-skills especializadas:
 
@@ -54,7 +54,7 @@ Esta skill delega tarefas para sub-skills especializadas:
 
 ---
 
-## 5. Workflow (3 Phases)
+## Workflow (3 Phases)
 
 ### Phase 1: BOOTSTRAP
 Executar `skill-factory-bootstrap` com os parâmetros recebidos.
@@ -73,7 +73,7 @@ Atualizar o `README.md` raiz do repositório:
 
 ---
 
-## 6. Version Policy
+## Version Policy
 
 Toda nova skill **SEMPRE** inicia na versão `1.0.0`. Não existe suporte para versões pré-release.
 
@@ -91,14 +91,14 @@ A execução desta skill resulta nos seguintes artefatos mandatórios para cada 
 | `references/` | (Opcional) Guias de referência detalhados. |
 | `examples/` | (Opcional) Amostras de código e configurações. |
 
-## 7. Quality Rules
+## Quality Rules
 
 - **Template-First**: Toda skill gerada deve seguir os templates padronizados definidos na sub-skill `bootstrap`.
 - **Validation-Always**: Nenhuma skill é considerada criada até que o `validator` emita `COMPLIANT`.
 - **Registry-Updated**: O `README.md` raiz é a fonte da verdade para skills existentes e deve estar sempre atualizado.
 - **Self-Consistent**: O nome no frontmatter deve corresponder ao nome do diretório.
 
-## 8. Prohibited
+## Prohibited
 
 - NUNCA criar uma skill sem executar a fase de validação.
 - NUNCA registrar uma skill NON-COMPLIANT no README raiz.

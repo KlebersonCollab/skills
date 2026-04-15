@@ -11,7 +11,13 @@ category: development-workflow
 
 ---
 
-## 1. The Core Principle: Auto-Sizing
+## Goal
+
+O SDD tem como objetivo garantir precisão, rastreabilidade e integridade no ciclo de vida de desenvolvimento de software, transformando requisitos ambíguos em código verificado e documentado através de um workflow modular e adaptativo.
+
+---
+
+## The Core Principle: Auto-Sizing
 
 The depth of the workflow is determined by the **Complexity** of the task, not a fixed pipeline.
 
@@ -25,7 +31,7 @@ The depth of the workflow is determined by the **Complexity** of the task, not a
 
 ---
 
-## 2. Workflow (4 Fases)
+## Workflow (4 Fases)
 
 O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 
@@ -52,7 +58,7 @@ O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 
 ---
 
-## 3. The Modular Engine
+## The Modular Engine
 
 This skill delegates tasks to specialized sub-skills for maximum scalability:
 
@@ -64,7 +70,7 @@ This skill delegates tasks to specialized sub-skills for maximum scalability:
 
 ---
 
-## 3. The Knowledge Verification Chain
+## The Knowledge Verification Chain
 
 When researching or deciding, follow this strict hierarchy:
 
@@ -76,7 +82,7 @@ When researching or deciding, follow this strict hierarchy:
 
 ---
 
-## 4. Operational Protocols
+## Operational Protocols
 
 ### The Safety Valve
 If a task identified as **Quick** or **Small** reveals hidden complexity (>5 steps or deep dependencies), **STOP**. Formalize the task as **Large** by creating a full spec and plan.
@@ -93,17 +99,6 @@ This triad ensures that context persists even if the agent is restarted or the c
 A feature is NOT complete until the **Reviewer** issues an `APPROVED` verdict based on evidence (file paths and line numbers).
 
 ---
-
-## 5. Directory Structure (Mandatory)
-
-### Feature-Specific (`spec/` or `.specs/features/[name]/`)
-- `spec.md`: Traceable requirements (FR-X) and ACs.
-- `plan.md`: Technical design and schemas.
-- `tasks.md`: Atomic task list with status.
-
-### Project-Wide (`.specs/`)
-- `project/`: `PROJECT.md`, `ROADMAP.md`, `STATE.md`, `MEMORY.md`, `LEARNINGS.md`.
-- `codebase/`: `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `CONCERNS.md`.
 
 ## Output Structure
 
