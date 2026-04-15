@@ -7,9 +7,10 @@
 ## Últimas Alterações
 - [x] Criado script `scripts/generate-skills-dist.sh` para mapeamento dinâmico.
 - [x] Criado script `scripts/verify-dist.sh` para validação de artefatos.
-- [x] Configurado workflow `.github/workflows/generate-skills-artifacts.yml`.
+- [x] Configurado workflow `.github/workflows/generate-skills-artifacts.yml` com suporte a **GitHub Releases**.
+- [x] Atualizado README.md com links diretos para download de assets.
 - [x] Atualizado ROADMAP.md e PROJECT.md.
 
 ## Bloqueios / Próximos Passos
-- [ ] Monitorar a primeira execução oficial no GitHub Actions após o push.
-- [ ] Avaliar necessidade de versionamento (Git Tags) para os artefatos.
+- [ ] Monitorar a criação da primeira release oficial após o push de uma tag (ex: `git tag v1.0.0 && git push origin v1.0.0`).
+- [ ] Documentar o processo de lançamento de novas versões.

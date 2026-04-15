@@ -18,6 +18,10 @@
 - **FVM**: Gestão de versões do SDK Flutter.
 - **Azure DevOps CLI**: Automação de infraestrutura e governança de plataforma.
 
+## Distribuição & CI/CD
+- **GitHub Actions**: Automação de pipelines para validação, geração de artefatos e distribuição.
+- **Artefatos (.zip)**: Pacotes pré-configurados para múltiplos agentes (.claude, .gemini, .agent) gerados automaticamente.
+
 ## Controle de Versão
 - **Git**: Versionamento do repositório.
 - **GitHub**: Hospedagem e colaboração.

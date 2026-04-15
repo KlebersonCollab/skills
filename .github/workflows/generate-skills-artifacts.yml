@@ -4,11 +4,15 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -22,23 +26,23 @@ jobs:
       - name: Verify Artifacts
         run: ./scripts/verify-dist.sh
 
-      - name: Upload Claude Skills
+      - name: Upload Artifacts (Internal)
         uses: actions/upload-artifact@v4
         with:
-          name: claude-skills
-          path: artifacts/claude-skills.zip
-          retention-days: 90
+          name: all-skills-artifacts
+          path: artifacts/*.zip
+          retention-days: 7
 
-      - name: Upload Gemini Skills
-        uses: actions/upload-artifact@v4
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
         with:
-          name: gemini-skills
-          path: artifacts/gemini-skills.zip
-          retention-days: 90
-
-      - name: Upload Agent Skills
-        uses: actions/upload-artifact@v4
-        with:
-          name: agent-skills
-          path: artifacts/agent-skills.zip
-          retention-days: 90
+          files: |
+            artifacts/claude-skills.zip
+            artifacts/gemini-skills.zip
+            artifacts/agent-skills.zip
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
