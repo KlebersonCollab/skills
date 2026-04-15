@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-6-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-7-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)](#-roadmap)
 
@@ -26,6 +26,7 @@ Cada skill possui seu próprio diretório com documentação completa — inclui
 | 4 | **[API Architect](api-architect/)** | Arquiteto de APIs — design interoperável, seguro e resiliente (OpenAPI, GraphQL, tRPC) com Style Guide. | `1.3.0` |
 | 5 | **[Brainstorming](brainstorming/)** | Facilitador de design e resolução de problemas — exploração profunda e validação antes da implementação. | `1.1.0` |
 | 6 | **[Architecture](architecture/)** | Arquiteto de Sistemas — design pragmático, análise de trade-offs e registros de decisão (ADR). | `1.0.0` |
+| 7 | **[Flutter com FVM](flutter-fvm/)** | Desenvolvimento Flutter profissional com FVM — gerenciador de versões SDK por projeto. | `1.0.0` |
 
 > 💡 Clique no nome da skill para acessar sua documentação completa.
 
