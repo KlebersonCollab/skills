@@ -8,3 +8,4 @@
 - [x] Skill **Brainstorming** (Design Thinking & Resolução de Problemas).
 - [x] Skill **Architecture** (System Design & ADRs).
 - [x] Skill **Flutter com FVM** (Workflow profissional Flutter v2026).
+- [x] Skill **Azure DevOps** (Boards, Repos, Pipelines, Artifacts).
