@@ -11,20 +11,11 @@ category: development-workflow
 
 ---
 
-## Overview
+## Goal
 
-**UV** é um gerenciador de pacotes e projetos Python da [Astral](https://astral.sh/) (criadores do Ruff). Ele unifica múltiplas ferramentas em uma única CLI:
+Capacitar o agente a gerenciar projetos Python com performance extrema utilizando o **UV**. A skill unifica o gerenciamento de pacotes, versões de Python e ambientes virtuais em um workflow único, rápido e determinístico.
 
-| Ferramenta Substituída | Equivalente UV |
-|------------------------|---------------|
-| `pip` / `pip-tools` | `uv pip install`, `uv add` |
-| `virtualenv` / `venv` | `uv venv` |
-| `pyenv` | `uv python install/pin` |
-| `pipx` | `uv tool install`, `uvx` |
-| `poetry` / `pipenv` | `uv init`, `uv add`, `uv lock`, `uv sync` |
-| `twine` | `uv build`, `uv publish` |
-
-**Performance**: 10-100x mais rápido que pip. Resolução de dependências quase instantânea para pacotes em cache. Criação de venv em <1 segundo.
+---
 
 ## Version Awareness
 

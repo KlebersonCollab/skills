@@ -105,6 +105,27 @@ A feature is NOT complete until the **Reviewer** issues an `APPROVED` verdict ba
 - `project/`: `PROJECT.md`, `ROADMAP.md`, `STATE.md`, `MEMORY.md`, `LEARNINGS.md`.
 - `codebase/`: `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `CONCERNS.md`.
 
----
+## Output Structure
 
-> **Law of SDD**: If it's not in the spec, it doesn't exist. If it's not verified, it's not done.
+A execução deste workflow deve resultar nos seguintes artefatos mandatórios, organizados em `.specs/features/[name]/`:
+
+| Artefato | Arquivo | Descrição |
+|----------|---------|-----------|
+| **Specification** | `spec.md` | Requisitos funcionais, ACs (BDD) e restrições. |
+| **Technical Plan** | `plan.md` | Arquitetura, schemas e diagramas Mermaid. |
+| **Atomic Tasks** | `tasks.md` | Lista detalhada de tarefas com status. |
+| **Audit Reports** | `validation-report.md` | Relatórios de conformidade e verificação. |
+
+## Quality Rules
+
+- **Rigor Adaptativo**: O nível de detalhamento deve seguir estritamente a tabela de Auto-Sizing.
+- **BDD-First**: Critérios de aceitação para níveis Medium+ devem obrigatoriamente usar Given/When/Then.
+- **Verificação Contínua**: Uma tarefa só é considerada concluída após passar nos testes e ser marcada em `tasks.md`.
+- **Diagram-as-Code**: Desenhos técnicos devem usar Mermaid integrados ao Markdown.
+
+## Prohibited
+
+- **NUNCA** iniciar a implementação (Fase 3) sem uma `spec.md` aprovada.
+- **NUNCA** ignorar a atualização proativa de `STATE.md` e `MEMORY.md`.
+- **NUNCA** pular a Fase 4 (Review) e o encerramento das specs ao finalizar uma feature.
+- **NUNCA** usar placeholders como "todo" ou "..." em arquivos de especificação finalizados.

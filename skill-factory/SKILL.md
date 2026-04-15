@@ -79,6 +79,18 @@ Toda nova skill **SEMPRE** inicia na versão `1.0.0`. Não existe suporte para v
 
 ---
 
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos mandatórios para cada nova skill criada:
+
+| Artefato | Descrição |
+|----------|-----------|
+| `SKILL.md` | Definição técnica e workflow da skill. |
+| `README.md` | Documentação de apresentação e uso. |
+| `CHANGELOG.md` | Histórico de versões (inicial 1.0.0). |
+| `references/` | (Opcional) Guias de referência detalhados. |
+| `examples/` | (Opcional) Amostras de código e configurações. |
+
 ## 7. Quality Rules
 
 - **Template-First**: Toda skill gerada deve seguir os templates padronizados definidos na sub-skill `bootstrap`.
