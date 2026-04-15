@@ -1,6 +1,18 @@
-# Changelog — API Designer
+# Changelog — API Architect
 
 Todas as mudanças notáveis nesta skill serão documentadas neste arquivo.
+
+## [1.3.0] - 2026-04-14
+
+### Alterado
+- **Workflow & References**: Melhoria no workflow para referenciar explicitamente o uso do `references/api-style.md` durante a fase de design.
+
+## [1.2.0] - 2026-04-14
+
+### Alterado
+- **Renomeação**: Skill renomeada de `api-designer` para `api-architect` para refletir um escopo maior de governança e resiliência.
+- **Style Guide**: Adição de `references/api-style.md` com padrões de envelopes de resposta, erros e paginação.
+- **Resilience**: Inclusão de padrões de Timeouts, Retries e Circuit Breakers.
 
 ## [1.1.0] - 2026-04-14
 
@@ -11,11 +23,6 @@ Todas as mudanças notáveis nesta skill serão documentadas neste arquivo.
 - **Árvore de Decisão**: Integrada ao `SKILL.md` para facilitar a escolha entre REST, GraphQL, tRPC e gRPC.
 - **Padrões de Paginação Avançada**: Suporte a Cursor-based pagination (Relay style) e envelopes de resposta.
 
-### Alterado
-- **Workflow**: Atualizado para incluir validações de segurança e rate limit na fase inicial (Discover).
-- **README.md**: Expandido para refletir o novo escopo da skill.
-- **SKILL.md**: Incrementado para versão 1.1.0 com regras de qualidade "Segurança First".
-
 ---
 
 ## [1.0.0] - 2026-04-01
@@ -23,6 +30,3 @@ Todas as mudanças notáveis nesta skill serão documentadas neste arquivo.
 ### Adicionado
 - Versão inicial da skill com suporte a REST e GraphQL.
 - Workflow em 4 fases: Discover, Model, Specify e Validate.
-- Referências para design REST e Schema GraphQL.
-- Estratégias básicas de versionamento.
-- Implementation Playbook com exemplos práticos.

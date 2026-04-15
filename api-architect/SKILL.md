@@ -1,6 +1,6 @@
 ---
 name: api-architect
-version: 1.2.0
+version: 1.3.0
 description: "Arquiteto de APIs — guia o agente a projetar sistemas de API interoperáveis, seguros e resilientes, definindo contratos e padrões de governança."
 category: api-design
 ---
@@ -38,7 +38,7 @@ A skill assegura que a API não seja apenas "funcional", mas **consistente**, **
 
 ### Fase 2: DESIGN — Modelagem e Style Guide
 1.  **Resource Modeling**: Definir entidades e relações (plural, substantivos).
-2.  **Consistency Layer**: Aplicar o `API Style Guide` (formato de erro padrão, envelopes de resposta).
+2.  **Consistency Layer**: Aplicar rigorosamente o `references/api-style.md` (formato de erro padrão, envelopes de resposta).
 3.  **Schema Definition**: Escrever OpenAPI (REST), SDL (GraphQL) ou Zod (tRPC).
 
 ### Fase 3: RESILIENCE — Segurança e Performance

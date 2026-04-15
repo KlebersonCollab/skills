@@ -1,5 +1,10 @@
 # Changelog — Brainstorming
 
+## [1.1.0] - 2026-04-14
+
+### Adicionado
+- **Output Structure**: Seção H2 obrigatória detalhando os artefatos de saída (Design Spec, Decision Log, Trade-off Matrix).
+
 ## [1.0.0] - 2026-04-14
 
 ### Adicionado

@@ -6,6 +6,11 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
+## [1.2.0] — 2026-04-14
+
+### Adicionado
+- **Workflow de Alto Nível**: Introdução de um ciclo de vida de 4 fases (Discovery, Specify, Implement, Review) para orientar a jornada completa do SDD antes da delegação para sub-skills.
+
 ## [1.1.0] — 2026-04-14
 
 ### Adicionado

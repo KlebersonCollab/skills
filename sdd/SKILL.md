@@ -1,6 +1,6 @@
 ---
 name: sdd
-version: 1.1.0
+version: 1.2.0
 description: Spec-Driven Development. Modular, adaptive, and scalable workflow with Auto-Sizing and persistent State management.
 category: development-workflow
 ---
@@ -25,7 +25,32 @@ The depth of the workflow is determined by the **Complexity** of the task, not a
 
 ---
 
-## 2. The Modular Engine
+## 2. Workflow (4 Fases)
+
+O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
+
+### Fase 1: DISCOVERY — Mapeamento e Contexto
+1.  **Explorar o Terreno**: Utilizar `sdd-explorer` para entender a stack e arquitetura atual.
+2.  **Definir Visão**: Utilizar `sdd-planner` para alinhar os objetivos no `PROJECT.md` e `ROADMAP.md`.
+3.  **Captura de Memória**: Reidratar o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
+
+### Fase 2: SPECIFY — Contratos e Planejamento
+1.  **Escrever a Spec**: Utilizar `sdd-orchestrator` para definir requisitos técnicos (`spec.md`).
+2.  **Desenhar a Solução**: Elaborar o `plan.md` com arquitetura e schemas.
+3.  **Atomic Tasks**: Gerar a lista de tarefas (`tasks.md`) para execução.
+
+### Fase 3: IMPLEMENT — Execução Atômica
+1.  **Ciclo de Código**: Utilizar `sdd-implementer` para escrever código test-driven (TDD).
+2.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes.
+
+### Fase 4: REVIEW — Auditoria e Finalização
+1.  **Veredito**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md`.
+2.  **UAT**: Validar com o usuário se os critérios de aceitação foram atendidos.
+3.  **Persistência**: Atualizar os logs de memória e estado no Planner antes do encerramento.
+
+---
+
+## 3. The Modular Engine
 
 This skill delegates tasks to specialized sub-skills for maximum scalability:
 

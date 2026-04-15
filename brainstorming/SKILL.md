@@ -1,6 +1,6 @@
 ---
 name: brainstorming
-version: 1.0.0
+version: 1.1.0
 description: "Facilitador de Brainstorming e Design — guia o agente a explorar problemas complexos, gerar ideias divergentes e convergir para especificações sólidas antes de qualquer implementação."
 category: design-thinking
 ---
@@ -54,6 +54,18 @@ Capacitar o agente a facilitar sessões de brainstorming de alta qualidade, util
 1.  **Design Specification**: Documente a solução escolhida em Markdown durável.
 2.  **Decision Log**: Registre o que foi decidido e por quê.
 3.  **Handoff**: Defina os próximos passos claros para a implementação.
+
+---
+
+## Output Structure
+
+A execução desta skill deve resultar nos seguintes artefatos mandatórios, preferencialmente armazenados em `.specs/design/` ou `docs/brainstorming/`:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Design Specification** | `.md` | Documento consolidado com a arquitetura e fluxos da solução escolhida. |
+| **Decision Log** | `.md` | Registro histórico das alternativas exploradas e a justificativa da escolha final. |
+| **Trade-off Matrix** | Tabela | Comparativo visual entre as abordagens (Simples, Escalável, Experimental). |
 
 ---
 

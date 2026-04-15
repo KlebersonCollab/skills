@@ -1,5 +1,15 @@
 # Changelog — Python com UV
 
+## [2.5.0] - 2026-04-14
+
+### Adicionado
+- **Workflow Operacional**: Introdução de um workflow estruturado em 4 fases (Environment, Project, Develop, Deploy) para orientar agentes de IA passo a passo.
+
+## [2.4.0] - 2026-04-14
+
+### Adicionado
+- **Output Structure**: Seção H2 obrigatória detalhando os artefatos gerados pelo UV (pyproject.toml, uv.lock, .python-version).
+
 ## [2.3.0] - 2026-04-14
 
 ### Adicionado

@@ -1,6 +1,6 @@
 ---
 name: skill-factory-validator
-version: 1.0.0
+version: 1.1.0
 description: "Validator agent for Skill Factory. Audits a skill directory against the Skills Hub compliance checklist and emits a pass/fail report."
 category: skill-management
 parameters:
@@ -20,7 +20,7 @@ Ensure that every skill in the repository meets the minimum structural and conte
 
 ## Validation Protocol
 
-Execute **all 5 checks** in order. Every check produces a `PASS` or `FAIL` result with evidence.
+Execute **all 6 checks** in order. Every check produces a `PASS` or `FAIL` result with evidence.
 
 ---
 
@@ -41,7 +41,7 @@ Verify that all mandatory files exist within the skill directory:
 
 ### Check 2: Frontmatter Compliance
 
-Validate that `SKILL.md` and all `*.skill.md` files contain valid YAML frontmatter with required fields:
+Validate that `SKILL.md` and all `*.skill.md` files contain valid YAML frontmatter:
 
 | Field | Required | Type | Validation |
 |-------|----------|------|------------|
@@ -54,18 +54,18 @@ Validate that `SKILL.md` and all `*.skill.md` files contain valid YAML frontmatt
 
 ---
 
-### Check 3: Content Completeness
+### Check 3: Content Completeness (H2 Rigor)
 
-Validate that `SKILL.md` contains all mandatory sections:
+Validate that `SKILL.md` contains all mandatory sections as **H2 Headings**:
 
 | Section | Required | Detection |
 |---------|----------|-----------|
-| `## Goal` (or equivalent) | ✅ | H2 heading search |
-| `## Output Structure` (or equivalent) | ✅ | H2 heading search |
+| `## Goal` | ✅ | H2 heading search |
+| `## Output Structure` | ✅ | H2 heading search |
 | `## Quality Rules` | ✅ | H2 heading search |
 | `## Prohibited` | ✅ | H2 heading search |
 
-For sub-skill files (`*.skill.md`), validate:
+For sub-skill files (`*.skill.md`), validate mandatory H2s:
 
 | Section | Required |
 |---------|----------|
@@ -77,28 +77,42 @@ For sub-skill files (`*.skill.md`), validate:
 
 ---
 
-### Check 4: Naming Convention
+### Check 4: Naming & Version Sync
 
-Validate the naming patterns:
+Validate naming patterns and version consistency:
 
-| Rule | Pattern | Example |
-|------|---------|---------|
-| Skill directory | `lowercase-hyphenated` | `deep-research/` |
-| Sub-skill files | `<skill_name>-<sub_name>.skill.md` | `deep-research-crawler.skill.md` |
-| Frontmatter `name` | Matches file/directory name | `name: deep-research` |
+| Rule | Requirement |
+|------|-------------|
+| **Skill Directory** | Must be `lowercase-hyphenated`. |
+| **Sub-skill Files** | Must follow `<skill_name>-<sub_name>.skill.md`. |
+| **Frontmatter Name** | Must match directory/file name exactly. |
+| **Version Sync** | `version` in `SKILL.md` must match the latest entry in `CHANGELOG.md`. |
 
-**Evidence**: List each naming check with `VALID` / `INVALID`.
+**Evidence**: Compare values and check file patterns.
 
 ---
 
-### Check 5: Registry Status
+### Check 5: Reference Integrity
+
+Verify that all local files referenced in `SKILL.md` (usually under `## Referências` or `## Referências`) exist:
+
+| Reference | Status |
+|-----------|--------|
+| `references/*.md` | EXISTS / BROKEN LINK |
+| `resources/*` | EXISTS / BROKEN LINK |
+
+**Evidence**: List each referenced path and its existence on disk.
+
+---
+
+### Check 6: Registry Status (Root README.md)
 
 Verify the `README.md` at the repository root:
 
-1. The skill appears in the **Skills Disponíveis** table.
+1. The skill appears in the **Skills Disponíveis** table with the correct version.
 2. The badge count matches the actual number of skill directories.
 
-**Evidence**: Quote the relevant table row or state `NOT FOUND`.
+**Evidence**: Quote the relevant table row and version.
 
 ---
 
@@ -112,45 +126,45 @@ Verify the `README.md` at the repository root:
 |-------|--------|
 | Structural Integrity | PASS/FAIL |
 | Frontmatter Compliance | PASS/FAIL |
-| Content Completeness | PASS/FAIL |
-| Naming Convention | PASS/FAIL |
+| Content Completeness (H2) | PASS/FAIL |
+| Naming & Version Sync | PASS/FAIL |
+| Reference Integrity | PASS/FAIL |
 | Registry Status | PASS/FAIL |
 
 ### 📂 Check 1: Structural Integrity
-| File | Status |
-|------|--------|
-| SKILL.md | EXISTS/MISSING |
-| README.md | EXISTS/MISSING |
-| CHANGELOG.md | EXISTS/MISSING |
+[Details per file, including sub-skills]
 
 ### 📝 Check 2: Frontmatter Compliance
 [Details per file]
 
-### 📖 Check 3: Content Completeness
-[Details per section]
+### 📖 Check 3: Content Completeness (H2)
+[Details per section for SKILL.md and sub-skills]
 
-### 🏷️ Check 4: Naming Convention
-[Details per rule]
+### 🔄 Check 4: Naming & Version Sync
+- Directory/File patterns: [Status]
+- SKILL.md version: [X.Y.Z]
+- CHANGELOG.md latest: [X.Y.Z]
 
-### 📌 Check 5: Registry Status
-[Details]
+### 🔗 Check 5: Reference Integrity
+[List of files and existence]
+
+### 📌 Check 6: Registry Status
+[Details from root README.md]
 
 ### ⚖️ Verdict
 **[COMPLIANT]** / **[NON-COMPLIANT]**
-
-[If NON-COMPLIANT, list all violations that must be fixed.]
 ```
 
 ## Verdict Logic
 
-- **COMPLIANT**: All 5 checks pass.
+- **COMPLIANT**: All 6 checks pass.
 - **NON-COMPLIANT**: Any check fails. List all violations.
 
 ## Quality Rules
 
 - **Exhaustive**: Every check must be executed, even if a previous check fails.
 - **Evidence-Based**: Every status must include evidence (file paths, line numbers, or quoted content).
-- **Actionable**: NON-COMPLIANT verdicts must include specific, actionable remediation steps.
+- **Sub-skill Inclusive**: Validations must extend to all sub-skill files found in the directory.
 
 ## Prohibited
 

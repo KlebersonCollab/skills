@@ -1,6 +1,6 @@
 ---
 name: python-uv
-version: 2.3.0
+version: 2.5.0
 description: "Skill para desenvolvimento Python profissional com UV. Use quando precisar inicializar projetos (Django Pro, FastAPI, CLI), gerenciar dependências, versões Python, ambientes virtuais, ferramentas de desenvolvimento (ruff, mypy, pytest), otimizar performance (Django N+1), executar scripts inline (PEP 723), configurar CI/CD, ou migrar para UV."
 category: development-workflow
 ---
@@ -78,6 +78,30 @@ Skip this skill when:
 - O projeto usa Python 2.x (UV não suporta)
 - O projeto NÃO usa Python como linguagem
 - Apenas precisa de documentação básica de pip (sem UV)
+
+---
+
+## Workflow (4 Fases)
+
+### Fase 1: ENVIRONMENT — Configuração e Alinhamento
+1.  **Verificar Versão**: Executar `uv --version` para garantir compatibilidade (Recomendado 0.9.7+).
+2.  **Definir Versão Python**: Se não existir `.python-version`, use `uv python pin 3.12` (ou versão desejada).
+3.  **Ambiente Isolado**: Garantir que o `.venv/` existe ou será criado via `uv venv`.
+
+### Fase 2: PROJECT — Inicialização e Estrutura
+1.  **Scaffolding**: Para novos projetos, use `uv init`. Para migrações, use `uv init --bare`.
+2.  **Declarar Dependências**: Adicionar pacotes via `uv add` (produção) e `uv add --dev` (ferramentas).
+3.  **Sync Global**: Executar `uv sync` para criar o `uv.lock` e sincronizar o ambiente virtual.
+
+### Fase 3: DEVELOP — Qualidade e Execução
+1.  **Configurar Tooling**: Definir regras no `pyproject.toml` para Ruff e Mypy.
+2.  **Execução Segura**: Sempre utilize `uv run <comando>` para garantir que o código rode no ambiente correto.
+3.  **Qualidade Incremental**: Rodar `uv run ruff check .` e `uv run pytest` periodicamente.
+
+### Fase 4: DEPLOY — Build e Distribuição
+1.  **Lock Reproduzível**: Garantir que o `uv.lock` está atualizado e no controle de versão.
+2.  **Compilação**: Usar `uv build --clear` para gerar distribuições limpas (sdist/wheel).
+3.  **Publicação**: Executar `uv publish` para distribuir no PyPI ou repositório privado.
 
 ---
 
@@ -409,6 +433,20 @@ Esta skill inclui documentação de referência detalhada:
 4. **[Inline Script Metadata](references/inline-script-metadata.md)** — PEP 723, scripts self-contained, exemplos práticos
 5. **[Python Environment](references/python-environment.md)** — Versões, Python 3.14, free-threaded Python, paths
 6. **[CI/CD Workflows](references/ci-cd-workflows.md)** — GitHub Actions, Docker, packaging, publicação
+
+---
+
+## Output Structure
+
+A execução desta skill em projetos Python deve resultar na criação ou atualização dos seguintes artefatos padronizados pelo UV:
+
+| Artefato | Arquivo | Descrição |
+|----------|---------|-----------|
+| **Project Spec** | `pyproject.toml` | Definição de metadados, dependências e configurações de ferramentas (Ruff, Mypy). |
+| **Lockfile** | `uv.lock` | Registro determinístico de todas as dependências e sub-dependências (deve ser versionado). |
+| **Python Version** | `.python-version` | Arquivo que fixa a versão do Python utilizada no projeto para o UV. |
+| **Virtual Env** | `.venv/` | Ambiente virtual isolado contendo as dependências instaladas (não deve ser versionado). |
+| **Source Code** | `src/` ou root | Estrutura de pacotes Python seguindo as boas práticas de layout. |
 
 ---
 
