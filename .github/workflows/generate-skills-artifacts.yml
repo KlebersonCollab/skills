@@ -1,0 +1,44 @@
+name: Generate Skills Artifacts
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Permissions
+        run: chmod +x scripts/*.sh
+
+      - name: Generate Artifacts
+        run: ./scripts/generate-skills-dist.sh
+
+      - name: Verify Artifacts
+        run: ./scripts/verify-dist.sh
+
+      - name: Upload Claude Skills
+        uses: actions/upload-artifact@v4
+        with:
+          name: claude-skills
+          path: artifacts/claude-skills.zip
+          retention-days: 90
+
+      - name: Upload Gemini Skills
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemini-skills
+          path: artifacts/gemini-skills.zip
+          retention-days: 90
+
+      - name: Upload Agent Skills
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-skills
+          path: artifacts/agent-skills.zip
+          retention-days: 90

@@ -10,3 +10,4 @@
 - [x] Skill **Clean Code Mentor** (Quality Guardian).
 - [x] Skill **Observability Expert** (SRE standards).
 - [x] Skill **Onboarding Navigator** (Hub Master Guide).
+- [x] **Automação de Artefatos de Distribuição** (.zip para Claude, Gemini e Agent via GitHub Actions).

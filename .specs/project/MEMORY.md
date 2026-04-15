@@ -1,0 +1,14 @@
+# Project Persistent Memory
+
+## Convenções de Skills
+- **Marker**: Uma pasta é considerada uma skill se contiver um arquivo `SKILL.md` na sua raiz.
+- **Estrutura Padrão**: Uma skill deve conter `CHANGELOG.md`, `README.md`, `SKILL.md` e opcionalmente as pastas `references/` e `resources/`.
+
+## Mapeamento de Agentes
+- **Claude**: Pasta `.claude/`, arquivo mestre `CLAUDE.md`.
+- **Gemini**: Pasta `.gemini/`, arquivo mestre `GEMINI.md`.
+- **Agent**: Pasta `.agent/`, arquivo mestre `AGENT.md`.
+
+## Pipeline de Distribuição
+- Os artefatos são gerados dinamicamente coletando as skills da raiz.
+- A estrutura final nos ZIPs preserva o nome da pasta do agente (ex: `.claude/`) para facilitar a instalação direta.

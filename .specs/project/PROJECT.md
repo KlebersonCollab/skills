@@ -8,7 +8,8 @@ Capacitar agentes de IA com capacidades modulares, repetíveis e altamente espec
 ## Objetivos Core
 1. **Modularidade**: Cada skill deve ser independente e facilmente integrável.
 2. **Qualidade Técnica**: Uso obrigatório da metodologia **SDD v2** (Spec-Driven Development) para garantir que cada skill seja verificável.
-3. **Escalabilidade**: Facilitar a adição de novas habilidades conforme as necessidades dos agentes evoluem.
+3. **Distribuição Contínua**: Geração automática de artefatos (.zip) para múltiplos agentes através do pipeline de CI/CD.
+4. **Escalabilidade**: Facilitar a adição de novas habilidades conforme as necessidades dos agentes evoluem.
 
 ## Público Alvo
 - Desenvolvedores de agentes de IA (Antigravity e outros).
