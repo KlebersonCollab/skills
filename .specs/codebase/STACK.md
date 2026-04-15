@@ -4,7 +4,19 @@
 - **Markdown** (`.md`): Formato exclusivo para definição de skills, specs e documentação.
 
 ## Metodologia
-- **SDD v2** (Spec-Driven Development): Workflow modular e adaptativo com Auto-Sizing, sub-skills especializadas e gerenciamento de estado persistente.
+- **SDD v1.3.1** (Spec-Driven Development): Workflow modular e adaptativo com integração de **PRD/RFC/BDD**, suporte a **Diagram-as-Code** e gerenciamento de estado persistente.
+
+## Ferramentas de Visualização
+- **Mermaid**: Padrão mandatório para diagramas arquiteturais e fluxos de processo integrados ao Markdown.
+
+## Observabilidade & Telemetria
+- **OpenTelemetry (OTel)**: Padrão para design de rastreamento distribuído e métricas.
+- **Structured Logging (JSON)**: Padrão para emissão de logs legíveis por máquina.
+
+## Ecossistemas de Automação
+- **UV**: Gestão de projetos e pacotes Python.
+- **FVM**: Gestão de versões do SDK Flutter.
+- **Azure DevOps CLI**: Automação de infraestrutura e governança de plataforma.
 
 ## Controle de Versão
 - **Git**: Versionamento do repositório.
