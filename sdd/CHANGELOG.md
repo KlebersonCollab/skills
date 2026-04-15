@@ -6,6 +6,13 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
+## [1.1.0] — 2026-04-14
+
+### Adicionado
+- **Persistent Memory Protocol**: Integração de memória de longo prazo com `MEMORY.md` e `LEARNINGS.md`.
+- **Evolução do sdd-planner**: Adição de templates e protocolos para reidratação de contexto e captura de aprendizados incrementais.
+- **Evolução da Estrutura Obrigatória**: Inclusão de novos arquivos de memória em `.specs/project/`.
+
 ## [1.0.0] — 2026-04-14
 
 ### Adicionado

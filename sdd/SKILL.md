@@ -1,6 +1,6 @@
 ---
 name: sdd
-version: 1.0.0
+version: 1.1.0
 description: Spec-Driven Development. Modular, adaptive, and scalable workflow with Auto-Sizing and persistent State management.
 category: development-workflow
 ---
@@ -55,7 +55,12 @@ When researching or deciding, follow this strict hierarchy:
 If a task identified as **Quick** or **Small** reveals hidden complexity (>5 steps or deep dependencies), **STOP**. Formalize the task as **Large** by creating a full spec and plan.
 
 ### State Management
-Always update `STATE.md` (via `sdd-planner`) at the end of every session or after major decisions. This ensures that context persists even if the agent is restarted or the context window shifts.
+Utilize the **Planner** (`sdd-planner`) to manage three distinct types of memory:
+1.  **Operational Memory (`STATE.md`)**: Tasks, session status, and blockers.
+2.  **Persistent Knowledge (`MEMORY.md`)**: Enduring facts, style guides, and user preferences.
+3.  **Incremental Wisdom (`LEARNINGS.md`)**: Solutions to bugs and code patterns discovered.
+
+This triad ensures that context persists even if the agent is restarted or the context window shifts.
 
 ### Verification Standards
 A feature is NOT complete until the **Reviewer** issues an `APPROVED` verdict based on evidence (file paths and line numbers).
@@ -70,7 +75,7 @@ A feature is NOT complete until the **Reviewer** issues an `APPROVED` verdict ba
 - `tasks.md`: Atomic task list with status.
 
 ### Project-Wide (`.specs/`)
-- `project/`: `PROJECT.md`, `ROADMAP.md`, `STATE.md`.
+- `project/`: `PROJECT.md`, `ROADMAP.md`, `STATE.md`, `MEMORY.md`, `LEARNINGS.md`.
 - `codebase/`: `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `CONCERNS.md`.
 
 ---

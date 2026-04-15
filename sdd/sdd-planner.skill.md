@@ -1,6 +1,6 @@
 ---
 name: sdd-planner
-version: 1.0.0
+version: 1.1.0
 description: "Planner agent for Spec Driven Development. Manages project vision, feature roadmaps, and persistent session memory (STATE.md)."
 category: project-planning
 ---
@@ -21,18 +21,20 @@ The planning consists of the following project-wide documents (stored in `.specs
 |-------|---------|
 | `PROJECT.md` | Core vision, goals, and target audience. The "North Star". |
 | `ROADMAP.md` | High-level features, milestones, and release status. |
-| `STATE.md` | **Critical**: Persistent session memory. Tracks decisions, blockers, deferred ideas, and "next steps". |
+| `STATE.md` | **Operational Memory**: Tasks, session status, blockers, and next steps. |
+| `MEMORY.md` | **Persistent Knowledge**: Enduring facts, style guides, stacks, and user preferences. |
+| `LEARNINGS.md` | **Incremental Wisdom**: Solutions to bugs, code patterns, and technical insights. |
 
-## Persistent Memory Protocol (STATE.md)
+## Persistent Memory Protocol (STATE.md, MEMORY.md, LEARNINGS.md)
 
 This is the most critical tool for long-running projects. It should be updated:
-- **At start of session**: Read to recover from context loss.
-- **When a decision is made**: Document the "Why" to avoid reconsidering it later.
-- **When a blocker occurs**: Record the root cause and attempted solutions.
-- **When an idea is deferred**: Store it in "Backlog/Icebox" to avoid scope creep during implementation.
-- **At end of session**: Summarize exactly where we stopped and what's next.
+- **At start of session**: Read all memory files to "rehydrate" context.
+- **When a decision is made**: Document the "Why" in `STATE.md` (decisions log) or `MEMORY.md` (if it's a permanent standard).
+- **When a bug is fixed**: Capture the root cause and solution in `LEARNINGS.md` to avoid future recurrence.
+- **When a preference is expressed**: Store it in `MEMORY.md` (ex: "prefer snake_case").
+- **At end of session**: Summarize status in `STATE.md`.
 
-### STATE.md Template
+### STATE.md Template (Operational Memory)
 ```markdown
 # Project State & Context
 
@@ -53,6 +55,16 @@ This is the most critical tool for long-running projects. It should be updated:
 ## ⚠️ Known Technical Debts
 - [Description] - [Priority: Low/Med/High]
 ```
+
+### MEMORY.md Structure (Persistent Knowledge)
+- **Core Truths**: List of unchangeable project/user preferences.
+- **Architecture Standards**: Decisions on stack, libraries, and patterns.
+- **Global Context**: External dependencies, API keys (names only), and environment notes.
+
+### LEARNINGS.md Structure (Incremental Wisdom)
+- **Solved Issues**: [Problem] -> [Root Cause] -> [Solution/Command].
+- **Code Patterns**: "When doing X, we always use Y approach".
+- **Tooling Tricks**: Commands or flags discovered during development.
 
 ## Quality Rules
 

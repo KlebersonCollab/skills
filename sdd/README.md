@@ -2,7 +2,7 @@
 
 > Precision at scale. Rigor when needed, speed when possible.
 
-[![Versão](https://img.shields.io/badge/Versão-1.0.0-blue)](#changelog)
+[![Versão](https://img.shields.io/badge/Versão-1.1.0-blue)](#changelog)
 [![Sub-skills](https://img.shields.io/badge/Sub--skills-5-brightgreen)](#-sub-skills)
 
 ---
@@ -10,6 +10,8 @@
 ## 📖 Visão Geral
 
 Skill de **desenvolvimento orientado a especificações** com workflow modular e adaptativo. O SDD ajusta automaticamente a profundidade do processo à complexidade da tarefa (Auto-Sizing), garantindo rigor quando necessário e velocidade quando possível.
+
+A versão `1.1.0` introduz o **Persistent Memory Protocol**, permitindo que o agente aprenda e persista fatos entre sessões.
 
 > **Lei do SDD**: Se não está na spec, não existe. Se não foi verificado, não está pronto.
 
@@ -34,7 +36,7 @@ A profundidade do workflow é determinada pela **complexidade** da tarefa:
 | Sub-skill | Arquivo | Responsabilidade |
 |-----------|---------|------------------|
 | **Explorer** | [sdd-explorer.skill.md](sdd-explorer.skill.md) | Mapeia codebases existentes gerando `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md` e outros artefatos de contexto. |
-| **Planner** | [sdd-planner.skill.md](sdd-planner.skill.md) | Gerencia visão do projeto (`PROJECT.md`, `ROADMAP.md`) e memória persistente de sessão (`STATE.md`). |
+| **Planner** | [sdd-planner.skill.md](sdd-planner.skill.md) | Gerencia a visão do projeto e a **Memória Triádica** (`STATE.md`, `MEMORY.md`, `LEARNINGS.md`). |
 | **Orchestrator** | [sdd-orchestrator.skill.md](sdd-orchestrator.skill.md) | Traduz requisitos em especificações técnicas (`spec.md`, `plan.md`, `tasks.md`) com rastreabilidade completa. |
 | **Implementer** | [sdd-implementer.skill.md](sdd-implementer.skill.md) | Executa código atômico e test-driven, seguindo rigorosamente as specs e convenções do projeto. |
 | **Reviewer** | [sdd-reviewer.skill.md](sdd-reviewer.skill.md) | Audita implementações contra critérios de aceitação com relatório de evidências e UAT. |
@@ -61,7 +63,7 @@ Ao pesquisar ou decidir, siga esta hierarquia estrita:
 - `tasks.md` — Lista atômica de tarefas com status.
 
 ### Por Projeto (`.specs/`)
-- `project/` — `PROJECT.md`, `ROADMAP.md`, `STATE.md`.
+- `project/` — `PROJECT.md`, `ROADMAP.md`, `STATE.md`, `MEMORY.md`, `LEARNINGS.md`.
 - `codebase/` — `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `CONCERNS.md`.
 
 ---
@@ -71,8 +73,8 @@ Ao pesquisar ou decidir, siga esta hierarquia estrita:
 ### Safety Valve
 Se uma tarefa identificada como **Quick** ou **Small** revelar complexidade oculta (>5 passos ou dependências profundas), **PARE**. Formalize a tarefa como **Large** com spec e plan completos.
 
-### State Management
-Sempre atualize o `STATE.md` (via `sdd-planner`) ao final de cada sessão ou após decisões importantes.
+### Persistent Memory (Triad State)
+Sempre atualize o `STATE.md` (operacional), `MEMORY.md` (fatos) e `LEARNINGS.md` (sabedoria) via `sdd-planner` ao final de cada sessão ou após decisões importantes.
 
 ### Verification Standards
 Uma feature **NÃO** está completa até que o **Reviewer** emita um veredito `APPROVED` baseado em evidências (paths e line numbers).

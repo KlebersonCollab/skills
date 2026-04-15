@@ -20,10 +20,10 @@ Cada skill possui seu próprio diretório com documentação completa — inclui
 
 | # | Skill | Descrição | Versão |
 |---|-------|-----------|--------|
-| 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo para desenvolvimento orientado a especificações. | `1.0.0` |
+| 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo com **Persistent Memory Protocol** (Triad State). | `1.1.0` |
 | 2 | **[Skill Factory](skill-factory/)** | Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados. | `1.1.0` |
 | 3 | **[Python com UV](python-uv/)** | Desenvolvimento Python profissional (Django Pro, FastAPI) com UV — gerenciador 10-100x mais rápido. | `2.3.0` |
-| 4 | **[API Architect](api-architect/)** | Arquiteto de APIs — design interoperável, seguro e resiliente — contratos intuitivos, escaláveis e seguros (OWASP). | `1.1.0` |
+| 4 | **[API Architect](api-architect/)** | Arquiteto de APIs — design interoperável, seguro e resiliente (OpenAPI, GraphQL, tRPC) com Style Guide. | `1.2.0` |
 | 5 | **[Brainstorming](brainstorming/)** | Facilitador de design e resolução de problemas — exploração profunda e validação antes da implementação. | `1.0.0` |
 | 6 | **[Architecture](architecture/)** | Arquiteto de Sistemas — design pragmático, análise de trade-offs e registros de decisão (ADR). | `1.0.0` |
 
