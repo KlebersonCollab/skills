@@ -100,6 +100,17 @@ A feature is NOT complete until the **Reviewer** issues an `APPROVED` verdict ba
 
 ---
 
+## Directory Structure (Mandatory)
+
+### Feature-Specific (`spec/` or `.specs/features/[name]/`)
+- `spec.md`: Traceable requirements (FR-X) and ACs.
+- `plan.md`: Technical design, schemas, and Mermaid diagrams.
+- `tasks.md`: Atomic task list with status.
+
+### Project-Wide (`.specs/`)
+- `project/`: `PROJECT.md`, `ROADMAP.md`, `STATE.md`, `MEMORY.md`, `LEARNINGS.md`.
+- `codebase/`: `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `CONCERNS.md`.
+
 ## Output Structure
 
 A execução deste workflow deve resultar nos seguintes artefatos mandatórios, organizados em `.specs/features/[name]/`:
