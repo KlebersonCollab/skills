@@ -2,7 +2,9 @@
 
 Este arquivo contém mandatos e diretrizes fundamentais para agentes de IA neste projeto. Estas instruções devem ser seguidas rigorosamente em cada sessão.
 
-## SDD Workflow Mandates
+## Global Engineering Standards
+
+0. **Session Startup**: No início de cada sessão, o agente **DEVE** consultar a skill `onboarding-navigator` para reidratar o contexto do hub, entender as habilidades disponíveis e validar o alinhamento com a cultura do projeto antes de qualquer ação.
 
 1.  **Proactive Phase 4 (Persistence)**: Sempre que uma tarefa ou feature for concluída tecnicamente, o agente **DEVE** realizar proativamente a Fase 4 do SDD (Review & Persistence) antes de declarar a finalização ao usuário.
     *   **Atualizar Specs**: Marcar obrigatoriamente **TODAS** as tarefas como concluídas no arquivo `tasks.md` da feature, além de atualizar o `plan.md`.
@@ -11,6 +13,10 @@ Este arquivo contém mandatos e diretrizes fundamentais para agentes de IA neste
     *   **NÃO** declarar uma tarefa como "finalizada" ou "concluída" sem que os arquivos de rastreio (`tasks.md`) reflitam 100% do progresso.
 
 2.  **State Management**: Manter o `STATE.md`, `MEMORY.md` e `LEARNINGS.md` atualizados para garantir a continuidade do contexto entre sessões.
+
+- **Context Efficiency**: Combine buscas e leituras para minimizar turnos. Utilize sub-agentes para tarefas de alto volume.
+- **Security**: Nunca exponha, logue ou commite credenciais, segredos ou chaves de API.
+- **Git**: Seguir as convenções de commit do projeto ao finalizar tarefas.
 
 ## Architectural & Technical Mandates
 
@@ -28,13 +34,7 @@ Este arquivo contém mandatos e diretrizes fundamentais para agentes de IA neste
 
 9. **Observability-First**: Todo novo serviço ou módulo deve nascer com **Logging Estruturado** (JSON) e **SLIs** (Service Level Indicators) definidos desde a fase de especificação, conforme detalhado na skill `observability-expert`.
 
-10. **Navigation & Culture**: Antes de propor mudanças em processos globais ou iniciar novos módulos de grande escala, o agente **DEVE** consultar as diretrizes da skill `onboarding-navigator` para garantir alinhamento com o `GUIA_CENTRAL.md` e a cultura do projeto.
-
-## General Engineering Standards
-
-- **Context Efficiency**: Combine buscas e leituras para minimizar turnos. Utilize sub-agentes para tarefas de alto volume.
-- **Security**: Nunca exponha, logue ou commite credenciais, segredos ou chaves de API.
-- **Git**: Seguir as convenções de commit do projeto ao finalizar tarefas.
+10. **Navigation & Culture**: Antes de propor mudanças em processos globais ou iniciar novos módulos de grande escala, o agente **DEVE** consultar as diretrizes da skill `onboarding-navigator` para garantir alinhamento com a cultura do projeto.
 
 ---
 *Mandato atualizado em 14 de Abril de 2026.*

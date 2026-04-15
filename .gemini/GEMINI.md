@@ -30,11 +30,11 @@ Este arquivo contém mandatos e diretrizes fundamentais para o Gemini CLI neste 
 
 10. **Navigation & Culture**: Antes de propor mudanças em processos globais ou iniciar novos módulos de grande escala, o agente **DEVE** consultar as diretrizes da skill `onboarding-navigator` para garantir alinhamento com o `GUIA_CENTRAL.md` e a cultura do projeto.
 
-## General Engineering Standards
+## Global Engineering Standards
 
-- **Context Efficiency**: Combine buscas e leituras para minimizar turnos. Utilize sub-agentes para tarefas de alto volume.
-- **Security**: Nunca exponha, logue ou commite credenciais, segredos ou chaves de API.
-- **Git**: Seguir as convenções de commit do projeto ao finalizar tarefas.
+0. **Session Startup**: No início de cada sessão, o agente **DEVE** consultar a skill `onboarding-navigator` para reidratar o contexto do hub, entender as habilidades disponíveis e validar o alinhamento com a cultura do projeto antes de qualquer ação.
+
+1.  **Proactive Phase 4 (Persistence)**: Sempre que uma tarefa ou feature for concluída tecnicamente, o agente **DEVE** realizar proativamente a Fase 4 do SDD (Review & Persistence) antes de declarar a finalização ao usuário.
 
 ---
 *Mandato atualizado em 14 de Abril de 2026.*

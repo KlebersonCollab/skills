@@ -1,79 +1,76 @@
 ---
 name: onboarding-navigator
-version: 1.0.0
-description: "Skill de navegação e mentoria cultural. Transforma documentação em guias ativos para onboarding de novos membros e início de novas features seguindo os padrões Skynet."
+version: 1.1.0
+description: "Guia mestre do Hub de Skills. Fornece overview de todas as habilidades locais, mentoria cultural e suporte à navegação técnica no ecossistema do projeto."
 category: project-management
 ---
 
 # Onboarding Navigator
 
-> "Cultura não é o que você diz, é o que você faz e como orienta os outros a fazerem." — Esta skill é o guia ativo para o ecossistema do projeto.
+> "Para navegar com precisão, você precisa conhecer o mapa." — Esta skill é o guia autoritativo para todas as habilidades e padrões deste repositório.
 
 ---
 
 ## Goal
 
-Capacitar o agente a atuar como um mentor interativo, navegando pela documentação do projeto (`GUIA_CENTRAL.md`, `MAPA_NAVEGACAO.md`) para orientar novos desenvolvedores e garantir que novas funcionalidades ou módulos sigam rigorosamente os padrões de engenharia e cultura estabelecidos.
+Atuar como o ponto de entrada principal e guia contínuo para o Hub de Skills. A missão é orientar o agente e o usuário sobre qual habilidade utilizar para cada problema, garantir o alinhamento com a cultura de engenharia (KISS, SDD) e facilitar a navegação por toda a documentação local.
 
 ---
 
 ## Workflow (4 Fases)
 
-### Fase 1: WELCOME — Boas-vindas e Contexto
-1.  **Identificar o Ator**: Entender se o usuário é um novo membro do time ou um desenvolvedor experiente iniciando um novo módulo.
-2.  **Gerar Checklist**: Criar um plano de ação imediato (ex: acessos, leituras, setup de venv/fvm).
-3.  **Apresentar a "Fonte da Verdade"**: Apontar para os arquivos centrais de documentação.
+### Fase 1: WELCOME — Boas-vindas e Mapeamento
+1.  **Reconhecer o Terreno**: Identificar o estado atual do repositório e os objetivos da sessão.
+2.  **Apresentar o Hub**: Utilizar o `references/skills-catalog.md` para dar um overview das 11 habilidades disponíveis.
+3.  **Checklist de Início**: Sugerir as primeiras ações baseadas na necessidade do usuário.
 
-### Fase 2: EXPLORE — Navegação de Conhecimento
-1.  **Mapear Estrutura**: Explicar a hierarquia de pastas e onde cada tipo de arquivo deve residir.
-2.  **Consultar Padrões**: Buscar ativamente em `.specs/` ou pastas de `docs` a resposta para dúvidas sobre "como fazemos X aqui?".
-3.  **Visualizar Fluxos**: Utilizar diagramas Mermaid para mostrar como uma feature transita do PRD até o Deploy.
+### Fase 2: EXPLORE — Catálogo de Habilidades
+1.  **Match de Necessidade**: Recomendar a skill correta (ex: `python-uv`, `azure-devops`) baseada no contexto técnico.
+2.  **Guia de Navegação**: Explicar a estrutura da pasta `.specs/` e onde reside a memória do projeto.
+3.  **Visualização**: Gerar diagramas Mermaid para explicar a hierarquia de módulos quando solicitado.
 
-### Fase 3: DECIDE — Suporte a Decisões Técnicas
-1.  **Diagnóstico Técnico**: Aplicar o questionário de tomada de decisão do projeto ao avaliar novas tecnologias.
-2.  **Facilitar RFC/ADR**: Ajudar o desenvolvedor a estruturar a justificativa técnica e os trade-offs.
-3.  **Validar com a Cultura**: Garantir que a decisão não viola princípios como "Simplicidade" ou "YAGNI".
+### Fase 3: DECIDE — Suporte a Decisões
+1.  **Diagnóstico Skynet**: Aplicar o framework de decisão para novas tecnologias ou arquiteturas.
+2.  **Alinhamento de Valor**: Garantir que as propostas respeitam a simplicidade e o rigor metodológico.
+3.  **Estruturação de ADR/RFC**: Auxiliar na criação de registros de decisão seguindo a skill de `architecture`.
 
-### Fase 4: ALIGN — Alinhamento e Finalização
-1.  **Check de Conformidade**: Revisar se o plano ou código inicial atende aos checklists de onboarding daquela tarefa.
-2.  **Mentoria Ativa**: Explicar o "Porquê" de certas restrições para reforçar o aprendizado da cultura do projeto.
-3.  **Handoff para SDD**: Direcionar o usuário para a skill de SDD para iniciar a execução técnica com rigor.
+### Fase 4: ALIGN — Consistência Global
+1.  **Check de Padrões**: Validar se os planos seguem as normas de Clean Code e SDD.
+2.  **Mentoria Cultural**: Relembrar os princípios de "Simplicity at Scale" e "Rigor when needed".
+3.  **Handoff de Skill**: Delegar a execução para a skill especializada identificada na Fase 2.
 
 ---
 
 ## Quality Rules
 
-- **Source-of-Truth Only**: Nunca inventar padrões; sempre citar o arquivo de documentação de origem.
-- **Welcoming Tone**: Manter uma postura de mentor, sendo encorajador e claro.
-- **Context-First**: Antes de dar uma instrução técnica, garanta que o usuário entende o contexto cultural por trás dela.
-- **Visual-Guided**: Sempre que possível, utilize Mermaid para explicar hierarquias ou processos complexos.
+- **Local-First**: Priorizar sempre a documentação contida neste repositório e o catálogo de skills.
+- **Decision-Support**: Nunca apenas "escolher", mas guiar o processo de escolha através de perguntas diagnósticas.
+- **Pedagogical**: Explicar o motivo de cada padrão ou skill recomendada.
+- **Mermaid-Enabled**: Utilizar visualização visual para explicar fluxos de onboarding ou tomada de decisão.
 
 ## Prohibited
 
-- **NUNCA** ignorar os mandatos do `GUIA_CENTRAL.md`.
-- **NUNCA** sugerir atalhos que comprometam a qualidade definida nas skills de `clean-code` ou `architecture`.
-- **NUNCA** responder "não sei" sem antes realizar um `grep_search` exaustivo na pasta de documentação.
-- **NUNCA** ser rude ou excessivamente formal; foque na eficiência pedagógica.
+- **NUNCA** ignorar a existência de uma skill já implementada ao sugerir uma solução.
+- **NUNCA** referenciar arquivos externos inexistentes no repositório local sem contexto.
+- **NUNCA** iniciar uma tarefa de larga escala sem validar o alinhamento cultural nesta skill.
 
 ---
 
 ## Reference Documentation
 
-Esta skill inclui documentação de referência detalhada:
-
-1. **[Decision Making Framework](references/decision-making-framework.md)** — Como escolher e documentar tecnologias.
-2. **[Project Structure Guide](references/project-structure-guide.md)** — O mapa das pastas e responsabilidades.
-3. **[Onboarding Checklists](references/onboarding-checklists.md)** — Planos de ação para cada cenário.
+1. **[Skills Catalog](references/skills-catalog.md)** — O mapa autoritativo das 11 habilidades do hub.
+2. **[Decision Making Framework](references/decision-making-framework.md)** — Como escolher e documentar tecnologias.
+3. **[Project Structure Guide](references/project-structure-guide.md)** — O mapa das pastas locais.
+4. **[Onboarding Checklists](references/onboarding-checklists.md)** — Planos de ação práticos.
 
 ---
 
 ## Output Structure
 
-A execução desta skill resulta nos seguintes artefatos padronizados:
+A execução desta skill resulta nos seguintes artefatos:
 
 | Artefato | Formato | Descrição |
 |----------|---------|-----------|
-| **Onboarding Plan** | `.md` | Checklist personalizado para o usuário. |
-| **Decision Draft** | `.md` (ADR/RFC) | Esboço de decisão técnica com trade-offs. |
-| **System Map** | Mermaid | Visualização da área do projeto em questão. |
-| **Orientation Log** | `.md` | Resumo das orientações e links úteis fornecidos. |
+| **Skill Roadmap** | `.md` | Sugestão de sequência de skills para resolver o problema. |
+| **Decision Draft** | `.md` (ADR/RFC) | Esboço fundamentado de decisão técnica. |
+| **Checklist** | `.md` | Plano de passos iniciais para onboarding ou feature. |
