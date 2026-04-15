@@ -20,9 +20,12 @@ Este arquivo contém mandatos e diretrizes fundamentais para o Claude AI neste p
 
 5.  **API Governance**: Projetos de API devem priorizar contratos claros (OpenAPI/SDL), segurança (OWASP API Top 10) e resiliência (Rate Limiting/Circuit Breakers), seguindo o **API Style Guide** do projeto.
 
-6.  **Tooling Consistency**: Sempre utilize as ferramentas de gerenciamento de versão e ambiente estabelecidas no projeto (ex: `uv` para Python, `fvm` para Flutter, `npm/pnpm` para Node).
+6. **Tooling Consistency**: Sempre utilize as ferramentas de gerenciamento de versão e ambiente estabelecidas no projeto (ex: `uv` para Python, `fvm` para Flutter, `npm/pnpm` para Node).
+
+7. **Quality-First (Clean Code)**: Todo código gerado ou revisado **DEVE** seguir rigorosamente os princípios **SOLID**, **YAGNI**, **DRY** e **KISS**. O agente deve atuar como um mentor de qualidade, evitando sobre-engenharia e priorizando a simplicidade e manutenibilidade, conforme detalhado na skill `clean-code-mentor`.
 
 ## General Engineering Standards
+
 
 - **Context Efficiency**: Combine buscas e leituras para minimizar turnos. Utilize sub-agentes para tarefas de alto volume.
 - **Security**: Nunca exponha, logue ou commite credenciais, segredos ou chaves de API.

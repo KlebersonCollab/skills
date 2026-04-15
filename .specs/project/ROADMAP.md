@@ -9,3 +9,4 @@
 - [x] Skill **Architecture** (System Design & ADRs).
 - [x] Skill **Flutter com FVM** (Workflow profissional Flutter v2026).
 - [x] Skill **Azure DevOps** (Boards, Repos, Pipelines, Artifacts).
+- [x] Skill **Clean Code Mentor** (SOLID, YAGNI, DRY, KISS).
