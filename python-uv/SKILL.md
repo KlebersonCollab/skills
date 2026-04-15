@@ -1,7 +1,7 @@
 ---
 name: python-uv
-version: 2.1.0
-description: "Skill para desenvolvimento Python profissional com UV. Use quando precisar inicializar projetos (síncronos ou assíncronos), gerenciar dependências, versões Python, ambientes virtuais, ferramentas de desenvolvimento (ruff, mypy, pytest), executar scripts inline (PEP 723), configurar CI/CD, ou migrar para UV."
+version: 2.3.0
+description: "Skill para desenvolvimento Python profissional com UV. Use quando precisar inicializar projetos (Django Pro, FastAPI, CLI), gerenciar dependências, versões Python, ambientes virtuais, ferramentas de desenvolvimento (ruff, mypy, pytest), otimizar performance (Django N+1), executar scripts inline (PEP 723), configurar CI/CD, ou migrar para UV."
 category: development-workflow
 ---
 

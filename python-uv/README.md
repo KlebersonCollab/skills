@@ -6,13 +6,14 @@ Gerenciador de pacotes e projetos Python extremamente rápido, escrito em Rust. 
 
 ## 🚀 Visão Geral
 
-Esta skill orienta o desenvolvimento Python moderno usando o `uv`. Ela cobre desde a inicialização de projetos simples até arquiteturas assíncronas complexas, garantindo performance e reprodutibilidade.
+Esta skill orienta o desenvolvimento Python moderno usando o `uv`. Ela cobre desde a inicialização de projetos simples até arquiteturas corporativas complexas (Django Pro), garantindo performance extrema e segurança.
 
 ### Capacidades Principais:
 - **Gestão de Projetos**: Inicialização (`uv init`), dependências e lockfiles.
-- **Ambientes**: Gestão automática de venvs e versões de Python.
+- **Django Pro**: Padrões de Service Layer, Async Django e Bulk Operations.
+- **Otimização de Performance**: Resolução de N+1 (ORM), Profiling e Memory Management.
 - **Desenvolvimento Async**: Padrões para FastAPI, httpx e testes assíncronos.
-- **Ferramentas**: Instalação isolada de CLI tools (`ruff`, `mypy`, `pytest`).
+- **Segurança**: Auditoria de BOLA/IDOR e ferramentas de segurança integrada.
 - **Scripts PEP 723**: Execução de scripts únicos com dependências declaradas.
 
 ---
@@ -21,15 +22,14 @@ Esta skill orienta o desenvolvimento Python moderno usando o `uv`. Ela cobre des
 
 ```text
 python-uv/
-├── SKILL.md                 # Definição e workflow (v2.1.0)
+├── SKILL.md                 # Definição e workflow (v2.3.0)
 ├── README.md                # Este guia
 ├── CHANGELOG.md             # Histórico de versões
 ├── references/              # Referências Detalhadas
-│   ├── async-development.md # NOVO!
+│   ├── django-workflow.md   # NOVO: Performance & Pro!
+│   ├── async-development.md
 │   ├── project-management.md
-│   ├── tool-management.md
-│   ├── python-environment.md
-│   └── ...
+│   ├── ...
 └── examples/                # Exemplos Práticos
 ```
 
@@ -38,14 +38,13 @@ python-uv/
 ## 🛠️ Como Usar
 
 1. **Inicie um projeto**: `uv init meu-app`
-2. **Adicione dependências**: `uv add httpx`
-3. **Desenvolva com Async**: Consulte `references/async-development.md` para padrões de concorrência.
-4. **Teste seu código**: `uv run pytest`
+2. **Otimize seu Django**: Consulte `references/django-workflow.md` para padrões de N+1.
+3. **Analise Performance**: Use `uv run python manage.py shell_plus --print-sql`.
 
 ---
 
 ## 🎯 Exemplos de Comandos
 
-- *"Crie um script Python assíncrono usando httpx para fazer scraping de 5 URLs concorrentemente."*
-- *"Configure um novo projeto FastAPI usando uv e configure o pytest-asyncio."*
-- *"Como instalo o ruff globalmente usando o uv?"*
+- *"Refatore esta view Django para resolver o problema de N+1 queries usando select_related."*
+- *"Configure uma Service Layer para este projeto Django gerenciado pelo uv."*
+- *"Como uso o uv para rodar o bandit e auditar a segurança do meu projeto?"*
