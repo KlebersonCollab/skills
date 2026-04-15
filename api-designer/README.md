@@ -1,88 +1,52 @@
-# API Designer
+# API Designer — Skill
 
-> Projetista de APIs REST e GraphQL — guia o agente a criar contratos de API intuitivos, escaláveis e consistentes, desde a modelagem de recursos até a documentação OpenAPI.
-
-[![Versão](https://img.shields.io/badge/Versão-1.0.0-blue)](#changelog)
-[![Categoria](https://img.shields.io/badge/Categoria-api--design-purple)](#)
-[![Baseado em](https://img.shields.io/badge/Baseado_em-api--design--principles-orange)](https://github.com/sickn33/antigravity-awesome-skills/tree/main/skills/api-design-principles)
+Projetista de APIs REST, GraphQL e tRPC — guia o agente a criar contratos de API intuitivos, escaláveis e seguros, desde a modelagem de recursos até a segurança (OWASP API Top 10).
 
 ---
 
-## 📖 Visão Geral
+## 🚀 Visão Geral
 
-A skill **API Designer** capacita o agente a projetar APIs de alta qualidade de forma sistemática. Ela aplica os princípios consolidados de design REST e GraphQL para guiar todo o processo — desde a identificação dos consumidores e modelagem de recursos até a especificação completa do contrato e a validação do design.
+Esta skill transforma o agente em um arquiteto de APIs sênior. Ela não apenas ajuda a definir endpoints, mas orienta a escolha da tecnologia certa para cada contexto, garante que a API seja resiliente a abusos (Rate Limiting) e segura contra ataques modernos (OWASP).
 
-O foco é garantir que o **contrato de API** seja aprovado e revisado **antes** que qualquer código de implementação seja escrito, eliminando retrabalho custoso e inconsistências.
-
-### Por que usar esta skill?
-
-- APIs mal projetadas geram retrabalho, breaking changes e frustração para os consumidores.
-- Esta skill força o processo **Contract-First**, que é a melhor prática da indústria.
-- Aplica princípios comprovados de REST e GraphQL de forma consistente e rastreável.
+### Capacidades Principais:
+- **Design Multiestilo**: Suporte nativo a REST, GraphQL e tRPC.
+- **Decision Tree**: Guia para escolha de arquitetura (Monorepo vs Polyglot).
+- **Segurança Nativa**: Foco em BOLA/IDOR, Broken Auth e Mass Assignment.
+- **Resiliência**: Padrões de Rate Limiting e tratamento de erros acionáveis.
+- **Documentação**: Geração de OpenAPI 3.x e Schemas SDL/tRPC.
 
 ---
 
-## ⚙️ Como Usar
+## 📂 Estrutura da Skill
 
-Invoque a skill quando precisar projetar ou revisar uma API:
-
+```text
+api-designer/
+├── SKILL.md                 # Definição, Workflow e Regras (v1.1.0)
+├── README.md                # Este guia
+├── CHANGELOG.md             # Histórico de versões
+├── references/              # Conhecimento Teórico
+│   ├── rest-best-practices.md
+│   ├── graphql-schema-design.md
+│   ├── trpc-patterns.md     # NOVO!
+│   ├── api-security-guide.md # NOVO!
+│   ├── api-rate-limiting.md  # NOVO!
+│   └── api-versioning-strategies.md
+└── resources/               # Guia Prático
+    └── implementation-playbook.md
 ```
-Use a skill api-designer para projetar a API de gerenciamento de pedidos.
-Consumidores: app mobile (iOS/Android) e painel admin web.
-Operações principais: criar pedido, listar pedidos por usuário, atualizar status, cancelar.
-```
-
-A skill executará 4 fases automaticamente:
-
-1. **DISCOVER** — Entende contexto, consumidores e restrições
-2. **MODEL** — Modela recursos, endpoints e schema
-3. **SPECIFY** — Especifica contratos detalhados com erros, auth e versionamento
-4. **VALIDATE** — Revisa consistência e aprova o design
 
 ---
 
-## 📚 Recursos Incluídos
+## 🛠️ Como Usar
 
-| Arquivo | Descrição |
-|---------|-----------|
-| [`resources/implementation-playbook.md`](resources/implementation-playbook.md) | Padrões de implementação, checklists e exemplos de código (REST + GraphQL) |
-| [`references/rest-best-practices.md`](references/rest-best-practices.md) | Guia completo de boas práticas REST |
-| [`references/graphql-schema-design.md`](references/graphql-schema-design.md) | Padrões de schema GraphQL e anti-padrões |
-| [`references/api-versioning-strategies.md`](references/api-versioning-strategies.md) | Estratégias de versionamento e migração |
+1. **Ative a skill**: `activate_skill api-designer`
+2. **Siga o Workflow**: O agente passará pelas fases de DISCOVER, MODEL, SPECIFY e VALIDATE.
+3. **Consulte as Referências**: Se tiver dúvidas sobre segurança ou tRPC, peça ao agente para consultar os arquivos na pasta `references/`.
 
 ---
 
-## 🎯 Casos de Uso
+## 🎯 Exemplos de Comandos
 
-| Cenário | Use a skill? |
-|---------|-------------|
-| Projetando nova API REST do zero | ✅ Sim |
-| Projetando schema GraphQL | ✅ Sim |
-| Refatorando API para melhorar usabilidade | ✅ Sim |
-| Revisando especificação antes da implementação | ✅ Sim |
-| Estabelecendo padrões de API para o time | ✅ Sim |
-| Implementando endpoint em framework específico (sem redesign) | ❌ Não |
-| Trabalho exclusivo de infraestrutura sem contrato de API | ❌ Não |
-
----
-
-## 📐 Princípios Aplicados
-
-### REST
-- **Resource-Oriented Architecture** — URLs são substantivos, HTTP verbs são ações
-- **Stateless** — Cada request é auto-contido
-- **HTTP Semântico** — Status codes corretos, idempotência respeitada
-- **Paginação e Filtros** — Sempre presentes em coleções
-- **Versionamento** — Estratégia definida desde o início
-
-### GraphQL
-- **Schema-First Development** — Schema antes dos resolvers
-- **Tipagem Forte** — Enums, custom scalars, non-null explícito
-- **Paginação Relay** — Cursor-based para coleções
-- **DataLoaders** — Prevenção de N+1 consultas
-
----
-
-## 📝 Changelog
-
-Consulte o [CHANGELOG.md](CHANGELOG.md) para o histórico completo de versões.
+- *"Projete uma API REST para um sistema de e-commerce seguindo os padrões de segurança da skill."*
+- *"Escolha a melhor tecnologia de API para um monorepo TypeScript e crie o contrato inicial."*
+- *"Revise minha especificação de API atual contra o OWASP API Top 10."*

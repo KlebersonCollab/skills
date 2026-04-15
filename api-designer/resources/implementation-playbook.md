@@ -1,6 +1,6 @@
 # Implementation Playbook — API Designer
 
-Padrões de implementação, checklists e exemplos de código para design de APIs REST e GraphQL.
+Padrões de implementação, checklists e exemplos de código para design de APIs REST, GraphQL e tRPC.
 
 ---
 
@@ -8,10 +8,10 @@ Padrões de implementação, checklists e exemplos de código para design de API
 
 ### Resource-Oriented Architecture
 
-- Recursos são **substantivos** (`users`, `orders`, `products`), nunca verbos
-- Use HTTP methods para as ações (GET, POST, PUT, PATCH, DELETE)
-- URLs representam hierarquias de recursos
-- Convenções de nomenclatura consistentes (plural para coleções)
+- Recursos são **substantivos** (`users`, `orders`, `products`), nunca verbos.
+- Use HTTP methods para as ações (GET, POST, PUT, PATCH, DELETE).
+- URLs representam hierarquias de recursos.
+- Convenções de nomenclatura consistentes (plural para coleções).
 
 ### Semântica dos Métodos HTTP
 
@@ -23,386 +23,110 @@ Padrões de implementação, checklists e exemplos de código para design de API
 | `PATCH` | Atualizar campos parcialmente | ❌* | ❌ |
 | `DELETE` | Remover recurso | ✅ | ❌ |
 
-> *PATCH pode ser idempotente dependendo da implementação.
-
 ---
 
 ## 2. GraphQL — Princípios Fundamentais
 
 ### Schema-First Development
 
-- Tipos definem o modelo de domínio
-- Queries para leitura de dados
-- Mutations para modificação de dados
-- Subscriptions para atualizações em tempo real
-
-### Estrutura de Queries
-
-- Clientes solicitam exatamente o que precisam
-- Endpoint único, múltiplas operações
-- Schema fortemente tipado
-- Introspecção embutida
+- Tipos definem o modelo de domínio.
+- Queries para leitura de dados.
+- Mutations para modificação de dados.
+- Subscriptions para atualizações em tempo real.
 
 ---
 
-## 3. Estratégias de Versionamento
+## 3. tRPC — Princípios Fundamentais (Novo!)
 
-### URL Versioning (mais comum)
-```
-/api/v1/users
-/api/v2/users
-```
+### End-to-End Type Safety
 
-### Header Versioning
-```
-Accept: application/vnd.api+json; version=1
-```
+- O contrato é o código TypeScript.
+- Sem geração de código necessária.
+- Ideal para Monorepos.
 
-### Query Parameter Versioning
-```
-/api/users?version=1
-```
+#### Exemplo de Router tRPC (v10+)
+```typescript
+import { initTRPC, TRPCError } from '@trpc/server';
+import { z } from 'zod';
 
-**Recomendação**: URL versioning para APIs públicas (visível, explícito, fácil de testar). Header versioning para APIs internas ou com requisitos mais sofisticados.
+const t = initTRPC.create();
 
----
-
-## 4. Padrões REST
-
-### Padrão 1: Design de Coleções de Recursos
-
-```python
-# ✅ Correto: endpoints orientados a recursos
-GET    /api/users              # Listar usuários (com paginação)
-POST   /api/users              # Criar usuário
-GET    /api/users/{id}         # Buscar usuário específico
-PUT    /api/users/{id}         # Substituir usuário
-PATCH  /api/users/{id}         # Atualizar campos do usuário
-DELETE /api/users/{id}         # Remover usuário
-
-# Recursos aninhados
-GET    /api/users/{id}/orders  # Pedidos de um usuário
-POST   /api/users/{id}/orders  # Criar pedido para um usuário
-
-# ❌ Errado: endpoints orientados a ações (evitar)
-POST   /api/createUser
-POST   /api/getUserById
-POST   /api/deleteUser
-```
-
-### Padrão 2: Paginação e Filtros
-
-```python
-from typing import List, Optional
-from pydantic import BaseModel, Field
-
-class PaginationParams(BaseModel):
-    page: int = Field(1, ge=1, description="Número da página")
-    page_size: int = Field(20, ge=1, le=100, description="Itens por página")
-
-class FilterParams(BaseModel):
-    status: Optional[str] = None
-    created_after: Optional[str] = None
-    search: Optional[str] = None
-
-class PaginatedResponse(BaseModel):
-    items: List[dict]
-    total: int
-    page: int
-    page_size: int
-    pages: int
-
-    @property
-    def has_next(self) -> bool:
-        return self.page < self.pages
-
-    @property
-    def has_prev(self) -> bool:
-        return self.page > 1
-
-# Exemplo com FastAPI
-from fastapi import FastAPI, Query
-
-app = FastAPI()
-
-@app.get("/api/users", response_model=PaginatedResponse)
-async def list_users(
-    page: int = Query(1, ge=1),
-    page_size: int = Query(20, ge=1, le=100),
-    status: Optional[str] = Query(None),
-    search: Optional[str] = Query(None)
-):
-    query = build_query(status=status, search=search)
-    total = await count_users(query)
-    offset = (page - 1) * page_size
-    users = await fetch_users(query, limit=page_size, offset=offset)
-
-    return PaginatedResponse(
-        items=users,
-        total=total,
-        page=page,
-        page_size=page_size,
-        pages=(total + page_size - 1) // page_size
-    )
-```
-
-### Padrão 3: Tratamento de Erros e Status Codes
-
-```python
-from fastapi import HTTPException, status
-from pydantic import BaseModel
-from typing import Any, List, Optional
-
-class ErrorResponse(BaseModel):
-    error: str
-    message: str
-    details: Optional[dict] = None
-    timestamp: str
-    path: str
-
-class ValidationErrorDetail(BaseModel):
-    field: str
-    message: str
-    value: Any
-
-# Map de status codes padrão
-STATUS_CODES = {
-    "success": 200,
-    "created": 201,
-    "no_content": 204,
-    "bad_request": 400,
-    "unauthorized": 401,
-    "forbidden": 403,
-    "not_found": 404,
-    "conflict": 409,
-    "unprocessable": 422,
-    "internal_error": 500
-}
-
-def raise_not_found(resource: str, id: str):
-    raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND,
-        detail={
-            "error": "NotFound",
-            "message": f"{resource} não encontrado",
-            "details": {"id": id}
-        }
-    )
-
-def raise_validation_error(errors: List[ValidationErrorDetail]):
-    raise HTTPException(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        detail={
-            "error": "ValidationError",
-            "message": "Falha na validação da requisição",
-            "details": {"errors": [e.dict() for e in errors]}
-        }
-    )
-```
-
-### Padrão 4: HATEOAS
-
-```python
-class UserResponse(BaseModel):
-    id: str
-    name: str
-    email: str
-    _links: dict
-
-    @classmethod
-    def from_user(cls, user, base_url: str):
-        return cls(
-            id=user.id,
-            name=user.name,
-            email=user.email,
-            _links={
-                "self": {"href": f"{base_url}/api/users/{user.id}"},
-                "orders": {"href": f"{base_url}/api/users/{user.id}/orders"},
-                "update": {
-                    "href": f"{base_url}/api/users/{user.id}",
-                    "method": "PATCH"
-                },
-                "delete": {
-                    "href": f"{base_url}/api/users/{user.id}",
-                    "method": "DELETE"
-                }
-            }
-        )
+export const appRouter = t.router({
+  getUser: t.procedure
+    .input(z.string())
+    .query(async (opts) => {
+      const { input } = opts;
+      const user = await db.user.findById(input);
+      if (!user) throw new TRPCError({ code: 'NOT_FOUND' });
+      return user;
+    }),
+  createUser: t.procedure
+    .input(z.object({ name: z.string(), email: z.string().email() }))
+    .mutation(async (opts) => {
+      const { input } = opts;
+      return await db.user.create(input);
+    }),
+});
 ```
 
 ---
 
-## 5. Padrões GraphQL
+## 4. Padrões de Resiliência: Rate Limiting
 
-### Padrão 1: Design de Schema
+### Exemplo de Middleware de Rate Limit (Express/Node)
 
-```graphql
-# schema.graphql
+```javascript
+const rateLimit = require('express-rate-limit');
 
-type User {
-  id: ID!
-  email: String!
-  name: String!
-  createdAt: DateTime!
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 100, // Limite de 100 requests por IP
+  standardHeaders: true, // Retorna X-RateLimit-Limit e Remaining
+  legacyHeaders: false,
+  handler: (req, res) => {
+    res.status(429).json({
+      error: {
+        code: "RATE_LIMIT_EXCEEDED",
+        message: "Muitas requisições. Tente novamente em 15 minutos."
+      }
+    });
+  }
+});
 
-  # Relacionamentos com paginação
-  orders(first: Int = 20, after: String, status: OrderStatus): OrderConnection!
-  profile: UserProfile
-}
-
-type Order {
-  id: ID!
-  status: OrderStatus!
-  total: Money!
-  items: [OrderItem!]!
-  createdAt: DateTime!
-  user: User!
-}
-
-# Padrão de paginação cursor-based (Relay spec)
-type OrderConnection {
-  edges: [OrderEdge!]!
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type OrderEdge {
-  node: Order!
-  cursor: String!
-}
-
-type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
-}
-
-# Enums para type safety
-enum OrderStatus {
-  PENDING
-  CONFIRMED
-  SHIPPED
-  DELIVERED
-  CANCELLED
-}
-
-# Custom scalars
-scalar DateTime
-scalar Money
-
-# Query root
-type Query {
-  user(id: ID!): User
-  users(first: Int = 20, after: String, search: String): UserConnection!
-  order(id: ID!): Order
-}
-
-# Mutation root com payload pattern
-type Mutation {
-  createUser(input: CreateUserInput!): CreateUserPayload!
-  updateUser(input: UpdateUserInput!): UpdateUserPayload!
-  deleteUser(id: ID!): DeleteUserPayload!
-}
-
-input CreateUserInput {
-  email: String!
-  name: String!
-  password: String!
-}
-
-type CreateUserPayload {
-  user: User
-  errors: [Error!]
-}
-
-type Error {
-  field: String
-  message: String!
-}
-```
-
-### Padrão 2: Resolvers com DataLoader (evitar N+1)
-
-```python
-from aiodataloader import DataLoader
-from typing import List, Optional
-
-class UserLoader(DataLoader):
-    """Carrega usuários em batch por ID."""
-
-    async def batch_load_fn(self, user_ids: List[str]) -> List[Optional[dict]]:
-        users = await fetch_users_by_ids(user_ids)
-        user_map = {user["id"]: user for user in users}
-        return [user_map.get(user_id) for user_id in user_ids]
-
-class OrdersByUserLoader(DataLoader):
-    """Carrega pedidos em batch por user_id."""
-
-    async def batch_load_fn(self, user_ids: List[str]) -> List[List[dict]]:
-        orders = await fetch_orders_by_user_ids(user_ids)
-        orders_by_user = {}
-        for order in orders:
-            uid = order["user_id"]
-            orders_by_user.setdefault(uid, []).append(order)
-        return [orders_by_user.get(uid, []) for uid in user_ids]
-
-def create_context():
-    return {
-        "loaders": {
-            "user": UserLoader(),
-            "orders_by_user": OrdersByUserLoader()
-        }
-    }
+app.use('/api/', apiLimiter);
 ```
 
 ---
 
-## 6. Checklists
+## 5. Checklists de Validação
 
-### ✅ Checklist REST (pré-implementação)
+### ✅ Checklist de Segurança (OWASP Focus)
 
-- [ ] Todos os endpoints usam substantivos no plural
-- [ ] Métodos HTTP corretos para cada operação (GET=ler, POST=criar, PUT=substituir, PATCH=atualizar, DELETE=remover)
-- [ ] Resposta de erro padronizada em todos os endpoints
-- [ ] Paginação implementada para todas as coleções
-- [ ] Estratégia de versionamento definida
-- [ ] Autenticação especificada (JWT, API Key, OAuth2)
-- [ ] Rate limiting planejado
-- [ ] 404 retornado para recursos inexistentes (não 200 com body vazio)
-- [ ] Documentação OpenAPI 3.x gerada ou planejada
+- [ ] **BOLA Check**: O endpoint valida se `user_id` do token é dono do recurso solicitado?
+- [ ] **Mass Assignment**: O DTO de entrada proíbe campos como `is_admin` ou `role`?
+- [ ] **Broken Auth**: Tokens JWT usam RS256 e possuem `exp` (expiração)?
+- [ ] **Rate Limit**: Existe proteção configurada para endpoints sensíveis?
 
-### ✅ Checklist GraphQL (pré-implementação)
+### ✅ Checklist REST (v1.1)
 
-- [ ] Schema SDL revisado e aprovado
-- [ ] Todos os campos non-null marcados com `!`
-- [ ] DataLoaders planejados para relações (N+1 prevention)
-- [ ] Paginação cursor-based (Relay spec) para coleções
-- [ ] Mutations retornam payload com `errors`
-- [ ] Campos deprecated marcados com `@deprecated`
-- [ ] Complexidade de query limitada
-- [ ] Introspecção desabilitada em produção (se necessário)
+- [ ] Todos os endpoints usam substantivos no plural.
+- [ ] Resposta de erro padronizada (`{ error: { code, message } }`).
+- [ ] Paginação cursor-based para feeds ou grandes coleções.
+- [ ] Estratégia de versionamento clara na URL ou Header.
+
+### ✅ Checklist tRPC
+
+- [ ] Inputs são validados com Zod?
+- [ ] Procedimentos protegidos usam middlewares de autenticação?
+- [ ] Erros usam a classe `TRPCError` com códigos semânticos?
 
 ---
 
-## 7. Pitfalls Comuns
+## 6. Pitfalls Comuns
 
 | Problema | Causa | Solução |
 |----------|-------|---------|
-| Over-fetching/Under-fetching (REST) | Endpoints genéricos demais ou específicos demais | Projetar endpoints para casos de uso reais; considerar GraphQL |
-| N+1 queries (GraphQL) | Resolvers fazem queries individuais por item | Usar DataLoaders para batch |
-| Breaking changes sem aviso | Alterar contrato público sem versionamento | Versionar API ou usar deprecation strategy |
-| Formatos de erro inconsistentes | Cada endpoint retorna erro diferente | Padronizar ErrorResponse globalmente |
-| Falta de rate limiting | API sem proteção contra abuso | Implementar desde o início |
-| API espelha schema do banco | Coupling entre camadas | Projetar API para o consumidor, não para o banco |
-| HTTP 200 para tudo | Ignorar semântica HTTP | Usar status codes corretos sempre |
-
----
-
-## 8. Recursos Externos
-
-- **[OpenAPI Specification](https://spec.openapis.org/oas/v3.1.0)** — Padrão para documentação REST
-- **[GraphQL Spec](https://spec.graphql.org/)** — Especificação oficial GraphQL
-- **[Relay Cursor Connections Spec](https://relay.dev/graphql/connections.htm)** — Paginação cursor-based
-- **[JSON:API](https://jsonapi.org/)** — Padrão para estrutura de resposta REST
-- **[HTTP Status Codes](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status)** — Referência MDN
+| Vazamento de ID (BOLA) | Confiar apenas no ID enviado na URL | Validar propriedade do recurso no backend. |
+| Payload muito grande | Falta de limite no body-parser | Configurar limite de tamanho de request. |
+| N+1 em GraphQL/tRPC | Múltiplas chamadas ao banco por item | Usar DataLoaders ou Joins eficientes. |
+| Falta de Headers de Versão | Clientes quebram após update | Sempre versionar ou usar deprecation strategy. |

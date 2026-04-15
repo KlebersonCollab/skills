@@ -1,52 +1,43 @@
 ---
 name: api-designer
-version: 1.0.0
-description: "Projetista de APIs REST e GraphQL — guia o agente a criar contratos de API intuitivos, escaláveis e consistentes, desde a modelagem de recursos até a documentação OpenAPI."
+version: 1.1.0
+description: "Projetista de APIs REST, GraphQL e tRPC — guia o agente a criar contratos de API intuitivos, escaláveis e seguros, desde a modelagem até a segurança (OWASP)."
 category: api-design
 ---
 
 # API Designer
 
-> Projetista de APIs REST e GraphQL — guia o agente a criar contratos de API intuitivos, escaláveis e consistentes, desde a modelagem de recursos até a documentação OpenAPI.
+> Projetista de APIs REST, GraphQL e tRPC — guia o agente a criar contratos de API intuitivos, escaláveis e seguros, desde a modelagem até a segurança (OWASP).
 
 ---
 
 ## Goal
 
-Capacitar o agente a projetar APIs de alta qualidade aplicando os princípios de design REST e GraphQL de forma sistemática: modelagem de recursos, escolha de estilo, convenções de nomenclatura, tratamento de erros, versionamento, paginação, autenticação e documentação.
+Capacitar o agente a projetar APIs de alta qualidade aplicando os princípios de design REST, GraphQL e tRPC de forma sistemática: modelagem de recursos, escolha de estilo (Decision Tree), convenções de nomenclatura, tratamento de erros, versionamento, paginação, segurança (OWASP API Top 10) e rate limiting.
 
-A skill garante que o contrato de API seja **consistente**, **developer-friendly** e **preparado para evolução** antes de qualquer linha de código de implementação ser escrita.
+A skill garante que o contrato de API seja **consistente**, **seguro** e **preparado para evolução** antes de qualquer linha de código de implementação ser escrita.
 
 ---
 
 ## Quando Usar Esta Skill
 
-- Projetando novas APIs REST ou GraphQL do zero
-- Refatorando APIs existentes para melhorar usabilidade
-- Estabelecendo padrões de design de API para o time
-- Revisando especificações de API antes da implementação
-- Migrando entre paradigmas (REST → GraphQL ou vice-versa)
-- Gerando documentação OpenAPI/Swagger a partir de contratos
-- Otimizando APIs para casos de uso específicos (mobile, integrações terceiras)
-
-## Quando NÃO Usar Esta Skill
-
-- Você precisa apenas de orientação de implementação em um framework específico
-- O trabalho é exclusivamente de infraestrutura, sem contratos de API
-- Você não tem permissão para alterar ou versionar interfaces públicas existentes
+- Projetando novas APIs (REST, GraphQL ou tRPC) do zero.
+- Escolhendo a tecnologia ideal para o contexto (Monorepo vs Polyglot).
+- Refatorando APIs existentes para melhorar segurança e resiliência.
+- Estabelecendo padrões de design e rate limiting para o time.
+- Revisando especificações de API contra vulnerabilidades comuns (BOLA/IDOR).
+- Gerando documentação OpenAPI/Swagger ou schemas GraphQL/tRPC.
 
 ---
 
-## Output Structure
+## Árvore de Decisão: Qual Estilo Escolher?
 
-A skill produz os seguintes artefatos:
-
-| Artefato | Descrição |
-|----------|-----------|
-| **Contrato de API** | Especificação OpenAPI 3.x (YAML/JSON) ou schema GraphQL (SDL) |
-| **Mapa de Recursos** | Diagrama de recursos, relacionamentos e endpoints |
-| **Guia de Erros** | Catálogo padronizado de códigos e mensagens de erro |
-| **Checklist de Revisão** | Lista de verificação pré-implementação |
+| Contexto | Estilo Recomendado | Por que? |
+|----------|--------------------|----------|
+| **Monorepo TS / Fullstack TS** | **tRPC** | Type-safety ponta a ponta sem geração de código. |
+| **API Pública / Interoperabilidade** | **REST + OpenAPI** | Padrão de mercado, universal, cache HTTP eficiente. |
+| **Dados Complexos / Múltiplos Frontends** | **GraphQL** | Flexibilidade para o cliente, evita over-fetching. |
+| **Microserviços Internos (Alta Perf)** | **gRPC** | Baixa latência, serialização binária eficiente. |
 
 ---
 
@@ -54,70 +45,49 @@ A skill produz os seguintes artefatos:
 
 ### Fase 1: DISCOVER — Entender o Contexto
 1. Identificar os **consumidores** da API (frontend, mobile, third-party, B2B).
-2. Mapear os **casos de uso principais** (user stories ou operações CRUD críticas).
-3. Definir **restrições** (SLA, limites de payload, requisitos de segurança).
-4. Escolher o **estilo de API** adequado: REST, GraphQL ou híbrido.
+2. Aplicar a **Árvore de Decisão** para escolher o estilo (REST, GraphQL, tRPC).
+3. Mapear os **casos de uso principais** (user stories ou operações CRUD críticas).
+4. Definir **limites de segurança** e **rate limiting** necessários.
 
 ### Fase 2: MODEL — Modelar Recursos e Schema
-**Para REST:**
-- Identificar os recursos (substantivos, não verbos).
-- Mapear relacionamentos e hierarquias de URL.
-- Definir verbos HTTP corretos por operação.
-- Planejar paginação, filtros e ordenação.
+- **REST**: Substantivos no plural, verbos HTTP, hierarquias de URL, paginação (Offset/Cursor).
+- **GraphQL**: Schema SDL, tipos fortes, mutations com payloads, paginação Relay.
+- **tRPC**: Definição de Routers e Procedimentos tipados com Zod.
 
-**Para GraphQL:**
-- Projetar o schema SDL (tipos, queries, mutations, subscriptions).
-- Definir tipos de input e payload de mutations.
-- Planejar DataLoaders para evitar N+1.
-- Desenhar estratégia de paginação (cursor-based / Relay spec).
-
-### Fase 3: SPECIFY — Especificar Contratos
-- Detalhar request/response para cada endpoint ou operação.
-- Definir estratégia de **versionamento** (URL, header, query param).
-- Especificar **autenticação** (Bearer JWT, API Key, OAuth2).
-- Padronizar **respostas de erro** (código, mensagem, detalhes).
-- Documentar rate limits e headers obrigatórios.
+### Fase 3: SPECIFY — Especificar Contratos e Segurança
+- Detalhar request/response, envelopes e mensagens de erro.
+- Aplicar o checklist de **Segurança (OWASP API Top 10)**.
+- Definir estratégia de **Rate Limiting** (headers e status 429).
+- Especificar autenticação (JWT, API Key, OAuth2) e versionamento.
 
 ### Fase 4: VALIDATE — Revisar e Aprovar
 - Aplicar o `resources/implementation-playbook.md` como checklist.
-- Verificar consistência de nomenclatura (plural, snake_case vs camelCase).
-- Confirmar idempotência dos métodos HTTP.
-- Revisar com stakeholders antes de iniciar implementação.
+- Verificar consistência e proteção contra Mass Assignment.
+- Confirmar idempotência e documentação OpenAPI/SDL.
 
 ---
 
 ## Princípios de Design Aplicados
 
-### REST
-- **Resource-Oriented**: URLs são substantivos (`/users`, `/orders`), não verbos.
-- **HTTP Semântico**: GET (safe+idempotent), PUT/DELETE (idempotent), POST (not idempotent).
+### REST & tRPC
+- **Resource-Oriented**: URLs/Procedimentos focados em entidades.
 - **Stateless**: Cada request contém toda a informação necessária.
-- **HATEOAS** (quando aplicável): Respostas incluem links para ações disponíveis.
+- **Type-Safe**: Validação rigorosa de inputs (Zod/OpenAPI).
 
 ### GraphQL
-- **Schema-First**: Schema define o contrato antes dos resolvers.
-- **Tipagem Forte**: Enums, custom scalars, tipos non-null explícitos.
-- **Paginação Relay**: Cursor-based para coleções grandes.
-- **Mutation Payloads**: Retornam dados e erros estruturados.
+- **Schema-First**: Contrato define o modelo antes da implementação.
+- **Paginação Cursor-based**: Padrão para coleções grandes.
+- **Mutation Payloads**: Retorno estruturado de dados e erros.
 
 ---
 
 ## Quality Rules
 
-- **Consistência Acima de Tudo**: Nomenclatura, estrutura de erro e paginação devem ser uniformes em toda a API.
+- **Segurança First**: Validar permissão de objeto (BOLA) em todos os endpoints/procedimentos.
+- **Type Safety**: Priorizar contratos tipados (Zod, SDL, OpenAPI).
+- **Consistência**: Envelopes, paginação e erros devem ser uniformes.
+- **Rate Limit**: Toda API deve ter uma estratégia de proteção contra abuso.
 - **Contract-First**: O contrato deve estar aprovado antes da implementação iniciar.
-- **Versioning-Ready**: Toda API deve ter uma estratégia de versionamento definida desde o início.
-- **Erros Acionáveis**: Mensagens de erro devem ser claras e incluir detalhes que permitam ao consumidor corrigir o problema.
-- **Documentação como Código**: OpenAPI spec ou SDL GraphQL devem ser gerados e mantidos junto ao código.
-
-## Prohibited
-
-- NUNCA usar verbos em endpoints REST (`/createUser`, `/getOrders`).
-- NUNCA retornar sempre HTTP 200 com erros embarcados no body (exceto GraphQL com convenção explícita).
-- NUNCA projetar sem considerar os consumidores reais da API.
-- NUNCA ignorar breaking changes — toda alteração de contrato público exige versionamento.
-- NUNCA iniciar implementação sem contrato revisado.
-- NUNCA espelhar diretamente o schema do banco de dados nos endpoints de API.
 
 ---
 
@@ -125,7 +95,10 @@ A skill produz os seguintes artefatos:
 
 Consulte os recursos detalhados para padrões, checklists e templates:
 
-- [`resources/implementation-playbook.md`](resources/implementation-playbook.md) — Padrões de implementação, checklists e exemplos de código
-- [`references/rest-best-practices.md`](references/rest-best-practices.md) — Guia completo de design REST
-- [`references/graphql-schema-design.md`](references/graphql-schema-design.md) — Padrões de schema GraphQL e anti-padrões
-- [`references/api-versioning-strategies.md`](references/api-versioning-strategies.md) — Estratégias de versionamento e migração
+- [`references/rest-best-practices.md`](references/rest-best-practices.md) — Guia completo de design REST e paginação.
+- [`references/graphql-schema-design.md`](references/graphql-schema-design.md) — Padrões de schema GraphQL e anti-padrões.
+- [`references/trpc-patterns.md`](references/trpc-patterns.md) — APIs tipadas para ecossistemas TypeScript.
+- [`references/api-security-guide.md`](references/api-security-guide.md) — Segurança e OWASP API Top 10.
+- [`references/api-rate-limiting.md`](references/api-rate-limiting.md) — Resiliência e controle de taxa.
+- [`references/api-versioning-strategies.md`](references/api-versioning-strategies.md) — Estratégias de versionamento e migração.
+- [`resources/implementation-playbook.md`](resources/implementation-playbook.md) — Padrões de implementação e checklists.

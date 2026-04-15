@@ -70,34 +70,41 @@ POST /api/v1/orders/{order_id}/cancel
 
 ## 3. Estrutura de Resposta Padronizada
 
-### Resposta de Sucesso (recurso)
+### Envelopes vs Direct Data
+
+- **Direct Data**: Retorna o recurso diretamente (mais simples, padrão REST clássico).
+- **Envelope Pattern**: Envolve o dado em um objeto central (melhor para metadados e consistência).
+
+#### Exemplo de Envelope Pattern (Recomendado para coleções)
 ```json
 {
+  "success": true,
   "data": {
     "id": "123",
-    "name": "João Silva",
-    "email": "joao@exemplo.com",
-    "created_at": "2026-04-14T20:00:00Z"
+    "name": "João Silva"
+  },
+  "meta": {
+    "request_id": "req_abc123",
+    "timestamp": "2026-04-14T20:00:00Z"
   }
 }
 ```
 
-### Resposta de Sucesso (coleção)
+### Tipos de Paginação
+
+1. **Offset Pagination** (`page`, `page_size`): Simples, mas ineficiente em datasets gigantes.
+2. **Cursor Pagination** (`after`, `first`): Mais eficiente para datasets que mudam rápido (ex: feeds) e volumes massivos.
+3. **Keyset Pagination** (`last_id`, `limit`): Usa a última chave de ordenação.
+
+#### Exemplo Cursor-Based (Relay Style)
 ```json
 {
   "data": [...],
   "meta": {
     "total": 150,
-    "page": 1,
-    "page_size": 20,
-    "pages": 8
-  },
-  "links": {
-    "self": "/api/v1/users?page=1",
-    "next": "/api/v1/users?page=2",
-    "prev": null,
-    "first": "/api/v1/users?page=1",
-    "last": "/api/v1/users?page=8"
+    "has_next_page": true,
+    "start_cursor": "YXJyYXljb25uZWN0aW9uOjA=",
+    "end_cursor": "YXJyYXljb25uZWN0aW9uOjE5"
   }
 }
 ```
