@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-4-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-6-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)](#-roadmap)
 
@@ -25,6 +25,7 @@ Cada skill possui seu próprio diretório com documentação completa — inclui
 | 3 | **[Python com UV](python-uv/)** | Desenvolvimento Python profissional (Django Pro, FastAPI) com UV — gerenciador 10-100x mais rápido. | `2.3.0` |
 | 4 | **[API Designer](api-designer/)** | Projetista de APIs REST, GraphQL e tRPC — contratos intuitivos, escaláveis e seguros (OWASP). | `1.1.0` |
 | 5 | **[Brainstorming](brainstorming/)** | Facilitador de design e resolução de problemas — exploração profunda e validação antes da implementação. | `1.0.0` |
+| 6 | **[Architecture](architecture/)** | Arquiteto de Sistemas — design pragmático, análise de trade-offs e registros de decisão (ADR). | `1.0.0` |
 
 > 💡 Clique no nome da skill para acessar sua documentação completa.
 
