@@ -6,6 +6,16 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
+## [1.3.1] — 2026-04-14
+
+### Adicionado
+- **Mermaid Diagrams Mandate**: Tornada obrigatória a inclusão de diagramas Mermaid na fase de `Specify` para níveis Medium+.
+
+## [1.3.0] — 2026-04-14
+
+### Adicionado
+- **PRD/RFC/BDD Integration**: Incorporação de Product Requirements Documents, Request for Comments e BDD (Given/When/Then) ao workflow baseado no Auto-Sizing.
+
 ## [1.2.0] — 2026-04-14
 
 ### Adicionado

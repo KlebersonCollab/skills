@@ -24,6 +24,8 @@ Este arquivo contém mandatos e diretrizes fundamentais para o Claude AI neste p
 
 7. **Quality-First (Clean Code)**: Todo código gerado ou revisado **DEVE** seguir rigorosamente os princípios **SOLID**, **YAGNI**, **DRY** e **KISS**. O agente deve atuar como um mentor de qualidade, evitando sobre-engenharia e priorizando a simplicidade e manutenibilidade, conforme detalhado na skill `clean-code-mentor`.
 
+8. **Diagram-as-Code (Mermaid)**: Toda especificação técnica ou desenho de arquitetura **DEVE** ser acompanhado por diagramas **Mermaid** integrados ao Markdown. Isso inclui fluxos de dados, diagramas de sequência para processos assíncronos e mapas de componentes, garantindo a visualização clara da solução proposta.
+
 ## General Engineering Standards
 
 

@@ -1,5 +1,10 @@
 # Changelog — Architecture
 
+## [2.0.1] - 2026-04-14
+### Adicionado
+- Diagramas **Mermaid** tornam-se mandatórios para o `System Map`.
+- Foco em visualização de fluxos e componentes distribuídos.
+
 ## [2.0.0] - 2026-04-14
 
 ### Adicionado

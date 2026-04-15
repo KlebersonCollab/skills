@@ -1,11 +1,11 @@
 ---
 name: architecture
-version: 2.0.0
-description: "Arquiteto de Sistemas — guia o agente a projetar sistemas escaláveis, resilientes e distribuídos (CQRS, Event-Driven) utilizando ADRs, Fitness Functions e análise rigorosa de trade-offs."
+version: 2.0.1
+description: "Arquiteto de Sistemas — guia o agente a projetar sistemas escaláveis, resilientes e distribuídos (CQRS, Event-Driven) utilizando ADRs, Fitness Functions e Diagramas Mermaid mandatórios para visualização."
 category: architecture
 ---
 
-# Architecture (v2.0)
+# Architecture (v2.0.1)
 
 > Projetista de sistemas de alta performance e guardião da simplicidade evolutiva. "Arquitetura é o que resta quando você tira todo o código."
 
@@ -13,7 +13,7 @@ category: architecture
 
 ## Goal
 
-Capacitar o agente a projetar arquiteturas de software de alta qualidade e complexidade, abrangendo sistemas distribuídos (CQRS, Event-Driven) e monolitos modulares. A skill garante que cada decisão seja justificada por trade-offs, priorize a simplicidade e seja protegida por **Fitness Functions** para garantir uma evolução sustentável via ADRs.
+Capacitar o agente a projetar arquiteturas de software de alta qualidade e complexidade, abrangendo sistemas distribuídos (CQRS, Event-Driven) e monolitos modulares. A skill garante que cada decisão seja justificada por trade-offs, priorize a simplicidade e seja protegida por **Fitness Functions** e documentada visualmente via **Mermaid**.
 
 ---
 
@@ -58,7 +58,7 @@ A execução desta skill resulta nos seguintes artefatos mandatórios em `.specs
 | Artefato | Formato | Descrição |
 |----------|---------|-----------|
 | **ADR-NNN** | `.md` | Architecture Decision Record com justificativa e impacto. |
-| **System Map** | Mermaid | Diagrama de componentes e fluxos (incluindo eventos se aplicável). |
+| **System Map** | **Mermaid** | Diagrama renderizável de componentes e fluxos. **Mandatório**. |
 | **Fitness Specs** | `.py` / `.sh` | Definição de testes automatizados para governança da arquitetura. |
 | **Trade-off Matrix**| Tabela | Comparativo entre as alternativas analisadas. |
 
@@ -69,6 +69,7 @@ A execução desta skill resulta nos seguintes artefatos mandatórios em `.specs
 - **Simplicidade First**: Não use CQRS ou Eventos se um banco de dados relacional simples resolver o problema.
 - **Idempotência Obrigatória**: Todo design orientado a eventos deve prever processamento repetido sem efeitos colaterais.
 - **Fitness-Driven**: Cada restrição arquitetural importante deve ter uma forma de ser validada automaticamente.
+- **Visual-First**: Todo componente ou fluxo complexo deve ser documentado com Mermaid no `System Map`.
 - **Decisões Justificadas**: Mudanças estruturais exigem um "Porquê" documentado.
 
 ## Prohibited

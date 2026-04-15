@@ -1,7 +1,7 @@
 ---
 name: sdd
-version: 1.3.0
-description: Spec-Driven Development. Modular, adaptive, and scalable workflow with PRD/RFC integration and BDD-based verification.
+version: 1.3.1
+description: Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate.
 category: development-workflow
 ---
 
@@ -19,8 +19,8 @@ The depth of the workflow is determined by the **Complexity** of the task, not a
 |---|---|---|---|---|
 | **Quick** | Bug fixes, config, <3 files | (Implement) + (Verify) | `sdd-implementer` | Root |
 | **Small** | Clear feature, <5 tasks | (Spec) + Impl + Verify | `ork-orchestrator`, `sdd-implementer` | `spec/` |
-| **Medium** | Feature + UI, <10 tasks | Explorer + Spec (BDD) + Impl + Verify | `sdd-explorer`, `sdd-orchestrator` | `spec/` |
-| **Large** | Multi-component, new module | Planner + Explorer + RFC + Spec (BDD) + Impl + Verify | All modules | `.specs/` |
+| **Medium** | Feature + UI, <10 tasks | Explorer + Spec (BDD) + Plan (Mermaid) + Impl + Verify | `sdd-explorer`, `sdd-orchestrator` | `spec/` |
+| **Large** | Multi-component, new module | Planner + Explorer + RFC + Spec (BDD) + Plan (Mermaid) + Impl + Verify | All modules | `.specs/` |
 | **Complex** | Ambiguity, high risk | Same as Large + PRD Audit + Interactive UAT | All modules + `sdd-reviewer` | `.specs/` |
 
 ---
@@ -38,7 +38,7 @@ O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 ### Fase 2: SPECIFY — Contratos e Planejamento
 1.  **Escrever a Spec**: Utilizar `sdd-orchestrator` para definir requisitos técnicos (`spec.md`). Para níveis **Medium+**, utilizar formato **BDD** (Given/When/Then) nos Critérios de Aceitação.
 2.  **Proposta Técnica (RFC)**: Para níveis **Large+**, elaborar uma **RFC** (Request for Comments) detalhando a arquitetura e trade-offs antes do `plan.md`.
-3.  **Desenhar a Solução**: Elaborar o `plan.md` com arquitetura e schemas.
+3.  **Desenhar a Solução**: Elaborar o `plan.md` com arquitetura e schemas. **Mandatório**: Incluir diagramas **Mermaid** (Flowcharts, Sequence, Class) para visualizar fluxos e estruturas em níveis **Medium+**.
 4.  **Atomic Tasks**: Gerar a lista de tarefas (`tasks.md`) para execução.
 
 ### Fase 3: IMPLEMENT — Execução Atômica
