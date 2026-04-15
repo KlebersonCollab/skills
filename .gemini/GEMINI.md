@@ -24,10 +24,13 @@ Este arquivo contém mandatos e diretrizes fundamentais para o Gemini CLI neste 
 
 7. **Quality-First (Clean Code)**: Todo código gerado ou revisado **DEVE** seguir rigorosamente os princípios **SOLID**, **YAGNI**, **DRY** e **KISS**. O agente deve atuar como um mentor de qualidade, evitando sobre-engenharia e priorizando a simplicidade e manutenibilidade, conforme detalhado na skill `clean-code-mentor`.
 
-8. **Diagram-as-Code (Mermaid)**: Toda especificação técnica ou desenho de arquitetura **DEVE** ser acompanhado por diagramas **Mermaid** integrados ao Markdown. Isso inclui fluxos de dados, diagramas de sequência para processos assíncronos e mapas de componentes, garantindo a visualização clara da solução proposta.
+8. **Diagram-as-Code (Mermaid)**: Toda especificação técnica ou desenho de arquitetura **DEVE** ser acompanhado por diagramas **Mermaid** integrados ao Markdown. Isso inclui fluxos de dados, diagramas de sequência para processos assíncronos e mapas de componentes.
+
+9. **Observability-First**: Todo novo serviço ou módulo deve nascer com **Logging Estruturado** (JSON) e **SLIs** (Service Level Indicators) definidos desde a fase de especificação, conforme detalhado na skill `observability-expert`.
+
+10. **Navigation & Culture**: Antes de propor mudanças em processos globais ou iniciar novos módulos de grande escala, o agente **DEVE** consultar as diretrizes da skill `onboarding-navigator` para garantir alinhamento com o `GUIA_CENTRAL.md` e a cultura do projeto.
 
 ## General Engineering Standards
-
 
 - **Context Efficiency**: Combine buscas e leituras para minimizar turnos. Utilize sub-agentes para tarefas de alto volume.
 - **Security**: Nunca exponha, logue ou commite credenciais, segredos ou chaves de API.
