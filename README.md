@@ -22,8 +22,8 @@ Cada skill possui seu próprio diretório com documentação completa — inclui
 |---|-------|-----------|--------|
 | 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo para desenvolvimento orientado a especificações. | `1.0.0` |
 | 2 | **[Skill Factory](skill-factory/)** | Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados. | `1.1.0` |
-| 3 | **[Python com UV](python-uv/)** | Desenvolvimento Python profissional com UV — gerenciador de pacotes, ambientes e projetos 10-100x mais rápido. | `2.0.0` |
-| 4 | **[API Designer](api-designer/)** | Projetista de APIs REST e GraphQL — guia o agente a criar contratos de API intuitivos, escaláveis e consistentes, desde a modelagem de recursos até a documentação OpenAPI. | `1.0.0` |
+| 3 | **[Python com UV](python-uv/)** | Desenvolvimento Python profissional (Django Pro, FastAPI) com UV — gerenciador 10-100x mais rápido. | `2.3.0` |
+| 4 | **[API Designer](api-designer/)** | Projetista de APIs REST, GraphQL e tRPC — contratos intuitivos, escaláveis e seguros (OWASP). | `1.1.0` |
 
 > 💡 Clique no nome da skill para acessar sua documentação completa.
 
