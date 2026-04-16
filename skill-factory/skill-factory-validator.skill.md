@@ -116,6 +116,17 @@ Verify the `README.md` at the repository root:
 
 ---
 
+### Check 7: Onboarding Navigator Sync
+
+Verify that the new or updated skill is registered in the **Onboarding Navigator**'s catalog:
+
+1. The skill must be listed in `onboarding-navigator/references/skills-catalog.md`.
+2. The description and version must match the current state.
+
+**Evidence**: Quote the relevant entry in the skills catalog.
+
+---
+
 ## Validation Report Template
 
 ```markdown
@@ -130,7 +141,8 @@ Verify the `README.md` at the repository root:
 | Naming & Version Sync | PASS/FAIL |
 | Reference Integrity | PASS/FAIL |
 | Registry Status | PASS/FAIL |
-
+| Onboarding Sync | PASS/FAIL |
+```
 ### 📂 Check 1: Structural Integrity
 [Details per file, including sub-skills]
 

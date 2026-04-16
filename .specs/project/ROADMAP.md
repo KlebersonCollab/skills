@@ -11,3 +11,4 @@
 - [x] Skill **Observability Expert** (SRE standards).
 - [x] Skill **Onboarding Navigator** (Hub Master Guide).
 - [x] **Automação de Artefatos de Distribuição** (.zip para Claude, Gemini e Agent via GitHub Actions).
+- [x] **New Skill: YouTube Transcript** (v1.0.0) - Orquestração de yt-dlp e Fallback IA.

@@ -1,6 +1,6 @@
 # Skills Catalog: AI Agent Hub
 
-Este guia fornece um overview detalhado de todas as 11 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
+Este guia fornece um overview detalhado de todas as 12 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
 
 ## 🗺️ Mapa Visual do Ecossistema de Skills
 
@@ -13,6 +13,7 @@ flowchart TD
     Categoria --> Metodo[Metodologia & Criação]
     Categoria --> Arquitetura[Arquitetura & Design]
     Categoria --> DevOps[Ecosystems & DevOps]
+    Categoria --> Automation[Automação & Utils]
     Categoria --> Navegacao[Navegação & Mentoria]
     
     Metodo --> SDD{sdd}
@@ -27,6 +28,8 @@ flowchart TD
     DevOps --> Flutter{flutter-fvm}
     DevOps --> AzDO{azure-devops}
     DevOps --> Observability{observability-expert}
+
+    Automation --> YouTube{youtube-transcript}
     
     Navegacao --> Self{onboarding-navigator}
     
@@ -36,7 +39,7 @@ flowchart TD
 
 ---
 
-## 📚 Catálogo Completo de Skills (11 Total)
+## 📚 Catálogo Completo de Skills (12 Total)
 
 ### 1. 🏗️ Core Frameworks (Metodologia e Criação)
 
@@ -63,7 +66,13 @@ flowchart TD
 | **[Azure DevOps](azure-devops/)** | `1.1.0` | Skill para gerenciamento profissional do Azure DevOps (AzDO). Permite gerenciar Boards, Repos, Pipelines, Artifacts, Governança (Variable Groups, Service Connections) e Administração de forma eficiente. | Para gerenciar tarefas e CI/CD no AzDO. |
 | **[Observability Expert](observability-expert/)** | `1.0.0` | Skill para especialista em SRE e Observabilidade. Foca em Logs Estruturados, OpenTelemetry, SLIs/SLOs e monitoramento proativo para garantir a resiliência de sistemas. | Ao garantir que um sistema é monitorável. |
 
-### 4. 🧭 Navigation & Mentorship
+### 4. 🚀 Automation & Utils (Produtividade)
+
+| Skill | Versão | Propósito | Quando Invocá-la |
+|-------|--------|-----------|------------------|
+| **[YouTube Transcript](youtube-transcript/)** | `1.0.0` | Skill para automatizar a extração de transcrições de vídeos do YouTube com fallback para IA (Whisper) e limpeza automática. | Quando precisar do conteúdo textual de um vídeo do YouTube. |
+
+### 5. 🧭 Navigation & Mentorship
 
 | Skill | Versão | Propósito | Quando Invocá-la |
 |-------|--------|-----------|------------------|
@@ -85,6 +94,7 @@ flowchart LR
     Decision --> FlutterTask["📱 Trabalho com Flutter"]
     Decision --> Monitor["📊 Monitoramento/Logs"]
     Decision --> NewSkill["✨ Criar nova skill"]
+    Decision --> YoutubeVid["🎥 Transcrever vídeo"]
     
     NewApp --> Path1[onboarding-navigator → architecture → sdd]
     CodeSmell --> Path2[clean-code-mentor]
@@ -94,29 +104,20 @@ flowchart LR
     FlutterTask --> Path6[flutter-fvm]
     Monitor --> Path7[observability-expert]
     NewSkill --> Path8[skill-factory]
+    YoutubeVid --> Path9[youtube-transcript]
     
     style Problem fill:#bbdefb
     style Decision fill:#ffcc80
 ```
 
-### Fluxos de Trabalho Recomendados:
-
-1.  **"Preciso criar um app novo"**: `onboarding-navigator` → `architecture` → `sdd`
-2.  **"O código está confuso"**: `clean-code-mentor`
-3.  **"O deploy falhou"**: `azure-devops` → `observability-expert`
-4.  **"Não sei como começar"**: `brainstorming`
-5.  **"Vou trabalhar com Python"**: `python-uv`
-6.  **"Vou trabalhar com Flutter"**: `flutter-fvm`
-7.  **"Preciso monitorar um sistema"**: `observability-expert`
-8.  **"Quero criar uma nova skill"**: `skill-factory`
-
 ---
 
 ## 📈 Estatísticas do Hub
 
-- **Total de Skills**: 11
+- **Total de Skills**: 12
 - **Skills de Metodologia**: 3
 - **Skills de Arquitetura**: 3  
 - **Skills de DevOps**: 4
+- **Skills de Automação**: 1
 - **Skills de Navegação**: 1
 - **Última Atualização**: 15 de Abril de 2026

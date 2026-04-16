@@ -16,9 +16,12 @@ Este arquivo contém mandatos e diretrizes fundamentais para o Gemini CLI neste 
 
 3.  **Architecture-First (ADRs)**: Decisões que alterem a estrutura do sistema, introduzam novos padrões ou tecnologias críticas **DEVEM** ser precedidas por uma análise de trade-offs e registradas em um **ADR** (Architecture Decision Record) na pasta `.specs/architecture/`.
 
-4.  **Skill Standardization**: A criação de qualquer nova skill deve ser realizada e validada obrigatoriamente através da **Skill Factory**. Nenhuma skill deve ser registrada sem passar pelo `skill-factory-validator`.
+4. **Skill Standardization**: A criação ou atualização de qualquer skill deve ser realizada e validada obrigatoriamente através da **Skill Factory**. Nenhuma skill deve ser registrada sem passar pelo \`skill-factory-validator\`.
 
-5.  **API Governance**: Projetos de API devem priorizar contratos claros (OpenAPI/SDL), segurança (OWASP API Top 10) e resiliência (Rate Limiting/Circuit Breakers), seguindo o **API Style Guide** do projeto.
+5. **Onboarding Synchronization**: Sempre que uma skill for adicionada ou tiver sua versão/propósito alterado, o agente **DEVE** obrigatoriamente atualizar o catálogo de habilidades em \`onboarding-navigator/references/skills-catalog.md\` para manter a integridade do ecossistema.
+
+6. **API Governance**: Projetos de API devem priorizar contratos claros (OpenAPI/SDL), segurança (OWASP API Top 10) e resiliência (Rate Limiting/Circuit Breakers), seguindo o **API Style Guide** do projeto.
+
 
 6. **Tooling Consistency**: Sempre utilize as ferramentas de gerenciamento de versão e ambiente estabelecidas no projeto (ex: `uv` para Python, `fvm` para Flutter, `npm/pnpm` para Node).
 
