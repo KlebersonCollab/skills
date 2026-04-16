@@ -15,3 +15,6 @@
 - [ ] Monitorar a criação da primeira release oficial após o push de uma tag.
 - [ ] Documentar o processo de lançamento de novas versões.
 - [ ] **GitHub Actions Artifacts**: Revisar se o script de distribuição precisa de ajustes para novas sub-skills (se houver).
+- [x] **New Skill: knowledge-architect**: Local Knowledge Graphing via Mermaid/Markdown.
+- [x] **Hub Registry**: Updated to 14 skills total.
+- [x] **Global Audit**: All 14 skills verified as COMPLIANT.
