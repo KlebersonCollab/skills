@@ -5,10 +5,13 @@ Esta skill fornece um workflow profissional para desenvolvimento Flutter utiliza
 ## Recursos
 
 - **Gerenciamento de Versão**: Instruções para fixar versões do Flutter por projeto.
-- **Workflow em 4 Fases**: Do ambiente ao deploy.
-- **Melhores Práticas**: Guia de arquitetura, testes e qualidade de código.
+- **Workflow em 4 Fases**: Do ambiente ao deploy com segurança integrada.
+- **Testes Avançados**: Padrões por camada arquitetural (Repository, DAO, Provider, Service, Widget).
+- **Segurança OWASP**: Guia baseado no OWASP Mobile Top 10 (2024) para aplicações Flutter.
+- **Riverpod Testing**: Estratégias para testes de estado com Riverpod.
+- **Widget Testing**: Melhores práticas com keys e testes de plataforma.
 - **Integração com IDE**: Configuração para VS Code e Android Studio.
-- **Exemplos Reais**: `pubspec.yaml`, regras de linting e CI/CD.
+- **Exemplos Reais**: `pubspec.yaml`, regras de linting, security scanning e CI/CD.
 
 ## Como Usar
 

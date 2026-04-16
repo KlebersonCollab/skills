@@ -69,3 +69,9 @@ Para isolar seus testes, utilize pacotes de mocking:
 - **mockito**: O clássico (requer geração de código).
 
 **Dica**: Prefira `mocktail` por não precisar de geração de código para testes simples.
+
+---
+
+## Para Padrões de Teste Avançados
+
+Para estratégias de teste por camada arquitetural, testes de Riverpod, widget testing com keys e outros padrões avançados, consulte o guia [Advanced Testing Patterns](advanced-testing-patterns.md).

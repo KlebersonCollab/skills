@@ -47,7 +47,7 @@ Geramos automaticamente pacotes pré-configurados para os principais agentes de 
 | 4 | **[API Architect](api-architect/)** | Arquiteto de APIs — design interoperável e seguro (OpenAPI, GraphQL, tRPC). | `1.3.0` |
 | 5 | **[Brainstorming](brainstorming/)** | Facilitador de design e resolução de problemas — exploração profunda e validação. | `1.1.0` |
 | 6 | **[Architecture](architecture/)** | Arquiteto de Sistemas — design pragmático, trade-offs e registros de decisão (ADR). | `2.0.1` |
-| 7 | **[Flutter com FVM](flutter-fvm/)** | Desenvolvimento Flutter profissional com FVM — gerenciador de versões SDK por projeto. | `1.0.0` |
+| 7 | **[Flutter com FVM](flutter-fvm/)** | Desenvolvimento Flutter profissional com FVM — gerenciador de versões SDK por projeto, testes avançados por camada arquitetural e segurança OWASP Mobile Top 10. | `1.1.0` |
 | 8 | **[Azure DevOps](azure-devops/)** | Gerenciamento profissional de Boards, Repos, Pipelines e Artifacts no AzDO. | `1.1.0` |
 | 9 | **[Clean Code Mentor](clean-code-mentor/)** | Mentor técnico e revisor de código focado em SOLID, YAGNI, DRY e KISS. | `1.0.0` |
 | 10 | **[Observability Expert](observability-expert/)** | Especialista em SRE — Logs Estruturados, OpenTelemetry e Confiabilidade (SLI/SLO). | `1.0.0` |
