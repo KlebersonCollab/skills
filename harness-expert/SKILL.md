@@ -29,7 +29,7 @@ O objetivo principal desta skill é fornecer o "maquinário" necessário para qu
 2.  **Uso de Tools**: Garantir que as ferramentas corretas (Terminal, File System, MCPs) sejam invocadas com parâmetros precisos.
 
 ### Fase 3: SYNC — Sincronização de Estado
-1.  **Atualização de Tasks**: Após cada sub-tarefa concluída, o agente **DEVE** atualizar o status no `tasks.md`.
+1.  **Atualização de Tasks**: Utilizar o **SDD CLI** para atualizar o status no `tasks.md` de forma automatizada.
 2.  **Registro de Aprendizado**: Erros encontrados e corrigidos devem ser registrados em `LEARNINGS.md`.
 3.  **Atualização do Plano**: Se a estratégia mudar, o `plan.md` deve refletir a nova rota.
 

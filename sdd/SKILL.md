@@ -48,7 +48,8 @@ O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 4.  **Atomic Tasks**: Gerar a lista de tarefas (`tasks.md`) para execução.
 
 ### Fase 3: IMPLEMENT — Execução Atômica
-1.  **Ciclo de Código**: Utilizar `sdd-implementer` para escrever código test-driven (TDD) alinhado aos cenários BDD.
+1.  **Automação**: Utilizar o **SDD CLI** (`uv run sdd task <feature> <id>`) para marcar o progresso.
+2.  **Ciclo de Código**: Utilizar `sdd-implementer` para escrever código test-driven (TDD) alinhado aos cenários BDD.
 2.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes.
 
 ### Fase 4: REVIEW — Auditoria e Finalização
