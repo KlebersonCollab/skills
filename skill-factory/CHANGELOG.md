@@ -6,6 +6,12 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
+## [1.1.0] — 2026-04-16
+
+### Adicionado
+- **skill-factory-validator**: Adicionado Check 6 (Registry Status) e Check 7 (Onboarding Sync).
+- **GitHub Actions**: Integração com CI/CD para validação automática de conformidade.
+
 ## [1.0.0] — 2026-04-14
 
 ### Adicionado

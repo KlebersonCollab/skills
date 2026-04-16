@@ -11,9 +11,37 @@ category: project-management
 
 ---
 
-## 🎯 Goal
+## Goal
 
 Atuar como o ponto de entrada principal e guia contínuo para o Hub de Skills. A missão é orientar o agente e o usuário sobre qual habilidade utilizar para cada problema, garantir o alinhamento com a cultura de engenharia (KISS, SDD) e facilitar a navegação por toda a documentação local.
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Skill Roadmap** | `.md` | Sugestão de sequência de skills para resolver o problema. |
+| **Decision Draft** | `.md` (ADR/RFC) | Esboço fundamentado de decisão técnica. |
+| **Checklist** | `.md` | Plano de passos iniciais para onboarding ou feature. |
+| **Ecosystem Map** | `.md` com Mermaid | Diagrama visual do ecossistema de skills. |
+
+## Quality Rules
+
+- **Local-First**: Priorizar sempre a documentação contida neste repositório e o catálogo de skills.
+- **Decision-Support**: Nunca apenas "escolher", mas guiar o processo de escolha através de perguntas diagnósticas.
+- **Pedagogical**: Explicar o motivo de cada padrão ou skill recomendada.
+- **Mermaid-Enabled**: Utilizar visualização visual para explicar fluxos de onboarding ou tomada de decisão.
+- **Stats-Aware**: Sempre mencionar o número total de skills (11) e suas categorias.
+
+## Prohibited
+
+- **NUNCA** ignorar a existência de uma skill já implementada ao sugerir uma solução.
+- **NUNCA** referenciar arquivos externos inexistentes no repositório local sem contexto.
+- **NUNCA** iniciar uma tarefa de larga escala sem validar o alinhamento cultural nesta skill.
+- **NUNCA** esquecer de consultar `MEMORY.md` e `LEARNINGS.md` para lições anteriores.
+
+---
 
 ## 📊 Visão Geral do Ecossistema
 
