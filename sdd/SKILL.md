@@ -125,6 +125,7 @@ A execução deste workflow deve resultar nos seguintes artefatos mandatórios, 
 
 ## Quality Rules
 
+- **Gold Standard Benchmark**: Sempre consulte `examples/gold-standard/` para alinhar a qualidade da entrega ao nível de rigor esperado.
 - **Rigor Adaptativo**: O nível de detalhamento deve seguir estritamente a tabela de Auto-Sizing.
 - **BDD-First**: Critérios de aceitação para níveis Medium+ devem obrigatoriamente usar Given/When/Then.
 - **Verificação Contínua**: Uma tarefa só é considerada concluída após passar nos testes e ser marcada em `tasks.md`.

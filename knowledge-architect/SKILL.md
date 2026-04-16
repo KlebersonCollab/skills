@@ -55,6 +55,7 @@ A execução desta skill resulta nos seguintes artefatos mandatórios (geralment
 
 ## Quality Rules
 
+- **Gold Standard Benchmark**: Utilize os exemplos em `examples/gold-standard/` como referência para mapeamentos complexos.
 - **Relation over Content**: Foque em *como* as coisas se conectam, não apenas no que elas fazem.
 - **Visual-First**: Todo grafo complexo deve ser visualizável via Mermaid.
 - **Bi-directional**: Sempre que possível, as relações devem ser mapeadas nos dois sentidos (quem usa e quem é usado).
