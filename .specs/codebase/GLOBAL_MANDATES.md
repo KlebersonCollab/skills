@@ -1,7 +1,3 @@
-# GEMINI Project Instructions
-
-<!-- GLOBAL_MANDATES_START -->
-
 # Global Engineering Mandates
 
 Estas instruções são fundamentais e devem ser seguidas por todos os agentes operando neste Hub.
@@ -24,9 +20,3 @@ Sempre que uma tarefa ou feature for concluída tecnicamente, o agente **DEVE** 
 - Seguir rigorosamente **SOLID, YAGNI, DRY e KISS**.
 - Priorizar a simplicidade e a manutenibilidade; evitar sobre-engenharia.
 - Todo código deve passar por validação automatizada (linters/testes).
-
-
-<!-- GLOBAL_MANDATES_END -->
-
---- 
-*Mandato atualizado em 16 de Abril de 2026.*

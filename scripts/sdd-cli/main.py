@@ -100,6 +100,19 @@ def _sync_global_state():
     # Aqui poderíamos ler todas as tasks e gerar o resumo automaticamente
 
 @app.command()
+def sync():
+    """Sincroniza os mandatos globais (.specs/codebase/GLOBAL_MANDATES.md) com todos os agentes."""
+    console.print("[bold cyan]Sincronizando Mandatos Globais...[/bold cyan]")
+    import sys
+    sys.path.append(str(Path(__file__).parent.parent))
+    try:
+        from sync_mandates import sync_mandates
+        sync_mandates()
+        console.print("[bold green]Sucesso![/bold green] Arquivos dos agentes atualizados.")
+    except ImportError:
+        console.print("[bold red]Erro:[/bold red] Script sync_mandates.py não encontrado.")
+
+@app.command()
 def graph():
     """Gera automaticamente o Knowledge Map (Mermaid) do projeto."""
     console.print("[bold cyan]Gerando Knowledge Map...[/bold cyan]")
