@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-04-15
+
+### Added
+- Diagramas Mermaid para visualização do ecossistema de skills
+- Matriz de decisão visual com fluxos de trabalho recomendados
+- Estatísticas do hub (11 skills total, por categoria)
+- Seção de "Fluxo de Atualização" para manutenção da skill
+- Referências a STATE.md, MEMORY.md e LEARNINGS.md no workflow
+
+### Updated
+- Catálogo de skills com versões atualizadas de todas as 11 habilidades
+- Descrições precisas extraídas dos arquivos SKILL.md originais
+- Correção de versões: flutter-fvm (1.0.0 → 1.1.0), azure-devops (1.0.0 → 1.1.0)
+- Estrutura do SKILL.md com melhor organização visual
+- Regras de qualidade com foco em "Stats-Aware" (consciência do ecossistema)
+
+### Fixed
+- Referências a versões desatualizadas no catálogo
+- Falta de diagramação visual no processo de onboarding
+- Documentação incompleta sobre a contagem total de skills
+
 ## [1.0.0] - 2026-04-14
 
 ### Added

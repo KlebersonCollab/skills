@@ -8,3 +8,9 @@
 - A separação de artefatos por nome no `upload-artifact` v4 melhora muito a experiência do usuário.
 - **GitHub Releases vs Artifacts**: Para distribuição de software final (como os ZIPs de skills), Releases são preferíveis por serem permanentes e permitirem links estáticos (`/releases/latest/download/`), o que simplifica a integração e documentação.
 - **Tag-Driven Releases**: Automatizar a criação de releases a partir do push de tags (`v*`) garante que apenas versões validadas sejam distribuídas aos usuários.
+
+## Skill Management & Documentation
+- **Centralized Version Tracking**: Manter um catálogo centralizado com versões atualizadas de todas as 11 skills é essencial para consistência do ecossistema.
+- **Mermaid Diagrams for Navigation**: Diagramas visuais no catálogo de skills melhoram significativamente a compreensão do ecossistema e fluxos de trabalho.
+- **Automated Version Collection**: Scripts para extrair versões e descrições automaticamente dos arquivos `SKILL.md` previnem desatualização do catálogo.
+- **Onboarding Navigator as Living Documentation**: A skill de onboarding deve evoluir junto com o ecossistema, refletindo mudanças em tempo real.
