@@ -54,6 +54,7 @@ Geramos automaticamente pacotes pré-configurados para os principais agentes de 
 | 11 | **[Onboarding Navigator](onboarding-navigator/)** | Guia interativo de cultura e engenharia para novos membros e projetos. | `1.1.0` |
 | 12 | **[YouTube Transcript](youtube-transcript/)** | Extração de transcrições de vídeos com fallback para IA (Whisper) e limpeza automática. | `1.0.0` |
 | 13 | **[Harness Expert](harness-expert/)** | Infraestrutura de suporte para estado, memória de longo prazo e orquestração de agentes via SDD. | `1.0.0` |
+| 14 | **[Knowledge Architect](knowledge-architect/)** | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | `1.0.0` |
 
 ---
 
