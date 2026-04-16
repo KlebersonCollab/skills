@@ -99,5 +99,19 @@ def _sync_global_state():
     console.print(f"[dim]Sincronizando {STATE_FILE}...[/dim]")
     # Aqui poderíamos ler todas as tasks e gerar o resumo automaticamente
 
+@app.command()
+def graph():
+    """Gera automaticamente o Knowledge Map (Mermaid) do projeto."""
+    console.print("[bold cyan]Gerando Knowledge Map...[/bold cyan]")
+    # Importar e rodar a lógica do script de geração
+    import sys
+    sys.path.append(str(Path(__file__).parent.parent))
+    try:
+        from generate_knowledge_map import generate_knowledge_map
+        generate_knowledge_map()
+        console.print("[bold green]Sucesso![/bold green] Arquivo KNOWLEDGE-MAP.mermaid atualizado.")
+    except ImportError:
+        console.print("[bold red]Erro:[/bold red] Script generate_knowledge_map.py não encontrado.")
+
 if __name__ == "__main__":
     app()

@@ -1,0 +1,53 @@
+graph TD
+    %% Nodes
+    api_architect["🧩 api-architect"]
+    architecture["🧩 architecture"]
+    azure_devops["🧩 azure-devops"]
+    brainstorming["🧩 brainstorming"]
+    clean_code_mentor["🧩 clean-code-mentor"]
+    feat_architecture_v2_upgrade["🚀 Feature: architecture-v2-upgrade"]
+    feat_azure_devops_skill["🚀 Feature: azure-devops-skill"]
+    feat_azure_devops_v1.1_upgrade["🚀 Feature: azure-devops-v1.1-upgrade"]
+    feat_clean_code_mentor_skill["🚀 Feature: clean-code-mentor-skill"]
+    feat_flutter_fvm_skill["🚀 Feature: flutter-fvm-skill"]
+    feat_github_actions_skills_artifacts["🚀 Feature: github-actions-skills-artifacts"]
+    feat_observability_expert_skill["🚀 Feature: observability-expert-skill"]
+    feat_onboarding_navigator_skill["🚀 Feature: onboarding-navigator-skill"]
+    feat_python_uv_skill["🚀 Feature: python-uv-skill"]
+    feat_youtube_transcript_skill["🚀 Feature: youtube-transcript-skill"]
+    flutter_fvm["🧩 flutter-fvm"]
+    harness_expert["🧩 harness-expert"]
+    knowledge_architect["🧩 knowledge-architect"]
+    observability_expert["🧩 observability-expert"]
+    onboarding_navigator["🧩 onboarding-navigator"]
+    python_uv["🧩 python-uv"]
+    sdd["🧩 sdd"]
+    skill_factory["🧩 skill-factory"]
+    youtube_transcript["🧩 youtube-transcript"]
+
+    %% Relations
+    api_architect --(uses)--> architecture
+    feat_architecture_v2_upgrade --(depends_on)--> architecture
+    feat_architecture_v2_upgrade --(depends_on)--> skill_factory
+    feat_azure_devops_skill --(depends_on)--> azure_devops
+    feat_azure_devops_skill --(depends_on)--> flutter_fvm
+    feat_azure_devops_skill --(depends_on)--> python_uv
+    feat_azure_devops_skill --(depends_on)--> skill_factory
+    feat_azure_devops_v1.1_upgrade --(depends_on)--> azure_devops
+    feat_azure_devops_v1.1_upgrade --(depends_on)--> skill_factory
+    feat_clean_code_mentor_skill --(depends_on)--> architecture
+    feat_clean_code_mentor_skill --(depends_on)--> clean_code_mentor
+    feat_clean_code_mentor_skill --(depends_on)--> skill_factory
+    feat_flutter_fvm_skill --(depends_on)--> flutter_fvm
+    feat_flutter_fvm_skill --(depends_on)--> python_uv
+    feat_github_actions_skills_artifacts --(depends_on)--> api_architect
+    feat_observability_expert_skill --(depends_on)--> architecture
+    feat_observability_expert_skill --(depends_on)--> observability_expert
+    feat_observability_expert_skill --(depends_on)--> skill_factory
+    feat_onboarding_navigator_skill --(depends_on)--> onboarding_navigator
+    feat_onboarding_navigator_skill --(depends_on)--> skill_factory
+    feat_python_uv_skill --(depends_on)--> python_uv
+    feat_youtube_transcript_skill --(depends_on)--> skill_factory
+    feat_youtube_transcript_skill --(depends_on)--> youtube_transcript
+    knowledge_architect --(uses)--> harness_expert
+    onboarding_navigator --(uses)--> architecture
