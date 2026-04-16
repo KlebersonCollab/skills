@@ -40,4 +40,4 @@ Este arquivo contém mandatos e diretrizes fundamentais para o Gemini CLI neste 
 1.  **Proactive Phase 4 (Persistence)**: Sempre que uma tarefa ou feature for concluída tecnicamente, o agente **DEVE** realizar proativamente a Fase 4 do SDD (Review & Persistence) antes de declarar a finalização ao usuário.
 
 ---
-*Mandato atualizado em 14 de Abril de 2026.*
+*Mandato atualizado em 16 de Abril de 2026.*
