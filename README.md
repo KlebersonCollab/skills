@@ -37,6 +37,21 @@ Geramos automaticamente pacotes pré-configurados para os principais agentes de 
 
 ---
 
+## 🛠️ Ferramentas & Automação
+
+O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida das skills e a gestão de conhecimento:
+
+| Comando | Descrição |
+|---------|-----------|
+| `uv run sdd init <name>` | Inicializa uma nova feature com estrutura SDD completa. |
+| `uv run sdd task <feat> <id>` | Marca o progresso de tarefas e sincroniza o estado global. |
+| `uv run sdd graph` | Gera automaticamente o **Knowledge Map** (Mermaid) do projeto. |
+| `uv run sdd sync` | Sincroniza mandatos globais em todos os agentes (.gemini, .claude, .agent). |
+
+> 💡 *Nota: Requer [Python UV](https://docs.astral.sh/uv/) instalado.*
+
+---
+
 ## 🛠️ Skills Disponíveis
 
 | # | Skill | Descrição | Versão |

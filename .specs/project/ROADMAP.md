@@ -12,3 +12,15 @@
 - [x] Skill **Onboarding Navigator** (Hub Master Guide).
 - [x] **Automação de Artefatos de Distribuição** (.zip para Claude, Gemini e Agent via GitHub Actions).
 - [x] **New Skill: YouTube Transcript** (v1.0.0) - Orquestração de yt-dlp e Fallback IA.
+- [x] **New Skill: Harness Expert** (v1.0.0) - Context Rehydration & State Sync.
+- [x] **New Skill: Knowledge Architect** (v1.0.0) - Local GraphRAG & Relational Mapping.
+- [x] **Automação SDD CLI**: Gestão programática de tarefas e estado.
+- [x] **CI/CD Quality Gate**: Validação automática de conformidade de todas as skills.
+- [x] **Unified Mandates**: Fonte única de verdade para instruções de agentes.
+
+## 2026 Q3: Inteligência Coletiva & Automação Avançada
+- [ ] **Skill Installer CLI**: Instalação granular de skills individuais e dependências.
+- [ ] **Automated Knowledge Distiller**: Geração automática de grafos Mermaid via análise estática.
+- [ ] **Gold Standard Benchmarking**: Suite completa de exemplos perfeitos para todas as 14 skills.
+- [ ] **Interactive Hub Dashboard**: Visualização web do ecossistema e saúde das skills.
+- [ ] **Cross-Skill Context Propagation**: Permitir que uma skill "aprenda" com o grafo gerado por outra de forma transparente.

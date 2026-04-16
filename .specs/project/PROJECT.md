@@ -14,3 +14,9 @@ Capacitar agentes de IA com capacidades modulares, repetíveis e altamente espec
 ## Público Alvo
 - Desenvolvedores de agentes de IA (Antigravity e outros).
 - Usuários que buscam expandir as capacidades de seus auxiliares digitais.
+
+## Capacidades Técnicas
+- **Automação**: **SDD CLI** (Python/UV) para gestão de workflow e sincronização de estado.
+- **Inteligência**: **Local GraphRAG** para mapeamento de relações entre requisitos e código.
+- **Qualidade**: **CI/CD Validator** integrado para conformidade automática de skills.
+- **Unificação**: Fonte única de verdade para mandatos globais entre múltiplos agentes.
