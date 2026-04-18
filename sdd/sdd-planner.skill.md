@@ -1,6 +1,6 @@
 ---
 name: sdd-planner
-version: 1.1.0
+version: 1.4.0
 description: "Planner agent for Spec Driven Development. Manages project vision, feature roadmaps, and persistent session memory (STATE.md)."
 category: project-planning
 ---

@@ -1,6 +1,6 @@
 ---
 name: sdd-explorer
-version: 1.0.0
+version: 1.4.0
 description: "Explorer agent for Spec Driven Development. Maps existing codebases (Brownfield) to ensure context awareness before planning features."
 category: project-mapping
 ---

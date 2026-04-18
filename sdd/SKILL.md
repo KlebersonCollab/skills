@@ -1,6 +1,6 @@
 ---
 name: sdd
-version: 1.3.1
+version: 1.4.0
 description: Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate.
 category: development-workflow
 ---
@@ -24,10 +24,10 @@ The depth of the workflow is determined by the **Complexity** of the task, not a
 | Level | Scope | Phases | Required Sub-skills | Directory |
 |---|---|---|---|---|
 | **Quick** | Bug fixes, config, <3 files | (Implement) + (Verify) | `sdd-implementer` | Root |
-| **Small** | Clear feature, <5 tasks | (Spec) + Impl + Verify | `ork-orchestrator`, `sdd-implementer` | `spec/` |
-| **Medium** | Feature + UI, <10 tasks | Explorer + Spec (BDD) + Plan (Mermaid) + Impl + Verify | `sdd-explorer`, `sdd-orchestrator` | `spec/` |
-| **Large** | Multi-component, new module | Planner + Explorer + RFC + Spec (BDD) + Plan (Mermaid) + Impl + Verify | All modules | `.specs/` |
-| **Complex** | Ambiguity, high risk | Same as Large + PRD Audit + Interactive UAT | All modules + `sdd-reviewer` | `.specs/` |
+| **Small** | Clear feature, <5 tasks | (Spec) + Impl + Verify | `sdd-orchestrator`, `sdd-implementer` | `spec/` |
+| **Medium** | Feature + UI, <10 tasks | Explorer + Spec (BDD) + Plan + **Contract** + Impl + Verify | `sdd-explorer`, `sdd-orchestrator` | `spec/` |
+| **Large** | Multi-component, new module | Planner + Explorer + RFC + Spec + Plan + **Contract** + Impl + Verify | All modules | `.specs/` |
+| **Complex** | Ambiguity, high risk | Same as Large + PRD Audit + Score Review | All modules + `sdd-reviewer` | `.specs/` |
 
 ---
 

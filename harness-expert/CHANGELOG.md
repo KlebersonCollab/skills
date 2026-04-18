@@ -9,7 +9,7 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 ## [1.1.0] — 2026-04-18
 
 ### Alterado
-- **Renomeação Global**: Transição oficial de "Harness" para **Harness Engineering** para alinhar com padrões da indústria.
+- **Renomeação Global**: Transição oficial de "Hardness" para **Harness Engineering** para alinhar com padrões da indústria.
 - **Enhanced Rehydration**: Adicionado passo de **Bootstrap** para validação do ambiente operacional e instalação automática de dependências.
 
 ### Adicionado

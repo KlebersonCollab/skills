@@ -1,6 +1,6 @@
 ---
 name: harness-expert-sync
-version: 1.0.0
+version: 1.1.0
 description: "Sub-skill para sincronizar o progresso das tarefas (tasks.md) e registrar aprendizados técnicos (LEARNINGS.md) no File System."
 category: development-workflow
 ---

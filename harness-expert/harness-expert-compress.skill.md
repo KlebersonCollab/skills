@@ -1,6 +1,6 @@
 ---
 name: harness-expert-compress
-version: 1.0.0
+version: 1.1.0
 description: "Sub-skill para compactar o contexto da sessão através do resumo de tarefas concluídas e atualização do STATE.md."
 category: development-workflow
 ---

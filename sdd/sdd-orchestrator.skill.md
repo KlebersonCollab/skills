@@ -1,6 +1,6 @@
 ---
 name: sdd-orchestrator
-version: 1.0.0
+version: 1.4.0
 description: "Orchestrator agent for Spec Driven Development. Creates specification, plan, and task breakdown before any code is written."
 category: development-workflow
 parameters:

@@ -1,6 +1,6 @@
 ---
 name: harness-expert
-version: 1.0.0
+version: 1.1.0
 description: "Skill para Harness Engineering. Foca na infraestrutura de estado, memória de longo prazo e orquestração de agentes via SDD (Spec-Driven Development)."
 category: development-workflow
 ---

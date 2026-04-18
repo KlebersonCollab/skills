@@ -13,6 +13,11 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 - **SDD Contracts**: Novo artefato `contract.md` para definir o acordo de entrega entre Implementador e Revisor.
 - **Sensor-based Reviews**: Vereditos agora são baseados em sinais de ferramentas externas (linters, testes) com Score Global (0-100).
 
+### Alterado
+- **Unificação de Versões**: Sincronização de todas as sub-skills para a versão 1.4.0 para consistência do ecossistema.
+- **Refinamento do Auto-Sizing**: Atualização da tabela de fases para incluir os marcos de Contrato e Review por Score.
+- **Correção de Nomenclatura**: Substituído o termo residual `ork-orchestrator` por `sdd-orchestrator`.
+
 ## [1.3.1] — 2026-04-14
 
 ### Adicionado

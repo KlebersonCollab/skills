@@ -2,7 +2,7 @@
 
 > Precision at scale. Rigor when needed, speed when possible.
 
-[![Versão](https://img.shields.io/badge/Versão-1.1.0-blue)](#changelog)
+[![Versão](https://img.shields.io/badge/Versão-1.4.0-blue)](#changelog)
 [![Sub-skills](https://img.shields.io/badge/Sub--skills-5-brightgreen)](#-sub-skills)
 
 ---
@@ -11,7 +11,7 @@
 
 Skill de **desenvolvimento orientado a especificações** com workflow modular e adaptativo. O SDD ajusta automaticamente a profundidade do processo à complexidade da tarefa (Auto-Sizing), garantindo rigor quando necessário e velocidade quando possível.
 
-A versão `1.1.0` introduz o **Persistent Memory Protocol**, permitindo que o agente aprenda e persista fatos entre sessões.
+A versão `1.4.0` integra os princípios de **Harness Engineering**, introduzindo **Contratos de Desenvolvimento (SDC)** e validação determinística via **Sensores**.
 
 > **Lei do SDD**: Se não está na spec, não existe. Se não foi verificado, não está pronto.
 

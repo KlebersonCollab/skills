@@ -1,6 +1,6 @@
 ---
 name: sdd-implementer
-version: 1.0.0
+version: 1.4.0
 description: "Implementer agent for Spec Driven Development. Reads spec, plan, and tasks — writes code and tests to satisfy every acceptance criterion."
 category: development-workflow
 parameters:

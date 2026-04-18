@@ -2,8 +2,8 @@
 
 > "Se você não é o modelo, então você é o harness." — Infraestrutura de suporte para transformar LLMs em agentes operacionais.
 
-[![Versão](https://img.shields.io/badge/Versão-1.0.0-blue)](#changelog)
-[![Sub-skills](https://img.shields.io/badge/Sub--skills-2-brightgreen)](#-sub-skills)
+[![Versão](https://img.shields.io/badge/Versão-1.1.0-blue)](#changelog)
+[![Sub-skills](https://img.shields.io/badge/Sub--skills-3-brightgreen)](#-sub-skills)
 
 ---
 

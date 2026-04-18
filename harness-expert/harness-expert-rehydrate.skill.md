@@ -1,6 +1,6 @@
 ---
 name: harness-expert-rehydrate
-version: 1.0.0
+version: 1.1.0
 description: "Sub-skill para carregar o contexto operacional correto no início da sessão através da leitura de specs e estados persistidos."
 category: development-workflow
 ---
