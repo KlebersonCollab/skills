@@ -56,7 +56,7 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 
 | # | Skill | Descrição | Versão |
 |---|-------|-----------|--------|
-| 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo com **Persistent Memory Protocol**. | `1.3.1` |
+| 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo com **Persistent Memory Protocol**. | `1.4.0` |
 | 2 | **[Skill Factory](skill-factory/)** | Core Framework para criação padronizada de novas skills com scaffolding e validação. | `1.1.0` |
 | 3 | **[Python com UV](python-uv/)** | Desenvolvimento Python profissional com UV — gerenciador 10-100x mais rápido. | `2.5.0` |
 | 4 | **[API Architect](api-architect/)** | Arquiteto de APIs — design interoperável e seguro (OpenAPI, GraphQL, tRPC). | `1.3.0` |
@@ -68,7 +68,7 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 | 10 | **[Observability Expert](observability-expert/)** | Especialista em SRE — Logs Estruturados, OpenTelemetry e Confiabilidade (SLI/SLO). | `1.0.0` |
 | 11 | **[Onboarding Navigator](onboarding-navigator/)** | Guia interativo de cultura e engenharia para novos membros e projetos. | `1.1.0` |
 | 12 | **[YouTube Transcript](youtube-transcript/)** | Extração de transcrições de vídeos com fallback para IA (Whisper) e limpeza automática. | `1.0.0` |
-| 13 | **[Harness Expert](harness-expert/)** | Infraestrutura de suporte para estado, memória de longo prazo e orquestração de agentes via SDD. | `1.0.0` |
+| 13 | **[Harness Expert](harness-expert/)** | Infraestrutura de suporte para estado, memória de longo prazo e orquestração de agentes via SDD. | `1.1.0` |
 | 14 | **[Knowledge Architect](knowledge-architect/)** | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | `1.0.0` |
 
 ---
