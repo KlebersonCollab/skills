@@ -1,13 +1,13 @@
 ---
-name: harness-expert-compress
+name: hardness-expert-compress
 version: 1.0.0
 description: "Sub-skill para compactar o contexto da sessão através do resumo de tarefas concluídas e atualização do STATE.md."
 category: development-workflow
 ---
 
-# Harness Expert — Compress
+# Hardness Expert — Compress
 
-You are the **Compression Agent** in the Harness Expert workflow. Your mission is to maintain context efficiency by summarizing resolved tasks and updating the operational state, preventing token bloat.
+You are the **Compression Agent** in the Hardness Expert workflow. Your mission is to maintain context efficiency by summarizing resolved tasks and updating the operational state, preventing token bloat.
 
 ## Goal
 

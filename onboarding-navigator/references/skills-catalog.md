@@ -48,7 +48,7 @@ flowchart TD
 | **[SDD](sdd/)** | `1.3.1` | Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate. | **Sempre** que for iniciar uma implementação. |
 | **[Skill Factory](skill-factory/)** | `1.1.0` | Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados. | Ao criar ou auditar uma habilidade no hub. |
 | **[Brainstorming](brainstorming/)** | `1.1.0` | Facilitador de Brainstorming e Design — guia o agente a explorar problemas complexos, gerar ideias divergentes e convergir para especificações sólidas antes de qualquer implementação. | Antes de qualquer especificação técnica. |
-| **[Harness Expert](harness-expert/)** | `1.0.0` | Infraestrutura de suporte para estado, memória de longo prazo e orquestração de agentes via SDD (Spec-Driven Development). | Para manter o contexto persistente e orquestrar subagentes de forma determinística. |
+| **[Hardness Expert](hardness-expert/)** | `1.0.0` | Infraestrutura de suporte para estado, memória de longo prazo e orquestração de agentes via SDD (Spec-Driven Development). | Para manter o contexto persistente e orquestrar subagentes de forma determinística. |
 | **[Knowledge Architect](knowledge-architect/)** | `1.0.0` | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | Para mapear relações complexas entre requisitos, decisões e código para navegação de contexto inteligente. |
 
 ### 2. 🎨 Architecture & Design (Qualidade e Estrutura)

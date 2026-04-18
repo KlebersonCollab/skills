@@ -4,7 +4,7 @@ import os
 
 def sync_tasks(task_file, activity_log):
     """
-    Simula o Harness sincronizando o tasks.md baseado em logs de atividade.
+    Simula o Hardness sincronizando o tasks.md baseado em logs de atividade.
     """
     if not os.path.exists(task_file):
         print(f"Erro: Arquivo {task_file} não encontrado.")
@@ -25,10 +25,10 @@ def sync_tasks(task_file, activity_log):
     with open(task_file, 'w') as f:
         f.write(content)
     
-    print(f"Harness Sync: {len(completed_tasks)} tarefas sincronizadas.")
+    print(f"Hardness Sync: {len(completed_tasks)} tarefas sincronizadas.")
 
 if __name__ == "__main__":
     # Exemplo de uso
     sample_log = "COMPLETED: Setup Project\nCOMPLETED: Define Architecture"
     # sync_tasks("tasks.md", sample_log)
-    print("Script harness-sync carregado. Pronto para integração.")
+    print("Script hardness-sync carregado. Pronto para integração.")

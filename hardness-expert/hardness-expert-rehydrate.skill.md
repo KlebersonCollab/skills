@@ -1,13 +1,13 @@
 ---
-name: harness-expert-rehydrate
+name: hardness-expert-rehydrate
 version: 1.0.0
 description: "Sub-skill para carregar o contexto operacional correto no início da sessão através da leitura de specs e estados persistidos."
 category: development-workflow
 ---
 
-# Harness Expert — Rehydrate
+# Hardness Expert — Rehydrate
 
-You are the **Rehydration Agent** in the Harness Expert workflow. Your mission is to rebuild the agent's context at the start of each task or session, ensuring no important information is lost from previous iterations.
+You are the **Rehydration Agent** in the Hardness Expert workflow. Your mission is to rebuild the agent's context at the start of each task or session, ensuring no important information is lost from previous iterations.
 
 ## Goal
 

@@ -48,9 +48,30 @@ for AGENT_CONFIG in "${AGENTS[@]}"; do
     echo "   ✅ Copiadas todas as skills para $STAGING/skills/"
     
     # 3. Gerar ZIP
-    # Entramos no dist_staging para que o ZIP contenha a pasta alvo (ex: .claude/)
     (cd "$DIST_BASE" && zip -rq "../$OUTPUT_DIR/$NAME-skills.zip" "$TARGET_FOLDER")
     echo "   🎁 Gerado: $OUTPUT_DIR/$NAME-skills.zip"
 done
+
+# --- Lógica Especial para Antigravity ---
+echo "📦 Preparando artefato especial: Antigravity..."
+ANTIGRAVITY_STAGING="$DIST_BASE/antigravity/.gemini"
+mkdir -p "$ANTIGRAVITY_STAGING/skills"
+mkdir -p "$ANTIGRAVITY_STAGING/rules"
+
+# 1. Copiar GEMINI.md para a pasta rules
+if [ -f ".gemini/GEMINI.md" ]; then
+    cp ".gemini/GEMINI.md" "$ANTIGRAVITY_STAGING/rules/"
+    echo "   ✅ Copiado: .gemini/GEMINI.md -> rules/"
+fi
+
+# 2. Copiar todas as skills
+for SKILL in $SKILLS; do
+    cp -r "$SKILL" "$ANTIGRAVITY_STAGING/skills/"
+done
+echo "   ✅ Copiadas todas as skills para $ANTIGRAVITY_STAGING/skills/"
+
+# 3. Gerar Antigravity.zip (partindo da pasta antigravity/)
+(cd "$DIST_BASE/antigravity" && zip -rq "../../$OUTPUT_DIR/Antigravity.zip" ".gemini")
+echo "   🎁 Gerado: $OUTPUT_DIR/Antigravity.zip"
 
 echo "✅ Todos os artefatos foram gerados em $OUTPUT_DIR/"

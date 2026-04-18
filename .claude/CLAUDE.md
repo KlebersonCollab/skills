@@ -25,6 +25,14 @@ Sempre que uma tarefa ou feature for concluída tecnicamente, o agente **DEVE** 
 - Priorizar a simplicidade e a manutenibilidade; evitar sobre-engenharia.
 - Todo código deve passar por validação automatizada (linters/testes).
 
+## 4. Operational Infrastructure (Hardness Expert)
+- **State Synchronization**: O agente **DEVE** garantir que o estado operacional (memória de longo prazo) seja sincronizado via `hardness-expert` ao final de cada iteração.
+- **Context Efficiency**: Utilizar a compactação de contexto proativamente para evitar saturação de tokens, mantendo o `STATE.md` como a bússola do progresso.
+
+## 5. Knowledge Management (Knowledge Architect)
+- **Local Knowledge Graph (LKG)**: Toda nova feature ou mudança arquitetural significativa **DEVE** ser mapeada no `KNOWLEDGE-MAP.mermaid`.
+- **Relationship Mapping**: Antes de grandes refatorações, o agente **DEVE** utilizar o `knowledge-architect` para analisar o impacto nas entidades e relações existentes.
+
 
 <!-- GLOBAL_MANDATES_END -->
 
