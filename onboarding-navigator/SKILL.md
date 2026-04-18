@@ -78,9 +78,9 @@ flowchart TD
 3.  **Estruturação de ADR/RFC**: Auxiliar na criação de registros de decisão seguindo a skill de `architecture`.
 
 ### Fase 4: ✅ ALIGN — Consistência Global
-1.  **Check de Padrões**: Validar se os planos seguem as normas de Clean Code e SDD.
+1.  **Check de Padrões**: Validar se os planos seguem as normas de Clean Code e a obrigatoriedade do **SDD** para desenvolvimento.
 2.  **Mentoria Cultural**: Relembrar os princípios de "Simplicity at Scale" e "Rigor when needed".
-3.  **Handoff de Skill**: Delegar a execução para a skill especializada identificada na Fase 2.
+3.  **Handoff de Skill**: Delegar a execução para a skill especializada identificada na Fase 2, garantindo que o ciclo comece pelo **SDD**.
 
 ---
 
@@ -94,10 +94,11 @@ flowchart TD
 
 ## 🚫 Prohibited
 
-- **NUNCA** ignorar a existência de uma skill já implementada ao sugerir uma solução.
+- **NUNCA** ignorar a existência de uma skill já implementada ao sugerir uma solution.
 - **NUNCA** referenciar arquivos externos inexistentes no repositório local sem contexto.
 - **NUNCA** iniciar uma tarefa de larga escala sem validar o alinhamento cultural nesta skill.
 - **NUNCA** esquecer de consultar `MEMORY.md` e `LEARNINGS.md` para lições anteriores.
+- **NUNCA** permitir o início de uma construção ou desenvolvimento sem o framework **SDD**.
 
 ---
 
