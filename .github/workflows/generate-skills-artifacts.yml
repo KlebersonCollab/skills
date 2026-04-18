@@ -41,6 +41,7 @@ jobs:
             artifacts/claude-skills.zip
             artifacts/gemini-skills.zip
             artifacts/agent-skills.zip
+            artifacts/Antigravity.zip
           generate_release_notes: true
           draft: false
           prerelease: false
