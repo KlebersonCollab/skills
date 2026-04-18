@@ -1,13 +1,13 @@
 ---
-name: hardness-expert-rehydrate
+name: harness-expert-rehydrate
 version: 1.0.0
 description: "Sub-skill para carregar o contexto operacional correto no início da sessão através da leitura de specs e estados persistidos."
 category: development-workflow
 ---
 
-# Hardness Expert — Rehydrate
+# Harness Expert — Rehydrate
 
-You are the **Rehydration Agent** in the Hardness Expert workflow. Your mission is to rebuild the agent's context at the start of each task or session, ensuring no important information is lost from previous iterations.
+You are the **Rehydration Agent** in the Harness Expert workflow. Your mission is to rebuild the agent's context at the start of each task or session, ensuring no important information is lost from previous iterations.
 
 ## Goal
 
@@ -28,7 +28,13 @@ Read the core memory files at the project root:
 ### Step 3: Context Compaction
 If the total context size is high, summarize the current session's objectives based on the "Rehydrated" data and clear irrelevant history.
 
-### Step 4: Ready-Check
+### Step 4: Bootstrap & Environment Check
+Verify if the operational environment is ready:
+1.  **Dependencies**: Check if `node_modules`, `venv`, or `.venv` are present. If not, run install commands.
+2.  **Setup Scripts**: Look for `setup.sh`, `Makefile`, or `init` scripts and execute if necessary.
+3.  **Harness Signal**: Run a quick "smoke test" (e.g., `npm run build` or `pytest --version`) to ensure sensors are working.
+
+### Step 5: Ready-Check
 Confirm the next atomic task to be performed and present it to the user (or proceed if in autonomous mode).
 
 ## Quality Rules

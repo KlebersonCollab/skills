@@ -13,7 +13,7 @@ category: development-workflow
 
 ## Goal
 
-O SDD tem como objetivo garantir precisão, rastreabilidade e integridade no ciclo de vida de desenvolvimento de software, transformando requisitos ambíguos em código verificado e documentado através de um workflow modular e adaptativo.
+O SDD tem como objetivo garantir precisão, rastreabilidade e integridade no ciclo de vida de desenvolvimento de software, transformando requisitos ambíguos em código verificado e documentado através de um workflow modular e adaptativo, agora potencializado pelos princípios de **Harness Engineering**.
 
 ---
 
@@ -45,7 +45,8 @@ O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 1.  **Escrever a Spec**: Utilizar `sdd-orchestrator` para definir requisitos técnicos (`spec.md`). Para níveis **Medium+**, utilizar formato **BDD** (Given/When/Then) nos Critérios de Aceitação.
 2.  **Proposta Técnica (RFC)**: Para níveis **Large+**, elaborar uma **RFC** (Request for Comments) detalhando a arquitetura e trade-offs antes do `plan.md`.
 3.  **Desenhar a Solução**: Elaborar o `plan.md` com arquitetura e schemas. **Mandatório**: Incluir diagramas **Mermaid** (Flowcharts, Sequence, Class) para visualizar fluxos e estruturas em níveis **Medium+**.
-4.  **Atomic Tasks**: Gerar a lista de tarefas (`tasks.md`) para execução.
+4.  **Contrato de Desenvolvimento (SDC)**: Criar o `contract.md` definindo o acordo entre o Implementador e o Revisor sobre o que será entregue e como será medido (Sensores).
+5.  **Atomic Tasks**: Gerar a lista de tarefas (`tasks.md`) para execução.
 
 ### Fase 3: IMPLEMENT — Execução Atômica
 1.  **Automação**: Utilizar o **SDD CLI** (`uv run sdd task <feature> <id>`) para marcar o progresso.
@@ -53,9 +54,10 @@ O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 2.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes.
 
 ### Fase 4: REVIEW — Auditoria e Finalização
-1.  **Veredito**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md` e cenários BDD.
-2.  **UAT**: Validar com o usuário se os critérios de aceitação (BDD) foram atendidos.
-3.  **Persistência**: Atualizar os logs de memória e estado no Planner antes do encerramento.
+1.  **Veredito via Sensores**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md` e o `contract.md`, utilizando feedback de ferramentas (testes, linters).
+2.  **Score Report**: Gerar o relatório de validação com pontuação de 0-100.
+3.  **UAT**: Validar com o usuário se os critérios de aceitação (BDD) foram atendidos.
+4.  **Persistência**: Atualizar os logs de memória e estado no Planner antes do encerramento.
 
 ---
 
@@ -120,8 +122,9 @@ A execução deste workflow deve resultar nos seguintes artefatos mandatórios, 
 |----------|---------|-----------|
 | **Specification** | `spec.md` | Requisitos funcionais, ACs (BDD) e restrições. |
 | **Technical Plan** | `plan.md` | Arquitetura, schemas e diagramas Mermaid. |
+| **Contract** | `contract.md` | Acordo de entrega e sensores de validação. |
 | **Atomic Tasks** | `tasks.md` | Lista detalhada de tarefas com status. |
-| **Audit Reports** | `validation-report.md` | Relatórios de conformidade e verificação. |
+| **Audit Reports** | `validation-report.md` | Relatórios de conformidade com Score e evidências. |
 
 ## Quality Rules
 

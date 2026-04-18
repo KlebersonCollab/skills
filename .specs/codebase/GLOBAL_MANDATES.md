@@ -21,8 +21,8 @@ Sempre que uma tarefa ou feature for concluída tecnicamente, o agente **DEVE** 
 - Priorizar a simplicidade e a manutenibilidade; evitar sobre-engenharia.
 - Todo código deve passar por validação automatizada (linters/testes).
 
-## 4. Operational Infrastructure (Hardness Expert)
-- **State Synchronization**: O agente **DEVE** garantir que o estado operacional (memória de longo prazo) seja sincronizado via `hardness-expert` ao final de cada iteração.
+## 4. Operational Infrastructure (Harness Expert)
+- **State Synchronization**: O agente **DEVE** garantir que o estado operacional (memória de longo prazo) seja sincronizado via `harness-expert` ao final de cada iteração.
 - **Context Efficiency**: Utilizar a compactação de contexto proativamente para evitar saturação de tokens, mantendo o `STATE.md` como a bússola do progresso.
 
 ## 5. Knowledge Management (Knowledge Architect)

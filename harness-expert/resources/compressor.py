@@ -66,7 +66,7 @@ if __name__ == "__main__":
     import argparse
     from distiller import suggest_learnings
     
-    parser = argparse.ArgumentParser(description="Hardness Context Compressor")
+    parser = argparse.ArgumentParser(description="Harness Context Compressor")
     parser.add_argument("task_file", help="Caminho do arquivo tasks.md")
     parser.add_argument("state_file", help="Caminho do arquivo STATE.md")
     parser.add_argument("--auto", action="store_true", help="Executa apenas se exceder o threshold")
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     
     # 1. Destilação de Conhecimento (Fase 3)
     if args.distill:
-        print(f"Hardness: Iniciando Destilação de Conhecimento de {args.distill}...")
+        print(f"Harness: Iniciando Destilação de Conhecimento de {args.distill}...")
         suggestions = suggest_learnings(args.distill)
         print(suggestions)
 
@@ -88,11 +88,11 @@ if __name__ == "__main__":
     comp, pend = analyze_tasks(t_file)
     if comp is not None:
         if args.auto and len(comp) < args.threshold:
-            print(f"Hardness: {len(comp)} tarefas concluídas. Threshold de {args.threshold} não atingido. Ignorando compactação.")
+            print(f"Harness: {len(comp)} tarefas concluídas. Threshold de {args.threshold} não atingido. Ignorando compactação.")
             sys.exit(0)
             
         state_content = generate_compact_state(comp, pend)
         update_state_file(s_file, state_content)
-        print(f"Hardness Context Compressor: {len(comp)} tarefas compactadas em {s_file}")
+        print(f"Harness Context Compressor: {len(comp)} tarefas compactadas em {s_file}")
     else:
         print(f"Erro: Arquivo {t_file} não encontrado.")

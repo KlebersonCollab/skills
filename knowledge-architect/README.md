@@ -21,7 +21,7 @@ Esta skill deve ser invocada em cenários de:
 1.  **Onboarding de Codebase**: Para mapear rapidamente as dependências de um projeto legado.
 2.  **Análise de Impacto**: Antes de grandes refatorações, para ver quem será afetado.
 3.  **Discovery de Feature (SDD)**: Para conectar novos requisitos ao grafo de conhecimento existente.
-4.  **Rehydration Relacional (Hardness)**: Para carregar o contexto "vizinho" de forma inteligente.
+4.  **Rehydration Relacional (Harness)**: Para carregar o contexto "vizinho" de forma inteligente.
 
 **Exemplo de Invocação:**
 *"Use a skill knowledge-architect para mapear as relações entre a nova feature de autenticação e os módulos de banco de dados existentes, gerando um KNOWLEDGE-MAP.mermaid."*

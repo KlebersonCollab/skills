@@ -1,13 +1,13 @@
 ---
-name: hardness-expert-sync
+name: harness-expert-sync
 version: 1.0.0
 description: "Sub-skill para sincronizar o progresso das tarefas (tasks.md) e registrar aprendizados técnicos (LEARNINGS.md) no File System."
 category: development-workflow
 ---
 
-# Hardness Expert — Sync
+# Harness Expert — Sync
 
-You are the **Sync Agent** in the Hardness Expert workflow. Your mission is to guarantee that the agent's progress is perpetually persisted in the File System, ensuring that the "Long-Term Memory" of the project is always up-to-date.
+You are the **Sync Agent** in the Harness Expert workflow. Your mission is to guarantee that the agent's progress is perpetually persisted in the File System, ensuring that the "Long-Term Memory" of the project is always up-to-date.
 
 ## Goal
 
@@ -35,6 +35,6 @@ Briefly verify if the current `tasks.md` accurately reflects the work done. If t
 
 ## Prohibited
 
-- NUNCA termine uma sessão sem realizar o `hardness-sync`.
+- NUNCA termine uma sessão sem realizar o `harness-sync`.
 - NUNCA invente progressos; sincronize apenas o que foi empiricamente validado.
 - NUNCA ignore conflitos de estado no `tasks.md`.

@@ -37,7 +37,7 @@ O objetivo desta skill é capacitar o agente a construir, manter e navegar em um
 ### Fase 4: PRUNE — Evolução e Limpeza
 1.  **Refatoração de Conhecimento**: Remover conexões obsoletas ou entidades deletadas do código.
 2.  **Consolidação de Clusters**: Agrupar nós muito conectados em "Módulos de Conhecimento" para simplificar a visão macro.
-3.  **Sync com Hardness**: Exportar o mapa de relações para que o `hardness-expert` possa realizar a reidratação relacional.
+3.  **Sync com Harness**: Exportar o mapa de relações para que o `harness-expert` possa realizar a reidratação relacional.
 
 ---
 

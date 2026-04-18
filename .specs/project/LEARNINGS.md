@@ -15,5 +15,5 @@
 - **Automated Version Collection**: Scripts para extrair versões e descrições automaticamente dos arquivos `SKILL.md` previnem desatualização do catálogo.
 - **Onboarding Navigator as Living Documentation**: A skill de onboarding deve evoluir junto com o ecossistema, refletindo mudanças em tempo real.
 ## 2026-04-16 - Knowledge Graphing Strategy
-- **Learning**: Implementing a modular 'knowledge-architect' is superior to bloat the 'sdd' or 'hardness' skills.
+- **Learning**: Implementing a modular 'knowledge-architect' is superior to bloat the 'sdd' or 'harness' skills.
 - **Pattern**: Using Mermaid for relational mapping allows agents to visualize impact before coding.

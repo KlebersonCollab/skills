@@ -6,6 +6,13 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
+## [1.4.0] — 2026-04-18
+
+### Adicionado
+- **Harness Engineering Integration**: Evolução do workflow com foco em contratos, sensores e feedback loops determinísticos.
+- **SDD Contracts**: Novo artefato `contract.md` para definir o acordo de entrega entre Implementador e Revisor.
+- **Sensor-based Reviews**: Vereditos agora são baseados em sinais de ferramentas externas (linters, testes) com Score Global (0-100).
+
 ## [1.3.1] — 2026-04-14
 
 ### Adicionado

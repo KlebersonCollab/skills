@@ -12,7 +12,7 @@
 - [x] Skill **Onboarding Navigator** (Hub Master Guide).
 - [x] **Automação de Artefatos de Distribuição** (.zip para Claude, Gemini e Agent via GitHub Actions).
 - [x] **New Skill: YouTube Transcript** (v1.0.0) - Orquestração de yt-dlp e Fallback IA.
-- [x] **New Skill: Hardness Expert** (v1.0.0) - Context Rehydration & State Sync.
+- [x] **New Skill: Harness Expert** (v1.0.0) - Context Rehydration & State Sync.
 - [x] **New Skill: Knowledge Architect** (v1.0.0) - Local GraphRAG & Relational Mapping.
 - [x] **Automação SDD CLI**: Gestão programática de tarefas e estado.
 - [x] **CI/CD Quality Gate**: Validação automática de conformidade de todas as skills.

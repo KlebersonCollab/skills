@@ -59,6 +59,16 @@ Create `spec/tasks.md`.
 - **Verification Criteria**: Every task must have a "How to test" note.
 - **Dependencies**: List which tasks depend on others.
 
+## Phase 4: CONTRACT (SDC)
+
+Create `spec/contract.md`. This is the formal agreement between implementation and review.
+
+### Contract Core
+- **Deliverables**: Explicit list of files and features to be modified.
+- **Sensors**: Definition of which tools (linters, test suites) will be used to validate the work.
+- **Success Score**: Definition of the minimum score (e.g., 90/100) required for approval.
+- **Constraints Verification**: How to verify that architectural constraints (from `plan.md`) were respected.
+
 ## Quality Gate
 
 - [ ] All research followed the Verification Chain.

@@ -1,13 +1,13 @@
 ---
-name: hardness-expert
+name: harness-expert
 version: 1.0.0
-description: "Skill para Hardness Engineering. Foca na infraestrutura de estado, memória de longo prazo e orquestração de agentes via SDD (Spec-Driven Development)."
+description: "Skill para Harness Engineering. Foca na infraestrutura de estado, memória de longo prazo e orquestração de agentes via SDD (Spec-Driven Development)."
 category: development-workflow
 ---
 
-# Hardness Expert
+# Harness Expert
 
-> "Se você não é o modelo, então você é o hardness." — Infraestrutura de suporte para transformar LLMs em agentes operacionais.
+> "Se você não é o modelo, então você é o harness." — Infraestrutura de suporte para transformar LLMs em agentes operacionais.
 
 ---
 
@@ -35,7 +35,7 @@ O objetivo principal desta skill é fornecer o "maquinário" necessário para qu
 
 ### Fase 4: VALIDATE — Determinismo e Verificação
 1.  **Loops de Feedback**: Rodar linters, type-checks e testes unitários proativamente.
-2.  **Autocorreção**: O hardness deve usar os logs de erro para guiar o agente na correção imediata, sem intervenção do usuário.
+2.  **Autocorreção**: O harness deve usar os logs de erro para guiar o agente na correção imediata, sem intervenção do usuário.
 
 ---
 
