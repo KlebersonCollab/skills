@@ -17,3 +17,8 @@
 ## 2026-04-16 - Knowledge Graphing Strategy
 - **Learning**: Implementing a modular 'knowledge-architect' is superior to bloat the 'sdd' or 'harness' skills.
 - **Pattern**: Using Mermaid for relational mapping allows agents to visualize impact before coding.
+
+## 2026-04-18 - Expert Skills & Global Sync Audit
+- **Sync Blind Spots**: Foi descoberto que sincronizar apenas arquivos de texto (como mandatos globais) não é suficiente para o ecossistema. Novas skills criadas na raiz ficam "invisíveis" aos agentes se o script de sync não realizar o espelhamento completo de diretórios para as pastas ocultas (`.agent/skills`, etc).
+- **Automation of Consistency**: Ferramentas simples de "cross-check" entre o README e o frontmatter das skills (como o `verify_versions.py`) são fundamentais para evitar que o repositório entre em um estado de entropia documental.
+- **Skill Consolidation**: Integrar conhecimento de múltiplas fontes externas (GitHub) e modularizar em referências específicas (como `orm_performance.md` e `security.md`) torna a skill muito mais acionável do que um arquivo único gigante.

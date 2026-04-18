@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-12-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-16-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/KlebersonCollab/skills/generate-skills-artifacts.yml?branch=main&label=Build%20Artifacts)](https://github.com/KlebersonCollab/skills/actions)
 [![Status](https://img.shields.io/badge/Status-Ativo-brightgreen)](#-roadmap)
@@ -70,6 +70,8 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 | 12 | **[YouTube Transcript](youtube-transcript/)** | Extração de transcrições de vídeos com fallback para IA (Whisper) e limpeza automática. | `1.0.0` |
 | 13 | **[Harness Expert](harness-expert/)** | Infraestrutura de suporte para estado, memória de longo prazo e orquestração de agentes via SDD. | `1.1.0` |
 | 14 | **[Knowledge Architect](knowledge-architect/)** | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | `1.0.0` |
+| 15 | **[FastAPI Expert](fastapi-expert/)** | Excelência em APIs com FastAPI — performance, Annotated e Pydantic V2. | `1.0.0` |
+| 16 | **[Django Expert](django-expert/)** | Desenvolvimento profissional com Django — ORM Performance e HTMX. | `1.0.0` |
 
 ---
 

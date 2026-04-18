@@ -64,6 +64,7 @@ Esta skill inclui documentação de referência detalhada:
 1. **[Structured Logging](references/structured-logging.md)** — Padrões JSON e metadados contextuais.
 2. **[Metrics & Tracing](references/metrics-and-tracing.md)** — Guia prático de OpenTelemetry e Prometheus.
 3. **[SLIs, SLOs & Alerting](references/sli-slo-alerting.md)** — Metodologia de confiabilidade orientada a dados.
+4. **[Framework Monitoring](references/framework_monitoring.md)** — Monitoramento específico para FastAPI e Django (Prometheus/Grafana).
 
 ---
 

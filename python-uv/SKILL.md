@@ -1,7 +1,7 @@
 ---
 name: python-uv
 version: 2.5.0
-description: "Skill para desenvolvimento Python profissional com UV. Use quando precisar inicializar projetos (Django Pro, FastAPI, CLI), gerenciar dependências, versões Python, ambientes virtuais, ferramentas de desenvolvimento (ruff, mypy, pytest), otimizar performance (Django N+1), executar scripts inline (PEP 723), configurar CI/CD, ou migrar para UV."
+description: "Skill para desenvolvimento Python profissional com UV. Use para gerenciar dependências e ambientes. Para desenvolvimento de APIs ou Web, utilize em conjunto com as skills 'fastapi-expert' ou 'django-expert'."
 category: development-workflow
 ---
 
