@@ -1,20 +1,23 @@
-# Onboarding Navigator Skill v1.1.0
+# Onboarding Navigator
 
-Esta skill atua como o guia mestre para o ecossistema de **11 habilidades** do projeto. Ela transforma a base de conhecimento estática em uma ferramenta ativa para orientar a navegação técnica, garantindo que os padrões Skynet (KISS, SDD) sejam seguidos.
+Esta skill atua como o guia mestre para o ecossistema de **18 habilidades** do projeto. Ela transforma a base de conhecimento estática em uma ferramenta ativa para orientar a navegação técnica, garantindo que os padrões Skynet (KISS, SDD) sejam seguidos.
 
-## 🎯 Missão
+## Casos de Uso
 
-Ser o ponto de entrada principal para todas as sessions, garantindo que agentes e usuários:
-1. Conheçam o ecossistema completo de 11 skills
-2. Escolham a skill correta para cada problema
-3. Sigam os fluxos de trabalho recomendados
-4. Mantenham alinhamento com a cultura de engenharia
+Sempre invoque o `onboarding-navigator` no início de uma sessão para:
+1. Conheçam o ecossistema completo de 18 skills
+2. Entendam qual skill usar para qual problema
+3. Sejam lembrados da obrigatoriedade do Spec-Driven Development (SDD)
+4. Saibam onde salvar a memória da sessão (`STATE.md`, etc)
 
-## 📊 Recursos Aprimorados
+## Arquivos de Referência
+- `references/skills-catalog.md`: Catálogo completo com 18 skills e matriz de decisão
+- `references/decision-making-framework.md`: Guia de como tomar e registrar decisões técnicas
+- `references/project-structure-guide.md`: Mapa das pastas locais
+- `references/onboarding-checklists.md`: Checklists práticos para começar a codar
 
-- **Catálogo Visual de 11 Skills**: Mapa completo com diagramas Mermaid do ecossistema
-- **Matriz de Decisão Inteligente**: Fluxos visuais para escolha da skill correta
-- **Versões Atualizadas**: Informações precisas de todas as skills (ex: flutter-fvm v1.1.0)
+## O que ela entrega
+- **Versões atualizadas** de todas as 18 skills
 - **Estatísticas do Hub**: Visão geral do ecossistema (3 metodologias, 3 arquiteturas, 4 DevOps, 1 navegação)
 - **Integração com MEMORY/LEARNINGS**: Consulta proativa a lições aprendidas
 

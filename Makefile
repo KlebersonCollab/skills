@@ -10,6 +10,7 @@ help:
 	@echo "  make sync          - Sincroniza mandatos e skills para os agentes (.gemini, .claude, .agent)"
 	@echo "  make validate      - Valida todas as skills no repositório (exige uv e pyyaml)"
 	@echo "  make dist          - Gera os artefatos (.zip) para distribuição"
+	@echo "  make dist-cursor   - Compila as skills para o formato .cursorrules da IDE Cursor"
 	@echo "  make verify        - Verifica a integridade dos artefatos .zip gerados"
 	@echo "  make knowledge-map - Gera o mapa de conhecimento relacional (Mermaid)"
 	@echo "  make verify-vers   - Verifica se as versões no README batem com as das skills"
@@ -24,6 +25,9 @@ validate:
 
 dist:
 	bash scripts/generate-skills-dist.sh
+
+dist-cursor:
+	$(PYTHON) scripts/generate_cursorrules.py --skills sdd,knowledge-architect,architecture
 
 verify:
 	bash scripts/verify-dist.sh

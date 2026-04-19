@@ -11,8 +11,11 @@ graph TD
     feat_azure_devops_skill["🚀 Feature: azure-devops-skill"]
     feat_azure_devops_v1.1_upgrade["🚀 Feature: azure-devops-v1.1-upgrade"]
     feat_clean_code_mentor_skill["🚀 Feature: clean-code-mentor-skill"]
+    feat_cursorrules_compiler["🚀 Feature: cursorrules-compiler"]
+    feat_dynamic_scaffolding["🚀 Feature: dynamic-scaffolding"]
     feat_flutter_fvm_skill["🚀 Feature: flutter-fvm-skill"]
     feat_github_actions_skills_artifacts["🚀 Feature: github-actions-skills-artifacts"]
+    feat_multi_agent_orchestrator["🚀 Feature: multi-agent-orchestrator"]
     feat_observability_expert_skill["🚀 Feature: observability-expert-skill"]
     feat_onboarding_navigator_skill["🚀 Feature: onboarding-navigator-skill"]
     feat_python_uv_skill["🚀 Feature: python-uv-skill"]
@@ -20,9 +23,11 @@ graph TD
     flutter_fvm["🧩 flutter-fvm"]
     harness_expert["🧩 harness-expert"]
     knowledge_architect["🧩 knowledge-architect"]
+    multi_agent_orchestrator["🧩 multi-agent-orchestrator"]
     observability_expert["🧩 observability-expert"]
     onboarding_navigator["🧩 onboarding-navigator"]
     python_uv["🧩 python-uv"]
+    scaffolding_expert["🧩 scaffolding-expert"]
     sdd["🧩 sdd"]
     skill_factory["🧩 skill-factory"]
     youtube_transcript["🧩 youtube-transcript"]
@@ -55,6 +60,14 @@ graph TD
     feat_youtube_transcript_skill --(depends_on)--> skill_factory
     feat_youtube_transcript_skill --(depends_on)--> youtube_transcript
     knowledge_architect --(uses)--> harness_expert
+    multi_agent_orchestrator --(uses)--> api_architect
+    multi_agent_orchestrator --(uses)--> architecture
+    multi_agent_orchestrator --(uses)--> brainstorming
+    multi_agent_orchestrator --(uses)--> clean_code_mentor
+    multi_agent_orchestrator --(uses)--> fastapi_expert
+    multi_agent_orchestrator --(uses)--> flutter_fvm
+    multi_agent_orchestrator --(uses)--> harness_expert
+    multi_agent_orchestrator --(uses)--> observability_expert
     onboarding_navigator --(uses)--> architecture
     python_uv --(uses)--> django_expert
     python_uv --(uses)--> fastapi_expert

@@ -36,12 +36,18 @@ Estes diretórios contêm os arquivos **`GEMINI.md`**, **`CLAUDE.md`** e **`AGEN
 
 ## 4. Onde encontrar cada coisa?
 
-| Necessidade | Localização Recomendada |
-|-------------|-------------------------|
-| Criar nova skill | `skill-factory/` |
-| Consultar arquitetura | `architecture/` ou `.specs/codebase/` |
-| Ver regras de Clean Code | `clean-code-mentor/` ou Mandatos de Agente |
-| Planejar próxima sprint | `.specs/project/ROADMAP.md` |
+| Necessidade (O que você quer fazer?) | Localização / Skill Recomendada |
+|-------------------------------------|---------------------------------|
+| **Criar uma nova skill no Hub** | `skill-factory/` |
+| **Orquestrar um Swarm de Agentes** | `multi-agent-orchestrator/` |
+| **Consultar/Criar ADRs e Arquitetura Macro** | `architecture/` ou `.specs/codebase/` |
+| **Desenhar Contratos e APIs (REST/GraphQL)** | `api-architect/` |
+| **Garantir/Verificar regras de Clean Code** | `clean-code-mentor/` |
+| **Salvar estado e Gerenciar Memória da Sessão**| `harness-expert/` ou `.specs/project/STATE.md` |
+| **Mapear e Visualizar grafos de dependência** | `knowledge-architect/` ou `KNOWLEDGE-MAP.mermaid` |
+| **Gerar projetos base / Boilerplates do zero** | `scaffolding-expert/` |
+| **Configurar CI/CD, Boards ou Azure Pipelines**| `azure-devops/` |
+| **Planejar próxima sprint ou Roadmap** | `.specs/project/ROADMAP.md` |
 
 ## 5. Dica de Navegação
 Sempre comece sua sessão pedindo ao agente para "Reidratar o contexto lendo os arquivos de memória na pasta `.specs/`". Isso garante que ele saiba exatamente onde paramos.

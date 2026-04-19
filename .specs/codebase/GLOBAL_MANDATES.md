@@ -33,3 +33,8 @@ Qualquer tarefa de construção, desenvolvimento ou refatoração significativa 
 ## 6. Mandatory Skill Usage
 - **Skill-Driven Execution**: O agente **DEVE** obrigatoriamente identificar e utilizar a skill mais adequada para cada tarefa. A execução de qualquer atividade técnica sem o suporte de uma skill específica ou do framework de automação do Hub é proibida.
 
+## 7. Dynamic Scaffolding (Scaffolding Expert)
+- **Zero-Boilerplate Policy**: O agente **DEVE** preferir utilizar as ferramentas de CLI de templates (como `uvx copier` via `scaffolding-expert`) para inicializar a estrutura de projetos e arquivos complexos (como `pyproject.toml`, Dockerfiles). O código boilerplate NUNCA deve ser escrito linha por linha se existir um template de scaffolding disponível.
+
+## 8. Multi-Agent Workflows (Multi-Agent Orchestrator)
+- **Swarm Delegation**: Para épicos arquiteturais pesados, o agente **NÃO DEVE** tentar assumir os papéis de Arquiteto, Engenheiro e QA de uma vez só em um único prompt. O agente **DEVE** aplicar o protocolo de handoff do `multi-agent-orchestrator`, gerando os artefatos de entrega (como `.specs/features/<feature>/handoff.md`) e instruindo o usuário a criar uma nova thread/sessão com a próxima persona focada.
