@@ -11,6 +11,7 @@
 - [x] **Project Makefile**: Automação de comandos (sync, validate, dist, release).
 - [x] **Relational Knowledge Map**: Geração automática de `KNOWLEDGE-MAP.mermaid`.
 - [x] **Release v1.8.2**: Consolidação de automação e visibilidade do Hub.
+- [x] **Skill Support Resources**: Criação de templates e guias para `python-uv`, `fastapi-expert`, `django-expert` e `golang-expert`.
 
 ## Bloqueios / Próximos Passos
 - [x] **Feature: Cursorrules Compiler** (Direção 7): Criar compilador para gerar `.cursorrules`.
