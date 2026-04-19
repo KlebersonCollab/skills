@@ -1,4 +1,4 @@
-# Changelog — Golang Expert
+# Changelog - Golang Expert
 
 Todas as mudanças notáveis desta skill serão documentadas neste arquivo.
 
@@ -6,7 +6,7 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
-## [1.0.0] — 2026-04-19
+## [1.0.0] - 2026-04-19
 
 ### Adicionado
 - **SKILL.md**: Definição principal da skill de nível Expert em Go.
