@@ -12,3 +12,7 @@
 ## Pipeline de Distribuição
 - Os artefatos são gerados dinamicamente coletando as skills da raiz.
 - A estrutura final nos ZIPs preserva o nome da pasta do agente (ex: `.claude/`) para facilitar a instalação direta.
+
+## Governança Operacional
+- **Uso Mandatório de Skills**: Conforme `GLOBAL_MANDATES.md`, qualquer execução técnica **DEVE** ser mediada por uma skill específica do Hub.
+
