@@ -1,21 +1,22 @@
-# Validation Report: Release v1.8.1
+# Validation Report: Release v1.8.2
 
 **Data**: 2026-04-18
 **Status**: APPROVED
 **Score**: 100/100
 
 ## Sumário da Release
-Esta release foca no reforço da governança operacional do Hub, estabelecendo que o uso de skills não é apenas recomendado, mas mandatório para todas as tarefas técnicas realizadas pelos agentes.
+Esta release consolida a automação do workflow do Hub através da implementação de um `Makefile` e melhora a visibilidade do ecossistema com a geração automática do `KNOWLEDGE-MAP.mermaid`.
 
 ## Itens Verificados
-- [x] **Mandatos Globais**: Atualizado `GLOBAL_MANDATES.md` com a nova seção de obrigatoriedade.
-- [x] **Memória Persistente**: Atualizado `MEMORY.md` para incluir a regra de governança.
-- [x] **Log de Aprendizado**: Registrada a justificativa e os benefícios da nova regra em `LEARNINGS.md`.
-- [x] **Sincronização de Estado**: `STATE.md` atualizado para refletir a nova versão `v1.8.1`.
+- [x] **Makefile**: Todos os alvos (`sync`, `validate`, `dist`, `release`) testados e funcionais.
+- [x] **Knowledge Map**: Mapa gerado corretamente refletindo as 16 skills e suas relações.
+- [x] **Release v1.8.2**: `make release` executado com sucesso, gerando artefatos validados.
+- [x] **Sincronização**: Mandatos e skills espelhados para todos os agentes.
 
 ## Evidências
-- **Arquivo de Mandatos**: `file:///Users/klebersonromero/Projetos/Kleberson/skills/.specs/codebase/GLOBAL_MANDATES.md`
-- **Arquivo de Estado**: `file:///Users/klebersonromero/Projetos/Kleberson/skills/.specs/project/STATE.md`
+- **Makefile**: `file:///Users/klebersonromero/Projetos/Kleberson/skills/Makefile`
+- **Knowledge Map**: `file:///Users/klebersonromero/Projetos/Kleberson/skills/KNOWLEDGE-MAP.mermaid`
+- **Artefatos**: Localizados em `artifacts/` (claude, gemini, agent, Antigravity).
 
 ## Veredito
-A release v1.8.1 cumpre todos os requisitos de integridade e governança estabelecidos pelo framework SDD.
+A release v1.8.2 eleva o nível de maturidade operacional do projeto, facilitando o uso por humanos e outros agentes.

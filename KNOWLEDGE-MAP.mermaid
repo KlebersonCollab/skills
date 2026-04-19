@@ -5,6 +5,8 @@ graph TD
     azure_devops["🧩 azure-devops"]
     brainstorming["🧩 brainstorming"]
     clean_code_mentor["🧩 clean-code-mentor"]
+    django_expert["🧩 django-expert"]
+    fastapi_expert["🧩 fastapi-expert"]
     feat_architecture_v2_upgrade["🚀 Feature: architecture-v2-upgrade"]
     feat_azure_devops_skill["🚀 Feature: azure-devops-skill"]
     feat_azure_devops_v1.1_upgrade["🚀 Feature: azure-devops-v1.1-upgrade"]
@@ -27,6 +29,9 @@ graph TD
 
     %% Relations
     api_architect --(uses)--> architecture
+    django_expert --(uses)--> python_uv
+    fastapi_expert --(uses)--> architecture
+    fastapi_expert --(uses)--> python_uv
     feat_architecture_v2_upgrade --(depends_on)--> architecture
     feat_architecture_v2_upgrade --(depends_on)--> skill_factory
     feat_azure_devops_skill --(depends_on)--> azure_devops
@@ -51,3 +56,5 @@ graph TD
     feat_youtube_transcript_skill --(depends_on)--> youtube_transcript
     knowledge_architect --(uses)--> harness_expert
     onboarding_navigator --(uses)--> architecture
+    python_uv --(uses)--> django_expert
+    python_uv --(uses)--> fastapi_expert

@@ -34,6 +34,10 @@ Qualquer tarefa de construção, desenvolvimento ou refatoração significativa 
 - **Local Knowledge Graph (LKG)**: Toda nova feature ou mudança arquitetural significativa **DEVE** ser mapeada no `KNOWLEDGE-MAP.mermaid`.
 - **Relationship Mapping**: Antes de grandes refatorações, o agente **DEVE** utilizar o `knowledge-architect` para analisar o impacto nas entidades e relações existentes.
 
+## 6. Mandatory Skill Usage
+- **Skill-Driven Execution**: O agente **DEVE** obrigatoriamente identificar e utilizar a skill mais adequada para cada tarefa. A execução de qualquer atividade técnica sem o suporte de uma skill específica ou do framework de automação do Hub é proibida.
+
+
 
 <!-- GLOBAL_MANDATES_END -->
 
