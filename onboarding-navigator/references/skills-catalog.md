@@ -134,10 +134,10 @@ flowchart LR
 
 ## 📈 Estatísticas do Hub
 
-- **Total de Skills**: 18
+- **Total de Skills**: 19
 - **Skills de Metodologia**: 5
 - **Skills de Arquitetura**: 3  
-- **Skills de DevOps/Frameworks**: 6
+- **Skills de DevOps/Frameworks**: 7
 - **Skills de Automação**: 2
 - **Skills de Navegação/Orquestração**: 2
 - **Última Atualização**: 19 de Abril de 2026

@@ -6,7 +6,8 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
-## [1.4.0] — 2026-04-18
+## [1.4.0] - 2026-04-16
+ — 2026-04-18
 
 ### Adicionado
 - **Harness Engineering Integration**: Evolução do workflow com foco em contratos, sensores e feedback loops determinísticos.

@@ -6,7 +6,8 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
-## [1.0.0] — 2026-04-15
+## [1.0.0] - 2026-04-15
+ — 2026-04-15
 
 ### Adicionado
 - **SKILL.md**: Definição principal da skill com fluxo de decisão e fallback.

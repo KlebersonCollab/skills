@@ -1,4 +1,4 @@
-.PHONY: help sync validate dist verify knowledge-map verify-vers clean release
+.PHONY: help sync validate dist verify knowledge-map verify-vers clean release changelog
 
 # Detecta o comando python (python3 ou python)
 PYTHON := $(shell command -v python3 >/dev/null 2>&1 && echo python3 || echo python)
@@ -14,14 +14,18 @@ help:
 	@echo "  make verify        - Verifica a integridade dos artefatos .zip gerados"
 	@echo "  make knowledge-map - Gera o mapa de conhecimento relacional (Mermaid)"
 	@echo "  make verify-vers   - Verifica se as versões no README batem com as das skills"
+	@echo "  make changelog     - Consolida todos os CHANGELOG.md das skills em CHANGELOG-HUB.md"
 	@echo "  make clean         - Remove pastas temporárias e artefatos (dist_staging, artifacts)"
-	@echo "  make release       - Ciclo completo: sync -> validate -> verify-vers -> dist"
+	@echo "  make release       - Ciclo completo: sync -> validate -> verify-vers -> changelog -> dist"
 
 sync:
 	$(PYTHON) scripts/sync_mandates.py
 
 validate:
 	uv run --with pyyaml scripts/validate_skills.py
+
+changelog:
+	$(PYTHON) scripts/consolidate_changelogs.py
 
 dist:
 	bash scripts/generate-skills-dist.sh
@@ -41,5 +45,5 @@ verify-vers:
 clean:
 	rm -rf dist_staging artifacts
 
-release: sync validate verify-vers dist
+release: sync validate verify-vers changelog dist
 	@echo "🚀 Operação concluída com sucesso!"

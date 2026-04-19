@@ -6,7 +6,8 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
-## [1.1.0] — 2026-04-18
+## [1.1.0] - 2026-04-18
+ — 2026-04-18
 
 ### Alterado
 - **Renomeação Global**: Transição oficial de "Hardness" para **Harness Engineering** para alinhar com padrões da indústria.

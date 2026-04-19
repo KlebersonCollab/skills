@@ -21,6 +21,7 @@ graph TD
     feat_python_uv_skill["🚀 Feature: python-uv-skill"]
     feat_youtube_transcript_skill["🚀 Feature: youtube-transcript-skill"]
     flutter_fvm["🧩 flutter-fvm"]
+    frontend_expert["🧩 frontend-expert"]
     harness_expert["🧩 harness-expert"]
     knowledge_architect["🧩 knowledge-architect"]
     multi_agent_orchestrator["🧩 multi-agent-orchestrator"]
@@ -48,9 +49,17 @@ graph TD
     feat_clean_code_mentor_skill --(depends_on)--> architecture
     feat_clean_code_mentor_skill --(depends_on)--> clean_code_mentor
     feat_clean_code_mentor_skill --(depends_on)--> skill_factory
+    feat_dynamic_scaffolding --(depends_on)--> django_expert
+    feat_dynamic_scaffolding --(depends_on)--> fastapi_expert
+    feat_dynamic_scaffolding --(depends_on)--> onboarding_navigator
+    feat_dynamic_scaffolding --(depends_on)--> python_uv
+    feat_dynamic_scaffolding --(depends_on)--> scaffolding_expert
     feat_flutter_fvm_skill --(depends_on)--> flutter_fvm
     feat_flutter_fvm_skill --(depends_on)--> python_uv
     feat_github_actions_skills_artifacts --(depends_on)--> api_architect
+    feat_multi_agent_orchestrator --(depends_on)--> harness_expert
+    feat_multi_agent_orchestrator --(depends_on)--> multi_agent_orchestrator
+    feat_multi_agent_orchestrator --(depends_on)--> onboarding_navigator
     feat_observability_expert_skill --(depends_on)--> architecture
     feat_observability_expert_skill --(depends_on)--> observability_expert
     feat_observability_expert_skill --(depends_on)--> skill_factory

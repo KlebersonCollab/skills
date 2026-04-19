@@ -59,6 +59,22 @@ def validate_skill(skill_path):
                 if str(data.get("version")) != latest_version:
                     errors.append(f"Version mismatch: SKILL.md ({data.get('version')}) vs CHANGELOG.md ({latest_version})")
 
+    # Check 5: Recommended Directories
+    recommended_dirs = ["references", "resources", "examples"]
+    missing_dirs = [d for d in recommended_dirs if not (skill_dir / d).exists()]
+    if missing_dirs:
+        # Warning instead of error (don't fail the build for this yet)
+        print(f"\n    \033[93mWarning\033[0m: Missing recommended directories in {skill_name}: {', '.join(missing_dirs)}", end="")
+
+    # Check 6: Changelog Format (## [Version] - YYYY-MM-DD)
+    changelog_path = skill_dir / "CHANGELOG.md"
+    if changelog_path.exists():
+        changelog_content = changelog_path.read_text()
+        # Find the first version entry
+        version_entry = re.search(r"## \[(.*?)\]( - \d{4}-\d{2}-\d{2})?", changelog_content)
+        if version_entry and not version_entry.group(2):
+            errors.append(f"Missing date in CHANGELOG.md for version [{version_entry.group(1)}]. Expected: ## [{version_entry.group(1)}] - YYYY-MM-DD")
+
     # Final Verdict for this skill
     status = "PASS" if not errors else "FAIL"
     return status, errors

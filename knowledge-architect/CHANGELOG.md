@@ -6,7 +6,8 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
-## [1.0.0] — 2026-04-16
+## [1.0.0] - 2026-04-16
+ — 2026-04-16
 
 ### Adicionado
 - **SKILL.md**: Definição inicial do protocolo de Local Knowledge Graphing (LKG).
