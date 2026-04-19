@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-16-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-19-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/KlebersonCollab/skills/generate-skills-artifacts.yml?branch=main&label=Build%20Artifacts)](https://github.com/KlebersonCollab/skills/actions)
 [![Status](https://img.shields.io/badge/Status-Ativo-brightgreen)](#-roadmap)
@@ -74,6 +74,7 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 | 16 | **[Django Expert](django-expert/)** | Desenvolvimento profissional com Django — ORM Performance e HTMX. | `1.0.0` |
 | 17 | **[Multi-Agent Orchestrator](multi-agent-orchestrator/)** | Orquestrador de workflows Multi-Agente (Swarm). Define protocolos de handoff. | `1.0.0` |
 | 18 | **[Scaffolding Expert](scaffolding-expert/)** | Gerador dinâmico de projetos. Utiliza CLI tools (uvx copier) para inicializar boilerplates. | `1.0.0` |
+| 19 | **[Golang Expert](golang-expert/)** | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | `1.0.0` |
 
 ---
 

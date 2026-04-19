@@ -1,6 +1,6 @@
 # Skills Catalog: AI Agent Hub
 
-Este guia fornece um overview detalhado de todas as 18 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
+Este guia fornece um overview detalhado de todas as 19 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
 
 ## 🗺️ Mapa Visual do Ecossistema de Skills
 
@@ -19,6 +19,8 @@ flowchart TD
     Metodo --> SDD{sdd}
     Metodo --> Factory{skill-factory}
     Metodo --> Brainstorm{brainstorming}
+    Metodo --> Harness{harness-expert}
+    Metodo --> Knowledge{knowledge-architect}
     
     Arquitetura --> Arch{architecture}
     Arquitetura --> CleanCode{clean-code-mentor}
@@ -30,6 +32,7 @@ flowchart TD
     DevOps --> Observability{observability-expert}
     DevOps --> FastAPI{fastapi-expert}
     DevOps --> Django{django-expert}
+    DevOps --> Golang{golang-expert}
 
     Automation --> YouTube{youtube-transcript}
     Automation --> Scaffolding{scaffolding-expert}
@@ -43,7 +46,7 @@ flowchart TD
 
 ---
 
-## 📚 Catálogo Completo de Skills (18 Total)
+## 📚 Catálogo Completo de Skills (19 Total)
 
 ### 1. 🏗️ Core Frameworks (Metodologia e Criação)
 
@@ -73,6 +76,7 @@ flowchart TD
 | **[Flutter com FVM](flutter-fvm/)** | `1.1.0` | Desenvolvimento Flutter profissional com FVM. | Em qualquer tarefa envolvendo Flutter/Dart. |
 | **[Azure DevOps](azure-devops/)** | `1.1.0` | Gerenciamento profissional do Azure DevOps (AzDO). | Para gerenciar tarefas e CI/CD no AzDO. |
 | **[Observability Expert](observability-expert/)** | `1.0.0` | Especialista em SRE e Observabilidade (OTel, Logs Estruturados). | Ao garantir que um sistema é monitorável. |
+| **[Golang Expert](golang-expert/)** | `1.0.0` | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | Ao desenvolver sistemas de alta performance em Go. |
 
 ### 4. 🚀 Automation & Utils (Produtividade)
 
@@ -85,7 +89,7 @@ flowchart TD
 
 | Skill | Versão | Propósito | Quando Invocá-la |
 |-------|--------|-----------|------------------|
-| **[Onboarding Navigator](onboarding-navigator/)** | `1.1.0` | Guia mestre do Hub de Skills. Fornece overview e mentoria. | **No início da sessão** para entender o hub. |
+| **[Onboarding Navigator](onboarding-navigator/)** | `1.2.0` | Guia mestre do Hub de Skills. Fornece overview e mentoria. | **No início da sessão** para entender o hub. |
 | **[Multi-Agent Orchestrator](multi-agent-orchestrator/)** | `1.0.0` | Coreografia de equipes de agentes (Arquiteto, Dev, QA) e handoff. | Em grandes épicos que requerem vários agentes. |
 
 ---
@@ -110,6 +114,7 @@ flowchart LR
     Decision --> MapKnowledge["🧠 Mapear Relações"]
     Decision --> SaveState["💾 Salvar Progresso"]
     Decision --> NewAPI["🔌 Desenhar Nova API"]
+    Decision --> GoTask["🐹 Trabalhar com Go"]
     
     NewApp --> Path1[onboarding-navigator → architecture → sdd]
     CodeSmell --> Path2[clean-code-mentor]
@@ -125,6 +130,7 @@ flowchart LR
     MapKnowledge --> Path12[knowledge-architect]
     SaveState --> Path13[harness-expert]
     NewAPI --> Path14[api-architect]
+    GoTask --> Path15[golang-expert]
     
     style Problem fill:#bbdefb
     style Decision fill:#ffcc80
@@ -137,8 +143,7 @@ flowchart LR
 - **Total de Skills**: 19
 - **Skills de Metodologia**: 5
 - **Skills de Arquitetura**: 3  
-- **Skills de DevOps/Frameworks**: 7
+- **Skills de DevOps/Frameworks**: 8
 - **Skills de Automação**: 2
-- **Skills de Navegação/Orquestração**: 2
+- **Skills de Navegação/Orquestração**: 1
 - **Última Atualização**: 19 de Abril de 2026
-

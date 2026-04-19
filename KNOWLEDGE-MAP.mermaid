@@ -15,6 +15,7 @@ graph TD
     feat_dynamic_scaffolding["🚀 Feature: dynamic-scaffolding"]
     feat_flutter_fvm_skill["🚀 Feature: flutter-fvm-skill"]
     feat_github_actions_skills_artifacts["🚀 Feature: github-actions-skills-artifacts"]
+    feat_golang_expert_skill["🚀 Feature: golang-expert-skill"]
     feat_multi_agent_orchestrator["🚀 Feature: multi-agent-orchestrator"]
     feat_observability_expert_skill["🚀 Feature: observability-expert-skill"]
     feat_onboarding_navigator_skill["🚀 Feature: onboarding-navigator-skill"]
@@ -22,6 +23,7 @@ graph TD
     feat_youtube_transcript_skill["🚀 Feature: youtube-transcript-skill"]
     flutter_fvm["🧩 flutter-fvm"]
     frontend_expert["🧩 frontend-expert"]
+    golang_expert["🧩 golang-expert"]
     harness_expert["🧩 harness-expert"]
     knowledge_architect["🧩 knowledge-architect"]
     multi_agent_orchestrator["🧩 multi-agent-orchestrator"]
@@ -57,6 +59,9 @@ graph TD
     feat_flutter_fvm_skill --(depends_on)--> flutter_fvm
     feat_flutter_fvm_skill --(depends_on)--> python_uv
     feat_github_actions_skills_artifacts --(depends_on)--> api_architect
+    feat_golang_expert_skill --(depends_on)--> golang_expert
+    feat_golang_expert_skill --(depends_on)--> sdd
+    feat_golang_expert_skill --(depends_on)--> skill_factory
     feat_multi_agent_orchestrator --(depends_on)--> harness_expert
     feat_multi_agent_orchestrator --(depends_on)--> multi_agent_orchestrator
     feat_multi_agent_orchestrator --(depends_on)--> onboarding_navigator
@@ -68,6 +73,8 @@ graph TD
     feat_python_uv_skill --(depends_on)--> python_uv
     feat_youtube_transcript_skill --(depends_on)--> skill_factory
     feat_youtube_transcript_skill --(depends_on)--> youtube_transcript
+    golang_expert --(uses)--> architecture
+    golang_expert --(uses)--> observability_expert
     knowledge_architect --(uses)--> harness_expert
     multi_agent_orchestrator --(uses)--> api_architect
     multi_agent_orchestrator --(uses)--> architecture
