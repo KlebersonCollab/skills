@@ -27,3 +27,4 @@
 - **Automated Knowledge Mapping**: O script `generate_knowledge_map.py` permite visualizar a topologia do projeto e dependências entre skills e features em tempo real, facilitando a análise de impacto em refatorações.
 
 
+\n### [2026-04-19] Validação Rigorosa de Changelog\n- **Ocorrência**: Falha no pipeline devido ao formato de data no CHANGELOG.md.\n- **Solução**: O validador local exige estritamente o formato '## [X.Y.Z] - YYYY-MM-DD' (com hífen simples e espaços). O uso de travessão (—) ou formatos alternativos resulta em FAIL.
