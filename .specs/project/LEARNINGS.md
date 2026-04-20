@@ -40,3 +40,9 @@
     3. **Visibilidade Total** (Compilação automática de todas as skills no .cursorrules).
 - **Redundancy is Reliability**: Ter o SDD Hook tanto no mandato quanto dentro da skill de stack garante que o agente não pule etapas, mesmo se a tarefa for curta.
 - **The "Brain Shell" Pattern**: Agrupar mandatos operacionais sob um subgraph de "Enforcement Shell" no Knowledge Map ajuda o agente a visualizar que a governança não é opcional, mas o esqueleto do sistema.
+
+### [2026-04-20] Automated Distilling & Memory Resilience
+- **Automated Knowledge Distiller**: Extrair metadados diretamente do frontmatter YAML das skills para gerar o mapa Mermaid reduz o erro humano e permite visualização dinâmica de versões e categorias. O uso de badges visuais (🛡️) para conformidade SDD cria uma camada de pressão social/técnica positiva para a manutenção da qualidade.
+- **Auto-Fix as Resilience**: Em ecossistemas complexos, ferramentas que apenas detectam erros (Sensores) não são suficientes. Ter scripts que "reparam" o estado (como o `auto_fix_memory.py`) permite que o sistema recupere a integridade operacional sem intervenção humana, o que é crucial para agents autônomos.
+- **The v2.0 Milestone**: A transição para um ecossistema determinístico (Bootstrap/Exit Gates) elimina a necessidade de "torcer" para que o agente siga os padrões. A governança agora está codificada no ciclo de vida da sessão.
+

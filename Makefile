@@ -15,15 +15,18 @@ help:
 	@echo "  make knowledge-map - Gera o mapa de conhecimento relacional (Mermaid)"
 	@echo "  make verify-vers   - Verifica se as versões no README batem com as das skills"
 	@echo "  make check-memory  - Verifica se o estado/memória está em sync com o código"
-	@echo "  make changelog     - Consolida todos os CHANGELOG.md das skills em CHANGELOG-HUB.md"
+	@echo "  make auto-fix      - Repara automaticamente arquivos de memória ausentes"
 	@echo "  make clean         - Remove pastas temporárias e artefatos (dist_staging, artifacts)"
-	@echo "  make release       - Ciclo completo: sync -> validate -> verify-vers -> changelog -> dist"
+	@echo "  make release       - Ciclo completo: auto-fix -> sync -> validate -> verify-vers -> knowledge-map -> changelog -> dist"
 
 sync:
 	$(PYTHON) scripts/sync_mandates.py
 
 validate:
 	uv run --with pyyaml scripts/validate_skills.py
+
+auto-fix:
+	$(PYTHON) scripts/auto_fix_memory.py
 
 changelog:
 	$(PYTHON) scripts/consolidate_changelogs.py
@@ -38,7 +41,7 @@ verify:
 	bash scripts/verify-dist.sh
 
 knowledge-map:
-	$(PYTHON) scripts/generate_knowledge_map.py
+	uv run --with pyyaml scripts/generate_knowledge_map.py
 
 verify-vers:
 	$(PYTHON) scripts/verify_versions.py
@@ -49,5 +52,6 @@ check-memory:
 clean:
 	rm -rf dist_staging artifacts
 
-release: sync validate verify-vers changelog dist
+release: auto-fix sync validate verify-vers knowledge-map changelog dist
 	@echo "🚀 Operação concluída com sucesso!"
+

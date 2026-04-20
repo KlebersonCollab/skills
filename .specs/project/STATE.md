@@ -13,6 +13,10 @@
 - [x] **Memory Integrity Sensor**: Criado `scripts/verify_memory_sync.py` e `make check-memory` para detecção de Context Drift.
 - [x] **Full Hub Audit**: Realizada auditoria estrutural, de versionamento e de hooks em todas as 20 skills.
 - [x] **Skill-Factory Protocol**: Aplicado bump de versão e changelog em 100% das skills alteradas.
+- [x] **Automated Knowledge Distiller**: Implementado mapa v2 com cores por categoria e badges SDD.
+- [x] **Memory Auto-Fix**: Implementado script de reparo automático de estrutura de memória.
+- [x] **Major Release v2.0.0**: Sincronização e distribuição global concluídas.
 
 ## Bloqueios / Próximos Passos
-- [ ] Explorar "Auto-Fix" para arquivos de memória ausentes em novos projetos.
+- [ ] **Skill Installer CLI**: Instalação granular de skills individuais.
+- [ ] **Automated Knowledge Distiller**: Geração automática de grafos Mermaid via análise estática profunda.
