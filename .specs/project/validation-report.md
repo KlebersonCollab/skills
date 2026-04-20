@@ -1,4 +1,4 @@
-# Validation Report: Release v2.0.0
+# Validation Report: Release v3.0.0
 
 **Data**: 2026-04-20
 **Status**: APPROVED
