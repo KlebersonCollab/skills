@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-04-20
+### Fixed
+- Auditoria de sincronização: Corrigida a contagem total de skills de 18 para 20 em toda a documentação.
+- Atualização das estatísticas de categorias (5 Metodologia, 3 Arquitetura, 8 DevOps, 2 Automação, 2 Navegação).
+
 ## [1.2.0] - 2026-04-19
 ### Alterado
 - Auditoria de completude: Atualizado de 11 para 18 skills no catálogo visual e de decisão.

@@ -1,6 +1,6 @@
 # Skills Catalog: AI Agent Hub
 
-Este guia fornece um overview detalhado de todas as 19 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
+Este guia fornece um overview detalhado de todas as 20 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
 
 ## 🗺️ Mapa Visual do Ecossistema de Skills
 
@@ -33,6 +33,7 @@ flowchart TD
     DevOps --> FastAPI{fastapi-expert}
     DevOps --> Django{django-expert}
     DevOps --> Golang{golang-expert}
+    DevOps --> Frontend{frontend-expert}
 
     Automation --> YouTube{youtube-transcript}
     Automation --> Scaffolding{scaffolding-expert}
@@ -46,7 +47,7 @@ flowchart TD
 
 ---
 
-## 📚 Catálogo Completo de Skills (19 Total)
+## 📚 Catálogo Completo de Skills (20 Total)
 
 ### 1. 🏗️ Core Frameworks (Metodologia e Criação)
 
@@ -70,13 +71,14 @@ flowchart TD
 
 | Skill | Versão | Propósito | Quando Invocá-la |
 |-------|--------|-----------|------------------|
-| **[Python com UV](python-uv/)** | `2.5.0` | Desenvolvimento Python profissional com UV. | Em tarefas macro envolvendo Python. |
-| **[FastAPI Expert](fastapi-expert/)** | `1.0.0` | Desenvolvimento avançado de APIs assíncronas com FastAPI e Pydantic. | Ao codificar rotas e schemas FastAPI. |
-| **[Django Expert](django-expert/)** | `1.0.0` | Desenvolvimento robusto com Django, focado em ORM e HTMX. | Ao trabalhar com aplicações Django. |
-| **[Flutter com FVM](flutter-fvm/)** | `1.1.0` | Desenvolvimento Flutter profissional com FVM. | Em qualquer tarefa envolvendo Flutter/Dart. |
+| **[Python com UV](python-uv/)** | `2.6.0` | Desenvolvimento Python profissional com UV. | Em tarefas macro envolvendo Python. |
+| **[FastAPI Expert](fastapi-expert/)** | `1.1.0` | Desenvolvimento avançado de APIs assíncronas com FastAPI e Pydantic. | Ao codificar rotas e schemas FastAPI. |
+| **[Django Expert](django-expert/)** | `1.1.0` | Desenvolvimento robusto com Django, focado em ORM e HTMX. | Ao trabalhar com aplicações Django. |
+| **[Flutter com FVM](flutter-fvm/)** | `1.2.0` | Desenvolvimento Flutter profissional com FVM. | Em qualquer tarefa envolvendo Flutter/Dart. |
 | **[Azure DevOps](azure-devops/)** | `1.1.0` | Gerenciamento profissional do Azure DevOps (AzDO). | Para gerenciar tarefas e CI/CD no AzDO. |
 | **[Observability Expert](observability-expert/)** | `1.0.0` | Especialista em SRE e Observabilidade (OTel, Logs Estruturados). | Ao garantir que um sistema é monitorável. |
-| **[Golang Expert](golang-expert/)** | `1.0.0` | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | Ao desenvolver sistemas de alta performance em Go. |
+| **[Golang Expert](golang-expert/)** | `1.1.0` | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | Ao desenvolver sistemas de alta performance em Go. |
+| **[Frontend Expert](frontend-expert/)** | `1.1.0` | Expert em interfaces modernas com React, Next.js e TailwindCSS v4. | Ao projetar ou implementar UIs modernas. |
 
 ### 4. 🚀 Automation & Utils (Produtividade)
 
@@ -115,6 +117,7 @@ flowchart LR
     Decision --> SaveState["💾 Salvar Progresso"]
     Decision --> NewAPI["🔌 Desenhar Nova API"]
     Decision --> GoTask["🐹 Trabalhar com Go"]
+    Decision --> FrontendTask["💻 Trabalho com Frontend"]
     
     NewApp --> Path1[onboarding-navigator → architecture → sdd]
     CodeSmell --> Path2[clean-code-mentor]
@@ -131,6 +134,7 @@ flowchart LR
     SaveState --> Path13[harness-expert]
     NewAPI --> Path14[api-architect]
     GoTask --> Path15[golang-expert]
+    FrontendTask --> Path16[frontend-expert]
     
     style Problem fill:#bbdefb
     style Decision fill:#ffcc80
@@ -140,10 +144,10 @@ flowchart LR
 
 ## 📈 Estatísticas do Hub
 
-- **Total de Skills**: 19
+- **Total de Skills**: 20
 - **Skills de Metodologia**: 5
 - **Skills de Arquitetura**: 3  
 - **Skills de DevOps/Frameworks**: 8
 - **Skills de Automação**: 2
-- **Skills de Navegação/Orquestração**: 1
-- **Última Atualização**: 19 de Abril de 2026
+- **Skills de Navegação/Orquestração**: 2
+- **Última Atualização**: 20 de Abril de 2026

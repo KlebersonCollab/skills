@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-19-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-20-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/KlebersonCollab/skills/generate-skills-artifacts.yml?branch=main&label=Build%20Artifacts)](https://github.com/KlebersonCollab/skills/actions)
 [![Status](https://img.shields.io/badge/Status-Ativo-brightgreen)](#-roadmap)
@@ -58,11 +58,11 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 |---|-------|-----------|--------|
 | 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo com **Persistent Memory Protocol**. | `1.4.0` |
 | 2 | **[Skill Factory](skill-factory/)** | Core Framework para criação padronizada de novas skills com scaffolding e validação. | `1.1.0` |
-| 3 | **[Python com UV](python-uv/)** | Desenvolvimento Python profissional com UV — gerenciador 10-100x mais rápido. | `2.5.0` |
+| 3 | **[Python com UV](python-uv/)** | Desenvolvimento Python profissional com UV — gerenciador 10-100x mais rápido. | `2.6.0` |
 | 4 | **[API Architect](api-architect/)** | Arquiteto de APIs — design interoperável e seguro (OpenAPI, GraphQL, tRPC). | `1.3.0` |
 | 5 | **[Brainstorming](brainstorming/)** | Facilitador de design e resolução de problemas — exploração profunda e validação. | `1.1.0` |
 | 6 | **[Architecture](architecture/)** | Arquiteto de Sistemas — design pragmático, trade-offs e registros de decisão (ADR). | `2.0.1` |
-| 7 | **[Flutter com FVM](flutter-fvm/)** | Desenvolvimento Flutter profissional com FVM — gerenciador de versões SDK por projeto, testes avançados por camada arquitetural e segurança OWASP Mobile Top 10. | `1.1.0` |
+| 7 | **[Flutter com FVM](flutter-fvm/)** | Desenvolvimento Flutter profissional com FVM — gerenciador de versões SDK por projeto, testes avançados por camada arquitetural e segurança OWASP Mobile Top 10. | `1.2.0` |
 | 8 | **[Azure DevOps](azure-devops/)** | Gerenciamento profissional de Boards, Repos, Pipelines e Artifacts no AzDO. | `1.1.0` |
 | 9 | **[Clean Code Mentor](clean-code-mentor/)** | Mentor técnico e revisor de código focado em SOLID, YAGNI, DRY e KISS. | `1.0.0` |
 | 10 | **[Observability Expert](observability-expert/)** | Especialista em SRE — Logs Estruturados, OpenTelemetry e Confiabilidade (SLI/SLO). | `1.0.0` |
@@ -70,11 +70,12 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 | 12 | **[YouTube Transcript](youtube-transcript/)** | Extração de transcrições de vídeos com fallback para IA (Whisper) e limpeza automática. | `1.0.0` |
 | 13 | **[Harness Expert](harness-expert/)** | Infraestrutura de suporte para estado, memória de longo prazo e orquestração de agentes via SDD. | `1.1.0` |
 | 14 | **[Knowledge Architect](knowledge-architect/)** | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | `1.0.0` |
-| 15 | **[FastAPI Expert](fastapi-expert/)** | Excelência em APIs com FastAPI — performance, Annotated e Pydantic V2. | `1.0.0` |
-| 16 | **[Django Expert](django-expert/)** | Desenvolvimento profissional com Django — ORM Performance e HTMX. | `1.0.0` |
+| 15 | **[FastAPI Expert](fastapi-expert/)** | Excelência em APIs com FastAPI — performance, Annotated e Pydantic V2. | `1.1.0` |
+| 16 | **[Django Expert](django-expert/)** | Desenvolvimento profissional com Django — ORM Performance e HTMX. | `1.1.0` |
 | 17 | **[Multi-Agent Orchestrator](multi-agent-orchestrator/)** | Orquestrador de workflows Multi-Agente (Swarm). Define protocolos de handoff. | `1.0.0` |
 | 18 | **[Scaffolding Expert](scaffolding-expert/)** | Gerador dinâmico de projetos. Utiliza CLI tools (uvx copier) para inicializar boilerplates. | `1.0.0` |
-| 19 | **[Golang Expert](golang-expert/)** | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | `1.0.0` |
+| 19 | **[Golang Expert](golang-expert/)** | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | `1.1.0` |
+| 20 | **[Frontend Expert](frontend-expert/)** | Expert em interfaces modernas com React, Next.js e TailwindCSS v4. | `1.1.0` |
 
 ---
 

@@ -1,5 +1,10 @@
 # Changelog - Django Expert
 
+## [1.1.0] - 2026-04-20
+
+### Added
+- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+
 ## [1.0.0] - 2026-04-18
 
 ### Added

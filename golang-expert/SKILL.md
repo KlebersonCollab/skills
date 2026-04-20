@@ -1,6 +1,6 @@
 ---
 name: golang-expert
-version: 1.0.0
+version: 1.1.0
 description: "Expert level Go development skill focused on performance, idiomatic concurrency, and clean architecture."
 category: development
 ---
@@ -8,6 +8,14 @@ category: development
 # Golang Expert
 
 > Expert level Go development skill focused on performance, idiomatic concurrency, and clean architecture.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar a implementação:
+1. **Spec Check**: O arquivo `spec.md` existe e contém os critérios de aceitação (ACs)?
+2. **Plan Check**: O arquivo `plan.md` define a arquitetura e schemas?
+3. **Task Check**: A lista de tarefas em `tasks.md` está detalhada?
 
 ---
 

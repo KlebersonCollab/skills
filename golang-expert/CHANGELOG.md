@@ -6,6 +6,11 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
+## [1.1.0] - 2026-04-20
+
+### Adicionado
+- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+
 ## [1.0.0] - 2026-04-19
 
 ### Adicionado

@@ -1,6 +1,6 @@
 ---
 name: django-expert
-version: 1.0.0
+version: 1.1.0
 description: "Expert level Django development focused on ORM performance, HTMX patterns, and modern Python-UV deployment."
 category: development-python
 ---
@@ -8,6 +8,14 @@ category: development-python
 # Django Expert: Professional Web Systems
 
 > "The web framework for perfectionists with deadlines." - Esta skill garante que você cumpra os prazos sem sacrificar a qualidade técnica.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar a implementação:
+1. **Spec Check**: O arquivo `spec.md` existe e contém os critérios de aceitação (ACs)?
+2. **Plan Check**: O arquivo `plan.md` define a arquitetura e schemas?
+3. **Task Check**: A lista de tarefas em `tasks.md` está detalhada?
 
 ---
 

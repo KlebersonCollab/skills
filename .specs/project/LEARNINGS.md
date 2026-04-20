@@ -27,4 +27,16 @@
 - **Automated Knowledge Mapping**: O script `generate_knowledge_map.py` permite visualizar a topologia do projeto e dependências entre skills e features em tempo real, facilitando a análise de impacto em refatorações.
 
 
-\n### [2026-04-19] Validação Rigorosa de Changelog\n- **Ocorrência**: Falha no pipeline devido ao formato de data no CHANGELOG.md.\n- **Solução**: O validador local exige estritamente o formato '## [X.Y.Z] - YYYY-MM-DD' (com hífen simples e espaços). O uso de travessão (—) ou formatos alternativos resulta em FAIL.
+
+### [2026-04-19] Validação Rigorosa de Changelog
+- **Ocorrência**: Falha no pipeline devido ao formato de data no CHANGELOG.md.
+- **Solução**: O validador local exige estritamente o formato '## [X.Y.Z] - YYYY-MM-DD' (com hífen simples e espaços). O uso de travessão (—) ou formatos alternativos resulta em FAIL.
+
+### [2026-04-20] Deterministic Enforcement & Context Inertia
+- **Context Inertia**: LLMs tendem a ignorar instruções de "limpeza" (sync/memory) ao atingir o objetivo direto do usuário. A solução é transformar essas ações em **Exit Gates** imperativos e visuais no contexto.
+- **Enforcement Layering**: O reforço funciona melhor em camadas:
+    1. **Mandato Global** (Bootstrap/Exit Gate no topo do contexto).
+    2. **Hook Local** (Prerequisites dentro da skill específica).
+    3. **Visibilidade Total** (Compilação automática de todas as skills no .cursorrules).
+- **Redundancy is Reliability**: Ter o SDD Hook tanto no mandato quanto dentro da skill de stack garante que o agente não pule etapas, mesmo se a tarefa for curta.
+- **The "Brain Shell" Pattern**: Agrupar mandatos operacionais sob um subgraph de "Enforcement Shell" no Knowledge Map ajuda o agente a visualizar que a governança não é opcional, mas o esqueleto do sistema.

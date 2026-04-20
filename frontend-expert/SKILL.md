@@ -1,12 +1,20 @@
 ---
 name: frontend-expert
-version: 1.0.0
+version: 1.1.0
 description: Expert em desenvolvimento de interfaces modernas com React, Next.js e TailwindCSS v4.
 ---
 
 # Frontend Expert
 
 > "Interfaces não são apenas pixels; são conversas entre o usuário e a lógica do sistema."
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar a implementação:
+1. **Spec Check**: O arquivo `spec.md` existe e contém os critérios de aceitação (ACs)?
+2. **Plan Check**: O arquivo `plan.md` define a arquitetura e schemas?
+3. **Task Check**: A lista de tarefas em `tasks.md` está detalhada?
 
 ---
 

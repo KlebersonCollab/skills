@@ -1,6 +1,6 @@
 ---
 name: python-uv
-version: 2.5.0
+version: 2.6.0
 description: "Skill para desenvolvimento Python profissional com UV. Use para gerenciar dependências e ambientes. Para desenvolvimento de APIs ou Web, utilize em conjunto com as skills 'fastapi-expert' ou 'django-expert'."
 category: development-workflow
 ---
@@ -8,6 +8,14 @@ category: development-workflow
 # Python com UV
 
 > Gerenciador de pacotes e projetos Python extremamente rápido, escrito em Rust. Substitui pip, pipx, poetry, pyenv e mais — com performance 10-100x superior.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar a implementação:
+1. **Spec Check**: O arquivo `spec.md` existe e contém os critérios de aceitação (ACs)?
+2. **Plan Check**: O arquivo `plan.md` define a arquitetura e schemas?
+3. **Task Check**: A lista de tarefas em `tasks.md` está detalhada?
 
 ---
 

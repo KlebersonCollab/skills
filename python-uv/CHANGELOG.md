@@ -1,5 +1,10 @@
 # Changelog — Python com UV
 
+## [2.6.0] - 2026-04-20
+
+### Adicionado
+- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+
 ## [2.5.0] - 2026-04-14
 
 ### Adicionado

@@ -6,8 +6,32 @@
 
 Estas instruções são fundamentais e devem ser seguidas por todos os agentes operando neste Hub.
 
-## 0. Session Startup
-No início de cada sessão, o agente **DEVE** consultar a skill `onboarding-navigator` para reidratar o contexto do hub, entender as habilidades disponíveis e validar o alinhamento com a cultura do projeto antes de qualquer ação.
+## 🔒 0. SESSION BOOTSTRAP (EXECUTE BEFORE ANY RESPONSE)
+Antes de responder ao usuário, o agente **DEVE** realizar este checklist mental e operacional:
+1. **Rehydrate Context**: Ler `.specs/project/STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
+2. **Onboarding Check**: Consultar `onboarding-navigator` para alinhar com a cultura do projeto.
+3. **Task Sizing**: Classificar a complexidade da tarefa (Quick, Small, Medium, Large, Complex) conforme a tabela SDD.
+4. **Skill Matching**: Consultar o **Skill Router** abaixo para selecionar as ferramentas adequadas.
+5. **SDD Verification**: Se a tarefa for de desenvolvimento, validar se `spec.md` e `plan.md` existem.
+
+## 📍 SKILL ROUTER
+Utilize este guia para identificar a skill mandatória para cada contexto:
+
+| Se a tarefa envolve... | USE esta skill |
+|------------------------|----------------|
+| Início de Projeto/Feature | `onboarding-navigator` |
+| Especificação e Planejamento | `sdd` (`orchestrator`, `planner`) |
+| Desenvolvimento Python (FastAPI/Django) | `python-uv` + `fastapi-expert` / `django-expert` |
+| Desenvolvimento Frontend (React/Next) | `frontend-expert` |
+| Desenvolvimento Mobile (Flutter) | `flutter-fvm` |
+| Desenvolvimento Backend (Go) | `golang-expert` |
+| Arquitetura e ADRs | `architecture` + `api-architect` |
+| Qualidade e Clean Code | `clean-code-mentor` |
+| Observabilidade e SRE | `observability-expert` |
+| Brainstorming e Ideação | `brainstorming` |
+| Automação e Scaffolding | `scaffolding-expert` |
+| Gestão de Conhecimento | `knowledge-architect` |
+| Sincronização de Estado | `harness-expert` |
 
 ## 1. SDD Framework (Mandatory for Development)
 Qualquer tarefa de construção, desenvolvimento ou refatoração significativa **DEVE** obrigatoriamente utilizar o framework **SDD (Spec-Driven Development)** desde o planejamento inicial.
@@ -42,6 +66,14 @@ Qualquer tarefa de construção, desenvolvimento ou refatoração significativa 
 
 ## 8. Multi-Agent Workflows (Multi-Agent Orchestrator)
 - **Swarm Delegation**: Para épicos arquiteturais pesados, o agente **NÃO DEVE** tentar assumir os papéis de Arquiteto, Engenheiro e QA de uma vez só em um único prompt. O agente **DEVE** aplicar o protocolo de handoff do `multi-agent-orchestrator`, gerando os artefatos de entrega (como `.specs/features/<feature>/handoff.md`) e instruindo o usuário a criar uma nova thread/sessão com a próxima persona focada.
+
+## 🔒 9. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
+Antes de encerrar a sessão ou entregar a tarefa, o agente **DEVE** validar:
+1. **Tasks Update**: O `tasks.md` reflete o estado real da implementação?
+2. **State Sync**: O `STATE.md` foi atualizado com o progresso e próximos passos?
+3. **Learnings Capture**: Novos padrões ou bugs corrigidos foram para o `LEARNINGS.md`?
+4. **Validation**: O código passou por linters/testes e recebeu um Score no `validation-report.md`?
+5. **Knowledge Update**: O `KNOWLEDGE-MAP.mermaid` precisa de atualização?
 
 
 <!-- GLOBAL_MANDATES_END -->

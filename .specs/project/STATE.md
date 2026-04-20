@@ -1,20 +1,18 @@
-# Current Project State (April 18, 2026)
+# Current Project State (April 20, 2026)
 
 ## Status Atual
-- **Feature**: Next-Gen Hub Capabilities (Cursorrules, Scaffolding, Multi-Agent) - **EM ANDAMENTO**
-- **Sessão**: Planejamento e especificação (SDD) das direções 7, 8 e 10.
+- **Feature**: Deterministic Enforcement System - **CONCLUÍDO**
+- **Sessão**: Implementação de Session Bootstrap, Skill Router, Exit Gate e SDD Hooks.
 
 ## Últimas Alterações
-- [x] **Project Analysis & Brainstorming**: Executado mapeamento de maturidade e 5+5 direções estratégicas.
-- [x] **New Skills: FastAPI & Django Expert**: Padrões avançados para Python.
-- [x] **Mandatory Skill Usage**: Reforço da governança global.
-- [x] **Project Makefile**: Automação de comandos (sync, validate, dist, release).
-- [x] **Relational Knowledge Map**: Geração automática de `KNOWLEDGE-MAP.mermaid`.
-- [x] **Release v1.8.2**: Consolidação de automação e visibilidade do Hub.
-- [x] **Skill Support Resources**: Criação de templates e guias para `python-uv`, `fastapi-expert`, `django-expert` e `golang-expert`.
+- [x] **Deterministic Enforcement Architecture**: Analisada e implementada para eliminar "sorte" do agente.
+- [x] **Session Bootstrap & Exit Gate**: Injetados no `GLOBAL_MANDATES.md` e propagados para todos os perfis de agente.
+- [x] **Skill Router**: Tabela de roteamento de tarefas injetada no contexto global.
+- [x] **SDD Mandatory Hooks**: Injetados em 100% das skills de execução (`fastapi`, `django`, `frontend`, `golang`, `flutter`, `uv`).
+- [x] **Cursorrules Compiler Upgrade**: Refatorado para garantir visibilidade total de todas as 19 skills.
+- [x] **Memory Integrity Sensor**: Criado `scripts/verify_memory_sync.py` e `make check-memory` para detecção de Context Drift.
+- [x] **Full Hub Audit**: Realizada auditoria estrutural, de versionamento e de hooks em todas as 20 skills.
+- [x] **Skill-Factory Protocol**: Aplicado bump de versão e changelog em 100% das skills alteradas.
 
 ## Bloqueios / Próximos Passos
-- [x] **Feature: Cursorrules Compiler** (Direção 7): Criar compilador para gerar `.cursorrules`.
-- [x] **Feature: Dynamic Scaffolding** (Direção 8): Integrar geração de templates reais nas skills.
-- [x] **Feature: Multi-Agent Orchestrator** (Direção 10): Criar skill para coreografia de fluxos de agentes.
-- [ ] Explorar integração de novas skills voltadas a Frontend (React/Next.js) - *Pausado*.
+- [ ] Explorar "Auto-Fix" para arquivos de memória ausentes em novos projetos.

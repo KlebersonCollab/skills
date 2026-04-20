@@ -1,6 +1,6 @@
 ---
 name: flutter-fvm
-version: 1.1.0
+version: 1.2.0
 description: "Skill para desenvolvimento Flutter profissional com FVM (Flutter Version Management). Use quando precisar gerenciar múltiplas versões do SDK do Flutter por projeto, garantir consistência entre ambientes de desenvolvimento, gerenciar dependências com pubspec.yaml, configurar linting, testes avançados por camada arquitetural, segurança OWASP Mobile Top 10 e builds multiplataforma seguros."
 category: development-workflow
 ---
@@ -8,6 +8,14 @@ category: development-workflow
 # Flutter com FVM
 
 > Gerenciador de versões do Flutter que permite fixar e gerenciar múltiplas versões do SDK por projeto, garantindo consistência total no time de desenvolvimento.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar a implementação:
+1. **Spec Check**: O arquivo `spec.md` existe e contém os critérios de aceitação (ACs)?
+2. **Plan Check**: O arquivo `plan.md` define a arquitetura e schemas?
+3. **Task Check**: A lista de tarefas em `tasks.md` está detalhada?
 
 ---
 

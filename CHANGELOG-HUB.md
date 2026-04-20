@@ -1,5 +1,5 @@
 # Hub Global Changelog
-*Última atualização: 2026-04-19 00:44:07*
+*Última atualização: 2026-04-20 09:40:47*
 
 Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.
 
@@ -111,6 +111,11 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 django-expert
+## [1.1.0] - 2026-04-20
+
+### Added
+- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+
 ## [1.0.0] - 2026-04-18
 
 ### Added
@@ -123,6 +128,11 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 fastapi-expert
+## [1.1.0] - 2026-04-20
+
+### Added
+- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+
 ## [1.0.0] - 2026-04-18
 
 ### Added
@@ -135,6 +145,11 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 flutter-fvm
+## [1.2.0] - 2026-04-20
+
+### Added
+- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+
 ## [1.1.0] - 2026-04-15
 
 ### Added
@@ -164,11 +179,35 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 frontend-expert
+## [1.1.0] - 2026-04-20
+### Added
+- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+
 ## [1.0.0] - 2026-04-19
 ### Added
 - Versão inicial da skill `frontend-expert`.
 - Suporte a React, Next.js, Tailwind v4 e Shadcn/UI.
 - Workflow focado em Server Components e Acessibilidade.
+
+---
+
+## 🧩 golang-expert
+## [1.1.0] - 2026-04-20
+
+### Adicionado
+- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+
+## [1.0.0] - 2026-04-19
+
+### Adicionado
+- **SKILL.md**: Definição principal da skill de nível Expert em Go.
+- **README.md**: Documentação de apresentação e uso.
+- **Estrutura de Referências**: Consolidação de 35 fontes de conhecimento externas em 5 pilares locais.
+- **foundations.md**: Pilar 1 focado em fundamentos e estilo idiomático.
+- **concurrency.md**: Pilar 2 focado em concorrência e segurança.
+- **development.md**: Pilar 3 focado em ferramentas e processos.
+- **architecture.md**: Pilar 4 focado em sistemas e infraestrutura.
+- **ecosystem.md**: Pilar 5 focado em bibliotecas modernas e Samber.
 
 ---
 
@@ -230,6 +269,11 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 onboarding-navigator
+## [1.2.1] - 2026-04-20
+### Fixed
+- Auditoria de sincronização: Corrigida a contagem total de skills de 18 para 20 em toda a documentação.
+- Atualização das estatísticas de categorias (5 Metodologia, 3 Arquitetura, 8 DevOps, 2 Automação, 2 Navegação).
+
 ## [1.2.0] - 2026-04-19
 ### Alterado
 - Auditoria de completude: Atualizado de 11 para 18 skills no catálogo visual e de decisão.
@@ -257,19 +301,14 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 - Falta de diagramação visual no processo de onboarding
 - Documentação incompleta sobre a contagem total de skills
 
-## [1.0.0] - 2026-04-14
-
-### Added
-- Initial version of the Onboarding Navigator skill.
-- 4-phase Workflow: Welcome, Explore, Decide, Align.
-- Decision-making framework based on technical diagnostic questions.
-- Guidance for project structure and folder hierarchy.
-- Customizable onboarding checklists.
-- Visual decision flow and welcome guide examples.
-
 ---
 
 ## 🧩 python-uv
+## [2.6.0] - 2026-04-20
+
+### Adicionado
+- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+
 ## [2.5.0] - 2026-04-14
 
 ### Adicionado
@@ -279,21 +318,6 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 
 ### Adicionado
 - **Output Structure**: Seção H2 obrigatória detalhando os artefatos gerados pelo UV (pyproject.toml, uv.lock, .python-version).
-
-## [2.3.0] - 2026-04-14
-
-### Adicionado
-- **Django Pro & Performance**: Integração de padrões de `django-perf-review` e `django-pro` no `references/django-workflow.md`.
-- **Resolução de N+1**: Guia detalhado de `select_related` e `prefetch_related` integrado ao workflow do `uv`.
-- **Arquitetura Avançada**: Padrões de Service Layer e Async Django.
-- **Profiling**: Comandos `uv run` para diagnóstico de queries e performance.
-- **Bulk Operations**: Exemplos de uso eficiente do ORM para grandes volumes de dados.
-
-### Alterado
-- **README.md**: Expandido para destacar capacidades de performance e arquitetura avançada.
-- **SKILL.md**: Incrementado para v2.3.0.
-
----
 
 ---
 
