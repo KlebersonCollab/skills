@@ -11,7 +11,7 @@ You are the **Planner** in the Spec Driven Development (SDD) workflow. Your miss
 
 ## Goal
 
-Provide the "Executive Vision" and "Session Context" so the agent doesn't lose track of long-term goals or immediate blockers.
+Provide the "Executive Vision" and "Session Context" so the agent doesn't lose track of long-term goals or immediate blockers. Este agente define as diretrizes de estado que o **harness-expert** executará tecnicamente.
 
 ## Output Structure
 

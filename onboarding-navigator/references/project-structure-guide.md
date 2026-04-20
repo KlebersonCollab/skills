@@ -39,7 +39,7 @@ Estes diretórios contêm os arquivos **`GEMINI.md`**, **`CLAUDE.md`** e **`AGEN
 | Necessidade (O que você quer fazer?) | Localização / Skill Recomendada |
 |-------------------------------------|---------------------------------|
 | **Criar uma nova skill no Hub** | `skill-factory/` |
-| **Orquestrar um Swarm de Agentes** | `multi-agent-orchestrator/` |
+| **Orquestrar um Swarm de Agentes** | `swarm-facilitator/` |
 | **Consultar/Criar ADRs e Arquitetura Macro** | `architecture/` ou `.specs/codebase/` |
 | **Desenhar Contratos e APIs (REST/GraphQL)** | `api-architect/` |
 | **Garantir/Verificar regras de Clean Code** | `clean-code-mentor/` |

@@ -1,11 +1,11 @@
 ---
-name: multi-agent-orchestrator
+name: swarm-facilitator
 version: 1.0.0
 description: "Orquestrador de workflows Multi-Agente (Swarm). Define protocolos de handoff, personas e passagem de contexto usando a estrutura SDD."
 category: orchestration
 ---
 
-# Multi-Agent Orchestrator
+# Swarm Facilitator
 
 > "Reger múltiplos agentes requer coreografia, não apenas programação. O repositório é o tabuleiro e o Markdown é a linguagem de comunicação inter-agentes."
 

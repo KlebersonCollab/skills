@@ -1,8 +1,8 @@
 ---
 name: harness-expert
-version: 1.1.0
-description: "Skill para Harness Engineering. Foca na infraestrutura de estado, memória de longo prazo e orquestração de agentes via SDD (Spec-Driven Development)."
-category: development-workflow
+version: 2.0.0
+description: "Motor técnico para Harness Engineering. Fornece ferramentas para gestão de estado, memória e automação de loops de feedback operando sob o sdd-planner."
+category: agentic-infrastructure
 ---
 
 # Harness Expert
@@ -13,29 +13,28 @@ category: development-workflow
 
 ## Goal
 
-O objetivo principal desta skill é fornecer o "maquinário" necessário para que os agentes operem de forma determinística, segura e com memória de longo prazo. Ela padroniza a gestão de estado (STATE.md, tasks.md), a orquestração de subagentes e o fechamento de loops de feedback (testes/linters).
+O objetivo desta skill é fornecer o "maquinário" (CLI, scripts, automação) para que o **SDD Planner** execute suas diretrizes. Enquanto o Planner define o *quê* e o *porquê*, o Harness fornece o *como* técnico para manter o estado determinístico e loops de feedback fechados.
 
 ---
 
 ## Workflow (4 Fases)
 
-### Fase 1: REHYDRATE — Injeção de Contexto
-1.  **Leitura de Specs**: O agente deve começar cada tarefa lendo o `tasks.md` e o `plan.md` da feature atual.
-2.  **Identificação de Estado**: Consultar `STATE.md` e `LEARNINGS.md` para entender o progresso e lições aprendidas em sessões anteriores.
-3.  **Compactação**: Se o contexto estiver saturado, resumir o progresso atual no `STATE.md` e limpar o histórico irrelevante.
+### Fase 1: AUTOMATED REHYDRATE — Carregamento Técnico
+1.  **Injeção de Contexto**: Executar scripts de leitura em massa de `.specs/` para reidratar a memória do agente conforme definido pelo `sdd-planner`.
+2.  **Health Check**: Validar se os arquivos de estado (`STATE.md`, `tasks.md`) estão em formato válido.
+3.  **Context Compression**: Utilizar `harness-expert-compress` para reduzir o tamanho da sessão mantendo os tokens críticos.
 
-### Fase 2: OPERATE — Execução Orquestrada
-1.  **Delegação**: Utilizar subagentes especializados (`codebase_investigator`, `generalist`) para tarefas de alta densidade ou repetitivas.
-2.  **Uso de Tools**: Garantir que as ferramentas corretas (Terminal, File System, MCPs) sejam invocadas com parâmetros precisos.
+### Fase 2: OPERATE — Automação de Execução
+1.  **Tool Orchestration**: Garantir que MCPs e scripts locais sejam invocados com parâmetros de segurança.
+2.  **Harnessing Sub-agents**: Configurar o ambiente para que subagentes especializados operem sem degradar o estado global.
 
-### Fase 3: SYNC — Sincronização de Estado
-1.  **Atualização de Tasks**: Utilizar o **SDD CLI** para atualizar o status no `tasks.md` de forma automatizada.
-2.  **Registro de Aprendizado**: Erros encontrados e corrigidos devem ser registrados em `LEARNINGS.md`.
-3.  **Atualização do Plano**: Se a estratégia mudar, o `plan.md` deve refletir a nova rota.
+### Fase 3: AUTO-SYNC — Sincronização de Máquina
+1.  **CLI Sync**: Utilizar o **SDD CLI** para atualizar atomicamente o status no `tasks.md`.
+2.  **Feedback Loop**: Capturar logs de execução e transcrevê-los para `LEARNINGS.md` se houver falhas recorrentes.
 
-### Fase 4: VALIDATE — Determinismo e Verificação
-1.  **Loops de Feedback**: Rodar linters, type-checks e testes unitários proativamente.
-2.  **Autocorreção**: O harness deve usar os logs de erro para guiar o agente na correção imediata, sem intervenção do usuário.
+### Fase 4: VALIDATE — Autocorreção e Determinismo
+1.  **Deterministic Checks**: Rodar linters, type-checks e testes unitários de forma automatizada (Exit Gates).
+2.  **Machine Feedback**: O harness deve interpretar logs de erro e propor a correção imediata, fechando o ciclo de desenvolvimento sem intervenção humana.
 
 ---
 

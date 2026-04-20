@@ -39,7 +39,7 @@ flowchart TD
     Automation --> Scaffolding{scaffolding-expert}
     
     Navegacao --> Self{onboarding-navigator}
-    Navegacao --> Orchestrator{multi-agent-orchestrator}
+    Navegacao --> Facilitator{swarm-facilitator}
     
     style Start fill:#e1f5fe
     style Onboarding fill:#81c784
@@ -56,7 +56,7 @@ flowchart TD
 | **[SDD](sdd/)** | `1.4.0` | Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate. | **Sempre** que for iniciar uma implementação. |
 | **[Skill Factory](skill-factory/)** | `1.1.0` | Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados. | Ao criar ou auditar uma habilidade no hub. |
 | **[Brainstorming](brainstorming/)** | `1.1.0` | Facilitador de Brainstorming e Design — guia o agente a explorar problemas complexos. | Antes de qualquer especificação técnica. |
-| **[Harness Expert](harness-expert/)** | `1.1.0` | Infraestrutura de suporte para estado, memória de longo prazo e orquestração via SDD. | Para manter o contexto persistente. |
+| **[Harness Expert](harness-expert/)** | `2.0.0` | Motor técnico para Harness Engineering (Sync, Rehydrate, Automação). | Quando precisar de suporte técnico do motor agêntico. |
 | **[Knowledge Architect](knowledge-architect/)** | `1.0.0` | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | Para mapear relações complexas. |
 
 ### 2. 🎨 Architecture & Design (Qualidade e Estrutura)
@@ -92,7 +92,7 @@ flowchart TD
 | Skill | Versão | Propósito | Quando Invocá-la |
 |-------|--------|-----------|------------------|
 | **[Onboarding Navigator](onboarding-navigator/)** | `1.2.0` | Guia mestre do Hub de Skills. Fornece overview e mentoria. | **No início da sessão** para entender o hub. |
-| **[Multi-Agent Orchestrator](multi-agent-orchestrator/)** | `1.0.0` | Coreografia de equipes de agentes (Arquiteto, Dev, QA) e handoff. | Em grandes épicos que requerem vários agentes. |
+| **[Swarm Facilitator](swarm-facilitator/)** | `1.0.0` | Coreografia de equipes de agentes (Arquiteto, Dev, QA) e protocolos de handoff. | Em grandes épicos que requerem vários agentes coordenados. |
 
 ---
 
@@ -129,7 +129,7 @@ flowchart LR
     NewSkill --> Path8[skill-factory]
     YoutubeVid --> Path9[youtube-transcript]
     Scaffold --> Path10[scaffolding-expert]
-    Orchestrate --> Path11[multi-agent-orchestrator]
+    Orchestrate --> Path11[swarm-facilitator]
     MapKnowledge --> Path12[knowledge-architect]
     SaveState --> Path13[harness-expert]
     NewAPI --> Path14[api-architect]
