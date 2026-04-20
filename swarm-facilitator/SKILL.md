@@ -1,6 +1,6 @@
 ---
 name: swarm-facilitator
-version: 1.0.0
+version: 1.1.0
 description: "Orquestrador de workflows Multi-Agente (Swarm). Define protocolos de handoff, personas e passagem de contexto usando a estrutura SDD."
 category: orchestration
 ---

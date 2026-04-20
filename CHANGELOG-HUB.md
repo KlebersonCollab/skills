@@ -1,5 +1,5 @@
 # Hub Global Changelog
-*Última atualização: 2026-04-20 09:46:24*
+*Última atualização: 2026-04-20 15:45:00*
 
 Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.
 
@@ -212,6 +212,13 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 harness-expert
+## [2.0.0] - 2026-04-20
+
+### Alterado
+- **Refatoração de Papel**: A skill agora foca exclusivamente no **motor técnico** (infraestrutura agêntica).
+- **Desacoplamento**: Removida a gestão estratégica de memória, delegando o protocolo de visão operacional para o `sdd-planner`.
+- **Workflow**: Atualizado para incluir as fases de `AUTOMATED REHYDRATE`, `OPERATE`, `AUTO-SYNC` e `VALIDATE`.
+
 ## [1.1.0] - 2026-04-18
  — 2026-04-18
 
@@ -247,7 +254,12 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 
 ---
 
-## 🧩 multi-agent-orchestrator
+## 🧩 swarm-facilitator (ex-multi-agent-orchestrator)
+## [1.1.0] - 2026-04-20
+### Alterado
+- **Renomeação**: Skill renomeada de `multi-agent-orchestrator` para `swarm-facilitator` para evitar colisão semântica com o `sdd-orchestrator`.
+- **Identidade**: Atualizada para focar explicitamente na coreografia e protocolos de handoff de personas.
+
 ## [1.0.0] - 2026-04-19
 ### Adicionado
 - Estrutura inicial e definição das personas do Swarm.

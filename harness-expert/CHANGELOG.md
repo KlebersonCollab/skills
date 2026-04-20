@@ -6,6 +6,13 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
+## [2.0.0] - 2026-04-20
+
+### Alterado
+- **Refatoração de Papel**: A skill agora foca exclusivamente no **motor técnico** (infraestrutura agêntica).
+- **Desacoplamento**: Removida a gestão estratégica de memória, delegando o protocolo de visão operacional para o `sdd-planner`.
+- **Workflow**: Atualizado para incluir as fases de `AUTOMATED REHYDRATE`, `OPERATE`, `AUTO-SYNC` e `VALIDATE`.
+
 ## [1.1.0] - 2026-04-18
  — 2026-04-18
 

@@ -91,8 +91,8 @@ flowchart TD
 
 | Skill | Versão | Propósito | Quando Invocá-la |
 |-------|--------|-----------|------------------|
-| **[Onboarding Navigator](onboarding-navigator/)** | `1.2.0` | Guia mestre do Hub de Skills. Fornece overview e mentoria. | **No início da sessão** para entender o hub. |
-| **[Swarm Facilitator](swarm-facilitator/)** | `1.0.0` | Coreografia de equipes de agentes (Arquiteto, Dev, QA) e protocolos de handoff. | Em grandes épicos que requerem vários agentes coordenados. |
+| **[Onboarding Navigator](onboarding-navigator/)** | `1.2.1` | Guia mestre do Hub de Skills. Fornece overview e mentoria. | **No início da sessão** para entender o hub. |
+| **[Swarm Facilitator](swarm-facilitator/)** | `1.1.0` | Coreografia de equipes de agentes (Arquiteto, Dev, QA) e protocolos de handoff. | Em grandes épicos que requerem vários agentes coordenados. |
 
 ---
 
