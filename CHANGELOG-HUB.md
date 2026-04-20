@@ -1,5 +1,5 @@
 # Hub Global Changelog
-*Última atualização: 2026-04-20 15:45:00*
+*Última atualização: 2026-04-20 16:20:52*
 
 Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.
 
@@ -254,19 +254,6 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 
 ---
 
-## 🧩 swarm-facilitator (ex-multi-agent-orchestrator)
-## [1.1.0] - 2026-04-20
-### Alterado
-- **Renomeação**: Skill renomeada de `multi-agent-orchestrator` para `swarm-facilitator` para evitar colisão semântica com o `sdd-orchestrator`.
-- **Identidade**: Atualizada para focar explicitamente na coreografia e protocolos de handoff de personas.
-
-## [1.0.0] - 2026-04-19
-### Adicionado
-- Estrutura inicial e definição das personas do Swarm.
-- Protocolo formal de Handoff.
-
----
-
 ## 🧩 observability-expert
 ## [1.0.0] - 2026-04-14
 
@@ -382,6 +369,19 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 - **skill-factory-bootstrap.skill.md**: Sub-skill para scaffolding automatizado com templates padronizados para `SKILL.md`, `README.md`, `CHANGELOG.md` e sub-skills.
 - **skill-factory-validator.skill.md**: Sub-skill para validação de conformidade com 5 checks (Structural, Frontmatter, Content, Naming, Registry) e relatório de evidências.
 - **README.md**: Documentação detalhada com exemplos de uso para ambos os modos (Quick e Standard).
+
+---
+
+## 🧩 swarm-facilitator
+## [1.1.0] - 2026-04-20
+### Alterado
+- **Renomeação**: Skill renomeada de `multi-agent-orchestrator` para `swarm-facilitator` para evitar colisão semântica com o `sdd-orchestrator`.
+- **Identidade**: Atualizada para focar explicitamente na coreografia e protocolos de handoff de personas.
+
+## [1.0.0] - 2026-04-19
+### Adicionado
+- Estrutura inicial e definição das personas do Swarm.
+- Protocolo formal de Handoff.
 
 ---
 
