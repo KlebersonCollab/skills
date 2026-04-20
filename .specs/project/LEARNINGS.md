@@ -46,3 +46,11 @@
 - **Auto-Fix as Resilience**: Em ecossistemas complexos, ferramentas que apenas detectam erros (Sensores) não são suficientes. Ter scripts que "reparam" o estado (como o `auto_fix_memory.py`) permite que o sistema recupere a integridade operacional sem intervenção humana, o que é crucial para agents autônomos.
 - **The v2.0 Milestone**: A transição para um ecossistema determinístico (Bootstrap/Exit Gates) elimina a necessidade de "torcer" para que o agente siga os padrões. A governança agora está codificada no ciclo de vida da sessão.
 
+### [2026-04-20] Code Audit Findings (Full Hub)
+- **Duplication Crisis**: Skills estão duplicadas em ~5 localizações (`.agent/skills/`, `.gemini/skills/`, `.claude/skills/`, `dist_staging/`, `.claude/worktrees/`). Isso viola DRY e cria risco de inconsistência de versão.
+- **Safe File Operations**: O script `sync_mandates.py` usa `shutil.rmtree` antes de `copytree`, criando risco de perda de dados se houver interrupção. Solução: usar TemporaryDirectory com transação segura.
+- **Code Sharing Opportunity**: A lógica de walking de diretórios e listas de exclude está replicada em 4+ scripts. Criar `scripts/utils.py` compartilhado resolveria.
+- **SOLID Violation**: `validate_skills.py` tem responsabilidade única demais (-structural + version + changelog). Refatorar em classes separadas.
+- **Type Hints Gap**: Nenhum script usa type hints, dificultando análise estática e refatoração segura.
+- **Emoji Portability**: Uso de emojis em logs pode quebrar em terminais/CI específicos. Migrar para logging estruturado.
+

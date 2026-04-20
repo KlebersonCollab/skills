@@ -20,22 +20,22 @@ help:
 	@echo "  make release       - Ciclo completo: auto-fix -> sync -> validate -> verify-vers -> knowledge-map -> changelog -> dist"
 
 sync:
-	$(PYTHON) scripts/sync_mandates.py
+	uv run --with pyyaml scripts/sync_mandates.py
 
 validate:
 	uv run --with pyyaml scripts/validate_skills.py
 
 auto-fix:
-	$(PYTHON) scripts/auto_fix_memory.py
+	uv run --with pyyaml scripts/auto_fix_memory.py
 
 changelog:
-	$(PYTHON) scripts/consolidate_changelogs.py
+	uv run --with pyyaml scripts/consolidate_changelogs.py
 
 dist:
 	bash scripts/generate-skills-dist.sh
 
 dist-cursor:
-	$(PYTHON) scripts/generate_cursorrules.py --skills sdd,knowledge-architect,architecture
+	uv run --with pyyaml scripts/generate_cursorrules.py --skills sdd,knowledge-architect,architecture
 
 verify:
 	bash scripts/verify-dist.sh
@@ -44,10 +44,10 @@ knowledge-map:
 	uv run --with pyyaml scripts/generate_knowledge_map.py
 
 verify-vers:
-	$(PYTHON) scripts/verify_versions.py
+	uv run --with pyyaml scripts/verify_versions.py
 
 check-memory:
-	$(PYTHON) scripts/verify_memory_sync.py
+	uv run --with pyyaml scripts/verify_memory_sync.py
 
 clean:
 	rm -rf dist_staging artifacts

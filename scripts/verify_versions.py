@@ -2,45 +2,40 @@ import re
 import sys
 from pathlib import Path
 
+# Adiciona o diretório atual ao path para importar utils
+sys.path.append(str(Path(__file__).parent))
+from utils import safe_read_file, get_skill_metadata, logger
+
 def verify_versions():
     root_dir = Path(".")
     readme_path = root_dir / "README.md"
     
-    if not readme_path.exists():
-        print("Error: README.md not found.")
+    readme_content = safe_read_file(readme_path)
+    if readme_content is None:
+        logger.error("README.md não encontrado.")
         return
 
-    readme_content = readme_path.read_text()
-    
-    # Encontrar a tabela de skills no README
     # Regex para capturar: | # | **[Name](path/)** | Desc | `version` |
     pattern = r"\| \d+ \| \*\*\[.*?\]\((.*?)/?\) \*\* \| .*? \| `(.*?)` \|"
     matches = re.findall(pattern, readme_content)
 
     errors = []
-    print(f"🔍 Iniciando verificação de consistência de versões...")
+    logger.info("Iniciando verificação de consistência de versões...")
 
-    for skill_path, readme_version in matches:
-        skill_file = root_dir / skill_path / "SKILL.md"
+    for skill_path_str, readme_version in matches:
+        skill_path = root_dir / skill_path_str
+        metadata = get_skill_metadata(skill_path)
         
-        if not skill_file.exists():
-            print(f"   ⚠️  Aviso: Diretório {skill_path} não encontrado (definido no README).")
-            continue
-
-        # Ler versão do frontmatter do SKILL.md
-        skill_content = skill_file.read_text()
-        version_match = re.search(r"version:\s*([^\s\n]+)", skill_content)
-        
-        if not version_match:
-            errors.append(f"❌ {skill_path}: Versão não encontrada no SKILL.md")
+        if not metadata:
+            logger.warning(f"Metadata não encontrada para {skill_path_str}")
             continue
             
-        actual_version = version_match.group(1).strip("'\"")
+        actual_version = str(metadata.get("version", "")).strip("'\"")
         
         if actual_version != readme_version:
-            errors.append(f"❌ {skill_path}: README (`{readme_version}`) != SKILL.md (`{actual_version}`)")
+            errors.append(f"❌ {skill_path_str}: README (`{readme_version}`) != SKILL.md (`{actual_version}`)")
         else:
-            print(f"   ✅ {skill_path}: {actual_version}")
+            logger.info(f"   ✅ {skill_path_str}: {actual_version}")
 
     if errors:
         print("\n--- ERROS DE CONSISTÊNCIA ENCONTRADOS ---")

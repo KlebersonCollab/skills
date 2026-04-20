@@ -1,108 +1,173 @@
-import os
-import sys
+"""
+Validador de Skills com arquitetura SOLID.
+Permite a adição de novos checks de auditoria de forma modular.
+"""
 import re
-import yaml
+import sys
+from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
 from pathlib import Path
+from typing import List, Dict, Any
 
-def validate_skill(skill_path):
-    skill_dir = Path(skill_path)
-    skill_name = skill_dir.name
-    results = {}
-    errors = []
+import yaml
 
-    # Check 1: Structural Integrity
-    mandatory_files = ["SKILL.md", "README.md", "CHANGELOG.md"]
-    missing_files = [f for f in mandatory_files if not (skill_dir / f).exists()]
-    results["Structural Integrity"] = "PASS" if not missing_files else "FAIL"
-    if missing_files:
-        errors.append(f"Missing mandatory files: {', '.join(missing_files)}")
+# Adiciona o diretório atual ao path para importar utils
+sys.path.append(str(Path(__file__).parent))
+from utils import get_all_skills, safe_read_file, get_skill_metadata, logger
 
-    # Check 2 & 3: Frontmatter and Content Rigor
-    skill_md_path = skill_dir / "SKILL.md"
-    if skill_md_path.exists():
-        content = skill_md_path.read_text()
+@dataclass
+class ValidationResult:
+    """Representa o resultado de um check individual."""
+    check_name: str
+    is_valid: bool
+    errors: List[str] = field(default_factory=list)
+    warnings: List[str] = field(default_factory=list)
+
+class BaseValidator(ABC):
+    """Classe base para todos os validadores de skills."""
+    @abstractmethod
+    def validate(self, skill_path: Path) -> ValidationResult:
+        pass
+
+class StructuralValidator(BaseValidator):
+    """Valida se os arquivos obrigatórios existem."""
+    MANDATORY_FILES = ["SKILL.md", "README.md", "CHANGELOG.md"]
+    
+    def validate(self, skill_path: Path) -> ValidationResult:
+        missing = [f for f in self.MANDATORY_FILES if not (skill_path / f).exists()]
+        errors = [f"Arquivo obrigatório ausente: {f}" for f in missing]
+        return ValidationResult("Integridade Estrutural", not errors, errors)
+
+class FrontmatterValidator(BaseValidator):
+    """Valida o frontmatter YAML do SKILL.md."""
+    def validate(self, skill_path: Path) -> ValidationResult:
+        metadata = get_skill_metadata(skill_path)
+        errors = []
         
-        # Frontmatter
-        try:
-            frontmatter_match = re.search(r"^---\n(.*?)\n---", content, re.DOTALL)
-            if frontmatter_match:
-                data = yaml.safe_load(frontmatter_match.group(1))
-                if data.get("name") != skill_name:
-                    errors.append(f"Frontmatter name '{data.get('name')}' does not match directory '{skill_name}'")
-                if not re.match(r"^\d+\.\d+\.\d+$", str(data.get("version", ""))):
-                    errors.append(f"Invalid version format: {data.get('version')}")
-            else:
-                errors.append("Missing YAML frontmatter in SKILL.md")
-        except Exception as e:
-            errors.append(f"Error parsing frontmatter: {str(e)}")
+        if not metadata:
+            return ValidationResult("YAML Frontmatter", False, ["Frontmatter ausente ou corrompido em SKILL.md"])
+        
+        # Valida nome
+        if metadata.get("name") != skill_path.name:
+            errors.append(f"Nome no frontmatter ({metadata.get('name')}) não bate com diretório ({skill_path.name})")
+            
+        # Valida versão (formato semver)
+        version = str(metadata.get("version", ""))
+        if not re.match(r"^\d+\.\d+\.\d+$", version):
+            errors.append(f"Formato de versão inválido: {version}. Use X.Y.Z")
+            
+        return ValidationResult("YAML Frontmatter", not errors, errors)
 
-        # H2 Rigor
-        h2_sections = ["## Goal", "## Output Structure", "## Quality Rules", "## Prohibited"]
-        missing_h2 = [h2 for h2 in h2_sections if h2 not in content]
-        if missing_h2:
-            errors.append(f"Missing H2 sections in SKILL.md: {', '.join(missing_h2)}")
-            results["Content Completeness"] = "FAIL"
-        else:
-            results["Content Completeness"] = "PASS"
+class ContentCompletenessValidator(BaseValidator):
+    """Valida a presença de seções H2 obrigatórias no SKILL.md."""
+    MANDATORY_SECTIONS = ["## Goal", "## Output Structure", "## Quality Rules", "## Prohibited"]
+    
+    def validate(self, skill_path: Path) -> ValidationResult:
+        content = safe_read_file(skill_path / "SKILL.md")
+        if not content:
+            return ValidationResult("Completude de Conteúdo", False, ["Não foi possível ler SKILL.md"])
+            
+        missing = [sec for sec in self.MANDATORY_SECTIONS if sec not in content]
+        errors = [f"Seção H2 ausente no SKILL.md: {sec}" for sec in missing]
+        
+        return ValidationResult("Completude de Conteúdo", not errors, errors)
 
-    # Check 4: Version Sync
-    changelog_path = skill_dir / "CHANGELOG.md"
-    if changelog_path.exists() and skill_md_path.exists():
-        changelog_content = changelog_path.read_text()
+class VersionSyncValidator(BaseValidator):
+    """Valida se a versão no SKILL.md bate com a última versão no CHANGELOG.md."""
+    def validate(self, skill_path: Path) -> ValidationResult:
+        metadata = get_skill_metadata(skill_path)
+        changelog_content = safe_read_file(skill_path / "CHANGELOG.md")
+        
+        if not metadata or not changelog_content:
+            return ValidationResult("Sincronia de Versão", True) # Outros validadores pegam falha de arquivo
+            
+        errors = []
+        # Busca a versão mais recente no changelog: ## [X.Y.Z]
         version_match = re.search(r"## \[(.*?)\]", changelog_content)
         if version_match:
-            latest_version = version_match.group(1)
-            # Re-read frontmatter for sync
-            frontmatter_match = re.search(r"^---\n(.*?)\n---", skill_md_path.read_text(), re.DOTALL)
-            if frontmatter_match:
-                data = yaml.safe_load(frontmatter_match.group(1))
-                if str(data.get("version")) != latest_version:
-                    errors.append(f"Version mismatch: SKILL.md ({data.get('version')}) vs CHANGELOG.md ({latest_version})")
+            latest_changelog_version = version_match.group(1)
+            skill_version = str(metadata.get("version"))
+            
+            if skill_version != latest_changelog_version:
+                errors.append(f"Versão divergente: SKILL.md ({skill_version}) vs CHANGELOG.md ({latest_changelog_version})")
+        else:
+            errors.append("Nenhuma versão encontrada no CHANGELOG.md (formato esperado: ## [X.Y.Z])")
+            
+        return ValidationResult("Sincronia de Versão", not errors, errors)
 
-    # Check 5: Recommended Directories
-    recommended_dirs = ["references", "resources", "examples"]
-    missing_dirs = [d for d in recommended_dirs if not (skill_dir / d).exists()]
-    if missing_dirs:
-        # Warning instead of error (don't fail the build for this yet)
-        print(f"\n    \033[93mWarning\033[0m: Missing recommended directories in {skill_name}: {', '.join(missing_dirs)}", end="")
-
-    # Check 6: Changelog Format (## [Version] - YYYY-MM-DD)
-    changelog_path = skill_dir / "CHANGELOG.md"
-    if changelog_path.exists():
-        changelog_content = changelog_path.read_text()
-        # Find the first version entry
-        version_entry = re.search(r"## \[(.*?)\]( - \d{4}-\d{2}-\d{2})?", changelog_content)
+class ChangelogFormatValidator(BaseValidator):
+    """Valida o formato da data no CHANGELOG.md."""
+    def validate(self, skill_path: Path) -> ValidationResult:
+        content = safe_read_file(skill_path / "CHANGELOG.md")
+        if not content:
+            return ValidationResult("Formato do Changelog", True)
+            
+        errors = []
+        # Busca entrada de versão e data: ## [X.Y.Z] - YYYY-MM-DD
+        # O grupo 2 captura a data opcionalmente para verificar sua existência
+        version_entry = re.search(r"## \[(.*?)\]( - \d{4}-\d{2}-\d{2})?", content)
+        
         if version_entry and not version_entry.group(2):
-            errors.append(f"Missing date in CHANGELOG.md for version [{version_entry.group(1)}]. Expected: ## [{version_entry.group(1)}] - YYYY-MM-DD")
+            version = version_entry.group(1)
+            errors.append(f"Data ausente no CHANGELOG.md para a versão [{version}]. Esperado: ## [{version}] - YYYY-MM-DD")
+            
+        return ValidationResult("Formato do Changelog", not errors, errors)
 
-    # Final Verdict for this skill
-    status = "PASS" if not errors else "FAIL"
-    return status, errors
+class RecommendedStructureValidator(BaseValidator):
+    """Verifica pastas recomendadas mas não obrigatórias."""
+    RECOMMENDED_DIRS = ["references", "resources", "examples"]
+    
+    def validate(self, skill_path: Path) -> ValidationResult:
+        missing = [d for d in self.RECOMMENDED_DIRS if not (skill_path / d).exists()]
+        warnings = [f"Pasta recomendada ausente: {d}" for d in missing]
+        return ValidationResult("Estrutura Recomendada", True, warnings=warnings)
+
+class SkillAuditor:
+    """Orquestrador que executa todos os validadores."""
+    def __init__(self):
+        self.validators: List[BaseValidator] = [
+            StructuralValidator(),
+            FrontmatterValidator(),
+            ContentCompletenessValidator(),
+            VersionSyncValidator(),
+            ChangelogFormatValidator(),
+            RecommendedStructureValidator()
+        ]
+        
+    def audit_skill(self, skill_path: Path) -> List[ValidationResult]:
+        return [v.validate(skill_path) for v in self.validators]
 
 def main():
     root_dir = Path(".")
-    # Ignorar pastas que começam com ponto ou não são skills
-    exclude = [".git", ".github", ".specs", "scripts", "node_modules", ".venv"]
-    
-    skills = [d for d in root_dir.iterdir() if d.is_dir() and d.name not in exclude and (d / "SKILL.md").exists()]
+    skills = get_all_skills(root_dir)
+    auditor = SkillAuditor()
     
     total_failed = 0
+    
     for skill in skills:
-        print(f"Validating skill: {skill.name}...", end=" ")
-        status, errors = validate_skill(skill)
-        if status == "PASS":
+        print(f"Validating skill: {skill.name}...", end=" ", flush=True)
+        results = auditor.audit_skill(skill)
+        
+        is_skill_valid = all(r.is_valid and not r.errors for r in results)
+        
+        if is_skill_valid:
             print("\033[92mPASS\033[0m")
         else:
             print("\033[91mFAIL\033[0m")
             total_failed += 1
-            for err in errors:
-                print(f"  - {err}")
+            
+        # Exibe Erros e Warnings
+        for r in results:
+            for err in r.errors:
+                print(f"  - \033[91m[Erro]\033[0m {r.check_name}: {err}")
+            for warn in r.warnings:
+                print(f"  - \033[93m[Aviso]\033[0m {r.check_name}: {warn}")
     
     if total_failed > 0:
-        print(f"\n\033[91mValidation failed for {total_failed} skill(s).\033[0m")
+        print(f"\n\033[91mAuditoria falhou para {total_failed} skill(s).\033[0m")
         sys.exit(1)
     else:
-        print("\n\033[92mAll skills are compliant!\033[0m")
+        print("\n\033[92mHub está saudável! Todas as skills passaram nos checks mandatórios.\033[0m")
         sys.exit(0)
 
 if __name__ == "__main__":

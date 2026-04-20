@@ -1,18 +1,20 @@
-import os
 import re
-import shutil
+import sys
 from pathlib import Path
+
+# Adiciona o diretório atual ao path para importar utils
+sys.path.append(str(Path(__file__).parent))
+from utils import get_all_skills, safe_copytree, safe_read_file, logger
 
 def sync_all():
     root_dir = Path(".")
     mandates_file = root_dir / ".specs" / "codebase" / "GLOBAL_MANDATES.md"
     
-    if not mandates_file.exists():
-        print(f"Error: Mandates file {mandates_file} not found.")
+    mandates_content = safe_read_file(mandates_file)
+    if mandates_content is None:
+        logger.error(f"Mandatos globais não encontrados em {mandates_file}")
         return
 
-    mandates_content = mandates_file.read_text()
-    
     # 1. Configuração dos Agentes
     agent_configs = [
         {"name": "GEMINI", "folder": ".gemini", "file": ".gemini/GEMINI.md"},
@@ -20,11 +22,8 @@ def sync_all():
         {"name": "AGENT", "folder": ".agent", "file": ".agent/AGENT.md"}
     ]
 
-    # 2. Identificação dinâmica das skills na raiz
-    skills = [
-        d.name for d in root_dir.iterdir() 
-        if d.is_dir() and (d / "SKILL.md").exists()
-    ]
+    # 2. Identificação dinâmica das skills na raiz usando utils
+    skills = get_all_skills(root_dir)
     
     marker_start = "<!-- GLOBAL_MANDATES_START -->"
     marker_end = "<!-- GLOBAL_MANDATES_END -->"
@@ -39,29 +38,29 @@ def sync_all():
 
         # 2.1 Sincronizar Mandatos no arquivo principal
         if agent_file.exists():
-            content = agent_file.read_text()
-            if marker_start in content and marker_end in content:
+            content = safe_read_file(agent_file)
+            if content and marker_start in content and marker_end in content:
                 pattern = f"{marker_start}.*?{marker_end}"
                 new_content = re.sub(pattern, new_block, content, flags=re.DOTALL)
             else:
-                new_content = f"# {config['name']} Project Instructions\n\n{new_block}\n\n--- \n*Mandato atualizado em 18 de Abril de 2026.*"
+                new_content = f"# {config['name']} Project Instructions\n\n{new_block}\n\n--- \n*Mandato atualizado em Abril de 2026.*"
+            
             agent_file.write_text(new_content)
-            print(f"✅ Synced mandates to {agent_file}")
+            logger.info(f"Synced mandates to {agent_file}")
 
         # 2.2 Sincronizar Diretórios de Skills
         agent_skills_dir = agent_dir / "skills"
-        agent_skills_dir.mkdir(exist_ok=True)
+        agent_skills_dir.mkdir(exist_ok=True, parents=True)
         
-        for skill in skills:
-            src = root_dir / skill
-            dst = agent_skills_dir / skill
+        for skill_path in skills:
+            skill_name = skill_path.name
+            dst = agent_skills_dir / skill_name
             
-            # Se a skill não existe no agente ou é mais antiga, copiar
-            # Para garantir integridade, vamos remover e copiar de novo (estilo mirror)
-            if dst.exists():
-                shutil.rmtree(dst)
-            shutil.copytree(src, dst)
-            print(f"   + Synced skill: {skill} -> {config['folder']}/skills/")
+            # Usa a cópia segura modularizada em utils.py
+            if safe_copytree(skill_path, dst):
+                logger.info(f"   + Synced skill: {skill_name} -> {config['folder']}/skills/")
+            else:
+                logger.error(f"   ! Failed to sync skill: {skill_name}")
 
 if __name__ == "__main__":
     sync_all()

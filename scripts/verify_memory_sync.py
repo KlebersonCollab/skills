@@ -3,6 +3,10 @@ import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
+# Adiciona o diretório atual ao path para importar utils
+sys.path.append(str(Path(__file__).parent))
+from utils import logger, DEFAULT_EXCLUDES
+
 def check_memory_sync():
     """
     Verifica se os arquivos de memória (STATE.md, LEARNINGS.md) foram atualizados 
@@ -21,31 +25,36 @@ def check_memory_sync():
     # 1. Verificar existência
     for f in memory_files:
         if not f.exists():
-            print(f"❌ CRITICAL: Memory file missing: {f.name}")
+            logger.error(f"Memory file missing: {f.name}")
             return False
 
     # 2. Verificar se houve commits de código sem atualização de memória
-    # (Lógica simplificada: se arquivos MD são mais velhos que arquivos de código alterados)
-    
     now = datetime.now()
-    threshold = now - timedelta(minutes=60) # Janela de 1 hora
-    
     # Pegar data da última modificação dos arquivos de memória
     last_memory_update = max(os.path.getmtime(f) for f in memory_files)
     last_memory_dt = datetime.fromtimestamp(last_memory_update)
     
-    print(f"🔍 Last Memory Update: {last_memory_dt.strftime('%Y-%m-%d %H:%M:%S')}")
+    logger.info(f"Last Memory Update: {last_memory_dt.strftime('%Y-%m-%d %H:%M:%S')}")
 
     # Verificar se algum arquivo fora de .specs foi alterado DEPOIS da memória
     unsynced_files = []
+    
+    # Exclusões baseadas no utils.py + .specs
+    local_excludes = DEFAULT_EXCLUDES.copy()
+    local_excludes.add(".specs")
+    
     for root, dirs, files in os.walk(root_dir):
-        if ".git" in dirs: dirs.remove(".git")
-        if ".specs" in dirs: dirs.remove(".specs")
-        if ".cursorrules" in files: files.remove(".cursorrules")
+        # Filtra diretórios excluídos
+        dirs[:] = [d for d in dirs if d not in local_excludes]
         
         for file in files:
             file_path = Path(root) / file
+            # Monitorar apenas arquivos relevantes de código/doc
             if file_path.suffix in ['.py', '.md', '.js', '.ts', '.tsx', '.go', '.dart']:
+                # Ignorar arquivos na raiz como Makefile ou CHANGELOG-HUB
+                if file_path.parent == root_dir and file_path.name != "README.md":
+                    continue
+                    
                 mtime = os.path.getmtime(file_path)
                 if mtime > last_memory_update:
                     unsynced_files.append(file_path.relative_to(root_dir))
@@ -58,7 +67,7 @@ def check_memory_sync():
         if len(unsynced_files) > 10:
             print(f"  ... e mais {len(unsynced_files) - 10} arquivos.")
         
-        print("\n👉 Ação Requerida: Execute o SESSION EXIT GATE e atualize os arquivos em .specs/project/")
+        print("\n👉 Ação Requerida: Atualize os arquivos em .specs/project/ para refletir o estado atual.")
         return False
     
     print("✅ Memory is in sync with codebase changes.")
@@ -67,5 +76,5 @@ def check_memory_sync():
 if __name__ == "__main__":
     success = check_memory_sync()
     if not success:
-        # Não falha o build, apenas avisa (ou pode mudar para sys.exit(1) se quiser ser rígido)
+        # Apenas avisa por padrão
         pass

@@ -20,3 +20,14 @@
 ## Bloqueios / Próximos Passos
 - [ ] **Skill Installer CLI**: Instalação granular de skills individuais.
 - [ ] **Automated Knowledge Distiller**: Geração automática de grafos Mermaid via análise estática profunda.
+- [x] **Full Hub Code Audit**: Auditoria completa de código Python. Relatório gerado em `.specs/project/audit-report.md`.
+- [x] **Infrastructure Refactoring (v3.1.0)**: 
+    - Implementado `scripts/utils.py` para DRY.
+    - `sync_mandates.py` refatorado para cópia segura (Safe Sync).
+    - `validate_skills.py` refatorado para arquitetura SOLID.
+    - Makefile atualizado para suporte completo a `uv`.
+
+## Bloqueios / Próximos Passos
+- [ ] **Skill Installer CLI**: Instalação granular de skills individuais.
+- [ ] **Automated Knowledge Distiller**: Geração automática de grafos Mermaid via análise estática profunda.
+- [ ] **CI Pipeline**: Automatizar a execução de `make validate` no GitHub Actions.
