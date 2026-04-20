@@ -27,7 +27,11 @@
     - `validate_skills.py` refatorado para arquitetura SOLID.
     - Makefile atualizado para suporte completo a `uv`.
 
-## Bloqueios / Próximos Passos
-- [ ] **Skill Installer CLI**: Instalação granular de skills individuais.
-- [ ] **Automated Knowledge Distiller**: Geração automática de grafos Mermaid via análise estática profunda.
-- [ ] **CI Pipeline**: Automatizar a execução de `make validate` no GitHub Actions.
+- [x] **Skill Installer CLI**: Implementado `scripts/installer.py` para instalação granular via `make install-skill`.
+- [x] **Automated Knowledge Distiller**: Upgrade para v3 com subgrafos Mermaid, dependências explícitas e análise semântica.
+- [x] **CI Pipeline**: Implementado `.github/workflows/validate.yml` para automação de qualidade.
+
+## Próximos Passos
+- [ ] **Marketplace UI**: Interface visual para navegar e instalar skills.
+- [ ] **AI-Generated Examples**: Automação para gerar o diretório `examples/` em todas as skills via LLM.
+- [ ] **Telemetry**: Rastreamento de uso local para otimização de cache de skills.

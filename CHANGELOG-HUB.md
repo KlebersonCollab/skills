@@ -1,22 +1,7 @@
 # Hub Global Changelog
-*Última atualização: 2026-04-20 16:20:52*
+*Última atualização: 2026-04-20 17:05:09*
 
-Este arquivo consolida as atualizações mais recentes de todas as skills e da infraestrutura do Hub.
-
----
-
-## 🛠️ Infraestrutura do Hub (Scripts & Automação)
-## [3.1.0] - 2026-04-20
-### Adicionado
-- **Modularização (`utils.py`)**: Criação de módulo de utilitários centralizado para navegação e segurança.
-- **Auditoria de Código**: Adicionados novos documentos estratégicos em `.specs/project/` (Audit Report e SWOT).
-
-### Alterado
-- **Refatoração SOLID**: `validate_skills.py` agora possui arquitetura modular para novos checks.
-- **Sincronização Segura**: `sync_mandates.py` agora utiliza cópia atômica via diretório temporário para evitar perda de dados.
-- **Integração UV**: Makefile atualizado para rodar todos os scripts via `uv` com dependências isoladas.
-
----
+Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.
 
 ## 🧩 api-architect
 ## [1.3.0] - 2026-04-14

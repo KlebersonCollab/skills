@@ -49,6 +49,12 @@ verify-vers:
 check-memory:
 	uv run --with pyyaml scripts/verify_memory_sync.py
 
+list-skills:
+	uv run --with pyyaml scripts/installer.py list
+
+install-skill:
+	uv run --with pyyaml scripts/installer.py install $(name) --target $(target)
+
 clean:
 	rm -rf dist_staging artifacts
 

@@ -1,0 +1,38 @@
+name: Skills Hub Guard
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          version: "latest"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Validations
+        run: |
+          make validate
+          make verify-vers
+          make check-memory
+
+      - name: Generate Knowledge Map
+        run: |
+          make knowledge-map
+
+      - name: Build Distribution (Dry Run)
+        run: |
+          make dist

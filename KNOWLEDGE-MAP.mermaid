@@ -1,47 +1,87 @@
 graph TD
-    %% Nodes and Styles
-    api_architect["api-architect (1.3.0)"]
-    harness_expert["harness-expert (2.0.0)"]
-    frontend_expert["frontend-expert (1.1.0) 🛡️"]
-    fastapi_expert["fastapi-expert (1.1.0) 🛡️"]
-    flutter_fvm["flutter-fvm (1.2.0) 🛡️"]
-    azure_devops["azure-devops (1.1.0)"]
-    python_uv["python-uv (2.6.0) 🛡️"]
-    skill_factory["skill-factory (1.1.0)"]
-    django_expert["django-expert (1.1.0) 🛡️"]
-    scaffolding_expert["scaffolding-expert (1.0.0)"]
-    onboarding_navigator["onboarding-navigator (1.2.1)"]
-    architecture["architecture (2.0.1)"]
-    knowledge_architect["knowledge-architect (1.0.0)"]
-    golang_expert["golang-expert (1.1.0) 🛡️"]
-    brainstorming["brainstorming (1.1.0)"]
-    observability_expert["observability-expert (1.0.0)"]
-    sdd["sdd (1.4.0)"]
-    swarm_facilitator["swarm-facilitator (1.1.0)"]
-    clean_code_mentor["clean-code-mentor (1.0.0)"]
-    youtube_transcript["youtube-transcript (1.0.0)"]
+    %% Nodes and Hierarchical Grouping
 
-    %% Categories Styling
-    style api_architect fill:#f3e5f5,stroke:#4a148c
-    style harness_expert fill:#f5f5f5,stroke:#333
-    style frontend_expert fill:#f5f5f5,stroke:#333
-    style fastapi_expert fill:#fff3e0,stroke:#e65100
-    style django_expert fill:#fff3e0,stroke:#e65100
-    style flutter_fvm fill:#fff3e0,stroke:#e65100
-    style python_uv fill:#fff3e0,stroke:#e65100
-    style sdd fill:#fff3e0,stroke:#e65100
-    style azure_devops fill:#e8f5e9,stroke:#1b5e20
-    style skill_factory fill:#fce4ec,stroke:#880e4f
-    style scaffolding_expert fill:#fff3e0,stroke:#e65100
-    style youtube_transcript fill:#fff3e0,stroke:#e65100
-    style onboarding_navigator fill:#fce4ec,stroke:#880e4f
-    style architecture fill:#f3e5f5,stroke:#4a148c
-    style knowledge_architect fill:#e0f7fa,stroke:#006064
-    style golang_expert fill:#fff3e0,stroke:#e65100
-    style brainstorming fill:#e1f5fe,stroke:#01579b
-    style observability_expert fill:#e8f5e9,stroke:#1b5e20
-    style swarm_facilitator fill:#fff3e0,stroke:#e65100
-    style clean_code_mentor fill:#fce4ec,stroke:#880e4f
+    subgraph "Architecture & Design"
+        api_architect["api-architect (1.3.0)"]
+        architecture["architecture (2.0.1)"]
+        clean_code_mentor["clean-code-mentor (1.0.0)"]
+    end
+
+    subgraph "Ecosystems & DevOps"
+        azure_devops["azure-devops (1.1.0)"]
+        django_expert["django-expert (1.1.0) 🛡️"]
+        fastapi_expert["fastapi-expert (1.1.0) 🛡️"]
+        golang_expert["golang-expert (1.1.0) 🛡️"]
+        observability_expert["observability-expert (1.0.0)"]
+    end
+
+    subgraph "Core Frameworks"
+        brainstorming["brainstorming (1.1.0)"]
+        flutter_fvm["flutter-fvm (1.2.0) 🛡️"]
+        knowledge_architect["knowledge-architect (1.0.0)"]
+        onboarding_navigator["onboarding-navigator (1.2.1)"]
+        python_uv["python-uv (2.6.0) 🛡️"]
+        sdd["sdd (1.4.0)"]
+        skill_factory["skill-factory (1.1.0)"]
+    end
+
+    subgraph "Miscellaneous"
+        frontend_expert["frontend-expert (1.1.0) 🛡️"]
+        harness_expert["harness-expert (2.0.0)"]
+    end
+
+    subgraph "Automation & Utils"
+        scaffolding_expert["scaffolding-expert (1.0.0)"]
+        youtube_transcript["youtube-transcript (1.0.0)"]
+    end
+
+    subgraph "Navigation & Orchestration"
+        swarm_facilitator["swarm-facilitator (1.1.0)"]
+    end
 
     %% Relations
-    api_architect --(uses)--> architecture
+    api_architect --(references)--> architecture
+    django_expert --(references)--> python_uv
+    fastapi_expert --(references)--> architecture
+    fastapi_expert --(references)--> python_uv
+    golang_expert --(references)--> architecture
+    harness_expert --(references)--> sdd
+    knowledge_architect --(references)--> harness_expert
+    onboarding_navigator --(references)--> architecture
+    python_uv --(references)--> django_expert
+    python_uv --(references)--> fastapi_expert
+    swarm_facilitator --(references)--> api_architect
+    swarm_facilitator --(references)--> architecture
+    swarm_facilitator --(references)--> brainstorming
+    swarm_facilitator --(references)--> clean_code_mentor
+    swarm_facilitator --(references)--> fastapi_expert
+    swarm_facilitator --(references)--> flutter_fvm
+    swarm_facilitator --(references)--> harness_expert
+    swarm_facilitator --(references)--> observability_expert
+
+    %% Styling
+    style api_architect fill:#f3e5f5,stroke:#4a148c
+    style architecture fill:#f3e5f5,stroke:#4a148c
+    style clean_code_mentor fill:#f3e5f5,stroke:#4a148c
+    style azure_devops fill:#e8f5e9,stroke:#1b5e20
+    style django_expert fill:#e8f5e9,stroke:#1b5e20
+    style fastapi_expert fill:#e8f5e9,stroke:#1b5e20
+    style golang_expert fill:#e8f5e9,stroke:#1b5e20
+    style observability_expert fill:#e8f5e9,stroke:#1b5e20
+    style brainstorming fill:#e1f5fe,stroke:#01579b
+    style flutter_fvm fill:#e1f5fe,stroke:#01579b
+    style knowledge_architect fill:#e1f5fe,stroke:#01579b
+    style onboarding_navigator fill:#e1f5fe,stroke:#01579b
+    style python_uv fill:#e1f5fe,stroke:#01579b
+    style sdd fill:#e1f5fe,stroke:#01579b
+    style skill_factory fill:#e1f5fe,stroke:#01579b
+    style scaffolding_expert fill:#fff3e0,stroke:#e65100
+    style youtube_transcript fill:#fff3e0,stroke:#e65100
+    style swarm_facilitator fill:#fce4ec,stroke:#880e4f
+
+    %% Legend
+    subgraph "Legenda"
+        L1[🛡️ SDD Compliant]
+        L2[Uses: Dependência Direta]
+        L3[References: Menção em Docs]
+    end
