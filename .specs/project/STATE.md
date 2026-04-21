@@ -11,6 +11,11 @@
     - Adicionado templates Mermaid e Copier em `knowledge-architect` e `scaffolding-expert`.
 - [x] **Full Hub Audit**: Realizada auditoria estrutural e de versionamento. Todas as 20 skills PASS.
 - [x] **Knowledge Map Upgrade**: Atualizado para refletir a nova densidade de recursos.
+- [x] **Integrity Audit (v3.3.1)**:
+    - Realizada auditoria profunda em todas as 20 skills.
+    - Corrigida ausência de SDD Hooks em `onboarding-navigator` e `sdd`.
+    - Padronizados badges 🛡️ no `KNOWLEDGE-MAP.mermaid`.
+    - Gerado `audit_report.md` com findings estruturais.
 - [x] **Memory Sync**: Resolvido Context Drift via atualização de STATE/LEARNINGS.
 
 ## Bloqueios / Próximos Passos

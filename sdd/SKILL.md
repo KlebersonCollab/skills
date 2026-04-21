@@ -11,6 +11,13 @@ category: development-workflow
 
 ---
 
+## 🔒 Prerequisites (Mandatory)
+O SDD é o framework de governança deste Hub. Para operá-lo:
+1. **Memory Sync**: O estado atual (`STATE.md`) reflete a realidade do código?
+2. **Scope Awareness**: A complexidade da tarefa foi classificada via tabela de Auto-Sizing?
+
+---
+
 ## Goal
 
 O SDD tem como objetivo garantir precisão, rastreabilidade e integridade no ciclo de vida de desenvolvimento de software, transformando requisitos ambíguos em código verificado e documentado através de um workflow modular e adaptativo, agora potencializado pelos princípios de **Harness Engineering**.

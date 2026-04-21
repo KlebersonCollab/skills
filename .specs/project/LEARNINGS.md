@@ -59,3 +59,8 @@
 - **Learning**: Uma skill sem exemplos práticos e referências externas é 50% menos eficaz para um agente de IA. A densidade de contexto (pasta `examples/` e `references/`) permite que o agente entenda não apenas *o que* fazer, mas *como* fazer seguindo padrões de mercado.
 - **Pattern**: O uso de diretórios padronizados (`references/`, `resources/`, `examples/`) em todas as skills cria uma interface de navegação previsível para o agente, reduzindo a latência de busca por informação.
 - **Transcrições de Alta Qualidade**: A integração do `yt-dlp` com scripts de limpeza (`transcript-cleaner.py`) resolve o problema de ruído em legendas automáticas, transformando conteúdo bruto em base de conhecimento estruturada.
+
+### [2026-04-21] Governance Hooks & Visual Consistency
+- **Learning**: Mesmo skills de "governança" (como SDD e Onboarding) devem conter a seção de pré-requisitos mandatórios. Isso reforça o dogfooding e garante que o agente nunca pule o ciclo de vida da sessão, independentemente de quão "meta" seja a tarefa.
+- **Pattern**: O uso de badges visuais (🛡️) no Knowledge Map serve como um sensor de conformidade rápido. Se uma skill está no hub mas não tem o badge, ela é tecnicamente uma "Dívida Técnica" de documentação.
+- **Audit Automation**: A transição de scripts isolados para um `Makefile` + `utils.py` reduziu significativamente a entropia do projeto, permitindo auditorias atômicas e seguras.
