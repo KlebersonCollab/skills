@@ -54,3 +54,8 @@
 - **Type Hints Gap**: Nenhum script usa type hints, dificultando análise estática e refatoração segura.
 - **Emoji Portability**: Uso de emojis em logs pode quebrar em terminais/CI específicos. Migrar para logging estruturado.
 
+
+### [2026-04-21] Skill Enrichment & Content Density
+- **Learning**: Uma skill sem exemplos práticos e referências externas é 50% menos eficaz para um agente de IA. A densidade de contexto (pasta `examples/` e `references/`) permite que o agente entenda não apenas *o que* fazer, mas *como* fazer seguindo padrões de mercado.
+- **Pattern**: O uso de diretórios padronizados (`references/`, `resources/`, `examples/`) em todas as skills cria uma interface de navegação previsível para o agente, reduzindo a latência de busca por informação.
+- **Transcrições de Alta Qualidade**: A integração do `yt-dlp` com scripts de limpeza (`transcript-cleaner.py`) resolve o problema de ruído em legendas automáticas, transformando conteúdo bruto em base de conhecimento estruturada.

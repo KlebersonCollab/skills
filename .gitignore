@@ -11,3 +11,5 @@
 # Build and artifacts
 artifacts/
 dist_staging/
+
+.agents/
