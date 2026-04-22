@@ -76,14 +76,25 @@ def generate_knowledge_map():
             dep_id = dep.replace("-", "_")
             relations.add(f"{skill_id} --(uses)--> {dep_id}")
 
-        # 3. Detecção de Relações (Implícitas via Menções)
+        references = meta.get("references", [])
+        if isinstance(references, str): references = [references]
+        
+        for ref in references:
+            ref_id = ref.replace("-", "_")
+            relations.add(f"{skill_id} --(references)--> {ref_id}")
+
+        # 3. Detecção de Relações (Implícitas via Menções - Fallback)
         for other in skills:
             if other.name != skill_path.name:
                 # Procura menção ao nome da outra skill com word boundaries
                 pattern = rf"\b{re.escape(other.name)}\b"
                 if re.search(pattern, skill_md_content):
                     other_id = other.name.replace("-", "_")
-                    relations.add(f"{skill_id} --(references)--> {other_id}")
+                    # Se já não houver uma relação explícita, a gente marca implícita
+                    explicit_rel = f"{skill_id} --(references)--> {other_id}"
+                    explicit_use = f"{skill_id} --(uses)--> {other_id}"
+                    if explicit_rel not in relations and explicit_use not in relations:
+                        relations.add(explicit_rel)
 
     # 4. Construção do Mermaid
     mermaid = ["graph TD", "    %% Nodes and Hierarchical Grouping"]
