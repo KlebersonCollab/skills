@@ -15,7 +15,10 @@
     - Criada nova skill especializada em QA e Testes para Go.
     - Implementados padrões de TDD, Table-Driven Tests, Mocks, Benchmarks e Fuzzing.
     - Integrada como sub-skill da `golang-expert`.
-- [x] **Git Workflow Integration (v1.0.0)**:
+- [x] **Governance Hardening (v1.0.0)**:
+    - Endurecida a Fase 3 do SDD com mandatos proibitivos de Git e Testes.
+    - Atualizado o Onboarding Navigator para incluir auditoria de commits no Exit Gate.
+    - Estabelecida a atomicidade mandatória de commits por tarefa no tasks.md.
     - Importada skill original da ECC e traduzida para PT-BR.
     - Integrado workflow Git com o ciclo SDD (Commits por Task, Atomicidade).
     - Criados guias de referência para Conventional Commits e Branching Strategies.

@@ -74,3 +74,8 @@
 - **Learning**: No Go, a simplicidade e a composição são os pilares da manutenibilidade. Adotar padrões como "Accept Interfaces, Return Structs" e "Zero Value Useful" reduz drasticamente a necessidade de mocks complexos e inicializações verbosas, tornando o sistema mais resiliente e fácil de entender.
 - **Pattern (Interface Decoupling)**: Definir interfaces no lado do consumidor (Consumer-Defined Interfaces) é a chave para o desacoplamento real em Go, permitindo que diferentes implementações satisfaçam os requisitos sem que o provedor precise conhecer o contrato.
 - **Enforcement (Concurrency Safety)**: A adoção do `errgroup` simplifica a orquestração de goroutines e garante que erros em fluxos paralelos não sejam perdidos, elevando o padrão de segurança de concorrência do Hub.
+
+### [2026-04-22] SDD-Git Compliance & Mandatory Rigor
+- **Learning**: O rigor técnico não é opcional. A ausência de mandatos proibitivos explícitos pode levar ao relaxamento de workflows críticos (como commits atômicos por task). A governança deve ser codificada como um "guardrail" intransponível, não apenas uma recomendação.
+- **Pattern (Atomic Cycle)**: O ciclo `Task -> Test -> Commit` deve ser o átomo indivisível do desenvolvimento. Qualquer marcação de progresso no `tasks.md` sem os artefatos de validação (testes) e persistência (git) correspondentes é uma falha de integridade.
+- **Enforcement (Prohibitive Mandates)**: Inserir mandatos proibitivos ("NUNCA...") nas skills core (`sdd`) é mais eficaz para a consistência do Hub do que diretrizes passivas, pois cria um Exit Gate claro para a inteligência do agente.
