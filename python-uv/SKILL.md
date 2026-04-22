@@ -1,7 +1,7 @@
 ---
 name: python-uv
-version: 2.6.0
-description: "Skill para desenvolvimento Python profissional com UV. Use para gerenciar dependências e ambientes. Para desenvolvimento de APIs ou Web, utilize em conjunto com as skills 'fastapi-expert' ou 'django-expert'."
+version: 3.0.0
+description: "Skill de nível EXPERT para desenvolvimento Python profissional com UV. Engloba gerenciamento de ambientes, padrões idiomáticos (Clean Code) e testes avançados com Pytest."
 category: development-workflow
 ---
 
@@ -22,7 +22,7 @@ Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execuç�
 ---
 ## Goal
 
-Capacitar o agente a gerenciar projetos Python com performance extrema utilizando o **UV**. A skill unifica o gerenciamento de pacotes, versões de Python e ambientes virtuais em um workflow único, rápido e determinístico.
+Capacitar o agente a desenvolver aplicações Python de nível profissional, utilizando o **UV** para performance extrema e aplicando padrões de excelência em codificação (Idioms/Patterns) e rigor técnico em testes (TDD/Pytest). A skill unifica o gerenciamento de pacotes, padrões idiomáticos e qualidade de software em um workflow único e determinístico.
 
 ---
 
@@ -430,9 +430,11 @@ Esta skill inclui documentação de referência detalhada:
 1. **[Installation & Setup](references/installation-and-setup.md)** — Instalação cross-platform, virtual environments, troubleshooting
 2. **[Project Management](references/project-management.md)** — Init, dependências, lockfile, workspaces, estrutura de projeto
 3. **[Tool Management](references/tool-management.md)** — `uv tool install` vs `uvx`, decision matrix, manutenção
-4. **[Inline Script Metadata](references/inline-script-metadata.md)** — PEP 723, scripts self-contained, exemplos práticos
-5. **[Python Environment](references/python-environment.md)** — Versões, Python 3.14, free-threaded Python, paths
-6. **[CI/CD Workflows](references/ci-cd-workflows.md)** — GitHub Actions, Docker, packaging, publicação
+4. **[Python Patterns](references/patterns.md)** — [NOVO] Padrões idiomáticos, performance, EAFP, Modern Type Hints, __slots__
+5. **[Advanced Testing](references/testing.md)** — [NOVO] TDD, Pytest Mastery, Fixtures, Mocking, Cobertura
+6. **[Inline Script Metadata](references/inline-script-metadata.md)** — PEP 723, scripts self-contained, exemplos práticos
+7. **[Python Environment](references/python-environment.md)** — Versões, Python 3.14, free-threaded Python, paths
+8. **[CI/CD Workflows](references/ci-cd-workflows.md)** — GitHub Actions, Docker, packaging, publicação
 
 ---
 
