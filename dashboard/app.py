@@ -122,19 +122,22 @@ with tab2:
     st.markdown("### Mapa de Conhecimento Relacional")
     st.caption("Visão interativa gerada dinamicamente pelo Automated Distiller")
     
+    import base64
+    import json
     import streamlit.components.v1 as components
     
-    mermaid_html = f"""
-    <div style="background-color: transparent;">
-        <script type="module">
-          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-          mermaid.initialize({{ startOnLoad: true, theme: 'dark' }});
-        </script>
-        <div class="mermaid">
-{mermaid_code}
-        </div>
-    </div>
-    """
+    # Criamos um Payload JSON válido para o Mermaid Live Viewer que possui Zoom/Pan nativo
+    state = {
+        "code": mermaid_code,
+        "mermaid": '{\n  "theme": "dark"\n}',
+        "autoSync": True,
+        "updateDiagram": True
+    }
     
-    # Renderiza o Mermaid usando Component HTML customizado e o script oficial (100% confiável)
-    components.html(mermaid_html, height=1200, scrolling=True)
+    json_state = json.dumps(state)
+    # Mermaid Live espera Base64 URL-safe do JSON
+    encoded = base64.urlsafe_b64encode(json_state.encode('utf-8')).decode('ascii')
+    live_url = f"https://mermaid.live/view#base64:{encoded}"
+    
+    # Renderizamos via IFrame puro (conforme recomendação do Streamlit) para liberar interatividade total
+    components.iframe(live_url, height=800, scrolling=True)
