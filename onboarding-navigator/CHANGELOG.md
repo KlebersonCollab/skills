@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-04-22
+### Added
+- **Harness Engineering Strategy**: Inclusão de orientações sobre loops GAN e qualidade adversarial na matriz de decisão.
+- **Evolução de Fluxos**: Atualização dos fluxos de trabalho recomendados para incluir o "Power-up" de qualidade da `harness-expert`.
+
 ## [1.2.1] - 2026-04-20
 ### Fixed
 - Auditoria de sincronização: Corrigida a contagem total de skills de 18 para 20 em toda a documentação.

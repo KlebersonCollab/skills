@@ -1,7 +1,7 @@
 ---
 name: sdd
-version: 1.4.0
-description: Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate.
+version: 1.5.0
+description: Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and GAN-style Adversarial Review.
 category: development-workflow
 ---
 
@@ -22,7 +22,7 @@ Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execuç�
 ---
 ## Goal
 
-O SDD tem como objetivo garantir precisão, rastreabilidade e integridade no ciclo de vida de desenvolvimento de software, transformando requisitos ambíguos em código verificado e documentado através de um workflow modular e adaptativo, agora potencializado pelos princípios de **Harness Engineering**.
+O SDD tem como objetivo garantir precisão, rastreabilidade e integridade no ciclo de vida de desenvolvimento de software, transformando requisitos ambíguos em código verificado e documentado através de um workflow modular e adaptativo, agora potencializado pelos princípios de **Harness Engineering** e loops adversariais (**GAN-style**).
 
 ---
 
@@ -36,7 +36,7 @@ The depth of the workflow is determined by the **Complexity** of the task, not a
 | **Small** | Clear feature, <5 tasks | (Spec) + Impl + Verify | `sdd-orchestrator`, `sdd-implementer` | `spec/` |
 | **Medium** | Feature + UI, <10 tasks | Explorer + Spec (BDD) + Plan + **Contract** + Impl + Verify | `sdd-explorer`, `sdd-orchestrator` | `spec/` |
 | **Large** | Multi-component, new module | Planner + Explorer + RFC + Spec + Plan + **Contract** + Impl + Verify | All modules | `.specs/` |
-| **Complex** | Ambiguity, high risk | Same as Large + PRD Audit + Score Review | All modules + `sdd-reviewer` | `.specs/` |
+| **Complex** | Ambiguity, high risk | Same as Large + GAN Adversarial Loop + Score Review | All modules + `harness-expert` | `.specs/` |
 
 ---
 
@@ -63,10 +63,11 @@ O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 2.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes.
 
 ### Fase 4: REVIEW — Auditoria e Finalização
-1.  **Veredito via Sensores**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md` e o `contract.md`, utilizando feedback de ferramentas (testes, linters).
-2.  **Score Report**: Gerar o relatório de validação com pontuação de 0-100.
-3.  **UAT**: Validar com o usuário se os critérios de aceitação (BDD) foram atendidos.
-4.  **Persistência**: Atualizar os logs de memória e estado no Planner antes do encerramento.
+1.  **Adversarial Review (GAN)**: Para tarefas **Large/Complex**, utilizar a skill `harness-expert` para executar o loop Gerador-Avaliador até atingir a nota de corte (Default: 7.0).
+2.  **Veredito via Sensores**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md` e o `contract.md`.
+3.  **Score Report**: Gerar o relatório de validação (`validation-report.md`) com pontuação de 0-100 e rubrica GAN.
+4.  **UAT**: Validar com o usuário se os critérios de aceitação (BDD) foram atendidos.
+5.  **Persistência**: Atualizar os logs de memória e estado no Planner antes do encerramento.
 
 ---
 
@@ -79,6 +80,7 @@ This skill delegates tasks to specialized sub-skills for maximum scalability:
 - **[Orchestrator](sdd-orchestrator.skill.md)**: Translates requirements (PRD) into technical specifications (`spec.md` com BDD, `plan.md`/`RFC`).
 - **[Implementer](sdd-implementer.skill.md)**: Writes atomic, test-driven code and manages git commits.
 - **[Reviewer](sdd-reviewer.skill.md)**: Audits implementation against BDD scenarios with evidence.
+- **[Harness](harness-expert.skill.md)**: Drives the adversarial quality loop and state management.
 
 ---
 

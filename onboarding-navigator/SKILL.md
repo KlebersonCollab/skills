@@ -1,7 +1,7 @@
 ---
 name: onboarding-navigator
-version: 1.2.1
-description: "Guia mestre do Hub de Skills. Fornece overview de todas as habilidades locais, mentoria cultural e suporte à navegação técnica no ecossistema do projeto."
+version: 1.3.0
+description: "Guia mestre do Hub de Skills. Fornece overview de todas as habilidades locais, mentoria cultural e suporte à navegação técnica no ecossistema do projeto, incluindo fluxos avançados de Harness Engineering."
 category: project-management
 ---
 

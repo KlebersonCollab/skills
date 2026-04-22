@@ -6,6 +6,12 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
+## [1.5.0] - 2026-04-22
+
+### Adicionado
+- **GAN Adversarial Review**: Integração do loop de feedback adversarial na Fase 4 (Review) para tarefas Complexas.
+- **Rubrica de Qualidade Visual/Técnica**: Adoção da rubrica de 4 pilares (Design, Craft, Originality, Functionality) vinda do Harness Engineering.
+
 ## [1.4.0] - 2026-04-16
  — 2026-04-18
 

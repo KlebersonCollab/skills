@@ -6,6 +6,12 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
+## [2.1.0] - 2026-04-22
+
+### Adicionado
+- **GAN-style Feedback Loop**: Implementação do ciclo adversarial entre Gerador e Avaliador para tarefas Large/Complex.
+- **Rubrica de Avaliação**: Nova matriz de pontuação (Design, Craft, Originality, Functionality) com meta de Score >= 7.0.
+
 ## [2.0.0] - 2026-04-20
 
 ### Alterado

@@ -1,7 +1,7 @@
 ---
 name: harness-expert
-version: 2.0.0
-description: "Motor técnico para Harness Engineering. Fornece ferramentas para gestão de estado, memória e automação de loops de feedback operando sob o sdd-planner."
+version: 2.1.0
+description: "Motor técnico para Harness Engineering. Implementa loops de feedback adversariais (GAN-style) para garantir qualidade de produção, além de gestão de estado e determinismo."
 category: agentic-infrastructure
 ---
 
@@ -14,36 +14,59 @@ Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execuç�
 5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
 
 ---
-# Harness Expert
+# Harness Expert (v2.1.0)
 
-> "Se você não é o modelo, então você é o harness." — Infraestrutura de suporte para transformar LLMs em agentes operacionais.
+> "Se você não é o modelo, então você é o harness." — Infraestrutura de suporte para transformar LLMs em agentes operacionais de alta performance.
 
 ---
 
 ## Goal
 
-O objetivo desta skill é fornecer o "maquinário" (CLI, scripts, automação) para que o **SDD Planner** execute suas diretrizes. Enquanto o Planner define o *quê* e o *porquê*, o Harness fornece o *como* técnico para manter o estado determinístico e loops de feedback fechados.
+O objetivo desta skill é fornecer o "maquinário" (CLI, scripts, automação) para que o **SDD Planner** execute suas diretrizes. Enquanto o Planner define o *quê* e o *porquê*, o Harness fornece o *como* técnico para manter o estado determinístico e fechar loops de feedback adversariais (GAN-style) que garantem que a entrega final seja **production-ready**.
+
+---
+
+## 🔄 GAN-style Feedback Loop (Quality Enforcement)
+
+Para tarefas de alta complexidade (**Large/Complex**), o Harness deve operar em modo **Adversarial**:
+
+| Papel | Responsabilidade | Ferramentas |
+|-------|------------------|-------------|
+| **Generator** | Implementar a feature conforme a Spec e o Plan. | SDD CLI, UV, Frameworks (React, Flutter). |
+| **Evaluator** | Atuar como QA implacável, testando a aplicação viva e rejeitando "AI slop". | Playwright, Screenshotting, Log Analysis. |
+
+### 📊 Evaluation Rubric (Target: Score >= 7.0)
+
+| Critério | Peso | Descrição |
+|----------|------|-----------|
+| **Design Quality** | 0.3 | Coesão visual, ausência de padrões genéricos de IA, estética premium. |
+| **Originality** | 0.2 | Decisões técnicas/visuais criativas e customizadas para o problema. |
+| **Craft** | 0.3 | Polimento, micro-interações, tipografia, espaçamento e performance. |
+| **Functionality** | 0.2 | Funcionamento robusto de todas as features e tratamento de erros. |
 
 ---
 
 ## Workflow (4 Fases)
 
 ### Fase 1: AUTOMATED REHYDRATE — Carregamento Técnico
-1.  **Injeção de Contexto**: Executar scripts de leitura em massa de `.specs/` para reidratar a memória do agente conforme definido pelo `sdd-planner`.
-2.  **Health Check**: Validar se os arquivos de estado (`STATE.md`, `tasks.md`) estão em formato válido.
-3.  **Context Compression**: Utilizar `harness-expert-compress` para reduzir o tamanho da sessão mantendo os tokens críticos.
+1.  **Injeção de Contexto**: Executar scripts de leitura em massa de `.specs/` para reidratar a memória do agente.
+2.  **Health Check**: Validar se os arquivos de estado (`STATE.md`, `tasks.md`) estão íntegros.
+3.  **Context Compression**: Utilizar `harness-expert-compress` para manter os tokens críticos.
 
-### Fase 2: OPERATE — Automação de Execução
-1.  **Tool Orchestration**: Garantir que MCPs e scripts locais sejam invocados com parâmetros de segurança.
-2.  **Harnessing Sub-agents**: Configurar o ambiente para que subagentes especializados operem sem degradar o estado global.
+### Fase 2: OPERATE — Automação de Execução (Generator Mode)
+1.  **Tool Orchestration**: Invocar MCPs e scripts locais conforme o plano.
+2.  **Implementation Loop**: Escrever código focado em passar nos ACs da `spec.md`.
+3.  **Self-Correction**: Corrigir bugs de linter/testes imediatamente via `sdd-implementer`.
 
-### Fase 3: AUTO-SYNC — Sincronização de Máquina
-1.  **CLI Sync**: Utilizar o **SDD CLI** para atualizar atomicamente o status no `tasks.md`.
-2.  **Feedback Loop**: Capturar logs de execução e transcrevê-los para `LEARNINGS.md` se houver falhas recorrentes.
+### Fase 3: ADVERSARIAL REVIEW — Ciclo de Feedback (Evaluator Mode)
+1.  **Live Testing**: Iniciar o servidor de dev e utilizar Playwright para testar fluxos reais.
+2.  **Strict Scoring**: Atribuir notas de 1 a 10 baseadas na rubrica. **NUNCA elogiar trabalho medíocre**.
+3.  **Feedback Iteration**: Gerar o `validation-report.md` com críticas acionáveis para o Generator.
 
-### Fase 4: VALIDATE — Autocorreção e Determinismo
-1.  **Deterministic Checks**: Rodar linters, type-checks e testes unitários de forma automatizada (Exit Gates).
-2.  **Machine Feedback**: O harness deve interpretar logs de erro e propor a correção imediata, fechando o ciclo de desenvolvimento sem intervenção humana.
+### Fase 4: FINAL SYNC — Determinismo e Encerramento
+1.  **Exit Gates**: Garantir que a pontuação GAN atingiu o limiar de aprovação (Default: 7.0).
+2.  **Auto-Sync**: Atualizar `STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
+3.  **Handoff**: Preparar os artefatos de distribuição em `dist/`.
 
 ---
 
