@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-21-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-22-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/KlebersonCollab/skills/generate-skills-artifacts.yml?branch=main&label=Build%20Artifacts)](https://github.com/KlebersonCollab/skills/actions)
 [![Status](https://img.shields.io/badge/Status-Ativo-brightgreen)](#-roadmap)
@@ -66,7 +66,7 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 | 8 | **[Azure DevOps](azure-devops/)** | Gerenciamento profissional de Boards, Repos, Pipelines e Artifacts no AzDO. | `1.1.0` |
 | 9 | **[Clean Code Mentor](clean-code-mentor/)** | Mentor técnico e revisor de código focado em SOLID, YAGNI, DRY e KISS. | `1.0.0` |
 | 10 | **[Observability Expert](observability-expert/)** | Especialista em SRE — Logs Estruturados, OpenTelemetry e Confiabilidade (SLI/SLO). | `1.0.0` |
-| 11 | **[Onboarding Navigator](onboarding-navigator/)** | Guia interativo de cultura e engenharia para novos membros e projetos. | `1.2.1` |
+| 11 | **[Onboarding Navigator](onboarding-navigator/)** | Guia interativo de cultura e engenharia para novos membros e projetos. | `1.3.1` |
 | 12 | **[YouTube Transcript](youtube-transcript/)** | Extração de transcrições de vídeos com fallback para IA (Whisper) e limpeza automática. | `1.0.0` |
 | 13 | **[Harness Expert](harness-expert/)** | Motor técnico para Harness Engineering (Sync, Rehydrate, Automação). | `2.0.0` |
 | 14 | **[Knowledge Architect](knowledge-architect/)** | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | `1.0.0` |
@@ -74,9 +74,10 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 | 16 | **[Django Expert](django-expert/)** | Desenvolvimento profissional com Django — Arquitetura, Segurança e TDD. | `1.5.0` |
 | 17 | **[Swarm Facilitator](swarm-facilitator/)** | Orquestrador de workflows Multi-Agente (Swarm). Define protocolos de handoff. | `1.1.0` |
 | 18 | **[Scaffolding Expert](scaffolding-expert/)** | Gerador dinâmico de projetos. Utiliza CLI tools (uvx copier) para inicializar boilerplates. | `1.0.0` |
-| 19 | **[Golang Expert](golang-expert/)** | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | `1.1.0` |
+| 19 | **[Golang Expert](golang-expert/)** | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | `1.2.0` |
 | 20 | **[Frontend Expert](frontend-expert/)** | Expert em interfaces modernas com React, Next.js e TailwindCSS v4. | `1.1.0` |
 | 21 | **[Git Workflow](git-workflow/)** | Padrões de fluxo de trabalho Git, estratégias de branching e integração com SDD. | `1.0.0` |
+| 22 | **[Golang Testing Expert](golang-testing-expert/)** | Especialista em QA para Go — TDD, Table-Driven Tests, Benchmarks e Fuzzing. | `1.0.0` |
 
 ---
 
