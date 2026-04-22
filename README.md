@@ -71,7 +71,7 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 | 13 | **[Harness Expert](harness-expert/)** | Motor técnico para Harness Engineering (Sync, Rehydrate, Automação). | `2.0.0` |
 | 14 | **[Knowledge Architect](knowledge-architect/)** | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | `1.0.0` |
 | 15 | **[FastAPI Expert](fastapi-expert/)** | Excelência em APIs com FastAPI — performance, Annotated e Pydantic V2. | `1.1.0` |
-| 16 | **[Django Expert](django-expert/)** | Desenvolvimento profissional com Django — ORM Performance e HTMX. | `1.1.0` |
+| 16 | **[Django Expert](django-expert/)** | Desenvolvimento profissional com Django — Arquitetura, Segurança e TDD. | `1.5.0` |
 | 17 | **[Swarm Facilitator](swarm-facilitator/)** | Orquestrador de workflows Multi-Agente (Swarm). Define protocolos de handoff. | `1.1.0` |
 | 18 | **[Scaffolding Expert](scaffolding-expert/)** | Gerador dinâmico de projetos. Utiliza CLI tools (uvx copier) para inicializar boilerplates. | `1.0.0` |
 | 19 | **[Golang Expert](golang-expert/)** | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | `1.1.0` |

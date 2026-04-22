@@ -23,20 +23,51 @@ NUNCA carregue o objeto inteiro se precisar apenas de alguns campos.
 - **`defer(*fields)`**: Carrega todos exceto os especificados.
 - **`values()` / `values_list()`**: Retorna dicionários ou tuplas (muito mais rápido se não precisar dos métodos do modelo).
 
-## 3. QuerySet Managers
+## 3. QuerySet & Managers (Advanced)
 
-Mantenha as queries complexas dentro de `Managers` customizados para garantir DRY.
+Utilize `QuerySet.as_manager()` para encapsular lógica de filtro reutilizável.
 
 ```python
-class ActiveUserManager(models.Manager):
-    def get_queryset(self):
-        return super().get_queryset().filter(is_active=True)
+class ProductQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(is_active=True)
 
-class User(models.Model):
+    def with_category(self):
+        return self.select_related('category')
+
+class Product(models.Model):
     # ...
-    objects = models.Manager()
-    active_objects = ActiveUserManager()
+    objects = ProductQuerySet.as_manager()
 ```
 
-## 4. Bulk Operations
+### Manager Helper Methods
+Adicione métodos utilitários para evitar repetição de `try/except`.
+```python
+class BaseManager(models.Manager):
+    def get_or_none(self, **kwargs):
+        try:
+            return self.get(**kwargs)
+        except self.model.DoesNotExist:
+            return None
+```
+
+## 4. Database Hardening
+Use constraints e índices para garantir integridade e performance no banco.
+
+```python
+class Meta:
+    indexes = [
+        models.Index(fields=['slug']),
+        models.Index(fields=['category', 'is_active']),
+    ]
+    constraints = [
+        models.CheckConstraint(
+            check=models.Q(price__gte=0),
+            name='price_non_negative'
+        )
+    ]
+```
+
+## 5. Bulk Operations
 Sempre use `bulk_create`, `bulk_update` e `QuerySet.update()` para manipulação de grandes volumes de dados.
+

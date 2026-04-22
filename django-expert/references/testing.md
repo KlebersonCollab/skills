@@ -1,46 +1,77 @@
-# Django Testing Reference
+# Django Testing Excellence Reference
 
-O Django possui um ecossistema de testes robusto. Na `django-expert`, padronizamos o uso do `pytest`.
+## 1. Fast Infrastructure
+Reduza o tempo de feedback para o desenvolvedor.
 
-## 1. Setup com Pytest-Django
-
-Evite o `manage.py test` para testes complexos. O `pytest` oferece fixtures muito mais flexíveis.
-
-```bash
-uv add --dev pytest-django factory-boy pytest-cov
-```
-
-No arquivo `pytest.ini`:
+### Pytest Configuration
 ```ini
+# pytest.ini
 [pytest]
-DJANGO_SETTINGS_MODULE = core.settings
-python_files = tests.py test_*.py
+DJANGO_SETTINGS_MODULE = config.settings.test
+addopts = --reuse-db --nomigrations --cov=apps --cov-report=term-missing
 ```
 
-## 2. Factories (Factory Boy)
+### Test Settings (In-Memory)
+```python
+# config/settings/test.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',
+    }
+}
+PASSWORD_HASHERS = ['django.contrib.auth.hashers.MD5PasswordHasher']
+```
 
-NUNCA use fixtures em JSON/YAML. Use Factories para gerar dados dinâmicos e legíveis.
+## 2. Advanced Factories (Factory Boy)
+Elimine a criação manual de dados.
 
 ```python
-import factory
-from apps.users.models import User
-
-class UserFactory(factory.django.DjangoModelFactory):
+class ProductFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = User
+        model = Product
 
-    username = factory.Faker('user_name')
-    email = factory.Faker('email')
+    name = factory.Faker('word')
+    category = factory.SubFactory(CategoryFactory)
+    
+    @factory.post_generation
+    def tags(self, create, extracted, **kwargs):
+        if not create: return
+        if extracted:
+            for tag in extracted: self.tags.add(tag)
 ```
 
-## 3. Testando Views e HTMX
-
-Use o `RequestFactory` ou o `Client` do Django para simular requisições.
+## 3. Mocking & External Services
+Isole sua aplicação do mundo externo.
 
 ```python
-@pytest.mark.django_db
-def test_htmx_partial_return(client):
-    response = client.get('/items/', HTTP_HX_REQUEST='true')
-    assert response.status_code == 200
-    assert 'partials/item_rows.html' in [t.name for t in response.templates]
+@patch('apps.payments.services.stripe.Charge.create')
+def test_successful_payment(self, mock_stripe, client):
+    mock_stripe.return_value = {'id': 'ch_123', 'status': 'succeeded'}
+    # ... executa view ...
+    mock_stripe.assert_called_once()
 ```
+
+## 4. DRF & API Testing
+```python
+@pytest.fixture
+def authenticated_api_client(user):
+    from rest_framework.test import APIClient
+    client = APIClient()
+    client.force_authenticate(user=user)
+    return client
+
+def test_create_product(authenticated_api_client):
+    response = authenticated_api_client.post('/api/products/', {'name': 'New'})
+    assert response.status_code == 201
+```
+
+## 5. Coverage Goals
+Mantenha a qualidade visível.
+
+| Camada | Meta de Cobertura |
+|--------|-------------------|
+| Models | 90%+ |
+| Services | 90%+ |
+| Serializers | 85%+ |
+| Views | 80%+ |

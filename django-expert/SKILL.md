@@ -1,7 +1,7 @@
 ---
 name: django-expert
-version: 1.1.0
-description: "Expert level Django development focused on ORM performance, HTMX patterns, and modern Python-UV deployment."
+version: 1.5.0
+description: "Expert level Django development focused on production architecture, security hardening, testing excellence, and deployment readiness."
 category: development-python
 ---
 
@@ -25,12 +25,14 @@ Prover um framework de decisão para o desenvolvimento de aplicações Django ro
 
 ---
 
-## Workflow (6 Phases)
+## Workflow (12 Phases)
 
-### Phase 1: ENVIRONMENT & SETUP
-Configuração do ecossistema Django via UV.
-- **Rule**: Sempre usar `uv init` e gerenciar `django` e `django-environ` via UV.
+### Phase 1: SETUP & ARCHITECTURE
+Configuração do ecossistema Django via UV e definição da arquitetura.
+- **Rule**: Sempre usar `uv init` e gerenciar dependências via UV.
+- **Architecture**: Adotar o layout `config/` e `apps/` com **Split Settings**.
 - **Mandate**: Configurar `pyproject.toml` com seções para ferramentas (Ruff, Pytest).
+- **Reference**: Ver [Production Architecture](references/architecture_prod.md).
 
 ### Phase 2: DATA_MODELING (ORM)
 Definição de modelos e migrações.
@@ -48,12 +50,12 @@ Criação da interface de usuário.
 - **Reference**: Ver [HTMX Patterns](references/htmx_patterns.md).
 
 ### Phase 5: TESTING & QUALITY
-Garantia de estabilidade.
+Garantia de estabilidade inicial.
 - **Rule**: Usar `pytest-django` e `factory-boy` para testes rápidos e isolados.
 - **Reference**: Ver [Testing Guide](references/testing.md).
 
 ### Phase 6: SECURITY & DEPLOY
-Preparação para o mundo real.
+Preparação básica para o mundo real.
 - **Check**: Rodar `python manage.py check --deploy`.
 - **Mandate**: Configurar CSRF, HSTS e Session Security.
 
@@ -62,69 +64,57 @@ Cultura de depuração e monitoramento.
 - **Rule**: Seguir o [Systematic Debugging](references/debugging.md).
 - **Logic**: Implementar logs estruturados e monitoramento de tarefas.
 
+### Phase 8: API DEVELOPMENT (DRF)
+Criação de APIs robustas com Django REST Framework.
+- **Rule**: Usar ViewSets e Serializers explícitos para garantir contratos claros.
+- **Mandate**: Implementar autenticação via JWT ou Token e permissões granulares.
+- **Reference**: Ver [API Patterns](references/api_patterns.md).
+
+### Phase 9: CROSS-CUTTING CONCERNS
+Implementação de funcionalidades transversais.
+- **Rule**: Usar Caching para endpoints caros e Signals para efeitos colaterais.
+- **Reference**: Ver [Cross-Cutting Concerns](references/cross_cutting.md).
+
+### Phase 10: SECURITY HARDENING
+Fortalecimento da aplicação contra vulnerabilidades comuns.
+- **Rule**: Implementar Argon2, validadores de senha de 12+ caracteres e RBAC.
+- **Mandate**: Validar tipo e tamanho de todos os arquivos enviados pelo usuário.
+- **Reference**: Ver [Security Hardening](references/security.md).
+
+### Phase 11: CONTINUOUS TESTING & COVERAGE
+Garantia de estabilidade e prevenção de regressões.
+- **Rule**: Seguir o workflow TDD (Red-Green-Refactor) via Pytest.
+- **Mandate**: NUNCA usar fixtures JSON/YAML; usar exclusivamente Factories.
+- **Coverage**: Manter cobertura > 90% em Models e Services.
+- **Reference**: Ver [Testing Excellence](references/testing.md).
+
+### Phase 12: DEPLOYMENT READINESS & VERIFICATION
+Loop final de qualidade antes da entrega.
+- **Rule**: Rodar checklist de deploy e auditoria de segurança (pip-audit).
+- **Mandate**: Nenhuma PR deve ser aceita sem passar no `ruff check` e `mypy`.
+- **Reference**: Ver [Deployment & Verification](references/verification.md).
+
 ---
 
 ## Key Patterns
 
 ### 1. N+1 Avoidance
 Sempre utilize `select_related` (FKs) e `prefetch_related` (M2M) para otimizar queries.
-```python
-# DO THIS
-users = User.objects.select_related('profile').all()
-
-# NOT THIS
-users = User.objects.all() # Cada acesso a user.profile gerará uma nova query
-```
 
 ### 2. Modern UI with HTMX
-```html
-<button hx-post="/add-item/" hx-target="#item-list" hx-swap="beforeend">
-    Add Item
-</button>
-```
+Interfaces reativas sem a complexidade de SPAs.
+
+### 3. API Patterns (DRF)
+Contratos claros e segurança em primeiro lugar.
 
 ---
 
 ## Quality Rules
 
-- **Code Style (Ruff)**: Utilizar Ruff para linting e formatação automática.
+- **Code Quality**: Usar **Ruff** para linting e **Mypy** para verificação de tipos.
 - **DRY ORM**: Consultas complexas devem residir em Custom Managers.
-- **Service Layer**: Toda lógica que envolve múltiplos modelos ou efeitos colaterais deve estar em `services.py`.
-- **HTMX Fragments**: Templates devem ser modulares para permitir retornos parciais.
-
-## Prohibited
-
-- NUNCA usar `null=True` em CharField ou TextField (usar default vazio).
-- NUNCA realizar queries dentro de loops (usar `select_related` / `prefetch_related`).
-- NUNCA colocar chaves secretas ou credenciais no código (usar `django-environ`).
-- NUNCA ignorar falhas de tarefas em background (implementar Retries).
-
-## Output Structure
-
-| Artefato | Localização | Descrição |
-|----------|-------------|-----------|
-| **Core Settings** | `core/settings.py` | Configurações divididas via variáveis de ambiente. |
-| **Services** | `apps/<app>/services.py` | Camada de lógica de negócio pura. |
-| **Partial Templates** | `templates/partials/` | Fragmentos HTML para uso com HTMX. |
-| **Tasks** | `apps/<app>/tasks.py` | Definição de tarefas Celery. |
-
-## Detailed References
-
-| Guia | Tópico |
-|------|--------|
-| [ORM Performance](references/orm_performance.md) | Otimização de queries e Managers. |
-| [HTMX Patterns](references/htmx_patterns.md) | Fragmentos e interações dinâmicas. |
-| [Background Tasks](references/background_tasks.md) | Celery, Redis e Idempotência. |
-| [Forms & Validation](references/forms.md) | Validação avançada e ModelForms. |
-| [Testing](references/testing.md) | Pytest-django e Factories. |
-| [Debugging](references/debugging.md) | Depuração sistemática e Logs. |
-| [Security](references/security.md) | Checklist de deploy e segurança. |
-
-## Quality Rules
-
-- **DRY ORM**: Consultas complexas devem residir em Custom Managers.
-- **Service Layer**: Toda lógica que envolve múltiplos modelos ou efeitos colaterais deve estar em `services.py`.
-- **HTMX Fragments**: Templates devem ser modulares para permitir retornos parciais.
+- **Service Layer**: Toda lógica complexa deve estar em `services.py`.
+- **HTMX Fragments**: Templates modulares para retornos parciais.
 - **Strict Testing**: Todo Bug fix deve vir acompanhado de um teste de regressão.
 
 ## Prohibited
@@ -132,4 +122,27 @@ users = User.objects.all() # Cada acesso a user.profile gerará uma nova query
 - NUNCA usar `null=True` em CharField ou TextField (usar default vazio).
 - NUNCA realizar queries dentro de loops (usar `select_related` / `prefetch_related`).
 - NUNCA colocar chaves secretas ou credenciais no código (usar `django-environ`).
+- NUNCA importar signals fora do método `ready()` do `AppConfig`.
+- NUNCA usar `mark_safe` em input de usuário sem escape prévio.
+- NUNCA concatenar variáveis diretamente em queries SQL brutas.
+- NUNCA submeter código sem testes de unidade para novas funcionalidades.
+- NUNCA realizar chamadas externas reais em ambiente de teste (usar Mocks).
 - NUNCA expor o `id` sequencial do banco em URLs públicas se a segurança for crítica (usar UUID).
+
+---
+
+## Output Structure
+
+| Guia | Descrição |
+|------|-----------|
+| [ORM Performance](references/orm_performance.md) | Otimização de queries e Managers. |
+| [Architecture Prod](references/architecture_prod.md) | Layout apps/ e Split Settings. |
+| [API Patterns](references/api_patterns.md) | DRF, ViewSets e Serializers. |
+| [Security Hardening](references/security.md) | Argon2, RBAC e File Security. |
+| [Testing Excellence](references/testing.md) | Factories, Pytest e Mocking. |
+| [Deployment & Verification](references/verification.md) | Ruff, Mypy e Checklists. |
+| [Cross-Cutting](references/cross_cutting.md) | Caching, Signals e Middleware. |
+| [HTMX Patterns](references/htmx_patterns.md) | Fragmentos e interações dinâmicas. |
+| [Background Tasks](references/background_tasks.md) | Celery, Redis e Idempotência. |
+| [Forms & Validation](references/forms.md) | Validação avançada e ModelForms. |
+| [Debugging](references/debugging.md) | Depuração sistemática e Logs. |

@@ -26,8 +26,6 @@
 - **Workflow Automation with Makefile**: A criação de um Makefile centralizado reduz a carga cognitiva do desenvolvedor e garante que processos complexos (como o sync de mandatos e geração de dist) sejam executados de forma idêntica por qualquer agente ou humano.
 - **Automated Knowledge Mapping**: O script `generate_knowledge_map.py` permite visualizar a topologia do projeto e dependências entre skills e features em tempo real, facilitando a análise de impacto em refatorações.
 
-
-
 ### [2026-04-19] Validação Rigorosa de Changelog
 - **Ocorrência**: Falha no pipeline devido ao formato de data no CHANGELOG.md.
 - **Solução**: O validador local exige estritamente o formato '## [X.Y.Z] - YYYY-MM-DD' (com hífen simples e espaços). O uso de travessão (—) ou formatos alternativos resulta em FAIL.
@@ -47,20 +45,14 @@
 - **The v2.0 Milestone**: A transição para um ecossistema determinístico (Bootstrap/Exit Gates) elimina a necessidade de "torcer" para que o agente siga os padrões. A governança agora está codificada no ciclo de vida da sessão.
 
 ### [2026-04-20] Code Audit Findings (Full Hub)
-- **Duplication Crisis**: Skills estão duplicadas em ~5 localizações (`.agent/skills/`, `.gemini/skills/`, `.claude/skills/`, `dist_staging/`, `.claude/worktrees/`). Isso viola DRY e cria risco de inconsistência de versão.
+- **Duplication Crisis**: Skills estão duplicadas em ~5 localizações (`.agent/skills/`, `.gemini/skills/`, `.claude/skills/`, `dist_staging/`, `.claude/worktrees/`). Isso viola DRY e cria risco de inconsistência de versionamento.
 - **Safe File Operations**: O script `sync_mandates.py` usa `shutil.rmtree` antes de `copytree`, criando risco de perda de dados se houver interrupção. Solução: usar TemporaryDirectory com transação segura.
 - **Code Sharing Opportunity**: A lógica de walking de diretórios e listas de exclude está replicada em 4+ scripts. Criar `scripts/utils.py` compartilhado resolveria.
-- **SOLID Violation**: `validate_skills.py` tem responsabilidade única demais (-structural + version + changelog). Refatorar em classes separadas.
-- **Type Hints Gap**: Nenhum script usa type hints, dificultando análise estática e refatoração segura.
-- **Emoji Portability**: Uso de emojis em logs pode quebrar em terminais/CI específicos. Migrar para logging estruturado.
-
 
 ### [2026-04-21] Skill Enrichment & Content Density
 - **Learning**: Uma skill sem exemplos práticos e referências externas é 50% menos eficaz para um agente de IA. A densidade de contexto (pasta `examples/` e `references/`) permite que o agente entenda não apenas *o que* fazer, mas *como* fazer seguindo padrões de mercado.
 - **Pattern**: O uso de diretórios padronizados (`references/`, `resources/`, `examples/`) em todas as skills cria uma interface de navegação previsível para o agente, reduzindo a latência de busca por informação.
-- **Transcrições de Alta Qualidade**: A integração do `yt-dlp` com scripts de limpeza (`transcript-cleaner.py`) resolve o problema de ruído em legendas automáticas, transformando conteúdo bruto em base de conhecimento estruturada.
 
-### [2026-04-21] Governance Hooks & Visual Consistency
-- **Learning**: Mesmo skills de "governança" (como SDD e Onboarding) devem conter a seção de pré-requisitos mandatórios. Isso reforça o dogfooding e garante que o agente nunca pule o ciclo de vida da sessão, independentemente de quão "meta" seja a tarefa.
-- **Pattern**: O uso de badges visuais (🛡️) no Knowledge Map serve como um sensor de conformidade rápido. Se uma skill está no hub mas não tem o badge, ela é tecnicamente uma "Dívida Técnica" de documentação.
-- **Audit Automation**: A transição de scripts isolados para um `Makefile` + `utils.py` reduziu significativamente a entropia do projeto, permitindo auditorias atômicas e seguras.
+### [2026-04-22] Consolidação de Skills "Expert"
+- **Learning**: Integrar conhecimentos de múltiplas fontes externas (Patterns, Security, TDD, Verification) em uma única skill "Expert" local reduz drasticamente a alternância de contexto e cria um "Standard de Ouro" robusto.
+- **Pattern**: O workflow em 12 fases (do Setup ao Verification) garante que nenhum pilar técnico seja negligenciado durante o ciclo de vida do desenvolvimento.
