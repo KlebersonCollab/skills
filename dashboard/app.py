@@ -5,16 +5,16 @@ from pathlib import Path
 # Configurações raiz
 root_dir = Path(__file__).parent.parent
 sys.path.append(str(root_dir))
-from scripts.utils import get_all_skills, get_skill_metadata
+from scripts.utils import get_all_skills, get_skill_metadata  # noqa: E402
 
 # ==========================================
 # 🎨 1. PAGE CONFIG & CUSTOM STYLING (CSS)
 # ==========================================
 st.set_page_config(
-    page_title="AI Skills Hub", 
-    page_icon="⚡", 
+    page_title="AI Skills Hub",
+    page_icon="⚡",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="collapsed",
 )
 
 # Injeção de CSS para Glassmorphism e tipografia limpa
@@ -72,7 +72,9 @@ skills = get_all_skills(root_dir)
 total_skills = len(skills)
 
 mermaid_path = root_dir / "KNOWLEDGE-MAP.mermaid"
-mermaid_code = mermaid_path.read_text() if mermaid_path.exists() else "graph TD\n A[Sem Mapa]"
+mermaid_code = (
+    mermaid_path.read_text() if mermaid_path.exists() else "graph TD\n A[Sem Mapa]"
+)
 
 # ==========================================
 # 🖥️ 3. UI LAYOUT
@@ -93,25 +95,25 @@ tab1, tab2 = st.tabs(["🧩 Catálogo de Skills", "🕸️ Architecture Graph"])
 
 with tab1:
     st.markdown("### Navegação Rápida")
-    
+
     # Grid dinâmico para cards de skills
     cols = st.columns(2)
-    
+
     for i, skill_path in enumerate(skills):
         meta = get_skill_metadata(skill_path)
-        name = meta.get('name', skill_path.name)
-        version = meta.get('version', '0.0.0')
-        category = meta.get('category', 'Geral')
-        desc = meta.get('description', 'Sem descrição.')
-        
+        name = meta.get("name", skill_path.name)
+        version = meta.get("version", "0.0.0")
+        category = meta.get("category", "Geral")
+        desc = meta.get("description", "Sem descrição.")
+
         # Aloca iterativamente entre a Coluna 1 e Coluna 2
         col_dest = cols[0] if i % 2 == 0 else cols[1]
-        
+
         with col_dest:
             with st.expander(f"📦 {name} (v{version})"):
                 st.markdown(f"**Categoria**: `{category}`")
                 st.write(f"_{desc}_")
-                
+
                 uses = meta.get("uses", [])
                 if uses:
                     st.markdown("**Depende de:**")
@@ -121,23 +123,23 @@ with tab1:
 with tab2:
     st.markdown("### Mapa de Conhecimento Relacional")
     st.caption("Visão interativa gerada dinamicamente pelo Automated Distiller")
-    
+
     import base64
     import json
     import streamlit.components.v1 as components
-    
+
     # Criamos um Payload JSON válido para o Mermaid Live Viewer que possui Zoom/Pan nativo
     state = {
         "code": mermaid_code,
         "mermaid": '{\n  "theme": "dark"\n}',
         "autoSync": True,
-        "updateDiagram": True
+        "updateDiagram": True,
     }
-    
+
     json_state = json.dumps(state)
     # Mermaid Live espera Base64 URL-safe do JSON
-    encoded = base64.urlsafe_b64encode(json_state.encode('utf-8')).decode('ascii')
+    encoded = base64.urlsafe_b64encode(json_state.encode("utf-8")).decode("ascii")
     live_url = f"https://mermaid.live/view#base64:{encoded}"
-    
+
     # Renderizamos via IFrame puro (conforme recomendação do Streamlit) para liberar interatividade total
     components.iframe(live_url, height=800, scrolling=True)
