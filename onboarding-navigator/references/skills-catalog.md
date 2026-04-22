@@ -74,7 +74,7 @@ flowchart TD
 | **[Python com UV](python-uv/)** | `2.6.0` | Desenvolvimento Python profissional com UV. | Em tarefas macro envolvendo Python. |
 | **[FastAPI Expert](fastapi-expert/)** | `1.1.0` | Desenvolvimento avançado de APIs assíncronas com FastAPI e Pydantic. | Ao codificar rotas e schemas FastAPI. |
 | **[Django Expert](django-expert/)** | `1.5.0` | Desenvolvimento robusto com Django, focado em arquitetura, segurança e TDD. | Ao trabalhar com aplicações Django. |
-| **[Flutter com FVM](flutter-fvm/)** | `1.2.0` | Desenvolvimento Flutter profissional com FVM. | Em qualquer tarefa envolvendo Flutter/Dart. |
+| **[Flutter com FVM](flutter-fvm/)** | `1.3.0` | Desenvolvimento Flutter profissional com FVM (Dart 3+, A11y, Performance). | Em qualquer tarefa envolvendo Flutter/Dart. |
 | **[Azure DevOps](azure-devops/)** | `1.1.0` | Gerenciamento profissional do Azure DevOps (AzDO). | Para gerenciar tarefas e CI/CD no AzDO. |
 | **[Observability Expert](observability-expert/)** | `1.0.0` | Especialista em SRE e Observabilidade (OTel, Logs Estruturados). | Ao garantir que um sistema é monitorável. |
 | **[Golang Expert](golang-expert/)** | `1.1.0` | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | Ao desenvolver sistemas de alta performance em Go. |

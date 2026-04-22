@@ -1,4 +1,4 @@
-# Environment Setup: Flutter with FVM
+# Configuração do Ambiente (FVM)
 
 Este guia detalha como configurar o ambiente de desenvolvimento Flutter utilizando o FVM.
 
@@ -78,3 +78,8 @@ Adicione o seguinte ao seu `.gitignore` para não versionar o cache local do SDK
 ```
 
 Mas **não** adicione o `fvm_config.json`, ele deve ser versionado para que o time use a mesma versão.
+## Checklist de Ambiente
+- [ ] O arquivo `fvm_config.json` está versionado?
+- [ ] A pasta `.fvm/flutter_sdk` está no `.gitignore`?
+- [ ] Rodou `fvm flutter doctor` e todas as dependências estão OK?
+- [ ] A versão do Flutter no projeto é a mesma do `fvm list`?

@@ -1,13 +1,13 @@
 ---
 name: flutter-fvm
-version: 1.2.0
-description: "Skill para desenvolvimento Flutter profissional com FVM (Flutter Version Management). Use quando precisar gerenciar múltiplas versões do SDK do Flutter por projeto, garantir consistência entre ambientes de desenvolvimento, gerenciar dependências com pubspec.yaml, configurar linting, testes avançados por camada arquitetural, segurança OWASP Mobile Top 10 e builds multiplataforma seguros."
+version: 1.3.0
+description: "Skill para desenvolvimento Flutter profissional com FVM. Inclui padrões Dart 3+, performance otimizada, acessibilidade mandatória, segurança OWASP e gestão de resiliência (Error Handling)."
 category: development-workflow
 ---
 
-# Flutter com FVM
+# Flutter com FVM & Modern Patterns
 
-> Gerenciador de versões do Flutter que permite fixar e gerenciar múltiplas versões do SDK por projeto, garantindo consistência total no time de desenvolvimento.
+> Gerenciador de versões do Flutter combinado com padrões modernos de arquitetura, performance e acessibilidade para aplicações de alta fidelidade.
 
 ---
 
@@ -21,17 +21,15 @@ Esta skill opera DENTRO do framework **SDD**. Antes de iniciar a implementação
 
 ## Goal
 
-**FVM** é o padrão ouro para gerenciamento de versões do Flutter. Ele isola o SDK por projeto, evitando o clássico "na minha máquina funciona" causado por versões globais do Flutter diferentes.
+**FVM** garante o ambiente. Esta skill garante a **Excelência Técnica** através de:
 
-| Ferramenta / Conceito | Equivalente FVM |
-|-----------------------|---------------|
-| `flutter` (global)    | `fvm flutter` (local) |
-| `dart` (global)       | `fvm dart` (local) |
-| Versão do SDK         | `fvm use <versão>` |
-| Instalação de SDK     | `fvm install <versão>` |
-| Configuração Local    | `.fvm/fvm_config.json` |
-
-**Vantagens**: Troca instantânea de versões, cache compartilhado de SDKs, configuração determinística para CI/CD e IDEs.
+| Pilar | Foco Principal |
+|-------|----------------|
+| **Dart 3+** | Sealed classes, Pattern Matching e Records para segurança de tipos. |
+| **Performance** | Otimização de rebuilds (`MediaQuery.sizeOf`), RepaintBoundaries e Decomposição. |
+| **UX/Acessibilidade** | Semantics, alvos de toque (48x48) e contraste dinâmico. |
+| **Resiliência** | Captura global de erros e tratamento gracioso de falhas. |
+| **Segurança** | OWASP Mobile Top 10 e gestão segura de Secrets (`--dart-define`). |
 
 ## Version Awareness
 
@@ -44,160 +42,90 @@ fvm list
 fvm current
 ```
 
-Se o FVM não estiver instalado:
-
-```bash
-# Via Dart (recomendado)
-dart pub global activate fvm
-
-# Ou via Homebrew (macOS)
-brew tap leoafarias/fvm
-brew install fvm
-```
-
 ## When to Use This Skill
 
 Use this skill when:
-- Inicializando um novo projeto Flutter
-- Gerenciando múltiplas versões do Flutter SDK em diferentes projetos
-- Adicionando dependências via `pubspec.yaml`
-- Configurando linting (`analysis_options.yaml`) e formatação
-- Executando testes (unit, widget, integration) seguindo padrões de camadas arquiteturais
-- Implementando testes de estado com Riverpod ou outros gerenciadores de estado
-- Realizando análise de segurança OWASP Mobile Top 10
-- Gerando builds seguros para Android, iOS, Web ou Desktop
-- Configurando CI/CD para projetos Flutter com FVM
-- Resolvendo conflitos de versão do SDK
-- Implementando padrões de segurança em aplicações móveis
+- Inicializando um novo projeto Flutter ou migrando para Dart 3+.
+- Implementando lógica de negócio complexa com Gerenciamento de Estado (Riverpod/Bloc).
+- Otimizando a performance de telas com listas complexas ou animações.
+- Garantindo que o app seja acessível via leitores de tela (TalkBack/VoiceOver).
+- Configurando tratamento de erros robusto e crash reporting.
+- Gerenciando segredos e chaves de API com segurança.
+- Realizando análise de segurança OWASP Mobile Top 10.
 
 Skip this skill when:
-- O projeto NÃO usa Flutter/Dart
-- O usuário prefere usar a instalação global do Flutter (não recomendado para projetos profissionais)
+- O projeto NÃO usa Flutter/Dart.
 
 ---
 
 ## Workflow (4 Fases)
 
 ### Fase 1: ENVIRONMENT — Configuração e Alinhamento
-1.  **Verificar FVM**: Garantir que o FVM está instalado (`fvm --version`).
-2.  **Fixar Versão do SDK**: Executar `fvm use stable` (ou versão específica como `3.19.0`) no root do projeto.
-3.  **Configurar IDE**: Garantir que o VS Code ou Android Studio aponta para o SDK local em `.fvm/flutter_sdk`.
+1.  **Versão SDK**: Fixar com `fvm use stable`.
+2.  **Linting Rigoroso**: Configurar `analysis_options.yaml` com `strict-casts: true`, `strict-inference: true` e `strict-raw-types: true`.
 
-### Fase 2: PROJECT — Inicialização e Estrutura
-1.  **Scaffolding**: Para novos projetos, use `fvm flutter create . --platforms=android,ios`.
-2.  **Declarar Dependências**: Adicionar pacotes via `fvm flutter pub add <package>`.
-3.  **Análise Estática**: Configurar `analysis_options.yaml` com regras rígidas (ex: `package:flutter_lints`).
+### Fase 2: PROJECT — Estrutura e Modernização
+1.  **State Modeling**: Usar `sealed class` para representar estados (Initial, Loading, Data, Error).
+2.  **Secrets Management**: Criar estrutura para receber chaves via `--dart-define` ou `.env` (excluído do git).
+3.  **Error Boundaries**: Configurar `FlutterError.onError` no `main.dart`.
 
-### Fase 3: DEVELOP — Qualidade, Testes e Execução
-1.  **Execução Segura**: Sempre utilize `fvm flutter run` para garantir que o código rode com o SDK correto.
-2.  **Geração de Código**: Se usar `build_runner`, execute `fvm flutter pub run build_runner build --delete-conflicting-outputs`.
-3.  **Testes por Camadas**: Seguir padrões de teste por camada arquitetural:
-    - **Repositório**: Mock DAOs e APIs, testar ambos os cenários (sucesso e erro)
-    - **DAO**: Usar banco de dados em memória, testar operações CRUD
-    - **Provider (Riverpod)**: Usar `ProviderContainer` com overrides, testar transições de estado
-    - **Serviço**: Mockar dependências, focar na lógica de negócio
-    - **Widget**: Usar keys para identificação estável, testar interações e estados
-4.  **Testes de UI**: Configurar dimensões de tela explícitas, usar `tester.pumpAndSettle()` para animações
-5.  **Qualidade Incremental**: Rodar `fvm flutter analyze` e `fvm flutter test` periodicamente.
-6.  **Análise de Segurança**: Verificar vulnerabilidades OWASP Mobile Top 10 em código e configurações.
+### Fase 3: DEVELOP — Qualidade e Performance
+1.  **Decomposição**: Manter métodos `build()` abaixo de 100 linhas.
+2.  **Selective Rebuilds**: Preferir `MediaQuery.sizeOf(context)` sobre `MediaQuery.of(context)`.
+3.  **Acessibilidade**: Adicionar `semanticLabel` em todos os elementos visuais críticos.
+4.  **Testes**: Cobrir transições de estado selados e fluxos de erro.
 
-### Fase 4: DEPLOY — Build, Segurança e Distribuição
-1.  **Análise de Segurança**: Verificar vulnerabilidades antes do deploy:
-    - **M1: Credenciais hardcoded**: Escanear código Dart e configurações
-    - **M2: Dependências inseguras**: Verificar `pubspec.yaml` por pacotes desatualizados ou com `any`
-    - **M5: Segurança de rede**: Verificar uso de HTTPS, certificate pinning
-    - **M9: Armazenamento inseguro**: Verificar SharedPreferences não criptografados
-2.  **Limpeza**: Executar `fvm flutter clean` antes de builds de release.
-3.  **Build Seguro**: Executar builds com proteções:
-    ```bash
-    # Android com ofuscação
-    fvm flutter build apk --release --obfuscate --split-debug-info=./build/symbols/
-    
-    # iOS
-    fvm flutter build ios --release
-    ```
-4.  **CI/CD Seguro**: Utilizar o `fvm_config.json` para garantir que o runner de CI use a mesma versão do SDK, e incluir verificações de segurança no pipeline.
-
----
-
-## FVM vs Flutter Commands
-
-| Comando Tradicional | Equivalente FVM (Recomendado) | Propósito |
-|---------------------|-------------------------------|-----------|
-| `flutter run`       | `fvm flutter run`             | Executar o app |
-| `flutter pub get`   | `fvm flutter pub get`         | Instalar dependências |
-| `flutter test`      | `fvm flutter test`            | Rodar testes |
-| `flutter analyze`   | `fvm flutter analyze`         | Análise estática |
-| `flutter build ...` | `fvm flutter build ...`       | Gerar build de release |
-| `dart format .`     | `fvm dart format .`           | Formatar código |
-
----
-
-## Best Practices
-
-### Project Management
-
-**DO:**
-- Use `fvm use` para definir a versão do SDK (isso cria o link `.fvm/flutter_sdk`)
-- Adicione `.fvm/flutter_sdk` ao seu `.gitignore`
-- Versionar `.fvm/fvm_config.json` no git
-- Sempre use `fvm flutter` em vez de `flutter` diretamente no terminal
-- Configure seu `analysis_options.yaml` logo no início do projeto
-- Implemente testes por camada arquitetural (Repository, DAO, Provider, Service, Widget)
-- Use keys para identificação estável em testes de widget
-- Escanear regularmente por vulnerabilidades OWASP Mobile Top 10
-- Usar builds ofuscados para release (`--obfuscate --split-debug-info`)
-
-**DON'T:**
-- Não versione a pasta `.fvm/flutter_sdk` (é um link simbólico ou cache local)
-- Não misture comandos `flutter` globais e `fvm flutter` no mesmo projeto
-- Não ignore erros do `fvm flutter analyze`
-- Não armazene credenciais hardcoded no código Dart
-- Não use dependências com versionamento `any` no `pubspec.yaml`
-- Não use HTTP para chamadas de API em produção
-- Não armazene dados sensíveis em SharedPreferences sem criptografia
-
----
-
-## Reference Documentation
-
-Esta skill inclui documentação de referência detalhada:
-
-1. **[Environment Setup](references/environment-setup.md)** — Instalação do FVM, PATH, e fixação de versões.
-2. **[Project Structure](references/project-structure.md)** — Organização de pastas, `pubspec.yaml` e `analysis_options.yaml`.
-3. **[Dependency Management](references/dependency-management.md)** — Pub, versionamento semântico e `pubspec.lock`.
-4. **[Testing & Quality](references/testing-and-quality.md)** — Unit tests, Widget tests, Integration tests e Coverage.
-5. **[Advanced Testing Patterns](references/advanced-testing-patterns.md)** — Testes por camada arquitetural, Riverpod testing, Widget testing com keys.
-6. **[Flutter Security Guide](references/flutter-security-guide.md)** — OWASP Mobile Top 10, análise de dependências, builds seguros.
-7. **[Deployment Guide](references/deployment-guide.md)** — Build commands para Android, iOS e Web.
-8. **[IDE Integration](references/ide-integration.md)** — Configuração do VS Code e Android Studio para usar o SDK do FVM.
-
----
+### Fase 4: DEPLOY — Segurança e Resiliência
+1.  **Crash Reporting**: Garantir integração com Sentry/Crashlytics.
+2.  **Hardening**: Rodar builds com `--obfuscate --split-debug-info`.
+3.  **Validation**: Verificar se nenhum `print` restou (usar `debugPrint` ou `log`).
 
 ## Output Structure
 
-A execução desta skill em projetos Flutter deve resultar nos seguintes artefatos:
+A execução desta skill resulta na geração ou atualização dos seguintes artefatos:
 
-| Artefato | Arquivo | Descrição |
-|----------|---------|-----------|
-| **FVM Config** | `.fvm/fvm_config.json` | Define a versão do Flutter SDK para o projeto. |
-| **Project Spec** | `pubspec.yaml` | Metadados, dependências e assets do projeto. |
-| **Lockfile** | `pubspec.lock` | Registro determinístico de versões de pacotes. |
-| **Lint Rules** | `analysis_options.yaml` | Configurações do linter e analisador estático. |
-| **SDK Link** | `.fvm/flutter_sdk` | Link simbólico (ou diretório) para o SDK gerenciado pelo FVM. |
+| Artefato | Localização | Descrição |
+|----------|-------------|-----------|
+| **FVM Config** | `.fvm/fvm_config.json` | Definição da versão do SDK para o time. |
+| **Analysis Options** | `analysis_options.yaml` | Regras de linting e análise estática. |
+| **Sealed States** | `lib/features/*/domain/` | Modelagem de estados exaustivos. |
+| **Secure Secrets** | `.env` / `main.dart` | Gestão de chaves via environment. |
 
 ---
 
 ## Quality Rules
 
-- **FVM-First**: Sempre preferir `fvm flutter` sobre `flutter`.
-- **Análise Estática**: Nenhum commit deve ser feito com erros de `analyze`.
-- **Testes**: Promover a escrita de testes para lógica de negócio (Bloc/Cubit/Providers).
-- **Clean Code**: Seguir as [Dart Style Guidelines](https://dart.dev/guides/language/effective-dart/style).
+**DO:**
+- Use `sealed` classes para garantir exaustividade no tratamento de estados.
+- Use `const` construtores agressivamente para reduzir pressão no GC.
+- Garanta alvos de toque de no mínimo 48x48 dp.
+- Use `RepaintBoundary` em animações ou widgets de desenho pesado.
+- Valide `context.mounted` após qualquer `await`.
+
+**DON'T:**
+- Não use booleanos múltiplos (`isLoading`, `hasError`) para estados de tela.
+- Não use `print()` em produção; use o pacote `logging` ou `dart:developer`.
+- Não ignore erros do `fvm flutter analyze`.
+- Não armazene segredos diretamente no código Dart (hardcoded).
+
+---
+
+## Reference Documentation
+
+1. **[Padrões Modernos de Dart](references/modern-dart-patterns.md)** — Sealed classes, Records e Pattern Matching.
+2. **[Performance & Otimização](references/performance-and-optimization.md)** — Rebuilds, RepaintBoundaries e GC.
+3. **[Guia de Acessibilidade](references/accessibility-guide.md)** — Semantics, Hit Targets e UX Inclusiva.
+4. **[Configuração do Ambiente](references/environment-setup.md)** — FVM e Strict Analyzer.
+5. **[Guia de Segurança Flutter](references/flutter-security-guide.md)** — OWASP e Secrets.
+6. **[Testes & Qualidade](references/testing-and-quality.md)** — State and Logic testing.
+
+---
 
 ## Prohibited
 
-- **Não usar Flutter Global**: Nunca sugerir o uso do `flutter` global em projetos que possuem FVM configurado.
-- **Não ignorar o Analyze**: Nunca ignorar warnings ou erros de análise estática.
-- **Não versionar o SDK**: Nunca adicionar `.fvm/flutter_sdk` ao controle de versão.
-- **Não pular Testes**: Nunca considerar uma feature completa sem a devida cobertura de testes de ViewModel/Logic.
+- **Não pular Acessibilidade**: Features sem labels semânticos ou alvos pequenos são consideradas incompletas.
+- **Não ignorar o Analyzer**: Erros de análise impedem o deploy.
+- **Não usar o Flutter Global**: Mantenha o isolamento do projeto via FVM.
+
+---
+*Atualizada em 22 de Abril de 2026 para alinhamento com padrões ECC.*

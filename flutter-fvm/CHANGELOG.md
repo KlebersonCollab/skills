@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-04-22
+
+### Added
+- **Modern Dart Patterns**: Suporte completo a Dart 3+ (Sealed classes, Pattern Matching, Records).
+- **Acessibilidade Mandatória**: Diretrizes para Semantics, alvos de toque e UX inclusiva.
+- **Performance Avançada**: Reconstruções seletivas com `MediaQuery.sizeOf` e decomposição de widgets.
+- **Gestão de Segredos**: Padronização de chaves via `--dart-define` e `.env`.
+- **Resiliência**: Protocolos de captura global de erros (`FlutterError.onError`).
+
+### Changed
+- Atualizado `SKILL.md` para refletir padrões de excelência técnica ECC.
+- Enriquecido `references/testing-and-quality.md` com testes de acessibilidade e goldens.
+- Enriquecido `references/project-structure.md` com integração MVVM + Dart 3.
+
 ## [1.2.0] - 2026-04-20
 
 ### Added

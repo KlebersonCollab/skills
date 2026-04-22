@@ -1,77 +1,47 @@
-# Testing & Quality: Flutter with FVM
+# Testes & Qualidade (Mobile)
 
-Este guia foca em como garantir a qualidade do código e testar sua aplicação Flutter utilizando o workflow do FVM.
+Qualidade no Flutter é uma combinação de análise estática rigorosa e cobertura de testes por camadas.
 
-## 1. Pirâmide de Testes no Flutter
+## 1. Pirâmide de Testes
+- **Unit Tests**: Lógica pura e ViewModels.
+- **Widget Tests**: Interações e Acessibilidade.
+- **Golden Tests**: Regressão visual.
+- **Integration Tests**: Fluxos E2E.
 
-No Flutter, os testes são divididos em três categorias principais:
+## 2. Testes de Acessibilidade
+**Conceito**: Validar se a árvore semântica está correta.
 
-- **Unit Tests**: Testam uma única função, método ou classe. (Localizados em `test/`)
-- **Widget Tests**: Testam a UI e a interação com widgets isolados. (Localizados em `test/`)
-- **Integration Tests**: Testam o app completo em um device real ou emulador. (Localizados em `integration_test/`)
+### ✅ Bom (Semantic Test)
+```dart
+testWidgets('Botão deve ser acessível', (tester) async {
+  final handle = tester.ensureSemantics();
+  await tester.pumpWidget(const MyButton());
 
-## 2. Executando Testes via FVM
-
-Sempre execute os testes através do FVM para garantir que a mesma versão do SDK do time está sendo usada:
-
-```bash
-# Executar todos os testes unitários e de widget
-fvm flutter test
-
-# Executar um arquivo de teste específico
-fvm flutter test test/meu_widget_test.dart
-
-# Gerar relatório de cobertura de testes (LCOV)
-fvm flutter test --coverage
+  expect(tester.getSemantics(find.byType(MyButton)), matchesSemantics(
+    label: 'Enviar',
+    isButton: true,
+  ));
+  handle.dispose();
+});
 ```
 
-## 3. Qualidade de Código (Linter)
+## 3. Análise Estática (Strict)
+Sempre execute `fvm flutter analyze` antes de qualquer push.
 
-O analisador estático do Dart é uma ferramenta poderosa. Configure regras no seu `analysis_options.yaml` e execute a análise frequentemente:
-
-```bash
-# Rodar análise estática
-fvm flutter analyze
+### ✅ Bom (`analysis_options.yaml`)
+```yaml
+analyzer:
+  errors:
+    unused_local_variable: error
+    invalid_annotation_target: ignore
+  language:
+    strict-casts: true
+    strict-inference: true
 ```
 
-Se houver erros de análise, o comando retornará um exit code diferente de zero, o que é ideal para o CI/CD.
-
-## 4. Formatação de Código
-
-Manter o estilo consistente é vital. Use o formatador nativo do Dart:
-
-```bash
-# Formatar todos os arquivos no diretório atual
-fvm dart format .
-
-# Verificar se os arquivos estão formatados (sem aplicar as mudanças)
-fvm dart format --set-exit-if-changed .
-```
-
-## 5. Cobertura de Testes (Coverage)
-
-Para visualizar a cobertura de testes de forma amigável:
-
-1. Gere o arquivo `lcov.info`:
-   ```bash
-   fvm flutter test --coverage
-   ```
-2. Visualize usando ferramentas como `lcov` (macOS via Homebrew: `brew install lcov`):
-   ```bash
-   genhtml coverage/lcov.info -o coverage/html
-   open coverage/html/index.html
-   ```
-
-## 6. Mocks e Fakes
-
-Para isolar seus testes, utilize pacotes de mocking:
-- **mocktail**: Inspirado no Mockito, mas com uma sintaxe mais moderna para Dart.
-- **mockito**: O clássico (requer geração de código).
-
-**Dica**: Prefira `mocktail` por não precisar de geração de código para testes simples.
-
----
-
-## Para Padrões de Teste Avançados
-
-Para estratégias de teste por camada arquitetural, testes de Riverpod, widget testing com keys e outros padrões avançados, consulte o guia [Advanced Testing Patterns](advanced-testing-patterns.md).
+## Checklist de Qualidade
+- [ ] Rodou `fvm flutter analyze` e corrigiu todos os warnings?
+- [ ] A lógica de negócio (ViewModel) tem 80%+ de cobertura?
+- [ ] Widgets críticos têm testes de Semântica?
+- [ ] Goldens foram atualizados para a plataforma alvo?
+- [ ] Usou `mocktail` para isolar dependências externas?

@@ -56,3 +56,7 @@
 ### [2026-04-22] Consolidação de Skills "Expert"
 - **Learning**: Integrar conhecimentos de múltiplas fontes externas (Patterns, Security, TDD, Verification) em uma única skill "Expert" local reduz drasticamente a alternância de contexto e cria um "Standard de Ouro" robusto.
 - **Pattern**: O workflow em 12 fases (do Setup ao Verification) garante que nenhum pilar técnico seja negligenciado durante o ciclo de vida do desenvolvimento.
+
+### [2026-04-22] Modernização e Resiliência Mobile
+- **Learning**: A integração de padrões modernos (Dart 3 Sealed Classes) em skills de Flutter não apenas melhora o código, mas força o agente a pensar em termos de **Exaustividade de Estado**, eliminando classes inteiras de bugs de UI.
+- **Pattern**: A inclusão de **Acessibilidade Mandatória** e **Global Error Handling** no workflow core da skill garante que esses pilares "não-funcionais" sejam tratados como requisitos de primeira classe em todas as tarefas.

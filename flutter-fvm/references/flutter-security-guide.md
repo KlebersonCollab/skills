@@ -1,4 +1,4 @@
-# Flutter Security Guide: OWASP Mobile Top 10
+# Guia de Segurança Flutter (OWASP)
 
 Este guia apresenta práticas de segurança para aplicações Flutter baseadas no OWASP Mobile Top 10 (2024).
 
@@ -32,12 +32,23 @@ final storage = FlutterSecureStorage();
 await storage.write(key: 'auth_token', value: token);
 ```
 
-### Configurações Sensíveis
+### Configurações Sensíveis & Secrets
+**RECOMENDADO:**
+- **--dart-define**: Use para passar chaves em tempo de compilação sem deixá-las no código.
+```dart
+// No código:
+static const apiKey = String.fromEnvironment('API_KEY');
+```
+```bash
+# No comando de build:
+fvm flutter build apk --dart-define=API_KEY=sua_chave_aqui
+```
+- **.env files**: Use o pacote `flutter_dotenv` e garanta que o `.env` esteja no `.gitignore`.
+- **Firebase Config**: Não versione `google-services.json` (Android) ou `GoogleService-Info.plist` (iOS) se contiverem chaves de produção.
+
 **Verifique:**
-- `google-services.json` (Firebase) - Não versionar chaves de produção
-- `GoogleService-Info.plist` - iOS Firebase config
-- `appcenter-config.json` - App Center secrets
-- Qualquer arquivo `.env` ou `.config` com credenciais
+- Arquivos `.env` ou `.config` com credenciais.
+- Commits antigos contendo segredos (use `trufflehog` ou `git-secrets`).
 
 ## 2. M2: Inadequate Supply Chain Security
 
