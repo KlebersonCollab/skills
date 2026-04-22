@@ -133,9 +133,9 @@ def generate_knowledge_map():
     # 6. Legenda
     mermaid.append("\n    %% Legend")
     mermaid.append("    subgraph \"Legenda\"")
-    mermaid.append("        L1[🛡️ SDD Compliant]")
-    mermaid.append("        L2[Uses: Dependência Direta]")
-    mermaid.append("        L3[References: Menção em Docs]")
+    mermaid.append("        L1[\"🛡️ SDD Compliant\"]")
+    mermaid.append("        L2[\"Uses: Dependência Direta\"]")
+    mermaid.append("        L3[\"References: Menção em Docs\"]")
     mermaid.append("    end")
 
     # 7. Salvar
