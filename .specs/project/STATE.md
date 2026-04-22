@@ -1,7 +1,7 @@
 # Current Project State (April 22, 2026)
 
 ## Status Atual
-- **Feature**: Hub Enterprise Upgrade - **CONCLUÍDO (v2.0)** ✅
+- **Feature**: Hub Enterprise Upgrade - **CONCLUÍDO (v4.0.0)** ✅
 - **Sessão**: Estruturação de 5 trilhas para levar a arquitetura do Hub à maturidade completa (Testes, UI, Distiller, Installer, DevSecOps).
 
 ## Últimas Alterações
@@ -50,5 +50,5 @@
 - [x] **Marketplace UI / Dashboard**: Criado painel interativo Streamlit (`dashboard/app.py`) para visualização do catálogo e arquitetura.
 
 ## Bloqueios / Próximos Passos
-- [x] **Release V2.0 (Bunker Strategy)**: Executada com sucesso com 100% de integridade (`make release-check`) e Changelog gerado.
+- [x] **Release V4.0.0 (Bunker Strategy)**: Executada com sucesso com 100% de integridade (`make release-check`) e Changelog gerado.
 - [ ] **Próximo Épico**: A definir.
