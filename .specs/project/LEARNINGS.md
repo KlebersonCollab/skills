@@ -84,3 +84,8 @@
 - **Learning**: Integrar padrões de linguagem (Patterns) e metodologia de teste (TDD) diretamente na skill de gerenciamento de ambiente (`python-uv`) cria uma fundação de "Linguagem + Ferramenta" muito poderosa. O UV não é apenas um instalador, é o motor que viabiliza o ciclo `Test -> Refactor` com latência zero.
 - **Pattern**: O uso de `Protocol` em vez de herança múltipla ou herança baseada em classes abstratas rígidas é o caminho idiomático moderno para Python, facilitando o Mocking e a manutenção de grandes codebases.
 - **Enforcement**: Meta de cobertura (80%+) e ciclo TDD obrigatório devem ser parte integrante da documentação de "Quality Rules" de qualquer skill de stack técnica.
+
+### [2026-04-22] Benchmark Expert & Git Rigor
+- **Learning**: Adaptar skills externas (ECC) exige não apenas tradução, mas re-contextualização para os mandatos locais (SDD, Git Workflow). A falha em iniciar o desenvolvimento por uma branch de feature é um sinal de "Context Drift" que deve ser corrigido imediatamente via auditoria de Exit Gate.
+- **Pattern**: O ciclo de vida de uma nova skill deve ser: `Spec -> Branch -> Scaffolding -> Atomic Commits -> Validation -> Registry`.
+- **Enforcement**: O uso de benchmarks determinísticos (média de 3 execuções) e o veredito de regressão (>15% FAIL) transformam a performance de um desejo subjetivo em um requisito técnico verificável na Fase 4 do SDD.

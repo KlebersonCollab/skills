@@ -1,11 +1,15 @@
 # Current Project State (April 22, 2026)
 
 ## Status Atual
-- **Feature**: Git Workflow Skill Integration - **CONCLUÍDO (v1.0.0)** 🌳
-- **Sessão**: Importação, tradução e integração da skill de Git Workflow com mandatos SDD.
-
+- **Feature**: Benchmark Expert Skill Integration - **CONCLUÍDO (v1.0.0)** 📊
+- **Sessão**: Criação da skill de medição de performance e regressão, adaptada da ECC para o padrão do Hub.
 
 ## Últimas Alterações
+- [x] **Benchmark Expert Skill (v1.0.0)**:
+    - Criada nova skill especializada em performance (Browser, API, Build).
+    - Integrada detecção de regressão com comparação de baselines.
+    - Adicionados guias de referência para targets de performance e análise de regressão.
+    - Registrada como a 23ª skill do Hub.
 - [x] **Golang Expert Enrichment (v1.2.0)**:
     - Integrado padrões idiomáticos avançados (Accept Interfaces, Return Structs, Zero Value Useful).
     - Adicionado suporte a `errgroup` e padrões de Graceful Shutdown.
