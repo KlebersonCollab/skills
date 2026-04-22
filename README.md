@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-22-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-23-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/KlebersonCollab/skills/generate-skills-artifacts.yml?branch=main&label=Build%20Artifacts)](https://github.com/KlebersonCollab/skills/actions)
 [![Status](https://img.shields.io/badge/Status-Ativo-brightgreen)](#-roadmap)
@@ -78,6 +78,7 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 | 20 | **[Frontend Expert](frontend-expert/)** | Expert em interfaces modernas com React, Next.js e TailwindCSS v4. | `1.1.0` |
 | 21 | **[Git Workflow](git-workflow/)** | Padrões de fluxo de trabalho Git, estratégias de branching e integração com SDD. | `1.0.0` |
 | 22 | **[Golang Testing Expert](golang-testing-expert/)** | Especialista em QA para Go — TDD, Table-Driven Tests, Benchmarks e Fuzzing. | `1.0.0` |
+| 23 | **[Benchmark Expert](benchmark-expert/)** | Expert Skill para medição de baselines de performance, detecção de regressões e comparação de stacks. | `1.0.0` |
 
 ---
 
