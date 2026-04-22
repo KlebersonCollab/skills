@@ -18,6 +18,7 @@ packages = ["scripts"]
 dev = [
     "pytest>=8.0.0",
     "pytest-cov>=4.1.0",
+    "ruff>=0.3.0",
 ]
 
 [tool.pytest.ini_options]
@@ -25,4 +26,10 @@ minversion = "6.0"
 addopts = "-v --cov=scripts --cov-report=term-missing"
 testpaths = [
     "tests",
+]
+
+[tool.ruff]
+exclude = [
+    "scaffolding-expert/examples",
+    ".venv",
 ]
