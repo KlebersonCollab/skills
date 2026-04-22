@@ -8,7 +8,8 @@ Esta especificação visa eliminar a discricionariedade do agente no cumprimento
 - **GR-1**: Inserir mandato proibitivo na Fase 3 do SDD sobre a atomicidade da tarefa.
 - **GR-2**: Vincular a conclusão de tarefas obrigatoriamente à aprovação em testes (100%) e ao commit Git.
 - **GR-3**: Padronizar o uso de sensores de conformidade Git nos `contract.md` das features.
-- **GR-4**: Reforçar o "Exit Gate" no Onboarding Navigator para auditoria de commits.
+- **GR-4**: Reforçar o "Exit Gate" no Onboarding Navigator para auditoria de commits e branches.
+- **GR-5**: Tornar mandatório o uso de feature branches (`feat/`, `fix/`, etc.) para qualquer desenvolvimento, protegendo a `main`.
 
 ## 3. Critérios de Aceitação (AC) - BDD
 
