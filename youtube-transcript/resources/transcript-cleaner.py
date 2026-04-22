@@ -23,22 +23,22 @@ def clean_vtt(content: str) -> str:
     Returns:
         Cleaned text without timestamps and metadata
     """
-    lines = content.split('\n')
+    lines = content.split("\n")
     cleaned = []
 
     for line in lines:
         # Skip VTT header and metadata
-        if line.strip() == 'WEBVTT':
+        if line.strip() == "WEBVTT":
             continue
-        if '-->' in line:
+        if "-->" in line:
             continue
         if line.strip().isdigit():
             continue
-        if 'Kind:' in line or 'Language:' in line:
+        if "Kind:" in line or "Language:" in line:
             continue
 
         # Remove HTML tags and extra whitespace
-        line = re.sub(r'<[^>]+>', '', line).strip()
+        line = re.sub(r"<[^>]+>", "", line).strip()
 
         if line:
             cleaned.append(line)
@@ -56,7 +56,7 @@ def clean_vtt(content: str) -> str:
         else:
             final.append(line)
 
-    return ' '.join(final)
+    return " ".join(final)
 
 
 def clean_whisper(content: str) -> str:
@@ -70,13 +70,13 @@ def clean_whisper(content: str) -> str:
         Cleaned text with proper formatting
     """
     # Remove any remaining timestamps
-    content = re.sub(r'\[\d+:\d+:\d+\.\d+ --> \d+:\d+:\d+\.\d+\]', '', content)
+    content = re.sub(r"\[\d+:\d+:\d+\.\d+ --> \d+:\d+:\d+\.\d+\]", "", content)
 
     # Remove extra whitespace
-    content = re.sub(r'\s+', ' ', content).strip()
+    content = re.sub(r"\s+", " ", content).strip()
 
     # Fix common punctuation issues
-    content = re.sub(r'\s+([.,!?;:])', r'\1', content)
+    content = re.sub(r"\s+([.,!?;:])", r"\1", content)
 
     return content
 
@@ -95,11 +95,11 @@ def clean_transcript(input_file: Path, output_file: Path | None = None) -> str:
     if not input_file.exists():
         raise FileNotFoundError(f"Input file not found: {input_file}")
 
-    with open(input_file, 'r', encoding='utf-8') as f:
+    with open(input_file, "r", encoding="utf-8") as f:
         content = f.read()
 
     # Determine file type and clean accordingly
-    if input_file.suffix == '.vtt':
+    if input_file.suffix == ".vtt":
         cleaned = clean_vtt(content)
     else:
         cleaned = clean_whisper(content)
@@ -107,7 +107,7 @@ def clean_transcript(input_file: Path, output_file: Path | None = None) -> str:
     # Write to output file if specified
     if output_file:
         output_file.parent.mkdir(parents=True, exist_ok=True)
-        with open(output_file, 'w', encoding='utf-8') as f:
+        with open(output_file, "w", encoding="utf-8") as f:
             f.write(cleaned)
 
     return cleaned

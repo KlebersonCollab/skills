@@ -18,6 +18,7 @@ help:
 	@echo "  make auto-fix      - Repara automaticamente arquivos de memória ausentes"
 	@echo "  make clean         - Remove pastas temporárias e artefatos (dist_staging, artifacts)"
 	@echo "  make release       - Ciclo completo: auto-fix -> sync -> validate -> verify-vers -> knowledge-map -> changelog -> dist"
+	@echo "  make release-check - Roda a auditoria estrita (Bunker): Ruff, Pytest, Validações e Knowledge Map"
 
 sync:
 	uv run --with pyyaml scripts/sync_mandates.py
@@ -57,6 +58,13 @@ install-skill:
 
 clean:
 	rm -rf dist_staging artifacts
+
+release-check:
+	uv run ruff check .
+	uv run ruff format --check .
+	uv run pytest tests/
+	uv run --with pyyaml scripts/validate_skills.py
+	uv run --with pyyaml scripts/generate_knowledge_map.py
 
 release: auto-fix sync validate verify-vers knowledge-map changelog dist
 	@echo "🚀 Operação concluída com sucesso!"
