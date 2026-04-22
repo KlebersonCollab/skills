@@ -43,9 +43,11 @@
     - Traduzido todo o conteúdo enriquecido para PT-BR.
 - [x] **Full Hub Cohesion Audit**: Todas as 21 skills 100% conformes com o hook `🔒 Prerequisites (Mandatory)`. **CONCLUÍDO** ✅
 
+- [x] **Hub Test Suite**: Criar primeira bateria de testes via `pytest` para blindar scripts base (`/scripts/`).
+- [x] **DevSecOps Skill**: Iniciar via `skill-factory` a nova skill focada em auditorias estáticas de qualidade e segurança.
+- [x] **Automated Knowledge Distiller**: Roteirizar extração dinâmica de nós do Mermaid.
+- [x] **Skill Installer CLI**: Implementada CLI `hub install <skill> --remote` com Git Sparse-Checkout para download granular direto do repositório.
+- [x] **Marketplace UI / Dashboard**: Criado painel interativo Streamlit (`dashboard/app.py`) para visualização do catálogo e arquitetura.
+
 ## Bloqueios / Próximos Passos
-- [ ] **Hub Test Suite**: Criar primeira bateria de testes via `pytest` para blindar scripts base (`/scripts/`).
-- [ ] **DevSecOps Skill**: Iniciar via `skill-factory` a nova skill focada em auditorias estáticas de qualidade e segurança.
-- [ ] **Automated Knowledge Distiller**: Roteirizar extração dinâmica de nós do Mermaid.
-- [ ] **Skill Installer CLI**: Trabalhar no protótipo de instalação granular.
-- [ ] **Marketplace UI / Dashboard**: Escolher e inicializar projeto SSG para portabilidade visual da documentação.
+- [ ] **Release**: Consolidar todas as trilhas do Enterprise Upgrade, formatar Changelog e publicar nova release principal.

@@ -8,6 +8,12 @@ dependencies = [
     "streamlit>=1.56.0",
 ]
 
+[project.scripts]
+hub = "scripts.installer:main"
+
+[tool.setuptools]
+packages = ["scripts"]
+
 [dependency-groups]
 dev = [
     "pytest>=8.0.0",
