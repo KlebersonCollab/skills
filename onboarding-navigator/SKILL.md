@@ -90,6 +90,7 @@ flowchart TD
 1.  **Check de Padrões**: Validar se os planos seguem as normas de Clean Code e a obrigatoriedade do **SDD** para desenvolvimento.
 2.  **Mentoria Cultural**: Relembrar os princípios de "Simplicity at Scale" e "Rigor when needed".
 3.  **Handoff de Skill**: Delegar a execução para a skill especializada identificada na Fase 2, garantindo que o ciclo comece pelo **SDD**.
+4.  **Session Exit Gate**: Antes de encerrar, validar se cada tarefa marcada como concluída possui seu commit correspondente e se os testes passaram (100%).
 
 ---
 
@@ -108,6 +109,7 @@ flowchart TD
 - **NUNCA** iniciar uma tarefa de larga escala sem validar o alinhamento cultural nesta skill.
 - **NUNCA** esquecer de consultar `MEMORY.md` e `LEARNINGS.md` para lições anteriores.
 - **NUNCA** permitir o início de uma construção ou desenvolvimento sem o framework **SDD**.
+- **NUNCA** encerrar uma sessão sem auditar se todos os commits de tarefas (`tasks.md`) foram realizados seguindo a `git-workflow`.
 
 ---
 
