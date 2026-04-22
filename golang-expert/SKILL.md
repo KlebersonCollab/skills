@@ -1,6 +1,6 @@
 ---
 name: golang-expert
-version: 1.1.0
+version: 1.2.0
 description: "Expert level Go development skill focused on performance, idiomatic concurrency, and clean architecture."
 category: development
 ---
@@ -20,6 +20,20 @@ Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execuç�
 5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
 
 ---
+
+## ⚡ Slash Commands (Operational)
+Utilize estes comandos para guiar seu comportamento durante a sessão:
+
+| Comando | Descrição | Ação Esperada |
+|---------|-----------|---------------|
+| `/plan` | Planejamento de Feature | Gera/atualiza `spec.md` e `plan.md` com ADRs. |
+| `/go-build` | Correção de Compilação | Executa `go build ./...` e corrige erros reportados. |
+| `/go-test` | Ciclo TDD | Inicia workflow TDD (Red-Green-Refactor) com `golang-testing-expert`. |
+| `/go-review` | Revisão de Código | Revisa idiomas Go, tratamento de erros e concorrência. |
+| `/security-scan` | Auditoria de Segurança | Busca por segredos expostos e vulnerabilidades conhecidas. |
+
+---
+
 ## Goal
 
 Atuar como um arquiteto e engenheiro de software sênior especializado em Go (Golang). Esta skill fornece diretrizes, padrões e melhores práticas para construir sistemas escaláveis, resilientes e de alta performance, utilizando o máximo do potencial idiomático da linguagem e seu ecossistema moderno.
@@ -28,13 +42,20 @@ Atuar como um arquiteto e engenheiro de software sênior especializado em Go (Go
 
 ## 🛠️ Expert Workflows
 
-### 1. New Project Scaffolding
-Ao iniciar um novo projeto, siga a ordem:
+### 1. New Project Scaffolding & Architecture
+Ao iniciar um novo projeto, siga a estrutura de **Clean Architecture**:
 1. `go mod init <module_path>`
-2. Configure o layout de pastas (`/cmd`, `/internal`, `/pkg`).
-3. Instale e configure o `golangci-lint`.
-4. Defina o container de DI (ex: `samber/do`).
-5. Configure o logging estruturado nativo (`slog`).
+2. Layout de pastas:
+   - `cmd/<app>/main.go`: Ponto de entrada (DI, Graceful Shutdown).
+   - `internal/domain/`: Entidades, interfaces de repositório e erros sentinela.
+   - `internal/service/`: Lógica de negócio pura.
+   - `internal/repository/`: Acesso a dados (ex: `postgres/` usando `sqlc`).
+   - `internal/handler/`: Transporte (subpastas `grpc/`, `rest/`).
+   - `internal/config/`: Carregamento via env/yaml.
+3. Ferramentas Mandatórias:
+   - **sqlc**: Para geração de código SQL type-safe.
+   - **Wire**: Para injeção de dependência explícita.
+   - **golangci-lint**: Para análise estática rigorosa.
 
 ### 2. High-Concurrency Design
 Para fluxos concorrentes:
@@ -82,6 +103,7 @@ A execução desta skill resulta nos seguintes artefatos e orientações:
 - **Safety Always**: Evitar race conditions, leaks de memória e uso indevido de `unsafe`.
 - **Modern Go**: Utilizar recursos de versões recentes (Generics, `slog`, `errors.Join`, etc.).
 - **Zero-Boilerplate**: Utilizar bibliotecas de utilitários como `samber/lo` e `samber/mo` para reduzir ruído de código repetitivo.
+- **Documentation**: Tipos e funções exportados **devem** ter comentários de documentação.
 
 ## Prohibited
 
@@ -90,6 +112,8 @@ A execução desta skill resulta nos seguintes artefatos e orientações:
 - **NUNCA** iniciar goroutines sem um mecanismo claro de cancelamento ou finalização (leaks).
 - **NUNCA** colocar `context.Context` dentro de structs; ele deve ser sempre o primeiro parâmetro de funções.
 - **NUNCA** misturar lógica de negócio com detalhes de infraestrutura (Clean Architecture).
+- **NUNCA** utilizar a função `init()` para inicialização; prefira injeção explícita no `main()`.
+- **NUNCA** utilizar estado mutável global.
 
 ---
 
