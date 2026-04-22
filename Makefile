@@ -61,3 +61,6 @@ clean:
 release: auto-fix sync validate verify-vers knowledge-map changelog dist
 	@echo "🚀 Operação concluída com sucesso!"
 
+
+dashboard:
+	uv run streamlit run dashboard/app.py

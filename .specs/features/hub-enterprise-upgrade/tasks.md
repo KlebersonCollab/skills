@@ -19,5 +19,5 @@
 - [ ] 4.2 Lógica de download granular ou extração controlada via Git Sparse Checkout/Raw. `[Size: Large]`
 
 ## 🎯 Meta 5: Web UI Dashboard
-- [ ] 5.1 Bootstrapping com framework SSG (Next.js/Docusaurus). `[Size: Small]`
-- [ ] 5.2 Estruturar parser que transforme a documentação e mermaid views na interface. `[Size: Large]`
+- [ ] 5.1 Bootstrapping com framework Streamlit (Python nativo). `[Size: Small]`
+- [ ] 5.2 Estruturar parser que reuse `scripts/utils.py` para injetar documentação e Mermaid no Streamlit. `[Size: Medium]`
