@@ -78,6 +78,18 @@ A execução desta skill resulta nos seguintes artefatos e orientações:
 
 ---
 
+## 🚫 Prohibited
+
+- **NUNCA** utilizar `time.Sleep()` para sincronização em testes.
+- **NUNCA** ignorar erros retornados em funções de cleanup.
+- **NUNCA** deixar de usar `t.Helper()` em funções auxiliares de teste.
+- **NUNCA** realizar commits de código de produção sem a suíte de testes correspondente passar.
+- **NUNCA** usar frameworks de mock pesados quando uma interface simples resolve o problema.
+
+---
+
+---
+
 ## 📚 References
 
 Esta skill está organizada em 3 pilares fundamentais:

@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-04-22
+### Changed
+- **Governance Hardening**: Inclusão de auditoria de commits e branches no Session Exit Gate.
+- **Mandatos Proibitivos**: Adição de regra contra o encerramento de sessão sem auditoria de conformidade Git.
+
 ## [1.3.0] - 2026-04-22
 ### Added
 - **Harness Engineering Strategy**: Inclusão de orientações sobre loops GAN e qualidade adversarial na matriz de decisão.
