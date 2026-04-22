@@ -1,5 +1,13 @@
 # Changelog — Python com UV
 
+## [3.0.0] - 2026-04-22
+
+### Adicionado
+- **Expert Enrichment**: Integração de conhecimentos de alto nível sobre padrões e testes Python.
+- **Python Patterns**: Nova referência em `references/patterns.md` cobrindo EAFP, Protocol, Type Hints e Performance.
+- **Advanced Testing**: Nova referência em `references/testing.md` cobrindo ciclo TDD, Fixtures avançadas e Mocking.
+- **Modern Python**: Suporte explícito a Python 3.9+ idioms e `__slots__` para eficiência de memória.
+
 ## [2.6.0] - 2026-04-20
 
 ### Adicionado
