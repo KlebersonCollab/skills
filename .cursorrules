@@ -33,6 +33,7 @@ Utilize este guia para identificar a skill mandatória para cada contexto:
 | Automação e Scaffolding | `scaffolding-expert` |
 | Gestão de Conhecimento | `knowledge-architect` |
 | Sincronização de Estado | `harness-expert` |
+| Gestão de Git e Commits | `git-workflow` |
 
 ## 1. SDD Framework (Mandatory for Development)
 Qualquer tarefa de construção, desenvolvimento ou refatoração significativa **DEVE** obrigatoriamente utilizar o framework **SDD (Spec-Driven Development)** desde o planejamento inicial.
@@ -65,16 +66,126 @@ Qualquer tarefa de construção, desenvolvimento ou refatoração significativa 
 ## 7. Dynamic Scaffolding (Scaffolding Expert)
 - **Zero-Boilerplate Policy**: O agente **DEVE** preferir utilizar as ferramentas de CLI de templates (como `uvx copier` via `scaffolding-expert`) para inicializar a estrutura de projetos e arquivos complexos (como `pyproject.toml`, Dockerfiles). O código boilerplate NUNCA deve ser escrito linha por linha se existir um template de scaffolding disponível.
 
-## 8. Multi-Agent Workflows (Multi-Agent Orchestrator)
-- **Swarm Delegation**: Para épicos arquiteturais pesados, o agente **NÃO DEVE** tentar assumir os papéis de Arquiteto, Engenheiro e QA de uma vez só em um único prompt. O agente **DEVE** aplicar o protocolo de handoff do `multi-agent-orchestrator`, gerando os artefatos de entrega (como `.specs/features/<feature>/handoff.md`) e instruindo o usuário a criar uma nova thread/sessão com a próxima persona focada.
+## 9. Version Control & Git (Git Workflow)
+Todo agente **DEVE** seguir rigorosamente a skill `git-workflow` para qualquer operação de versionamento:
+- **English-Only Commits**: Todas as mensagens de commit devem ser escritas em **Inglês**.
+- **Conventional Commits**: O uso do padrão Conventional Commits é obrigatório.
+- **SDD Linking**: Commits devem ser atômicos e, sempre que possível, referenciar IDs de tarefas do `tasks.md`.
+- **History Integrity**: O uso de `rebase` é mandatório para manter um histórico linear antes de merges na `main`.
 
-## 🔒 9. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
+## 🔒 10. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
 Antes de encerrar a sessão ou entregar a tarefa, o agente **DEVE** validar:
 1. **Tasks Update**: O `tasks.md` reflete o estado real da implementação?
 2. **State Sync**: O `STATE.md` foi atualizado com o progresso e próximos passos?
 3. **Learnings Capture**: Novos padrões ou bugs corrigidos foram para o `LEARNINGS.md`?
 4. **Validation**: O código passou por linters/testes e recebeu um Score no `validation-report.md`?
 5. **Knowledge Update**: O `KNOWLEDGE-MAP.mermaid` precisa de atualização?
+
+
+---
+
+## SKILL: API-ARCHITECT
+
+---
+name: api-architect
+version: 1.3.0
+description: "Arquiteto de APIs — guia o agente a projetar sistemas de API interoperáveis, seguros e resilientes, definindo contratos e padrões de governança."
+category: api-design
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+# API Architect
+
+> Projetista de APIs de alta performance e guardião da governança técnica. "Design is for developers; architecture is for the system."
+
+---
+
+## Goal
+
+Capacitar o agente a projetar ecossistemas de API robustos aplicando princípios de design REST, GraphQL e tRPC, garantindo interoperabilidade através de **Style Guides** rigorosos, segurança (OWASP) e resiliência (Rate Limiting, Circuit Breaker).
+
+A skill assegura que a API não seja apenas "funcional", mas **consistente**, **segura** e **sustentável** ao longo do tempo.
+
+---
+
+## Quando Usar Esta Skill
+
+- Projetando novas APIs do zero (REST, GraphQL, tRPC).
+- Definindo o **API Style Guide** para garantir consistência entre múltiplos serviços.
+- Refatorando APIs legadas para padrões modernos de segurança e resiliência.
+- Implementando estratégias de governança (versionamento, paginação, rate limit).
+- Revisando segurança contra vulnerabilidades críticas (BOLA/BFLA).
+
+---
+
+## Workflow (4 Fases)
+
+### Fase 1: STRATEGY — Definição de Protocolo
+1.  **Consumer Analysis**: Identificar quem consome (Web, Mobile, B2B).
+2.  **Protocol Selection**: Escolher entre REST (Público), GraphQL (Flexível) ou tRPC (Monorepo TS).
+3.  **Governance Baseline**: Definir versão inicial, política de deprecation e rate limiting.
+
+### Fase 2: DESIGN — Modelagem e Style Guide
+1.  **Resource Modeling**: Definir entidades e relações (plural, substantivos).
+2.  **Consistency Layer**: Aplicar rigorosamente o `references/api-style.md` (formato de erro padrão, envelopes de resposta).
+3.  **Schema Definition**: Escrever OpenAPI (REST), SDL (GraphQL) ou Zod (tRPC).
+
+### Fase 3: RESILIENCE — Segurança e Performance
+1.  **Security Audit**: Aplicar checklist de OWASP API Top 10 (AuthN/AuthZ).
+2.  **Stability Patterns**: Definir timeouts, retries e Circuit Breakers.
+3.  **Data Filtering**: Implementar paginação (Cursor/Offset) e projeção de campos.
+
+### Fase 4: VALIDATE — Verificação Automatizada
+1.  **Contract Testing**: Validar se o schema gerado é válido e sem erros.
+2.  **Security Scan**: Revisar permissões de objeto (BOLA) em todos os endpoints.
+3.  **Documentation Handoff**: Entregar o contrato aprovado e o guia de implementação.
+
+---
+
+## Output Structure
+
+A execução desta skill deve resultar nos seguintes artefatos mandatórios:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **API Spec** | `.yaml` / `.graphql` / `.ts` | Contrato técnico completo (OpenAPI, SDL ou Zod). |
+| **API Style Guide** | `.md` | Definição de padrões de resposta, erro e nomenclatura. |
+| **Security Checklist** | `.md` | Relatório de conformidade com OWASP e padrões de Auth. |
+| **Resilience Policy** | `.md` | Definição de limites de taxa, timeouts e estratégia de cache. |
+
+---
+
+## Quality Rules
+
+- **Contract-First**: O código de implementação só deve ser escrito após a aprovação do contrato.
+- **Uniform Error Handling**: Erros devem seguir um padrão único de estrutura e status code.
+- **Security by Default**: Todo endpoint deve ser protegido por padrão (necessita de opt-out explícito).
+- **YAGNI in Data**: Retorne apenas o necessário; evite over-fetching através de projeções ou campos opcionais.
+
+## Prohibited
+
+- NUNCA exponha IDs sequenciais (use UUIDs ou HashIDs).
+- NUNCA use verbos em URLs de recursos (ex: `/getUsers` -> use `GET /users`).
+- NUNCA ignore o versionamento; APIs públicas devem ter versão na URL ou Headers.
+- NUNCA retorne logs ou stack traces em respostas de erro de produção.
+
+---
+
+## Referências
+
+- [`references/rest-best-practices.md`](references/rest-best-practices.md) — Guia de design REST.
+- [`references/api-security-guide.md`](references/api-security-guide.md) — Segurança e OWASP API Top 10.
+- [`references/api-style.md`](references/api-style.md) — (Novo) Padrões de consistência de interface.
+- [`references/api-rate-limiting.md`](references/api-rate-limiting.md) — Resiliência e controle de taxa.
+- [`resources/implementation-playbook.md`](resources/implementation-playbook.md) — Checklists de implementação.
 
 
 ---
@@ -94,6 +205,15 @@ category: architecture
 
 ---
 
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
 ## Goal
 
 Capacitar o agente a projetar arquiteturas de software de alta qualidade e complexidade, abrangendo sistemas distribuídos (CQRS, Event-Driven) e monolitos modulares. A skill garante que cada decisão seja justificada por trade-offs, priorize a simplicidade e seja protegida por **Fitness Functions** e documentada visualmente via **Mermaid**.
@@ -174,6 +294,1402 @@ A execução desta skill resulta nos seguintes artefatos mandatórios em `.specs
 
 ---
 
+## SKILL: AZURE-DEVOPS
+
+---
+name: azure-devops
+version: 1.1.0
+description: "Skill para gerenciamento profissional do Azure DevOps (AzDO). Permite gerenciar Boards, Repos, Pipelines, Artifacts, Governança (Variable Groups, Service Connections) e Administração de forma eficiente."
+category: devops-automation
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+# Azure DevOps (AzDO)
+
+> Interface profissional para orquestrar o ciclo de vida de desenvolvimento e a governança de plataforma no Azure DevOps.
+
+---
+
+## Goal
+
+Capacitar o agente a gerenciar de forma abrangente os recursos do Azure DevOps, desde a gestão de tarefas e código até a automação de infraestrutura (Service Connections), governança de variáveis e administração de usuários/permissões, utilizando as melhores práticas de segurança e automação CLI.
+
+---
+
+## Workflow (5 Fases)
+
+### Fase 1: AUTH — Conexão e Segurança
+1.  **Verificar Credenciais**: Garantir que o PAT está disponível e configurado.
+2.  **Configurar Contexto**: Utilizar `az devops configure --defaults` para fixar organização e projeto.
+
+### Fase 2: INFRA — Governança e IaC
+1.  **Conexões de Serviço**: Criar ou auditar Service Endpoints para integrações externas.
+2.  **Variáveis Globais**: Gerenciar Variable Groups compartilhados e integrá-los a Key Vaults.
+3.  **Segurança de Pipeline**: Autorizar o uso de recursos críticos (Pools, Queues, Variable Groups) para pipelines específicos.
+
+### Fase 3: PLANNING — Boards e Work Items
+1.  **Consultas WIQL**: Executar filtros complexos para triagem de backlog.
+2.  **Gestão de Itens**: Criar e atualizar Work Items via abstração JSON Patch.
+
+### Fase 4: DELIVERY — Repos e Code Flow
+1.  **PR Lifecycle**: Gerenciar o ciclo completo de Pull Requests e revisões.
+2.  **Políticas de Branch**: Validar e aplicar regras de proteção de branch.
+
+### Fase 5: OPS & ADMIN — Gestão e Monitoramento
+1.  **CI/CD Ops**: Disparar builds, releases e monitorar logs de execução.
+2.  **User Admin**: Gerenciar usuários, times e permissões de segurança.
+3.  **Extensões & Wiki**: Administrar extensões instaladas e manter a documentação do projeto via Wiki.
+
+---
+
+## AzDO CLI Commands Reference
+
+| Área | Comando Principal | Propósito |
+|------|-------------------|-----------|
+| **Infra** | `az pipelines variable-group` | Gestão de grupos de variáveis |
+| **Infra** | `az devops service-endpoint` | Gestão de conexões externas |
+| **Admin** | `az devops user / team` | Administração de pessoas e times |
+| **Admin** | `az devops security` | Permissões e grupos de segurança |
+| **Low-Level**| `az devops invoke` | Chamadas diretas à API REST |
+
+---
+
+## Quality Rules
+
+- **Security First**: Administrative operations require double confirmation of the target organization.
+- **Lease Privilege**: Suggestions for variable groups and connections should always limit scope to necessary pipelines only.
+- **Standard Syntax**: Use official `az devops` CLI syntax over raw REST calls unless using `invoke`.
+- **Infrastructure-as-Code**: Prefer YAML-based pipelines and Variable Groups over UI-defined configurations.
+
+## Prohibited
+
+- **NUNCA** sugerir a criação de Service Connections com permissões de "Owner" ou "Contributor" global sem justificativa.
+- **NUNCA** ignorar o comando `configure --defaults` ao iniciar uma nova sessão administrativa.
+- **NUNCA** apagar Variable Groups ou Service Endpoints sem verificar dependências em pipelines ativos.
+
+---
+
+## Reference Documentation
+
+Esta skill inclui documentação de referência detalhada:
+
+1. **[Authentication](references/authentication.md)** — PAT, contextos e `configure`.
+2. **[Infrastructure & Variables](references/infrastructure-and-variables.md)** — Variable Groups e Service Connections.
+3. **[Administration & Security](references/administration-and-security.md)** — Users, Teams e Permissions.
+4. **[Boards Management](references/boards-management.md)** — Work Items e WIQL.
+5. **[Repos & Code Flow](references/repos-code-flow.md)** — Pull Requests e Políticas.
+6. **[Pipelines CI/CD](references/pipelines-cicd.md)** — Execução e monitoramento.
+7. **[Advanced CLI Commands](references/advanced-cli-commands.md)** — `invoke` e `wiki`.
+
+---
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos padronizados:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Infra Spec** | `.json` / `.yaml`| Definição de Variable Groups ou Endpoints. |
+| **Security Audit**| `.md` | Relatório de usuários, permissões e políticas. |
+| **API Invoke** | `.sh` | Scripts de chamada direta via `az devops invoke`. |
+| **WIQL Query** | `.wiql` | Consultas estruturadas para o Azure Boards. |
+
+
+---
+
+## SKILL: BENCHMARK-EXPERT
+
+---
+name: benchmark-expert
+version: 1.0.0
+description: "Expert Skill para medição de baselines de performance, detecção de regressões e comparação de stacks."
+category: performance
+---
+
+# Benchmark Expert — Performance Baseline & Regression Detection
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer benchmark:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Phase 4 Integration**: benchmarks devem ser executados preferencialmente na **Fase 4 (Review & Persistence)** do SDD para validar o impacto da implementação.
+3. **Clean Environment**: Garanta que o ambiente de teste esteja isolado e sem processos de fundo pesados.
+
+---
+
+## Goal
+
+O objetivo desta skill é fornecer um framework padronizado para medição de performance, permitindo que desenvolvedores estabeleçam baselines confiáveis, detectem regressões de forma antecipada e comparem alternativas técnicas com base em dados quantitativos.
+
+---
+
+## Output Structure
+
+A execução desta skill produz os seguintes artefatos:
+
+| Artefato | Localização | Descrição |
+|----------|-------------|-----------|
+| **Baseline JSON** | `.benchmarks/baseline-*.json` | Dados brutos da medição para persistência no Git. |
+| **Comparison Report** | `artifacts/benchmark-report.md` | Tabela comparativa com deltas e veredito de performance. |
+| **Performance Logs** | Console | Logs detalhados da execução do benchmark. |
+
+---
+
+## Quando Usar
+
+- Antes e depois de um PR para medir o impacto na performance.
+- Configuração de baselines iniciais para novos projetos.
+- Quando usuários reportam que o sistema "está lento".
+- Antes de um lançamento oficial para garantir que os targets foram atingidos.
+- Comparação de diferentes bibliotecas ou stacks (ex: Vite vs Webpack).
+
+---
+
+## Modos de Operação
+
+### Modo 1: Performance de Página (Browser)
+Mede métricas reais do navegador via ferramentas de automação.
+
+**Fluxo:**
+1. Navegar para URLs alvo.
+2. Medir **Core Web Vitals**:
+   - **LCP (Largest Contentful Paint)**: Alvo < 2.5s.
+   - **CLS (Cumulative Layout Shift)**: Alvo < 0.1.
+   - **INP (Interaction to Next Paint)**: Alvo < 200ms.
+   - **FCP (First Contentful Paint)**: Alvo < 1.8s.
+   - **TTFB (Time to First Byte)**: Alvo < 800ms.
+3. Medir tamanhos de recursos:
+   - Peso total da página (Alvo < 1MB).
+   - JS Bundle (Alvo < 200KB gzipped).
+   - CSS, Imagens e Scripts de terceiros.
+
+### Modo 2: Performance de API
+Benchmarks de endpoints de API para latência e robustez.
+
+**Fluxo:**
+1. Executar 100+ requisições no endpoint alvo.
+2. Medir percentis: **p50, p95, p99**.
+3. Monitorar códigos de status e tamanho das respostas.
+4. Testar sob carga concorrente (ex: 10-50 conexões simultâneas).
+
+### Modo 3: Performance de Build & Dev Loop
+Mede a agilidade do ecossistema de desenvolvimento.
+
+**Métricas:**
+1. **Cold Build**: Tempo de build do zero.
+2. **Hot Reload (HMR)**: Tempo entre salvar arquivo e refletir na UI.
+3. **Test Duration**: Tempo total da suíte de testes.
+4. **Tooling Latency**: Tempo de Lint e Type Check.
+
+### Modo 4: Comparação Antes/Depois (Regressão)
+O coração da skill para validação de PRs.
+
+```bash
+# Salva o estado atual como baseline
+/benchmark-expert baseline
+
+# ... aplica mudanças de código ...
+
+# Compara o estado atual contra o baseline salvo
+/benchmark-expert compare
+```
+
+---
+
+## Quality Rules
+
+- **Deterministic Measurements**: Sempre execute o benchmark 3 vezes e use a média.
+- **Context Awareness**: Documente as especificações da máquina onde o benchmark foi rodado.
+- **Fail Fast**: Se o delta de uma métrica crítica (LCP) subir > 15%, o veredito deve ser **FAIL** mandatório.
+- **Git Persistence**: Baselines críticos devem ser commitados no diretório `.benchmarks/`.
+
+---
+
+## Prohibited
+
+- **NUNCA** ignore regressões de performance em PRs sem justificativa técnica documentada.
+- **NUNCA** execute benchmarks em máquinas com alta carga de CPU/Memória (instabilidade).
+- **NUNCA** use ferramentas de benchmark que não meçam o p99 para APIs.
+
+---
+
+## Referências
+- [Performance Targets](./references/performance_targets.md)
+- [Análise de Regressão](./references/regression_analysis.md)
+
+
+---
+
+## SKILL: BRAINSTORMING
+
+---
+name: brainstorming
+version: 1.1.0
+description: "Facilitador de Brainstorming e Design — guia o agente a explorar problemas complexos, gerar ideias divergentes e convergir para especificações sólidas antes de qualquer implementação."
+category: design-thinking
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+# Brainstorming
+
+> Facilitador de ideias e resolução de problemas. Pense como um arquiteto e facilitador, não como um executor. O objetivo aqui é "reduzir a velocidade para acertar".
+
+---
+
+## Goal
+
+Capacitar o agente a facilitar sessões de brainstorming de alta qualidade, utilizando técnicas de divergência e convergência para definir problemas, explorar soluções alternativas, avaliar trade-offs e consolidar especificações claras antes de iniciar o desenvolvimento.
+
+---
+
+## Quando Usar Esta Skill
+
+- Antes de iniciar qualquer projeto ou feature complexa.
+- Quando o problema não está bem definido.
+- Para explorar múltiplas abordagens técnicas antes de escolher uma.
+- Quando houver necessidade de alinhar premissas e requisitos não-funcionais.
+- Para resolver gargalos criativos ou técnicos.
+
+## Quando NÃO Usar Esta Skill
+
+- Para tarefas triviais ou bugs óbvios.
+- Quando a solução já está totalmente especificada e validada.
+- Quando você já está em fase de execução/implementação massiva.
+
+---
+
+## Workflow (4 Fases)
+
+### Fase 1: DISCOVER — Definição do Problema
+1.  **Questionamento Ativo**: Use a técnica dos "5 Whys" para chegar à raiz do problema.
+2.  **Mapeamento de Stakeholders**: Para quem estamos construindo? Quais são suas dores?
+3.  **Understanding Lock**: Crie um resumo de entendimento (Objetivos, Non-goals e Premissas) e peça validação antes de prosseguir.
+
+### Fase 2: DIVERGE — Exploração de Ideias
+1.  **Multiplicidade**: Gere pelo menos 3 abordagens distintas (ex: Simples, Escalável, Experimental).
+2.  **Técnicas Criativas**: Utilize SCAMPER ou First Principles para desafiar o status quo.
+3.  **Proibição de Código**: Nesta fase, foque em conceitos, fluxos e arquitetura. **NÃO ESCREVA CÓDIGO DE PRODUÇÃO**.
+
+### Fase 3: CONVERGE — Avaliação e Escolha
+1.  **Matriz de Trade-offs**: Liste Prós e Contras de cada abordagem (Complexidade vs Velocidade vs Manutenibilidade).
+2.  **Questionamento Dinâmico**: Faça uma pergunta por vez para ajudar o usuário a decidir entre as opções.
+3.  **Recomendação**: O agente deve recomendar uma das abordagens baseada no contexto técnico.
+
+### Fase 4: SPECIFY — Consolidação
+1.  **Design Specification**: Documente a solução escolhida em Markdown durável.
+2.  **Decision Log**: Registre o que foi decidido e por quê.
+3.  **Handoff**: Defina os próximos passos claros para a implementação.
+
+---
+
+## Output Structure
+
+A execução desta skill deve resultar nos seguintes artefatos mandatórios, preferencialmente armazenados em `.specs/design/` ou `docs/brainstorming/`:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Design Specification** | `.md` | Documento consolidado com a arquitetura e fluxos da solução escolhida. |
+| **Decision Log** | `.md` | Registro histórico das alternativas exploradas e a justificativa da escolha final. |
+| **Trade-off Matrix** | Tabela | Comparativo visual entre as abordagens (Simples, Escalável, Experimental). |
+
+---
+
+## Quality Rules
+
+- **Uma Pergunta por Vez**: Nunca sobrecarregue o usuário com múltiplas perguntas em uma única mensagem.
+- **Suposições Explícitas**: Se você assumir algo, declare-o claramente como uma premissa.
+- **YAGNI (You Ain't Gonna Need It)**: Evite sugerir complexidade desnecessária ou "over-engineering".
+- **Facilitação, não Execução**: Recuse-se a codificar até que o design esteja validado no "Understanding Lock".
+
+## Prohibited
+
+- NUNCA inicie a implementação sem validação explícita do design.
+- NUNCA assuma requisitos não-funcionais (escalabilidade, segurança) sem perguntar.
+- NUNCA ignore os "Non-goals" (o que não faremos).
+- NUNCA apresente designs gigantes sem dividi-los em seções digeríveis.
+
+---
+
+## Referências
+
+- [`references/brainstorming-techniques.md`](references/brainstorming-techniques.md) — SCAMPER, 5 Whys, First Principles.
+- [`references/decision-frameworks.md`](references/decision-frameworks.md) — Matrizes de decisão e Trade-offs.
+
+
+---
+
+## SKILL: CLEAN-CODE-MENTOR
+
+---
+name: clean-code-mentor
+version: 1.0.0
+description: "Skill para mentoria técnica e revisão de código com foco total em SOLID, YAGNI, DRY e KISS. Identifica violações de design e sugere refatorações para código mais simples e mantível."
+category: code-quality
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+# Clean Code Mentor
+
+> "Qualquer tolo consegue escrever código que um computador entenda. Bons programadores escrevem código que humanos entendam." — Martin Fowler
+
+---
+
+## Goal
+
+Capacitar o agente a atuar como um revisor de código experiente e mentor técnico, auditando o design de software contra os princípios **SOLID**, **YAGNI**, **DRY** e **KISS**, garantindo que a simplicidade e a manutenibilidade sejam a prioridade máxima em cada entrega de código.
+
+---
+
+## Workflow (4 Fases)
+
+### Fase 1: CONTEXT — Compreensão de Escopo
+1.  **Mapear Intenção**: Entender o que o código atual tenta realizar antes de criticar o design.
+2.  **Mapear Dependências**: Identificar relações entre classes e módulos que possam indicar violações de SRP (Responsabilidade Única) ou DIP (Inversão de Dependência).
+
+### Fase 2: AUDIT — Verificação de Princípios
+1.  **SOLID Scan**: Avaliar cada um dos 5 princípios. Flagrar classes que fazem "coisas demais" ou heranças que quebram o contrato (LSP).
+2.  **YAGNI & KISS Guard**: Procurar por abstrações desnecessárias, padrões de design complexos aplicados em problemas simples e "código de reserva" para o futuro.
+3.  **DRY Verification**: Verificar duplicidade de lógica no arquivo ou entre arquivos relacionados.
+
+### Fase 3: PROPOSE — Sugestões de Refatoração
+1.  **Draft de Melhoria**: Propor snippets de código comparativos (Antes vs. Depois) que apliquem as melhorias sugeridas.
+2.  **Impacto Mínimo**: Garantir que a refatoração proposta não altere o comportamento funcional do código (apenas a estrutura).
+
+### Fase 4: MENTOR — Justificativa Técnica
+1.  **Fundamentação**: Explicar a teoria por trás da correção (ex: "Isso reduz o acoplamento...").
+2.  **Handoff**: Entregar um "Relatório de Qualidade" estruturado com Severidade e Recomendações.
+
+---
+
+## Quality Rules
+
+- **Simplicity First**: Sempre priorize o código mais legível e direto (KISS) sobre o padrão de design mais elegante.
+- **Evidence-Based**: Toda crítica deve ser acompanhada de uma explicação teórica e um exemplo prático.
+- **Actionable**: Não apenas aponte erros; sempre forneça uma rota de correção clara (refatoração).
+- **Context-Aware**: Entenda que às vezes o prazo ou a tecnologia impõem limites, mas o design deve ser o melhor possível dentro dessas restrições.
+
+## Prohibited
+
+- **NUNCA** sugerir padrões de design complexos se uma solução simples resolver o problema.
+- **NUNCA** ignorar "Code Smells" óbvios como métodos gigantes ou listas de parâmetros infinitas.
+- **NUNCA** sugerir mudanças que quebrem a consistência de estilo do projeto atual.
+- **NUNCA** criticar o código de forma subjetiva; utilize sempre os princípios estabelecidos como base.
+
+---
+
+## Reference Documentation
+
+Esta skill inclui documentação de referência detalhada:
+
+1. **[SOLID Principles](references/solid-principles.md)** — Profundidade técnica nos 5 princípios com exemplos.
+2. **[YAGNI & KISS](references/yagni-and-kiss.md)** — O poder da simplicidade e da entrega baseada na necessidade atual.
+3. **[DRY & Clean Tests](references/dry-and-clean-tests.md)** — Eliminação de duplicidade e manutenção da qualidade dos testes.
+
+---
+
+## Output Structure
+
+A execução desta skill deve resultar nos seguintes artefatos padronizados:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Review Report** | `.md` | Relatório estruturado de auditoria com severidade (Critical, Warning, Info). |
+| **Refactoring Diff** | Markdown/Diff | Comparativo Antes vs. Depois com a lógica sugerida. |
+| **Mentoring Summary** | `.md` | Breve explicação dos princípios teóricos aplicados na revisão. |
+
+
+---
+
+## SKILL: DJANGO-EXPERT
+
+---
+name: django-expert
+version: 1.5.0
+description: "Expert level Django development focused on production architecture, security hardening, testing excellence, and deployment readiness."
+category: development-python
+---
+
+# Django Expert: Professional Web Systems
+
+> "The web framework for perfectionists with deadlines." - Esta skill garante que você cumpra os prazos sem sacrificar a qualidade técnica.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+## Goal
+
+Prover um framework de decisão para o desenvolvimento de aplicações Django robustas, focando em performance de banco de dados (ORM), interfaces reativas com HTMX e gerenciamento de dependências via `python-uv`.
+
+---
+
+## Workflow (12 Phases)
+
+### Phase 1: SETUP & ARCHITECTURE
+Configuração do ecossistema Django via UV e definição da arquitetura.
+- **Rule**: Sempre usar `uv init` e gerenciar dependências via UV.
+- **Architecture**: Adotar o layout `config/` e `apps/` com **Split Settings**.
+- **Mandate**: Configurar `pyproject.toml` com seções para ferramentas (Ruff, Pytest).
+- **Reference**: Ver [Production Architecture](references/architecture_prod.md).
+
+### Phase 2: DATA_MODELING (ORM)
+Definição de modelos e migrações.
+- **Rule**: NUNCA usar `null=True` em campos de texto (usar string vazia por padrão).
+- **Reference**: Ver [ORM Performance](references/orm_performance.md).
+
+### Phase 3: LOGIC & FORMS
+Implementação da regra de negócio.
+- **Rule**: Preferir a lógica em `Services` ou `Managers` em vez de Views ou Modelos "gordos".
+- **Mandate**: Utilizar `Django Forms/ModelForms` para validação de entrada, sempre.
+
+### Phase 4: UI & REACTIVITY (HTMX)
+Criação da interface de usuário.
+- **Rule**: Usar **HTMX** para interações dinâmicas sem JavaScript customizado pesado.
+- **Reference**: Ver [HTMX Patterns](references/htmx_patterns.md).
+
+### Phase 5: TESTING & QUALITY
+Garantia de estabilidade inicial.
+- **Rule**: Usar `pytest-django` e `factory-boy` para testes rápidos e isolados.
+- **Reference**: Ver [Testing Guide](references/testing.md).
+
+### Phase 6: SECURITY & DEPLOY
+Preparação básica para o mundo real.
+- **Check**: Rodar `python manage.py check --deploy`.
+- **Mandate**: Configurar CSRF, HSTS e Session Security.
+
+### Phase 7: MAINTENANCE & DEBUGGING
+Cultura de depuração e monitoramento.
+- **Rule**: Seguir o [Systematic Debugging](references/debugging.md).
+- **Logic**: Implementar logs estruturados e monitoramento de tarefas.
+
+### Phase 8: API DEVELOPMENT (DRF)
+Criação de APIs robustas com Django REST Framework.
+- **Rule**: Usar ViewSets e Serializers explícitos para garantir contratos claros.
+- **Mandate**: Implementar autenticação via JWT ou Token e permissões granulares.
+- **Reference**: Ver [API Patterns](references/api_patterns.md).
+
+### Phase 9: CROSS-CUTTING CONCERNS
+Implementação de funcionalidades transversais.
+- **Rule**: Usar Caching para endpoints caros e Signals para efeitos colaterais.
+- **Reference**: Ver [Cross-Cutting Concerns](references/cross_cutting.md).
+
+### Phase 10: SECURITY HARDENING
+Fortalecimento da aplicação contra vulnerabilidades comuns.
+- **Rule**: Implementar Argon2, validadores de senha de 12+ caracteres e RBAC.
+- **Mandate**: Validar tipo e tamanho de todos os arquivos enviados pelo usuário.
+- **Reference**: Ver [Security Hardening](references/security.md).
+
+### Phase 11: CONTINUOUS TESTING & COVERAGE
+Garantia de estabilidade e prevenção de regressões.
+- **Rule**: Seguir o workflow TDD (Red-Green-Refactor) via Pytest.
+- **Mandate**: NUNCA usar fixtures JSON/YAML; usar exclusivamente Factories.
+- **Coverage**: Manter cobertura > 90% em Models e Services.
+- **Reference**: Ver [Testing Excellence](references/testing.md).
+
+### Phase 12: DEPLOYMENT READINESS & VERIFICATION
+Loop final de qualidade antes da entrega.
+- **Rule**: Rodar checklist de deploy e auditoria de segurança (pip-audit).
+- **Mandate**: Nenhuma PR deve ser aceita sem passar no `ruff check` e `mypy`.
+- **Reference**: Ver [Deployment & Verification](references/verification.md).
+
+---
+
+## Key Patterns
+
+### 1. N+1 Avoidance
+Sempre utilize `select_related` (FKs) e `prefetch_related` (M2M) para otimizar queries.
+
+### 2. Modern UI with HTMX
+Interfaces reativas sem a complexidade de SPAs.
+
+### 3. API Patterns (DRF)
+Contratos claros e segurança em primeiro lugar.
+
+---
+
+## Quality Rules
+
+- **Code Quality**: Usar **Ruff** para linting e **Mypy** para verificação de tipos.
+- **DRY ORM**: Consultas complexas devem residir em Custom Managers.
+- **Service Layer**: Toda lógica complexa deve estar em `services.py`.
+- **HTMX Fragments**: Templates modulares para retornos parciais.
+- **Strict Testing**: Todo Bug fix deve vir acompanhado de um teste de regressão.
+
+## Prohibited
+
+- NUNCA usar `null=True` em CharField ou TextField (usar default vazio).
+- NUNCA realizar queries dentro de loops (usar `select_related` / `prefetch_related`).
+- NUNCA colocar chaves secretas ou credenciais no código (usar `django-environ`).
+- NUNCA importar signals fora do método `ready()` do `AppConfig`.
+- NUNCA usar `mark_safe` em input de usuário sem escape prévio.
+- NUNCA concatenar variáveis diretamente em queries SQL brutas.
+- NUNCA submeter código sem testes de unidade para novas funcionalidades.
+- NUNCA realizar chamadas externas reais em ambiente de teste (usar Mocks).
+- NUNCA expor o `id` sequencial do banco em URLs públicas se a segurança for crítica (usar UUID).
+
+---
+
+## Output Structure
+
+| Guia | Descrição |
+|------|-----------|
+| [ORM Performance](references/orm_performance.md) | Otimização de queries e Managers. |
+| [Architecture Prod](references/architecture_prod.md) | Layout apps/ e Split Settings. |
+| [API Patterns](references/api_patterns.md) | DRF, ViewSets e Serializers. |
+| [Security Hardening](references/security.md) | Argon2, RBAC e File Security. |
+| [Testing Excellence](references/testing.md) | Factories, Pytest e Mocking. |
+| [Deployment & Verification](references/verification.md) | Ruff, Mypy e Checklists. |
+| [Cross-Cutting](references/cross_cutting.md) | Caching, Signals e Middleware. |
+| [HTMX Patterns](references/htmx_patterns.md) | Fragmentos e interações dinâmicas. |
+| [Background Tasks](references/background_tasks.md) | Celery, Redis e Idempotência. |
+| [Forms & Validation](references/forms.md) | Validação avançada e ModelForms. |
+| [Debugging](references/debugging.md) | Depuração sistemática e Logs. |
+
+
+---
+
+## SKILL: FASTAPI-EXPERT
+
+---
+name: fastapi-expert
+version: 1.1.0
+description: "Expert level FastAPI implementation focused on performance, clean architecture, and Python-UV integration."
+category: development-python
+---
+
+# FastAPI Expert: API Excellence
+
+> "Fast, easy to learn, fast to code, ready for production." - This skill ensures your FastAPI code actually lives up to that promise.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+## Goal
+
+Prover um framework de decisão e implementação para APIs de alto desempenho, garantindo o uso correto de Injeção de Dependências, Tipagem Estrita (Annotated) e integração nativa com o ecossistema `python-uv`.
+
+---
+
+## Workflow (6 Phases)
+
+### Phase 0: ARCHITECTURE_DESIGN
+Definição da estrutura do projeto (Clean Architecture).
+- **Rule**: Decidir entre Repository Pattern ou Service Layer antes de codar.
+- **Reference**: Ver [Architecture Guide](references/architecture.md).
+
+### Phase 1: SCHEMA_DESIGN
+Definição dos contratos de dados usando Pydantic V2.
+- **Rule**: NUNCA usar `RootModel`. Preferir `TypeAdapter` ou modelos estruturados.
+- **Mandate**: Todo campo deve ter `Field(description=...)` para documentação automática.
+
+### Phase 2: DEPENDENCY_ARCHITECTURE
+Mapeamento de dependências e segurança (JWT).
+- **Rule**: Usar exclusivamente `Annotated[Type, Depends(func)]`.
+- **Logic**: Criar aliases para dependências reutilizáveis.
+
+### Phase 3: IMPLEMENTATION & ERROR_HANDLING
+Escrita dos endpoints e handlers de exceção.
+- **Rule**: Usar `async def` apenas para operações verdadeiramente I/O async.
+- **Mandate**: Implementar handlers globais para exceções de domínio.
+
+### Phase 4: VALIDATION & PERF
+Auditoria de performance e documentação.
+- **Check**: Validar se não há código bloqueante dentro de `async def`.
+
+### Phase 5: TESTING
+Implementação de testes unitários e de integração.
+- **Rule**: Garantir 100% de cobertura nos serviços críticos com Pytest.
+
+---
+
+## Key Patterns (The FastAPI Standard)
+
+### 1. Annotated Style (Mandatory)
+```python
+from typing import Annotated
+from fastapi import Depends, Path
+
+# DO THIS
+async def read_item(item_id: Annotated[int, Path(title="The ID of the item")]):
+    ...
+
+# NOT THIS
+async def read_item(item_id: int = Path(...)):
+    ...
+```
+
+### 2. UV Integration
+Sempre inicializar e gerenciar dependências via `python-uv`:
+```bash
+uv add fastapi pydantic-settings
+uv run fastapi dev main.py
+```
+
+---
+
+## Quality Rules
+
+- **Clean Code**: Seguir SOLID. Endpoints devem ser "magros" (logic in services/dependencies).
+- **Security**: Utilizar `OAuth2PasswordBearer` e escopos para controle de acesso.
+- **Performance**: Pydantic V2 (Rust core) deve ser a única fonte de serialização.
+
+---
+
+## Prohibited
+
+- NUNCA usar `...` (Ellipsis) em modelos Pydantic ou parâmetros obrigatórios.
+- NUNCA misturar lógica de banco de dados diretamente no endpoint (usar Dependências).
+- NUNCA usar bibliotecas de serialização depreciadas (ujson/orjson).
+
+## Output Structure
+
+A execução desta skill deve resultar em APIs que seguem a seguinte estrutura de arquivos recomendada:
+
+| Artefato | Localização | Descrição |
+|----------|-------------|-----------|
+| **Entrypoint** | `src/main.py` | Inicialização do FastAPI e inclusão de routers. |
+| **Schemas** | `src/schemas/` | Modelos Pydantic V2 para request/response. |
+| **Endpoints** | `src/api/` | Routers organizados por domínio (tags). |
+| **Dependencies** | `src/dependencies.py` | Fábrica de dependências injetáveis. |
+| **Config** | `src/config.py` | Gestão de ambiente via `pydantic-settings`. |
+| **Migrations** | `migrations/` | Scripts de evolução do banco de dados (Alembic). |
+
+## Detailed References
+
+Para um mergulho profundo em cada tópico, consulte os guias especializados:
+
+| Guia | Tópico |
+|------|--------|
+| [Architecture](references/architecture.md) | Repositories, Services e Lifespan. |
+| [API Design](references/api_design.md) | Padrões REST, Status Codes e Naming. |
+| [Security](references/security.md) | JWT, OAuth2 e Password Hashing. |
+| [Error Handling](references/error_handling.md) | Exceções de Domínio e Handlers Globais. |
+| [Performance](references/performance.md) | Async vs Sync e Pydantic Rust core. |
+| [Testing](references/testing.md) | Pytest, AsyncClient e Integration Tests. |
+| [Migrations](references/migrations.md) | Alembic Assíncrono e versionamento de banco. |
+
+
+---
+
+## SKILL: FLUTTER-FVM
+
+---
+name: flutter-fvm
+version: 1.3.0
+description: "Skill para desenvolvimento Flutter profissional com FVM. Inclui padrões Dart 3+, performance otimizada, acessibilidade mandatória, segurança OWASP e gestão de resiliência (Error Handling)."
+category: development-workflow
+---
+
+# Flutter com FVM & Modern Patterns
+
+> Gerenciador de versões do Flutter combinado com padrões modernos de arquitetura, performance e acessibilidade para aplicações de alta fidelidade.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+## Goal
+
+**FVM** garante o ambiente. Esta skill garante a **Excelência Técnica** através de:
+
+| Pilar | Foco Principal |
+|-------|----------------|
+| **Dart 3+** | Sealed classes, Pattern Matching e Records para segurança de tipos. |
+| **Performance** | Otimização de rebuilds (`MediaQuery.sizeOf`), RepaintBoundaries e Decomposição. |
+| **UX/Acessibilidade** | Semantics, alvos de toque (48x48) e contraste dinâmico. |
+| **Resiliência** | Captura global de erros e tratamento gracioso de falhas. |
+| **Segurança** | OWASP Mobile Top 10 e gestão segura de Secrets (`--dart-define`). |
+
+## Version Awareness
+
+**Versão Recomendada: Flutter Stable (última disponível via FVM)**
+
+Verifique as versões instaladas e a ativa no projeto:
+
+```bash
+fvm list
+fvm current
+```
+
+## When to Use This Skill
+
+Use this skill when:
+- Inicializando um novo projeto Flutter ou migrando para Dart 3+.
+- Implementando lógica de negócio complexa com Gerenciamento de Estado (Riverpod/Bloc).
+- Otimizando a performance de telas com listas complexas ou animações.
+- Garantindo que o app seja acessível via leitores de tela (TalkBack/VoiceOver).
+- Configurando tratamento de erros robusto e crash reporting.
+- Gerenciando segredos e chaves de API com segurança.
+- Realizando análise de segurança OWASP Mobile Top 10.
+
+Skip this skill when:
+- O projeto NÃO usa Flutter/Dart.
+
+---
+
+## Workflow (4 Fases)
+
+### Fase 1: ENVIRONMENT — Configuração e Alinhamento
+1.  **Versão SDK**: Fixar com `fvm use stable`.
+2.  **Linting Rigoroso**: Configurar `analysis_options.yaml` com `strict-casts: true`, `strict-inference: true` e `strict-raw-types: true`.
+
+### Fase 2: PROJECT — Estrutura e Modernização
+1.  **State Modeling**: Usar `sealed class` para representar estados (Initial, Loading, Data, Error).
+2.  **Secrets Management**: Criar estrutura para receber chaves via `--dart-define` ou `.env` (excluído do git).
+3.  **Error Boundaries**: Configurar `FlutterError.onError` no `main.dart`.
+
+### Fase 3: DEVELOP — Qualidade e Performance
+1.  **Decomposição**: Manter métodos `build()` abaixo de 100 linhas.
+2.  **Selective Rebuilds**: Preferir `MediaQuery.sizeOf(context)` sobre `MediaQuery.of(context)`.
+3.  **Acessibilidade**: Adicionar `semanticLabel` em todos os elementos visuais críticos.
+4.  **Testes**: Cobrir transições de estado selados e fluxos de erro.
+
+### Fase 4: DEPLOY — Segurança e Resiliência
+1.  **Crash Reporting**: Garantir integração com Sentry/Crashlytics.
+2.  **Hardening**: Rodar builds com `--obfuscate --split-debug-info`.
+3.  **Validation**: Verificar se nenhum `print` restou (usar `debugPrint` ou `log`).
+
+## Output Structure
+
+A execução desta skill resulta na geração ou atualização dos seguintes artefatos:
+
+| Artefato | Localização | Descrição |
+|----------|-------------|-----------|
+| **FVM Config** | `.fvm/fvm_config.json` | Definição da versão do SDK para o time. |
+| **Analysis Options** | `analysis_options.yaml` | Regras de linting e análise estática. |
+| **Sealed States** | `lib/features/*/domain/` | Modelagem de estados exaustivos. |
+| **Secure Secrets** | `.env` / `main.dart` | Gestão de chaves via environment. |
+
+---
+
+## Quality Rules
+
+**DO:**
+- Use `sealed` classes para garantir exaustividade no tratamento de estados.
+- Use `const` construtores agressivamente para reduzir pressão no GC.
+- Garanta alvos de toque de no mínimo 48x48 dp.
+- Use `RepaintBoundary` em animações ou widgets de desenho pesado.
+- Valide `context.mounted` após qualquer `await`.
+
+**DON'T:**
+- Não use booleanos múltiplos (`isLoading`, `hasError`) para estados de tela.
+- Não use `print()` em produção; use o pacote `logging` ou `dart:developer`.
+- Não ignore erros do `fvm flutter analyze`.
+- Não armazene segredos diretamente no código Dart (hardcoded).
+
+---
+
+## Reference Documentation
+
+1. **[Padrões Modernos de Dart](references/modern-dart-patterns.md)** — Sealed classes, Records e Pattern Matching.
+2. **[Performance & Otimização](references/performance-and-optimization.md)** — Rebuilds, RepaintBoundaries e GC.
+3. **[Guia de Acessibilidade](references/accessibility-guide.md)** — Semantics, Hit Targets e UX Inclusiva.
+4. **[Configuração do Ambiente](references/environment-setup.md)** — FVM e Strict Analyzer.
+5. **[Guia de Segurança Flutter](references/flutter-security-guide.md)** — OWASP e Secrets.
+6. **[Testes & Qualidade](references/testing-and-quality.md)** — State and Logic testing.
+
+---
+
+## Prohibited
+
+- **Não pular Acessibilidade**: Features sem labels semânticos ou alvos pequenos são consideradas incompletas.
+- **Não ignorar o Analyzer**: Erros de análise impedem o deploy.
+- **Não usar o Flutter Global**: Mantenha o isolamento do projeto via FVM.
+
+---
+*Atualizada em 22 de Abril de 2026 para alinhamento com padrões ECC.*
+
+
+---
+
+## SKILL: FRONTEND-EXPERT
+
+---
+name: frontend-expert
+version: 1.1.0
+description: Expert em desenvolvimento de interfaces modernas com React, Next.js e TailwindCSS v4.
+---
+
+# Frontend Expert
+
+> "Interfaces não são apenas pixels; são conversas entre o usuário e a lógica do sistema."
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+## Goal
+
+Prover expertise avançada para a construção de interfaces web de alta performance, acessíveis (A11y), e escaláveis. Foca no ecossistema moderno de React, priorizando Server Components, design system-first com Tailwind v4 e Shadcn/UI.
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Component Spec** | `.md` | Especificação detalhada de componentes e estados. |
+| **Page Layout** | `.tsx` | Estrutura de página usando App Router do Next.js. |
+| **Theme Config** | `.css` | Configuração de variáveis de tema via Tailwind v4. |
+| **Accessibility Audit** | `.md` | Relatório de conformidade WCAG. |
+
+## Quality Rules
+
+- **Mobile-First**: Design responsivo é a base, não um ajuste posterior.
+- **Server-First**: Priorizar React Server Components (RSC) para reduzir o bundle size.
+- **A11y Mandate**: Todo componente interativo deve ser navegável por teclado e amigável a leitores de tela.
+- **Tailwind v4 CSS-First**: Utilizar o novo motor do Tailwind baseado em variáveis CSS nativas.
+- **Type Safety**: 100% TypeScript; evitar `any` a todo custo.
+
+## Prohibited
+
+- **NUNCA** utilizar inline styles (`style={{...}}`) quando utilitários Tailwind estiverem disponíveis.
+- **NUNCA** ignorar estados de loading e error em fetches de dados.
+- **NUNCA** utilizar bibliotecas de componentes pesadas se o Shadcn/UI (Copy-Paste) for suficiente.
+- **NUNCA** misturar Client Components em Server Components sem necessidade técnica real.
+
+---
+
+## 🛠️ Stack Recomendada
+
+1. **Framework**: Next.js (App Router).
+2. **Styling**: TailwindCSS v4 (CSS variables engine).
+3. **Components**: Shadcn/UI + Radix UI.
+4. **State**: React Context para UI local, TanStack Query para Server State.
+5. **Forms**: React Hook Form + Zod.
+
+---
+
+## 🔄 Workflow
+
+### Fase 1: Design Review
+Validar a hierarquia de componentes e o fluxo de dados (props vs state).
+
+### Fase 2: Component Scaffolding
+Criar componentes atômicos (Button, Input, Card) antes de montar as páginas.
+
+### Fase 3: Integration & Performance
+Implementar fetch de dados (Server Actions/Fetch API) e otimizar imagens/fonts.
+
+### Fase 4: UX & A11y Validation
+Testar em diferentes viewports e validar acessibilidade.
+
+
+---
+
+## SKILL: GIT-WORKFLOW
+
+---
+name: git-workflow
+version: 1.0.0
+description: "Padrões de fluxo de trabalho Git, incluindo estratégias de ramificação, convenções de commit e integração com SDD."
+category: development-workflow
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+
+## Goal
+
+Estabelecer padrões de controle de versão, estratégias de ramificação (branching) e desenvolvimento colaborativo que garantam rastreabilidade, facilitem revisões de código e mantenham a integridade do histórico do projeto, especialmente quando operando sob o framework SDD.
+
+---
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Clean History** | Git Log | Histórico de commits linear e legível. |
+| **Pull Request** | Markdown | PR documentado seguindo o template do projeto. |
+| **Git Config** | `.gitmessage` | Configuração local de template de commit. |
+
+---
+
+## Estratégias de Ramificação (Branching)
+
+### 1. GitHub Flow (Simples e Recomendado)
+Ideal para deploy contínuo e equipes de pequeno a médio porte.
+- `main` está sempre pronta para produção.
+- Crie branches `feature/` a partir da `main`.
+- Abra Pull Request para revisão.
+- Após aprovação e testes, faça o merge para `main`.
+
+### 2. Trunk-Based Development (Alta Velocidade)
+Para equipes com CI/CD robusto e Feature Flags.
+- Commits curtos e frequentes diretamente na `main` (ou branches de vida curtíssima).
+- CI deve passar antes de qualquer integração.
+
+### 3. GitFlow (Ciclo de Release Enterprise)
+Para releases agendados e projetos complexos.
+- `main` (produção), `develop` (integração).
+- Branches de `feature`, `release` e `hotfix`.
+
+---
+
+## Conventional Commits
+
+Formato obrigatório: `<type>(<scope>): <subject>`
+
+| Tipo | Uso | Exemplo |
+|------|-----|---------|
+| `feat` | Nova funcionalidade | `feat(auth): add SSO support` |
+| `fix` | Correção de bug | `fix(api): handle connection timeout` |
+| `docs` | Documentação | `docs(readme): add setup steps` |
+| `refactor` | Refatoração de código | `refactor(db): optimize query logic` |
+| `test` | Testes | `test(unit): add auth validation tests` |
+
+*Veja o guia completo em: [references/conventional-commits.md](references/conventional-commits.md)*
+
+---
+
+## Git no Workflow SDD (Mandatório)
+
+A integração do Git com o ciclo SDD é fundamental para a rastreabilidade:
+
+1.  **Fase Discovery**: Antes de iniciar, garanta que sua `main` local está sincronizada com o remoto (`git pull origin main`).
+2.  **Fase Implementation**: 
+    - **Branches Atômicas**: Cada feature/fix deve ter sua própria branch seguindo o padrão `feature/<id>-<name>` ou `fix/<id>-<name>`.
+    - **Commits por Task**: Cada tarefa concluída em `tasks.md` deve gerar pelo menos um commit claro.
+    - **Linguagem**: Todas as mensagens de commit **DEVEM** ser escritas em **Inglês**, mesmo que a documentação técnica esteja em Português.
+    - **Atomicidade**: Não misture alterações de tarefas diferentes no mesmo commit.
+3.  **Fase Review**:
+    - **Linearidade**: Prefira `rebase` para manter o histórico limpo antes do merge.
+    - **Evidence**: O link do Pull Request deve ser incluído no `validation-report.md`.
+
+### Diagrama de Ciclo de Commit SDD
+```mermaid
+graph TD
+    A[Início da Tarefa no tasks.md] --> B[Implementação do Código]
+    B --> C[Execução de Testes Locais]
+    C --> D{Passou?}
+    D -- Não --> B
+    D -- Sim --> E[Commit: type(scope): description #ID]
+    E --> F[Atualizar tasks.md como Concluído]
+    F --> G{Mais tarefas?}
+    G -- Sim --> B
+    G -- Não --> H[Abrir Pull Request]
+```
+
+---
+
+## Mandatos de Integração: Merge vs Rebase
+
+### Use REBASE para:
+- Atualizar sua branch local com as mudanças mais recentes da `main`.
+- Limpar commits intermediários (squash) antes de enviar para revisão.
+- Manter um histórico linear e sem "noise" de merge commits desnecessários.
+
+### Use MERGE para:
+- Integrar uma branch de feature concluída na `main`.
+- Quando a branch é compartilhada com outros desenvolvedores (evitar force push em branches públicas).
+
+---
+
+## Quality Rules
+
+- **English-Only**: Todas as mensagens de commit devem ser escritas em Inglês.
+- **Conventional-Commits**: Uso obrigatório do padrão Conventional Commits.
+- **Linear-History**: Preferência por `rebase` para manter o histórico limpo.
+- **Atomic-Commits**: Commits pequenos e focados em uma única mudança.
+
+---
+
+## Prohibited
+
+- **NUNCA** realizar commits diretos na `main` sem revisão (exceto modo Quick SDD).
+- **NUNCA** commitar segredos, chaves de API ou arquivos `.env`.
+- **NUNCA** usar mensagens de commit vagas (ex: "update", "fix").
+- **NUNCA** enviar Pull Requests gigantes (>500 linhas).
+- **NUNCA** escrever mensagens de commit em qualquer idioma que não seja Inglês.
+
+---
+
+## Referências e Exemplos
+- [Guia de Conventional Commits](references/conventional-commits.md)
+- [Estratégias Detalhadas de Branching](references/branching-strategies.md)
+- [Template de Mensagem de Git](examples/gitmessage.template)
+- [Template de Pull Request](examples/pull-request.md)
+
+
+---
+
+## SKILL: GOLANG-EXPERT
+
+---
+name: golang-expert
+version: 1.1.0
+description: "Expert level Go development skill focused on performance, idiomatic concurrency, and clean architecture."
+category: development
+---
+
+# Golang Expert
+
+> Expert level Go development skill focused on performance, idiomatic concurrency, and clean architecture.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+## Goal
+
+Atuar como um arquiteto e engenheiro de software sênior especializado em Go (Golang). Esta skill fornece diretrizes, padrões e melhores práticas para construir sistemas escaláveis, resilientes e de alta performance, utilizando o máximo do potencial idiomático da linguagem e seu ecossistema moderno.
+
+---
+
+## 🛠️ Expert Workflows
+
+### 1. New Project Scaffolding
+Ao iniciar um novo projeto, siga a ordem:
+1. `go mod init <module_path>`
+2. Configure o layout de pastas (`/cmd`, `/internal`, `/pkg`).
+3. Instale e configure o `golangci-lint`.
+4. Defina o container de DI (ex: `samber/do`).
+5. Configure o logging estruturado nativo (`slog`).
+
+### 2. High-Concurrency Design
+Para fluxos concorrentes:
+1. Desenhe o fluxo de dados (Data Flow) primeiro.
+2. Identifique pontos de contenção.
+3. Utilize `context.Context` para propagação de cancelamento.
+4. Utilize `golang.org/x/sync/errgroup` para coordenação de goroutines e propagação de erros.
+5. Implemente Graceful Shutdown para todas as goroutines.
+6. Valide com `go test -race`.
+
+---
+
+## ⚡ Performance Checklist
+- [ ] O código passou por `go test -bench`?
+- [ ] A análise de escape (`-gcflags="-m"`) foi verificada para evitar alocações desnecessárias no Heap?
+- [ ] Slices e Maps foram pré-alocados quando o tamanho é conhecido (`make([]T, 0, cap)`)?
+- [ ] Foi utilizado `strings.Builder` para concatenação de strings em loops?
+- [ ] Foram utilizados pools de objetos (`sync.Pool`) para estruturas frequentemente alocadas?
+- [ ] O tratamento de erros está utilizando `wrapping` (%w) de forma eficiente?
+- [ ] O pacote `slog` está configurado para o nível de log correto em produção?
+
+---
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos e orientações:
+
+| Artefato | Descrição |
+|----------|-----------|
+| **Architecture ADR** | Decisões técnicas fundamentadas para projetos Go. |
+| **Idiomatic Code** | Implementações que seguem rigorosamente o `go-code-style` e `naming`. |
+| **Concurrency Flow** | Desenhos de fluxos de concorrência seguros (goroutines, channels, context). |
+| **Optimization Report** | Análises de performance, benchmarks e sugestões de profiling. |
+| **Validation Suite** | Testes unitários e de integração robustos (com `testify`). |
+
+---
+
+## Quality Rules
+
+- **Idiomatic First**: Sempre priorizar a simplicidade ("Clear is better than clever") e as convenções oficiais (`go fmt`, `go lint`).
+- **Interfaces e Structs**: "Accept interfaces, return structs" (Aceite interfaces, retorne structs concretas).
+- **Zero Value Useful**: Desenhar tipos de forma que seu valor zero seja utilizável sem inicialização explícita (ex: `sync.Mutex`, `bytes.Buffer`).
+- **Functional Options**: Utilizar o padrão Functional Options para APIs com configurações complexas ou opcionais.
+- **Consumer-Defined Interfaces**: Definir interfaces no pacote que as consome, não no que as provê, para evitar acoplamento desnecessário.
+- **Safety Always**: Evitar race conditions, leaks de memória e uso indevido de `unsafe`.
+- **Modern Go**: Utilizar recursos de versões recentes (Generics, `slog`, `errors.Join`, etc.).
+- **Zero-Boilerplate**: Utilizar bibliotecas de utilitários como `samber/lo` e `samber/mo` para reduzir ruído de código repetitivo.
+
+## Prohibited
+
+- **NUNCA** ignorar erros (`_ = err`); sempre tratar ou propagar com contexto.
+- **NUNCA** utilizar `panic` para controle de fluxo normal; reserve para erros catastróficos.
+- **NUNCA** iniciar goroutines sem um mecanismo claro de cancelamento ou finalização (leaks).
+- **NUNCA** colocar `context.Context` dentro de structs; ele deve ser sempre o primeiro parâmetro de funções.
+- **NUNCA** misturar lógica de negócio com detalhes de infraestrutura (Clean Architecture).
+
+---
+
+## 📚 References
+
+Esta skill está organizada em 5 pilares fundamentais:
+
+1. [Foundations & Style](references/foundations.md)
+2. [Concurrency & Advanced](references/concurrency.md)
+3. [Development & Tooling](references/development.md)
+4. [Systems & Architecture](references/architecture.md)
+5. [Ecosystem & Samber](references/ecosystem.md)
+6. [Testing Expert (Specialized Skill)](../golang-testing-expert/SKILL.md)
+
+
+---
+
+## SKILL: GOLANG-TESTING-EXPERT
+
+---
+name: golang-testing-expert
+version: 1.0.0
+description: "Expert level Go testing patterns including TDD, table-driven tests, benchmarks, fuzzing, and HTTP testing."
+category: development-testing
+---
+
+# Golang Testing Expert
+
+> Expert level Go testing patterns including TDD, table-driven tests, benchmarks, fuzzing, and HTTP testing.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+
+## Goal
+
+Atuar como um especialista em QA e Testes para Go (Golang). Esta skill fornece diretrizes rigorosas para implementar o ciclo TDD, garantir alta cobertura de código, validar performance via benchmarks e aumentar a resiliência via fuzzing, seguindo os padrões mais modernos da linguagem.
+
+---
+
+## 🛠️ Expert Workflows
+
+### 1. The TDD Cycle (Red-Green-Refactor)
+Ao desenvolver novas funcionalidades, siga rigorosamente:
+1. **RED**: Escreva um teste que falha primeiro.
+2. **GREEN**: Escreva o código mínimo necessário para passar no teste.
+3. **REFACTOR**: Melhore o código mantendo os testes verdes.
+
+### 2. Table-Driven Testing
+Utilize structs anônimas para definir múltiplos casos de teste em uma única função, garantindo cobertura de casos de borda e erros.
+
+### 3. Parallel Execution
+Aproveite o paralelismo do Go nativo com `t.Parallel()` para suítes de teste rápidas e eficientes.
+
+---
+
+## ⚡ Testing Checklist
+- [ ] O ciclo RED-GREEN-REFACTOR foi seguido?
+- [ ] Foram utilizados Table-Driven Tests para casos de sucesso e erro?
+- [ ] Subtests (`t.Run`) foram utilizados para isolar os casos?
+- [ ] Helpers chamam `t.Helper()` para logs de erro precisos?
+- [ ] Recursos são limpos via `t.Cleanup()` ou `defer`?
+- [ ] A cobertura de código (`go test -cover`) foi verificada?
+- [ ] O race detector (`go test -race`) foi executado?
+
+---
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos e orientações:
+
+| Artefato | Descrição |
+|----------|-----------|
+| **Test Suite** | Arquivos `_test.go` robustos e idiomáticos. |
+| **Mocks & Stubs** | Implementações leves para isolamento de dependências. |
+| **Benchmarks** | Análises de performance e alocação de memória. |
+| **Fuzz Tests** | Testes de mutação para validação de inputs complexos. |
+| **Coverage Report** | Relatórios detalhados de cobertura de código. |
+
+---
+
+## Quality Rules
+
+- **Behavior over Implementation**: Teste o comportamento público, não os detalhes internos.
+- **Fast Feedback**: Mantenha os testes unitários extremamente rápidos.
+- **Meaningful Names**: Use nomes de subtests que expliquem o cenário (ex: "success_valid_user").
+- **No Sleep**: NUNCA use `time.Sleep()` em testes; utilize channels ou sinais de sincronização.
+- **TDD First**: Sempre escreva o teste antes do código de produção.
+
+## Prohibited
+
+- **NUNCA** utilizar `time.Sleep()` para sincronização em testes.
+- **NUNCA** ignorar erros retornados em funções de cleanup.
+- **NUNCA** deixar de usar `t.Helper()` em funções auxiliares de teste.
+- **NUNCA** realizar commits de código de produção sem a suíte de testes correspondente passar.
+- **NUNCA** usar frameworks de mock pesados quando uma interface simples resolve o problema.
+
+---
+
+## 📚 References
+
+Esta skill está organizada em 3 pilares fundamentais:
+
+1. [Testing Foundations](references/foundations.md) (TDD, Table-driven, Subtests)
+2. [Advanced Testing](references/advanced.md) (Mocks, Helpers, Golden Files, HTTP)
+3. [Performance & Fuzzing](references/performance.md) (Benchmarks, Fuzzing, Coverage)
+
+
+---
+
+## SKILL: HARNESS-EXPERT
+
+---
+name: harness-expert
+version: 2.1.0
+description: "Motor técnico para Harness Engineering. Implementa loops de feedback adversariais (GAN-style) para garantir qualidade de produção, além de gestão de estado e determinismo."
+category: agentic-infrastructure
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+# Harness Expert (v2.1.0)
+
+> "Se você não é o modelo, então você é o harness." — Infraestrutura de suporte para transformar LLMs em agentes operacionais de alta performance.
+
+---
+
+## Goal
+
+O objetivo desta skill é fornecer o "maquinário" (CLI, scripts, automação) para que o **SDD Planner** execute suas diretrizes. Enquanto o Planner define o *quê* e o *porquê*, o Harness fornece o *como* técnico para manter o estado determinístico e fechar loops de feedback adversariais (GAN-style) que garantem que a entrega final seja **production-ready**.
+
+---
+
+## 🔄 GAN-style Feedback Loop (Quality Enforcement)
+
+Para tarefas de alta complexidade (**Large/Complex**), o Harness deve operar em modo **Adversarial**:
+
+| Papel | Responsabilidade | Ferramentas |
+|-------|------------------|-------------|
+| **Generator** | Implementar a feature conforme a Spec e o Plan. | SDD CLI, UV, Frameworks (React, Flutter). |
+| **Evaluator** | Atuar como QA implacável, testando a aplicação viva e rejeitando "AI slop". | Playwright, Screenshotting, Log Analysis. |
+
+### 📊 Evaluation Rubric (Target: Score >= 7.0)
+
+| Critério | Peso | Descrição |
+|----------|------|-----------|
+| **Design Quality** | 0.3 | Coesão visual, ausência de padrões genéricos de IA, estética premium. |
+| **Originality** | 0.2 | Decisões técnicas/visuais criativas e customizadas para o problema. |
+| **Craft** | 0.3 | Polimento, micro-interações, tipografia, espaçamento e performance. |
+| **Functionality** | 0.2 | Funcionamento robusto de todas as features e tratamento de erros. |
+
+---
+
+## Workflow (4 Fases)
+
+### Fase 1: AUTOMATED REHYDRATE — Carregamento Técnico
+1.  **Injeção de Contexto**: Executar scripts de leitura em massa de `.specs/` para reidratar a memória do agente.
+2.  **Health Check**: Validar se os arquivos de estado (`STATE.md`, `tasks.md`) estão íntegros.
+3.  **Context Compression**: Utilizar `harness-expert-compress` para manter os tokens críticos.
+
+### Fase 2: OPERATE — Automação de Execução (Generator Mode)
+1.  **Tool Orchestration**: Invocar MCPs e scripts locais conforme o plano.
+2.  **Implementation Loop**: Escrever código focado em passar nos ACs da `spec.md`.
+3.  **Self-Correction**: Corrigir bugs de linter/testes imediatamente via `sdd-implementer`.
+
+### Fase 3: ADVERSARIAL REVIEW — Ciclo de Feedback (Evaluator Mode)
+1.  **Live Testing**: Iniciar o servidor de dev e utilizar Playwright para testar fluxos reais.
+2.  **Strict Scoring**: Atribuir notas de 1 a 10 baseadas na rubrica. **NUNCA elogiar trabalho medíocre**.
+3.  **Feedback Iteration**: Gerar o `validation-report.md` com críticas acionáveis para o Generator.
+
+### Fase 4: FINAL SYNC — Determinismo e Encerramento
+1.  **Exit Gates**: Garantir que a pontuação GAN atingiu o limiar de aprovação (Default: 7.0).
+2.  **Auto-Sync**: Atualizar `STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
+3.  **Handoff**: Preparar os artefatos de distribuição em `dist/`.
+
+---
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos mandatórios:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Tasks Sync** | `tasks.md` | Lista de tarefas atualizada com o progresso real. |
+| **State Snapshot** | `STATE.md` | Resumo do estado atual do sistema e da feature. |
+| **Learnings Log** | `LEARNINGS.md` | Registro de problemas resolvidos e lições técnicas. |
+| **Validation Report** | `validation-report.md` | Relatório de testes e conformidade do código gerado. |
+
+---
+
+## Quality Rules
+
+- **Persistence First**: O File System é a única fonte da verdade. Nenhuma decisão deve ser tomada sem consultar as specs locais.
+- **SDD Compliance**: Todo desenvolvimento deve seguir rigorosamente o Spec-Driven Development.
+- **Context Awareness**: Monitorar constantemente o uso de tokens e realizar a "Compactação de Contexto" quando necessário.
+- **Deterministic Check**: Toda saída do agente deve passar por ferramentas de verificação (linters/testes) antes de ser considerada final.
+
+## Prohibited
+
+- NUNCA iniciar uma tarefa sem ler as specs existentes.
+- NUNCA considerar uma tarefa "concluída" sem atualizar os arquivos de sincronização (`tasks.md`).
+- NUNCA ignorar erros de linter ou testes durante a fase de validação.
+- NUNCA manter contexto redundante que possa ser resumido no `STATE.md`.
+
+
+---
+
 ## SKILL: KNOWLEDGE-ARCHITECT
 
 ---
@@ -183,6 +1699,15 @@ description: "Arquitetura de conhecimento local via grafos relacionais (Local Gr
 category: knowledge-management
 ---
 
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
 # Knowledge Architect
 
 > "O conhecimento não está nos arquivos, mas nas conexões entre eles." — Protocolo para transformar documentação linear em um grafo relacional local.
@@ -249,12 +1774,817 @@ A execução desta skill resulta nos seguintes artefatos mandatórios (geralment
 
 ---
 
+## SKILL: OBSERVABILITY-EXPERT
+
+---
+name: observability-expert
+version: 1.0.0
+description: "Skill para especialista em SRE e Observabilidade. Foca em Logs Estruturados, OpenTelemetry, SLIs/SLOs e monitoramento proativo para garantir a resiliência de sistemas."
+category: site-reliability-engineering
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+# Observability Expert
+
+> "Se você não pode medir, você não pode gerenciar." — Peter Drucker. O foco aqui é transformar dados brutos em insights acionáveis e sistemas resilientes.
+
+---
+
+## Goal
+
+Capacitar o agente a projetar e implementar ecossistemas de observabilidade de alta performance, utilizando os pilares de **Logs, Métricas e Tracing**. A skill assegura que o sistema seja transparente para o time de operação, permitindo detecção rápida de falhas, análise de causa raiz e evolução baseada em dados reais de uso.
+
+---
+
+## Workflow (4 Fases)
+
+### Fase 1: INSTRUMENT — Codificação para Visibilidade
+1.  **Mapear Contexto**: Identificar os metadados cruciais (TraceID, UserID, TenantID) que devem acompanhar cada operação.
+2.  **Logging Design**: Aplicar o padrão de **Structured Logging** (JSON) em pontos críticos do código (entrada de API, queries, erros).
+3.  **SDK Setup**: Sugerir a integração de SDKs do **OpenTelemetry** para captura automática de spans e métricas de sistema.
+
+### Fase 2: COLLECT — Orquestração de Telemetria
+1.  **Pipeline de Dados**: Desenhar o fluxo dos dados desde a aplicação até o armazenamento (ex: OTel Collector -> Prometheus/Loki).
+2.  **Sampling Strategy**: Definir estratégias de amostragem para traces para equilibrar custo e visibilidade em alta escala.
+3.  **Metrics Export**: Configurar a exportação de métricas padrão (RED: Rate, Errors, Duration) e métricas de negócio.
+
+### Fase 3: VISUALIZE — Dashboards & Insights
+1.  **Dashboard Layout**: Projetar painéis que contem uma história (do macro para o micro).
+2.  **SLI/SLO Mapping**: Traduzir requisitos de negócio em indicadores técnicos monitoráveis.
+3.  **Correlation**: Garantir que, ao clicar em um erro no log, seja possível pular direto para o trace relacionado.
+
+### Fase 4: REACT — Gestão de Incidentes e Alertas
+1.  **Alerting Rules**: Definir alertas baseados em queima de **Error Budget** em vez de limiares estáticos simples.
+2.  **Actionable Alerts**: Garantir que todo alerta tenha um link para o playbook de correção ou dashboard de diagnóstico.
+3.  **Feedback Loop**: Utilizar dados de performance para sugerir otimizações de código ou infraestrutura.
+
+---
+
+## Quality Rules
+
+- **Structured-First**: Todo log de produção **DEVE** ser emitido em formato estruturado (JSON).
+- **Vendor Agnostic**: Preferir padrões abertos (**OpenTelemetry**, **Prometheus**) sobre soluções proprietárias de cloud.
+- **Trace Propagation**: Toda chamada entre serviços deve propagar o cabeçalho de contexto de rastreio (W3C Trace Context).
+- **Actionable Only**: Não crie alertas que não exijam uma ação imediata; evite a fadiga de alertas.
+
+## Prohibited
+
+- **NUNCA** logar dados sensíveis (PII, senhas, tokens) em texto claro.
+- **NUNCA** usar strings puras para logs de sistema; utilize chaves fixas para facilitar a busca.
+- **NUNCA** ignorar o custo de armazenamento de telemetria; use amostragem (sampling) quando necessário.
+- **NUNCA** considerar um sistema "pronto para produção" sem um SLO definido e monitorado.
+
+---
+
+## Reference Documentation
+
+Esta skill inclui documentação de referência detalhada:
+
+1. **[Structured Logging](references/structured-logging.md)** — Padrões JSON e metadados contextuais.
+2. **[Metrics & Tracing](references/metrics-and-tracing.md)** — Guia prático de OpenTelemetry e Prometheus.
+3. **[SLIs, SLOs & Alerting](references/sli-slo-alerting.md)** — Metodologia de confiabilidade orientada a dados.
+4. **[Framework Monitoring](references/framework_monitoring.md)** — Monitoramento específico para FastAPI e Django (Prometheus/Grafana).
+
+---
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos padronizados:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Logging Schema** | `.json` | Definição dos campos e tipos para logs estruturados. |
+| **OTel Blueprint** | Mermaid | Diagrama do pipeline de coleta e propagação de contexto. |
+| **SLO Report** | `.md` | Definição formal de indicadores, objetivos e orçamentos de erro. |
+| **Alerting Policy** | `.yaml` | Regras de alerta e pautas de notificação. |
+
+
+---
+
+## SKILL: ONBOARDING-NAVIGATOR
+
+---
+name: onboarding-navigator
+version: 1.4.0
+description: "Guia mestre do Hub de Skills. Fornece overview de todas as habilidades locais, mentoria cultural e suporte à navegação técnica no ecossistema do projeto, incluindo fluxos avançados de Harness Engineering."
+category: project-management
+---
+
+# Onboarding Navigator
+
+> "Para navegar com precisão, você precisa conhecer o mapa." — Esta skill é o guia autoritativo para todas as 23 habilidades e padrões deste repositório.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+## Goal
+
+Atuar como o ponto de entrada principal e guia contínuo para o Hub de Skills. A missão é orientar o agente e o usuário sobre qual habilidade utilizar para cada problema, garantir o alinhamento com a cultura de engenharia (KISS, SDD) e facilitar a navegação por toda a documentação local.
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Skill Roadmap** | `.md` | Sugestão de sequência de skills para resolver o problema. |
+| **Decision Draft** | `.md` (ADR/RFC) | Esboço fundamentado de decisão técnica. |
+| **Checklist** | `.md` | Plano de passos iniciais para onboarding ou feature. |
+| **Ecosystem Map** | `.md` com Mermaid | Diagrama visual do ecossistema de skills. |
+
+## Quality Rules
+
+- **Local-First**: Priorizar sempre a documentação contida neste repositório e o catálogo de skills.
+- **Decision-Support**: Nunca apenas "escolher", mas guiar o processo de escolha através de perguntas diagnósticas.
+- **Pedagogical**: Explicar o motivo de cada padrão ou skill recomendada.
+- **Mermaid-Enabled**: Utilizar visualização visual para explicar fluxos de onboarding ou tomada de decisão.
+- **Stats-Aware**: Sempre mencionar o número total de skills (23) e suas categorias.
+
+## Prohibited
+
+- **NUNCA** ignorar a existência de uma skill já implementada ao sugerir uma solução.
+- **NUNCA** referenciar arquivos externos inexistentes no repositório local sem contexto.
+- **NUNCA** iniciar uma tarefa de larga escala sem validar o alinhamento cultural nesta skill.
+- **NUNCA** esquecer de consultar `MEMORY.md` e `LEARNINGS.md` para lições anteriores.
+
+---
+
+## 📊 Visão Geral do Ecossistema
+
+```mermaid
+flowchart TD
+    Start[Início da Sessão] --> Onboarding{onboarding-navigator}
+    
+    Onboarding --> Analise[Análise do Contexto]
+    Analise --> Catálogo[Consulta ao Catálogo de 23 Skills]
+    Catálogo --> Recomendação[Recomendação Específica]
+    Recomendação --> Handoff[Handoff para Skill Especializada]
+    
+    style Start fill:#e1f5fe
+    style Onboarding fill:#81c784
+```
+
+---
+
+## 🔄 Workflow (4 Fases)
+
+### Fase 1: 🎪 WELCOME — Boas-vindas e Mapeamento
+1.  **Reconhecer o Terreno**: Identificar o estado atual do repositório e os objetivos da sessão.
+2.  **Apresentar o Hub**: Utilizar o `references/skills-catalog.md` para dar um overview das **23 habilidades disponíveis** com diagramas Mermaid.
+3.  **Checklist de Início**: Sugerir as primeiras ações baseadas na necessidade do usuário.
+
+### Fase 2: 🔍 EXPLORE — Catálogo de Habilidades
+1.  **Match de Necessidade**: Recomendar a skill correta baseada no contexto técnico, usando a **Matriz de Decisão**.
+2.  **Guia de Navegação**: Explicar a estrutura da pasta `.specs/` e onde reside a memória do projeto (STATE.md, MEMORY.md, LEARNINGS.md).
+3.  **Visualização**: Gerar diagramas Mermaid para explicar a hierarquia de módulos e fluxos de trabalho.
+
+### Fase 3: 🤔 DECIDE — Suporte a Decisões
+1.  **Diagnóstico Skynet**: Aplicar o framework de decisão para novas tecnologias ou arquiteturas.
+2.  **Alinhamento de Valor**: Garantir que as propostas respeitam a simplicidade e o rigor metodológico.
+3.  **Estruturação de ADR/RFC**: Auxiliar na criação de registros de decisão seguindo a skill de `architecture`.
+
+### Fase 4: ✅ ALIGN — Consistência Global
+1.  **Check de Padrões**: Validar se os planos seguem as normas de Clean Code e a obrigatoriedade do **SDD** para desenvolvimento.
+2.  **Mentoria Cultural**: Relembrar os princípios de "Simplicity at Scale" e "Rigor when needed".
+3.  **Handoff de Skill**: Delegar a execução para a skill especializada identificada na Fase 2, garantindo que o ciclo comece pelo **SDD**.
+4.  **Session Exit Gate**: Antes de encerrar, validar se cada tarefa marcada como concluída possui seu commit correspondente e se os testes passaram (100%).
+
+---
+
+## 📏 Quality Rules
+
+- **Local-First**: Priorizar sempre a documentação contida neste repositório e o catálogo de skills.
+- **Decision-Support**: Nunca apenas "escolher", mas guiar o processo de escolha através de perguntas diagnósticas.
+- **Pedagogical**: Explicar o motivo de cada padrão ou skill recomendada.
+- **Mermaid-Enabled**: Utilizar visualização visual para explicar fluxos de onboarding ou tomada de decisão.
+- **Stats-Aware**: Sempre mencionar o número total de skills (23) e suas categorias.
+
+## 🚫 Prohibited
+
+- **NUNCA** ignorar a existência de uma skill já implementada ao sugerir uma solution.
+- **NUNCA** referenciar arquivos externos inexistentes no repositório local sem contexto.
+- **NUNCA** iniciar uma tarefa de larga escala sem validar o alinhamento cultural nesta skill.
+- **NUNCA** esquecer de consultar `MEMORY.md` e `LEARNINGS.md` para lições anteriores.
+- **NUNCA** permitir o início de uma construção ou desenvolvimento sem o framework **SDD**.
+- **NUNCA** encerrar uma sessão sem auditar se todos os commits de tarefas (`tasks.md`) foram realizados seguindo a `git-workflow`.
+
+---
+
+## 📚 Reference Documentation
+
+1. **[Skills Catalog](references/skills-catalog.md)** — O mapa autoritativo das 23 habilidades do hub com diagramas Mermaid.
+2. **[Decision Making Framework](references/decision-making-framework.md)** — Como escolher e documentar tecnologias.
+3. **[Project Structure Guide](references/project-structure-guide.md)** — O mapa das pastas locais.
+4. **[Onboarding Checklists](references/onboarding-checklists.md)** — Planos de ação práticos.
+
+---
+
+## 📋 Output Structure
+
+A execução desta skill resulta nos seguintes artefatos:
+
+| Artefato | Formato | Descrição |
+|----------|---------|-----------|
+| **Skill Roadmap** | `.md` | Sugestão de sequência de skills para resolver o problema. |
+| **Decision Draft** | `.md` (ADR/RFC) | Esboço fundamentado de decisão técnica. |
+| **Checklist** | `.md` | Plano de passos iniciais para onboarding ou feature. |
+| **Ecosystem Map** | `.md` com Mermaid | Diagrama visual do ecossistema de skills. |
+
+---
+
+## 🔄 Fluxo de Atualização
+
+Esta skill **DEVE** ser atualizada sempre que:
+1. Nova skill for adicionada ao hub
+2. Versões de skills existentes forem atualizadas  
+3. Novos padrões de arquitetura forem estabelecidos
+4. Lições aprendidas (LEARNINGS.md) forem documentadas
+
+
+---
+
+## SKILL: PYTHON-UV
+
+---
+name: python-uv
+version: 3.0.0
+description: "Skill de nível EXPERT para desenvolvimento Python profissional com UV. Engloba gerenciamento de ambientes, padrões idiomáticos (Clean Code) e testes avançados com Pytest."
+category: development-workflow
+---
+
+# Python com UV
+
+> Gerenciador de pacotes e projetos Python extremamente rápido, escrito em Rust. Substitui pip, pipx, poetry, pyenv e mais — com performance 10-100x superior.
+
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+## Goal
+
+Capacitar o agente a desenvolver aplicações Python de nível profissional, utilizando o **UV** para performance extrema e aplicando padrões de excelência em codificação (Idioms/Patterns) e rigor técnico em testes (TDD/Pytest). A skill unifica o gerenciamento de pacotes, padrões idiomáticos e qualidade de software em um workflow único e determinístico.
+
+---
+
+## Version Awareness
+
+**Versão Recomendada: UV 0.9.7+**
+
+Antes de começar, verifique a versão instalada:
+
+```bash
+uv --version
+```
+
+**Mudanças por versão:**
+
+| Versão | Mudança |
+|--------|---------|
+| **0.9.6+** | Python 3.14 é o default (antes era 3.13) |
+| **0.9.6+** | Free-threaded Python 3.14+ sem opt-in explícito |
+| **0.9.6+** | `uv build --clear` para limpar artefatos de build |
+| **0.9.7+** | Updates de segurança para handling de tar/ZIP |
+
+Se a versão for anterior a 0.9.0, atualize:
+
+```bash
+# macOS / Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# macOS via Homebrew
+brew install uv
+
+# Windows
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Veja [Recent Changes](references/python-environment.md) para detalhes de migração.
+
+## When to Use This Skill
+
+Use this skill when:
+- Criando ou inicializando um projeto Python novo
+- Gerenciando dependências com `pyproject.toml`
+- Instalando ou gerenciando versões de Python
+- Configurando ambientes virtuais
+- Instalando ferramentas CLI de desenvolvimento (black, ruff, mypy, pytest)
+- Executando scripts Python com dependências inline (PEP 723)
+- Configurando CI/CD com UV (GitHub Actions)
+- Decidindo entre `uv tool install` vs `uvx`
+- Migrando de pip, pipx ou poetry para UV
+- Resolvendo erros relacionados ao UV
+
+Skip this skill when:
+- O projeto usa Python 2.x (UV não suporta)
+- O projeto NÃO usa Python como linguagem
+- Apenas precisa de documentação básica de pip (sem UV)
+
+---
+
+## Workflow (4 Fases)
+
+### Fase 1: ENVIRONMENT — Configuração e Alinhamento
+1.  **Verificar Versão**: Executar `uv --version` para garantir compatibilidade (Recomendado 0.9.7+).
+2.  **Definir Versão Python**: Se não existir `.python-version`, use `uv python pin 3.12` (ou versão desejada).
+3.  **Ambiente Isolado**: Garantir que o `.venv/` existe ou será criado via `uv venv`.
+
+### Fase 2: PROJECT — Inicialização e Estrutura
+1.  **Scaffolding**: Para novos projetos, use `uv init`. Para migrações, use `uv init --bare`.
+2.  **Declarar Dependências**: Adicionar pacotes via `uv add` (produção) e `uv add --dev` (ferramentas).
+3.  **Sync Global**: Executar `uv sync` para criar o `uv.lock` e sincronizar o ambiente virtual.
+
+### Fase 3: DEVELOP — Qualidade e Execução
+1.  **Configurar Tooling**: Definir regras no `pyproject.toml` para Ruff e Mypy.
+2.  **Execução Segura**: Sempre utilize `uv run <comando>` para garantir que o código rode no ambiente correto.
+3.  **Qualidade Incremental**: Rodar `uv run ruff check .` e `uv run pytest` periodicamente.
+
+### Fase 4: DEPLOY — Build e Distribuição
+1.  **Lock Reproduzível**: Garantir que o `uv.lock` está atualizado e no controle de versão.
+2.  **Compilação**: Usar `uv build --clear` para gerar distribuições limpas (sdist/wheel).
+3.  **Publicação**: Executar `uv publish` para distribuir no PyPI ou repositório privado.
+
+---
+
+## UV Commands Overview
+
+| Comando | Propósito | Exemplo |
+|---------|-----------|---------|
+| `uv init` | Criar novo projeto | `uv init meu-projeto` |
+| `uv add` | Adicionar dependência | `uv add requests pydantic` |
+| `uv remove` | Remover dependência | `uv remove requests` |
+| `uv sync` | Sincronizar ambiente | `uv sync --dev` |
+| `uv lock` | Gerar/atualizar lockfile | `uv lock` |
+| `uv run` | Executar no ambiente virtual | `uv run pytest` |
+| `uv pip install` | Instalar pacotes (modo pip) | `uv pip install requests` |
+| `uv tool install` | Instalar CLI tool global isolada | `uv tool install black` |
+| `uvx` | Executar pacote em ambiente temporário | `uvx ruff check .` |
+| `uv venv` | Criar ambiente virtual | `uv venv .venv` |
+| `uv python install` | Instalar versão Python | `uv python install 3.12` |
+| `uv python pin` | Fixar versão Python no projeto | `uv python pin 3.12` |
+| `uv build` | Construir distribuição | `uv build --clear` |
+| `uv publish` | Publicar no PyPI | `uv publish` |
+
+---
+
+## Tool vs UVX Decision Tree
+
+```text
+Precisa executar um pacote Python?
+│
+├─ Usa diariamente/frequentemente?
+│  └─ SIM → `uv tool install pacote`
+│     Exemplos: black, ruff, mypy, pytest
+│
+├─ Execução temporária / teste?
+│  └─ SIM → `uvx pacote`
+│     Exemplos: testar nova ferramenta, comparar versões
+│
+├─ MCP server?
+│  └─ SIM → `uvx pacote` ou `uvx --from path script.py`
+│     Exemplos: mcp-server-sqlite, custom MCP servers
+│
+└─ Script local de projeto?
+   └─ SIM → `uvx --from . script.py`
+      Exemplos: scripts project-specific
+```
+
+---
+
+## Project Initialization
+
+```bash
+# Criar novo projeto
+uv init meu-projeto
+cd meu-projeto
+
+# Estrutura gerada:
+# meu-projeto/
+# ├── .python-version
+# ├── pyproject.toml
+# ├── README.md
+# └── src/
+#     └── meu_projeto/
+#         └── __init__.py
+
+# Adicionar dependências
+uv add requests pydantic
+
+# Adicionar dependências de desenvolvimento
+uv add --dev pytest ruff mypy
+
+# Executar
+uv run python -m meu_projeto
+```
+
+### Gerenciamento de Dependências
+
+```bash
+# Adicionar dependência de produção
+uv add requests pydantic
+
+# Adicionar dependência de desenvolvimento
+uv add --dev pytest ruff mypy
+
+# Adicionar dependência opcional
+uv add --optional dev pytest-cov
+
+# Remover dependência
+uv remove requests
+
+# Sincronizar ambiente (instala tudo do pyproject.toml)
+uv sync --dev
+
+# Gerar lockfile
+uv lock
+
+# Sincronizar do lockfile (reprodução exata)
+uv sync --locked
+```
+
+---
+
+## Virtual Environment Management
+
+```bash
+# UV cria automaticamente ao usar uv sync/run
+# Mas se precisar criar manualmente:
+uv venv .venv
+
+# Ativar (macOS / Linux)
+source .venv/bin/activate
+
+# Ativar (Windows Git Bash)
+. .venv/Scripts/activate
+
+# Ativar (Windows CMD)
+.venv\Scripts\activate.bat
+
+# Executar SEM ativar (recomendado)
+uv run python script.py
+uv run pytest
+```
+
+---
+
+## Inline Script Metadata (PEP 723)
+
+Scripts Python self-contained com dependências definidas em comentários:
+
+```python
+# /// script
+# dependencies = [
+#   "requests>=2.28.0",
+#   "rich>=13.0.0",
+# ]
+# requires-python = ">=3.11"
+# ///
+
+import requests
+from rich.console import Console
+
+console = Console()
+response = requests.get("https://api.github.com")
+console.print(response.json())
+```
+
+Executar com instalação automática de dependências:
+
+```bash
+uv run script.py
+```
+
+**Quando usar**: Scripts únicos, utilitários, automação, exemplos compartilháveis.
+**Quando NÃO usar**: Projetos multi-arquivo (use `pyproject.toml`).
+
+Veja [Inline Script Metadata Reference](references/inline-script-metadata.md) para exemplos completos.
+
+---
+
+## Development Tools Setup
+
+```bash
+# Instalar ferramentas de desenvolvimento uma vez
+uv tool install ruff
+uv tool install mypy
+uv tool install pytest
+
+# Usar diariamente (disponíveis globalmente)
+ruff format .
+ruff check .
+mypy .
+pytest tests/
+```
+
+### Configuração recomendada no `pyproject.toml`
+
+```toml
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+```
+
+---
+
+## Best Practices
+
+### Project Management
+
+**DO:**
+- Use `uv init` para novos projetos (cria estrutura completa)
+- Use `uv add` / `uv remove` para gerenciar dependências (não edite pyproject.toml manualmente)
+- Sempre versione `uv.lock` no git para reprodução exata
+- Use `uv sync --locked` em CI/CD para builds reproduzíveis
+- Use `uv run` para executar comandos (não precisa ativar venv)
+
+**DON'T:**
+- Não instale pacotes globalmente sem venv
+- Não misture `pip install` e `uv add` no mesmo projeto
+- Não ignore o `uv.lock` no `.gitignore`
+- Não use `@latest` em produção (instável)
+
+### Tool Management
+
+**DO:**
+- Use `uv tool install` para ferramentas de uso diário (ruff, mypy, pytest)
+- Use `uvx` para execuções temporárias e teste de ferramentas
+- Mantenha ferramentas atualizadas com `uv tool upgrade --all`
+
+**DON'T:**
+- Não use `pip install` global para CLI tools (causa conflitos)
+- Não use `uvx` para ferramentas diárias (overhead desnecessário)
+- Não misture instalações pip e uv tool
+
+### Code Quality
+
+**DO:**
+- Sempre use type hints em código Python
+- Configure `ruff` para linting e formatting
+- Configure `mypy` em modo strict
+- Escreva testes com `pytest`
+
+**DON'T:**
+- Não promova código sem type hints
+- Não pule linting, formatting ou type checking
+- Não use práticas deprecated como `pip` sem venv
+
+---
+
+## Troubleshooting
+
+### "UV não encontrado" / "spawn uvx ENOENT"
+**Causa**: UV/UVX não está no PATH.
+**Solução**:
+```bash
+# macOS/Linux — adicionar ao ~/.zshrc ou ~/.bashrc
+export PATH="$HOME/.local/bin:$PATH"
+source ~/.zshrc
+
+# Verificar
+uv --version
+```
+
+### "Package not found"
+**Causa**: Nome do pacote incorreto ou pacote não publicado no PyPI.
+**Solução**:
+```bash
+# Verificar no PyPI
+curl https://pypi.org/pypi/nome-do-pacote/json | head -5
+
+# Para projetos locais, verificar pyproject.toml
+ls pyproject.toml
+```
+
+### "No virtual environment found"
+**Causa**: Ambiente virtual não ativado ou inexistente.
+**Solução**:
+```bash
+# Criar e sincronizar
+uv sync
+
+# Ou executar diretamente (sem ativar)
+uv run python script.py
+```
+
+### Conflitos de versão
+**Causa**: Versões incompatíveis de dependências.
+**Solução**:
+```bash
+# Verificar árvore de dependências
+uv tree
+
+# Verificar conflitos reversos
+uv tree --reverse
+
+# Limpar cache e ressincronizar
+uv cache clean
+uv sync --recreate
+```
+
+---
+
+## Migration Guides
+
+### From pip
+```bash
+# Antes                          # Depois
+pip install requests      →      uv add requests
+pip install -r req.txt    →      uv pip install -r req.txt
+pip freeze > req.txt      →      uv lock  (usa uv.lock)
+```
+
+### From poetry
+```bash
+# Antes                          # Depois
+poetry add requests       →      uv add requests
+poetry install            →      uv sync
+poetry run pytest         →      uv run pytest
+poetry build              →      uv build
+```
+
+### From pipx
+```bash
+# Antes                          # Depois
+pipx install black        →      uv tool install black
+pipx run black .          →      uvx black .
+```
+
+---
+
+## Reference Documentation
+
+Esta skill inclui documentação de referência detalhada:
+
+1. **[Installation & Setup](references/installation-and-setup.md)** — Instalação cross-platform, virtual environments, troubleshooting
+2. **[Project Management](references/project-management.md)** — Init, dependências, lockfile, workspaces, estrutura de projeto
+3. **[Tool Management](references/tool-management.md)** — `uv tool install` vs `uvx`, decision matrix, manutenção
+4. **[Python Patterns](references/patterns.md)** — [NOVO] Padrões idiomáticos, performance, EAFP, Modern Type Hints, __slots__
+5. **[Advanced Testing](references/testing.md)** — [NOVO] TDD, Pytest Mastery, Fixtures, Mocking, Cobertura
+6. **[Inline Script Metadata](references/inline-script-metadata.md)** — PEP 723, scripts self-contained, exemplos práticos
+7. **[Python Environment](references/python-environment.md)** — Versões, Python 3.14, free-threaded Python, paths
+8. **[CI/CD Workflows](references/ci-cd-workflows.md)** — GitHub Actions, Docker, packaging, publicação
+
+---
+
+## Output Structure
+
+A execução desta skill em projetos Python deve resultar na criação ou atualização dos seguintes artefatos padronizados pelo UV:
+
+| Artefato | Arquivo | Descrição |
+|----------|---------|-----------|
+| **Project Spec** | `pyproject.toml` | Definição de metadados, dependências e configurações de ferramentas (Ruff, Mypy). |
+| **Lockfile** | `uv.lock` | Registro determinístico de todas as dependências e sub-dependências (deve ser versionado). |
+| **Python Version** | `.python-version` | Arquivo que fixa a versão do Python utilizada no projeto para o UV. |
+| **Virtual Env** | `.venv/` | Ambiente virtual isolado contendo as dependências instaladas (não deve ser versionado). |
+| **Source Code** | `src/` ou root | Estrutura de pacotes Python seguindo as boas práticas de layout. |
+
+---
+
+## External Resources
+
+- **UV Official Docs**: <https://docs.astral.sh/uv/>
+- **UV GitHub**: <https://github.com/astral-sh/uv>
+- **Ruff (linter/formatter)**: <https://docs.astral.sh/ruff/>
+- **PEP 723 (Inline Metadata)**: <https://peps.python.org/pep-0723/>
+- **Python Packaging Guide**: <https://packaging.python.org/>
+
+---
+
+## Quality Rules
+
+- **Referência Oficial**: Sempre referenciar a documentação oficial do UV (<https://docs.astral.sh/uv/>)
+- **Exemplos Práticos**: Todos os exemplos devem ser testáveis e reproduzíveis
+- **Cross-Platform**: Comandos e configurações devem funcionar em macOS, Linux e Windows
+- **Boas Práticas Modernas**: Promover type hints, ruff, pytest, mypy
+- **Versionamento Semântico**: Seguir SemVer para configurações de projeto
+- **Lockfiles**: Sempre usar e versionar `uv.lock`
+- **UV-First**: Preferir comandos UV nativos (`uv add`, `uv run`) sobre equivalentes legados (`pip install`)
+
+## Prohibited
+
+- **Não assumir SO**: Não assumir configurações específicas de sistema operacional sem oferecer alternativas
+- **Não duplicar documentação**: Não copiar conteúdo da documentação oficial, apenas referenciar
+- **Não promover práticas obsoletas**: Não ensinar `pip install` sem venv, `setup.py`, ou `requirements.txt` como gestão principal
+- **Não ignorar type safety**: Não promover código Python sem type hints
+- **Não pular validação**: Não pular linting, formatting ou type checking
+- **Não misturar gerenciadores**: Não misturar pip e uv no mesmo workflow de projeto
+
+---
+
+## SKILL: SCAFFOLDING-EXPERT
+
+---
+name: scaffolding-expert
+version: 1.0.0
+description: "Gerador dinâmico de projetos. Utiliza CLI tools (uvx copier) para inicializar boilerplates e arquiteturas complexas instantaneamente."
+category: automation
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+# Scaffolding Expert
+
+> "Não escreva boilerplate lendo texto, gere a arquitetura executando templates."
+
+---
+
+## Goal
+
+Substituir o processo lento, custoso e propenso a erros de codificação manual de arquivos boilerplate (como `pyproject.toml`, Dockerfiles, `Makefile` base, roteadores padrões) por geração instantânea através de motores de templates executáveis, especificamente via **Copier**.
+
+---
+
+## Como Funciona
+
+A ferramenta principal escolhida para a stack é o `copier`, executado zero-install via UV.
+
+### Comando Padrão de Scaffold:
+```bash
+uvx copier copy gh:KlebersonCollab/skills/scaffolding/<nome-do-template> <destino>
+```
+*Nota: Caso exista um diretório local com templates no Hub, utilize o caminho local em vez da URL do GitHub.*
+
+---
+
+## Workflow para Novas Features/Projetos
+
+1. **Verify**: Identifique qual stack o usuário deseja (ex: Python/FastAPI, Python/Django).
+2. **Execute**: Antes de escrever qualquer arquivo de código `.py` manualmente, execute o comando de scaffolding no terminal.
+3. **Configure**: O `copier` (se configurado com flags non-interactive ou respondido via STDIN) irá perguntar o nome do projeto. Se necessário, rode com flags explícitas ou crie um arquivo `.copier-answers.yml`.
+4. **Build**: Após a geração do diretório, navegue para ele e rode `uv sync` para validar a instalação.
+
+---
+
+## Output Structure
+
+- Diretório gerado contendo todo o boilerplate da stack solicitada (ex: `pyproject.toml`, Dockerfile).
+
+---
+
+## Quality Rules
+
+- **Prioridade Absoluta**: Se existir um template de scaffolding, ele DEVE ser utilizado em detrimento de escrever código manual.
+- **Customização**: Você pode (e deve) alterar o código *após* o scaffolding, mas a estrutura raiz sempre vem do template.
+
+---
+
+## Prohibited
+
+- NUNCA escrever `pyproject.toml` na mão se houver um template disponível.
+- NUNCA instalar frameworks de scaffolding globalmente; sempre use ferramentas efêmeras como `uvx`.
+
+
+
+---
+
 ## SKILL: SDD
 
 ---
 name: sdd
-version: 1.4.0
-description: Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate.
+version: 1.5.0
+description: Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and GAN-style Adversarial Review.
 category: development-workflow
 ---
 
@@ -264,9 +2594,18 @@ category: development-workflow
 
 ---
 
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
 ## Goal
 
-O SDD tem como objetivo garantir precisão, rastreabilidade e integridade no ciclo de vida de desenvolvimento de software, transformando requisitos ambíguos em código verificado e documentado através de um workflow modular e adaptativo, agora potencializado pelos princípios de **Harness Engineering**.
+O SDD tem como objetivo garantir precisão, rastreabilidade e integridade no ciclo de vida de desenvolvimento de software, transformando requisitos ambíguos em código verificado e documentado através de um workflow modular e adaptativo, agora potencializado pelos princípios de **Harness Engineering** e loops adversariais (**GAN-style**).
 
 ---
 
@@ -280,7 +2619,7 @@ The depth of the workflow is determined by the **Complexity** of the task, not a
 | **Small** | Clear feature, <5 tasks | (Spec) + Impl + Verify | `sdd-orchestrator`, `sdd-implementer` | `spec/` |
 | **Medium** | Feature + UI, <10 tasks | Explorer + Spec (BDD) + Plan + **Contract** + Impl + Verify | `sdd-explorer`, `sdd-orchestrator` | `spec/` |
 | **Large** | Multi-component, new module | Planner + Explorer + RFC + Spec + Plan + **Contract** + Impl + Verify | All modules | `.specs/` |
-| **Complex** | Ambiguity, high risk | Same as Large + PRD Audit + Score Review | All modules + `sdd-reviewer` | `.specs/` |
+| **Complex** | Ambiguity, high risk | Same as Large + GAN Adversarial Loop + Score Review | All modules + `harness-expert` | `.specs/` |
 
 ---
 
@@ -304,13 +2643,15 @@ O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 ### Fase 3: IMPLEMENT — Execução Atômica
 1.  **Automação**: Utilizar o **SDD CLI** (`uv run sdd task <feature> <id>`) para marcar o progresso.
 2.  **Ciclo de Código**: Utilizar `sdd-implementer` para escrever código test-driven (TDD) alinhado aos cenários BDD.
-2.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes.
+3.  **Gestão de Versão**: Utilizar a skill `git-workflow` para garantir commits atômicos em Inglês seguindo os Conventional Commits.
+4.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes.
 
 ### Fase 4: REVIEW — Auditoria e Finalização
-1.  **Veredito via Sensores**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md` e o `contract.md`, utilizando feedback de ferramentas (testes, linters).
-2.  **Score Report**: Gerar o relatório de validação com pontuação de 0-100.
-3.  **UAT**: Validar com o usuário se os critérios de aceitação (BDD) foram atendidos.
-4.  **Persistência**: Atualizar os logs de memória e estado no Planner antes do encerramento.
+1.  **Adversarial Review (GAN)**: Para tarefas **Large/Complex**, utilizar a skill `harness-expert` para executar o loop Gerador-Avaliador até atingir a nota de corte (Default: 7.0).
+2.  **Veredito via Sensores**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md` e o `contract.md`.
+3.  **Score Report**: Gerar o relatório de validação (`validation-report.md`) com pontuação de 0-100 e rubrica GAN.
+4.  **UAT**: Validar com o usuário se os critérios de aceitação (BDD) foram atendidos.
+5.  **Persistência**: Atualizar os logs de memória e estado no Planner antes do encerramento.
 
 ---
 
@@ -323,6 +2664,8 @@ This skill delegates tasks to specialized sub-skills for maximum scalability:
 - **[Orchestrator](sdd-orchestrator.skill.md)**: Translates requirements (PRD) into technical specifications (`spec.md` com BDD, `plan.md`/`RFC`).
 - **[Implementer](sdd-implementer.skill.md)**: Writes atomic, test-driven code and manages git commits.
 - **[Reviewer](sdd-reviewer.skill.md)**: Audits implementation against BDD scenarios with evidence.
+- **[Harness](harness-expert.skill.md)**: Drives the adversarial quality loop and state management.
+- **[Git](git-workflow/SKILL.md)**: Manages version control patterns and commit integrity.
 
 ---
 
@@ -393,6 +2736,324 @@ A execução deste workflow deve resultar nos seguintes artefatos mandatórios, 
 - **NUNCA** ignorar a atualização proativa de `STATE.md` e `MEMORY.md`.
 - **NUNCA** pular a Fase 4 (Review) e o encerramento das specs ao finalizar uma feature.
 - **NUNCA** usar placeholders como "todo" ou "..." em arquivos de especificação finalizados.
+
+
+---
+
+## SKILL: SKILL-FACTORY
+
+---
+name: skill-factory
+version: 1.1.0
+description: "Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados."
+category: skill-management
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+# Skill Factory: Core Framework
+
+> Every skill deserves a solid foundation. Consistency breeds quality.
+
+---
+
+## Goal
+
+Automatizar a criação padronizada de novas skills com qualidade garantida, eliminando erros humanos no scaffolding e assegurando conformidade com os padrões do Skills Hub.
+
+---
+
+## Auto-Sizing
+
+A profundidade do scaffolding é determinada pela **estrutura** da skill:
+
+| Mode | Escopo | Arquivos Gerados | Sub-skill Utilizada |
+|------|--------|-------------------|---------------------|
+| **Quick** | Skill simples, sem sub-skills | `SKILL.md`, `README.md`, `CHANGELOG.md` | `skill-factory-bootstrap` |
+| **Standard** | Skill com sub-skills | Todos acima + `<skill>-<sub>.skill.md` (N) | `skill-factory-bootstrap` |
+
+Após o scaffolding, a validação é **sempre** executada (ambos os modos):
+
+| Phase | Responsável |
+|-------|-------------|
+| **Validate** | `skill-factory-validator` |
+
+---
+
+## Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `skill_name` | string | ✅ | Nome da skill (slug: lowercase, hifenizado, sem espaços). Ex: `deep-research` |
+| `description` | string | ✅ | Descrição concisa do que a skill faz. |
+| `category` | string | ✅ | Categoria funcional (livre). Ex: `research`, `automation`, `development-workflow` |
+| `sub_skills` | list[string] | ❌ | Lista de nomes de sub-skills a serem criadas. Se vazio, modo Quick. |
+
+---
+
+## The Modular Engine
+
+Esta skill delega tarefas para sub-skills especializadas:
+
+- **[Bootstrap](skill-factory-bootstrap.skill.md)**: Gera o scaffolding completo da nova skill (diretório, arquivos, conteúdo padronizado).
+- **[Validator](skill-factory-validator.skill.md)**: Audita a skill criada contra o checklist de conformidade e emite relatório.
+
+---
+
+## Workflow (3 Phases)
+
+### Phase 1: BOOTSTRAP
+Executar `skill-factory-bootstrap` com os parâmetros recebidos.
+- Cria o diretório `<skill_name>/` na raiz do repositório.
+- Gera todos os arquivos a partir dos templates padronizados.
+
+### Phase 2: VALIDATE
+Executar `skill-factory-validator` na skill recém-criada.
+- Verifica estrutura, frontmatter, conteúdo e naming.
+- Se **NON-COMPLIANT**, corrigir antes de prosseguir.
+
+### Phase 3: REGISTER
+Atualizar o `README.md` raiz do repositório:
+1. Adicionar a nova skill na tabela **Skills Disponíveis**.
+2. Incrementar o badge de contagem de skills.
+
+---
+
+## Version Policy
+
+Toda nova skill **SEMPRE** inicia na versão `1.0.0`. Não existe suporte para versões pré-release.
+
+---
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos mandatórios para cada nova skill criada:
+
+| Artefato | Descrição |
+|----------|-----------|
+| `SKILL.md` | Definição técnica e workflow da skill. |
+| `README.md` | Documentação de apresentação e uso. |
+| `CHANGELOG.md` | Histórico de versões (inicial 1.0.0). |
+| `references/` | (Opcional) Guias de referência detalhados. |
+| `examples/` | (Opcional) Amostras de código e configurações. |
+
+## Quality Rules
+
+- **Template-First**: Toda skill gerada deve seguir os templates padronizados definidos na sub-skill `bootstrap`.
+- **Validation-Always**: Nenhuma skill é considerada criada até que o `validator` emita `COMPLIANT`.
+- **Registry-Updated**: O `README.md` raiz é a fonte da verdade para skills existentes e deve estar sempre atualizado.
+- **Self-Consistent**: O nome no frontmatter deve corresponder ao nome do diretório.
+
+## Prohibited
+
+- NUNCA criar uma skill sem executar a fase de validação.
+- NUNCA registrar uma skill NON-COMPLIANT no README raiz.
+- NUNCA usar caracteres especiais, espaços ou uppercase no `skill_name`.
+- NUNCA criar arquivos fora do diretório da skill (exceto o registro no README raiz).
+
+
+---
+
+## SKILL: SWARM-FACILITATOR
+
+---
+name: swarm-facilitator
+version: 1.1.0
+description: "Orquestrador de workflows Multi-Agente (Swarm). Define protocolos de handoff, personas e passagem de contexto usando a estrutura SDD."
+category: orchestration
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+# Swarm Facilitator
+
+> "Reger múltiplos agentes requer coreografia, não apenas programação. O repositório é o tabuleiro e o Markdown é a linguagem de comunicação inter-agentes."
+
+---
+
+## Goal
+
+Capacitar agentes de IA a atuarem em um fluxo coreografado (Swarm/Crew), assumindo personas especializadas (ex: Arquiteto, Developer, Revisor) e utilizando protocolos de Handoff (passagem de bastão) baseados no ecossistema SDD. Esta skill transforma a interação em um pipeline de linha de produção invisível.
+
+---
+
+## Personas Suportadas
+
+O orquestrador pode instruir o LLM atual ou instruir o usuário a iniciar uma nova thread com uma destas personas:
+
+1. **Solution Architect (Arquiteto)**: Foco em Fases 1 e 2 do SDD. Usa as skills `architecture`, `api-architect` e `brainstorming`. Produz PRDs e ADRs.
+2. **Lead Developer (Engenheiro)**: Foco na Fase 3 do SDD. Consome as especificações do Arquiteto. Usa skills de stack (`fastapi-expert`, `flutter-fvm`). Escreve o código produtivo.
+3. **Quality Assurance / SRE (Revisor)**: Foco na Fase 4 do SDD. Usa `clean-code-mentor` e `observability-expert`. Faz code review e audita a telemetria.
+
+---
+
+## Workflow (Protocolo de Handoff)
+
+Para orquestrar múltiplos agentes no mesmo projeto local sem perda de contexto, execute este protocolo:
+
+### 1. State Definition (O Estado é Rei)
+O Arquiteto deve atualizar o `STATE.md` com o plano de ação macro e salvar as tarefas em `tasks.md`.
+
+### 2. Context Dump (Salvar o Jogo)
+Antes de finalizar a sessão do Agente 1 (Arquiteto), ele **deve** compilar as decisões recentes em um arquivo de handover na pasta `.specs/features/<feature>/handoff.md`.
+*Exemplo de formato de handoff:*
+- O que foi decidido.
+- Onde está a especificação (caminho absoluto).
+- Qual skill o próximo agente DEVE invocar ao acordar.
+
+### 3. Handoff Message (A Passagem de Bastão)
+A última mensagem da sessão do Agente 1 deve ser um prompt formatado para o usuário copiar e colar na nova sessão do Agente 2.
+**Template**: 
+> "Inicie o desenvolvimento da Feature X. Sou o Arquiteto e deixei as specs em `.specs/...`. Invoque a skill `fastapi-expert` e siga os passos 1 e 2."
+
+---
+
+## Output Structure
+
+- `handoff.md`: Documento contendo as diretrizes para a próxima persona.
+- `STATE.md`: Atualizado via Harness Expert indicando quem está com a bola.
+
+---
+
+## Quality Rules
+
+- O Handoff deve ser enxuto.
+- A comunicação é feita exclusivamente através do Markdown salvo no repositório.
+
+---
+
+## Prohibited
+
+- NUNCA tentar fazer um único agente assumir o papel de Arquiteto e Desenvolvedor simultaneamente em épicos complexos. Dividir para conquistar.
+- NUNCA passar o bastão sem atualizar o `STATE.md` via `harness-expert` ou script.
+
+
+
+---
+
+## SKILL: YOUTUBE-TRANSCRIPT
+
+---
+name: youtube-transcript
+version: 1.0.0
+description: "Skill para automatizar a extração de transcrições de vídeos do YouTube com fallback para IA (Whisper)."
+category: automation
+---
+
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
+# YouTube Transcript
+
+> Skill para automatizar a extração de transcrições de vídeos do YouTube com fallback para IA (Whisper).
+
+---
+
+## Goal
+
+O objetivo principal desta skill é fornecer uma forma rápida e robusta de obter o conteúdo textual de vídeos do YouTube, priorizando legendas existentes (manuais ou automáticas) para economizar recursos e tempo, e utilizando modelos de IA (Whisper) apenas quando necessário.
+
+---
+
+## Protocol
+
+### Phase 1: Context & Metadata
+1.  **Extract Info:** Executar `yt-dlp --get-title --list-subs "{{url}}"` para obter o título do vídeo e mapear as legendas disponíveis.
+2.  **Sanitize Title:** Limpar o título de caracteres especiais para uso como nome de arquivo.
+
+### Phase 2: Selection Strategy
+Seguir a ordem de prioridade para obter a transcrição:
+
+1.  **Manual Subtitles:** Se houver legendas manuais (`--write-sub`), baixá-las no formato VTT.
+2.  **Automatic Subtitles:** Se não houver manuais, mas houver automáticas (`--write-auto-sub`), baixá-las no formato VTT.
+3.  **AI Fallback (Whisper):** Se nenhuma legenda existir:
+    - Solicitar confirmação ao usuário para baixar apenas o áudio (`bestaudio`).
+    - Executar transcrição via Whisper utilizando `uv run --with openai-whisper whisper audio_file.mp3 --model base`.
+
+### Phase 3: Text Processing (Cleanup)
+Independentemente da fonte (VTT ou Whisper), processar o texto final para garantir limpeza absoluta utilizando o script Python inline:
+
+```python
+import sys, re
+
+def clean_vtt(content):
+    # Remove VTT Header and Timestamps
+    lines = content.split('\n')
+    cleaned = []
+    for line in lines:
+        if '-->' in line or line.strip() == 'WEBVTT' or line.strip().isdigit() or 'Kind:' in line or 'Language:' in line:
+            continue
+        # Remove HTML tags and extra whitespace
+        line = re.sub(r'<[^>]+>', '', line).strip()
+        if line: cleaned.append(line)
+    
+    # Advanced Deduplication for rolling auto-subs
+    final = []
+    for line in cleaned:
+        if not final:
+            final.append(line)
+            continue
+        
+        # If current line starts with previous line, replace previous with current (more complete)
+        if line.startswith(final[-1]):
+            final[-1] = line
+        else:
+            final.append(line)
+    return ' '.join(final)
+
+if __name__ == "__main__":
+    with open(sys.argv[1], 'r', encoding='utf-8') as f:
+        print(clean_vtt(f.read()))
+```
+
+Executar via: `uv run python -c "..." input.vtt > output.txt`
+
+### Phase 4: Delivery & Cleanup
+1.  Salvar o arquivo final como `{video_title}.txt`.
+2.  Remover arquivos temporários (`.vtt`, `.mp3`, `.wav`) criados durante o processo.
+
+---
+
+## Output Structure
+
+A execução desta skill resulta nos seguintes artefatos:
+
+- **Transcrição (.txt):** Arquivo de texto puro com o conteúdo do vídeo limpo e formatado.
+- **Metadados:** Título do vídeo integrado ao nome do arquivo.
+
+---
+
+## Quality Rules
+
+- **Accuracy First:** Priorizar sempre legendas manuais sobre automáticas ou geradas por IA.
+- **Clean Text:** O resultado final não deve conter tags HTML, timestamps VTT ou redundâncias de legendas automáticas.
+- **Dependency Check:** Validar `yt-dlp` e `ffmpeg`. Para `whisper`, utilizar `uv run --with`.
+
+## Prohibited
+
+- NUNCA baixar o vídeo completo se apenas o áudio ou legendas forem necessários.
+- NUNCA sobrescrever arquivos existentes sem confirmação.
+- NUNCA ignorar falhas de download sem reportar o motivo claro.
 
 
 ---

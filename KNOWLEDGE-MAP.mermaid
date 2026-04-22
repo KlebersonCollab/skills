@@ -15,21 +15,22 @@ graph TD
         observability_expert["observability-expert (1.0.0) 🛡️"]
     end
 
+    subgraph "Miscellaneous"
+        benchmark_expert["benchmark-expert (1.0.0) 🛡️"]
+        frontend_expert["frontend-expert (1.1.0) 🛡️"]
+        golang_testing_expert["golang-testing-expert (1.0.0) 🛡️"]
+        harness_expert["harness-expert (2.1.0) 🛡️"]
+    end
+
     subgraph "Core Frameworks"
         brainstorming["brainstorming (1.1.0) 🛡️"]
         flutter_fvm["flutter-fvm (1.3.0) 🛡️"]
         git_workflow["git-workflow (1.0.0) 🛡️"]
         knowledge_architect["knowledge-architect (1.0.0) 🛡️"]
-        onboarding_navigator["onboarding-navigator (1.3.1) 🛡️"]
-        python_uv["python-uv (2.6.0) 🛡️"]
+        onboarding_navigator["onboarding-navigator (1.4.0) 🛡️"]
+        python_uv["python-uv (3.0.0) 🛡️"]
         sdd["sdd (1.5.0) 🛡️"]
         skill_factory["skill-factory (1.1.0) 🛡️"]
-    end
-
-    subgraph "Miscellaneous"
-        frontend_expert["frontend-expert (1.1.0) 🛡️"]
-        golang_testing_expert["golang-testing-expert (1.0.0) 🛡️"]
-        harness_expert["harness-expert (2.1.0) 🛡️"]
     end
 
     subgraph "Automation & Utils"
@@ -53,8 +54,6 @@ graph TD
     knowledge_architect --(references)--> harness_expert
     onboarding_navigator --(references)--> architecture
     onboarding_navigator --(references)--> git_workflow
-    python_uv --(references)--> django_expert
-    python_uv --(references)--> fastapi_expert
     sdd --(references)--> git_workflow
     sdd --(references)--> harness_expert
     swarm_facilitator --(references)--> api_architect

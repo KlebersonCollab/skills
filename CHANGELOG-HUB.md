@@ -1,5 +1,5 @@
 # Hub Global Changelog
-*Última atualização: 2026-04-22 05:22:15*
+*Última atualização: 2026-04-22 05:43:29*
 
 Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.
 
@@ -76,6 +76,18 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 - Support for Azure Artifacts and Test Plans.
 - Detailed reference guides for authentication and core modules.
 - Examples for JSON Patch and WIQL queries.
+
+---
+
+## 🧩 benchmark-expert
+## [1.0.0] - 2026-04-22
+
+### Added
+- Inicialização da skill `benchmark-expert`.
+- Suporte a 4 modos de performance: Browser, API, Build e Comparison.
+- Integração mandatória com o framework SDD.
+- Guias de referência para targets de performance e análise de regressão.
+- Exemplos de relatórios de comparação.
 
 ---
 
@@ -321,6 +333,14 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 python-uv
+## [3.0.0] - 2026-04-22
+
+### Adicionado
+- **Expert Enrichment**: Integração de conhecimentos de alto nível sobre padrões e testes Python.
+- **Python Patterns**: Nova referência em `references/patterns.md` cobrindo EAFP, Protocol, Type Hints e Performance.
+- **Advanced Testing**: Nova referência em `references/testing.md` cobrindo ciclo TDD, Fixtures avançadas e Mocking.
+- **Modern Python**: Suporte explícito a Python 3.9+ idioms e `__slots__` para eficiência de memória.
+
 ## [2.6.0] - 2026-04-20
 
 ### Adicionado
@@ -330,11 +350,6 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 
 ### Adicionado
 - **Workflow Operacional**: Introdução de um workflow estruturado em 4 fases (Environment, Project, Develop, Deploy) para orientar agentes de IA passo a passo.
-
-## [2.4.0] - 2026-04-14
-
-### Adicionado
-- **Output Structure**: Seção H2 obrigatória detalhando os artefatos gerados pelo UV (pyproject.toml, uv.lock, .python-version).
 
 ---
 
