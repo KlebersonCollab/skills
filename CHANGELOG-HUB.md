@@ -1,5 +1,5 @@
 # Hub Global Changelog
-*Última atualização: 2026-04-21 01:14:05*
+*Última atualização: 2026-04-22 05:22:15*
 
 Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.
 
@@ -111,19 +111,32 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 django-expert
-## [1.1.0] - 2026-04-20
+## [1.5.0] - 2026-04-22
 
 ### Added
-- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+- Seção de **Deployment Readiness & Verification** (Fase 12).
+- Mandato de uso do **Ruff** para linting e **Mypy** para Type Checking.
+- Checklists de pre-deployment e auditoria de segurança.
+- Template de **GitHub Actions** para verificação automatizada.
+- Consolidação de redundâncias no `SKILL.md`.
 
-## [1.0.0] - 2026-04-18
+## [1.4.0] - 2026-04-22
 
 ### Added
-- Inicialização da skill `django-expert`.
-- Guia de performance ORM (N+1 solutions).
-- Integração com HTMX e padrões de reatividade.
-- Suporte nativo ao workflow `python-uv`.
-- Estrutura recomendada de camadas (Services/Managers).
+- Seção de **Testing Excellence** (Fase 11).
+- Mandatos para uso de **Factories** (Factory Boy) em vez de fixtures estáticas.
+- Configurações de infraestrutura de teste ultrarrápida (SQLite in-memory, `--nomigrations`).
+- Padrões de **Mocking** para serviços externos e APIs.
+- Metas explícitas de cobertura de código por camada.
+
+## [1.3.0] - 2026-04-22
+
+### Added
+- Seção de **Security Hardening** (Fase 10).
+- Padrões de hashing com Argon2 e validadores de senha de 12+ caracteres.
+- Mandatos para validação de tipo e tamanho de arquivos.
+- Padrões de RBAC (Role-Based Access Control) e Throttling para APIs.
+- Regras proibitivas contra SQL Injection e uso inseguro de `mark_safe`.
 
 ---
 
@@ -145,6 +158,20 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 flutter-fvm
+## [1.3.0] - 2026-04-22
+
+### Added
+- **Modern Dart Patterns**: Suporte completo a Dart 3+ (Sealed classes, Pattern Matching, Records).
+- **Acessibilidade Mandatória**: Diretrizes para Semantics, alvos de toque e UX inclusiva.
+- **Performance Avançada**: Reconstruções seletivas com `MediaQuery.sizeOf` e decomposição de widgets.
+- **Gestão de Segredos**: Padronização de chaves via `--dart-define` e `.env`.
+- **Resiliência**: Protocolos de captura global de erros (`FlutterError.onError`).
+
+### Changed
+- Atualizado `SKILL.md` para refletir padrões de excelência técnica ECC.
+- Enriquecido `references/testing-and-quality.md` com testes de acessibilidade e goldens.
+- Enriquecido `references/project-structure.md` com integração MVVM + Dart 3.
+
 ## [1.2.0] - 2026-04-20
 
 ### Added
@@ -168,14 +195,6 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 - Updated Best Practices with security do's and don'ts
 - Added references to new advanced guides in testing-and-quality.md
 
-## [1.0.0] - 2026-04-14
-
-### Added
-- Initial version of the Flutter with FVM skill.
-- Comprehensive workflow for Flutter development using FVM.
-- Reference guides for Environment, Project, Dependencies, Testing, and Deployment.
-- Examples for `pubspec.yaml`, `analysis_options.yaml`, and GitHub Actions.
-
 ---
 
 ## 🧩 frontend-expert
@@ -188,6 +207,17 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 - Versão inicial da skill `frontend-expert`.
 - Suporte a React, Next.js, Tailwind v4 e Shadcn/UI.
 - Workflow focado em Server Components e Acessibilidade.
+
+---
+
+## 🧩 git-workflow
+## [1.0.0] - 2026-04-22
+### Added
+- Versão inicial da skill importada da ECC e traduzida para PT-BR.
+- Integração com o framework SDD (Spec-Driven Development).
+- Guias de Conventional Commits e Branching Strategies.
+- Mandatos para utilização de Merge vs Rebase.
+- Templates de Pull Request e configuração de Git.
 
 ---
 
@@ -211,7 +241,23 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 
 ---
 
+## 🧩 golang-testing-expert
+## [1.0.0] - 2026-04-22
+### Added
+- Criação da skill baseada no ECC.
+- Referências para TDD, Table-Driven Tests e Subtests.
+- Referências para Mocks, httptest e Golden Files.
+- Referências para Benchmarks, Fuzzing e Coverage.
+
+---
+
 ## 🧩 harness-expert
+## [2.1.0] - 2026-04-22
+
+### Adicionado
+- **GAN-style Feedback Loop**: Implementação do ciclo adversarial entre Gerador e Avaliador para tarefas Large/Complex.
+- **Rubrica de Avaliação**: Nova matriz de pontuação (Design, Craft, Originality, Functionality) com meta de Score >= 7.0.
+
 ## [2.0.0] - 2026-04-20
 
 ### Alterado
@@ -228,17 +274,6 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 
 ### Adicionado
 - **Harness Principles**: Documentação de Feed Forward, Feedback e Sensores no README.
-
-## [1.0.0] — 2026-04-15
-
-### Adicionado
-- **SKILL.md**: Definição principal da skill de Harness Engineering.
-- **README.md**: Documentação detalhada e visão geral.
-- **harness-expert-sync.skill.md**: Sub-skill para sincronização automática de estado.
-- **harness-expert-rehydrate.skill.md**: Sub-skill para injeção de contexto operacional.
-- **harness-expert-compress.skill.md**: Sub-skill para compactação de contexto (Context Compressor).
-- **Resources**: Implementado `compressor.py` para análise e compactação de tarefas.
-- **Exemplos**: Adicionado script de demonstração de sincronização.
 
 ---
 
@@ -268,37 +303,20 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 onboarding-navigator
+## [1.3.1] - 2026-04-22
+### Changed
+- **Governance Hardening**: Inclusão de auditoria de commits e branches no Session Exit Gate.
+- **Mandatos Proibitivos**: Adição de regra contra o encerramento de sessão sem auditoria de conformidade Git.
+
+## [1.3.0] - 2026-04-22
+### Added
+- **Harness Engineering Strategy**: Inclusão de orientações sobre loops GAN e qualidade adversarial na matriz de decisão.
+- **Evolução de Fluxos**: Atualização dos fluxos de trabalho recomendados para incluir o "Power-up" de qualidade da `harness-expert`.
+
 ## [1.2.1] - 2026-04-20
 ### Fixed
 - Auditoria de sincronização: Corrigida a contagem total de skills de 18 para 20 em toda a documentação.
 - Atualização das estatísticas de categorias (5 Metodologia, 3 Arquitetura, 8 DevOps, 2 Automação, 2 Navegação).
-
-## [1.2.0] - 2026-04-19
-### Alterado
-- Auditoria de completude: Atualizado de 11 para 18 skills no catálogo visual e de decisão.
-- Adição dos fluxos de `Scaffolding`, `Orchestrator`, `FastAPI` e `Django` na Matriz de Decisão.
-- Restauração completa de nós faltantes na hierarquia do Mermaid.
-
-## [1.1.0] - 2026-04-15
-
-### Added
-- Diagramas Mermaid para visualização do ecossistema de skills
-- Matriz de decisão visual com fluxos de trabalho recomendados
-- Estatísticas do hub (11 skills total, por categoria)
-- Seção de "Fluxo de Atualização" para manutenção da skill
-- Referências a STATE.md, MEMORY.md e LEARNINGS.md no workflow
-
-### Updated
-- Catálogo de skills com versões atualizadas de todas as 11 habilidades
-- Descrições precisas extraídas dos arquivos SKILL.md originais
-- Correção de versões: flutter-fvm (1.0.0 → 1.1.0), azure-devops (1.0.0 → 1.1.0)
-- Estrutura do SKILL.md com melhor organização visual
-- Regras de qualidade com foco em "Stats-Aware" (consciência do ecossistema)
-
-### Fixed
-- Referências a versões desatualizadas no catálogo
-- Falta de diagramação visual no processo de onboarding
-- Documentação incompleta sobre a contagem total de skills
 
 ---
 
@@ -329,6 +347,12 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 sdd
+## [1.5.0] - 2026-04-22
+
+### Adicionado
+- **GAN Adversarial Review**: Integração do loop de feedback adversarial na Fase 4 (Review) para tarefas Complexas.
+- **Rubrica de Qualidade Visual/Técnica**: Adoção da rubrica de 4 pilares (Design, Craft, Originality, Functionality) vinda do Harness Engineering.
+
 ## [1.4.0] - 2026-04-16
  — 2026-04-18
 
@@ -346,11 +370,6 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 
 ### Adicionado
 - **Mermaid Diagrams Mandate**: Tornada obrigatória a inclusão de diagramas Mermaid na fase de `Specify` para níveis Medium+.
-
-## [1.3.0] — 2026-04-14
-
-### Adicionado
-- **PRD/RFC/BDD Integration**: Incorporação de Product Requirements Documents, Request for Comments e BDD (Given/When/Then) ao workflow baseado no Auto-Sizing.
 
 ---
 

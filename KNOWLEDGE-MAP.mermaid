@@ -11,7 +11,6 @@ graph TD
         azure_devops["azure-devops (1.1.0) 🛡️"]
         django_expert["django-expert (1.5.0) 🛡️"]
         fastapi_expert["fastapi-expert (1.1.0) 🛡️"]
-        git_workflow["git-workflow (1.0.0) 🛡️"]
         golang_expert["golang-expert (1.1.0) 🛡️"]
         observability_expert["observability-expert (1.0.0) 🛡️"]
     end
@@ -19,16 +18,18 @@ graph TD
     subgraph "Core Frameworks"
         brainstorming["brainstorming (1.1.0) 🛡️"]
         flutter_fvm["flutter-fvm (1.3.0) 🛡️"]
+        git_workflow["git-workflow (1.0.0) 🛡️"]
         knowledge_architect["knowledge-architect (1.0.0) 🛡️"]
-        onboarding_navigator["onboarding-navigator (1.3.0) 🛡️🔄"]
+        onboarding_navigator["onboarding-navigator (1.3.1) 🛡️"]
         python_uv["python-uv (2.6.0) 🛡️"]
-        sdd["sdd (1.5.0) 🛡️🔄"]
+        sdd["sdd (1.5.0) 🛡️"]
         skill_factory["skill-factory (1.1.0) 🛡️"]
     end
 
     subgraph "Miscellaneous"
         frontend_expert["frontend-expert (1.1.0) 🛡️"]
-        harness_expert["harness-expert (2.1.0) 🛡️🔄"]
+        golang_testing_expert["golang-testing-expert (1.0.0) 🛡️"]
+        harness_expert["harness-expert (2.1.0) 🛡️"]
     end
 
     subgraph "Automation & Utils"
@@ -42,16 +43,20 @@ graph TD
 
     %% Relations
     api_architect --(references)--> architecture
+    django_expert --(references)--> architecture
     django_expert --(references)--> python_uv
     fastapi_expert --(references)--> architecture
     fastapi_expert --(references)--> python_uv
-    git_workflow --(uses)--> sdd
     golang_expert --(references)--> architecture
+    golang_expert --(references)--> golang_testing_expert
     harness_expert --(references)--> sdd
     knowledge_architect --(references)--> harness_expert
     onboarding_navigator --(references)--> architecture
+    onboarding_navigator --(references)--> git_workflow
     python_uv --(references)--> django_expert
     python_uv --(references)--> fastapi_expert
+    sdd --(references)--> git_workflow
+    sdd --(references)--> harness_expert
     swarm_facilitator --(references)--> api_architect
     swarm_facilitator --(references)--> architecture
     swarm_facilitator --(references)--> brainstorming
@@ -68,11 +73,11 @@ graph TD
     style azure_devops fill:#e8f5e9,stroke:#1b5e20
     style django_expert fill:#e8f5e9,stroke:#1b5e20
     style fastapi_expert fill:#e8f5e9,stroke:#1b5e20
-    style git_workflow fill:#e8f5e9,stroke:#1b5e20
     style golang_expert fill:#e8f5e9,stroke:#1b5e20
     style observability_expert fill:#e8f5e9,stroke:#1b5e20
     style brainstorming fill:#e1f5fe,stroke:#01579b
     style flutter_fvm fill:#e1f5fe,stroke:#01579b
+    style git_workflow fill:#e1f5fe,stroke:#01579b
     style knowledge_architect fill:#e1f5fe,stroke:#01579b
     style onboarding_navigator fill:#e1f5fe,stroke:#01579b
     style python_uv fill:#e1f5fe,stroke:#01579b
@@ -85,7 +90,6 @@ graph TD
     %% Legend
     subgraph "Legenda"
         L1[🛡️ SDD Compliant]
-        L4[🔄 GAN-Style Loop Enabled]
         L2[Uses: Dependência Direta]
         L3[References: Menção em Docs]
     end
