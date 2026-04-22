@@ -61,8 +61,6 @@ clean:
 release: auto-fix sync validate verify-vers knowledge-map changelog dist
 	@echo "🚀 Operação concluída com sucesso!"
 
-install-hooks:
-	@echo "Instalando pre-commit hook para Automated Knowledge Distiller..."
-	@echo '#!/bin/sh\nmake knowledge-map\ngit add KNOWLEDGE-MAP.mermaid' > .git/hooks/pre-commit
-	@chmod +x .git/hooks/pre-commit
-	@echo "✅ Hooks instalados com sucesso!"
+
+dashboard:
+	uv run streamlit run dashboard/app.py

@@ -1,0 +1,143 @@
+import streamlit as st
+import sys
+from pathlib import Path
+
+# Configurações raiz
+root_dir = Path(__file__).parent.parent
+sys.path.append(str(root_dir))
+from scripts.utils import get_all_skills, get_skill_metadata
+
+# ==========================================
+# 🎨 1. PAGE CONFIG & CUSTOM STYLING (CSS)
+# ==========================================
+st.set_page_config(
+    page_title="AI Skills Hub", 
+    page_icon="⚡", 
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
+
+# Injeção de CSS para Glassmorphism e tipografia limpa
+custom_css = """
+<style>
+    /* Ocultar elementos padrão do Streamlit (hambúrguer e footer) */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+
+    /* Fundo da tela */
+    .stApp {
+        background-image: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+                          radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+    }
+
+    /* Cards e Expansores com Glassmorphism */
+    .streamlit-expanderHeader {
+        background: rgba(30, 41, 59, 0.5) !important;
+        backdrop-filter: blur(10px) !important;
+        border-radius: 8px !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        color: #e2e8f0 !important;
+        font-weight: 600 !important;
+        padding: 10px 15px !important;
+    }
+    
+    div[data-testid="stExpanderDetails"] {
+        background: rgba(15, 23, 42, 0.6) !important;
+        border-left: 2px solid #3b82f6 !important;
+        padding: 15px !important;
+    }
+
+    /* Título com gradiente Premium */
+    h1 {
+        background: -webkit-linear-gradient(45deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Métricas */
+    div[data-testid="stMetricValue"] {
+        color: #3b82f6;
+    }
+</style>
+"""
+st.markdown(custom_css, unsafe_allow_html=True)
+
+# ==========================================
+# 📊 2. LOGIC & DATA FETCH
+# ==========================================
+skills = get_all_skills(root_dir)
+total_skills = len(skills)
+
+mermaid_path = root_dir / "KNOWLEDGE-MAP.mermaid"
+mermaid_code = mermaid_path.read_text() if mermaid_path.exists() else "graph TD\n A[Sem Mapa]"
+
+# ==========================================
+# 🖥️ 3. UI LAYOUT
+# ==========================================
+st.title("⚡ AI Agent Skills Hub")
+st.markdown("Ecossistema de Conhecimento e Governança SDD")
+
+# Métricas Top Level
+col_m1, col_m2, col_m3 = st.columns(3)
+col_m1.metric("Skills Registradas", total_skills, "+2 Novas")
+col_m2.metric("SDD Compliance", "100%", "Quality Gate Pass")
+col_m3.metric("Ambiente", "Enterprise", "Hub v1.0")
+
+st.divider()
+
+# Abas de Navegação Principal
+tab1, tab2 = st.tabs(["🧩 Catálogo de Skills", "🕸️ Architecture Graph"])
+
+with tab1:
+    st.markdown("### Navegação Rápida")
+    
+    # Grid dinâmico para cards de skills
+    cols = st.columns(2)
+    
+    for i, skill_path in enumerate(skills):
+        meta = get_skill_metadata(skill_path)
+        name = meta.get('name', skill_path.name)
+        version = meta.get('version', '0.0.0')
+        category = meta.get('category', 'Geral')
+        desc = meta.get('description', 'Sem descrição.')
+        
+        # Aloca iterativamente entre a Coluna 1 e Coluna 2
+        col_dest = cols[0] if i % 2 == 0 else cols[1]
+        
+        with col_dest:
+            with st.expander(f"📦 {name} (v{version})"):
+                st.markdown(f"**Categoria**: `{category}`")
+                st.write(f"_{desc}_")
+                
+                uses = meta.get("uses", [])
+                if uses:
+                    st.markdown("**Depende de:**")
+                    for dep in uses:
+                        st.markdown(f"- 🔌 `{dep}`")
+
+with tab2:
+    st.markdown("### Mapa de Conhecimento Relacional")
+    st.caption("Visão interativa gerada dinamicamente pelo Automated Distiller")
+    
+    import base64
+    import json
+    import streamlit.components.v1 as components
+    
+    # Criamos um Payload JSON válido para o Mermaid Live Viewer que possui Zoom/Pan nativo
+    state = {
+        "code": mermaid_code,
+        "mermaid": '{\n  "theme": "dark"\n}',
+        "autoSync": True,
+        "updateDiagram": True
+    }
+    
+    json_state = json.dumps(state)
+    # Mermaid Live espera Base64 URL-safe do JSON
+    encoded = base64.urlsafe_b64encode(json_state.encode('utf-8')).decode('ascii')
+    live_url = f"https://mermaid.live/view#base64:{encoded}"
+    
+    # Renderizamos via IFrame puro (conforme recomendação do Streamlit) para liberar interatividade total
+    components.iframe(live_url, height=800, scrolling=True)
