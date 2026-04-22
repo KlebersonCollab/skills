@@ -5,8 +5,8 @@
 - [x] T2: Criar Plano de Implementação.
 
 ## Fase 3: Implementation
-- [ ] T3: Atualizar `sdd/SKILL.md` (Mandato Proibitivo de Git/Testes).
-- [ ] T4: Atualizar `onboarding-navigator/SKILL.md` (Checklist de Exit Gate).
+- [x] T3: Atualizar `sdd/SKILL.md` (Mandato Proibitivo de Git/Testes).
+- [x] T4: Atualizar `onboarding-navigator/SKILL.md` (Checklist de Exit Gate).
 
 ## Fase 4: Review & Persistence
 - [ ] T5: Gerar `contract.md` para a feature.
