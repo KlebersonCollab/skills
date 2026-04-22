@@ -11,14 +11,13 @@
     - Adicionados guias de referência para targets de performance e análise de regressão.
     - Registrada como a 23ª skill do Hub.
 - [x] **Golang Expert Enrichment (v1.2.0)**:
-    - Integrado padrões idiomáticos avançados (Accept Interfaces, Return Structs, Zero Value Useful).
-    - Adicionado suporte a `errgroup` e padrões de Graceful Shutdown.
-    - Expandido o checklist de performance com pré-alocação e `strings.Builder`.
-    - Proibido o uso de `context.Context` dentro de structs.
-- [x] **Golang Testing Expert (v1.0.0)**:
-    - Criada nova skill especializada em QA e Testes para Go.
-    - Implementados padrões de TDD, Table-Driven Tests, Mocks, Benchmarks e Fuzzing.
-    - Integrada como sub-skill da `golang-expert`.
+    - Integrados Slash Commands para automação de workflows (`/plan`, `/go-test`, etc.).
+    - Estabelecido layout mandatório de Clean Architecture.
+    - Adicionado suporte a ferramentas modernas: `sqlc`, `Wire` e `testcontainers`.
+    - Implementadas diretrizes proibitivas rigorosas (Sem `init()`, sem estado global).
+- [x] **Golang Testing Expert Enrichment (v1.1.0)**:
+    - Adicionados comandos de verificação detalhados (Race, Coverage, Integration).
+    - Integrado ciclo TDD com comandos de barra.
 - [x] **Governance Hardening (v1.0.0)**:
     - Endurecida a Fase 3 do SDD com mandatos proibitivos de Git e Testes.
     - Atualizado o Onboarding Navigator para incluir auditoria de commits no Exit Gate.

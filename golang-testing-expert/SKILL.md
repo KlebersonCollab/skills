@@ -1,6 +1,6 @@
 ---
 name: golang-testing-expert
-version: 1.0.0
+version: 1.1.0
 description: "Expert level Go testing patterns including TDD, table-driven tests, benchmarks, fuzzing, and HTTP testing."
 category: development-testing
 ---
@@ -38,8 +38,18 @@ Ao desenvolver novas funcionalidades, siga rigorosamente:
 ### 2. Table-Driven Testing
 Utilize structs anônimas para definir múltiplos casos de teste em uma única função, garantindo cobertura de casos de borda e erros.
 
-### 3. Parallel Execution
-Aproveite o paralelismo do Go nativo com `t.Parallel()` para suítes de teste rápidas e eficientes.
+### 3. Integration Testing with Testcontainers
+Para testes que dependem de infraestrutura (Banco de Dados, Redis, etc.), utilize **testcontainers-go** para subir instâncias efêmeras em Docker, garantindo isolamento total.
+
+### 4. Verification Commands
+Utilize os seguintes comandos para garantir a qualidade:
+
+| Cenário | Comando |
+|---------|---------|
+| **Unitários** | `go test ./internal/... -short -count=1` |
+| **Integração** | `go test ./internal/repository/... -count=1 -timeout 120s` |
+| **Race Detector** | `go test ./... -race -count=1` |
+| **Cobertura** | `go test ./... -coverprofile=coverage.out && go tool cover -func=coverage.out` |
 
 ---
 
