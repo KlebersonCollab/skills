@@ -89,3 +89,19 @@
 - **Learning**: Adaptar skills externas (ECC) exige não apenas tradução, mas re-contextualização para os mandatos locais (SDD, Git Workflow). A falha em iniciar o desenvolvimento por uma branch de feature é um sinal de "Context Drift" que deve ser corrigido imediatamente via auditoria de Exit Gate.
 - **Pattern**: O ciclo de vida de uma nova skill deve ser: `Spec -> Branch -> Scaffolding -> Atomic Commits -> Validation -> Registry`.
 - **Enforcement**: O uso de benchmarks determinísticos (média de 3 execuções) e o veredito de regressão (>15% FAIL) transformam a performance de um desejo subjetivo em um requisito técnico verificável na Fase 4 do SDD.
+# Project Learnings
+
+## Technical Learnings
+- **Go Microservices Patterns (ECC Integration)**: 
+    - A estrutura de Clean Architecture com `internal/domain`, `service`, `repository` e `handler` é o padrão ouro para microserviços em Go.
+    - O uso de `sqlc` para gerar código SQL type-safe e `Wire` para injeção de dependência explícita reduz significativamente o boilerplate e erros em tempo de execução.
+    - `testcontainers-go` é a ferramenta recomendada para testes de integração robustos e isolados.
+- **AI Operational Patterns**: 
+    - A implementação de Slash Commands (`/plan`, `/go-test`, `/go-review`) dentro da própria documentação da skill padroniza as respostas da IA e facilita o workflow do usuário.
+
+## Architectural Decisions
+- **Proibição de `init()`**: Decisão de banir o uso de funções `init()` para garantir que todas as dependências sejam inicializadas explicitamente no `main()`, facilitando testes e depuração.
+- **Imutabilidade Global**: Banimento de estado mutável global para evitar efeitos colaterais imprevisíveis em sistemas concorrentes.
+
+## Operational Learnings
+- **SD-Consistency**: Ao enriquecer skills, é crucial validar se a estrutura de comandos e regras de qualidade estão alinhadas com as sub-skills (como a `golang-testing-expert`).
