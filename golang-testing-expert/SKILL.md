@@ -76,17 +76,13 @@ A execução desta skill resulta nos seguintes artefatos e orientações:
 - **No Sleep**: NUNCA use `time.Sleep()` em testes; utilize channels ou sinais de sincronização.
 - **TDD First**: Sempre escreva o teste antes do código de produção.
 
----
-
-## 🚫 Prohibited
+## Prohibited
 
 - **NUNCA** utilizar `time.Sleep()` para sincronização em testes.
 - **NUNCA** ignorar erros retornados em funções de cleanup.
 - **NUNCA** deixar de usar `t.Helper()` em funções auxiliares de teste.
 - **NUNCA** realizar commits de código de produção sem a suíte de testes correspondente passar.
 - **NUNCA** usar frameworks de mock pesados quando uma interface simples resolve o problema.
-
----
 
 ---
 
