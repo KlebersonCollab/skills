@@ -6,6 +6,12 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
+## [1.2.0] - 2026-04-22
+
+### Adicionado
+- Integrados Slash Commands para automação de workflows.
+- Estabelecido layout mandatório de Clean Architecture e testes rigorosos.
+
 ## [1.1.0] - 2026-04-20
 
 ### Adicionado
