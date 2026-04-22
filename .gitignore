@@ -13,3 +13,13 @@ artifacts/
 dist_staging/
 
 .agents/
+
+# Python / Environment
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+.venv/
+
+# OS
+.DS_Store
