@@ -15,6 +15,24 @@ Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer benchmar
 
 ---
 
+## Goal
+
+O objetivo desta skill é fornecer um framework padronizado para medição de performance, permitindo que desenvolvedores estabeleçam baselines confiáveis, detectem regressões de forma antecipada e comparem alternativas técnicas com base em dados quantitativos.
+
+---
+
+## Output Structure
+
+A execução desta skill produz os seguintes artefatos:
+
+| Artefato | Localização | Descrição |
+|----------|-------------|-----------|
+| **Baseline JSON** | `.benchmarks/baseline-*.json` | Dados brutos da medição para persistência no Git. |
+| **Comparison Report** | `artifacts/benchmark-report.md` | Tabela comparativa com deltas e veredito de performance. |
+| **Performance Logs** | Console | Logs detalhados da execução do benchmark. |
+
+---
+
 ## Quando Usar
 
 - Antes e depois de um PR para medir o impacto na performance.
@@ -76,17 +94,20 @@ O coração da skill para validação de PRs.
 
 ---
 
-## Output e Armazenamento
-
-Os baselines são salvos em `.benchmarks/` na raiz do projeto em formato JSON. Devem ser commitados no Git para que a equipe compartilhe as mesmas referências.
-
----
-
 ## Quality Rules
 
 - **Deterministic Measurements**: Sempre execute o benchmark 3 vezes e use a média.
 - **Context Awareness**: Documente as especificações da máquina onde o benchmark foi rodado.
 - **Fail Fast**: Se o delta de uma métrica crítica (LCP) subir > 15%, o veredito deve ser **FAIL** mandatório.
+- **Git Persistence**: Baselines críticos devem ser commitados no diretório `.benchmarks/`.
+
+---
+
+## Prohibited
+
+- **NUNCA** ignore regressões de performance em PRs sem justificativa técnica documentada.
+- **NUNCA** execute benchmarks em máquinas com alta carga de CPU/Memória (instabilidade).
+- **NUNCA** use ferramentas de benchmark que não meçam o p99 para APIs.
 
 ---
 
