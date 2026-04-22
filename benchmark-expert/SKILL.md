@@ -10,8 +10,12 @@ category: performance
 ## 🔒 Prerequisites (Mandatory)
 Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer benchmark:
 1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Phase 4 Integration**: benchmarks devem ser executados preferencialmente na **Fase 4 (Review & Persistence)** do SDD para validar o impacto da implementação.
-3. **Clean Environment**: Garanta que o ambiente de teste esteja isolado e sem processos de fundo pesados.
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros?
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+6. **Phase 4 Integration**: benchmarks devem ser executados preferencialmente na **Fase 4 (Review & Persistence)** do SDD para validar o impacto da implementação.
+7. **Clean Environment**: Garanta que o ambiente de teste esteja isolado e sem processos de fundo pesados.
 
 ---
 

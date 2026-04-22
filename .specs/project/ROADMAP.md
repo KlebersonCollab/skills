@@ -18,9 +18,12 @@
 - [x] **CI/CD Quality Gate**: Validação automática de conformidade de todas as skills.
 - [x] **Unified Mandates**: Fonte única de verdade para instruções de agentes.
 
-## 2026 Q3: Inteligência Coletiva & Automação Avançada
+## 2026 Q3: Inteligência Coletiva & Automação Avançada (Hub Enterprise Upgrade)
 - [ ] **Skill Installer CLI**: Instalação granular de skills individuais e dependências.
 - [ ] **Automated Knowledge Distiller**: Geração automática de grafos Mermaid via análise estática.
 - [ ] **Gold Standard Benchmarking**: Suite completa de exemplos perfeitos para todas as 14 skills.
-- [ ] **Interactive Hub Dashboard**: Visualização web do ecossistema e saúde das skills.
+- [ ] **Interactive Hub Dashboard**: Visualização web do ecossistema e saúde das skills (SSG).
 - [ ] **Cross-Skill Context Propagation**: Permitir que uma skill "aprenda" com o grafo gerado por outra de forma transparente.
+- [ ] **Hub Test Suite & Validator**: Esteira de testes automatizada via pytest para os utilitários de `/scripts/`.
+- [ ] **DevSecOps Expert Skill**: Nova skill focada em validação de segurança (SAST/DAST) e auditoria de repositório.
+- [ ] **Agent IDE Adapters**: Suporte nativo para Cursor, Windsurf e Cline.
