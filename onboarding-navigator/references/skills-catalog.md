@@ -1,6 +1,6 @@
 # Skills Catalog: AI Agent Hub
 
-Este guia fornece um overview detalhado de todas as 20 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
+Este guia fornece um overview detalhado de todas as 21 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
 
 ## 🗺️ Mapa Visual do Ecossistema de Skills
 
@@ -34,6 +34,7 @@ flowchart TD
     DevOps --> Django{django-expert}
     DevOps --> Golang{golang-expert}
     DevOps --> Frontend{frontend-expert}
+    DevOps --> Git{git-workflow}
 
     Automation --> YouTube{youtube-transcript}
     Automation --> Scaffolding{scaffolding-expert}
@@ -47,7 +48,7 @@ flowchart TD
 
 ---
 
-## 📚 Catálogo Completo de Skills (20 Total)
+## 📚 Catálogo Completo de Skills (21 Total)
 
 ### 1. 🏗️ Core Frameworks (Metodologia e Criação)
 
@@ -79,6 +80,7 @@ flowchart TD
 | **[Observability Expert](observability-expert/)** | `1.0.0` | Especialista em SRE e Observabilidade (OTel, Logs Estruturados). | Ao garantir que um sistema é monitorável. |
 | **[Golang Expert](golang-expert/)** | `1.1.0` | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | Ao desenvolver sistemas de alta performance em Go. |
 | **[Frontend Expert](frontend-expert/)** | `1.1.0` | Expert em interfaces modernas com React, Next.js e TailwindCSS v4. | Ao projetar ou implementar UIs modernas. |
+| **[Git Workflow](git-workflow/)** | `1.0.0` | Padrões de fluxo de trabalho Git, estratégias de branching e integração com SDD. | Ao realizar commits, abrir PRs ou gerenciar branches. |
 
 ### 4. 🚀 Automation & Utils (Produtividade)
 
@@ -135,6 +137,7 @@ flowchart LR
     NewAPI --> Path14[api-architect]
     GoTask --> Path15[golang-expert]
     FrontendTask --> Path16[frontend-expert]
+    GitTask --> Path17[git-workflow]
     
     style Problem fill:#bbdefb
     style Decision fill:#ffcc80
@@ -144,10 +147,10 @@ flowchart LR
 
 ## 📈 Estatísticas do Hub
 
-- **Total de Skills**: 20
+- **Total de Skills**: 21
 - **Skills de Metodologia**: 5
 - **Skills de Arquitetura**: 3  
-- **Skills de DevOps/Frameworks**: 8
+- **Skills de DevOps/Frameworks**: 9
 - **Skills de Automação**: 2
 - **Skills de Navegação/Orquestração**: 2
-- **Última Atualização**: 20 de Abril de 2026
+- **Última Atualização**: 22 de Abril de 2026

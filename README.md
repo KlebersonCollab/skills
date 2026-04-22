@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
-[![Skills](https://img.shields.io/badge/Skills-20-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-21-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/KlebersonCollab/skills/generate-skills-artifacts.yml?branch=main&label=Build%20Artifacts)](https://github.com/KlebersonCollab/skills/actions)
 [![Status](https://img.shields.io/badge/Status-Ativo-brightgreen)](#-roadmap)
@@ -56,7 +56,7 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 
 | # | Skill | Descrição | Versão |
 |---|-------|-----------|--------|
-| 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo com **Persistent Memory Protocol**. | `1.4.0` |
+| 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo com **Persistent Memory Protocol**. | `1.5.0` |
 | 2 | **[Skill Factory](skill-factory/)** | Core Framework para criação padronizada de novas skills com scaffolding e validação. | `1.1.0` |
 | 3 | **[Python com UV](python-uv/)** | Desenvolvimento Python profissional com UV — gerenciador 10-100x mais rápido. | `2.6.0` |
 | 4 | **[API Architect](api-architect/)** | Arquiteto de APIs — design interoperável e seguro (OpenAPI, GraphQL, tRPC). | `1.3.0` |
@@ -76,6 +76,7 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 | 18 | **[Scaffolding Expert](scaffolding-expert/)** | Gerador dinâmico de projetos. Utiliza CLI tools (uvx copier) para inicializar boilerplates. | `1.0.0` |
 | 19 | **[Golang Expert](golang-expert/)** | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | `1.1.0` |
 | 20 | **[Frontend Expert](frontend-expert/)** | Expert em interfaces modernas com React, Next.js e TailwindCSS v4. | `1.1.0` |
+| 21 | **[Git Workflow](git-workflow/)** | Padrões de fluxo de trabalho Git, estratégias de branching e integração com SDD. | `1.0.0` |
 
 ---
 
@@ -83,17 +84,17 @@ O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida
 
 ```
 skills/
-├── .github/workflows/           # Automação de CI/CD (GitHub Actions)
-├── .specs/                      # Especificações do projeto (SDD)
-│   ├── project/                 # Visão, Roadmap e Estado
-│   └── codebase/                # Stack e Convenções
-├── scripts/                     # Scripts de automação e distribuição
-├── <skill>/                     # 🧩 Cada skill em seu diretório
-│   ├── README.md                # Documentação detalhada
-│   ├── SKILL.md                 # Definição técnica principal
-│   └── CHANGELOG.md             # Histórico de versões
-└── README.md                    # ← Você está aqui
-```
+85: ├── .github/workflows/           # Automação de CI/CD (GitHub Actions)
+86: ├── .specs/                      # Especificações do projeto (SDD)
+87: │   ├── project/                 # Visão, Roadmap e Estado
+88: │   └── codebase/                # Stack e Convenções
+89: ├── scripts/                     # Scripts de automação e distribuição
+90: ├── <skill>/                     # 🧩 Cada skill em seu diretório
+91: │   ├── README.md                # Documentação detalhada
+92: │   ├── SKILL.md                 # Definição técnica principal
+93: │   └── CHANGELOG.md             # Histórico de versões
+94: └── README.md                    # ← Você está aqui
+95: ```
 
 ---
 

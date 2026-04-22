@@ -18,3 +18,7 @@
 - **Uso Mandatório de Skills**: Conforme `GLOBAL_MANDATES.md`, qualquer execução técnica **DEVE** ser mediada por uma skill específica do Hub.
 - **Deterministic Lifecycle**: Todo agente operando no Hub deve obrigatoriamente executar o **Session Bootstrap** (início) e o **Session Exit Gate** (fim).
 
+## Convenções de Git Workflow
+- **Conventional Commits**: Obrigatório para todos os commits no repositório. Mensagens devem ser escritas em **Inglês**.
+- **SDD Alignment**: Commits devem ser vinculados a IDs de tarefas do `tasks.md` quando aplicável.
+- **PR Quality**: Todo Pull Request deve seguir o template oficial e incluir o checklist de qualidade SDD.

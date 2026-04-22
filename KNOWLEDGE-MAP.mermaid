@@ -11,6 +11,7 @@ graph TD
         azure_devops["azure-devops (1.1.0) 🛡️"]
         django_expert["django-expert (1.5.0) 🛡️"]
         fastapi_expert["fastapi-expert (1.1.0) 🛡️"]
+        git_workflow["git-workflow (1.0.0) 🛡️"]
         golang_expert["golang-expert (1.1.0) 🛡️"]
         observability_expert["observability-expert (1.0.0) 🛡️"]
     end
@@ -44,6 +45,7 @@ graph TD
     django_expert --(references)--> python_uv
     fastapi_expert --(references)--> architecture
     fastapi_expert --(references)--> python_uv
+    git_workflow --(uses)--> sdd
     golang_expert --(references)--> architecture
     harness_expert --(references)--> sdd
     knowledge_architect --(references)--> harness_expert
@@ -66,6 +68,7 @@ graph TD
     style azure_devops fill:#e8f5e9,stroke:#1b5e20
     style django_expert fill:#e8f5e9,stroke:#1b5e20
     style fastapi_expert fill:#e8f5e9,stroke:#1b5e20
+    style git_workflow fill:#e8f5e9,stroke:#1b5e20
     style golang_expert fill:#e8f5e9,stroke:#1b5e20
     style observability_expert fill:#e8f5e9,stroke:#1b5e20
     style brainstorming fill:#e1f5fe,stroke:#01579b

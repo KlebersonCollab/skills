@@ -28,6 +28,7 @@ Utilize este guia para identificar a skill mandatória para cada contexto:
 | Automação e Scaffolding | `scaffolding-expert` |
 | Gestão de Conhecimento | `knowledge-architect` |
 | Sincronização de Estado | `harness-expert` |
+| Gestão de Git e Commits | `git-workflow` |
 
 ## 1. SDD Framework (Mandatory for Development)
 Qualquer tarefa de construção, desenvolvimento ou refatoração significativa **DEVE** obrigatoriamente utilizar o framework **SDD (Spec-Driven Development)** desde o planejamento inicial.
@@ -60,10 +61,14 @@ Qualquer tarefa de construção, desenvolvimento ou refatoração significativa 
 ## 7. Dynamic Scaffolding (Scaffolding Expert)
 - **Zero-Boilerplate Policy**: O agente **DEVE** preferir utilizar as ferramentas de CLI de templates (como `uvx copier` via `scaffolding-expert`) para inicializar a estrutura de projetos e arquivos complexos (como `pyproject.toml`, Dockerfiles). O código boilerplate NUNCA deve ser escrito linha por linha se existir um template de scaffolding disponível.
 
-## 8. Multi-Agent Workflows (Multi-Agent Orchestrator)
-- **Swarm Delegation**: Para épicos arquiteturais pesados, o agente **NÃO DEVE** tentar assumir os papéis de Arquiteto, Engenheiro e QA de uma vez só em um único prompt. O agente **DEVE** aplicar o protocolo de handoff do `multi-agent-orchestrator`, gerando os artefatos de entrega (como `.specs/features/<feature>/handoff.md`) e instruindo o usuário a criar uma nova thread/sessão com a próxima persona focada.
+## 9. Version Control & Git (Git Workflow)
+Todo agente **DEVE** seguir rigorosamente a skill `git-workflow` para qualquer operação de versionamento:
+- **English-Only Commits**: Todas as mensagens de commit devem ser escritas em **Inglês**.
+- **Conventional Commits**: O uso do padrão Conventional Commits é obrigatório.
+- **SDD Linking**: Commits devem ser atômicos e, sempre que possível, referenciar IDs de tarefas do `tasks.md`.
+- **History Integrity**: O uso de `rebase` é mandatório para manter um histórico linear antes de merges na `main`.
 
-## 🔒 9. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
+## 🔒 10. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
 Antes de encerrar a sessão ou entregar a tarefa, o agente **DEVE** validar:
 1. **Tasks Update**: O `tasks.md` reflete o estado real da implementação?
 2. **State Sync**: O `STATE.md` foi atualizado com o progresso e próximos passos?

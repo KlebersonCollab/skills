@@ -60,7 +60,8 @@ O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 ### Fase 3: IMPLEMENT — Execução Atômica
 1.  **Automação**: Utilizar o **SDD CLI** (`uv run sdd task <feature> <id>`) para marcar o progresso.
 2.  **Ciclo de Código**: Utilizar `sdd-implementer` para escrever código test-driven (TDD) alinhado aos cenários BDD.
-2.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes.
+3.  **Gestão de Versão**: Utilizar a skill `git-workflow` para garantir commits atômicos em Inglês seguindo os Conventional Commits.
+4.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes.
 
 ### Fase 4: REVIEW — Auditoria e Finalização
 1.  **Adversarial Review (GAN)**: Para tarefas **Large/Complex**, utilizar a skill `harness-expert` para executar o loop Gerador-Avaliador até atingir a nota de corte (Default: 7.0).
@@ -81,6 +82,7 @@ This skill delegates tasks to specialized sub-skills for maximum scalability:
 - **[Implementer](sdd-implementer.skill.md)**: Writes atomic, test-driven code and manages git commits.
 - **[Reviewer](sdd-reviewer.skill.md)**: Audits implementation against BDD scenarios with evidence.
 - **[Harness](harness-expert.skill.md)**: Drives the adversarial quality loop and state management.
+- **[Git](git-workflow/SKILL.md)**: Manages version control patterns and commit integrity.
 
 ---
 

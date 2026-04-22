@@ -1,0 +1,18 @@
+# <tipo>(<escopo>): <assunto>
+# # MANDATO: Mensagens de commit DEVEM ser em INGLÊS.
+# # Tipos: feat, fix, docs, style, refactor, test, chore, perf, ci, revert
+# # Escopo: api, ui, db, auth, etc.
+# # Assunto: modo imperativo, sem ponto final, máx 50 caracteres
+#
+# [corpo opcional] - explique o PORQUÊ, não o quê
+#
+# [rodapé opcional] - Breaking changes, refs #issue
+#
+# ---
+# Exemplo:
+# feat(auth): add google oauth provider
+#
+# Users can now sign in using their Google accounts. 
+# Implemented using the passport-google-oauth20 library.
+#
+# Closes #123
