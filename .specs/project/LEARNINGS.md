@@ -80,3 +80,7 @@
 - **Pattern (Atomic Cycle)**: O ciclo `Task -> Test -> Commit` deve ser o átomo indivisível do desenvolvimento. Qualquer marcação de progresso no `tasks.md` sem os artefatos de validação (testes) e persistência (git) correspondentes é uma falha de integridade.
 - **Enforcement (Prohibitive Mandates)**: Inserir mandatos proibitivos ("NUNCA...") nas skills core (`sdd`) é mais eficaz para a consistência do Hub do que diretrizes passivas, pois cria um Exit Gate claro para a inteligência do agente.
 - **Branching Strategy (GitHub Flow)**: Commitar diretamente na `main` é um anti-padrão que compromete a estabilidade. O uso de **Feature Branches** é obrigatório para isolar o desenvolvimento e permitir auditorias antes da integração. O Hub deve operar em modo "Always Shippable".
+### [2026-04-22] Python Expert Enrichment & UV Synergy
+- **Learning**: Integrar padrões de linguagem (Patterns) e metodologia de teste (TDD) diretamente na skill de gerenciamento de ambiente (`python-uv`) cria uma fundação de "Linguagem + Ferramenta" muito poderosa. O UV não é apenas um instalador, é o motor que viabiliza o ciclo `Test -> Refactor` com latência zero.
+- **Pattern**: O uso de `Protocol` em vez de herança múltipla ou herança baseada em classes abstratas rígidas é o caminho idiomático moderno para Python, facilitando o Mocking e a manutenção de grandes codebases.
+- **Enforcement**: Meta de cobertura (80%+) e ciclo TDD obrigatório devem ser parte integrante da documentação de "Quality Rules" de qualquer skill de stack técnica.

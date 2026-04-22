@@ -33,6 +33,11 @@
 - [x] **GAN-style Harness Integration (v2.1.0/v1.5.0)**:
     - Implementado loop adversarial Gerador-Avaliador em `harness-expert`.
     - Evoluído o framework `sdd` para suportar Revisões Adversariais.
+- [x] **Python Expert Enrichment (v3.0.0)**:
+    - Integrado padrões idiomáticos avançados (EAFP, Protocols, Type Hints 3.9+).
+    - Implementado guia avançado de Testes com ciclo TDD e Pytest Mastery (Fixtures, Mocking).
+    - Adicionado suporte a otimização de memória via `__slots__` e geradores.
+    - Traduzido todo o conteúdo enriquecido para PT-BR.
 - [x] **Full Hub Cohesion Audit**: Todas as 21 skills 100% conformes com o hook `🔒 Prerequisites (Mandatory)`. **CONCLUÍDO** ✅
 
 ## Bloqueios / Próximos Passos
