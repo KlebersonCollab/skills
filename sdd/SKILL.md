@@ -12,12 +12,14 @@ category: development-workflow
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-O SDD é o framework de governança deste Hub. Para operá-lo:
-1. **Memory Sync**: O estado atual (`STATE.md`) reflete a realidade do código?
-2. **Scope Awareness**: A complexidade da tarefa foi classificada via tabela de Auto-Sizing?
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
 
 ---
-
 ## Goal
 
 O SDD tem como objetivo garantir precisão, rastreabilidade e integridade no ciclo de vida de desenvolvimento de software, transformando requisitos ambíguos em código verificado e documentado através de um workflow modular e adaptativo, agora potencializado pelos princípios de **Harness Engineering**.

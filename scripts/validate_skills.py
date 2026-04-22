@@ -113,6 +113,31 @@ class ChangelogFormatValidator(BaseValidator):
             
         return ValidationResult("Formato do Changelog", not errors, errors)
 
+class GovernanceValidator(BaseValidator):
+    """Valida a adesão aos mandatos de governança (Full SDD Hook)."""
+    MANDATORY_HOOK_ITEMS = [
+        "Context Check",
+        "Spec Check",
+        "Plan Check",
+        "Contract Check",
+        "Task Check"
+    ]
+    
+    def validate(self, skill_path: Path) -> ValidationResult:
+        content = safe_read_file(skill_path / "SKILL.md")
+        if not content:
+            return ValidationResult("Governança", True)
+            
+        errors = []
+        if "🔒 Prerequisites (Mandatory)" not in content:
+            errors.append("Seção obrigatória ausente: ## 🔒 Prerequisites (Mandatory)")
+        else:
+            for item in self.MANDATORY_HOOK_ITEMS:
+                if item not in content:
+                    errors.append(f"Item de governança ausente no hook: {item}")
+            
+        return ValidationResult("Governança", not errors, errors)
+
 class RecommendedStructureValidator(BaseValidator):
     """Verifica pastas recomendadas mas não obrigatórias."""
     RECOMMENDED_DIRS = ["references", "resources", "examples"]
@@ -129,6 +154,7 @@ class SkillAuditor:
             StructuralValidator(),
             FrontmatterValidator(),
             ContentCompletenessValidator(),
+            GovernanceValidator(),
             VersionSyncValidator(),
             ChangelogFormatValidator(),
             RecommendedStructureValidator()

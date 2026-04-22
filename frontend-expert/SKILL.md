@@ -11,13 +11,14 @@ description: Expert em desenvolvimento de interfaces modernas com React, Next.js
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar a implementação:
-1. **Spec Check**: O arquivo `spec.md` existe e contém os critérios de aceitação (ACs)?
-2. **Plan Check**: O arquivo `plan.md` define a arquitetura e schemas?
-3. **Task Check**: A lista de tarefas em `tasks.md` está detalhada?
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
 
 ---
-
 ## Goal
 
 Prover expertise avançada para a construção de interfaces web de alta performance, acessíveis (A11y), e escaláveis. Foca no ecossistema moderno de React, priorizando Server Components, design system-first com Tailwind v4 e Shadcn/UI.

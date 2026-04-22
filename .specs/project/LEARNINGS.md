@@ -60,3 +60,8 @@
 ### [2026-04-22] Modernização e Resiliência Mobile
 - **Learning**: A integração de padrões modernos (Dart 3 Sealed Classes) em skills de Flutter não apenas melhora o código, mas força o agente a pensar em termos de **Exaustividade de Estado**, eliminando classes inteiras de bugs de UI.
 - **Pattern**: A inclusão de **Acessibilidade Mandatória** e **Global Error Handling** no workflow core da skill garante que esses pilares "não-funcionais" sejam tratados como requisitos de primeira classe em todas as tarefas.
+
+### [2026-04-22] Cohesion Audit & Validator Evolution
+- **Learning (Validator Lag)**: Scripts de validação tendem a ficar defasados em relação à governança documental (ex: `MEMORY.md`). É vital que mudanças na política de governança sejam refletidas imediatamente no código do auditor (`validate_skills.py`).
+- **Pattern (Mass Fixing)**: O uso de scripts de correção em massa (`fix_missing_hooks.py`) é a única forma escalável de manter a coesão em um Hub com 20+ skills, garantindo que o "Standard de Ouro" seja aplicado uniformemente sem erro humano.
+- **Enforcement Success**: A auditoria de coesão manual seguida de automação elevou o Hub de 40% para 100% de conformidade com o mandado de `🔒 Prerequisites (Mandatory)`.

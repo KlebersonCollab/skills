@@ -11,6 +11,15 @@ category: architecture
 
 ---
 
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+
+---
 ## Goal
 
 Capacitar o agente a projetar arquiteturas de software de alta qualidade e complexidade, abrangendo sistemas distribuídos (CQRS, Event-Driven) e monolitos modulares. A skill garante que cada decisão seja justificada por trade-offs, priorize a simplicidade e seja protegida por **Fitness Functions** e documentada visualmente via **Mermaid**.

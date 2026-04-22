@@ -12,12 +12,14 @@ category: project-management
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera como o guia mestre do Hub. Antes de prosseguir:
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md` e `MEMORY.md`?
-2. **Standard Alignment**: Você está ciente da obrigatoriedade do framework **SDD** para qualquer desenvolvimento técnico?
+Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
+1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
+4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
+5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
 
 ---
-
 ## Goal
 
 Atuar como o ponto de entrada principal e guia contínuo para o Hub de Skills. A missão é orientar o agente e o usuário sobre qual habilidade utilizar para cada problema, garantir o alinhamento com a cultura de engenharia (KISS, SDD) e facilitar a navegação por toda a documentação local.
