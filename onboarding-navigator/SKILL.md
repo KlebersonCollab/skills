@@ -1,13 +1,13 @@
 ---
 name: onboarding-navigator
-version: 1.3.1
+version: 1.4.0
 description: "Guia mestre do Hub de Skills. Fornece overview de todas as habilidades locais, mentoria cultural e suporte à navegação técnica no ecossistema do projeto, incluindo fluxos avançados de Harness Engineering."
 category: project-management
 ---
 
 # Onboarding Navigator
 
-> "Para navegar com precisão, você precisa conhecer o mapa." — Esta skill é o guia autoritativo para todas as 21 habilidades e padrões deste repositório.
+> "Para navegar com precisão, você precisa conhecer o mapa." — Esta skill é o guia autoritativo para todas as 23 habilidades e padrões deste repositório.
 
 ---
 
@@ -41,7 +41,7 @@ A execução desta skill resulta nos seguintes artefatos:
 - **Decision-Support**: Nunca apenas "escolher", mas guiar o processo de escolha através de perguntas diagnósticas.
 - **Pedagogical**: Explicar o motivo de cada padrão ou skill recomendada.
 - **Mermaid-Enabled**: Utilizar visualização visual para explicar fluxos de onboarding ou tomada de decisão.
-- **Stats-Aware**: Sempre mencionar o número total de skills (21) e suas categorias.
+- **Stats-Aware**: Sempre mencionar o número total de skills (23) e suas categorias.
 
 ## Prohibited
 
@@ -59,7 +59,7 @@ flowchart TD
     Start[Início da Sessão] --> Onboarding{onboarding-navigator}
     
     Onboarding --> Analise[Análise do Contexto]
-    Analise --> Catálogo[Consulta ao Catálogo de 21 Skills]
+    Analise --> Catálogo[Consulta ao Catálogo de 23 Skills]
     Catálogo --> Recomendação[Recomendação Específica]
     Recomendação --> Handoff[Handoff para Skill Especializada]
     
@@ -73,7 +73,7 @@ flowchart TD
 
 ### Fase 1: 🎪 WELCOME — Boas-vindas e Mapeamento
 1.  **Reconhecer o Terreno**: Identificar o estado atual do repositório e os objetivos da sessão.
-2.  **Apresentar o Hub**: Utilizar o `references/skills-catalog.md` para dar um overview das **21 habilidades disponíveis** com diagramas Mermaid.
+2.  **Apresentar o Hub**: Utilizar o `references/skills-catalog.md` para dar um overview das **23 habilidades disponíveis** com diagramas Mermaid.
 3.  **Checklist de Início**: Sugerir as primeiras ações baseadas na necessidade do usuário.
 
 ### Fase 2: 🔍 EXPLORE — Catálogo de Habilidades
@@ -100,7 +100,7 @@ flowchart TD
 - **Decision-Support**: Nunca apenas "escolher", mas guiar o processo de escolha através de perguntas diagnósticas.
 - **Pedagogical**: Explicar o motivo de cada padrão ou skill recomendada.
 - **Mermaid-Enabled**: Utilizar visualização visual para explicar fluxos de onboarding ou tomada de decisão.
-- **Stats-Aware**: Sempre mencionar o número total de skills (21) e suas categorias.
+- **Stats-Aware**: Sempre mencionar o número total de skills (23) e suas categorias.
 
 ## 🚫 Prohibited
 
@@ -115,7 +115,7 @@ flowchart TD
 
 ## 📚 Reference Documentation
 
-1. **[Skills Catalog](references/skills-catalog.md)** — O mapa autoritativo das 21 habilidades do hub com diagramas Mermaid.
+1. **[Skills Catalog](references/skills-catalog.md)** — O mapa autoritativo das 23 habilidades do hub com diagramas Mermaid.
 2. **[Decision Making Framework](references/decision-making-framework.md)** — Como escolher e documentar tecnologias.
 3. **[Project Structure Guide](references/project-structure-guide.md)** — O mapa das pastas locais.
 4. **[Onboarding Checklists](references/onboarding-checklists.md)** — Planos de ação práticos.
