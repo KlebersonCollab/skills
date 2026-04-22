@@ -49,10 +49,11 @@ O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
 5.  **Atomic Tasks**: Gerar a lista de tarefas (`tasks.md`) para execução.
 
 ### Fase 3: IMPLEMENT — Execução Atômica
-1.  **Automação**: Utilizar o **SDD CLI** (`uv run sdd task <feature> <id>`) para marcar o progresso.
-2.  **Ciclo de Código**: Utilizar `sdd-implementer` para escrever código test-driven (TDD) alinhado aos cenários BDD.
-3.  **Mandato Proibitivo**: **NUNCA** marque uma tarefa como completa em `tasks.md` sem passar 100% pelos testes e sem realizar o commit git correspondente seguindo a `git-workflow`.
-4.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes e ser commitada individualmente.
+1.  **Isolamento**: **OBRIGATÓRIO** criar uma feature branch (`feat/`, `fix/`, `docs/`) a partir da `main` antes de iniciar o código. NUNCA commite diretamente na `main`.
+2.  **Automação**: Utilizar o **SDD CLI** (`uv run sdd task <feature> <id>`) para marcar o progresso.
+3.  **Ciclo de Código**: Utilizar `sdd-implementer` para escrever código test-driven (TDD) alinhado aos cenários BDD.
+4.  **Mandato Proibitivo**: **NUNCA** marque uma tarefa como completa em `tasks.md` sem passar 100% pelos testes e sem realizar o commit git correspondente na branch de feature.
+5.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes e ser commitada individualmente.
 
 ### Fase 4: REVIEW — Auditoria e Finalização
 1.  **Veredito via Sensores**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md` e o `contract.md`, utilizando feedback de ferramentas (testes, linters).
@@ -134,6 +135,7 @@ A execução deste workflow deve resultar nos seguintes artefatos mandatórios, 
 - **BDD-First**: Critérios de aceitação para níveis Medium+ devem obrigatoriamente usar Given/When/Then.
 - **Verificação Contínua**: Uma tarefa só é considerada concluída após passar 100% nos testes e ser commitada individualmente seguindo a `git-workflow`.
 - **Atomicidade Mandatória**: Cada entrada `[x]` no `tasks.md` deve corresponder a pelo menos um commit no Git com a mensagem vinculada ao ID da task.
+- **Branch-First**: O desenvolvimento deve sempre ocorrer em branches de curta duração, protegendo a branch principal (`main`).
 - **Diagram-as-Code**: Desenhos técnicos devem usar Mermaid integrados ao Markdown.
 
 ## Prohibited
