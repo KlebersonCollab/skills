@@ -13,7 +13,7 @@
 
 Este repositório é a **fonte da verdade** para todas as habilidades (skills) utilizadas por agentes de IA. Cada skill é um módulo independente, documentado e versionado, que pode ser integrado a qualquer agente compatível.
 
-Utilizamos a metodologia **[SDD v2](sdd/)** (Spec-Driven Development) para garantir que cada nova funcionalidade seja rigorosamente especificada, planejada e verificada antes da implementação.
+Utilizamos a metodologia **[SDD](sdd/)** (Spec-Driven Development) para garantir que cada nova funcionalidade seja rigorosamente especificada, planejada e verificada antes da implementação.
 
 ---
 
