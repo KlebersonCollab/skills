@@ -15,8 +15,8 @@
 - [x] 3.2 Documentar guias e mandatos focados em SAST/DAST no `SKILL.md`. `[Size: Medium]`
 
 ## 🎯 Meta 4: Skill Installer CLI
-- [ ] 4.1 Especificar o contrato CLI (ex: `hub install <skill>`). `[Size: Medium]`
-- [ ] 4.2 Lógica de download granular ou extração controlada via Git Sparse Checkout/Raw. `[Size: Large]`
+- [x] 4.1 Especificar o contrato CLI (ex: `hub install <skill>`). `[Size: Medium]`
+- [x] 4.2 Lógica de download granular ou extração controlada via Git Sparse Checkout/Raw. `[Size: Large]`
 
 ## 🎯 Meta 5: Web UI Dashboard
 - [x] 5.1 Bootstrapping com framework Streamlit (Python nativo). `[Size: Small]`
