@@ -11,14 +11,15 @@ graph TD
         azure_devops["azure-devops (1.1.0) 🛡️"]
         django_expert["django-expert (1.5.0) 🛡️"]
         fastapi_expert["fastapi-expert (1.1.0) 🛡️"]
-        golang_expert["golang-expert (1.1.0) 🛡️"]
+        golang_expert["golang-expert (1.2.0) 🛡️"]
         observability_expert["observability-expert (1.0.0) 🛡️"]
     end
 
     subgraph "Miscellaneous"
         benchmark_expert["benchmark-expert (1.0.0) 🛡️"]
+        devsecops_expert["devsecops-expert (1.0.0) 🛡️"]
         frontend_expert["frontend-expert (1.1.0) 🛡️"]
-        golang_testing_expert["golang-testing-expert (1.0.0) 🛡️"]
+        golang_testing_expert["golang-testing-expert (1.1.0) 🛡️"]
         harness_expert["harness-expert (2.1.0) 🛡️"]
     end
 
@@ -44,6 +45,10 @@ graph TD
 
     %% Relations
     api_architect --(references)--> architecture
+    devsecops_expert --(references)--> harness_expert
+    devsecops_expert --(references)--> sdd
+    devsecops_expert --(uses)--> architecture
+    devsecops_expert --(uses)--> git_workflow
     django_expert --(references)--> architecture
     django_expert --(references)--> python_uv
     fastapi_expert --(references)--> architecture

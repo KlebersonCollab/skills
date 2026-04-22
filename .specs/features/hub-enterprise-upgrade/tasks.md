@@ -7,8 +7,8 @@
 - [x] 1.2 Implementar testes unitários focados na pasta `/scripts/`. `[Size: Medium]`
 
 ## 🎯 Meta 2: Automated Knowledge Distiller
-- [ ] 2.1 Criar parser focado nos atributos `uses` e `references` das skills. `[Size: Medium]`
-- [ ] 2.2 Integrar o parser com geração e formatação do mapa Mermaid automaticamente. `[Size: Medium]`
+- [x] 2.1 Criar parser focado nos atributos `uses` e `references` das skills. `[Size: Medium]`
+- [x] 2.2 Integrar o parser com geração e formatação do mapa Mermaid automaticamente. `[Size: Medium]`
 
 ## 🎯 Meta 3: DevSecOps Skill
 - [x] 3.1 Executar `skill-factory` para iniciar o scaffold da skill DevSecOps. `[Size: Quick]`
