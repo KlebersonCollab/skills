@@ -1,0 +1,21 @@
+[project]
+name = "skills-hub"
+version = "2.0.0"
+description = "AI Agent Skills Hub Utilities"
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml>=6.0.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-v --cov=scripts --cov-report=term-missing"
+testpaths = [
+    "tests",
+]
