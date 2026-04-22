@@ -39,8 +39,38 @@ Em Go, a clareza deve prevalecer sobre a brevidade excessiva, mas respeitando o 
 
 ## 🛠️ Structs & Interfaces (Sistema de Tipos)
 
-- **Composition over Inheritance**: Go utiliza composição e interfaces implícitas.
+- **Composition over Inheritance**: Go utiliza composição e interfaces implícitas via embedding.
 - **Interfaces Pequenas**: Defina interfaces focadas (ex: uma única função). Elas são mais fáceis de compor e testar.
+- **Accept Interfaces, Return Structs**: Funções devem aceitar interfaces como parâmetros (máxima flexibilidade) e retornar tipos concretos/structs (facilidade de uso).
+- **Consumer-Defined Interfaces**: Defina a interface no pacote que a consome. O provedor não precisa saber que a interface existe (decoupling).
+- **Make the Zero Value Useful**: Desenhe tipos para que funcionem sem inicialização explícita.
+  ```go
+  // Bom: Zero value pronto para uso
+  type Counter struct {
+      mu    sync.Mutex
+      count int
+  }
+  func (c *Counter) Inc() {
+      c.mu.Lock()
+      c.count++
+      c.mu.Unlock()
+  }
+  ```
+- **Functional Options Pattern**: Ideal para configurar objetos complexos com valores padrão.
+  ```go
+  type Server struct {
+      timeout time.Duration
+  }
+  type Option func(*Server)
+  func WithTimeout(t time.Duration) Option {
+      return func(s *Server) { s.timeout = t }
+  }
+  func NewServer(opts ...Option) *Server {
+      s := &Server{timeout: 30 * time.Second}
+      for _, opt := range opts { opt(s) }
+      return s
+  }
+  ```
 - **Tags de Struct**: Utilize tags para mapeamento de dados (JSON, DB, Validation).
   ```go
   type User struct {

@@ -25,9 +25,14 @@ O sistema de módulos é a base da reprodutibilidade:
 ## 🔍 Linting & Static Analysis (Análise de Código)
 
 A análise estática é mandatória para um código Expert:
-- **golangci-lint**: O orquestrador padrão de linters em Go. Configure-o para rodar no CI.
-- **Gofmt / Goimports**: Formatação automática e gestão inteligente de pacotes importados.
+- **golangci-lint**: O orquestrador padrão de linters em Go. Configure-o com um arquivo `.golangci.yml` ativando `errcheck`, `staticcheck`, `revive`, `goimports`, `misspell` e `govet`.
+- **Gofmt / Goimports**: Formatação automática e gestão inteligente de pacotes importados (`goimports -w .`).
 - **Custom Linters**: Utilize linters específicos para segurança (`gosec`) e bugs lógicos (`errcheck`, `staticcheck`).
+- **Comandos Essenciais**:
+  - `go mod tidy`: Sincronizar dependências.
+  - `go test -race -cover ./...`: Rodar testes com detecção de race condition e cobertura.
+  - `go build ./...`: Validar compilação de todo o projeto.
+  - `golangci-lint run`: Executar análise estática completa.
 
 ---
 
@@ -46,6 +51,7 @@ Em Go, o código de teste é código de primeira classe:
   ```
 - **Testify**: Utilize a biblioteca `stretchr/testify` para asserções ricas e mocks robustos.
 - **Sub-tests**: Utilize `t.Run` para isolar casos de teste dentro de uma mesma função.
+- **Especialização**: Para padrões avançados de TDD, Mocks, Benchmarks e Fuzzing, utilize a skill especializada [golang-testing-expert](../../golang-testing-expert/SKILL.md).
 
 ---
 

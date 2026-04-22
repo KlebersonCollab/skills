@@ -27,6 +27,17 @@ O pacote `context` é a espinha dorsal de qualquer sistema resiliente em Go:
 
 - **Race Conditions**: Utilize `go test -race` religiosamente para detectar condições de corrida.
 - **WaitGroups**: Utilize `sync.WaitGroup` para esperar a finalização de um conjunto de goroutines.
+- **errgroup**: Utilize `golang.org/x/sync/errgroup` para coordenar grupos de goroutines que podem retornar erros, permitindo o cancelamento do grupo inteiro se uma falhar.
+  ```go
+  g, ctx := errgroup.WithContext(ctx)
+  for _, url := range urls {
+      url := url
+      g.Go(func() error {
+          return fetch(ctx, url)
+      })
+  }
+  if err := g.Wait(); err != nil { return err }
+  ```
 - **Mutexes**: Utilize `sync.Mutex` ou `sync.RWMutex` para proteger estados compartilhados quando channels não forem a melhor opção.
 - **Atomic Operations**: Para contadores simples ou flags de estado, utilize `sync/atomic` para máxima performance sem travas.
 
@@ -36,6 +47,7 @@ O pacote `context` é a espinha dorsal de qualquer sistema resiliente em Go:
 
 - **Fan-out/Fan-in**: Distribua trabalho pesado em múltiplas goroutines e consolide os resultados em um único channel.
 - **Worker Pools**: Limite o número de goroutines simultâneas para evitar sobrecarga de recursos.
+- **Graceful Shutdown**: Capture sinais do SO (SIGINT, SIGTERM) para fechar recursos e finalizar goroutines antes de encerrar o processo.
 - **Circuit Breaker**: Implemente padrões de resiliência para falhas em cascata em serviços externos.
 - **Singleton**: Utilize `sync.Once` para inicializações únicas seguras para múltiplas goroutines.
 
