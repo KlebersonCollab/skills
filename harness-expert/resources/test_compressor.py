@@ -2,12 +2,12 @@ import unittest
 import os
 from compressor import analyze_tasks, generate_compact_state
 
+
 class TestContextCompressor(unittest.TestCase):
-    
     def setUp(self):
         # Cria um arquivo de tasks temporário para o teste
         self.test_tasks_file = "test_tasks.md"
-        with open(self.test_tasks_file, 'w', encoding='utf-8') as f:
+        with open(self.test_tasks_file, "w", encoding="utf-8") as f:
             f.write("# Tasks\n- [x] Task 1\n- [ ] Task 2\n- [x] Task 3\n- [ ] Task 4\n")
 
     def tearDown(self):
@@ -35,6 +35,7 @@ class TestContextCompressor(unittest.TestCase):
         completed = ["Task 1", "Task 3"]
         threshold = 5
         self.assertLess(len(completed), threshold)
+
 
 if __name__ == "__main__":
     unittest.main()

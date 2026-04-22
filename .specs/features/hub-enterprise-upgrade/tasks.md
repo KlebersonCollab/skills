@@ -21,3 +21,8 @@
 ## 🎯 Meta 5: Web UI Dashboard
 - [x] 5.1 Bootstrapping com framework Streamlit (Python nativo). `[Size: Small]`
 - [x] 5.2 Estruturar parser que reuse `scripts/utils.py` para injetar documentação e Mermaid no Streamlit. `[Size: Medium]`
+
+## 🎯 Meta 6: Release V2.0 (Bunker Strategy)
+- [x] 6.1 Definir estratégia e auditoria (Bunker). `[Size: Quick]`
+- [x] 6.2 Criar e executar `make release-check` para garantir qualidade. `[Size: Small]`
+- [x] 6.3 Gerar o Changelog e fechar ciclo do Hub Enterprise Upgrade. `[Size: Quick]`

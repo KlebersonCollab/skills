@@ -1,5 +1,5 @@
 # Hub Global Changelog
-*Última atualização: 2026-04-22 05:43:29*
+*Última atualização: 2026-04-22 15:48:18*
 
 Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.
 
@@ -122,6 +122,15 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 
 ---
 
+## 🧩 devsecops-expert
+## [1.0.0] - 2026-04-22
+
+### Added
+- Inicialização da skill.
+- Inclusão dos mandatos SAST/DAST e Zero Trust.
+
+---
+
 ## 🧩 django-expert
 ## [1.5.0] - 2026-04-22
 
@@ -234,6 +243,12 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 golang-expert
+## [1.2.0] - 2026-04-22
+
+### Adicionado
+- Integrados Slash Commands para automação de workflows.
+- Estabelecido layout mandatório de Clean Architecture e testes rigorosos.
+
 ## [1.1.0] - 2026-04-20
 
 ### Adicionado
@@ -254,6 +269,11 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 golang-testing-expert
+## [1.1.0] - 2026-04-22
+### Added
+- Adicionados comandos de verificação detalhados (Race, Coverage, Integration).
+- Integrado ciclo TDD com comandos de barra.
+
 ## [1.0.0] - 2026-04-22
 ### Added
 - Criação da skill baseada no ECC.
@@ -315,6 +335,10 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 onboarding-navigator
+## [1.4.0] - 2026-04-22
+### Changed
+- Atualização do Hub Exit Gate e auditorias do SDD.
+
 ## [1.3.1] - 2026-04-22
 ### Changed
 - **Governance Hardening**: Inclusão de auditoria de commits e branches no Session Exit Gate.
@@ -324,11 +348,6 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ### Added
 - **Harness Engineering Strategy**: Inclusão de orientações sobre loops GAN e qualidade adversarial na matriz de decisão.
 - **Evolução de Fluxos**: Atualização dos fluxos de trabalho recomendados para incluir o "Power-up" de qualidade da `harness-expert`.
-
-## [1.2.1] - 2026-04-20
-### Fixed
-- Auditoria de sincronização: Corrigida a contagem total de skills de 18 para 20 em toda a documentação.
-- Atualização das estatísticas de categorias (5 Metodologia, 3 Arquitetura, 8 DevOps, 2 Automação, 2 Navegação).
 
 ---
 
