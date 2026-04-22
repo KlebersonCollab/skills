@@ -1,8 +1,8 @@
 # Current Project State (April 22, 2026)
 
 ## Status Atual
-- **Feature**: Benchmark Expert Skill Integration - **CONCLUÍDO (v1.0.0)** 📊
-- **Sessão**: Criação da skill de medição de performance e regressão, adaptada da ECC para o padrão do Hub.
+- **Feature**: Hub Enterprise Upgrade - **PLANEJAMENTO CONCLUÍDO** 🛠️
+- **Sessão**: Estruturação de 5 trilhas para levar a arquitetura do Hub à maturidade completa (Testes, UI, Distiller, Installer, DevSecOps).
 
 ## Últimas Alterações
 - [x] **Benchmark Expert Skill (v1.0.0)**:
@@ -44,6 +44,8 @@
 - [x] **Full Hub Cohesion Audit**: Todas as 21 skills 100% conformes com o hook `🔒 Prerequisites (Mandatory)`. **CONCLUÍDO** ✅
 
 ## Bloqueios / Próximos Passos
-- [ ] **Marketplace UI**: Interface visual para navegar e instalar skills.
-- [ ] **Telemetry**: Rastreamento de uso local para otimização de cache de skills.
-- [ ] **Cross-Skill Automation**: Scripts para gerar documentação cruzada entre stacks.
+- [ ] **Hub Test Suite**: Criar primeira bateria de testes via `pytest` para blindar scripts base (`/scripts/`).
+- [ ] **DevSecOps Skill**: Iniciar via `skill-factory` a nova skill focada em auditorias estáticas de qualidade e segurança.
+- [ ] **Automated Knowledge Distiller**: Roteirizar extração dinâmica de nós do Mermaid.
+- [ ] **Skill Installer CLI**: Trabalhar no protótipo de instalação granular.
+- [ ] **Marketplace UI / Dashboard**: Escolher e inicializar projeto SSG para portabilidade visual da documentação.
