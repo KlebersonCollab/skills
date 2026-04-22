@@ -69,3 +69,8 @@
 - **Learning**: Agentes de IA tendem a ser "otimistas patológicos" ao avaliar seu próprio trabalho. Separar o papel de **Generator** (quem implementa) e **Evaluator** (quem critica implacavelmente) via skill `harness-expert` cria uma tensão adversarial que elimina o "AI slop" e garante polimento de nível de produção.
 - **Pattern (The Quality Loop)**: Introduzir uma rubrica de 4 pilares (**Design Quality, Craft, Originality, Functionality**) com uma "nota de corte" (Pass Threshold) transforma a Fase 4 do SDD (Review) em um ciclo iterativo, garantindo que o resultado final seja não apenas funcional, mas premium.
 - **Implementation (Cross-Skill Fusion)**: Integrar essa lógica diretamente no framework `sdd` e no `onboarding-navigator` institucionaliza a qualidade como parte da infraestrutura, e não apenas como um desejo opcional.
+
+### [2026-04-22] Idiomatic Go Patterns & Composition
+- **Learning**: No Go, a simplicidade e a composição são os pilares da manutenibilidade. Adotar padrões como "Accept Interfaces, Return Structs" e "Zero Value Useful" reduz drasticamente a necessidade de mocks complexos e inicializações verbosas, tornando o sistema mais resiliente e fácil de entender.
+- **Pattern (Interface Decoupling)**: Definir interfaces no lado do consumidor (Consumer-Defined Interfaces) é a chave para o desacoplamento real em Go, permitindo que diferentes implementações satisfaçam os requisitos sem que o provedor precise conhecer o contrato.
+- **Enforcement (Concurrency Safety)**: A adoção do `errgroup` simplifica a orquestração de goroutines e garante que erros em fluxos paralelos não sejam perdidos, elevando o padrão de segurança de concorrência do Hub.

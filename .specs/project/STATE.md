@@ -6,6 +6,15 @@
 
 
 ## Últimas Alterações
+- [x] **Golang Expert Enrichment (v1.2.0)**:
+    - Integrado padrões idiomáticos avançados (Accept Interfaces, Return Structs, Zero Value Useful).
+    - Adicionado suporte a `errgroup` e padrões de Graceful Shutdown.
+    - Expandido o checklist de performance com pré-alocação e `strings.Builder`.
+    - Proibido o uso de `context.Context` dentro de structs.
+- [x] **Golang Testing Expert (v1.0.0)**:
+    - Criada nova skill especializada em QA e Testes para Go.
+    - Implementados padrões de TDD, Table-Driven Tests, Mocks, Benchmarks e Fuzzing.
+    - Integrada como sub-skill da `golang-expert`.
 - [x] **Git Workflow Integration (v1.0.0)**:
     - Importada skill original da ECC e traduzida para PT-BR.
     - Integrado workflow Git com o ciclo SDD (Commits por Task, Atomicidade).
