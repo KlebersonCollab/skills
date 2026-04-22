@@ -14,6 +14,7 @@
 | **S-2: Exit Gate** | PASS ✅ | `onboarding-navigator/SKILL.md:L93` | Auditoria de commits integrada ao Exit Gate. |
 | **S-3: Versioning** | PASS ✅ | Frontmatter | sdd v1.5.0, onboarding-navigator v1.3.1 (incrementado). |
 | **S-4: Git Compliance** | PASS ✅ | `git log` | Esta feature utilizou commits atômicos vinculados a tasks. |
+| **S-5: Branching** | PASS ✅ | `git branch` | Trabalho realizado em `feat/governance-git-compliance` em conformidade com GitHub Flow. |
 
 ## 3. Avaliação de Critérios BDD
 
