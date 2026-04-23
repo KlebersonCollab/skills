@@ -1,5 +1,5 @@
 # Hub Global Changelog
-*Última atualização: 2026-04-23 10:11:08*
+*Última atualização: 2026-04-23 10:50:00*
 
 Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.
 
@@ -450,5 +450,17 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 - **SKILL.md**: Definição principal da skill com fluxo de decisão e fallback.
 - **README.md**: Documentação de visão geral e uso.
 - **Estrutura Base**: Scaffolding inicial seguindo os padrões do Skills Hub.
+
+---
+
+## 🧩 token-distiller
+## [1.0.0] - 2026-04-23
+
+### Adicionado
+- **Inicialização da Skill**: Criada nova skill para gerenciamento de densidade de tokens (Dual Mode).
+- **Modos de Operação**: Implementados modos `Low Token` (Caveman) e `Premium` (High Token).
+- **Motor de Compressão**: Integrado utilitário Python para minificação de Markdown.
+- **Automação**: Integrado ao `onboarding-navigator` para detecção automática de modo.
+- **Mandato Global**: Injetada regra de conformidade de tokens em todas as 24 skills do Hub.
 
 ---
