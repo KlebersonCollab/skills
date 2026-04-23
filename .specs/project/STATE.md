@@ -1,7 +1,8 @@
 # Current Project State (April 22, 2026)
 
 ## Status Atual
-- **Feature**: Hub Enterprise Upgrade - **CONCLUÍDO (v4.0.1)** ✅
+- **Feature**: Hub Enterprise Upgrade - **CONCLUÍDO (v4.1.2)** ✅
+- **Auditoria**: Hub Integrity Audit - **CONCLUÍDO** (Correção de registros e estrutura) ✅
 - **Sessão**: Estruturação de 5 trilhas para levar a arquitetura do Hub à maturidade completa (Testes, UI, Distiller, Installer, DevSecOps).
 
 ## Últimas Alterações
@@ -47,7 +48,10 @@
     - Implementado guia avançado de Testes com ciclo TDD e Pytest Mastery (Fixtures, Mocking).
     - Adicionado suporte a otimização de memória via `__slots__` e geradores.
     - Traduzido todo o conteúdo enriquecido para PT-BR.
-- [x] **Full Hub Cohesion Audit**: Todas as 21 skills 100% conformes com o hook `🔒 Prerequisites (Mandatory)`. **CONCLUÍDO** ✅
+- [x] **Full Hub Cohesion Audit (v4.1.2)**: 
+    - Corrigido posicionamento da skill `token-distiller`.
+    - Atualizados `README.md`, `KNOWLEDGE-MAP.mermaid` e `onboarding-navigator`.
+    - Todas as 25 skills agora 100% conformes. **CONCLUÍDO** ✅
 
 - [x] **Hub Test Suite**: Criar primeira bateria de testes via `pytest` para blindar scripts base (`/scripts/`).
 - [x] **DevSecOps Skill**: Iniciar via `skill-factory` a nova skill focada em auditorias estáticas de qualidade e segurança.
