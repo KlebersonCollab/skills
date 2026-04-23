@@ -57,6 +57,9 @@
 
 ## Bloqueios / Próximos Passos
 - [x] **Release V4.0.1 (Bunker Strategy)**: Executada com sucesso com 100% de integridade (`make release-check`) e Changelog gerado.
-- [ ] **Novo Épico: Token Optimization & Dual Mode (Caveman/Premium)**:
+- [x] **Novo Épico: Token Optimization & Dual Mode (Caveman/Premium)**:
     - [x] Planejamento SDD (Complex Task Mode): `spec.md`, `plan.md`, `contract.md`, `tasks.md`.
-    - [ ] Implementação da Meta 1 (Infraestrutura e Skill Core).
+    - [x] Implementação da Meta 1 (Infraestrutura e Skill Core).
+    - [x] Implementação da Meta 2 (Motor de Compressão Python).
+    - [x] Implementação da Meta 3 (Integração e Automação).
+    - [x] Validação Final e Benchmark (Meta 4). **CONCLUÍDO** ✅

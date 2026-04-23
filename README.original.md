@@ -1,6 +1,6 @@
 # 🧠 AI Agent Skills Hub
 
-> Hub centralizado para desenvolvimento, armazenamento e evolução **Skills** modulares para agentes IA.
+> Hub centralizado para desenvolvimento, armazenamento e evolução de **Skills** modulares para agentes de IA.
 
 [![Skills](https://img.shields.io/badge/Skills-23-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
@@ -11,15 +11,15 @@
 
 ## 📖 Sobre o Projeto
 
-Este repositório é **fonte verdade** para todas habilidades (skills) utilizadas por agentes IA. Cada skill é módulo independente, documentado e versionado, que pode ser integrado qualquer agente compatível.
+Este repositório é a **fonte da verdade** para todas as habilidades (skills) utilizadas por agentes de IA. Cada skill é um módulo independente, documentado e versionado, que pode ser integrado a qualquer agente compatível.
 
-Utilizamos metodologia **[SDD](sdd/)** (Spec-Driven Development) para garantir que cada nova funcionalidade seja rigorosamente especificada, planejada e verificada antes implementação.
+Utilizamos a metodologia **[SDD](sdd/)** (Spec-Driven Development) para garantir que cada nova funcionalidade seja rigorosamente especificada, planejada e verificada antes da implementação.
 
 ---
 
 ## 📦 Download & Uso Rápido
 
-Geramos automaticamente pacotes pré-configurados para principais agentes IA. Basta baixar, descompactar na raiz seu projeto e começar usar:
+Geramos automaticamente pacotes pré-configurados para os principais agentes de IA. Basta baixar, descompactar na raiz do seu projeto e começar a usar:
 
 | Agente | Artefato | Conteúdo |
 |--------|----------|----------|
@@ -27,26 +27,26 @@ Geramos automaticamente pacotes pré-configurados para principais agentes IA. Ba
 | **Gemini CLI** | [📥 gemini-skills.zip](https://github.com/KlebersonCollab/skills/releases/latest/download/gemini-skills.zip) | Pasta `.gemini/` com `GEMINI.md` e todas as skills. |
 | **AI Agent (Generic)** | [📥 agent-skills.zip](https://github.com/KlebersonCollab/skills/releases/latest/download/agent-skills.zip) | Pasta `.agent/` com `AGENT.md` e todas as skills. |
 
-> 💡 *Nota: links acima baixam automaticamente versão mais recente aba **Releases**.*
+> 💡 *Nota: Os links acima baixam automaticamente a versão mais recente da aba **Releases**.*
 
 ### 🚀 Como usar as Skills
-1. Baixe ZIP correspondente ao seu agente.
-2. Extraia conteúdo na raiz diretório seu projeto.
-3. Certifique-se que pasta oculta (ex: `.claude/`) foi criada corretamente.
-4. Seu agente IA detectará automaticamente novas capacidades.
+1. Baixe o ZIP correspondente ao seu agente.
+2. Extraia o conteúdo na raiz do diretório do seu projeto.
+3. Certifique-se de que a pasta oculta (ex: `.claude/`) foi criada corretamente.
+4. Seu agente de IA detectará automaticamente as novas capacidades.
 
 ---
 
 ## 🛠️ Ferramentas & Automação
 
- Hub inclui **SDD CLI**, ferramenta Python que automatiza ciclo vida skills e gestão conhecimento:
+O Hub inclui o **SDD CLI**, uma ferramenta Python que automatiza o ciclo de vida das skills e a gestão de conhecimento:
 
 | Comando | Descrição |
 |---------|-----------|
-| `uv run sdd init <name>` | Inicializa nova feature com estrutura SDD completa. |
-| `uv run sdd task <feat> <id>` | Marca progresso tarefas e sincroniza estado global. |
-| `uv run sdd graph` | Gera automaticamente **Knowledge Map** (Mermaid) projeto. |
-| `uv run sdd sync` | Sincroniza mandatos globais em todos agentes (.gemini, .claude, .agent). |
+| `uv run sdd init <name>` | Inicializa uma nova feature com estrutura SDD completa. |
+| `uv run sdd task <feat> <id>` | Marca o progresso de tarefas e sincroniza o estado global. |
+| `uv run sdd graph` | Gera automaticamente o **Knowledge Map** (Mermaid) do projeto. |
+| `uv run sdd sync` | Sincroniza mandatos globais em todos os agentes (.gemini, .claude, .agent). |
 
 > 💡 *Nota: Requer [Python UV](https://docs.astral.sh/uv/) instalado.*
 
@@ -102,23 +102,23 @@ skills/
 
 ## 📐 Como Criar uma Nova Skill
 
-Utilize skill **[Skill Factory](skill-factory/)** para criar novas skills forma padronizada. processo garante que cada skill seja gerada com estrutura correta e passe por auditoria qualidade antes ser integrada ao hub.
+Utilize a skill **[Skill Factory](skill-factory/)** para criar novas skills de forma padronizada. O processo garante que cada skill seja gerada com a estrutura correta e passe por uma auditoria de qualidade antes de ser integrada ao hub.
 
-> 📖 Consulte [documentação do Skill Factory](skill-factory/) para detalhes.
+> 📖 Consulte a [documentação do Skill Factory](skill-factory/) para detalhes.
 
 ---
 
 ## 🗺️ Roadmap & Estado do Projeto
 
-Acompanhe evolução hub através documentos planejamento:
-- 🛤️ **[ROADMAP.md](.specs/project/ROADMAP.md)**: Visão longo prazo e metas.
+Acompanhe a evolução do hub através dos documentos de planejamento:
+- 🛤️ **[ROADMAP.md](.specs/project/ROADMAP.md)**: Visão de longo prazo e metas.
 - 📊 **[STATE.md](.specs/project/STATE.md)**: Status atual e tarefas em andamento.
 
 ---
 
 ## 📄 Licença
 
-Este projeto está licenciado sob [Licença MIT](LICENSE).
+Este projeto está licenciado sob a [Licença MIT](LICENSE).
 
 ---
 

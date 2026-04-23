@@ -1,7 +1,10 @@
-#!/usr/bin/env python3
 import sys
+import os
 import argparse
 from pathlib import Path
+
+# Add project root to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from scripts.compressor_utility import MarkdownCompressor
 
 def main():
