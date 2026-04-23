@@ -12,9 +12,9 @@
 - [x] **Task 2.3**: Implementar CLI wrapper para facilitar o uso: `python scripts/hub.py compress <file>`. `id: T2.3`
 
 ## Meta 3: Integração e Automação
-- [ ] **Task 3.1**: Atualizar `onboarding-navigator` para injetar o prompt correto no bootstrap. `id: T3.1`
-- [ ] **Task 3.2**: Adicionar comandos de barra `/mode` e `/compress` no gerenciador de comandos. `id: T3.2`
-- [ ] **Task 3.3**: Automatizar a compressão de `STATE.md` quando o arquivo exceder um limite de tokens. `id: T3.3`
+- [x] **Task 3.1**: Atualizar `onboarding-navigator` para injetar o prompt correto no bootstrap. `id: T3.1`
+- [x] **Task 3.2**: Adicionar comandos de barra `/mode` e `/compress` no gerenciador de comandos. `id: T3.2`
+- [x] **Task 3.3**: Automatizar a compressão de `STATE.md` quando o arquivo exceder um limite de tokens. `id: T3.3`
 
 ## Meta 4: Validação e Encerramento
 - [ ] **Task 4.1**: Realizar benchmark de economia de tokens em uma sessão real. `id: T4.1`
