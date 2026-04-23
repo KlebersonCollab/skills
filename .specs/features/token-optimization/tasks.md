@@ -17,6 +17,6 @@
 - [x] **Task 3.3**: Automatizar a compressão de `STATE.md` quando o arquivo exceder um limite de tokens. `id: T3.3`
 
 ## Meta 4: Validação e Encerramento
-- [ ] **Task 4.1**: Realizar benchmark de economia de tokens em uma sessão real. `id: T4.1`
-- [ ] **Task 4.2**: Gerar `validation-report.md` com evidências dos sensores do contrato. `id: T4.2`
-- [ ] **Task 4.3**: Realizar merge para a branch principal e atualizar documentação do Hub. `id: T4.3`
+- [x] **Task 4.1**: Realizar benchmark de economia de tokens em uma sessão real. `id: T4.1`
+- [x] **Task 4.2**: Gerar `validation-report.md` com evidências dos sensores do contrato. `id: T4.2`
+- [x] **Task 4.3**: Realizar merge para a branch principal e atualizar documentação do Hub. `id: T4.3`
