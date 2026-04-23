@@ -1,8 +1,10 @@
 import unittest
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from scripts.compressor_utility import MarkdownCompressor
+
 
 class TestCompressor(unittest.TestCase):
     def setUp(self):
@@ -30,6 +32,7 @@ class TestCompressor(unittest.TestCase):
         text = "Veja o [link](https://google.com) para mais info."
         compressed = self.compressor.compress_text(text)
         self.assertIn("[link](https://google.com)", compressed)
+
 
 if __name__ == "__main__":
     unittest.main()
