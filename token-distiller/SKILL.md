@@ -3,7 +3,7 @@ name: token-distiller
 description: >
   Gerenciador de densidade de tokens. Alterna entre o modo 'Low Token' (Caveman) 
   para velocidade e o modo 'Premium' (High Token) para complexidade analítica.
-version: 1.0.0
+version: 1.1.0
 ---
 
 # Token Distiller: Dual-Mode Communication

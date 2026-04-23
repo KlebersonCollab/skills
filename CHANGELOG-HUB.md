@@ -1,5 +1,5 @@
 # Hub Global Changelog
-*Última atualização: 2026-04-23 10:50:00*
+*Última atualização: 2026-04-23 11:01:56*
 
 Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.
 
@@ -335,6 +335,12 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ---
 
 ## 🧩 onboarding-navigator
+## [1.5.0] - 2026-04-23
+### Changed
+- **Integrity Audit**: Auditoria estrita de conformidade realizada.
+- **Sync**: Sincronizado para refletir o novo total de 25 skills.
+- **Token Distiller**: Integração profunda com o modo Caveman para bootstrap de sessão.
+
 ## [1.4.0] - 2026-04-22
 ### Changed
 - Atualização do Hub Exit Gate e auditorias do SDD.
@@ -343,11 +349,6 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ### Changed
 - **Governance Hardening**: Inclusão de auditoria de commits e branches no Session Exit Gate.
 - **Mandatos Proibitivos**: Adição de regra contra o encerramento de sessão sem auditoria de conformidade Git.
-
-## [1.3.0] - 2026-04-22
-### Added
-- **Harness Engineering Strategy**: Inclusão de orientações sobre loops GAN e qualidade adversarial na matriz de decisão.
-- **Evolução de Fluxos**: Atualização dos fluxos de trabalho recomendados para incluir o "Power-up" de qualidade da `harness-expert`.
 
 ---
 
@@ -442,6 +443,22 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 
 ---
 
+## 🧩 token-distiller
+## [1.1.0] - 2026-04-23
+### Changed
+- **Hardening**: Adicionadas seções obrigatórias (Goal, Output, Rules, Prohibited).
+- **Compliance**: Adicionados checks de governança SDD ao hook mandatório.
+- **Structure**: Criadas pastas `references/`, `resources/` e `examples/`.
+
+## [1.0.0] - 2026-04-22
+### Added
+- Implementação inicial do épico Token Optimization.
+- Modos Caveman e Premium.
+- Integração com CLI `hub`.
+- Motor de compressão Python.
+
+---
+
 ## 🧩 youtube-transcript
 ## [1.0.0] - 2026-04-15
  — 2026-04-15
@@ -450,17 +467,5 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 - **SKILL.md**: Definição principal da skill com fluxo de decisão e fallback.
 - **README.md**: Documentação de visão geral e uso.
 - **Estrutura Base**: Scaffolding inicial seguindo os padrões do Skills Hub.
-
----
-
-## 🧩 token-distiller
-## [1.0.0] - 2026-04-23
-
-### Adicionado
-- **Inicialização da Skill**: Criada nova skill para gerenciamento de densidade de tokens (Dual Mode).
-- **Modos de Operação**: Implementados modos `Low Token` (Caveman) e `Premium` (High Token).
-- **Motor de Compressão**: Integrado utilitário Python para minificação de Markdown.
-- **Automação**: Integrado ao `onboarding-navigator` para detecção automática de modo.
-- **Mandato Global**: Injetada regra de conformidade de tokens em todas as 24 skills do Hub.
 
 ---
