@@ -7,9 +7,9 @@
 - [x] **Task 1.4**: Configurar arquivo de persistência de modo `.hub-mode` na raiz. `id: T1.4`
 
 ## Meta 2: Motor de Compressão (Python)
-- [ ] **Task 2.1**: Implementar `scripts/utils/compressor.py` para minificação de Markdown. `id: T2.1`
-- [ ] **Task 2.2**: Criar suite de testes para o compressor (garantir preservação de técnica). `id: T2.2`
-- [ ] **Task 2.3**: Implementar CLI wrapper para facilitar o uso: `python scripts/hub.py compress <file>`. `id: T2.3`
+- [x] **Task 2.1**: Implementar `scripts/utils/compressor.py` para minificação de Markdown. `id: T2.1`
+- [x] **Task 2.2**: Criar suite de testes para o compressor (garantir preservação de técnica). `id: T2.2`
+- [x] **Task 2.3**: Implementar CLI wrapper para facilitar o uso: `python scripts/hub.py compress <file>`. `id: T2.3`
 
 ## Meta 3: Integração e Automação
 - [ ] **Task 3.1**: Atualizar `onboarding-navigator` para injetar o prompt correto no bootstrap. `id: T3.1`
