@@ -46,8 +46,16 @@ for AGENT_CONFIG in "${AGENTS[@]}"; do
         cp -r "$SKILL" "$STAGING/skills/"
     done
     echo "   ✅ Copiadas todas as skills para $STAGING/skills/"
+
+    # 3. Copiar Infraestrutura (scripts, Makefile, config)
+    echo "   🛠️  Copiando infraestrutura..."
+    cp -r scripts "$STAGING/"
+    cp Makefile "$STAGING/"
+    cp pyproject.toml "$STAGING/"
+    if [ -f "uv.lock" ]; then cp "uv.lock" "$STAGING/"; fi
+    if [ -f ".hub-mode" ]; then cp ".hub-mode" "$STAGING/"; fi
     
-    # 3. Gerar ZIP
+    # 4. Gerar ZIP
     (cd "$DIST_BASE" && zip -rq "../$OUTPUT_DIR/$NAME-skills.zip" "$TARGET_FOLDER")
     echo "   🎁 Gerado: $OUTPUT_DIR/$NAME-skills.zip"
 done
@@ -70,7 +78,15 @@ for SKILL in $SKILLS; do
 done
 echo "   ✅ Copiadas todas as skills para $ANTIGRAVITY_STAGING/skills/"
 
-# 3. Gerar Antigravity.zip (partindo da pasta antigravity/)
+# 3. Copiar Infraestrutura para Antigravity
+echo "   🛠️  Copiando infraestrutura para Antigravity..."
+cp -r scripts "$ANTIGRAVITY_STAGING/../"
+cp Makefile "$ANTIGRAVITY_STAGING/../"
+cp pyproject.toml "$ANTIGRAVITY_STAGING/../"
+if [ -f "uv.lock" ]; then cp "uv.lock" "$ANTIGRAVITY_STAGING/../"; fi
+if [ -f ".hub-mode" ]; then cp ".hub-mode" "$ANTIGRAVITY_STAGING/../"; fi
+
+# 4. Gerar Antigravity.zip (partindo da pasta antigravity/)
 (cd "$DIST_BASE/antigravity" && zip -rq "../../$OUTPUT_DIR/Antigravity.zip" ".gemini")
 echo "   🎁 Gerado: $OUTPUT_DIR/Antigravity.zip"
 
