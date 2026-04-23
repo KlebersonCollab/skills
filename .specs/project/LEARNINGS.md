@@ -105,3 +105,7 @@
 
 ## Operational Learnings
 - **SD-Consistency**: Ao enriquecer skills, é crucial validar se a estrutura de comandos e regras de qualidade estão alinhadas com as sub-skills (como a `golang-testing-expert`).
+### [2026-04-23] Validator Rigor & SDD Compliance Hooks
+- **Learning**: O script de validação do Hub (`validate_skills.py`) impõe um rigor léxico absoluto para o bloco `## 🔒 Prerequisites (Mandatory)`. Mesmo que o conteúdo seja semanticamente correto, o script busca por palavras-chave específicas como `Spec Check`, `Plan Check`, `Contract Check` e `Task Check`.
+- **Solution**: A estrutura do bloco de Prerequisites deve ser mantida idêntica em todas as skills para garantir que a auditoria automatizada passe sem falsos negativos. O SDD é a "cola" que une todo o ecossistema, e sua verificação é o primeiro portão de segurança de qualquer execução agêntica.
+- **Impact**: O enriquecimento da skill SDD para a v1.5.0 agora serve como o "template de ouro" para essa seção, garantindo que novas diretrizes (como Brownfield Mapping) sejam integradas sem quebrar a governança do repositório.
