@@ -41,7 +41,8 @@ A execução desta skill resulta nos seguintes artefatos:
 - **Decision-Support**: Nunca apenas "escolher", mas guiar o processo de escolha através de perguntas diagnósticas.
 - **Pedagogical**: Explicar o motivo de cada padrão ou skill recomendada.
 - **Mermaid-Enabled**: Utilizar visualização visual para explicar fluxos de onboarding ou tomada de decisão.
-- **Stats-Aware**: Sempre mencionar o número total de skills (23) e suas categorias.
+- **Stats-Aware**: Sempre mencionar o número total de skills (24) e suas categorias.
+- **Token-Efficient**: Sempre verificar o modo de operação atual (`.hub-mode`) e aplicar a densidade de tokens apropriada via `token-distiller`.
 
 ## Prohibited
 
@@ -59,8 +60,8 @@ flowchart TD
     Start[Início da Sessão] --> Onboarding{onboarding-navigator}
     
     Onboarding --> Analise[Análise do Contexto]
-    Analise --> Catálogo[Consulta ao Catálogo de 23 Skills]
-    Catálogo --> Recomendação[Recomendação Específica]
+    Analise --> Catálogo[Consulta ao Catálogo de 24 Skills]
+    Catálogo --> Recomendação[Recomendação Específica de 24 Skills]
     Recomendação --> Handoff[Handoff para Skill Especializada]
     
     style Start fill:#e1f5fe
@@ -73,8 +74,9 @@ flowchart TD
 
 ### Fase 1: 🎪 WELCOME — Boas-vindas e Mapeamento
 1.  **Reconhecer o Terreno**: Identificar o estado atual do repositório e os objetivos da sessão.
-2.  **Apresentar o Hub**: Utilizar o `references/skills-catalog.md` para dar um overview das **23 habilidades disponíveis** com diagramas Mermaid.
-3.  **Checklist de Início**: Sugerir as primeiras ações baseadas na necessidade do usuário.
+2.  **Apresentar o Hub**: Utilizar o `references/skills-catalog.md` para dar um overview das **24 habilidades disponíveis** com diagramas Mermaid.
+3.  **Boot de Sessão (Token Optimization)**: Ler o arquivo `.hub-mode` e ativar o modo correspondente via `token-distiller`. Sugerir o modo **Low Token** para tarefas simples detectadas no bootstrap.
+4.  **Checklist de Início**: Sugerir as primeiras ações baseadas na necessidade do usuário.
 
 ### Fase 2: 🔍 EXPLORE — Catálogo de Habilidades
 1.  **Match de Necessidade**: Recomendar a skill correta baseada no contexto técnico, usando a **Matriz de Decisão**.
@@ -115,7 +117,7 @@ flowchart TD
 
 ## 📚 Reference Documentation
 
-1. **[Skills Catalog](references/skills-catalog.md)** — O mapa autoritativo das 23 habilidades do hub com diagramas Mermaid.
+1. **[Skills Catalog](references/skills-catalog.md)** — O mapa autoritativo das 24 habilidades do hub com diagramas Mermaid.
 2. **[Decision Making Framework](references/decision-making-framework.md)** — Como escolher e documentar tecnologias.
 3. **[Project Structure Guide](references/project-structure-guide.md)** — O mapa das pastas locais.
 4. **[Onboarding Checklists](references/onboarding-checklists.md)** — Planos de ação práticos.
