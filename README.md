@@ -66,7 +66,7 @@ Geramos automaticamente pacotes pré-configurados para principais agentes IA. Ba
 | 8 | **[Azure DevOps](azure-devops/)** | Gerenciamento profissional de Boards, Repos, Pipelines e Artifacts no AzDO. | `1.1.0` |
 | 9 | **[Clean Code Mentor](clean-code-mentor/)** | Mentor técnico e revisor de código focado em SOLID, YAGNI, DRY e KISS. | `1.0.0` |
 | 10 | **[Observability Expert](observability-expert/)** | Especialista em SRE — Logs Estruturados, OpenTelemetry e Confiabilidade (SLI/SLO). | `1.0.0` |
-| 11 | **[Onboarding Navigator](onboarding-navigator/)** | Guia interativo de cultura e engenharia para novos membros e projetos. | `1.3.1` |
+| 11 | **[Onboarding Navigator](onboarding-navigator/)** | Guia interativo de cultura e engenharia para novos membros e projetos. | `1.5.0` |
 | 12 | **[YouTube Transcript](youtube-transcript/)** | Extração de transcrições de vídeos com fallback para IA (Whisper) e limpeza automática. | `1.0.0` |
 | 13 | **[Harness Expert](harness-expert/)** | Motor técnico para Harness Engineering (Sync, Rehydrate, Automação). | `2.0.0` |
 | 14 | **[Knowledge Architect](knowledge-architect/)** | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | `1.0.0` |
@@ -80,7 +80,7 @@ Geramos automaticamente pacotes pré-configurados para principais agentes IA. Ba
 | 22 | **[Golang Testing Expert](golang-testing-expert/)** | Especialista em QA para Go — TDD, Table-Driven Tests, Benchmarks e Fuzzing. | `1.0.0` |
 | 23 | **[Benchmark Expert](benchmark-expert/)** | Expert Skill para medição de baselines de performance, detecção de regressões e comparação de stacks. | `1.0.0` |
 | 24 | **[DevSecOps Expert](devsecops-expert/)** | Auditoria estática de qualidade, segurança SAST/DAST e Hardening. | `1.0.0` |
-| 25 | **[Token Distiller](token-distiller/)** | Gerenciador de densidade de tokens e modos de compressão (Caveman/Premium). | `1.0.0` |
+| 25 | **[Token Distiller](token-distiller/)** | Gerenciador de densidade de tokens e modos de compressão (Caveman/Premium). | `1.1.0` |
 
 ---
 
