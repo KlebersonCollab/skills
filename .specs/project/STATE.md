@@ -5,6 +5,12 @@
 - **Sessão**: Estruturação de 5 trilhas para levar a arquitetura do Hub à maturidade completa (Testes, UI, Distiller, Installer, DevSecOps).
 
 ## Últimas Alterações
+- [x] **SDD Skill Enrichment (v1.5.0)**:
+    - Integradas 5 novas diretrizes avançadas operacionais (Brownfield, Coding Principles, Context Limits, Session Handoff, Quick Mode).
+    - Implementado protocolo de delegação para sub-agentes mitigarem limites de contexto.
+    - Realizada auditoria completa de conformidade com a Skill Factory em todas as sub-skills.
+    - Sincronizada versão em todo o ecossistema e gerada nova release de artefatos.
+
 - [x] **Benchmark Expert Skill (v1.0.0)**:
     - Criada nova skill especializada em performance (Browser, API, Build).
     - Integrada detecção de regressão com comparação de baselines.
