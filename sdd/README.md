@@ -2,7 +2,7 @@
 
 > Precision at scale. Rigor when needed, speed when possible.
 
-[![Versão](https://img.shields.io/badge/Versão-1.4.0-blue)](#changelog)
+[![Versão](https://img.shields.io/badge/Versão-1.5.0-blue)](#changelog)
 [![Sub-skills](https://img.shields.io/badge/Sub--skills-5-brightgreen)](#-sub-skills)
 
 ---
@@ -11,7 +11,7 @@
 
 Skill de **desenvolvimento orientado a especificações** com workflow modular e adaptativo. O SDD ajusta automaticamente a profundidade do processo à complexidade da tarefa (Auto-Sizing), garantindo rigor quando necessário e velocidade quando possível.
 
-A versão `1.4.0` integra os princípios de **Harness Engineering**, introduzindo **Contratos de Desenvolvimento (SDC)** e validação determinística via **Sensores**.
+A versão `1.5.0` integra os princípios de **Harness Engineering** e as diretrizes avançadas do **TLC Spec-Driven**, introduzindo **Contratos de Desenvolvimento (SDC)**, validação determinística via **Sensores** e protocolos de gestão de contexto.
 
 > **Lei do SDD**: Se não está na spec, não existe. Se não foi verificado, não está pronto.
 
@@ -78,6 +78,10 @@ Sempre atualize o `STATE.md` (operacional), `MEMORY.md` (fatos) e `LEARNINGS.md`
 
 ### Verification Standards
 Uma feature **NÃO** está completa até que o **Reviewer** emita um veredito `APPROVED` baseado em evidências (paths e line numbers).
+
+### Skill Reference
+
+[TLC Spec Driven](https://github.com/tech-leads-club/agent-skills/tree/main/packages/skills-catalog/skills/(development)/tlc-spec-driven)
 
 ---
 
