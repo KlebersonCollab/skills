@@ -21,6 +21,7 @@ __pycache__/
 .pytest_cache/
 .coverage
 .venv/
+caveman-main/
 
 # OS
 .DS_Store
