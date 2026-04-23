@@ -2,7 +2,7 @@
 
 > Hub centralizado para desenvolvimento, armazenamento e evolução **Skills** modulares para agentes IA.
 
-[![Skills](https://img.shields.io/badge/Skills-23-brightgreen)](#-skills-disponíveis)
+[![Skills](https://img.shields.io/badge/Skills-25-brightgreen)](#-skills-disponíveis)
 [![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/KlebersonCollab/skills/generate-skills-artifacts.yml?branch=main&label=Build%20Artifacts)](https://github.com/KlebersonCollab/skills/actions)
 [![Status](https://img.shields.io/badge/Status-Ativo-brightgreen)](#-roadmap)
@@ -79,6 +79,8 @@ Geramos automaticamente pacotes pré-configurados para principais agentes IA. Ba
 | 21 | **[Git Workflow](git-workflow/)** | Padrões de fluxo de trabalho Git, estratégias de branching e integração com SDD. | `1.0.0` |
 | 22 | **[Golang Testing Expert](golang-testing-expert/)** | Especialista em QA para Go — TDD, Table-Driven Tests, Benchmarks e Fuzzing. | `1.0.0` |
 | 23 | **[Benchmark Expert](benchmark-expert/)** | Expert Skill para medição de baselines de performance, detecção de regressões e comparação de stacks. | `1.0.0` |
+| 24 | **[DevSecOps Expert](devsecops-expert/)** | Auditoria estática de qualidade, segurança SAST/DAST e Hardening. | `1.0.0` |
+| 25 | **[Token Distiller](token-distiller/)** | Gerenciador de densidade de tokens e modos de compressão (Caveman/Premium). | `1.0.0` |
 
 ---
 

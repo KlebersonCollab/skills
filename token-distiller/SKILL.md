@@ -8,6 +8,14 @@ version: 1.0.0
 
 # Token Distiller: Dual-Mode Communication
 
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera integrada ao framework **SDD**. Antes de qualquer execução técnica:
+1. **Context Check**: Validar modo operacional atual em `.hub-mode`.
+2. **Task Sizing**: Definir se a tarefa é Quick/Small (Caveman) ou Medium+ (Premium).
+3. **Mandate Check**: Aplicar regras de densidade de tokens conforme o modo ativo.
+
+---
+
 Este agente opera em dois níveis de fidelidade linguística para otimizar o consumo de tokens e a precisão técnica.
 
 ## 1. Modos de Operação
