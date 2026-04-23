@@ -1,7 +1,7 @@
 # Current Project State (April 22, 2026)
 
 ## Status Atual
-- **Feature**: Hub Enterprise Upgrade - **CONCLUÍDO (v4.1.2)** ✅
+- **Feature**: Hub Enterprise Upgrade - **CONCLUÍDO (v4.2.0)** ✅
 - **Auditoria**: Hub Integrity Audit - **CONCLUÍDO** (Correção de registros e estrutura) ✅
 - **Sessão**: Estruturação de 5 trilhas para levar a arquitetura do Hub à maturidade completa (Testes, UI, Distiller, Installer, DevSecOps).
 
