@@ -3,6 +3,9 @@
 .claude/
 .gemini/
 
+.agents/
+.agents/*
+
 # Allow agent instruction files
 !.agent/*.md
 !.claude/*.md
