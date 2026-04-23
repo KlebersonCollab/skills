@@ -4,7 +4,6 @@
 .gemini/
 
 .agents/
-.agents/*
 
 # Allow agent instruction files
 !.agent/*.md
@@ -15,7 +14,6 @@
 artifacts/
 dist_staging/
 
-.agents/
 
 # Python / Environment
 __pycache__/
