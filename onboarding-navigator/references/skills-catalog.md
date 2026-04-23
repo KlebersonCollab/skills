@@ -1,6 +1,6 @@
 # Skills Catalog: AI Agent Hub
 
-Este guia fornece um overview detalhado de todas as 23 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
+Este guia fornece um overview detalhado de todas as 25 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
 
 ## 🗺️ Mapa Visual do Ecossistema de Skills
 
@@ -21,6 +21,7 @@ flowchart TD
     Metodo --> Brainstorm{brainstorming}
     Metodo --> Harness{harness-expert}
     Metodo --> Knowledge{knowledge-architect}
+    Metodo --> Distiller{token-distiller}
     
     Arquitetura --> Arch{architecture}
     Arquitetura --> CleanCode{clean-code-mentor}
@@ -37,6 +38,7 @@ flowchart TD
     DevOps --> Git{git-workflow}
     DevOps --> GoTest{golang-testing-expert}
     DevOps --> Benchmark{benchmark-expert}
+    DevOps --> DevSecOps{devsecops-expert}
 
     Automation --> YouTube{youtube-transcript}
     Automation --> Scaffolding{scaffolding-expert}
@@ -50,7 +52,7 @@ flowchart TD
 
 ---
 
-## 📚 Catálogo Completo de Skills (23 Total)
+## 📚 Catálogo Completo de Skills (25 Total)
 
 ### 1. 🏗️ Core Frameworks (Metodologia e Criação)
 
@@ -61,6 +63,7 @@ flowchart TD
 | **[Brainstorming](brainstorming/)** | `1.1.0` | Facilitador de Brainstorming e Design — guia o agente a explorar problemas complexos. | Antes de qualquer especificação técnica. |
 | **[Harness Expert](harness-expert/)** | `2.0.0` | Motor técnico para Harness Engineering (Sync, Rehydrate, Automação). | Quando precisar de suporte técnico do motor agêntico. |
 | **[Knowledge Architect](knowledge-architect/)** | `1.0.0` | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | Para mapear relações complexas. |
+| **[Token Distiller](token-distiller/)** | `1.0.0` | Gerenciador de densidade de tokens e modos de compressão (Caveman/Premium). | Para otimizar o consumo de tokens em tarefas longas. |
 
 ### 2. 🎨 Architecture & Design (Qualidade e Estrutura)
 
@@ -85,6 +88,7 @@ flowchart TD
 | **[Git Workflow](git-workflow/)** | `1.0.0` | Padrões de fluxo de trabalho Git, estratégias de branching e integração com SDD. | Ao realizar commits, abrir PRs ou gerenciar branches. |
 | **[Golang Testing Expert](golang-testing-expert/)** | `1.0.0` | Especialista em QA para Go — TDD, Table-Driven Tests, Benchmarks e Fuzzing. | Ao implementar suítes de testes em Go. |
 | **[Benchmark Expert](benchmark-expert/)** | `1.0.0` | Expert Skill para medição de baselines de performance, detecção de regressões e comparação de stacks. | Ao validar o impacto de performance de mudanças ou PRs. |
+| **[DevSecOps Expert](devsecops-expert/)** | `1.0.0` | Auditoria estática de qualidade, segurança SAST/DAST e Hardening. | Ao realizar auditorias de segurança e qualidade no código. |
 
 ### 4. 🚀 Automation & Utils (Produtividade)
 
@@ -153,10 +157,10 @@ flowchart LR
 
 ## 📈 Estatísticas do Hub
 
-- **Total de Skills**: 23
-- **Skills de Metodologia**: 5
+- **Total de Skills**: 25
+- **Skills de Metodologia**: 6
 - **Skills de Arquitetura**: 3  
-- **Skills de DevOps/Frameworks**: 11
+- **Skills de DevOps/Frameworks**: 12
 - **Skills de Automação**: 2
 - **Skills de Navegação/Orquestração**: 2
-- **Última Atualização**: 22 de Abril de 2026
+- **Última Atualização**: 23 de Abril de 2026

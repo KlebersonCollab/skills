@@ -11,8 +11,32 @@ version: 1.0.0
 ## 🔒 Prerequisites (Mandatory)
 Esta skill opera integrada ao framework **SDD**. Antes de qualquer execução técnica:
 1. **Context Check**: Validar modo operacional atual em `.hub-mode`.
-2. **Task Sizing**: Definir se a tarefa é Quick/Small (Caveman) ou Medium+ (Premium).
-3. **Mandate Check**: Aplicar regras de densidade de tokens conforme o modo ativo.
+2. **Spec Check**: O arquivo `spec.md` existe com requisitos claros?
+3. **Plan Check**: O arquivo `plan.md` define a arquitetura de compressão?
+4. **Contract Check**: O arquivo `contract.md` define limites de tokens?
+5. **Task Sizing**: Definir se a tarefa é Quick/Small (Caveman) ou Medium+ (Premium).
+6. **Task Check**: A lista de tarefas em `tasks.md` está detalhada?
+
+---
+
+## Goal
+Otimizar o consumo de tokens e a precisão técnica através de um sistema de comunicação de dupla fidelidade (Caveman/Premium), garantindo que agentes operem com eficiência máxima em contextos restritos.
+
+## Output Structure
+A execução desta skill resulta em:
+- Respostas comprimidas (Modo Low Token).
+- Documentação analítica (Modo Premium).
+- Ajuste dinâmico de densidade de tokens.
+
+## Quality Rules
+- **Terse-First**: No modo Low Token, eliminar todo "fluff" sem perda de substância.
+- **Substance-Preservation**: Padrões técnicos e IDs de tarefas devem ser preservados.
+- **Safety-First**: Sair do modo comprimido para avisos de segurança ou erros críticos.
+
+## Prohibited
+- **NUNCA** comprimir código-fonte ou mensagens de erro técnico.
+- **NUNCA** usar modo Caveman para tarefas de alta complexidade arquitetural.
+- **NUNCA** omitir IDs de tarefas do `tasks.md` em commits, mesmo em modo Low Token.
 
 ---
 
