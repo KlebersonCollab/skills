@@ -1,6 +1,6 @@
 ---
 name: sdd-planner
-version: 1.4.0
+version: 1.5.0
 description: "Planner agent for Spec Driven Development. Manages project vision, feature roadmaps, and persistent session memory (STATE.md)."
 category: project-planning
 ---
@@ -70,7 +70,8 @@ This is the most critical tool for long-running projects. It should be updated:
 
 - **Zero Ceremony**: Keep the roadmap and vision concise. Focus on Value.
 - **Explicit Decisions**: Never leave an architectural or business decision to "vague memory".
-- **Actionable State**: The `STATE.md` should answer "What do I do now?" if the agent's memory was completely wiped.
+- **Actionable State**: The `STATE.md` should answer "What do I do now?" if the agent's memory was completely wiped. Considere sempre o [Protocolo de Session Handoff](references/session-handoff.md).
+- **Limites Rigorosos**: O planner não pode deixar o `STATE.md` inchar infinitamente. Respeite as regras de [Limites de Contexto](references/context-limits.md).
 
 ## Prohibited
 

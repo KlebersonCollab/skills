@@ -6,11 +6,15 @@ O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.
 
 ---
 
-## [1.5.0] - 2026-04-22
+## [1.5.0] - 2026-04-23
 
 ### Adicionado
-- **GAN Adversarial Review**: Integração do loop de feedback adversarial na Fase 4 (Review) para tarefas Complexas.
-- **Rubrica de Qualidade Visual/Técnica**: Adoção da rubrica de 4 pilares (Design, Craft, Originality, Functionality) vinda do Harness Engineering.
+- **Integração com TLC Spec-Driven**: Adição de 5 novas diretrizes avançadas operacionais em `references/` (`brownfield-mapping.md`, `coding-principles.md`, `context-limits.md`, `session-handoff.md`, `quick-mode.md`).
+- **Delegação a Sub-Agentes**: Documentação do novo protocolo de delegação para orquestradores mitigarem limites de janela de contexto.
+- **Conformidade de Auditoria (Skill Factory)**: Adicionados `## Goal` e `## Quality Rules` obrigatórios nas sub-skills `sdd-implementer`, `sdd-orchestrator` e `sdd-reviewer`.
+
+### Alterado
+- **Atualização em Massa de Versão**: Sub-skills atualizadas para `1.5.0` sincronizando com a skill base.
 
 ## [1.4.0] - 2026-04-16
  — 2026-04-18

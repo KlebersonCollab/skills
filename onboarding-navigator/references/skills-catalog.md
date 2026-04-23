@@ -56,7 +56,7 @@ flowchart TD
 
 | Skill | Versão | Propósito | Quando Invocá-la |
 |-------|--------|-----------|------------------|
-| **[SDD](sdd/)** | `1.4.0` | Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate. | **Sempre** que for iniciar uma implementação. |
+| **[SDD](sdd/)** | `1.5.0` | Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate. | **Sempre** que for iniciar uma implementação. |
 | **[Skill Factory](skill-factory/)** | `1.1.0` | Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados. | Ao criar ou auditar uma habilidade no hub. |
 | **[Brainstorming](brainstorming/)** | `1.1.0` | Facilitador de Brainstorming e Design — guia o agente a explorar problemas complexos. | Antes de qualquer especificação técnica. |
 | **[Harness Expert](harness-expert/)** | `2.0.0` | Motor técnico para Harness Engineering (Sync, Rehydrate, Automação). | Quando precisar de suporte técnico do motor agêntico. |

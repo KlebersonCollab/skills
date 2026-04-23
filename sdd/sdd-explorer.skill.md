@@ -1,6 +1,6 @@
 ---
 name: sdd-explorer
-version: 1.4.0
+version: 1.5.0
 description: "Explorer agent for Spec Driven Development. Maps existing codebases (Brownfield) to ensure context awareness before planning features."
 category: project-mapping
 ---
@@ -29,7 +29,7 @@ The mapping consists of the following project-wide documents (stored in `.specs/
 
 ## Analysis Protocol
 
-When mapping a codebase, follow these steps:
+When mapping a codebase, follow these steps e consulte rigorosamente o [Brownfield Mapping Guide](references/brownfield-mapping.md) para diretrizes avançadas:
 
 1. **Scan Project Roots**: Identify `package.json`, `requirements.txt`, `pyproject.toml`, or similar to define `STACK.md`.
 2. **Trace Core Logic**: Find the entry point and trace a primary request/action to define `ARCHITECTURE.md`.
