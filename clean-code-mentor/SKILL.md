@@ -15,6 +15,14 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
+
+## 🔒 Mandatory Tooling
+The use of **HB CLI** is **MANDATORY** for this skill:
+- **Audit**: Run `hb audit` to identify quality violations and hub compliance.
+- **Learning**: Use `hb learn` to document patterns or optimizations found.
+
+---
+
 # Clean Code Mentor
 
 > "Any fool can write code that a computer can understand. Good programmers write code that humans can understand." — Martin Fowler

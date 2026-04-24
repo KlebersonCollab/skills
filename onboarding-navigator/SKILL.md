@@ -20,6 +20,13 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
+
+## 🔒 Mandatory Tooling
+The use of **HB CLI** is **MANDATORY** for this skill:
+- **Health Check**: Run `hb doctor` to diagnose and fix missing ecosystem components during onboarding.
+- **Skill Scaffolding**: Recommend `hb skill new` when a user wants to create a new ability.
+
+---
 ## Goal
 
 Act as the main entry point and continuous guide for the Skills Hub. The mission is to guide the agent and the user on which ability to use for each problem, ensure alignment with engineering culture (KISS, SDD), and facilitate navigation through all local documentation.

@@ -15,6 +15,12 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
+
+## 🔒 Mandatory Tooling
+The use of **HB CLI** is **MANDATORY** for this skill:
+- **Knowledge Management**: Use `hb learn` to document new architectural patterns or bugs.
+
+---
 # Knowledge Architect
 
 > "Knowledge is not in the files, but in the connections between them." — Protocol for transforming linear documentation into a local relational graph.

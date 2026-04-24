@@ -27,6 +27,14 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
+
+## 🔒 Mandatory Tooling
+The use of **HB CLI** is **MANDATORY** for this skill:
+- **ADR Management**: Every critical decision **MUST** be recorded via `hb adr new "Title"`.
+- **Discovery**: Use `hb adr list` to ensure alignment with previous decisions.
+
+---
+
 ## Goal
 
 Empower the agent to design high-quality and complex software architectures, spanning distributed systems (CQRS, Event-Driven) and modular monoliths. The skill ensures that every decision is justified by trade-offs, prioritizes simplicity, and is protected by **Fitness Functions** and visually documented via **Mermaid**.

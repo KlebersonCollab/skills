@@ -19,6 +19,12 @@ This skill operates integrated with the **SDD** framework. Before any technical 
 
 ---
 
+## 🔒 Mandatory Tooling
+The use of **HB CLI** is **MANDATORY** for this skill:
+- **Optimization**: Run `hb distill <file>` when a file becomes too large to process within context limits.
+
+---
+
 ## Goal
 Optimize token consumption and technical precision through a dual-fidelity communication system (Caveman/Premium), ensuring agents operate with maximum efficiency in restricted contexts.
 
