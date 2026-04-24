@@ -1,8 +1,19 @@
 # Hub Global Changelog
 
-*Last updated: 2026-04-23 22:28:38*
+*Last updated: 2026-04-23 23:03:43*
 
 This file consolidates the most recent updates from all skills in the Hub.
+
+## [4.2.0] - 2026-04-23
+### 🚀 Hub Infrastructure Revolution (HB-CLI)
+- **HB-CLI (Harness Binary)**: Substituição total de scripts Python de infraestrutura por binário nativo Go de alta performance.
+- **Plug & Play Intelligence**: Motor de instalação recursivo que resolve dependências automaticamente (`hb install`).
+- **Multi-Agent Governance**: Distribuição automática de regras para Gemini, Claude, Cursor e outros agentes (`hb rules`).
+- **Industrial SDD**: Workflow Spec-Driven Development integrado nativamente ao CLI (`hb sdd`).
+- **Zero-Link-Debt**: Auditoria automática de integridade de links e documentação (`hb check`).
+- **Multi-OS Release**: Automação via GitHub Actions para distribuição de binários Win/Mac/Linux.
+
+---
 
 ## 🧩 api-architect
 ## [1.3.0] - 2026-04-14
