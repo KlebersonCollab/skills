@@ -4,6 +4,11 @@
 
 This file consolidates the most recent updates from all skills in the Hub.
 
+## [4.5.1] - 2026-04-23
+### 🔒 Governance Hardening
+- **Mandate #11**: Estabelecido uso mandatório do HB-CLI nas regras globais.
+- **Skills Hardening**: Injeção da seção `Mandatory Tooling` em todas as core skills (`sdd`, `architecture`, `clean-code-mentor`, `skill-factory`, `knowledge-architect`, `token-distiller`, `onboarding-navigator`) forçando o uso do CLI.
+
 ## [4.5.0] - 2026-04-23
 ### 🚀 Hub Super-Tools (Governance & Productivity)
 - **hb adr [new|list]**: Automação total de Architecture Decision Records.
