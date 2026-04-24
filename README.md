@@ -31,6 +31,11 @@ Download the binary for your OS and add it to your PATH:
 | **Linux (x64)** | [📥 hb-linux-amd64](https://github.com/KlebersonCollab/skills/releases/latest/download/hb-linux-amd64) |
 | **Windows (x64)** | [📥 hb-windows-amd64.exe](https://github.com/KlebersonCollab/skills/releases/latest/download/hb-windows-amd64.exe) |
 
+> [!TIP]
+> **macOS Users**: If you see a "malware" or "unverified developer" warning, run:
+> `xattr -d com.apple.quarantine /path/to/hb-darwin-arm64`
+> Or go to **System Settings > Privacy & Security** and click **"Allow Anyway"**.
+
 ---
 
 ## 🛠️ Quick Start (Plug & Play)
