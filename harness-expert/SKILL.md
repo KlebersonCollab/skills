@@ -57,7 +57,7 @@ For high-complexity tasks (**Large/Complex**), the Harness must operate in **Adv
 ### Phase 2: OPERATE — Execution Automation (Generator Mode)
 1.  **Tool Orchestration**: Invoke MCPs and local scripts according to the plan.
 2.  **Implementation Loop**: Write code focused on passing the ACs in `spec.md`.
-3.  **Self-Correction**: Immediately fix linter/test bugs via `sdd-implementer`.
+3.  **Self-Correction**: Immediately fix linter/test bugs via `hb audit` and `sdd-implementer`.
 
 ### Phase 3: ADVERSARIAL REVIEW — Feedback Cycle (Evaluator Mode)
 1.  **Live Testing**: Start dev server and use Playwright to test real flows.

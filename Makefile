@@ -1,74 +1,60 @@
-.PHONY: help sync validate dist verify knowledge-map verify-vers clean release changelog
+.PHONY: help build release audit sync rules check map list status clean dashboard
 
-# Detect python command (python3 or python)
-PYTHON := $(shell command -v python3 >/dev/null 2>&1 && echo python3 || echo python)
+HB_BIN := ./bin/hb
 
 help:
-	@echo "AI Agent Skills Hub - Makefile"
+	@echo "🚀 AI Agent Skills Hub - Governance CLI"
 	@echo ""
 	@echo "Available commands:"
-	@echo "  make sync          - Sync mandates and skills to agents (.gemini, .claude, .agent)"
-	@echo "  make validate      - Validate all skills in repository (requires uv and pyyaml)"
-	@echo "  make dist          - Generate artifacts (.zip) for distribution"
-	@echo "  make dist-cursor   - Compile skills for Cursor IDE .cursorrules format"
-	@echo "  make verify        - Verify integrity of generated .zip artifacts"
-	@echo "  make knowledge-map - Generate relational knowledge map (Mermaid)"
-	@echo "  make verify-vers   - Verify if README versions match skill versions"
-	@echo "  make check-memory  - Verify if state/memory is in sync with code"
-	@echo "  make auto-fix      - Automatically repair missing memory files"
-	@echo "  make clean         - Remove temporary folders and artifacts (dist_staging, artifacts)"
-	@echo "  make release       - Full cycle: auto-fix -> sync -> validate -> verify-vers -> knowledge-map -> changelog -> dist"
-	@echo "  make release-check - Run strict audit (Bunker): Ruff, Pytest, Validations, and Knowledge Map"
+	@echo "  make build         - Build the local hb binary"
+	@echo "  make release       - Cross-compile hb for all supported OS"
+	@echo "  make audit         - Run full project integrity audit"
+	@echo "  make sync          - Sync skills to local agent folders"
+	@echo "  make rules         - Distribute agent rules (.gemini, .claude, .agent)"
+	@echo "  make check         - Verify links and version consistency"
+	@echo "  make map           - Generate knowledge map (Mermaid)"
+	@echo "  make list          - List all available skills"
+	@echo "  make status        - Show SDD development status"
+	@echo "  make clean         - Remove artifacts and temporary folders"
+	@echo "  make dashboard     - Run the visual dashboard (Python/Streamlit)"
 
-sync:
-	uv run --with pyyaml scripts/sync_mandates.py
+build:
+	@mkdir -p bin
+	cd hb && go build -o ../bin/hb .
+	@echo "✅ Binary built at $(HB_BIN)"
 
-validate:
-	uv run --with pyyaml scripts/validate_skills.py
+release:
+	@mkdir -p bin
+	cd hb && make build-all
+	@mv hb/bin/* bin/
+	@echo "✅ Multi-OS releases ready in bin/"
 
-auto-fix:
-	uv run --with pyyaml scripts/auto_fix_memory.py
+audit: build
+	$(HB_BIN) audit
 
-changelog:
-	uv run --with pyyaml scripts/consolidate_changelogs.py
+sync: build
+	$(HB_BIN) sync
 
-dist:
-	bash scripts/generate-skills-dist.sh
+rules: build
+	$(HB_BIN) rules
 
-dist-cursor:
-	uv run --with pyyaml scripts/generate_cursorrules.py --skills sdd,knowledge-architect,architecture
+check: build
+	$(HB_BIN) check
 
-verify:
-	bash scripts/verify-dist.sh
+map: build
+	$(HB_BIN) map
 
-knowledge-map:
-	uv run --with pyyaml scripts/generate_knowledge_map.py
+list: build
+	$(HB_BIN) list
 
-verify-vers:
-	uv run --with pyyaml scripts/verify_versions.py
-
-check-memory:
-	uv run --with pyyaml scripts/verify_memory_sync.py
-
-list-skills:
-	uv run --with pyyaml scripts/installer.py list
-
-install-skill:
-	uv run --with pyyaml scripts/installer.py install $(name) --target $(target)
+status: build
+	$(HB_BIN) sdd status
 
 clean:
-	rm -rf dist_staging artifacts
-
-release-check:
-	uv run ruff check .
-	uv run ruff format --check .
-	uv run pytest tests/
-	uv run --with pyyaml scripts/validate_skills.py
-	uv run --with pyyaml scripts/generate_knowledge_map.py
-
-release: auto-fix sync validate verify-vers knowledge-map changelog dist
-	@echo "🚀 Operation completed successfully!"
-
+	rm -rf bin/
+	rm -rf artifacts/
+	find . -name "__pycache__" -type d -exec rm -rf {} +
 
 dashboard:
-	uv run streamlit run dashboard/app.py
+	@echo "📊 Starting Dashboard..."
+	streamlit run dashboard/app.py
