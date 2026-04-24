@@ -12,7 +12,9 @@ Before responding to the user, the agent **MUST** perform this mental and operat
 2. **Onboarding Check**: Consult `onboarding-navigator` to align with the project culture.
 3. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
 4. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
-5. **SDD Verification**: If it is a development task, validate if `spec.md` and `plan.md` exist.
+5. **SDD Verification**: If it is a development task, validate if `spec.md` and `plan.md` exist. Use `hb sdd review <feature>` to verify SDD compliance.
+
+
 
 ## 📍 SKILL ROUTER
 Use this guide to identify the mandatory skill for each context:
@@ -78,11 +80,18 @@ Every agent **MUST** strictly follow the `git-workflow` skill for any versioning
 
 ## 🔒 10. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
 Before ending the session or delivering the task, the agent **MUST** validate:
-1. **Tasks Update**: Does `tasks.md` reflect the real state of implementation?
-2. **State Sync**: Has `STATE.md` been updated with progress and next steps?
-3. **Learnings Capture**: Have new patterns or fixed bugs been added to `LEARNINGS.md`?
-4. **Validation**: Has the code passed linters/tests and received a score in `validation-report.md`?
-5. **Knowledge Update**: Does `KNOWLEDGE-MAP.mermaid` need an update?
+1. **Validation**: Run `hb audit` and `hb sdd review <feature>`. A score below 90 requires justification.
+2. **Tasks Update**: Does `tasks.md` reflect the real state of implementation?
+3. **State Sync**: Has `STATE.md` been updated with progress and next steps?
+4. **Learnings Capture**: Use `hb learn` to capture new patterns or fixed bugs.
+5. **Knowledge Update**: Does `KNOWLEDGE-MAP.mermaid` need an update? Use `hb map` if applicable.
+
+## 11. Mandatory HB-CLI Governance
+Every agent **MUST** use the **HB CLI** (`hb`) as the primary interface for repository maintenance.
+- **Architectural Change**: Use `hb adr new` for any decision.
+- **New Skill**: Use `hb skill new` for scaffolding.
+- **Token Management**: Use `hb distill` when context exceeds 80% of the limit.
+- **Code Audit**: `hb audit` is the mandatory quality gate for all merges.
 
 
 <!-- GLOBAL_MANDATES_END -->

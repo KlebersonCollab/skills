@@ -31,6 +31,7 @@ Use these commands to guide your behavior during the session:
 | `/go-build` | Compilation Fix | Runs `go build ./...` and fixes reported errors. |
 | `/go-test` | TDD Cycle | Starts TDD workflow (Red-Green-Refactor) with `golang-testing-expert`. |
 | `/go-review` | Code Review | Reviews Go idioms, error handling, and concurrency. |
+| `/go-bench` | Performance Benchmark | Runs **`hb bench <target>`** and compares with baseline. |
 | `/security-scan` | Security Audit | Searches for exposed secrets and known vulnerabilities. |
 
 ---

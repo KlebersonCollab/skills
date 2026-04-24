@@ -73,16 +73,17 @@ Mandatory format: `<type>(<scope>): <subject>`
 
 ## Git in the SDD Workflow (Mandatory)
 
-Integrating Git with the SDD cycle is fundamental for traceability:
+Integrating Git with the SDD cycle is fundamental for traceability and history integrity:
 
-1.  **Discovery Phase**: Before starting, ensure your local `main` is synchronized with the remote (`git pull origin main`).
+1.  **Discovery Phase**: Before starting, ensure your local `main` is synchronized with the remote using **`hb git sync`**.
 2.  **Implementation Phase**: 
-    - **Atomic Branches**: Each feature/fix must have its own branch following the pattern `feature/<id>-<name>` or `fix/<id>-<name>`.
+    - **Atomic Branches**: Each feature/fix must have its own branch. Initialize it with **`hb git start <feature-name>`**.
     - **Commits per Task**: Each completed task in `tasks.md` must generate at least one clear commit.
+    - **Conventional Commits**: Use **`hb git commit "<message>"`** with the appropriate `--type` and `--scope` flags.
     - **Language**: All commit messages **MUST** be written in **English**, even if technical documentation is in Portuguese.
     - **Atomicity**: Do not mix changes from different tasks in the same commit.
 3.  **Review Phase**:
-    - **Linearity**: Prefer `rebase` to keep history clean before merging.
+    - **Linearity**: Always run **`hb git sync`** before pushing to keep history clean and resolve conflicts early via rebase.
     - **Evidence**: The Pull Request link must be included in `validation-report.md`.
 
 ### SDD Commit Cycle Diagram
@@ -92,7 +93,7 @@ graph TD
     B --> C[Local Test Execution]
     C --> D{Passed?}
     D -- No --> B
-    D -- Yes --> E[Commit: type(scope): description #ID]
+    D -- Yes --> E["hb git commit 'description'"]
     E --> F[Update tasks.md as Completed]
     F --> G{More tasks?}
     G -- Yes --> B

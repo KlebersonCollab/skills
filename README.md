@@ -1,4 +1,4 @@
-# 🧠 AI Agent Skills Hub (v4.3.0)
+# 🧠 AI Agent Skills Hub (v4.6.0)
 
 > Centralized hub for modular **Skills** and **Intelligence Governance**. Powered by the **HB-CLI**.
 
@@ -71,10 +71,11 @@ The HB-CLI replaces legacy scripts for managing the SDD lifecycle:
 
 | Command | Purpose |
 |---------|---------|
-| `hb sdd init <name>` | Initializes a new feature with full SDD structure (6 artifacts). |
+| `hb sdd start <name>` | Initializes a new feature with full SDD structure (6 artifacts). |
 | `hb sdd status` | Shows real-time progress of all features in development. |
 | `hb sdd bootstrap` | Initializes the project's **Triad of Memory** (State, Memory, Learnings). |
 | `hb map` | Generates the **Knowledge Map** of the whole ecosystem (Mermaid). |
+| `hb bench` | Runs **Performance Benchmarks** and compares with historical baseline. |
 
 ---
 
