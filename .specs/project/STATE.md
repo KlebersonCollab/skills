@@ -1,7 +1,7 @@
 # Current Project State (April 22, 2026)
 
 ## Current Status
-- **Feature**: Hub Enterprise Upgrade - **COMPLETED (v4.2.0)** ✅
+- **Feature**: Hub Enterprise Upgrade - **COMPLETED (v4.3.0)** ✅
 - **Audit**: Hub Integrity Audit - **COMPLETED** (Registry and structure correction) ✅
 - **Session**: Structuring of 5 tracks to bring Hub architecture to full maturity (Tests, UI, Distiller, Installer, DevSecOps).
 
@@ -61,7 +61,7 @@
 - [x] **Automated Knowledge Distiller**: Script dynamic extraction of Mermaid nodes.
 - [x] **Skill Installer CLI**: Implemented `hub install <skill> --remote` CLI with Git Sparse-Checkout for granular direct download from repository.
 - [x] **Marketplace UI / Dashboard**: Created Streamlit interactive panel (`dashboard/app.py`) for catalog and architecture visualization.
-- [x] **HB-CLI (Harness Binary) v4.2.0**: 
+- [x] **HB-CLI (Harness Binary) v4.3.0**: 
     - Substituição total de todos os scripts Python de infraestrutura (incluindo `sdd-cli`) por binário nativo Go.
     - Comandos implementados: `audit`, `sync`, `fix`, `list`, `install`, `check`, `changelog`, `map`, `rules`, `mode`, `compress`, `sdd` (init/status/bootstrap).
     - Link Validator integrado ao `hb check` (0 links quebrados em 25 skills).

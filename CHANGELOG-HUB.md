@@ -4,7 +4,7 @@
 
 This file consolidates the most recent updates from all skills in the Hub.
 
-## [4.2.0] - 2026-04-23
+## [4.3.0] - 2026-04-23
 ### 🚀 Hub Infrastructure Revolution (HB-CLI)
 - **HB-CLI (Harness Binary)**: Substituição total de scripts Python de infraestrutura por binário nativo Go de alta performance.
 - **Plug & Play Intelligence**: Motor de instalação recursivo que resolve dependências automaticamente (`hb install`).
