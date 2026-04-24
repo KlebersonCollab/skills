@@ -8,7 +8,17 @@ Before responding to the user, the agent **MUST** perform this mental and operat
 2. **Onboarding Check**: Consult `onboarding-navigator` to align with the project culture.
 3. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
 4. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
-5. **SDD Verification**: If it is a development task, validate if `spec.md` and `plan.md` exist.
+5. **SDD Verification**: If it is a development task, validate if `spec.md` and `plan.md` exist. Use `hb sdd review <feature>` to verify SDD compliance.
+
+## 🛠️ HB TOOLSET (Core Automation)
+The agent **MUST** use these tools to ensure governance and quality:
+- **`hb adr new`**: Use when a critical architectural decision is made.
+- **`hb audit`**: Use before any PR or major task completion to check quality.
+- **`hb learn`**: Use to record patterns, fixed bugs, or optimizations.
+- **`hb skill new`**: Use when instructed to create a new specialized skill.
+- **`hb doctor`**: Use if the environment seems inconsistent or missing files.
+- **`hb distill`**: Use to optimize context when tokens are high.
+- **`hb sdd review`**: Mandatory before finishing any SDD feature.
 
 ## 📍 SKILL ROUTER
 Use this guide to identify the mandatory skill for each context:

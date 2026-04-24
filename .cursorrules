@@ -11,7 +11,17 @@ Before responding to the user, the agent **MUST** perform this mental and operat
 2. **Onboarding Check**: Consult `onboarding-navigator` to align with the project culture.
 3. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
 4. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
-5. **SDD Verification**: If it is a development task, validate if `spec.md` and `plan.md` exist.
+5. **SDD Verification**: If it is a development task, validate if `spec.md` and `plan.md` exist. Use `hb sdd review <feature>` to verify SDD compliance.
+
+## 🛠️ HB TOOLSET (Core Automation)
+The agent **MUST** use these tools to ensure governance and quality:
+- **`hb adr new`**: Use when a critical architectural decision is made.
+- **`hb audit`**: Use before any PR or major task completion to check quality.
+- **`hb learn`**: Use to record patterns, fixed bugs, or optimizations.
+- **`hb skill new`**: Use when instructed to create a new specialized skill.
+- **`hb doctor`**: Use if the environment seems inconsistent or missing files.
+- **`hb distill`**: Use to optimize context when tokens are high.
+- **`hb sdd review`**: Mandatory before finishing any SDD feature.
 
 ## 📍 SKILL ROUTER
 Use this guide to identify the mandatory skill for each context:
@@ -691,7 +701,9 @@ Empower the agent to act as an experienced code reviewer and technical mentor, a
 
 ### Phase 4: MENTOR — Technical Rationale
 1.  **Foundational Support**: Explain the theory behind the fix (e.g., "This reduces coupling...").
-2.  **Handoff**: Deliver a structured "Quality Report" with Severity and Recommendations.
+2.  **Automated Audit**: 
+    - Run **`hb audit`** to generate the Hub Score and identify automated violations.
+3.  **Handoff**: Deliver a structured "Quality Report" with Severity and Recommendations.
 
 ---
 
@@ -1844,7 +1856,10 @@ The goal of this skill is to empower the agent to build, maintain, and navigate 
 ### Phase 4: PRUNE — Evolution and Cleanup
 1.  **Knowledge Refactoring**: Remove obsolete connections or deleted entities from the code.
 2.  **Cluster Consolidation**: Group highly connected nodes into "Knowledge Modules" to simplify the macro view.
-3.  **Sync with Harness**: Export the relation map so that `harness-expert` can perform relational rehydration.
+3.  **Harness Synchronization**: 
+    - Use `hb map` to generate the visual knowledge map.
+    - Use `hb learn "Subject" --desc "..." --cat "..."` to record structured learnings and patterns.
+    - Export the relation map so that `harness-expert` can perform relational rehydration.
 
 ---
 
@@ -2940,7 +2955,7 @@ This skill delegates tasks to specialized sub-skills:
 ## Workflow (3 Phases)
 
 ### Phase 1: BOOTSTRAP
-Execute `skill-factory-bootstrap` with the received parameters.
+Execute `hb skill new <skill_name>` to generate complete scaffolding.
 - Creates the `<skill_name>/` directory at the repository root.
 - Generates all files from standardized templates.
 

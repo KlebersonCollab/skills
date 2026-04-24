@@ -61,13 +61,15 @@ The SDD lifecycle follows an iterative and rigorous delivery flow:
 
 ### Phase 3: IMPLEMENT — Atomic Execution
 1.  **Isolation**: **MANDATORY** create a feature branch (`feat/`, `fix/`, `docs/`) from `main` before starting code. NEVER commit directly to `main`.
-2.  **Automation**: Use **SDD CLI** (`uv run sdd task <feature> <id>`) to track progress.
+2.  **Automation**: Use **HB CLI** (`hb sdd task <feature> <id>`) to track progress.
 3.  **Code Cycle**: Use `sdd-implementer` to write test-driven code (TDD) aligned with BDD scenarios.
 4.  **Prohibitive Mandate**: **NEVER** mark a task as complete in `tasks.md` without passing 100% of tests and performing the corresponding git commit on the feature branch.
 5.  **Integrity**: Ensure each task in `tasks.md` is marked as complete only after passing tests and being committed individually.
 
 ### Phase 4: REVIEW — Audit and Finalization
-1.  **Verdict via Sensors**: Use `sdd-reviewer` to audit delivery against `spec.md` and `contract.md`, using tool feedback (tests, linters).
+1.  **Verdict via Sensors**: Use `sdd-reviewer` to audit delivery against `spec.md` and `contract.md`.
+    - Run `hb sdd review <feature>` to ensure all artifacts are present and consistent.
+    - Run `hb audit` to verify overall code quality and Hub compliance.
 2.  **Score Report**: Generate a validation report with a score from 0-100.
 3.  **UAT**: Validate with the user if Acceptance Criteria (BDD) were met.
 4.  **Persistence**: Update memory logs and state in the Planner before closing.

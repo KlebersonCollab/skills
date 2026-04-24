@@ -67,7 +67,7 @@ This skill delegates tasks to specialized sub-skills:
 ## Workflow (3 Phases)
 
 ### Phase 1: BOOTSTRAP
-Execute `skill-factory-bootstrap` with the received parameters.
+Execute `hb skill new <skill_name>` to generate complete scaffolding.
 - Creates the `<skill_name>/` directory at the repository root.
 - Generates all files from standardized templates.
 

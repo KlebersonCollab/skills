@@ -44,7 +44,9 @@ Empower the agent to act as an experienced code reviewer and technical mentor, a
 
 ### Phase 4: MENTOR — Technical Rationale
 1.  **Foundational Support**: Explain the theory behind the fix (e.g., "This reduces coupling...").
-2.  **Handoff**: Deliver a structured "Quality Report" with Severity and Recommendations.
+2.  **Automated Audit**: 
+    - Run **`hb audit`** to generate the Hub Score and identify automated violations.
+3.  **Handoff**: Deliver a structured "Quality Report" with Severity and Recommendations.
 
 ---
 

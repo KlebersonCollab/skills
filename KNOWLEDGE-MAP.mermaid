@@ -1,14 +1,6 @@
 graph TD
     %% Nodes and Hierarchical Grouping
 
-    subgraph "Ecosystems & DevOps"
-        azure_devops["azure-devops (1.1.0) 🛡️"]
-        django_expert["django-expert (1.5.0) 🛡️"]
-        fastapi_expert["fastapi-expert (1.1.0) 🛡️"]
-        golang_expert["golang-expert (1.2.0) 🛡️"]
-        observability_expert["observability-expert (1.0.0) 🛡️"]
-    end
-
     subgraph "Miscellaneous"
         benchmark_expert["benchmark-expert (1.0.0) 🛡️"]
         devsecops_expert["devsecops-expert (1.0.0) 🛡️"]
@@ -57,6 +49,14 @@ graph TD
         architecture["architecture (2.0.1) 🛡️"]
         architecture["architecture (2.0.1) 🛡️"]
         clean_code_mentor["clean-code-mentor (1.0.0) 🛡️"]
+    end
+
+    subgraph "Ecosystems & DevOps"
+        azure_devops["azure-devops (1.1.0) 🛡️"]
+        django_expert["django-expert (1.5.0) 🛡️"]
+        fastapi_expert["fastapi-expert (1.1.0) 🛡️"]
+        golang_expert["golang-expert (1.2.0) 🛡️"]
+        observability_expert["observability-expert (1.0.0) 🛡️"]
     end
 
     %% Relations
@@ -130,6 +130,7 @@ graph TD
     youtube_transcript --(references)--> token_distiller
 
     %% Styling
+    style swarm_facilitator fill:#fce4ec,stroke:#880e4f
     style api_architect fill:#f3e5f5,stroke:#4a148c
     style architecture fill:#f3e5f5,stroke:#4a148c
     style architecture fill:#f3e5f5,stroke:#4a148c
@@ -150,7 +151,6 @@ graph TD
     style skill_factory fill:#e1f5fe,stroke:#01579b
     style scaffolding_expert fill:#fff3e0,stroke:#e65100
     style youtube_transcript fill:#fff3e0,stroke:#e65100
-    style swarm_facilitator fill:#fce4ec,stroke:#880e4f
 
     %% Legend
     subgraph "Legend"
