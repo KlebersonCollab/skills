@@ -46,14 +46,18 @@ const changelogTemplate = `# Changelog: %s
 - Initial release of the %s skill.
 `
 
-// CreateSkill gera a estrutura de uma nova skill
+// CreateSkill gera a estrutura de uma nova skill no padrão Ouro
 func CreateSkill(root, name string) error {
 	skillDir := filepath.Join(root, name)
 	if _, err := os.Stat(skillDir); err == nil {
 		return fmt.Errorf("skill '%s' já existe", name)
 	}
 
-	os.MkdirAll(skillDir, 0755)
+	// Cria pastas obrigatórias
+	dirs := []string{"examples", "scripts", "resources"}
+	for _, d := range dirs {
+		os.MkdirAll(filepath.Join(skillDir, d), 0755)
+	}
 
 	// 1. SKILL.md
 	skillContent := fmt.Sprintf(skillMdTemplate, name, name)
@@ -64,9 +68,19 @@ func CreateSkill(root, name string) error {
 	changelogContent := fmt.Sprintf(changelogTemplate, name, date, name)
 	os.WriteFile(filepath.Join(skillDir, "CHANGELOG.md"), []byte(changelogContent), 0644)
 
-	// 3. README.md
+	// 3. metadata.json
+	metadata := fmt.Sprintf(`{
+	"name": "%s",
+	"version": "1.0.0",
+	"description": "Expert skill for %s",
+	"author": "AI Ecosystem",
+	"dependencies": ["sdd"]
+}`, name, name)
+	os.WriteFile(filepath.Join(skillDir, "metadata.json"), []byte(metadata), 0644)
+
+	// 4. README.md
 	os.WriteFile(filepath.Join(skillDir, "README.md"), []byte("# "+name+"\n\nDocumentation for the "+name+" skill."), 0644)
 
-	color.Green("✅ Skill '%s' scaffolded com sucesso!", name)
+	color.Green("✨ Skill '%s' scaffolded com estrutura EXPERT!", name)
 	return nil
 }
