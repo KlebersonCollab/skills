@@ -1,8 +1,10 @@
 package doctor
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/fatih/color"
 )
@@ -50,6 +52,50 @@ func Run(root string) ([]Check, error) {
 		})
 	} else {
 		checks = append(checks, Check{Name: "Agent folders", Passed: true, Message: "Ok."})
+	}
+
+	return checks, nil
+}
+
+// DeepRun realiza uma auditoria profunda de conformidade arquitetural
+func DeepRun(root string) ([]Check, error) {
+	var checks []Check
+
+	// 1. Check ADRs
+	adrDir := filepath.Join(root, ".specs", "architecture")
+	entries, _ := os.ReadDir(adrDir)
+	adrCount := 0
+	for _, e := range entries {
+		if strings.HasSuffix(e.Name(), ".md") && e.Name() != "README.md" {
+			adrCount++
+		}
+	}
+	if adrCount == 0 {
+		checks = append(checks, Check{
+			Name:    "Architecture ADRs",
+			Passed:  false,
+			Message: "Nenhuma ADR encontrada em .specs/architecture/. Decisões críticas devem ser documentadas.",
+			Fixable: false,
+		})
+	} else {
+		checks = append(checks, Check{Name: "Architecture ADRs", Passed: true, Message: fmt.Sprintf("%d ADRs encontradas.", adrCount)})
+	}
+
+	// 2. Check SDD Features Compliance
+	featuresDir := filepath.Join(root, ".specs", "features")
+	fEntries, _ := os.ReadDir(featuresDir)
+	for _, f := range fEntries {
+		if f.IsDir() {
+			specPath := filepath.Join(featuresDir, f.Name(), "spec.md")
+			if _, err := os.Stat(specPath); err != nil {
+				checks = append(checks, Check{
+					Name:    fmt.Sprintf("Feature %s", f.Name()),
+					Passed:  false,
+					Message: "Faltando spec.md (Violação SDD).",
+					Fixable: false,
+				})
+			}
+		}
 	}
 
 	return checks, nil

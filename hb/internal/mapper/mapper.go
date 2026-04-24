@@ -156,3 +156,36 @@ func Generate(root string) error {
 	outputPath := filepath.Join(root, "KNOWLEDGE-MAP.mermaid")
 	return os.WriteFile(outputPath, []byte(builder.String()), 0644)
 }
+
+func AnalyzeImpact(root, target string) ([]string, error) {
+	skills, err := scanner.FindSkills(root)
+	if err != nil {
+		return nil, err
+	}
+
+	impactedMap := make(map[string]bool)
+	targetBase := filepath.Base(target)
+	targetBase = strings.TrimSuffix(targetBase, filepath.Ext(targetBase))
+
+	for _, s := range skills {
+		skillMD := filepath.Join(s.Path, "SKILL.md")
+		content, err := os.ReadFile(skillMD)
+		if err != nil {
+			continue
+		}
+
+		// Procura menções exatas ao nome da skill ou arquivo (case-insensitive)
+		re := regexp.MustCompile(`(?i)\b` + regexp.QuoteMeta(targetBase) + `\b`)
+		if re.Match(content) {
+			impactedMap[s.Name] = true
+		}
+	}
+
+	impacted := []string{}
+	for name := range impactedMap {
+		impacted = append(impacted, name)
+	}
+	sort.Strings(impacted)
+
+	return impacted, nil
+}

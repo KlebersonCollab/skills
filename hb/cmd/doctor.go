@@ -9,7 +9,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var fixFlag bool
+var (
+	fixFlag  bool
+	deepFlag bool
+)
 
 var doctorCmd = &cobra.Command{
 	Use:   "doctor",
@@ -21,7 +24,16 @@ var doctorCmd = &cobra.Command{
 			root = filepath.Dir(wd)
 		}
 
-		checks, err := doctor.Run(root)
+		var checks []doctor.Check
+		var err error
+
+		if deepFlag {
+			color.Blue("🔍 Executando auditoria profunda (Architecture & SDD)...")
+			checks, err = doctor.DeepRun(root)
+		} else {
+			checks, err = doctor.Run(root)
+		}
+
 		if err != nil {
 			color.Red("❌ Erro ao rodar diagnostico: %v", err)
 			os.Exit(1)
@@ -45,5 +57,6 @@ var doctorCmd = &cobra.Command{
 
 func init() {
 	doctorCmd.Flags().BoolVar(&fixFlag, "fix", false, "Tenta corrigir os problemas encontrados")
+	doctorCmd.Flags().BoolVarP(&deepFlag, "deep", "d", false, "Executa uma auditoria profunda de conformidade arquitetural")
 	rootCmd.AddCommand(doctorCmd)
 }

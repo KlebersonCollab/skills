@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 
 	"github.com/fatih/color"
+	"github.com/klebersonromero/hb/internal/harness"
 	"github.com/klebersonromero/hb/internal/syncer"
 	"github.com/spf13/cobra"
 )
@@ -23,16 +24,24 @@ var syncCmd = &cobra.Command{
 			root = filepath.Dir(wd)
 		}
 
+		// 0. Harness Gate (Evaluation Check)
+		score, feature, err := harness.GetLatestScore(root)
+		if err == nil && score < 7.0 {
+			color.Red("❌ SYNC BLOQUEADO: A feature '%s' possui um score de %.1f (abaixo do threshold de 7.0).", feature, score)
+			color.Yellow("Por favor, melhore a qualidade da entrega e execute 'hb harness evaluate' novamente.")
+			os.Exit(1)
+		}
+
 		// 1. Download de Mandatos (opcional)
 		if remoteSync {
-			err := syncer.DownloadMandates(root)
+			err = syncer.DownloadMandates(root)
 			if err != nil {
 				color.Red("⚠️  Falha ao baixar mandatos: %v", err)
 			}
 		}
 
 		// 2. Injeção de Mandatos Globais
-		err := syncer.SyncMandates(root)
+		err = syncer.SyncMandates(root)
 		if err != nil {
 			color.Red("Erro ao sincronizar mandatos: %v", err)
 			os.Exit(1)

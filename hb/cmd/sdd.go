@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
+	"github.com/klebersonromero/hb/internal/sdd"
 	"github.com/spf13/cobra"
 )
 
@@ -265,8 +266,31 @@ var sddReviewCmd = &cobra.Command{
 	},
 }
 
+var sddStartCmd = &cobra.Command{
+	Use:   "start [nome-da-feature]",
+	Short: "Inicializa uma nova feature com estrutura completa SDD",
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		wd, _ := os.Getwd()
+		root := wd
+		if filepath.Base(wd) == "hb" {
+			root = filepath.Dir(wd)
+		}
+
+		name := args[0]
+		err := sdd.StartFeature(root, name)
+		if err != nil {
+			color.Red("❌ Erro ao iniciar feature: %v", err)
+			os.Exit(1)
+		}
+
+		color.Green("✨ Feature '%s' inicializada com sucesso!", name)
+	},
+}
+
 func init() {
-	sddCmd.AddCommand(sddInitCmd)
+	sddCmd.AddCommand(sddInitCmd) // Mantendo compatibilidade
+	sddCmd.AddCommand(sddStartCmd)
 	sddCmd.AddCommand(sddStatusCmd)
 	sddCmd.AddCommand(sddBootstrapCmd)
 	sddCmd.AddCommand(sddTaskCmd)

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -54,8 +55,41 @@ var adrListCmd = &cobra.Command{
 	},
 }
 
+var adrAuditCmd = &cobra.Command{
+	Use:   "audit",
+	Short: "Audita se as features possuem registros de decisão arquitetural (ADRs)",
+	Run: func(cmd *cobra.Command, args []string) {
+		wd, _ := os.Getwd()
+		root := wd
+		if filepath.Base(wd) == "hb" {
+			root = filepath.Dir(wd)
+		}
+
+		color.Blue("🔍 Auditando cobertura de ADRs por feature...")
+		results, err := adr.AuditArchitecture(root)
+		if err != nil {
+			color.Red("❌ Erro na auditoria: %v", err)
+			os.Exit(1)
+		}
+
+		for _, res := range results {
+			fmt.Printf(" - %-30s [%s]\n", res.FeatureName, res.Status)
+		}
+	},
+}
+
+var archCmd = &cobra.Command{
+	Use:   "arch",
+	Short: "Comandos de governança de arquitetura",
+}
+
 func init() {
 	adrCmd.AddCommand(adrNewCmd)
 	adrCmd.AddCommand(adrListCmd)
+	adrCmd.AddCommand(adrAuditCmd)
+	
+	archCmd.AddCommand(adrAuditCmd) // Alias para hb arch audit
+	
 	rootCmd.AddCommand(adrCmd)
+	rootCmd.AddCommand(archCmd)
 }
