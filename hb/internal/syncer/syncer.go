@@ -37,9 +37,8 @@ func SyncMandates(root string) error {
 
 	for _, folder := range agentFolders {
 		agentDir := filepath.Join(root, folder)
-		if _, err := os.Stat(agentDir); os.IsNotExist(err) {
-			continue
-		}
+		// Garantir que a pasta do agente existe
+		os.MkdirAll(agentDir, 0755)
 
 		fileName := strings.ToUpper(strings.TrimPrefix(folder, ".")) + ".md"
 		if folder == ".agents" {
@@ -68,13 +67,28 @@ func SyncMandates(root string) error {
 
 // SyncSkills sincroniza as pastas de skills para as pastas de agentes em paralelo
 func SyncSkills(root string) error {
-	// Detectar skills (pastas com SKILL.md)
+	skillPaths := make(map[string]string) // Name -> Absolute Path
+
+	// 1. Busca no Root
 	entries, _ := os.ReadDir(root)
-	var skills []string
 	for _, e := range entries {
 		if e.IsDir() && !strings.HasPrefix(e.Name(), ".") {
-			if _, err := os.Stat(filepath.Join(root, e.Name(), "SKILL.md")); err == nil {
-				skills = append(skills, e.Name())
+			p := filepath.Join(root, e.Name())
+			if _, err := os.Stat(filepath.Join(p, "SKILL.md")); err == nil {
+				skillPaths[e.Name()] = p
+			}
+		}
+	}
+
+	// 2. Busca em .agents/skills (caso o usuário tenha instalado via CLI)
+	agentsSkillsPath := filepath.Join(root, ".agents", "skills")
+	if entries, err := os.ReadDir(agentsSkillsPath); err == nil {
+		for _, e := range entries {
+			if e.IsDir() {
+				p := filepath.Join(agentsSkillsPath, e.Name())
+				if _, err := os.Stat(filepath.Join(p, "SKILL.md")); err == nil {
+					skillPaths[e.Name()] = p
+				}
 			}
 		}
 	}
@@ -82,23 +96,18 @@ func SyncSkills(root string) error {
 	var wg sync.WaitGroup
 	for _, folder := range agentFolders {
 		agentSkillsDir := filepath.Join(root, folder, "skills")
-		if _, err := os.Stat(filepath.Join(root, folder)); os.IsNotExist(err) {
-			continue
-		}
-
 		os.MkdirAll(agentSkillsDir, 0755)
 
-		for _, skill := range skills {
+		for name, path := range skillPaths {
 			wg.Add(1)
-			go func(s, target string) {
+			go func(sName, sPath, target string) {
 				defer wg.Done()
-				src := filepath.Join(root, s)
-				dst := filepath.Join(target, s)
-				err := CopyDir(src, dst)
+				dst := filepath.Join(target, sName)
+				err := CopyDir(sPath, dst)
 				if err != nil {
-					color.Red("   ! Error syncing %s to %s: %v", s, target, err)
+					color.Red("   ! Error syncing %s to %s: %v", sName, target, err)
 				}
-			}(skill, agentSkillsDir)
+			}(name, path, agentSkillsDir)
 		}
 	}
 	wg.Wait()
