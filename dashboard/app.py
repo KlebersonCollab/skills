@@ -1,11 +1,11 @@
 import streamlit as st
-import sys
+import subprocess
+import json
 from pathlib import Path
 
 # Configurações raiz
 root_dir = Path(__file__).parent.parent
-sys.path.append(str(root_dir))
-from scripts.utils import get_all_skills, get_skill_metadata  # noqa: E402
+hb_bin = root_dir / "bin" / "hb"
 
 # ==========================================
 # 🎨 1. PAGE CONFIG & CUSTOM STYLING (CSS)
@@ -20,18 +20,15 @@ st.set_page_config(
 # Injeção de CSS para Glassmorphism e tipografia limpa
 custom_css = """
 <style>
-    /* Ocultar elementos padrão do Streamlit (hambúrguer e footer) */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
 
-    /* Fundo da tela */
     .stApp {
         background-image: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
                           radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
     }
 
-    /* Cards e Expansores com Glassmorphism */
     .streamlit-expanderHeader {
         background: rgba(30, 41, 59, 0.5) !important;
         backdrop-filter: blur(10px) !important;
@@ -48,7 +45,6 @@ custom_css = """
         padding: 15px !important;
     }
 
-    /* Título com gradiente Premium */
     h1 {
         background: -webkit-linear-gradient(45deg, #3b82f6, #8b5cf6);
         -webkit-background-clip: text;
@@ -57,7 +53,6 @@ custom_css = """
         font-family: 'Inter', sans-serif;
     }
     
-    /* Métricas */
     div[data-testid="stMetricValue"] {
         color: #3b82f6;
     }
@@ -66,9 +61,34 @@ custom_css = """
 st.markdown(custom_css, unsafe_allow_html=True)
 
 # ==========================================
-# 📊 2. LOGIC & DATA FETCH
+# 📊 2. DATA FETCH (VIA HB-CLI)
 # ==========================================
-skills = get_all_skills(root_dir)
+
+@st.cache_data(ttl=60)
+def fetch_skills():
+    try:
+        # Se o binário não existir, tentamos rodar via go run como fallback (desenvolvimento)
+        if not hb_bin.exists():
+            result = subprocess.run(
+                ["go", "run", "main.go", "list", "--json"],
+                cwd=root_dir / "hb",
+                capture_output=True,
+                text=True,
+                check=True
+            )
+        else:
+            result = subprocess.run(
+                [str(hb_bin), "list", "--json"],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+        return json.loads(result.stdout)
+    except Exception as e:
+        st.error(f"Erro ao carregar skills via HB-CLI: {e}")
+        return []
+
+skills = fetch_skills()
 total_skills = len(skills)
 
 mermaid_path = root_dir / "KNOWLEDGE-MAP.mermaid"
@@ -84,9 +104,9 @@ st.markdown("Ecossistema de Conhecimento e Governança SDD")
 
 # Métricas Top Level
 col_m1, col_m2, col_m3 = st.columns(3)
-col_m1.metric("Skills Registradas", total_skills, "+2 Novas")
+col_m1.metric("Skills Registradas", total_skills)
 col_m2.metric("SDD Compliance", "100%", "Quality Gate Pass")
-col_m3.metric("Ambiente", "Enterprise", "Hub v1.0")
+col_m3.metric("Infraestrutura", "Go (HB-CLI)", "v1.0.0")
 
 st.divider()
 
@@ -99,12 +119,11 @@ with tab1:
     # Grid dinâmico para cards de skills
     cols = st.columns(2)
 
-    for i, skill_path in enumerate(skills):
-        meta = get_skill_metadata(skill_path)
-        name = meta.get("name", skill_path.name)
-        version = meta.get("version", "0.0.0")
-        category = meta.get("category", "Geral")
-        desc = meta.get("description", "Sem descrição.")
+    for i, skill in enumerate(skills):
+        name = skill.get("Name")
+        version = skill.get("Version", "0.0.0")
+        category = skill.get("Category", "Geral")
+        desc = skill.get("Description", "Sem descrição.")
 
         # Aloca iterativamente entre a Coluna 1 e Coluna 2
         col_dest = cols[0] if i % 2 == 0 else cols[1]
@@ -114,7 +133,7 @@ with tab1:
                 st.markdown(f"**Categoria**: `{category}`")
                 st.write(f"_{desc}_")
 
-                uses = meta.get("uses", [])
+                uses = skill.get("Uses")
                 if uses:
                     st.markdown("**Depende de:**")
                     for dep in uses:
@@ -122,13 +141,12 @@ with tab1:
 
 with tab2:
     st.markdown("### Mapa de Conhecimento Relacional")
-    st.caption("Visão interativa gerada dinamicamente pelo Automated Distiller")
+    st.caption("Visão interativa gerada dinamicamente pelo HB-CLI")
 
     import base64
-    import json
+    import json as json_lib
     import streamlit.components.v1 as components
 
-    # Criamos um Payload JSON válido para o Mermaid Live Viewer que possui Zoom/Pan nativo
     state = {
         "code": mermaid_code,
         "mermaid": '{\n  "theme": "dark"\n}',
@@ -136,10 +154,8 @@ with tab2:
         "updateDiagram": True,
     }
 
-    json_state = json.dumps(state)
-    # Mermaid Live espera Base64 URL-safe do JSON
+    json_state = json_lib.dumps(state)
     encoded = base64.urlsafe_b64encode(json_state.encode("utf-8")).decode("ascii")
     live_url = f"https://mermaid.live/view#base64:{encoded}"
 
-    # Renderizamos via IFrame puro (conforme recomendação do Streamlit) para liberar interatividade total
     components.iframe(live_url, height=800, scrolling=True)

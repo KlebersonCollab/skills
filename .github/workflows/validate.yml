@@ -1,4 +1,4 @@
-name: Skills Hub Guard
+name: Skills Hub Guard (Go Native)
 
 on:
   push:
@@ -12,27 +12,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v3
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          enable-cache: true
-          version: "latest"
+          go-version: '1.21'
+          cache-dependency-path: hb/go.sum
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Build HB-CLI
+        run: make build
+
+      - name: Run Integrity Audit
+        run: make audit
+
+      - name: Run Consistency Check (Links & Versions)
+        run: make check
+
+      - name: Update Knowledge Map
+        run: make map
+
+      - name: Build All Platforms (Release Dry Run)
+        run: make release
+
+      - name: Upload Binaries
+        uses: actions/upload-artifact@v4
         with:
-          python-version: "3.12"
-
-      - name: Run Validations
-        run: |
-          make validate
-          make verify-vers
-          make check-memory
-
-      - name: Generate Knowledge Map
-        run: |
-          make knowledge-map
-
-      - name: Build Distribution (Dry Run)
-        run: |
-          make dist
+          name: hb-binaries
+          path: bin/
