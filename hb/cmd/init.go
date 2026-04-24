@@ -86,7 +86,7 @@ var initCmd = &cobra.Command{
 		}
 
 		color.Magenta("\n✨ Projeto inicializado com sucesso! O Harness está pronto para operar.")
-		color.Cyan("Dica: Use 'hb sdd init <nome-da-feature>' para começar uma nova tarefa.")
+		color.Cyan("Dica: Use 'hb sdd start <nome-da-feature>' para começar uma nova tarefa.")
 	},
 }
 
