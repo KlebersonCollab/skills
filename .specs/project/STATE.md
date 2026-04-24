@@ -65,8 +65,11 @@
     - Substituição total de todos os scripts Python de infraestrutura (incluindo `sdd-cli`) por binário nativo Go.
     - Comandos implementados: `audit`, `sync`, `fix`, `list`, `install`, `check`, `changelog`, `map`, `rules`, `mode`, `compress`, `sdd` (init/status/bootstrap).
     - Link Validator integrado ao `hb check` (0 links quebrados em 25 skills).
-    - Dashboard 100% Go-driven (JSON).
-- [ ] **GitHub Action CI/CD**: Automação da distribuição dos binários multi-OS.
+    - [x] Novo Comando `hb listskills` (Discovery remoto)
+- [x] Validador de Estado Semântico (`hb check --semantic`)
+- [x] Novo Comando `hb sdd task` (Gestão de tarefas atômicas)
+- [x] Atualização de todas as Skills para uso do HB-CLI v4.3.1
+- [ ] CI/CD: Automação de distribuição de binários multi-OS.
 
 ## Blockers / Next Steps
 - [x] **Release V4.0.1 (Bunker Strategy)**: Successfully executed with 100% integrity (`make release-check`) and Changelog generated.

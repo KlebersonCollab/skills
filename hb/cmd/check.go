@@ -9,6 +9,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var semanticCheck bool
+
 var checkCmd = &cobra.Command{
 	Use:   "check",
 	Short: "Verifica a consistência de versões e sincronia de memória",
@@ -35,10 +37,20 @@ var checkCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
+		// 3. Check de Links
 		err = checker.CheckLinks(root)
 		if err != nil {
 			color.Red("❌ Erro de integridade: %v", err)
 			os.Exit(1)
+		}
+
+		// 4. Check Semântico (Opcional)
+		if semanticCheck {
+			err = checker.CheckSemanticState(root)
+			if err != nil {
+				color.Red("❌ Erro semântico: %v", err)
+				os.Exit(1)
+			}
 		}
 
 		color.Green("\n✨ Checagem de consistência finalizada!")
@@ -46,5 +58,6 @@ var checkCmd = &cobra.Command{
 }
 
 func init() {
+	checkCmd.Flags().BoolVar(&semanticCheck, "semantic", false, "Executa validação semântica entre STATE.md e o código")
 	rootCmd.AddCommand(checkCmd)
 }

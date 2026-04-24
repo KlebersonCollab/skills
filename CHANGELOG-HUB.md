@@ -4,6 +4,14 @@
 
 This file consolidates the most recent updates from all skills in the Hub.
 
+## [4.4.0] - 2026-04-23
+### 🚀 Governance & Autonomy Hardening
+- **hb init**: Novo comando root para inicialização "Zero-to-Hero" de projetos (Bootstrap + Mandatos + Core Skills).
+- **hb sdd task**: Gestão de progresso atômica para tarefas SDD via CLI.
+- **hb sync --remote**: Capacidade de baixar mandatos globais diretamente do repositório central.
+- **Autonomous Skill Discovery**: Mandato global #8 implementado, obrigando agentes a buscarem e instalarem skills remotas sob demanda.
+- **Skill Awareness**: Atualização de todas as 25+ skills para integração total com o ferramental HB-CLI v4.4.0.
+
 ## [4.3.0] - 2026-04-23
 ### 🚀 Hub Infrastructure Revolution (HB-CLI)
 - **HB-CLI (Harness Binary)**: Substituição total de scripts Python de infraestrutura por binário nativo Go de alta performance.
@@ -12,6 +20,7 @@ This file consolidates the most recent updates from all skills in the Hub.
 - **Industrial SDD**: Workflow Spec-Driven Development integrado nativamente ao CLI (`hb sdd`).
 - **Zero-Link-Debt**: Auditoria automática de integridade de links e documentação (`hb check`).
 - **Multi-OS Release**: Automação via GitHub Actions para distribuição de binários Win/Mac/Linux.
+- **HB listskills**: Novo comando para listar skills disponíveis remotamente no GitHub diretamente via CLI.
 
 ---
 
@@ -307,6 +316,10 @@ This file consolidates the most recent updates from all skills in the Hub.
 ### Added
 - **GAN-style Feedback Loop**: Implementation of the adversarial cycle between Generator and Evaluator for Large/Complex tasks.
 - **Evaluation Rubric**: New scoring matrix (Design, Craft, Originality, Functionality) with a target Score >= 7.0.
+
+## [2.2.0] - 2026-04-23
+### Added
+- **HB listskills Integration**: Support for listing remote skills on GitHub, enabling the agent to "self-expand" its capabilities by discovering new modular intelligence.
 
 ## [2.0.0] - 2026-04-20
 

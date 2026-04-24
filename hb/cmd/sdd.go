@@ -161,9 +161,79 @@ var sddStatusCmd = &cobra.Command{
 	},
 }
 
+var sddTaskCmd = &cobra.Command{
+	Use:   "task [feature] [task-id]",
+	Short: "Marca uma tarefa como concluída no arquivo tasks.md da feature",
+	Args:  cobra.RangeArgs(1, 2),
+	Run: func(cmd *cobra.Command, args []string) {
+		wd, _ := os.Getwd()
+		root := wd
+		if filepath.Base(wd) == "hb" {
+			root = filepath.Dir(wd)
+		}
+
+		feature := args[0]
+		taskID := ""
+		if len(args) > 1 {
+			taskID = args[1]
+		}
+
+		specsDir := filepath.Join(root, ".specs", "features", feature)
+		taskFile := filepath.Join(specsDir, "tasks.md")
+
+		if _, err := os.Stat(taskFile); os.IsNotExist(err) {
+			// Tenta buscar por slug se não encontrar direto
+			feature = strings.ToLower(strings.ReplaceAll(feature, " ", "-"))
+			specsDir = filepath.Join(root, ".specs", "features", feature)
+			taskFile = filepath.Join(specsDir, "tasks.md")
+
+			if _, err := os.Stat(taskFile); os.IsNotExist(err) {
+				color.Red("❌ Erro: Arquivo tasks.md não encontrado para a feature '%s'", feature)
+				os.Exit(1)
+			}
+		}
+
+		content, err := os.ReadFile(taskFile)
+		if err != nil {
+			color.Red("❌ Erro ao ler arquivo: %v", err)
+			os.Exit(1)
+		}
+
+		lines := strings.Split(string(content), "\n")
+		updated := false
+
+		// Se tiver ID, procura a linha que começa com esse ID
+		// Se não tiver ID, mas tiver descrição, tenta bater
+		// Aqui vamos simplificar: se tiver ID numérico (ex: "1"), procura "- [ ] 1."
+		re := regexp.MustCompile(`^- \[ \] ` + regexp.QuoteMeta(taskID) + `\.?`)
+
+		for i, line := range lines {
+			if re.MatchString(line) {
+				lines[i] = strings.Replace(line, "[ ]", "[x]", 1)
+				updated = true
+				break
+			}
+		}
+
+		if !updated {
+			color.Yellow("⚠️  Tarefa '%s' não encontrada ou já concluída.", taskID)
+			return
+		}
+
+		err = os.WriteFile(taskFile, []byte(strings.Join(lines, "\n")), 0644)
+		if err != nil {
+			color.Red("❌ Erro ao salvar arquivo: %v", err)
+			os.Exit(1)
+		}
+
+		color.Green("✅ Tarefa '%s' marcada como concluída na feature '%s'!", taskID, feature)
+	},
+}
+
 func init() {
 	sddCmd.AddCommand(sddInitCmd)
 	sddCmd.AddCommand(sddStatusCmd)
 	sddCmd.AddCommand(sddBootstrapCmd)
+	sddCmd.AddCommand(sddTaskCmd)
 	rootCmd.AddCommand(sddCmd)
 }

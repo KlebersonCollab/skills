@@ -43,17 +43,20 @@ Download the binary for your OS and add it to your PATH:
 Once you have the `hb` binary, you can bootstrap your environment in seconds:
 
 ```bash
-# 1. List available skills
+# 1. List available skills on GitHub
+hb listskills
+
+# 2. List locally registered skills
 hb list
 
-# 2. Install a skill (it will automatically install all dependencies!)
+# 3. Install a skill (it will automatically install all dependencies!)
 # Example: Architecture depends on SDD and Token-Distiller
 hb install architecture --remote
 
-# 3. Distribute rules to your agents (.gemini, .claude, .agent)
+# 4. Distribute rules to your agents (.gemini, .claude, .agent)
 hb rules
 
-# 4. Check ecosystem integrity
+# 5. Check ecosystem integrity
 hb check
 ```
 

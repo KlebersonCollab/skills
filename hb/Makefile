@@ -1,5 +1,5 @@
 BINARY_NAME=hb
-VERSION=4.3.0
+VERSION := 4.4.0
 BUILD_DIR=bin
 
 all: clean build
