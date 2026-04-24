@@ -16,8 +16,6 @@ var blacklist = map[string]bool{
 	".specs":       true,
 	"node_modules": true,
 	"artifacts":    true,
-	".agent":       true,
-	".agents":      true,
 	"dist":         true,
 	"hb":           true,
 	"scripts":      true,
@@ -29,37 +27,38 @@ var blacklist = map[string]bool{
 func FindSkills(root string) ([]domain.Skill, error) {
 	var skills []domain.Skill
 
-	entries, err := os.ReadDir(root)
-	if err != nil {
-		return nil, err
-	}
-
-	for _, entry := range entries {
-		if !entry.IsDir() {
-			continue
+	err := filepath.WalkDir(root, func(path string, d os.DirEntry, err error) error {
+		if err != nil {
+			return err
 		}
 
-		name := entry.Name()
+		if !d.IsDir() {
+			return nil
+		}
+
+		// Ignorar diretórios na blacklist
+		name := d.Name()
 		if blacklist[name] {
-			continue
+			return filepath.SkipDir
 		}
 
-		path := filepath.Join(root, name)
 		skillFile := filepath.Join(path, "SKILL.md")
-
-		// Se tem SKILL.md, é uma skill válida para o hub
 		if _, err := os.Stat(skillFile); err == nil {
 			skill := domain.Skill{
 				Name: name,
 				Path: path,
 			}
-			// Parse metadata
 			parseSkillMetadata(skillFile, &skill)
 			skills = append(skills, skill)
+			
+			// Se encontramos uma skill, não precisamos entrar nela (skills não são aninhadas)
+			return filepath.SkipDir
 		}
-	}
 
-	return skills, nil
+		return nil
+	})
+
+	return skills, err
 }
 
 func parseSkillMetadata(path string, skill *domain.Skill) {
