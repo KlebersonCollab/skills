@@ -1,7 +1,7 @@
 ---
 name: "devsecops-expert"
 version: "1.0.0"
-description: "Skill focada em DevSecOps, Segurança da Informação, SAST, DAST e práticas de Hardening em infraestrutura e código."
+description: "Skill focused on DevSecOps, Information Security, SAST, DAST, and hardening practices in infrastructure and code."
 uses:
   - "architecture"
   - "git-workflow"
@@ -11,44 +11,44 @@ references:
 
 # 🛡️ DevSecOps Expert Skill
 
-## 1. Descrição e Propósito
-A skill `devsecops-expert` eleva a qualidade de segurança de software dentro do ecossistema, orientando o agente a auditar dependências, validar configuração e adotar práticas "Secure-by-Design".
+## 1. Description and Purpose
+The `devsecops-expert` skill elevates software security quality within the ecosystem, guiding the agent to audit dependencies, validate configuration, and adopt "Secure-by-Design" practices.
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros?
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)?
+3. **Plan Check**: Does the `plan.md` file define the architecture and schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
-Antes de implementar ou validar soluções que envolvam infraestrutura, chaves, rotas públicas ou pipelines:
-- **Verificar Secret Leaks**: Nunca comite chaves hardcoded, senhas ou tokens.
-- **Validar Superfície de Ataque**: Toda porta ou endpoint exposto deve usar RBAC/Autenticação.
-- **SAST Inicial**: Garantir que as dependências não possuem CVEs abertas antes de rodar os scripts.
+Before implementing or validating solutions involving infrastructure, keys, public routes, or pipelines:
+- **Check for Secret Leaks**: Never commit hardcoded keys, passwords, or tokens.
+- **Validate Attack Surface**: Every exposed port or endpoint must use RBAC/Authentication.
+- **Initial SAST**: Ensure dependencies do not have open CVEs before running scripts.
 
 ## Goal
-Garantir e blindar o ciclo de desenvolvimento contínuo (DevSecOps), fornecendo auditoria estática (SAST) e dinâmica (DAST) em código e infra.
+Ensure and shield the continuous development cycle (DevSecOps), providing static (SAST) and dynamic (DAST) auditing in code and infra.
 
 ## Output Structure
-A execução desta skill produz os seguintes artefatos:
-| Artefato | Localização | Descrição |
+The execution of this skill produces the following artifacts:
+| Artifact | Location | Description |
 |----------|-------------|-----------|
-| **Validation Report** | `validation-report.md` | Relatório de segurança. |
+| **Validation Report** | `validation-report.md` | Security report. |
 
 ## Quality Rules
-- Tolerância zero para vazamento de credenciais.
-- Toda modificação estrutural precisa passar por SAST.
+- Zero tolerance for credential leaks.
+- Every structural modification must pass SAST.
 
 ## Prohibited
-- NUNCA suba chaves no versionamento.
-- NUNCA ignore falhas de injeção ou CVEs expostas em logs.
+- NEVER upload keys to version control.
+- NEVER ignore injection failures or CVEs exposed in logs.
 
-## 3. Padrões de Segurança (Mandatory)
-1. **Zero Trust Architecture**: Nenhum microserviço ou componente confia em outro nativamente sem tokenização/mutual TLS.
-2. **Dependency Audit**: Exigir uso de ferramentas de varredura (ex: `bandit`, `trivy` ou `npm audit`).
-3. **OWASP Top 10**: Prevenção ativa contra injeções SQL/NoSQL, XSS, CSRF e quebra de controle de acesso (BOLA).
+## 3. Security Standards (Mandatory)
+1. **Zero Trust Architecture**: No microservice or component trusts another natively without tokenization/mutual TLS.
+2. **Dependency Audit**: Require the use of scanning tools (e.g., `bandit`, `trivy`, or `npm audit`).
+3. **OWASP Top 10**: Active prevention against SQL/NoSQL injection, XSS, CSRF, and Broken Object Level Authorization (BOLA).
 
-## 4. Guia de Revisão Adversarial (Security Gate)
-- O `harness-expert` pode chamar esta skill no final de uma refatoração arquitetural para "atacar" as decisões lógicas criadas (Threat Modeling / STRIDE).
+## 4. Adversarial Review Guide (Security Gate)
+- The `harness-expert` may call this skill at the end of an architectural refactoring to "attack" the created logical decisions (Threat Modeling / STRIDE).

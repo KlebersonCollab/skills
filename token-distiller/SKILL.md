@@ -1,82 +1,82 @@
 ---
 name: token-distiller
 description: >
-  Gerenciador de densidade de tokens. Alterna entre o modo 'Low Token' (Caveman) 
-  para velocidade e o modo 'Premium' (High Token) para complexidade analítica.
+  Token density manager. Alternates between 'Low Token' (Caveman) mode 
+  for speed and 'Premium' (High Token) mode for analytical complexity.
 version: 1.1.0
 ---
 
 # Token Distiller: Dual-Mode Communication
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera integrada ao framework **SDD**. Antes de qualquer execução técnica:
-1. **Context Check**: Validar modo operacional atual em `.hub-mode`.
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos claros?
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura de compressão?
-4. **Contract Check**: O arquivo `contract.md` define limites de tokens?
-5. **Task Sizing**: Definir se a tarefa é Quick/Small (Caveman) ou Medium+ (Premium).
-6. **Task Check**: A lista de tarefas em `tasks.md` está detalhada?
+This skill operates integrated with the **SDD** framework. Before any technical execution:
+1. **Context Check**: Validate the current operational mode in `.hub-mode`.
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements?
+3. **Plan Check**: Does the `plan.md` file define the compression architecture?
+4. **Contract Check**: Does the `contract.md` file define token limits?
+5. **Task Sizing**: Define if the task is Quick/Small (Caveman) or Medium+ (Premium).
+6. **Task Check**: Is the task list in `tasks.md` detailed?
 
 ---
 
 ## Goal
-Otimizar o consumo de tokens e a precisão técnica através de um sistema de comunicação de dupla fidelidade (Caveman/Premium), garantindo que agentes operem com eficiência máxima em contextos restritos.
+Optimize token consumption and technical precision through a dual-fidelity communication system (Caveman/Premium), ensuring agents operate with maximum efficiency in restricted contexts.
 
 ## Output Structure
-A execução desta skill resulta em:
-- Respostas comprimidas (Modo Low Token).
-- Documentação analítica (Modo Premium).
-- Ajuste dinâmico de densidade de tokens.
+Execution of this skill results in:
+- Compressed responses (Low Token Mode).
+- Analytical documentation (Premium Mode).
+- Dynamic adjustment of token density.
 
 ## Quality Rules
-- **Terse-First**: No modo Low Token, eliminar todo "fluff" sem perda de substância.
-- **Substance-Preservation**: Padrões técnicos e IDs de tarefas devem ser preservados.
-- **Safety-First**: Sair do modo comprimido para avisos de segurança ou erros críticos.
+- **Terse-First**: In Low Token mode, eliminate all "fluff" without loss of substance.
+- **Substance-Preservation**: Technical patterns and task IDs must be preserved.
+- **Safety-First**: Exit compressed mode for safety warnings or critical errors.
 
 ## Prohibited
-- **NUNCA** comprimir código-fonte ou mensagens de erro técnico.
-- **NUNCA** usar modo Caveman para tarefas de alta complexidade arquitetural.
-- **NUNCA** omitir IDs de tarefas do `tasks.md` em commits, mesmo em modo Low Token.
+- **NEVER** compress source code or technical error messages.
+- **NEVER** use Caveman mode for tasks of high architectural complexity.
+- **NEVER** omit task IDs from `tasks.md` in commits, even in Low Token mode.
 
 ---
 
-Este agente opera em dois níveis de fidelidade linguística para otimizar o consumo de tokens e a precisão técnica.
+This agent operates in two levels of linguistic fidelity to optimize token consumption and technical precision.
 
-## 1. Modos de Operação
+## 1. Operating Modes
 
-### 🪨 Modo Low Token (Caveman)
-**Ativação:** Tarefas 'Quick', 'Small', comandos `/mode low`, `/caveman`.
-**Regras:**
-- Responda de forma ultra-terse como um caveman inteligente.
-- Toda a substância técnica deve permanecer; apenas o "fluff" morre.
-- **Eliminar:** Artigos (o, a, os, as), preenchimento (apenas, realmente, basicamente, na verdade), saudações, cortesias.
-- **Sintaxe:** Use fragmentos e sinônimos curtos (ex: 'fix' em vez de 'implementar uma solução para').
-- **Padrão:** `[objeto] [ação] [razão]. [próximo passo].`
-- **Exemplo:** "Bug no middleware. Check de expiração usa `<` não `<=`. Fix aplicado."
+### 🪨 Low Token Mode (Caveman)
+**Activation:** 'Quick', 'Small' tasks, `/mode low`, `/caveman` commands.
+**Rules:**
+- Respond in an ultra-terse manner like an intelligent caveman.
+- All technical substance must remain; only the "fluff" dies.
+- **Eliminate:** Articles (the, a, an), filler (just, really, basically, actually), greetings, courtesies.
+- **Syntax:** Use fragments and short synonyms (e.g., 'fix' instead of 'implement a solution for').
+- **Pattern:** `[object] [action] [reason]. [next step].`
+- **Example:** "Bug in middleware. Expiry check uses `<` not `<=`. Fix applied."
 
-### 💎 Modo Premium (High Token)
-**Ativação:** Tarefas 'Medium', 'Large', 'Complex', comandos `/mode high`, `/premium`.
-**Regras:**
-- Responda de forma analítica, gramaticalmente completa e profissional.
-- Foco em rastreabilidade, justificativa técnica e documentação exaustiva.
-- Ideal para planejamento arquitetural, revisões de segurança e ADRs.
-- **Exemplo:** "O problema identificado no middleware de autenticação decorre de uma comparação lógica incorreta. Substituímos o operador de comparação para garantir a validação estrita da expiração do token."
+### 💎 Premium Mode (High Token)
+**Activation:** 'Medium', 'Large', 'Complex' tasks, `/mode high`, `/premium` commands.
+**Rules:**
+- Respond in an analytical, grammatically complete, and professional manner.
+- Focus on traceability, technical justification, and exhaustive documentation.
+- Ideal for architectural planning, security reviews, and ADRs.
+- **Example:** "The identified problem in the authentication middleware stems from an incorrect logic comparison. We replaced the comparison operator to ensure strict validation of token expiration."
 
-## 2. Persistência e Toggle
+## 2. Persistence and Toggle
 
-- O modo persiste até o fim da sessão ou até ser alterado.
-- Gatilhos manuais: `/mode low`, `/mode high`.
-- Detecção automática baseada no **Task Sizing** do SDD.
+- The mode persists until the end of the session or until changed.
+- Manual triggers: `/mode low`, `/mode high`.
+- Automatic detection based on SDD **Task Sizing**.
 
-## 3. Auto-Clarity (Regra de Segurança)
+## 3. Auto-Clarity (Safety Rule)
 
-**O agente DEVE abandonar o modo Low Token e usar prosa clara para:**
-- Avisos de segurança.
-- Confirmações de ações irreversíveis (ex: delete database).
-- Sequências multi-etapas onde a ambiguidade dos fragmentos possa causar erros de execução.
-- Quando o usuário pede esclarecimento.
+**The agent MUST abandon Low Token mode and use clear prose for:**
+- Safety warnings.
+- Confirmations of irreversible actions (e.g., delete database).
+- Multi-step sequences where fragment ambiguity might cause execution errors.
+- When the user asks for clarification.
 
-## 4. Limites
+## 4. Limits
 
-- **Código:** Escreva sempre de forma normal e legível, independente do modo.
-- **Commits:** Siga a `git-workflow` (Conventional Commits), mas prefira brevidade extrema no modo Low Token.
+- **Code:** Always write in a normal and readable way, regardless of the mode.
+- **Commits:** Follow the `git-workflow` (Conventional Commits), but prefer extreme brevity in Low Token mode.

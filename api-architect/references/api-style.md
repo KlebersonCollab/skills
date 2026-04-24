@@ -1,13 +1,13 @@
-# API Style Guide: Padrões de Interface e Consistência
+# API Style Guide: Interface and Consistency Standards
 
-Este guia define os padrões obrigatórios para todas as APIs projetadas pela skill **API Architect**, garantindo previsibilidade e facilidade de consumo.
+This guide defines the mandatory standards for all APIs designed by the **API Architect** skill, ensuring predictability and ease of consumption.
 
 ---
 
-## 1. Envelopes de Resposta (JSON)
+## 1. Response Envelopes (JSON)
 
-### Sucesso
-Toda resposta de sucesso deve retornar os dados dentro de um objeto `data`.
+### Success
+Every success response must return data within a `data` object.
 
 ```json
 {
@@ -19,8 +19,8 @@ Toda resposta de sucesso deve retornar os dados dentro de um objeto `data`.
 }
 ```
 
-### Listas e Paginação
-Use o padrão de metadados para coleções.
+### Lists and Pagination
+Use the metadata standard for collections.
 
 ```json
 {
@@ -36,15 +36,15 @@ Use o padrão de metadados para coleções.
 
 ---
 
-## 2. Tratamento de Erros
+## 2. Error Handling
 
-Toda resposta de erro (4xx, 5xx) deve seguir o formato abaixo para facilitar o tratamento no frontend/clientes.
+Every error response (4xx, 5xx) must follow the format below to facilitate handling in the frontend/clients.
 
 ```json
 {
   "error": {
     "code": "ENTITY_NOT_FOUND",
-    "message": "O usuário com ID 123 não foi encontrado.",
+    "message": "The user with ID 123 was not found.",
     "details": {
       "resource": "User",
       "id": "123"
@@ -53,41 +53,41 @@ Toda resposta de erro (4xx, 5xx) deve seguir o formato abaixo para facilitar o t
 }
 ```
 
-- **code**: String em `SCREAMING_SNAKE_CASE` (único para cada tipo de erro).
-- **message**: Mensagem amigável para humanos.
-- **details**: (Opcional) Objeto com detalhes técnicos ou campos de validação.
+- **code**: String in `SCREAMING_SNAKE_CASE` (unique for each type of error).
+- **message**: Human-friendly message.
+- **details**: (Optional) Object with technical details or validation fields.
 
 ---
 
-## 3. Nomenclatura e Tipos
+## 3. Naming and Types
 
-- **Campos**: Use `snake_case` para chaves JSON (consistência com a maioria das bibliotecas de persistência).
-- **IDs**: Sempre use strings (UUIDs, ULIDs ou HashIDs). Nunca exponha IDs sequenciais de banco de dados.
-- **Datas**: Sempre use o formato ISO 8601 (`YYYY-MM-DDTHH:mm:ssZ`).
-- **Booleanos**: Devem começar com verbos de estado (ex: `is_active`, `has_permission`).
+- **Fields**: Use `snake_case` for JSON keys (consistency with most persistence libraries).
+- **IDs**: Always use strings (UUIDs, ULIDs, or HashIDs). Never expose sequential database IDs.
+- **Dates**: Always use ISO 8601 format (`YYYY-MM-DDTHH:mm:ssZ`).
+- **Booleans**: Must start with state verbs (e.g., `is_active`, `has_permission`).
 
 ---
 
-## 4. Verbos HTTP e Status Codes
+## 4. HTTP Verbs and Status Codes
 
-| Verbo | Ação | Status Sucesso | Status Erro Comum |
+| Verb | Action | Success Status | Common Error Status |
 |-------|------|----------------|-------------------|
-| **GET** | Recuperar recurso | 200 OK | 404 Not Found |
-| **POST** | Criar recurso | 201 Created | 400 Bad Request |
-| **PUT** | Substituir recurso | 200 OK | 400 Bad Request |
-| **PATCH** | Atualizar parcialmente | 200 OK | 400 Bad Request |
-| **DELETE** | Remover recurso | 204 No Content | 404 Not Found |
+| **GET** | Retrieve resource | 200 OK | 404 Not Found |
+| **POST** | Create resource | 201 Created | 400 Bad Request |
+| **PUT** | Replace resource | 200 OK | 400 Bad Request |
+| **PATCH** | Partially update | 200 OK | 400 Bad Request |
+| **DELETE** | Remove resource | 204 No Content | 404 Not Found |
 
 ---
 
-## 5. Versionamento
+## 5. Versioning
 
-- **Via URL**: Prioritário para APIs públicas (ex: `/v1/users`).
-- **Via Headers**: Aceitável para APIs internas ou versões menores (ex: `X-API-Version: 1.2`).
+- **Via URL**: Priority for public APIs (e.g., `/v1/users`).
+- **Via Headers**: Acceptable for internal APIs or minor versions (e.g., `X-API-Version: 1.2`).
 
 ---
 
-## 6. Paginação (Cursor vs Offset)
+## 6. Pagination (Cursor vs. Offset)
 
-- **Offset**: Simples, para pequenas coleções (ex: `?page=1&limit=10`).
-- **Cursor**: Recomendado para feeds ou grandes coleções (ex: `?after=cursor_id`).
+- **Offset**: Simple, for small collections (e.g., `?page=1&limit=10`).
+- **Cursor**: Recommended for feeds or large collections (e.g., `?after=cursor_id`).

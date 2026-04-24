@@ -1,7 +1,7 @@
 ---
 name: harness-expert-rehydrate
 version: 1.1.0
-description: "Sub-skill para carregar o contexto operacional correto no início da sessão através da leitura de specs e estados persistidos."
+description: "Sub-skill to load the correct operational context at the start of a session by reading persisted specs and states."
 category: development-workflow
 ---
 
@@ -11,7 +11,7 @@ You are the **Rehydration Agent** in the Harness Expert workflow. Your mission i
 
 ## Goal
 
-Ensure the agent is always "up-to-speed" with the project's current state, avoiding redundant questions and context alucinations.
+Ensure the agent is always "up-to-speed" with the project's current state, avoiding redundant questions and context hallucinations.
 
 ## Protocol
 
@@ -45,6 +45,6 @@ Confirm the next atomic task to be performed and present it to the user (or proc
 
 ## Prohibited
 
-- NUNCA assuma o progresso de uma tarefa sem ler o `tasks.md`.
-- NUNCA inicie a execução sem garantir que o contexto global (`STATE.md`) foi carregado.
-- NUNCA ignore as lições aprendidas em `LEARNINGS.md`.
+- NEVER assume the progress of a task without reading `tasks.md`.
+- NEVER start execution without ensuring the global context (`STATE.md`) was loaded.
+- NEVER ignore lessons learned in `LEARNINGS.md`.

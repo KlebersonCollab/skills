@@ -1,23 +1,23 @@
 # Systematic Debugging in Django
 
-Desenvolvedores seniores não "tentam até funcionar", eles debugaram sistematicamente.
+Senior developers don't "try until it works", they debug systematically.
 
-## 1. Ferramentas Indispensáveis
+## 1. Indispensable Tools
 
-- **Django Debug Toolbar**: Essencial para analisar queries SQL e performance de templates.
-- **IPDB / PDB**: Use `breakpoint()` para pausar a execução e inspecionar o estado.
-- **Django Extensions (Shell Plus)**: Para testar lógica de ORM rapidamente no terminal.
+- **Django Debug Toolbar**: Essential for analyzing SQL queries and template performance.
+- **IPDB / PDB**: Use `breakpoint()` to pause execution and inspect the state.
+- **Django Extensions (Shell Plus)**: To quickly test ORM logic in the terminal.
 
-## 2. O Método de Depuração
+## 2. The Debugging Method
 
-1.  **Reproduzir**: Tenha um teste ou passo-a-passo que falha de forma consistente.
-2.  **Isolar**: Reduza o problema até o menor pedaço de código possível.
-3.  **Inspecionar**: Use `logging.debug()` ou o Debug Toolbar para ver os dados reais.
-4.  **Corrigir e Validar**: Após o fix, garanta que o teste agora passa.
+1.  **Reproduce**: Have a test or step-by-step process that fails consistently.
+2.  **Isolate**: Reduce the problem to the smallest possible piece of code.
+3.  **Inspect**: Use `logging.debug()` or the Debug Toolbar to see the real data.
+4.  **Fix and Validate**: After the fix, ensure the test now passes.
 
-## 3. Logging Profissional
+## 3. Professional Logging
 
-Configure o `LOGGING` no `settings.py` para capturar erros em produção:
+Configure `LOGGING` in `settings.py` to capture errors in production:
 
 ```python
 LOGGING = {

@@ -1,30 +1,30 @@
 # Flutter with FVM & Modern Patterns Skill
 
-Esta skill fornece um workflow de excelência técnica para desenvolvimento Flutter profissional, utilizando o **FVM (Flutter Version Management)** para isolamento de ambiente e os padrões mais modernos do framework para performance e acessibilidade.
+This skill provides a technical excellence workflow for professional Flutter development, using **FVM (Flutter Version Management)** for environment isolation and the framework's most modern patterns for performance and accessibility.
 
-## 🚀 Recursos Principais
+## 🚀 Key Features
 
-- **Gerenciamento de Versão**: Isolamento total do SDK do Flutter por projeto com FVM.
-- **Modern Dart (v3.0+)**: Uso avançado de Sealed Classes, Pattern Matching e Records.
-- **Performance Otimizada**: Técnicas de reconstrução seletiva (`MediaQuery.sizeOf`) e decomposição de widgets.
-- **Acessibilidade Nativa**: Diretrizes mandatórias para Semantics e alvos de toque (TalkBack/VoiceOver).
-- **Segurança OWASP**: Proteção baseada no OWASP Mobile Top 10 e gestão segura de segredos.
-- **Arquitetura MVVM**: Padrões claros de separação de responsabilidades (UI, ViewModel, Data).
-- **Testes Abrangentes**: Estratégias para testes unitários, de widget, de estado (Riverpod) e goldens.
+- **Version Management**: Total isolation of the Flutter SDK per project with FVM.
+- **Modern Dart (v3.0+)**: Advanced use of Sealed Classes, Pattern Matching, and Records.
+- **Optimized Performance**: Selective rebuild techniques (`MediaQuery.sizeOf`) and widget decomposition.
+- **Native Accessibility**: Mandatory guidelines for Semantics and touch targets (TalkBack/VoiceOver).
+- **OWASP Security**: Protection based on the OWASP Mobile Top 10 and secure secret management.
+- **MVVM Architecture**: Clear separation of responsibilities patterns (UI, ViewModel, Data).
+- **Comprehensive Testing**: Strategies for unit, widget, state (Riverpod), and golden tests.
 
-## 🛠️ Como Usar
+## 🛠️ How to Use
 
-Para ativar as diretrizes desta skill em sua sessão atual, utilize:
+To activate this skill's guidelines in your current session, use:
 
 ```bash
 activate_skill flutter-fvm
 ```
 
-## 📂 Estrutura da Skill
+## 📂 Skill Structure
 
-- `SKILL.md`: Guia mestre com workflow, fases e regras de qualidade.
-- `references/`: Documentação técnica profunda sobre performance, segurança, acessibilidade e Dart 3.
-- `examples/`: Modelos de configuração (`analysis_options.yaml`, CI/CD, etc).
+- `SKILL.md`: Master guide with workflow, phases, and quality rules.
+- `references/`: Deep technical documentation on performance, security, accessibility, and Dart 3.
+- `examples/`: Configuration models (`analysis_options.yaml`, CI/CD, etc.).
 
 ---
-*Skill otimizada para o padrão AI Agent Hub (2026).*
+*Skill optimized for the AI Agent Hub standard (2026).*

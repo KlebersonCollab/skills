@@ -2,41 +2,41 @@
 
 > Expert level Go development skill focused on performance, idiomatic concurrency, and clean architecture.
 
-[![Versão](https://img.shields.io/badge/Versão-1.0.0-blue)](#changelog)
-[![Sub-skills](https://img.shields.io/badge/Sub--skills-0-brightgreen)](#🧩-sub-skills)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue)](#changelog)
+[![Sub-skills](https://img.shields.io/badge/Sub--skills-0-brightgreen)](#sub-skills)
 
 ---
 
-## 📖 Visão Geral
+## 📖 Overview
 
-A skill **Golang Expert** é uma central de conhecimento para o desenvolvimento profissional em Go. Ela foi criada a partir da consolidação de 35 skills específicas do ecossistema Samber e da comunidade Go, oferecendo uma visão holística e profunda da linguagem.
+The **Golang Expert** skill is a knowledge hub for professional Go development. It was created by consolidating 35 specific skills from the Samber ecosystem and the Go community, offering a holistic and deep view of the language.
 
-Ela se integra ao Skills Hub para fornecer suporte especializado em:
-- Arquitetura de microserviços com gRPC.
-- Otimização de performance e benchmarking.
-- Padrões avançados de concorrência e segurança.
-- Uso de bibliotecas modernas como `samber/lo`, `mo`, `do` e `slog`.
+It integrates with the Skills Hub to provide specialized support in:
+- Microservices architecture with gRPC.
+- Performance optimization and benchmarking.
+- Advanced concurrency patterns and security.
+- Use of modern libraries like `samber/lo`, `mo`, `do`, and `slog`.
 
 ---
 
-## ⚙️ Como Usar
+## ⚙️ How to Use
 
-Para ativar esta skill, utilize o comando de ativação de skill do seu agente:
+To activate this skill, use the skill activation command for your agent:
 
 ```markdown
-Eu preciso de ajuda para projetar um sistema concorrente em Go. Use a skill golang-expert.
+I need help designing a concurrent system in Go. Use the golang-expert skill.
 ```
 
-Ela irá guiar você através dos pilares de conhecimento necessários para a tarefa, consultando as referências em `references/` conforme necessário.
+It will guide you through the knowledge pillars required for the task, consulting the references in `references/` as needed.
 
 ---
 
 ## 🧩 Sub-skills
 
-> Esta skill opera em modo consolidado e não possui sub-skills externas imediatas. Todo o conhecimento está organizado em referências internas.
+> This skill operates in consolidated mode and does not have immediate external sub-skills. All knowledge is organized in internal references.
 
 ---
 
 ## 📝 Changelog
 
-Consulte o [CHANGELOG.md](CHANGELOG.md) para o histórico completo de versões.
+See [CHANGELOG.md](CHANGELOG.md) for full version history.

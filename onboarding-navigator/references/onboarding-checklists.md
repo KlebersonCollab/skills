@@ -1,49 +1,49 @@
 # Onboarding Checklists: Action Plans
 
-Checklists padronizados para garantir que nenhum passo importante seja esquecido durante a entrada de membros ou início de novos projetos.
+Standardized checklists to ensure that no important steps are forgotten during onboarding or the start of new projects.
 
 ---
 
-## 1. Novo Membro do Time (Skynet Developer)
+## 1. New Team Member (Skynet Developer)
 
-### A. Acessos e Ambiente
-- [ ] Clonar o repositório central de skills.
-- [ ] Instalar o Gemini CLI.
-- [ ] Configurar variáveis de ambiente (ex: `AZURE_DEVOPS_EXT_PAT`).
-- [ ] Setup de ambiente Python via **UV** (`python-uv`).
-- [ ] Setup de ambiente Flutter via **FVM** (`flutter-fvm`).
+### A. Access and Environment
+- [ ] Clone the central skills repository.
+- [ ] Install Gemini CLI.
+- [ ] Configure environment variables (e.g., `AZURE_DEVOPS_EXT_PAT`).
+- [ ] Setup Python environment via **UV** (`python-uv`).
+- [ ] Setup Flutter environment via **FVM** (`flutter-fvm`).
 
-### B. Leituras Obrigatórias (Fonte da Verdade)
-- [ ] `README.md` (Visão Geral).
-- [ ] `sdd/SKILL.md` (Metodologia de Trabalho).
-- [ ] `.specs/codebase/STACK.md` (O que usamos).
-- [ ] `.specs/project/PROJECT.md` (Para onde vamos).
+### B. Mandatory Readings (Source of Truth)
+- [ ] `README.md` (Overview).
+- [ ] `sdd/SKILL.md` (Working Methodology).
+- [ ] `.specs/codebase/STACK.md` (What we use).
+- [ ] `.specs/project/PROJECT.md` (Where we are going).
 
-### C. Primeiro Commit
-- [ ] Escolher uma tarefa "Small" ou "Bug fix" no Roadmap.
-- [ ] Executar o workflow SDD completo (Spec -> Plan -> Tasks -> Impl -> Review).
-
----
-
-## 2. Início de Nova Feature (Módulo ou Skill)
-
-### A. Planejamento (Discovery & Specify)
-- [ ] Criar pasta em `.specs/features/`.
-- [ ] Auditar PRD ou Requisitos iniciais.
-- [ ] Escrever `spec.md` com BDD.
-- [ ] Criar `plan.md` com Diagrama Mermaid.
-- [ ] Gerar lista de tarefas atômicas em `tasks.md`.
-
-### B. Arquitetura
-- [ ] Avaliar se a mudança exige um ADR (`architecture`).
-- [ ] Revisar princípios SOLID e DRY (`clean-code-mentor`).
-
-### C. Execução e Fechamento
-- [ ] Implementar com testes (TDD).
-- [ ] Auditar via `skill-factory-validator` (se for uma skill).
-- [ ] Atualizar proativamente o ROADMAP e os logs de memória.
+### C. First Commit
+- [ ] Choose a "Small" task or "Bug fix" from the Roadmap.
+- [ ] Execute the full SDD workflow (Spec -> Plan -> Tasks -> Impl -> Review).
 
 ---
 
-## 3. Dica do Navigator
-"O checklist não é um peso, é sua rede de segurança. Siga os passos e garanta que sua entrega seja inquestionável."
+## 2. Starting a New Feature (Module or Skill)
+
+### A. Planning (Discovery & Specify)
+- [ ] Create folder in `.specs/features/`.
+- [ ] Audit PRD or initial Requirements.
+- [ ] Write `spec.md` with BDD.
+- [ ] Create `plan.md` with Mermaid Diagram.
+- [ ] Generate atomic task list in `tasks.md`.
+
+### B. Architecture
+- [ ] Evaluate if the change requires an ADR (`architecture`).
+- [ ] Review SOLID and DRY principles (`clean-code-mentor`).
+
+### C. Execution and Closure
+- [ ] Implement with tests (TDD).
+- [ ] Audit via `skill-factory-validator` (if it is a skill).
+- [ ] Proactively update the ROADMAP and memory logs.
+
+---
+
+## 3. Navigator Tip
+"A checklist is not a burden; it is your safety net. Follow the steps and ensure your delivery is unquestionable."

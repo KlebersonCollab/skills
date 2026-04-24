@@ -29,8 +29,16 @@ Break down complex problems into their most basic, fundamental truths.
 - **Step 3**: Create a new solution from scratch using only the fundamental truths.
 - **Example**: Instead of asking "How can we improve the existing build script?", ask "What is the minimum required to transform source code into a deployable artifact?".
 
-## Best Practices for AI Brainstorming
+## 4. Mind Mapping
+Visually map out ideas and their relationships to see the big picture and find hidden connections.
 
+## 5. Brainwriting
+A collaborative technique where team members write down their ideas independently before sharing them to avoid groupthink.
+
+## 6. Random Word Association
+Pick a random word and force a connection to the problem. This can spark unexpected and creative solutions.
+
+## Best Practices for AI Brainstorming
 1. **Defer Judgment**: Generate many ideas first, then evaluate them in a separate turn.
 2. **Seek Divergent Perspectives**: Ask the agent to play different roles (e.g., "Think like a Security Expert", "Think like a UI Designer").
 3. **Encourage Wild Ideas**: Don't limit yourself to what is currently implemented; explore what is technically possible.

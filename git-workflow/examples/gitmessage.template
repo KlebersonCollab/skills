@@ -1,15 +1,15 @@
-# <tipo>(<escopo>): <assunto>
-# # MANDATO: Mensagens de commit DEVEM ser em INGLÊS.
-# # Tipos: feat, fix, docs, style, refactor, test, chore, perf, ci, revert
-# # Escopo: api, ui, db, auth, etc.
-# # Assunto: modo imperativo, sem ponto final, máx 50 caracteres
+# <type>(<scope>): <subject>
+# # MANDATE: Commit messages MUST be in ENGLISH.
+# # Types: feat, fix, docs, style, refactor, test, chore, perf, ci, revert
+# # Scope: api, ui, db, auth, etc.
+# # Subject: imperative mood, no period at the end, max 50 characters
 #
-# [corpo opcional] - explique o PORQUÊ, não o quê
+# [optional body] - explain the WHY, not the what
 #
-# [rodapé opcional] - Breaking changes, refs #issue
+# [optional footer] - Breaking changes, refs #issue
 #
 # ---
-# Exemplo:
+# Example:
 # feat(auth): add google oauth provider
 #
 # Users can now sign in using their Google accounts. 

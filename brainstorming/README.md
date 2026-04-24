@@ -1,47 +1,47 @@
 # Brainstorming — Skill
 
-Facilitador de Brainstorming e Design — guia o agente a explorar problemas complexos, gerar ideias divergentes e convergir para especificações sólidas antes de qualquer implementação.
+Brainstorming and Design Facilitator — guides the agent to explore complex problems, generate divergent ideas, and converge on solid specifications before any implementation.
 
 ---
 
-## 🚀 Visão Geral
+## 🚀 Overview
 
-Esta skill transforma o agente em um facilitador de design thinking. O objetivo não é codificar rápido, mas **pensar devagar** para garantir que a solução construída seja a correta. Ela utiliza técnicas consagradas para quebrar bloqueios criativos e validar premissas antes de gastar recursos em implementação.
+This skill transforms the agent into a design thinking facilitator. The goal is not to code fast, but to **think slow** to ensure the solution built is the correct one. It uses established techniques to break through creative blocks and validate assumptions before spending resources on implementation.
 
-### Capacidades Principais:
-- **Discovery Disciplinado**: Identificação da causa raiz via "5 Whys".
-- **Geração Divergente**: Exploração de múltiplas arquiteturas/abordagens (SCAMPER).
-- **Convergência Estratégica**: Avaliação de trade-offs e tomada de decisão fundamentada.
-- **Understanding Lock**: Portão de segurança para garantir alinhamento total com o usuário.
+### Key Capabilities:
+- **Disciplined Discovery**: Identifying the root cause via "5 Whys."
+- **Divergent Generation**: Exploration of multiple architectures/approaches (SCAMPER).
+- **Strategic Convergence**: Evaluation of trade-offs and grounded decision-making.
+- **Understanding Lock**: Security gate to ensure full alignment with the user.
 
 ---
 
-## 📂 Estrutura da Skill
+## 📂 Skill Structure
 
 ```text
 brainstorming/
-├── SKILL.md                 # Definição e workflow (v1.0.0)
-├── README.md                # Este guia
-├── CHANGELOG.md             # Histórico de versões
-├── references/              # Conhecimento Teórico
+├── SKILL.md                 # Definition and workflow (v1.0.0)
+├── README.md                # This guide
+├── CHANGELOG.md             # Version history
+├── references/              # Theoretical Knowledge
 │   ├── brainstorming-techniques.md
 │   └── decision-frameworks.md
-└── resources/               # Templates (opcional)
+└── resources/               # Templates (optional)
 ```
 
 ---
 
-## 🛠️ Como Usar
+## 🛠️ How to Use
 
-1. **Ative a skill**: `activate_skill brainstorming`
-2. **Inicie o Discovery**: "Gostaria de fazer um brainstorming sobre a nova arquitetura de notificações."
-3. **Siga o Facilitador**: O agente fará perguntas uma por vez para mapear o problema e as premissas.
-4. **Valide o Understanding Lock**: Antes de prosseguir para a solução, confirme o resumo de entendimento enviado pelo agente.
+1. **Activate the skill**: `activate_skill brainstorming`
+2. **Start Discovery**: "I'd like to brainstorm the new notification architecture."
+3. **Follow the Facilitator**: The agent will ask questions one at a time to map the problem and assumptions.
+4. **Validate the Understanding Lock**: Before proceeding to the solution, confirm the understanding summary sent by the agent.
 
 ---
 
-## 🎯 Exemplos de Comandos
+## 🎯 Example Commands
 
-- *"Vamos fazer um brainstorming sobre como reduzir a latência da nossa API de busca."*
-- *"Use a técnica SCAMPER para propor novas funcionalidades para o nosso dashboard."*
-- *"Quais são os trade-offs entre usar um banco relacional ou NoSQL para este caso de uso?"*
+- *"Let's brainstorm how to reduce the latency of our search API."*
+- *"Use the SCAMPER technique to propose new features for our dashboard."*
+- *"What are the trade-offs between using a relational or NoSQL database for this use case?"*

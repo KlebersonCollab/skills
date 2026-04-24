@@ -1,32 +1,32 @@
-# ADR-NNN: [Título Curto da Decisão]
+# ADR-NNN: [Short Decision Title]
 
-* **Status**: [Proposta | Aceita | Rejeitada | Depreciada]
-* **Data**: AAAA-MM-DD
-* **Autor(es)**: [@usuário]
-* **Decisores**: [Lista de decisores]
+* **Status**: [Proposed | Accepted | Rejected | Deprecated]
+* **Date**: YYYY-MM-DD
+* **Author(s)**: [@user]
+* **Deciders**: [List of deciders]
 
-## Contexto e Problema
-[Descreva o contexto do problema técnico que motivou esta decisão. Por que esta mudança é necessária agora? Quais são as restrições e requisitos?]
+## Context and Problem
+[Describe the context of the technical problem that motivated this decision. Why is this change necessary now? What are the constraints and requirements?]
 
-## Opções Consideradas
-* **Opção 1**: [Breve descrição]
-* **Opção 2**: [Breve descrição]
+## Options Considered
+* **Option 1**: [Brief description]
+* **Option 2**: [Brief description]
 
-## Decisão Escolhida
-[Explique qual opção foi escolhida e por quê. Como ela resolve o problema descrito no contexto?]
+## Decision Chosen
+[Explain which option was chosen and why. How does it solve the problem described in the context?]
 
-### Justificativa
-* [Fator de decisão 1]
-* [Fator de decisão 2]
+### Rationale
+* [Decision factor 1]
+* [Decision factor 2]
 
-## Consequências
-### Positivas
-* [Benefício 1]
-* [Benefício 2]
+## Consequences
+### Positive
+* [Benefit 1]
+* [Benefit 2]
 
-### Negativas/Riscos
+### Negative/Risks
 * [Trade-off 1]
-* [Risco de implementação ou dívida técnica]
+* [Implementation risk or technical debt]
 
-## Referências
-* [Link para tickets, documentação externa ou discussões relevantes]
+## References
+* [Link to tickets, external documentation, or relevant discussions]

@@ -1,12 +1,12 @@
 # CI/CD Workflows
 
-Guia completo para integração do UV em pipelines de CI/CD, Docker e publicação de pacotes.
+Complete guide for integrating UV into CI/CD pipelines, Docker, and package publishing.
 
 ---
 
 ## GitHub Actions
 
-### Workflow Básico
+### Basic Workflow
 
 ```yaml
 name: CI
@@ -41,7 +41,7 @@ jobs:
         run: uv run pytest --cov=src/
 ```
 
-### Workflow com Matrix
+### Matrix Workflow
 
 ```yaml
 name: CI Matrix
@@ -72,7 +72,7 @@ jobs:
         run: uv run pytest
 ```
 
-### Workflow com Cache
+### Workflow with Cache
 
 ```yaml
 name: CI with Cache
@@ -100,36 +100,36 @@ jobs:
         run: uv run pytest
 ```
 
-Veja [github-actions-example.md](../examples/github-actions-example.md) para um workflow completo de produção.
+See [github-actions-example.md](../examples/github-actions-example.md) for a complete production workflow.
 
 ---
 
 ## Docker
 
-### Dockerfile Básico
+### Basic Dockerfile
 
 ```dockerfile
 FROM python:3.12-slim
 
-# Instalar UV
+# Install UV
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 WORKDIR /app
 
-# Copiar dependências primeiro (cache de layers)
+# Copy dependencies first (layer cache)
 COPY pyproject.toml uv.lock ./
 
-# Instalar dependências
+# Install dependencies
 RUN uv sync --locked --no-dev
 
-# Copiar código fonte
+# Copy source code
 COPY src/ src/
 
-# Executar
-CMD ["uv", "run", "python", "-m", "meu_projeto"]
+# Execute
+CMD ["uv", "run", "python", "-m", "my_project"]
 ```
 
-### Dockerfile Multi-stage
+### Multi-stage Dockerfile
 
 ```dockerfile
 # Stage 1: Build
@@ -150,39 +150,39 @@ COPY src/ /app/src/
 ENV PATH="/app/.venv/bin:$PATH"
 WORKDIR /app
 
-CMD ["python", "-m", "meu_projeto"]
+CMD ["python", "-m", "my_project"]
 ```
 
 ---
 
-## Packaging e Publicação
+## Packaging and Publishing
 
 ### Build
 
 ```bash
-# Build simples
+# Simple build
 uv build
 
-# Build com limpeza de artefatos antigos (0.9.6+)
+# Build with cleaning of old artifacts (0.9.6+)
 uv build --clear
 
-# Verificar artefatos gerados
+# Verify generated artifacts
 ls dist/
-# meu-projeto-0.1.0.tar.gz
-# meu-projeto-0.1.0-py3-none-any.whl
+# my-project-0.1.0.tar.gz
+# my-project-0.1.0-py3-none-any.whl
 ```
 
-### Publicar no PyPI
+### Publish to PyPI
 
 ```bash
-# Publicar no PyPI (requer token)
+# Publish to PyPI (requires token)
 uv publish
 
-# Publicar no TestPyPI
+# Publish to TestPyPI
 uv publish --publish-url https://test.pypi.org/legacy/
 ```
 
-### GitHub Actions para Publicação
+### GitHub Actions for Publishing
 
 ```yaml
 name: Publish
@@ -195,7 +195,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write  # Para trusted publishing
+      id-token: write  # For trusted publishing
     steps:
       - uses: actions/checkout@v4
 
@@ -213,34 +213,34 @@ jobs:
 
 ---
 
-## Desenvolvimento Local
+## Local Development
 
-### Workflow Diário
+### Daily Workflow
 
 ```bash
 # 1. Clone / pull
 git clone <repo>
 cd <project>
 
-# 2. Sincronizar ambiente
+# 2. Synchronize environment
 uv sync --dev
 
-# 3. Pipeline de qualidade
+# 3. Quality pipeline
 uv run ruff format --check .
 uv run ruff check .
 uv run mypy .
 uv run pytest
 
-# 4. Desenvolver com hot reload (web)
+# 4. Develop with hot reload (web)
 uv run uvicorn app.main:app --reload
 
-# 5. Antes do commit
+# 5. Before commit
 uv run ruff format .
 uv run ruff check --fix .
 uv run pytest
 ```
 
-### Pre-commit com UV
+### Pre-commit with UV
 
 ```yaml
 # .pre-commit-config.yaml

@@ -1,6 +1,6 @@
 [
   {
-    "description": "Log de Requisição de API (Sucesso)",
+    "description": "API Request Log (Success)",
     "payload": {
       "timestamp": "2026-04-14T20:15:01.234Z",
       "severity": "INFO",
@@ -23,7 +23,7 @@
     }
   },
   {
-    "description": "Log de Erro de Banco de Dados (Timeout)",
+    "description": "Database Error Log (Timeout)",
     "payload": {
       "timestamp": "2026-04-14T20:16:45.999Z",
       "severity": "ERROR",
@@ -43,7 +43,7 @@
     }
   },
   {
-    "description": "Log de Business Event (Audit)",
+    "description": "Business Event Log (Audit)",
     "payload": {
       "timestamp": "2026-04-14T20:17:10.000Z",
       "severity": "INFO",
@@ -54,7 +54,7 @@
         "type": "ORDER_PAID",
         "id": "ord_5521",
         "amount": 299.90,
-        "currency": "BRL"
+        "currency": "USD"
       }
     }
   }

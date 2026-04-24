@@ -23,9 +23,9 @@ def consolidate_changelogs():
 
     hub_changelog = [
         "# Hub Global Changelog",
-        f"*Última atualização: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*",
+        f"*Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*",
         "",
-        "Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.",
+        "This file consolidates the most recent updates from all skills in the Hub.",
         "",
     ]
 
@@ -47,7 +47,7 @@ def consolidate_changelogs():
             hub_changelog.append("")
 
     Path("CHANGELOG-HUB.md").write_text("\n".join(hub_changelog))
-    print("✅ CHANGELOG-HUB.md gerado com sucesso!")
+    print("✅ CHANGELOG-HUB.md generated successfully!")
 
 
 if __name__ == "__main__":

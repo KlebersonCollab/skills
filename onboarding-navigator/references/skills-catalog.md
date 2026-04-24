@@ -1,31 +1,31 @@
 # Skills Catalog: AI Agent Hub
 
-Este guia fornece um overview detalhado de todas as 25 habilidades disponíveis neste repositório, servindo como bússola para o Onboarding Navigator.
+This guide provides a detailed overview of all 25 abilities available in this repository, serving as a compass for the Onboarding Navigator.
 
-## 🗺️ Mapa Visual do Ecossistema de Skills
+## 🗺️ Visual Map of the Skills Ecosystem
 
 ```mermaid
 flowchart TD
-    Start[Chegada ao Hub] --> Onboarding{onboarding-navigator}
+    Start[Arrival at the Hub] --> Onboarding{onboarding-navigator}
     
-    Onboarding --> Categoria{Categoria do Problema}
+    Onboarding --> Category{Problem Category}
     
-    Categoria --> Metodo[Metodologia & Criação]
-    Categoria --> Arquitetura[Arquitetura & Design]
-    Categoria --> DevOps[Ecosystems & DevOps]
-    Categoria --> Automation[Automação & Utils]
-    Categoria --> Navegacao[Navegação & Orchestration]
+    Category --> Method[Methodology & Creation]
+    Category --> Architecture[Architecture & Design]
+    Category --> DevOps[Ecosystems & DevOps]
+    Category --> Automation[Automation & Utils]
+    Category --> Navigation[Navigation & Orchestration]
     
-    Metodo --> SDD{sdd}
-    Metodo --> Factory{skill-factory}
-    Metodo --> Brainstorm{brainstorming}
-    Metodo --> Harness{harness-expert}
-    Metodo --> Knowledge{knowledge-architect}
-    Metodo --> Distiller{token-distiller}
+    Method --> SDD{sdd}
+    Method --> Factory{skill-factory}
+    Method --> Brainstorm{brainstorming}
+    Method --> Harness{harness-expert}
+    Method --> Knowledge{knowledge-architect}
+    Method --> Distiller{token-distiller}
     
-    Arquitetura --> Arch{architecture}
-    Arquitetura --> CleanCode{clean-code-mentor}
-    Arquitetura --> API{api-architect}
+    Architecture --> Arch{architecture}
+    Architecture --> CleanCode{clean-code-mentor}
+    Architecture --> API{api-architect}
     
     DevOps --> Python{python-uv}
     DevOps --> Flutter{flutter-fvm}
@@ -43,8 +43,8 @@ flowchart TD
     Automation --> YouTube{youtube-transcript}
     Automation --> Scaffolding{scaffolding-expert}
     
-    Navegacao --> Self{onboarding-navigator}
-    Navegacao --> Facilitator{swarm-facilitator}
+    Navigation --> Self{onboarding-navigator}
+    Navigation --> Facilitator{swarm-facilitator}
     
     style Start fill:#e1f5fe
     style Onboarding fill:#81c784
@@ -52,82 +52,82 @@ flowchart TD
 
 ---
 
-## 📚 Catálogo Completo de Skills (25 Total)
+## 📚 Complete Skills Catalog (25 Total)
 
-### 1. 🏗️ Core Frameworks (Metodologia e Criação)
+### 1. 🏗️ Core Frameworks (Methodology and Creation)
 
-| Skill | Versão | Propósito | Quando Invocá-la |
+| Skill | Version | Purpose | When to Invoke |
 |-------|--------|-----------|------------------|
-| **[SDD](sdd/)** | `1.5.0` | Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate. | **Sempre** que for iniciar uma implementação. |
-| **[Skill Factory](skill-factory/)** | `1.1.0` | Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados. | Ao criar ou auditar uma habilidade no hub. |
-| **[Brainstorming](brainstorming/)** | `1.1.0` | Facilitador de Brainstorming e Design — guia o agente a explorar problemas complexos. | Antes de qualquer especificação técnica. |
-| **[Harness Expert](harness-expert/)** | `2.0.0` | Motor técnico para Harness Engineering (Sync, Rehydrate, Automação). | Quando precisar de suporte técnico do motor agêntico. |
-| **[Knowledge Architect](knowledge-architect/)** | `1.0.0` | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | Para mapear relações complexas. |
-| **[Token Distiller](token-distiller/)** | `1.0.0` | Gerenciador de densidade de tokens e modos de compressão (Caveman/Premium). | Para otimizar o consumo de tokens em tarefas longas. |
+| **[SDD](sdd/)** | `1.5.0` | Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate. | **Always** when starting an implementation. |
+| **[Skill Factory](skill-factory/)** | `1.1.0` | Core Framework for standardized creation of new skills with automated scaffolding, validation, and registration. | When creating or auditing an ability in the hub. |
+| **[Brainstorming](brainstorming/)** | `1.1.0` | Brainstorming and Design Facilitator — guides the agent to explore complex problems. | Before any technical specification. |
+| **[Harness Expert](harness-expert/)** | `2.0.0` | Technical engine for Harness Engineering (Sync, Rehydrate, Automation). | When technical support from the agentic engine is needed. |
+| **[Knowledge Architect](knowledge-architect/)** | `1.0.0` | Local knowledge architecture via relational graphs (Local GraphRAG). | To map complex relationships. |
+| **[Token Distiller](token-distiller/)** | `1.0.0` | Token density manager and compression modes (Caveman/Premium). | To optimize token consumption in long tasks. |
 
-### 2. 🎨 Architecture & Design (Qualidade e Estrutura)
+### 2. 🎨 Architecture & Design (Quality and Structure)
 
-| Skill | Versão | Propósito | Quando Invocá-la |
+| Skill | Version | Purpose | When to Invoke |
 |-------|--------|-----------|------------------|
-| **[Architecture](architecture/)** | `2.0.1` | Arquiteto de Sistemas — projeta sistemas escaláveis, resilientes e distribuídos via ADRs. | Ao desenhar a estrutura macro de um sistema. |
-| **[Clean Code Mentor](clean-code-mentor/)** | `1.0.0` | Mentoria técnica e revisão de código com foco em SOLID, YAGNI, DRY e KISS. | Durante revisões de código ou refatorações. |
-| **[API Architect](api-architect/)** | `1.3.0` | Arquiteto de APIs — projeta sistemas interoperáveis e seguros. | Ao projetar endpoints e integrações. |
+| **[Architecture](architecture/)** | `2.0.1` | Systems Architect — designs scalable, resilient, and distributed systems via ADRs. | When designing a system's macro structure. |
+| **[Clean Code Mentor](clean-code-mentor/)** | `1.0.0` | Technical mentoring and code review focused on SOLID, YAGNI, DRY, and KISS. | During code reviews or refactorings. |
+| **[API Architect](api-architect/)** | `1.3.0` | API Architect — designs interoperable and secure systems. | When designing endpoints and integrations. |
 
-### 3. ⚙️ Ecosystems & DevOps (Ambientes e Automação)
+### 3. ⚙️ Ecosystems & DevOps (Environments and Automation)
 
-| Skill | Versão | Propósito | Quando Invocá-la |
+| Skill | Version | Purpose | When to Invoke |
 |-------|--------|-----------|------------------|
-| **[Python com UV](python-uv/)** | `2.6.0` | Desenvolvimento Python profissional com UV. | Em tarefas macro envolvendo Python. |
-| **[FastAPI Expert](fastapi-expert/)** | `1.1.0` | Desenvolvimento avançado de APIs assíncronas com FastAPI e Pydantic. | Ao codificar rotas e schemas FastAPI. |
-| **[Django Expert](django-expert/)** | `1.5.0` | Desenvolvimento robusto com Django, focado em arquitetura, segurança e TDD. | Ao trabalhar com aplicações Django. |
-| **[Flutter com FVM](flutter-fvm/)** | `1.3.0` | Desenvolvimento Flutter profissional com FVM (Dart 3+, A11y, Performance). | Em qualquer tarefa envolvendo Flutter/Dart. |
-| **[Azure DevOps](azure-devops/)** | `1.1.0` | Gerenciamento profissional do Azure DevOps (AzDO). | Para gerenciar tarefas e CI/CD no AzDO. |
-| **[Observability Expert](observability-expert/)** | `1.0.0` | Especialista em SRE e Observabilidade (OTel, Logs Estruturados). | Ao garantir que um sistema é monitorável. |
-| **[Golang Expert](golang-expert/)** | `1.1.0` | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | Ao desenvolver sistemas de alta performance em Go. |
-| **[Frontend Expert](frontend-expert/)** | `1.1.0` | Expert em interfaces modernas com React, Next.js e TailwindCSS v4. | Ao projetar ou implementar UIs modernas. |
-| **[Git Workflow](git-workflow/)** | `1.0.0` | Padrões de fluxo de trabalho Git, estratégias de branching e integração com SDD. | Ao realizar commits, abrir PRs ou gerenciar branches. |
-| **[Golang Testing Expert](golang-testing-expert/)** | `1.0.0` | Especialista em QA para Go — TDD, Table-Driven Tests, Benchmarks e Fuzzing. | Ao implementar suítes de testes em Go. |
-| **[Benchmark Expert](benchmark-expert/)** | `1.0.0` | Expert Skill para medição de baselines de performance, detecção de regressões e comparação de stacks. | Ao validar o impacto de performance de mudanças ou PRs. |
-| **[DevSecOps Expert](devsecops-expert/)** | `1.0.0` | Auditoria estática de qualidade, segurança SAST/DAST e Hardening. | Ao realizar auditorias de segurança e qualidade no código. |
+| **[Python with UV](python-uv/)** | `3.0.0` | Professional Python development with UV. | In macro tasks involving Python. |
+| **[FastAPI Expert](fastapi-expert/)** | `1.1.0` | Advanced asynchronous API development with FastAPI and Pydantic. | When coding FastAPI routes and schemas. |
+| **[Django Expert](django-expert/)** | `1.5.0` | Robust development with Django, focused on architecture, security, and TDD. | When working with Django applications. |
+| **[Flutter with FVM](flutter-fvm/)** | `1.3.0` | Professional Flutter development with FVM (Dart 3+, A11y, Performance). | In any task involving Flutter/Dart. |
+| **[Azure DevOps](azure-devops/)** | `1.1.0` | Professional Azure DevOps (AzDO) management. | To manage tasks and CI/CD in AzDO. |
+| **[Observability Expert](observability-expert/)** | `1.0.0` | SRE and Observability specialist (OTel, Structured Logs). | When ensuring a system is monitorable. |
+| **[Golang Expert](golang-expert/)** | `1.1.0` | Go Excellence — Performance, idiomatic concurrency, and Samber ecosystem. | When developing high-performance systems in Go. |
+| **[Frontend Expert](frontend-expert/)** | `1.1.0` | Expert in modern interfaces with React, Next.js, and TailwindCSS v4. | When designing or implementing modern UIs. |
+| **[Git Workflow](git-workflow/)** | `1.0.0` | Git workflow patterns, branching strategies, and SDD integration. | When performing commits, opening PRs, or managing branches. |
+| **[Golang Testing Expert](golang-testing-expert/)** | `1.0.0` | QA expert for Go — TDD, Table-Driven Tests, Benchmarks, and Fuzzing. | When implementing Go test suites. |
+| **[Benchmark Expert](benchmark-expert/)** | `1.0.0` | Expert Skill for performance baseline measurement, regression detection, and stack comparison. | When validating performance impact of changes or PRs. |
+| **[DevSecOps Expert](devsecops-expert/)** | `1.0.0` | Static quality auditing, SAST/DAST security, and Hardening. | When performing security and quality audits on code. |
 
-### 4. 🚀 Automation & Utils (Produtividade)
+### 4. 🚀 Automation & Utils (Productivity)
 
-| Skill | Versão | Propósito | Quando Invocá-la |
+| Skill | Version | Purpose | When to Invoke |
 |-------|--------|-----------|------------------|
-| **[YouTube Transcript](youtube-transcript/)** | `1.0.0` | Automatizar a extração de transcrições de vídeos do YouTube. | Quando precisar de conteúdo de um vídeo. |
-| **[Scaffolding Expert](scaffolding-expert/)** | `1.0.0` | Geração dinâmica de templates via CLI (copier/cookiecutter). | Para gerar um novo projeto do zero. |
+| **[YouTube Transcript](youtube-transcript/)** | `1.0.0` | Automate YouTube video transcript extraction. | When video content is needed. |
+| **[Scaffolding Expert](scaffolding-expert/)** | `1.0.0` | Dynamic template generation via CLI (copier/cookiecutter). | To generate a new project from scratch. |
 
 ### 5. 🧭 Navigation & Orchestration
 
-| Skill | Versão | Propósito | Quando Invocá-la |
+| Skill | Version | Purpose | When to Invoke |
 |-------|--------|-----------|------------------|
-| **[Onboarding Navigator](onboarding-navigator/)** | `1.2.1` | Guia mestre do Hub de Skills. Fornece overview e mentoria. | **No início da sessão** para entender o hub. |
-| **[Swarm Facilitator](swarm-facilitator/)** | `1.1.0` | Coreografia de equipes de agentes (Arquiteto, Dev, QA) e protocolos de handoff. | Em grandes épicos que requerem vários agentes coordenados. |
+| **[Onboarding Navigator](onboarding-navigator/)** | `1.2.1` | Skills Hub master guide. Provides overview and mentorship. | **At session start** to understand the hub. |
+| **[Swarm Facilitator](swarm-facilitator/)** | `1.1.0` | Agent team choreography (Architect, Dev, QA) and handoff protocols. | In large epics requiring multiple coordinated agents. |
 
 ---
 
-## 🧠 Matriz de Decisão: Qual Skill usar?
+## 🧠 Decision Matrix: Which Skill to use?
 
 ```mermaid
 flowchart LR
-    Problem[Problema Identificado] --> Decision{Tomada de Decisão}
+    Problem[Problem Identified] --> Decision{Decision Making}
     
-    Decision --> NewApp["🚀 Criar app novo"]
-    Decision --> CodeSmell["🤔 Código confuso"]
-    Decision --> DeployFailed["🔴 Deploy falhou"]
-    Decision --> NoIdea["❓ Não sei como começar"]
-    Decision --> PythonTask["🐍 Trabalhar com Python"]
-    Decision --> FlutterTask["📱 Trabalho com Flutter"]
-    Decision --> Monitor["📊 Monitoramento/Logs"]
-    Decision --> NewSkill["✨ Criar nova skill"]
-    Decision --> YoutubeVid["🎥 Transcrever vídeo"]
-    Decision --> Scaffold["📦 Gerar Template Base"]
-    Decision --> Orchestrate["🤖 Projeto Gigante"]
-    Decision --> MapKnowledge["🧠 Mapear Relações"]
-    Decision --> SaveState["💾 Salvar Progresso"]
-    Decision --> NewAPI["🔌 Desenhar Nova API"]
-    Decision --> GoTask["🐹 Trabalhar com Go"]
-    Decision --> FrontendTask["💻 Trabalho com Frontend"]
+    Decision --> NewApp["🚀 Create new app"]
+    Decision --> CodeSmell["🤔 Confusing code"]
+    Decision --> DeployFailed["🔴 Deploy failed"]
+    Decision --> NoIdea["❓ Don't know how to start"]
+    Decision --> PythonTask["🐍 Work with Python"]
+    Decision --> FlutterTask["📱 Work with Flutter"]
+    Decision --> Monitor["📊 Monitoring/Logs"]
+    Decision --> NewSkill["✨ Create new skill"]
+    Decision --> YoutubeVid["🎥 Transcribe video"]
+    Decision --> Scaffold["📦 Generate Base Template"]
+    Decision --> Orchestrate["🤖 Giant Project"]
+    Decision --> MapKnowledge["🧠 Map Relationships"]
+    Decision --> SaveState["💾 Save Progress"]
+    Decision --> NewAPI["🔌 Design New API"]
+    Decision --> GoTask["🐹 Work with Go"]
+    Decision --> FrontendTask["💻 Work with Frontend"]
     
     NewApp --> Path1[onboarding-navigator → architecture → sdd]
     CodeSmell --> Path2[clean-code-mentor]
@@ -155,12 +155,12 @@ flowchart LR
 
 ---
 
-## 📈 Estatísticas do Hub
+## 📈 Hub Statistics
 
-- **Total de Skills**: 25
-- **Skills de Metodologia**: 6
-- **Skills de Arquitetura**: 3  
-- **Skills de DevOps/Frameworks**: 12
-- **Skills de Automação**: 2
-- **Skills de Navegação/Orquestração**: 2
-- **Última Atualização**: 23 de Abril de 2026
+- **Total Skills**: 25
+- **Methodology Skills**: 6
+- **Architecture Skills**: 3  
+- **DevOps/Framework Skills**: 12
+- **Automation Skills**: 2
+- **Navigation/Orchestration Skills**: 2
+- **Last Update**: April 23, 2026

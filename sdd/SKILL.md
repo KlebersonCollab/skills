@@ -6,13 +6,13 @@ category: development-workflow
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define architecture, schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 
@@ -24,7 +24,7 @@ Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execuç�
 
 ## Goal
 
-O SDD tem como objetivo garantir precisão, rastreabilidade e integridade no ciclo de vida de desenvolvimento de software, transformando requisitos ambíguos em código verificado e documentado através de um workflow modular e adaptativo, agora potencializado pelos princípios de **Harness Engineering**.
+The objective of SDD is to ensure precision, traceability, and integrity throughout the software development lifecycle, transforming ambiguous requirements into verified and documented code through a modular and adaptive workflow, now enhanced by **Harness Engineering** principles.
 
 ---
 
@@ -42,52 +42,52 @@ The depth of the workflow is determined by the **Complexity** of the task, not a
 
 ---
 
-## Workflow (4 Fases)
+## Workflow (4 Phases)
 
-O ciclo de vida do SDD segue um fluxo iterativo e rigoroso de entrega:
+The SDD lifecycle follows an iterative and rigorous delivery flow:
 
-### Fase 1: DISCOVERY — Mapeamento e Contexto
-1.  **Explorar o Terreno**: Utilizar `sdd-explorer` para entender a stack e arquitetura atual.
-2.  **Definir Visão**: Utilizar `sdd-planner` para alinhar os objetivos no `PROJECT.md` e `ROADMAP.md`.
-3.  **Captura de Memória**: Reidratar o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
-4.  **Requisitos de Produto**: Para tarefas **Complex**, auditar o PRD (Product Requirements Document) existente.
+### Phase 1: DISCOVERY — Mapping and Context
+1.  **Explore the Terrain**: Use `sdd-explorer` to understand the current stack and architecture.
+2.  **Define Vision**: Use `sdd-planner` to align objectives in `PROJECT.md` and `ROADMAP.md`.
+3.  **Memory Capture**: Rehydrate context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+4.  **Product Requirements**: For **Complex** tasks, audit the existing PRD (Product Requirements Document).
 
-### Fase 2: SPECIFY — Contratos e Planejamento
-1.  **Escrever a Spec**: Utilizar `sdd-orchestrator` para definir requisitos técnicos (`spec.md`). Para níveis **Medium+**, utilizar formato **BDD** (Given/When/Then) nos Critérios de Aceitação.
-2.  **Proposta Técnica (RFC)**: Para níveis **Large+**, elaborar uma **RFC** (Request for Comments) detalhando a arquitetura e trade-offs antes do `plan.md`.
-3.  **Desenhar a Solução**: Elaborar o `plan.md` com arquitetura e schemas. **Mandatório**: Incluir diagramas **Mermaid** (Flowcharts, Sequence, Class) para visualizar fluxos e estruturas em níveis **Medium+**.
-4.  **Contrato de Desenvolvimento (SDC)**: Criar o `contract.md` definindo o acordo entre o Implementador e o Revisor sobre o que será entregue e como será medido (Sensores).
-5.  **Atomic Tasks**: Gerar a lista de tarefas (`tasks.md`) para execução.
+### Phase 2: SPECIFY — Contracts and Planning
+1.  **Write the Spec**: Use `sdd-orchestrator` to define technical requirements (`spec.md`). For **Medium+** levels, use **BDD** format (Given/When/Then) in Acceptance Criteria.
+2.  **Technical Proposal (RFC)**: For **Large+** levels, draft an **RFC** (Request for Comments) detailing architecture and trade-offs before `plan.md`.
+3.  **Design the Solution**: Draft `plan.md` with architecture and schemas. **Mandatory**: Include **Mermaid** diagrams (Flowcharts, Sequence, Class) to visualize flows and structures in **Medium+** levels.
+4.  **Development Contract (SDC)**: Create `contract.md` defining the agreement between Implementer and Reviewer on what will be delivered and how it will be measured (Sensors).
+5.  **Atomic Tasks**: Generate the task list (`tasks.md`) for execution.
 
-### Fase 3: IMPLEMENT — Execução Atômica
-1.  **Isolamento**: **OBRIGATÓRIO** criar uma feature branch (`feat/`, `fix/`, `docs/`) a partir da `main` antes de iniciar o código. NUNCA commite diretamente na `main`.
-2.  **Automação**: Utilizar o **SDD CLI** (`uv run sdd task <feature> <id>`) para marcar o progresso.
-3.  **Ciclo de Código**: Utilizar `sdd-implementer` para escrever código test-driven (TDD) alinhado aos cenários BDD.
-4.  **Mandato Proibitivo**: **NUNCA** marque uma tarefa como completa em `tasks.md` sem passar 100% pelos testes e sem realizar o commit git correspondente na branch de feature.
-5.  **Integridade**: Garantir que cada tarefa em `tasks.md` seja marcada como completa apenas após passar nos testes e ser commitada individualmente.
+### Phase 3: IMPLEMENT — Atomic Execution
+1.  **Isolation**: **MANDATORY** create a feature branch (`feat/`, `fix/`, `docs/`) from `main` before starting code. NEVER commit directly to `main`.
+2.  **Automation**: Use **SDD CLI** (`uv run sdd task <feature> <id>`) to track progress.
+3.  **Code Cycle**: Use `sdd-implementer` to write test-driven code (TDD) aligned with BDD scenarios.
+4.  **Prohibitive Mandate**: **NEVER** mark a task as complete in `tasks.md` without passing 100% of tests and performing the corresponding git commit on the feature branch.
+5.  **Integrity**: Ensure each task in `tasks.md` is marked as complete only after passing tests and being committed individually.
 
-### Fase 4: REVIEW — Auditoria e Finalização
-1.  **Veredito via Sensores**: Utilizar `sdd-reviewer` para auditar a entrega contra a `spec.md` e o `contract.md`, utilizando feedback de ferramentas (testes, linters).
-2.  **Score Report**: Gerar o relatório de validação com pontuação de 0-100.
-3.  **UAT**: Validar com o usuário se os critérios de aceitação (BDD) foram atendidos.
-4.  **Persistência**: Atualizar os logs de memória e estado no Planner antes do encerramento.
+### Phase 4: REVIEW — Audit and Finalization
+1.  **Verdict via Sensors**: Use `sdd-reviewer` to audit delivery against `spec.md` and `contract.md`, using tool feedback (tests, linters).
+2.  **Score Report**: Generate a validation report with a score from 0-100.
+3.  **UAT**: Validate with the user if Acceptance Criteria (BDD) were met.
+4.  **Persistence**: Update memory logs and state in the Planner before closing.
 
 ---
 
 ## The Modular Engine: When, How & Why
 
-Esta skill delega tarefas para sub-skills especializadas para garantir escalabilidade e eficiência de contexto:
+This skill delegates tasks to specialized sub-skills to ensure scalability and context efficiency:
 
-| Sub-skill | **Quando** usar? (Trigger) | **Como** delegar? | **Por que** é vital? |
+| Sub-skill | **When** to use? (Trigger) | **How** to delegate? | **Why** is it vital? |
 |---|---|---|---|
-| **[Explorer](sdd-explorer.skill.md)** | Ao iniciar em código legado ou desconhecido. | Peça um mapeamento da stack e arquitetura (`STACK.md`, `ARCHITECTURE.md`). | Evita alucinações sobre dependências e padrões existentes. |
-| **[Planner](sdd-planner.skill.md)** | Ao final de sessões, após decisões ou mudanças de roadmap. | Instrua a atualizar o `STATE.md`, `MEMORY.md` e capturar `LEARNINGS.md`. | Garante a persistência do estado e a continuidade entre sessões (Harness). |
-| **[Orchestrator](sdd-orchestrator.skill.md)** | Sempre que uma feature (**Small+**) for iniciada. | Delegue a criação de `spec.md`, `plan.md` e a quebra em `tasks.md`. | Mantém a separação entre "o que fazer" e "como fazer", garantindo rastreabilidade. |
-| **[Implementer](sdd-implementer.skill.md)** | Quando o plano e as tarefas atômicas estão prontos. | Delegue a execução de tarefas específicas do `tasks.md` via TDD e commits. | Foca o agente na escrita de código limpo e testes sem a carga cognitiva do design. |
-| **[Reviewer](sdd-reviewer.skill.md)** | Quando a implementação (Fase 3) termina ou em marcos críticos. | Peça uma auditoria baseada em evidências contra os ACs (BDD) e o `contract.md`. | Garante que a entrega atende ao padrão de qualidade e critérios originais. |
+| **[Explorer](sdd-explorer.skill.md)** | When starting in legacy or unknown code. | Request a stack and architecture mapping (`STACK.md`, `ARCHITECTURE.md`). | Prevents hallucinations about existing dependencies and patterns. |
+| **[Planner](sdd-planner.skill.md)** | At the end of sessions, after decisions or roadmap changes. | Instruct to update `STATE.md`, `MEMORY.md`, and capture `LEARNINGS.md`. | Ensures state persistence and continuity between sessions (Harness). |
+| **[Orchestrator](sdd-orchestrator.skill.md)** | Whenever a feature (**Small+**) is started. | Delegate the creation of `spec.md`, `plan.md`, and the breakdown into `tasks.md`. | Maintains separation between "what to do" and "how to do it," ensuring traceability. |
+| **[Implementer](sdd-implementer.skill.md)** | When the plan and atomic tasks are ready. | Delegate execution of specific tasks from `tasks.md` via TDD and commits. | Focuses the agent on writing clean code and tests without the cognitive load of design. |
+| **[Reviewer](sdd-reviewer.skill.md)** | When Phase 3 implementation ends or at critical milestones. | Request an evidence-based audit against ACs (BDD) and `contract.md`. | Ensures delivery meets quality standards and original criteria. |
 
 > [!TIP]
-> Em cenários de **Alta Complexidade**, o Orquestrador deve atuar como o "Cérebro Central", mantendo apenas o plano e delegando a pesquisa (Explorer) e a codificação (Implementer) para manter sua própria janela de contexto limpa e focada.
+> In **High Complexity** scenarios, the Orchestrator should act as the "Central Brain," maintaining only the plan and delegating research (Explorer) and coding (Implementer) to keep its own context window clean and focused.
 
 ---
 
@@ -116,27 +116,27 @@ Utilize the **Planner** (`sdd-planner`) to manage three distinct types of memory
 
 This triad ensures that context persists even if the agent is restarted or the context window shifts.
 
-### Delegação para Sub-Agentes (Sub-Agent Delegation)
-Para maximizar a performance e não estourar a janela de contexto, delegue tarefas pesadas para sub-agentes (quando suportado):
-- **Pesquisa/Brownfield:** Delegue e exija apenas o resumo.
-- **Implementação e Testes:** Um sub-agente foca no código, edita os arquivos e retorna o status.
-- Nunca delegue o *Planejamento* ou a *Criação de Tarefas*; o Orquestrador sempre deve manter o contexto consolidado.
+### Sub-Agent Delegation
+To maximize performance and avoid exceeding the context window, delegate heavy tasks to sub-agents (when supported):
+- **Research/Brownfield:** Delegate and require only a summary.
+- **Implementation and Tests:** A sub-agent focuses on code, edits files, and returns status.
+- Never delegate *Planning* or *Task Creation*; the Orchestrator must always maintain consolidated context.
 
 ### Verification Standards
 A feature is NOT complete until the **Reviewer** issues an `APPROVED` verdict based on evidence (file paths and line numbers).
 
 ---
 
-## Referências & Políticas
+## References & Policies
 
-Para manter a conformidade rigorosa e lidar com situações específicas, consulte as diretrizes detalhadas (agregadas do padrão TLC Spec-Driven):
+To maintain rigorous compliance and handle specific situations, consult the detailed guidelines (aggregated from the TLC Spec-Driven standard):
 
-- **[Brownfield Mapping](references/brownfield-mapping.md)**: Como auditar e mapear repositórios existentes (STACK, ARCHITECTURE, CONCERNS).
-- **[Princípios de Codificação](references/coding-principles.md)**: Simplicidade, testes íntegros e foco objetivo.
-- **[Limites de Contexto](references/context-limits.md)**: Tamanhos máximos permitidos para artefatos e zonas de alerta de tokens.
-- **[Session Handoff](references/session-handoff.md)**: Protocolo obrigatório para pausar e retomar o trabalho sem perder contexto.
-- **[Quick Mode](references/quick-mode.md)**: Via expressa para tarefas triviais (<3 arquivos) que não requerem a sobrecarga de todas as fases.
-- **[BDD Guide](references/bdd-guide.md)**: Padrão para escrita de especificações de aceitação.
+- **[Brownfield Mapping](references/brownfield-mapping.md)**: How to audit and map existing repositories (STACK, ARCHITECTURE, CONCERNS).
+- **[Coding Principles](references/coding-principles.md)**: Simplicity, integrity in testing, and objective focus.
+- **[Context Limits](references/context-limits.md)**: Maximum artifact sizes and token warning zones.
+- **[Session Handoff](references/session-handoff.md)**: Mandatory protocol for pausing and resuming work without losing context.
+- **[Quick Mode](references/quick-mode.md)**: Express route for trivial tasks (<3 files) not requiring the overhead of all phases.
+- **[BDD Guide](references/bdd-guide.md)**: Standard for writing acceptance specifications.
 
 ---
 
@@ -153,29 +153,29 @@ Para manter a conformidade rigorosa e lidar com situações específicas, consul
 
 ## Output Structure
 
-A execução deste workflow deve resultar nos seguintes artefatos mandatórios, organizados em `.specs/features/[name]/`:
+Execution of this workflow must result in the following mandatory artifacts, organized in `.specs/features/[name]/`:
 
-| Artefato | Arquivo | Descrição |
+| Artifact | File | Description |
 |----------|---------|-----------|
-| **Specification** | `spec.md` | Requisitos funcionais, ACs (BDD) e restrições. |
-| **Technical Plan** | `plan.md` | Arquitetura, schemas e diagramas Mermaid. |
-| **Contract** | `contract.md` | Acordo de entrega e sensores de validação. |
-| **Atomic Tasks** | `tasks.md` | Lista detalhada de tarefas com status. |
-| **Audit Reports** | `validation-report.md` | Relatórios de conformidade com Score e evidências. |
+| **Specification** | `spec.md` | Functional requirements, ACs (BDD), and constraints. |
+| **Technical Plan** | `plan.md` | Architecture, schemas, and Mermaid diagrams. |
+| **Contract** | `contract.md` | Delivery agreement and validation sensors. |
+| **Atomic Tasks** | `tasks.md` | Detailed task list with status. |
+| **Audit Reports** | `validation-report.md` | Compliance reports with score and evidence. |
 
 ## Quality Rules
 
-- **Gold Standard Benchmark**: Sempre consulte `examples/gold-standard/` para alinhar a qualidade da entrega ao nível de rigor esperado.
-- **Rigor Adaptativo**: O nível de detalhamento deve seguir estritamente a tabela de Auto-Sizing.
-- **BDD-First**: Critérios de aceitação para níveis Medium+ devem obrigatoriamente usar Given/When/Then.
-- **Verificação Contínua**: Uma tarefa só é considerada concluída após passar 100% nos testes e ser commitada individualmente seguindo a `git-workflow`.
-- **Atomicidade Mandatória**: Cada entrada `[x]` no `tasks.md` deve corresponder a pelo menos um commit no Git com a mensagem vinculada ao ID da task.
-- **Branch-First**: O desenvolvimento deve sempre ocorrer em branches de curta duração, protegendo a branch principal (`main`).
-- **Diagram-as-Code**: Desenhos técnicos devem usar Mermaid integrados ao Markdown.
+- **Gold Standard Benchmark**: Always consult `examples/gold-standard/` to align delivery quality with the expected level of rigor.
+- **Adaptive Rigor**: The level of detail must strictly follow the Auto-Sizing table.
+- **BDD-First**: Acceptance criteria for Medium+ levels must use Given/When/Then.
+- **Continuous Verification**: A task is only considered complete after passing 100% of tests and being committed individually following `git-workflow`.
+- **Mandatory Atomicity**: Each `[x]` entry in `tasks.md` must correspond to at least one Git commit with a message linked to the task ID.
+- **Branch-First**: Development must always occur in short-lived branches, protecting the main branch (`main`).
+- **Diagram-as-Code**: Technical drawings must use Mermaid integrated into Markdown.
 
 ## Prohibited
 
-- **NUNCA** iniciar a implementação (Fase 3) sem uma `spec.md` aprovada.
-- **NUNCA** ignorar a atualização proativa de `STATE.md` e `MEMORY.md`.
-- **NUNCA** pular a Fase 4 (Review) e o encerramento das specs ao finalizar uma feature.
-- **NUNCA** usar placeholders como "todo" ou "..." em arquivos de especificação finalizados.
+- **NEVER** start implementation (Phase 3) without an approved `spec.md`.
+- **NEVER** ignore proactive updates to `STATE.md` and `MEMORY.md`.
+- **NEVER** skip Phase 4 (Review) and spec closure when finishing a feature.
+- **NEVER** use placeholders like "todo" or "..." in finalized specification files.

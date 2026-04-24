@@ -1,50 +1,50 @@
-# Guia de Conventional Commits
+# Conventional Commits Guide
 
-O padrão **Conventional Commits** é uma convenção leve sobre mensagens de commit. **Mandato do Projeto**: Todas as mensagens devem ser escritas em **Inglês**.
+The **Conventional Commits** standard is a lightweight convention for commit messages. **Project Mandate**: All messages must be written in **English**.
 
-## Estrutura da Mensagem
+## Message Structure
 
 ```
-<tipo>(<escopo>): <assunto>
+<type>(<scope>): <subject>
 
-[corpo opcional]
+[optional body]
 
-[rodapé opcional]
+[optional footer]
 ```
 
-### Tipos (Mandatórios)
+### Types (Mandatory)
 
-| Tipo | Descrição |
+| Type | Description |
 |------|-----------|
-| **feat** | Uma nova funcionalidade para o usuário, não uma nova funcionalidade para o script de build. |
-| **fix** | Uma correção de bug para o usuário, não uma correção para o script de build. |
-| **docs** | Mudanças na documentação. |
-| **style** | Mudanças que não afetam o significado do código (espaço em branco, formatação, falta de ponto e vírgula, etc). |
-| **refactor** | Uma mudança de código que nem corrige um bug nem adiciona uma funcionalidade. |
-| **perf** | Uma mudança de código que melhora o desempenho. |
-| **test** | Adicionando testes ausentes ou corrigindo testes existentes. |
-| **build** | Mudanças que afetam o sistema de build ou dependências externas (ex: gulp, broccoli, npm). |
-| **ci** | Mudanças em nossos arquivos e scripts de configuração de CI (ex: Travis, Circle, BrowserStack, SauceLabs). |
-| **chore** | Outras mudanças que não modificam os arquivos `src` ou de teste. |
-| **revert** | Reverte um commit anterior. |
+| **feat** | A new feature for the user, not a new feature for the build script. |
+| **fix** | A bug fix for the user, not a fix for the build script. |
+| **docs** | Documentation changes. |
+| **style** | Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc). |
+| **refactor** | A code change that neither fixes a bug nor adds a feature. |
+| **perf** | A code change that improves performance. |
+| **test** | Adding missing tests or correcting existing tests. |
+| **build** | Changes that affect the build system or external dependencies (e.g., gulp, broccoli, npm). |
+| **ci** | Changes to our CI configuration files and scripts (e.g., Travis, Circle, BrowserStack, SauceLabs). |
+| **chore** | Other changes that don't modify `src` or test files. |
+| **revert** | Reverts a previous commit. |
 
-### Escopo (Opcional)
-O escopo pode ser qualquer coisa que especifique o local da mudança do commit. Por exemplo: `auth`, `api`, `ui`, `database`, etc.
+### Scope (Optional)
+The scope can be anything specifying the place of the commit change. For example: `auth`, `api`, `ui`, `database`, etc.
 
-### Assunto (Mandatório)
-O assunto contém uma descrição sucinta da mudança:
-- Use o imperativo, tempo presente: "change" não "changed" nem "changes".
-- Não capitalize a primeira letra.
-- Sem ponto final (.) no final.
+### Subject (Mandatory)
+The subject contains a succinct description of the change:
+- Use the imperative, present tense: "change" not "changed" nor "changes".
+- Don't capitalize the first letter.
+- No dot (.) at the end.
 
-## Exemplos de Mensagens
+## Message Examples
 
-### Commit Simples
+### Simple Commit
 ```bash
 feat(api): add oauth2 support for external partners
 ```
 
-### Commit com Corpo e Rodapé
+### Commit with Body and Footer
 ```bash
 fix(ui): resolve race condition in login form
 

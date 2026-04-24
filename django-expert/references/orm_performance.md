@@ -1,31 +1,31 @@
 # Django ORM Performance Reference
 
-O ORM do Django é poderoso, mas pode ser uma armadilha de performance se não for usado com rigor.
+The Django ORM is powerful, but it can be a performance trap if not used strictly.
 
-## 1. O Problema do N+1
+## 1. The N+1 Problem
 
-Este é o erro mais comum. Ocorre quando você itera sobre um queryset e acessa uma relação que não foi carregada previamente.
+This is the most common error. It occurs when you iterate over a queryset and access a relationship that was not previously loaded.
 
-### Soluções:
-- **`select_related(*fields)`**: Faz um `JOIN` SQL. Use para `ForeignKey` e `OneToOneField`.
-- **`prefetch_related(*fields)`**: Faz uma query separada e faz o "join" em Python. Use para `ManyToManyField` e relações reversas.
+### Solutions:
+- **`select_related(*fields)`**: Does a SQL `JOIN`. Use for `ForeignKey` and `OneToOneField`.
+- **`prefetch_related(*fields)`**: Does a separate query and performs the "join" in Python. Use for `ManyToManyField` and reverse relationships.
 
 ```python
-# Exemplo de uso em View
+# Example usage in View
 queryset = Order.objects.select_related('customer').prefetch_related('items__product')
 ```
 
-## 2. Somente o que você precisa
+## 2. Only what you need
 
-NUNCA carregue o objeto inteiro se precisar apenas de alguns campos.
+NEVER load the entire object if you only need a few fields.
 
-- **`only(*fields)`**: Carrega apenas os campos especificados.
-- **`defer(*fields)`**: Carrega todos exceto os especificados.
-- **`values()` / `values_list()`**: Retorna dicionários ou tuplas (muito mais rápido se não precisar dos métodos do modelo).
+- **`only(*fields)`**: Loads only the specified fields.
+- **`defer(*fields)`**: Loads all except those specified.
+- **`values()` / `values_list()`**: Returns dictionaries or tuples (much faster if you don't need the model methods).
 
 ## 3. QuerySet & Managers (Advanced)
 
-Utilize `QuerySet.as_manager()` para encapsular lógica de filtro reutilizável.
+Use `QuerySet.as_manager()` to encapsulate reusable filter logic.
 
 ```python
 class ProductQuerySet(models.QuerySet):
@@ -41,7 +41,7 @@ class Product(models.Model):
 ```
 
 ### Manager Helper Methods
-Adicione métodos utilitários para evitar repetição de `try/except`.
+Add utility methods to avoid repeating `try/except`.
 ```python
 class BaseManager(models.Manager):
     def get_or_none(self, **kwargs):
@@ -52,7 +52,7 @@ class BaseManager(models.Manager):
 ```
 
 ## 4. Database Hardening
-Use constraints e índices para garantir integridade e performance no banco.
+Use constraints and indexes to ensure database integrity and performance.
 
 ```python
 class Meta:
@@ -69,5 +69,4 @@ class Meta:
 ```
 
 ## 5. Bulk Operations
-Sempre use `bulk_create`, `bulk_update` e `QuerySet.update()` para manipulação de grandes volumes de dados.
-
+Always use `bulk_create`, `bulk_update`, and `QuerySet.update()` for handling large volumes of data.

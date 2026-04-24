@@ -1,66 +1,66 @@
 # Repos & Code Flow: Azure DevOps
 
-Azure Repos fornece ferramentas de controle de versão (Git) e um fluxo de trabalho robusto para revisão de código através de **Pull Requests (PRs)**.
+Azure Repos provides version control tools (Git) and a robust workflow for code review through **Pull Requests (PRs)**.
 
-## 1. Gestão de Repositórios
+## 1. Repository Management
 
-Listar, criar e deletar repositórios em um projeto:
+List, create, and delete repositories in a project:
 
 `GET https://dev.azure.com/{org}/{project}/_apis/git/repositories?api-version=7.1`
 
-**Comando CLI**:
+**CLI Command**:
 `az repos list --project {project}`
 
 ## 2. Pull Requests (PRs)
 
-O ciclo de vida de um PR inclui:
-- **Criação**: Definir a branch de origem e destino, título, descrição e revisores.
-- **Revisão**: Adicionar comentários, threads de discussão e votos.
-- **Conclusão**: Merge na branch de destino com a estratégia escolhida (Merge, Squash, Rebase).
+The PR life cycle includes:
+- **Creation**: Define origin and target branch, title, description, and reviewers.
+- **Review**: Add comments, discussion threads, and votes.
+- **Completion**: Merge into the target branch with the chosen strategy (Merge, Squash, Rebase).
 
-### Criando um PR (POST)
+### Creating a PR (POST)
 ```json
 {
   "sourceRefName": "refs/heads/feature/auth",
   "targetRefName": "refs/heads/develop",
-  "title": "Adicionar login via OAuth2",
-  "description": "Implementação baseada na issue #42",
+  "title": "Add login via OAuth2",
+  "description": "Implementation based on issue #42",
   "reviewers": [
     {
-      "id": "uuid-revisor-1"
+      "id": "uuid-reviewer-1"
     }
   ]
 }
 ```
 
-## 3. Comentários e Discussões
+## 3. Comments and Discussions
 
-As discussões em PRs são organizadas em **Threads**. Você pode listar e interagir com elas programaticamente:
+PR discussions are organized into **Threads**. You can list and interact with them programmatically:
 
 `GET https://dev.azure.com/{org}/{project}/_apis/git/repositories/{repoId}/pullRequests/{prId}/threads?api-version=7.1`
 
-## 4. Políticas de Branch (Branch Policies)
+## 4. Branch Policies
 
-Políticas garantem a qualidade do código antes do merge. Exemplos:
-- Número mínimo de revisores.
-- Build de pipelines bem-sucedido.
-- Resolução de todos os comentários.
-- Padronização de nomes de branch.
+Policies ensure code quality before merging. Examples:
+- Minimum number of reviewers.
+- Successful pipeline build.
+- Resolution of all comments.
+- Branch name standardization.
 
-Você pode consultar políticas aplicadas a uma branch:
+You can query policies applied to a branch:
 
 `GET https://dev.azure.com/{org}/{project}/_apis/policy/evaluations?api-version=7.1&targetRefName=refs/heads/main`
 
-## 5. Estratégias de Merge
+## 5. Merge Strategies
 
-Ao completar um PR, você pode escolher a estratégia:
-- **No-fast-forward (Merge)**: Mantém o histórico completo.
-- **Squash merge**: Consolida todos os commits em um só.
-- **Rebase and merge**: Reaplica commits na ponta da branch alvo.
+When completing a PR, you can choose the strategy:
+- **No-fast-forward (Merge)**: Maintains full history.
+- **Squash merge**: Consolidates all commits into one.
+- **Rebase and merge**: Re-applies commits on top of the target branch.
 
-## 6. Melhores Práticas
+## 6. Best Practices
 
-- **Feature Branching**: Nunca trabalhe diretamente na branch principal (`main` ou `develop`).
-- **Descrições Claras**: Sempre vincule o PR a um Work Item do Board (ex: `refs/heads/feature/42-auth`).
-- **Small PRs**: Pull Requests menores são mais fáceis de revisar e diminuem a chance de bugs.
-- **Automation**: Utilize pipelines para executar linters e testes unitários automaticamente ao criar um PR.
+- **Feature Branching**: Never work directly on the primary branch (`main` or `develop`).
+- **Clear Descriptions**: Always link the PR to a Board Work Item (e.g., `refs/heads/feature/42-auth`).
+- **Small PRs**: Smaller Pull Requests are easier to review and decrease the chance of bugs.
+- **Automation**: Use pipelines to run linters and unit tests automatically when creating a PR.

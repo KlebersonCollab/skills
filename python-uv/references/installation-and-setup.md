@@ -1,15 +1,15 @@
 # Installation & Setup
 
-Guia completo de instalação do UV e configuração de ambientes Python em todas as plataformas.
+Complete guide for UV installation and Python environment configuration on all platforms.
 
 ---
 
-## Instalação
+## Installation
 
 ### macOS
 
 ```bash
-# Homebrew (Recomendado)
+# Homebrew (Recommended)
 brew install uv
 
 # Standalone installer
@@ -19,71 +19,71 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ### Linux
 
 ```bash
-# Standalone installer (Recomendado)
+# Standalone installer (Recommended)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Via pipx (se já tiver Python)
+# Via pipx (if you already have Python)
 pipx install uv
 ```
 
 ### Windows
 
 ```powershell
-# PowerShell (Recomendado)
+# PowerShell (Recommended)
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 
-# Via pip (se já tiver Python)
+# Via pip (if you already have Python)
 pip install uv
 ```
 
-### Verificação
+### Verification
 
 ```bash
 uv --version
 uvx --version
-# Deve exibir algo como: uv 0.9.7
+# Should display something like: uv 0.9.7
 ```
 
 ---
 
 ## Virtual Environment Setup
 
-### Método 1: UV Project (Recomendado para novos projetos)
+### Method 1: UV Project (Recommended for new projects)
 
 ```bash
-# UV cria e gerencia venv automaticamente
-uv init meu-projeto
-cd meu-projeto
-uv sync  # cria .venv automaticamente
+# UV creates and manages venv automatically
+uv init my-project
+cd my-project
+uv sync  # creates .venv automatically
 uv run python -c "print('Hello UV!')"
 ```
 
-### Método 2: Manual com venv
+### Method 2: Manual with venv
 
 ```bash
-# Criar venv manualmente
+# Create venv manually
 python -m venv .venv
 
-# Ativar (macOS / Linux)
+# Activate (macOS / Linux)
 source .venv/bin/activate
 
-# Ativar (Windows Git Bash)
+# Activate (Windows Git Bash)
 . .venv/Scripts/activate
 
-# Ativar (Windows CMD)
+# Activate (Windows CMD)
 .venv\Scripts\activate.bat
 
-# Ativar (Windows PowerShell)
+# Activate (Windows PowerShell)
 .venv\Scripts\Activate.ps1
 
-# Instalar pacotes com UV dentro do venv
+# Install packages with UV inside the venv
 uv pip install requests numpy pandas
 ```
 
-### Método 3: UV sem ativar (Recomendado para automação)
+### Method 3: UV without activating (Recommended for automation)
 
 ```bash
-# Executar diretamente sem ativar venv
+# Execute directly without activating venv
 uv run python script.py
 uv run pytest
 uv run ruff check .
@@ -91,27 +91,27 @@ uv run ruff check .
 
 ---
 
-## Configuração de PATH
+## PATH Configuration
 
-Se UV não for encontrado após a instalação:
+If UV is not found after installation:
 
 ### macOS / Linux
 
 ```bash
-# Adicionar ao ~/.zshrc ou ~/.bashrc
+# Add to ~/.zshrc or ~/.bashrc
 export PATH="$HOME/.local/bin:$PATH"
 
-# Recarregar configuração
-source ~/.zshrc  # ou source ~/.bashrc
+# Reload configuration
+source ~/.zshrc  # or source ~/.bashrc
 ```
 
 ### Windows
 
 ```powershell
-# Verificar se está no PATH
+# Check if it's in the PATH
 $env:PATH -split ';' | Select-String "uv"
 
-# Adicionar manualmente se necessário
+# Add manually if necessary
 $env:PATH += ";$env:LOCALAPPDATA\Programs\uv"
 ```
 
@@ -119,32 +119,32 @@ $env:PATH += ";$env:LOCALAPPDATA\Programs\uv"
 
 ## Troubleshooting
 
-### UV não encontrado após instalação
+### UV not found after installation
 
 ```bash
-# Verificar localização
+# Check location
 which uv           # macOS/Linux
 where.exe uv       # Windows
 
-# Se não encontrar, reinstalar
+# If not found, reinstall
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### Venv não ativa
+### Venv does not activate
 
 ```bash
-# Verificar se o script de ativação existe
+# Check if activation script exists
 ls .venv/bin/activate        # macOS/Linux
 ls .venv/Scripts/activate    # Windows
 
-# Se não existir, recriar
+# If it doesn't exist, recreate
 rm -rf .venv
 uv venv .venv
-# ou
+# or
 python -m venv .venv
 ```
 
-### Permissões negadas
+### Permissions denied
 
 ```bash
 # macOS/Linux
@@ -158,27 +158,27 @@ chmod -R u+w ~/.cache/uv/
 ## Quick Reference Card
 
 ```bash
-# Instalação
+# Installation
 curl -LsSf https://astral.sh/uv/install.sh | sh    # Linux/Mac
 brew install uv                                      # macOS Homebrew
 
-# Novo projeto
-uv init meu-projeto && cd meu-projeto
+# New project
+uv init my-project && cd my-project
 
-# Dependências
+# Dependencies
 uv add requests pydantic
 uv add --dev pytest ruff mypy
 uv sync
 
-# Executar
+# Execute
 uv run python main.py
 uv run pytest
 
-# Ferramentas globais
+# Global tools
 uv tool install ruff
 uv tool install mypy
 
-# Versão Python
+# Python version
 uv python install 3.12
 uv python pin 3.12
 ```

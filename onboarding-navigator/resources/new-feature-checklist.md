@@ -1,23 +1,32 @@
-# Checklist: Iniciando Nova Funcionalidade
+# New Feature Checklist
 
-Este checklist garante que toda nova funcionalidade siga rigorosamente a cultura de engenharia e os padrões de qualidade do Hub.
+Mandatory steps for implementing a new feature in the ecosystem.
 
-## 🏁 Pré-requisitos
-1. [ ] **Validar Alinhamento**: Consultar a skill `onboarding-navigator` para confirmar se a abordagem proposta faz sentido para o ecossistema.
-2. [ ] **Identificar Skills**: Listar quais das 18 skills serão necessárias para a implementação (ex: `fastapi-expert`, `architecture`).
+## 1. Preparation
+- [ ] Feature branch created.
+- [ ] `STATE.md` updated with "Starting feature [name]".
+- [ ] Task ID assigned in `tasks.md`.
 
-## 🏗️ Fase 1: Especificação (SDD)
-3. [ ] **Criar PRD/RFC**: Definir o "porquê" e o "quê" no diretório `.specs/features/<feature_name>/`.
-4. [ ] **Desenhar Diagramas**: Criar diagramas de sequência ou fluxo usando Mermaid para visualizar a lógica.
-5. [ ] **Escrever ADR**: Caso haja uma decisão arquitetural significativa, registrá-la em `.specs/architecture/`.
+## 2. Specification & Planning
+- [ ] `spec.md` created with clear requirements.
+- [ ] BDD scenarios defined in Acceptance Criteria.
+- [ ] `plan.md` created with architecture and schemas.
+- [ ] Mermaid diagrams included (Flowchart/Sequence).
+- [ ] `contract.md` established with validation sensors.
 
-## 🛠️ Fase 2: Planejamento Técnico
-6. [ ] **Definir Tasks**: Criar o arquivo `tasks.md` com a decomposição atômica das atividades.
-7. [ ] **Plano de Testes**: Definir como a funcionalidade será validada (Unitários, Integração, E2E).
+## 3. Implementation
+- [ ] TDD cycle followed (Red-Green-Refactor).
+- [ ] Logic implemented in atomic commits per task.
+- [ ] English-only compliance for comments and documentation.
+- [ ] Linting and type checking passing locally.
 
-## 💻 Fase 3: Execução
-8. [ ] **Scaffolding**: Usar `scaffolding-expert` se houver necessidade de novos diretórios ou estruturas padronizadas.
-9. [ ] **Implementação Iterativa**: Seguir o ciclo Plan -> Act -> Validate para cada tarefa do `tasks.md`.
+## 4. Verification
+- [ ] All tests passing 100%.
+- [ ] `validation-report.md` generated with evidence.
+- [ ] Score review completed.
 
-## 🚀 Fase 4: Persistência e Review
-10. [ ] **Atualizar Grafo de Conhecimento**: Mapear as novas entidades no `KNOWLEDGE-MAP.mermaid` via `knowledge-architect`.
+## 5. Finalization
+- [ ] Pull Request opened with link in `validation-report.md`.
+- [ ] `tasks.md` updated as 100% completed.
+- [ ] `STATE.md` and `MEMORY.md` synchronized.
+- [ ] Learnings captured in `LEARNINGS.md`.

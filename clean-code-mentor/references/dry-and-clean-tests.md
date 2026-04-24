@@ -1,37 +1,37 @@
 # DRY & Clean Tests: Quality Assurance
 
-Princípios para garantir a coesão do código base e a confiabilidade da suíte de testes.
+Principles to ensure the cohesion of the codebase and the reliability of the test suite.
 
 ---
 
 ## 1. DRY (Don't Repeat Yourself)
-**"Toda peça de conhecimento deve ter uma representação única, não ambígua e autoritativa dentro do sistema."**
+**"Every piece of knowledge must have a single, unambiguous, authoritative representation within a system."**
 
-- **O que NÃO é DRY**: Duplicação de lógica (ex: calcular o mesmo imposto em dois lugares diferentes).
-- **O que É DRY**: Centralizar o cálculo em uma única função ou serviço que é reutilizado por todos.
-- **Sinais de Violação**:
-    - Mudanças em um lugar exigem mudanças em múltiplos outros lugares ("Shotgun Surgery").
-    - Padrões de código idênticos em classes não relacionadas.
-- **Estratégia**: Abstraia a lógica duplicada para utilitários, mixins ou serviços especializados.
-- **Atenção**: Não confunda duplicação de *código* (ex: dois `for` parecidos) com duplicação de *conhecimento* (ex: a mesma regra de negócio em dois lugares). Forçar o DRY em lógicas que evoluem de forma diferente pode levar a um acoplamento indesejado.
+- **What is NOT DRY**: Logic duplication (e.g., calculating the same tax in two different places).
+- **What IS DRY**: Centralizing the calculation in a single function or service that is reused by all.
+- **Violation Signals**:
+    - Changes in one place require changes in multiple other places ("Shotgun Surgery").
+    - Identical code patterns in unrelated classes.
+- **Strategy**: Abstract duplicated logic into utilities, mixins, or specialized services.
+- **Note**: Do not confuse *code* duplication (e.g., two similar `for` loops) with *knowledge* duplication (e.g., the same business rule in two places). Forcing DRY on logics that evolve differently can lead to unwanted coupling.
 
 ## 2. Clean Tests (FIRST)
-Testes devem ser tratados com o mesmo rigor de qualidade que o código de produção.
+Tests should be treated with the same quality rigor as production code.
 
-- **F: Fast**: Testes devem rodar em segundos. Se forem lentos, ninguém os rodará.
-- **I: Independent**: Um teste não deve depender do resultado de outro teste ou do estado deixado por ele.
-- **R: Repeatable**: Devem passar em qualquer ambiente (Local, CI, Docker), a qualquer momento.
-- **S: Self-validating**: O teste deve ter um resultado booleano (Pass/Fail) claro. Nada de logs para verificar manualmente.
-- **T: Timely**: Devem ser escritos preferencialmente no ciclo de TDD (ou junto com o código de produção).
+- **F: Fast**: Tests should run in seconds. If they are slow, nobody will run them.
+- **I: Independent**: One test should not depend on the result of another test or the state left by it.
+- **R: Repeatable**: They must pass in any environment (Local, CI, Docker), at any time.
+- **S: Self-validating**: The test must have a clear boolean result (Pass/Fail). No logs to check manually.
+- **T: Timely**: They should preferably be written in the TDD cycle (or along with the production code).
 
 ---
 
-## Estrutura de Teste Limpo (AAA)
+## Clean Test Structure (AAA)
 
-Siga sempre o padrão **Arrange, Act, Assert** para legibilidade:
+Always follow the **Arrange, Act, Assert** pattern for readability:
 
-1.  **Arrange**: Configure o cenário, crie objetos e mocks.
-2.  **Act**: Execute o método ou ação que está sendo testada.
-3.  **Assert**: Verifique se o resultado foi o esperado.
+1.  **Arrange**: Set up the scenario, create objects and mocks.
+2.  **Act**: Execute the method or action being tested.
+3.  **Assert**: Verify that the result was as expected.
 
-**Dica**: Um bom teste deve contar uma história. Use nomes descritivos (ex: `test_deve_lancar_excecao_quando_usuario_for_nulo`).
+**Tip**: A good test should tell a story. Use descriptive names (e.g., `test_should_throw_exception_when_user_is_null`).

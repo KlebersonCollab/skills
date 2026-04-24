@@ -1,8 +1,8 @@
 # FastAPI Testing with UV & Pytest
 
-Testar APIs assíncronas exige configuração correta do loop de eventos e do cliente HTTP.
+Testing asynchronous APIs requires correct event loop and HTTP client configuration.
 
-## 1. Configuração de Fixtures (`tests/conftest.py`)
+## 1. Fixtures Configuration (`tests/conftest.py`)
 
 ```python
 import pytest
@@ -19,14 +19,14 @@ def event_loop():
 
 @pytest.fixture
 async def client():
-    # Exemplo de override de dependência (ex: banco em memória)
+    # Dependency override example (e.g., in-memory database)
     async with AsyncClient(app=app, base_url="http://test") as ac:
         yield ac
 ```
 
-## 2. Exemplo de Teste Assíncrono
+## 2. Asynchronous Test Example
 
-Sempre utilize o decorator `@pytest.mark.asyncio`.
+Always use the `@pytest.mark.asyncio` decorator.
 
 ```python
 import pytest
@@ -41,7 +41,7 @@ async def test_read_main(client: AsyncClient):
 
 ## 3. Integration Tests (Database & Cleanups)
 
-Use `dependency_overrides` para injetar um banco de dados de teste (ex: SQLite in-memory).
+Use `dependency_overrides` to inject a test database (e.g., SQLite in-memory).
 
 ```python
 from app.core.database import get_db
@@ -53,8 +53,8 @@ async def override_get_db():
 app.dependency_overrides[get_db] = override_get_db
 ```
 
-### Resetando o Banco entre Testes
-Use fixtures para criar/limpar as tabelas em cada teste:
+### Resetting the Database between Tests
+Use fixtures to create/clear tables in each test:
 
 ```python
 @pytest.fixture(autouse=True)
@@ -66,7 +66,7 @@ async def setup_db():
         await conn.run_sync(Base.metadata.drop_all)
 ```
 
-## 4. Execução com UV
+## 4. Execution with UV
 ```bash
 uv add --dev pytest pytest-asyncio httpx aiosqlite
 uv run pytest

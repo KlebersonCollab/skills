@@ -1,14 +1,14 @@
 # Pipelines & CI/CD: Azure DevOps
 
-Azure Pipelines fornece ferramentas para automação de build, teste e deploy em qualquer linguagem ou plataforma.
+Azure Pipelines provides tools for build, test, and deployment automation in any language or platform.
 
-## 1. Definições de Build
+## 1. Build Definitions
 
-Listar e enfileirar builds:
+List and enqueue builds:
 
 `GET https://dev.azure.com/{org}/{project}/_apis/build/definitions?api-version=7.1`
 
-### Enfileirando um novo Build (POST)
+### Enqueueing a new Build (POST)
 ```json
 {
   "definition": {
@@ -19,36 +19,36 @@ Listar e enfileirar builds:
 }
 ```
 
-## 2. Monitorando Logs e Status
+## 2. Monitoring Logs and Status
 
-Verificar o status de uma execução de build:
+Check the status of a build execution:
 
 `GET https://dev.azure.com/{org}/{project}/_apis/build/builds/{buildId}?api-version=7.1`
 
-**Status comuns**: `queued`, `inProgress`, `completed`, `failed`, `succeeded`.
+**Common Statuses**: `queued`, `inProgress`, `completed`, `failed`, `succeeded`.
 
-## 3. Releases e Ambientes
+## 3. Releases and Environments
 
-Gerenciar o fluxo de entrega em diferentes estágios (Dev, Staging, Prod):
+Manage the delivery flow across different stages (Dev, Staging, Prod):
 
 `GET https://dev.azure.com/{org}/{project}/_apis/release/definitions?api-version=7.1`
 
-A criação de uma nova release dispara o fluxo de deploy definido na release definition.
+Creating a new release triggers the deployment flow defined in the release definition.
 
-## 4. Variáveis e Conexões (Governance)
+## 4. Variables and Connections (Governance)
 
-- **Variable Groups**: Agrupam segredos e configurações compartilhadas entre pipelines.
-- **Service Connections**: Conectam o AzDO com serviços externos (Azure, AWS, GCP, Docker Hub, Kubernetes).
+- **Variable Groups**: Group secrets and configurations shared among pipelines.
+- **Service Connections**: Connect AzDO with external services (Azure, AWS, GCP, Docker Hub, Kubernetes).
 
-Você pode listar conexões de serviço:
+You can list service connections:
 
 `GET https://dev.azure.com/{org}/{project}/_apis/serviceendpoint/endpoints?api-version=7.1`
 
 ## 5. YAML Pipelines (Modern CI)
 
-O padrão em 2026 é definir pipelines via arquivos YAML (`azure-pipelines.yml`) versionados no repositório.
+The standard in 2026 is to define pipelines via YAML files (`azure-pipelines.yml`) versioned in the repository.
 
-Exemplo de estrutura:
+Example structure:
 ```yaml
 trigger:
   - main
@@ -58,12 +58,12 @@ pool:
 
 steps:
   - script: echo "Hello World"
-    displayName: 'Exibir mensagem'
+    displayName: 'Display message'
 ```
 
-## 6. Boas Práticas
+## 6. Best Practices
 
-- **Templating**: Utilize templates YAML para reutilizar etapas de build e deploy em diferentes pipelines.
-- **Secrets Management**: Nunca coloque segredos diretamente no YAML. Use Variable Groups integrados ao **Azure Key Vault**.
-- **Agent Pools**: Monitore a utilização dos agentes para evitar filas excessivas.
-- **Gates & Approvals**: Utilize aprovações manuais e gates de verificação (ex: consulta via API) antes de promover deploys para produção.
+- **Templating**: Use YAML templates to reuse build and deployment steps across different pipelines.
+- **Secrets Management**: Never put secrets directly in the YAML. Use Variable Groups integrated with **Azure Key Vault**.
+- **Agent Pools**: Monitor agent utilization to avoid excessive queues.
+- **Gates & Approvals**: Use manual approvals and verification gates (e.g., API query) before promoting deployments to production.

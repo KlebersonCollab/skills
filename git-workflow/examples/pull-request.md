@@ -1,25 +1,25 @@
 # Pull Request Template
 
-## 📝 Descrição
-Breve descrição do que este PR faz e qual problema ele resolve.
+## 📝 Description
+Brief description of what this PR does and what problem it solves.
 
-## 🎯 Por que esta mudança é necessária?
-Explique o contexto e a motivação por trás desta implementação.
+## 🎯 Why is this change necessary?
+Explain the context and motivation behind this implementation.
 
-## 🛠️ Como isso foi implementado?
-Destaques técnicos da implementação, trade-offs feitos e decisões de design.
+## 🛠️ How was this implemented?
+Technical highlights of the implementation, trade-offs made, and design decisions.
 
-## ✅ Checklist de Qualidade (SDD)
-- [ ] O código segue o guia de estilo do projeto.
-- [ ] Foram adicionados testes para a nova funcionalidade/correção.
-- [ ] Os testes existentes passam localmente.
-- [ ] A documentação foi atualizada (se necessário).
-- [ ] O histórico de commits está limpo e segue os Conventional Commits.
-- [ ] Refere-se a uma tarefa em `tasks.md`.
+## ✅ Quality Checklist (SDD)
+- [ ] Code follows the project style guide.
+- [ ] Unit tests added for the new feature/fix.
+- [ ] Existing tests pass locally.
+- [ ] Documentation updated (if necessary).
+- [ ] Commit history is clean and follows Conventional Commits.
+- [ ] Refers to a task in `tasks.md`.
 
-## 📸 Screenshots / Demos (se aplicável)
-Insira imagens ou vídeos demonstrando as mudanças na UI.
+## 📸 Screenshots / Demos (if applicable)
+Insert images or videos demonstrating changes in the UI.
 
-## 🔗 Links Relacionados
+## 🔗 Related Links
 - Closes #123
-- [Link para Spec/SDD](file:///...)
+- [Link to Spec/SDD](file:///...)

@@ -1,24 +1,24 @@
 .PHONY: help sync validate dist verify knowledge-map verify-vers clean release changelog
 
-# Detecta o comando python (python3 ou python)
+# Detect python command (python3 or python)
 PYTHON := $(shell command -v python3 >/dev/null 2>&1 && echo python3 || echo python)
 
 help:
 	@echo "AI Agent Skills Hub - Makefile"
 	@echo ""
-	@echo "Comandos disponíveis:"
-	@echo "  make sync          - Sincroniza mandatos e skills para os agentes (.gemini, .claude, .agent)"
-	@echo "  make validate      - Valida todas as skills no repositório (exige uv e pyyaml)"
-	@echo "  make dist          - Gera os artefatos (.zip) para distribuição"
-	@echo "  make dist-cursor   - Compila as skills para o formato .cursorrules da IDE Cursor"
-	@echo "  make verify        - Verifica a integridade dos artefatos .zip gerados"
-	@echo "  make knowledge-map - Gera o mapa de conhecimento relacional (Mermaid)"
-	@echo "  make verify-vers   - Verifica se as versões no README batem com as das skills"
-	@echo "  make check-memory  - Verifica se o estado/memória está em sync com o código"
-	@echo "  make auto-fix      - Repara automaticamente arquivos de memória ausentes"
-	@echo "  make clean         - Remove pastas temporárias e artefatos (dist_staging, artifacts)"
-	@echo "  make release       - Ciclo completo: auto-fix -> sync -> validate -> verify-vers -> knowledge-map -> changelog -> dist"
-	@echo "  make release-check - Roda a auditoria estrita (Bunker): Ruff, Pytest, Validações e Knowledge Map"
+	@echo "Available commands:"
+	@echo "  make sync          - Sync mandates and skills to agents (.gemini, .claude, .agent)"
+	@echo "  make validate      - Validate all skills in repository (requires uv and pyyaml)"
+	@echo "  make dist          - Generate artifacts (.zip) for distribution"
+	@echo "  make dist-cursor   - Compile skills for Cursor IDE .cursorrules format"
+	@echo "  make verify        - Verify integrity of generated .zip artifacts"
+	@echo "  make knowledge-map - Generate relational knowledge map (Mermaid)"
+	@echo "  make verify-vers   - Verify if README versions match skill versions"
+	@echo "  make check-memory  - Verify if state/memory is in sync with code"
+	@echo "  make auto-fix      - Automatically repair missing memory files"
+	@echo "  make clean         - Remove temporary folders and artifacts (dist_staging, artifacts)"
+	@echo "  make release       - Full cycle: auto-fix -> sync -> validate -> verify-vers -> knowledge-map -> changelog -> dist"
+	@echo "  make release-check - Run strict audit (Bunker): Ruff, Pytest, Validations, and Knowledge Map"
 
 sync:
 	uv run --with pyyaml scripts/sync_mandates.py
@@ -67,7 +67,7 @@ release-check:
 	uv run --with pyyaml scripts/generate_knowledge_map.py
 
 release: auto-fix sync validate verify-vers knowledge-map changelog dist
-	@echo "🚀 Operação concluída com sucesso!"
+	@echo "🚀 Operation completed successfully!"
 
 
 dashboard:

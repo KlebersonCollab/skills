@@ -2,7 +2,7 @@
 
 ## 1. Dependency Injection for Security
 
-O FastAPI permite injetar segurança diretamente na assinatura da função.
+FastAPI allows injecting security directly into the function signature.
 
 ```python
 from typing import Annotated
@@ -11,7 +11,7 @@ from fastapi.security import OAuth2PasswordBearer
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-# Reutilizável em qualquer endpoint
+# Reusable in any endpoint
 TokenDep = Annotated[str, Depends(oauth2_scheme)]
 
 @app.get("/items/")
@@ -19,28 +19,28 @@ async def read_items(token: TokenDep):
     return {"token": token}
 ```
 
-## 2. Scopes e Autorização
+## 2. Scopes and Authorization
 
-Use `Security` em vez de `Depends` quando precisar de escopos:
+Use `Security` instead of `Depends` when you need scopes:
 
 ```python
 async def get_current_user(
     security_scopes: SecurityScopes, 
     token: Annotated[str, Depends(oauth2_scheme)]
 ):
-    # Lógica de validação de escopo aqui
+    # Scope validation logic here
     ...
 ```
 
 ## 3. JWT (JSON Web Tokens) Implementation
 
-Utilize `python-jose` para manipulação de tokens.
+Use `python-jose` for token manipulation.
 
 ```python
 from datetime import datetime, timedelta
 from jose import jwt
 
-SECRET_KEY = "sua_chave_secreta"
+SECRET_KEY = "your_secret_key"
 ALGORITHM = "HS256"
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
@@ -52,7 +52,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
 
 ## 4. Password Hashing (Passlib)
 
-NUNCA armazene senhas em texto plano. Use `passlib[bcrypt]`.
+NEVER store passwords in plain text. Use `passlib[bcrypt]`.
 
 ```python
 from passlib.context import CryptContext
@@ -67,8 +67,8 @@ def verify_password(plain_password, hashed_password):
 ```
 
 ## 5. Best Practices
-- **Token Expiration**: Sempre defina um tempo de expiração curto (ex: 15-30 min).
-- **Refresh Tokens**: Para sessões longas, implemente Refresh Tokens armazenados de forma segura.
-- **Pydantic-Settings**: Nunca coloque chaves de API no código. Use `BaseSettings`.
-- **HTTPS Redirect**: Em produção, sempre use `HTTPSRedirectMiddleware`.
-- **CORS**: Configure o `CORSMiddleware` de forma restrita, nunca use `allow_origins=["*"]` em produção.
+- **Token Expiration**: Always set a short expiration time (e.g., 15-30 min).
+- **Refresh Tokens**: For long sessions, implement securely stored Refresh Tokens.
+- **Pydantic-Settings**: Never put API keys in code. Use `BaseSettings`.
+- **HTTPS Redirect**: In production, always use `HTTPSRedirectMiddleware`.
+- **CORS**: Configure `CORSMiddleware` restrictively, never use `allow_origins=["*"]` in production.

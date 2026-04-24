@@ -1,7 +1,13 @@
-# Scenario: Implementação de Autenticação JWT
+# Scenario: JWT Authentication Implementation
 
-**Problema**: O usuário solicitou um sistema de login seguro usando tokens JWT para uma API Express.
+**Problem**: The user requested a secure login system using JWT tokens for an Express API.
 
-**Nível de Complexidade**: Medium (Exige Spec e Plan com BDD).
+**Complexity Level**: Medium (Requires Spec and Plan with BDD).
 
-**Input do Usuário**: "Preciso de um sistema de login com JWT no meu projeto Node.js. Tem que ser seguro e ter testes."
+**User Input**: "I need a login system with JWT in my Node.js project. It has to be secure and have tests."
+
+**Execution**:
+1.  **Exploration**: The agent checks the existing middleware and routes.
+2.  **Orchestration**: Generates `spec.md` and `plan.md` before writing any implementation code.
+3.  **Implementation**: Follows the plan, creating the auth service and routes.
+4.  **Review**: Validates against the spec and issues a report.

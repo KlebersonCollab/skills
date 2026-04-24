@@ -1,34 +1,34 @@
-# Testes & Qualidade (Mobile)
+# Testing & Quality (Mobile)
 
-Qualidade no Flutter é uma combinação de análise estática rigorosa e cobertura de testes por camadas.
+Quality in Flutter is a combination of rigorous static analysis and layered test coverage.
 
-## 1. Pirâmide de Testes
-- **Unit Tests**: Lógica pura e ViewModels.
-- **Widget Tests**: Interações e Acessibilidade.
-- **Golden Tests**: Regressão visual.
-- **Integration Tests**: Fluxos E2E.
+## 1. Test Pyramid
+- **Unit Tests**: Pure logic and ViewModels.
+- **Widget Tests**: Interactions and Accessibility.
+- **Golden Tests**: Visual regression.
+- **Integration Tests**: E2E flows.
 
-## 2. Testes de Acessibilidade
-**Conceito**: Validar se a árvore semântica está correta.
+## 2. Accessibility Testing
+**Concept**: Validate that the semantic tree is correct.
 
-### ✅ Bom (Semantic Test)
+### ✅ Good (Semantic Test)
 ```dart
-testWidgets('Botão deve ser acessível', (tester) async {
+testWidgets('Button should be accessible', (tester) async {
   final handle = tester.ensureSemantics();
   await tester.pumpWidget(const MyButton());
 
   expect(tester.getSemantics(find.byType(MyButton)), matchesSemantics(
-    label: 'Enviar',
+    label: 'Send',
     isButton: true,
   ));
   handle.dispose();
 });
 ```
 
-## 3. Análise Estática (Strict)
-Sempre execute `fvm flutter analyze` antes de qualquer push.
+## 3. Static Analysis (Strict)
+Always run `fvm flutter analyze` before any push.
 
-### ✅ Bom (`analysis_options.yaml`)
+### ✅ Good (`analysis_options.yaml`)
 ```yaml
 analyzer:
   errors:
@@ -39,9 +39,9 @@ analyzer:
     strict-inference: true
 ```
 
-## Checklist de Qualidade
-- [ ] Rodou `fvm flutter analyze` e corrigiu todos os warnings?
-- [ ] A lógica de negócio (ViewModel) tem 80%+ de cobertura?
-- [ ] Widgets críticos têm testes de Semântica?
-- [ ] Goldens foram atualizados para a plataforma alvo?
-- [ ] Usou `mocktail` para isolar dependências externas?
+## Quality Checklist
+- [ ] Ran `fvm flutter analyze` and fixed all warnings?
+- [ ] Business logic (ViewModel) has 80%+ coverage?
+- [ ] Critical widgets have Semantics tests?
+- [ ] Goldens were updated for the target platform?
+- [ ] Used `mocktail` to isolate external dependencies?

@@ -1,11 +1,11 @@
 # Advanced Testing Patterns for Flutter
 
-Este guia apresenta padrões avançados de teste para aplicações Flutter, inspirados nas melhores práticas de testes por camada arquitetural.
+This guide presents advanced testing patterns for Flutter applications, inspired by architectural layering best practices.
 
-## 1. Testes por Camada Arquitetural
+## 1. Testing by Architectural Layer
 
-### Camada de Repositório
-Os repositórios coordenam entre DAOs e APIs. Teste ambos os cenários de sucesso e erro:
+### Repository Layer
+Repositories coordinate between DAOs and APIs. Test both success and error scenarios:
 
 ```dart
 test('repository should return data when API succeeds', () async {
@@ -42,8 +42,8 @@ test('repository should return cached data when API fails', () async {
 });
 ```
 
-### Camada de DAO
-DAOs interagem com o banco de dados. Use FakeDatabase para testes realistas:
+### DAO Layer
+DAOs interact with the database. Use FakeDatabase for realistic testing:
 
 ```dart
 test('dao should insert and retrieve data', () async {
@@ -74,8 +74,8 @@ test('dao should update existing item', () async {
 });
 ```
 
-### Camada de Provider (Riverpod)
-Providers gerenciam estado. Teste transições de estado e fluxos async:
+### Provider Layer (Riverpod)
+Providers manage state. Test state transitions and async flows:
 
 ```dart
 test('provider should emit loading then data', () async {
@@ -121,8 +121,8 @@ test('provider should handle errors', () async {
 });
 ```
 
-### Camada de Serviço
-Serviços contêm lógica de negócio. Teste a lógica, não a implementação:
+### Service Layer
+Services contain business logic. Test logic, not implementation:
 
 ```dart
 test('service should apply business rules', () async {
@@ -160,9 +160,9 @@ test('service should cache results', () async {
 });
 ```
 
-## 2. Testes de Widget com Keys
+## 2. Widget Testing with Keys
 
-Use keys para identificação estável de widgets em testes:
+Use keys for stable identification of widgets in tests:
 
 ```dart
 testWidgets('should show loading then data', (tester) async {
@@ -212,9 +212,9 @@ testWidgets('should handle user interactions', (tester) async {
 });
 ```
 
-## 3. Padrões de Mocking e Verificação
+## 3. Mocking and Verification Patterns
 
-### Use @GenerateMocks para tipos complexos
+### Use @GenerateMocks for complex types
 ```dart
 @GenerateMocks([ApiClient, Database])
 void main() {
@@ -230,7 +230,7 @@ void main() {
 }
 ```
 
-### Verificação de chamadas em ordem
+### Verification of call order
 ```dart
 test('should call methods in correct order', () {
   // Arrange
@@ -250,7 +250,7 @@ test('should call methods in correct order', () {
 });
 ```
 
-### Teste de cenários de erro
+### Error Scenario Testing
 ```dart
 test('should log error when operation fails', () {
   // Arrange
@@ -275,9 +275,9 @@ test('should log error when operation fails', () {
 });
 ```
 
-## 4. Configuração de Testes de Plataforma
+## 4. Platform Testing Configuration
 
-Teste comportamentos específicos de plataforma:
+Test platform-specific behaviors:
 
 ```dart
 testWidgets('should show Cupertino style on iOS', (tester) async {
@@ -305,14 +305,14 @@ testWidgets('should show Material style on Android', (tester) async {
 });
 ```
 
-**Importante**: Sempre resetar após testes:
+**Important**: Always reset after tests:
 ```dart
 tearDown(() {
   debugDefaultTargetPlatformOverride = null;
 });
 ```
 
-## 5. Testes de Navegação com GoRouter
+## 5. Navigation Testing with GoRouter
 
 ```dart
 testWidgets('should navigate to details screen', (tester) async {
@@ -337,15 +337,15 @@ testWidgets('should navigate to details screen', (tester) async {
 });
 ```
 
-## 6. Checklist de Testes Avançados
+## 6. Advanced Testing Checklist
 
-- [ ] **Testes por camada**: Cada camada arquitetural testada isoladamente
-- [ ] **Keys em widgets**: Identificação estável para testes de UI
-- [ ] **Verificação de ordem**: Métodos chamados na sequência correta
-- [ ] **Cenários de erro**: Teste de falhas e recuperação
-- [ ] **Plataforma específica**: Teste de comportamentos por plataforma
-- [ ] **Navegação**: Teste de rotas e transições
-- [ ] **Estado async**: Teste de loading, data, error states
-- [ ] **Lifecycle**: Teste de initState, dispose, etc.
-- [ ] **Performance**: Teste de operações assíncronas longas
-- [ ] **Acessibilidade**: Teste de semântica e labels
+- [ ] **Layered Testing**: Each architectural layer tested in isolation.
+- [ ] **Widget Keys**: Stable identification for UI testing.
+- [ ] **Order Verification**: Methods called in the correct sequence.
+- [ ] **Error Scenarios**: Failure and recovery testing.
+- [ ] **Platform Specific**: Testing behaviors per platform.
+- [ ] **Navigation**: Routing and transition testing.
+- [ ] **Async State**: Loading, data, and error state testing.
+- [ ] **Lifecycle**: Testing `initState`, `dispose`, etc.
+- [ ] **Performance**: Long-running async operation testing.
+- [ ] **Accessibility**: Semantic and label testing.

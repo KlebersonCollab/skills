@@ -1,43 +1,43 @@
-# GraphQL Schema Design — Referência Completa
+# GraphQL Schema Design — Complete Reference
 
-Guia de referência de padrões de schema GraphQL e anti-padrões. Use em conjunto com o `resources/implementation-playbook.md`.
+Reference guide for GraphQL schema patterns and anti-patterns. Use in conjunction with `resources/implementation-playbook.md`.
 
 ---
 
-## 1. Fundamentos de Tipagem
+## 1. Typing Fundamentals
 
-### Tipos Escalares
+### Scalar Types
 
 ```graphql
-# Escalares built-in
+# Built-in scalars
 String
 Int
 Float
 Boolean
 ID
 
-# Custom scalars (declarar e implementar resolver)
+# Custom scalars (declare and implement resolver)
 scalar DateTime   # ISO 8601: "2026-04-14T20:00:00Z"
 scalar Date       # ISO 8601: "2026-04-14"
-scalar Money      # Centavos como Int ou string decimal
+scalar Money      # Cents as Int or decimal string
 scalar UUID       # "550e8400-e29b-41d4-a716-446655440000"
-scalar JSON       # Dados arbitrários (usar com cuidado)
-scalar Upload     # Para file upload (multipart)
+scalar JSON       # Arbitrary data (use with caution)
+scalar Upload     # For file upload (multipart)
 ```
 
-### Non-Null e Listas
+### Non-Null and Lists
 
 ```graphql
-# Non-null: campo obrigatório (nunca retorna null)
+# Non-null: mandatory field (never returns null)
 name: String!
 
-# Lista nullable de itens non-null
+# Nullable list of non-null items
 items: [OrderItem!]
 
-# Lista non-null de itens non-null (o mais comum em coleções)
+# Non-null list of non-null items (the most common in collections)
 items: [OrderItem!]!
 
-# Lista nullable de itens nullable (evitar)
+# Nullable list of nullable items (avoid)
 items: [OrderItem]
 ```
 
@@ -62,12 +62,12 @@ enum SortOrder {
 
 ---
 
-## 2. Patterns de Schema
+## 2. Schema Patterns
 
-### Padrão: Relay Connection (paginação cursor-based)
+### Pattern: Relay Connection (cursor-based pagination)
 
 ```graphql
-# Padrão Relay para paginação — use sempre para coleções grandes
+# Relay pattern for pagination — always use for large collections
 type UserConnection {
   edges: [UserEdge!]!
   pageInfo: PageInfo!
@@ -86,9 +86,9 @@ type PageInfo {
   endCursor: String
 }
 
-# Uso na query
+# Usage in query
 type Query {
-  # Paginação forward (first/after)
+  # Forward pagination (first/after)
   users(
     first: Int = 20
     after: String
@@ -97,16 +97,16 @@ type Query {
     sortOrder: SortOrder
   ): UserConnection!
 
-  # Paginação backward (last/before) — opcional
+  # Backward pagination (last/before) — optional
   # last: Int
   # before: String
 }
 ```
 
-### Padrão: Mutation Payloads
+### Pattern: Mutation Payloads
 
 ```graphql
-# ✅ Correto: mutations retornam payload com errors
+# ✅ Correct: mutations return payload with errors
 type Mutation {
   createUser(input: CreateUserInput!): CreateUserPayload!
   updateUser(input: UpdateUserInput!): UpdateUserPayload!
@@ -121,24 +121,24 @@ input CreateUserInput {
 }
 
 type CreateUserPayload {
-  user: User          # null se falhou
-  errors: [UserError!]!  # vazio se sucesso
+  user: User          # null if failed
+  errors: [UserError!]!  # empty if success
 }
 
 type UserError {
-  field: String       # null para erros globais
+  field: String       # null for global errors
   message: String!
-  code: String!       # Ex: "EMAIL_TAKEN", "WEAK_PASSWORD"
+  code: String!       # e.g., "EMAIL_TAKEN", "WEAK_PASSWORD"
 }
 
-# ❌ Errado: mutation retorna tipo diretamente (sem tratamento de erro)
+# ❌ Wrong: mutation returns type directly (no error handling)
 # createUser(input: CreateUserInput!): User!
 ```
 
-### Padrão: Input Types
+### Pattern: Input Types
 
 ```graphql
-# Inputs específicos por operação (não reutilizar entre create/update)
+# Specific inputs per operation (do not reuse between create/update)
 input CreateUserInput {
   email: String!
   name: String!
@@ -147,18 +147,18 @@ input CreateUserInput {
 
 input UpdateUserInput {
   id: ID!
-  name: String        # nullable = campo opcional na atualização
+  name: String        # nullable = optional field on update
   email: String
 }
 
-# Para updates parciais (patch), use campos nullable
-# Para updates completos (put), use campos non-null
+# For partial updates (patch), use nullable fields
+# For full updates (put), use non-null fields
 ```
 
-### Padrão: Interfaces e Unions
+### Pattern: Interfaces and Unions
 
 ```graphql
-# Interface — tipos com campos em comum
+# Interface — types with fields in common
 interface Node {
   id: ID!
 }
@@ -176,7 +176,7 @@ type User implements Node & Timestamped {
   updatedAt: DateTime!
 }
 
-# Union — retorno que pode ser de tipos diferentes
+# Union — return that can be of different types
 union SearchResult = User | Product | Order
 
 type Query {
@@ -186,12 +186,12 @@ type Query {
 
 ---
 
-## 3. Queries Avançadas
+## 3. Advanced Queries
 
-### Fragments e Inline Fragments
+### Fragments and Inline Fragments
 
 ```graphql
-# Fragment reutilizável
+# Reusable fragment
 fragment UserBasic on User {
   id
   name
@@ -209,7 +209,7 @@ query GetUsers {
   }
 }
 
-# Inline fragment para unions
+# Inline fragment for unions
 query Search($query: String!) {
   search(query: $query) {
     ... on User {
@@ -244,14 +244,14 @@ query GetMultipleUsers {
 ## 4. Directives
 
 ```graphql
-# @deprecated — marcar campos/enums que serão removidos
+# @deprecated — mark fields/enums to be removed
 type User {
   id: ID!
   email: String!
   username: String @deprecated(reason: "Use email instead. Will be removed in v3.")
 }
 
-# @skip e @include — lógica condicional no cliente
+# @skip and @include — conditional logic on client
 query GetUser($id: ID!, $includeOrders: Boolean!) {
   user(id: $id) {
     id
@@ -262,7 +262,7 @@ query GetUser($id: ID!, $includeOrders: Boolean!) {
   }
 }
 
-# Custom directives (ex: autorização)
+# Custom directives (e.g., authorization)
 directive @auth(requires: Role = USER) on FIELD_DEFINITION
 
 type Mutation {
@@ -285,26 +285,26 @@ type Subscription {
 
 ---
 
-## 6. Anti-Padrões a Evitar
+## 6. Anti-Patterns to Avoid
 
-| Anti-Padrão | Problema | Solução |
+| Anti-Pattern | Problem | Solution |
 |-------------|----------|---------|
-| **Resolver fazendo query por item** | N+1 queries massacram o banco | Usar DataLoader para batch |
-| **Schema espelhando banco** | Coupling — qualquer mudança no banco quebra a API | Projetar schema para o consumidor |
-| **Campos genéricos `data: JSON`** | Perde tipo safety e introspecção | Criar tipos específicos |
-| **Mutations sem payload** | Sem tratamento de erro estruturado | Sempre retornar payload com `errors` |
-| **Campos non-null `!` em tudo** | Retorna erro quando campo é realmente opcional | Usar non-null apenas quando garantido |
-| **Query infinitamente aninhada** | Consumidor pode fazer query de custo O(n^k) | Limitar profundidade e complexidade |
-| **Introspecção em produção** | Expõe schema completo para atacantes | Desabilitar ou proteger em prod |
+| **Resolver doing query per item** | N+1 queries slaughter the database | Use DataLoader for batching |
+| **Schema mirroring database** | Coupling — any DB change breaks the API | Design schema for the consumer |
+| **Generic fields `data: JSON`** | Loses type safety and introspection | Create specific types |
+| **Mutations without payload** | No structured error handling | Always return payload with `errors` |
+| **Non-null fields `!` everywhere** | Returns error when field is actually optional | Use non-null only when guaranteed |
+| **Infinitely nested query** | Consumer can make O(n^k) cost query | Limit depth and complexity |
+| **Introspection in production** | Exposes full schema to attackers | Disable or protect in prod |
 
 ---
 
-## 7. Segurança e Performance
+## 7. Security and Performance
 
-### Limitar Complexidade de Query
+### Limit Query Complexity
 
 ```python
-# Exemplo com Strawberry (Python)
+# Example with Strawberry (Python)
 from strawberry.extensions import QueryDepthLimiter, MaxAliasesLimiter
 
 schema = strawberry.Schema(
@@ -319,11 +319,11 @@ schema = strawberry.Schema(
 ### Persisted Queries
 
 ```
-# Em vez de enviar query completa:
+# Instead of sending the full query:
 POST /graphql
 { "query": "{ users { edges { node { id name } } } }" }
 
-# Enviar hash da query (registrada previamente):
+# Send the hash of the query (previously registered):
 POST /graphql
 { "extensions": { "persistedQuery": { "sha256Hash": "abc123" } } }
 ```
@@ -331,8 +331,8 @@ POST /graphql
 ### Depth Limiting
 
 ```
-# Máximo recomendado: 10 níveis de profundidade
-# Exemplo de query profunda a ser bloqueada:
+# Recommended maximum: 10 levels of depth
+# Example of deep query to be blocked:
 query {
   user {
     orders {
@@ -352,14 +352,14 @@ query {
 
 ---
 
-## 8. Ferramentas Recomendadas
+## 8. Recommended Tools
 
-| Ferramenta | Propósito |
+| Tool | Purpose |
 |------------|-----------|
-| **[GraphiQL](https://github.com/graphql/graphiql)** | IDE interativa para explorar schema |
-| **[Apollo Studio](https://studio.apollographql.com/)** | Gestão de schema, monitoramento |
-| **[Strawberry](https://strawberry.rocks/)** | Code-first GraphQL para Python |
-| **[Ariadne](https://ariadnegraphql.org/)** | Schema-first GraphQL para Python |
-| **[graphql-js](https://graphql.org/graphql-js/)** | Referência JavaScript |
-| **[Pothos](https://pothos-graphql.dev/)** | Type-safe schema builder para TypeScript |
-| **[graphql-inspector](https://the-guild.dev/graphql/inspector)** | Detectar breaking changes no schema |
+| **[GraphiQL](https://github.com/graphql/graphiql)** | Interactive IDE to explore schema |
+| **[Apollo Studio](https://studio.apollographql.com/)** | Schema management, monitoring |
+| **[Strawberry](https://strawberry.rocks/)** | Code-first GraphQL for Python |
+| **[Ariadne](https://ariadnegraphql.org/)** | Schema-first GraphQL for Python |
+| **[graphql-js](https://graphql.org/graphql-js/)** | JavaScript reference |
+| **[Pothos](https://pothos-graphql.dev/)** | Type-safe schema builder for TypeScript |
+| **[graphql-inspector](https://the-guild.dev/graphql/inspector)** | Detect breaking changes in schema |

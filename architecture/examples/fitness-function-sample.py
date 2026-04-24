@@ -4,8 +4,8 @@ import sys
 
 def check_layer_dependencies():
     """
-    Exemplo simplificado de Fitness Function que verifica se
-    a camada de Domínio está importando algo da camada de Infra.
+    Simplified example of a Fitness Function that verifies if
+    the Domain layer is importing anything from the Infra layer.
     """
     domain_dir = "lib/domain"
     infra_layer_keyword = "infra/"

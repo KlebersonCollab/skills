@@ -1,6 +1,6 @@
 # Scaffolding Expert
 
-Skill para geração dinâmica de templates e boilerplates através da engine Copier. Transforma a geração de projetos de manual para automatizada.
+Skill for dynamic generation of templates and boilerplates through the Copier engine. Transforms project generation from manual to automated.
 
-## Uso
-Quando for inicializar um microserviço, app front-end ou nova library, procure o comando de template no catálogo antes de escrever código manualmente.
+## Usage
+When initializing a microservice, front-end app, or new library, look for the template command in the catalog before writing code manually.

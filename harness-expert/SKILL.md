@@ -1,99 +1,99 @@
 ---
 name: harness-expert
 version: 2.1.0
-description: "Motor técnico para Harness Engineering. Implementa loops de feedback adversariais (GAN-style) para garantir qualidade de produção, além de gestão de estado e determinismo."
+description: "Technical engine for Harness Engineering. Implements adversarial feedback loops (GAN-style) to ensure production quality, in addition to state management and determinism."
 category: agentic-infrastructure
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 # Harness Expert (v2.1.0)
 
-> "Se você não é o modelo, então você é o harness." — Infraestrutura de suporte para transformar LLMs em agentes operacionais de alta performance.
+> "If you are not the model, then you are the harness." — Support infrastructure to transform LLMs into high-performance operational agents.
 
 ---
 
 ## Goal
 
-O objetivo desta skill é fornecer o "maquinário" (CLI, scripts, automação) para que o **SDD Planner** execute suas diretrizes. Enquanto o Planner define o *quê* e o *porquê*, o Harness fornece o *como* técnico para manter o estado determinístico e fechar loops de feedback adversariais (GAN-style) que garantem que a entrega final seja **production-ready**.
+The goal of this skill is to provide the "machinery" (CLI, scripts, automation) for the **SDD Planner** to execute its directives. While the Planner defines the *what* and *why*, the Harness provides the technical *how* to maintain deterministic state and close adversarial feedback loops (GAN-style) that ensure the final delivery is **production-ready**.
 
 ---
 
 ## 🔄 GAN-style Feedback Loop (Quality Enforcement)
 
-Para tarefas de alta complexidade (**Large/Complex**), o Harness deve operar em modo **Adversarial**:
+For high-complexity tasks (**Large/Complex**), the Harness must operate in **Adversarial** mode:
 
-| Papel | Responsabilidade | Ferramentas |
+| Role | Responsibility | Tools |
 |-------|------------------|-------------|
-| **Generator** | Implementar a feature conforme a Spec e o Plan. | SDD CLI, UV, Frameworks (React, Flutter). |
-| **Evaluator** | Atuar como QA implacável, testando a aplicação viva e rejeitando "AI slop". | Playwright, Screenshotting, Log Analysis. |
+| **Generator** | Implement the feature according to the Spec and Plan. | SDD CLI, UV, Frameworks (React, Flutter). |
+| **Evaluator** | Act as a relentless QA, testing the live application and rejecting "AI slop". | Playwright, Screenshotting, Log Analysis. |
 
 ### 📊 Evaluation Rubric (Target: Score >= 7.0)
 
-| Critério | Peso | Descrição |
+| Criterion | Weight | Description |
 |----------|------|-----------|
-| **Design Quality** | 0.3 | Coesão visual, ausência de padrões genéricos de IA, estética premium. |
-| **Originality** | 0.2 | Decisões técnicas/visuais criativas e customizadas para o problema. |
-| **Craft** | 0.3 | Polimento, micro-interações, tipografia, espaçamento e performance. |
-| **Functionality** | 0.2 | Funcionamento robusto de todas as features e tratamento de erros. |
+| **Design Quality** | 0.3 | Visual cohesion, absence of generic AI patterns, premium aesthetics. |
+| **Originality** | 0.2 | Creative technical/visual decisions customized for the problem. |
+| **Craft** | 0.3 | Polish, micro-interactions, typography, spacing, and performance. |
+| **Functionality** | 0.2 | Robust functioning of all features and error handling. |
 
 ---
 
-## Workflow (4 Fases)
+## Workflow (4 Phases)
 
-### Fase 1: AUTOMATED REHYDRATE — Carregamento Técnico
-1.  **Injeção de Contexto**: Executar scripts de leitura em massa de `.specs/` para reidratar a memória do agente.
-2.  **Health Check**: Validar se os arquivos de estado (`STATE.md`, `tasks.md`) estão íntegros.
-3.  **Context Compression**: Utilizar `harness-expert-compress` para manter os tokens críticos.
+### Phase 1: AUTOMATED REHYDRATE — Technical Loading
+1.  **Context Injection**: Execute mass reading scripts of `.specs/` to rehydrate agent memory.
+2.  **Health Check**: Validate if state files (`STATE.md`, `tasks.md`) are intact.
+3.  **Context Compression**: Use `harness-expert-compress` to maintain critical tokens.
 
-### Fase 2: OPERATE — Automação de Execução (Generator Mode)
-1.  **Tool Orchestration**: Invocar MCPs e scripts locais conforme o plano.
-2.  **Implementation Loop**: Escrever código focado em passar nos ACs da `spec.md`.
-3.  **Self-Correction**: Corrigir bugs de linter/testes imediatamente via `sdd-implementer`.
+### Phase 2: OPERATE — Execution Automation (Generator Mode)
+1.  **Tool Orchestration**: Invoke MCPs and local scripts according to the plan.
+2.  **Implementation Loop**: Write code focused on passing the ACs in `spec.md`.
+3.  **Self-Correction**: Immediately fix linter/test bugs via `sdd-implementer`.
 
-### Fase 3: ADVERSARIAL REVIEW — Ciclo de Feedback (Evaluator Mode)
-1.  **Live Testing**: Iniciar o servidor de dev e utilizar Playwright para testar fluxos reais.
-2.  **Strict Scoring**: Atribuir notas de 1 a 10 baseadas na rubrica. **NUNCA elogiar trabalho medíocre**.
-3.  **Feedback Iteration**: Gerar o `validation-report.md` com críticas acionáveis para o Generator.
+### Phase 3: ADVERSARIAL REVIEW — Feedback Cycle (Evaluator Mode)
+1.  **Live Testing**: Start dev server and use Playwright to test real flows.
+2.  **Strict Scoring**: Assign grades from 1 to 10 based on the rubric. **NEVER praise mediocre work**.
+3.  **Feedback Iteration**: Generate `validation-report.md` with actionable criticism for the Generator.
 
-### Fase 4: FINAL SYNC — Determinismo e Encerramento
-1.  **Exit Gates**: Garantir que a pontuação GAN atingiu o limiar de aprovação (Default: 7.0).
-2.  **Auto-Sync**: Atualizar `STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
-3.  **Handoff**: Preparar os artefatos de distribuição em `dist/`.
+### Phase 4: FINAL SYNC — Determinism and Closing
+1.  **Exit Gates**: Ensure the GAN score reached the approval threshold (Default: 7.0).
+2.  **Auto-Sync**: Update `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+3.  **Handoff**: Prepare distribution artifacts in `dist/`.
 
 ---
 
 ## Output Structure
 
-A execução desta skill resulta nos seguintes artefatos mandatórios:
+Execution of this skill results in the following mandatory artifacts:
 
-| Artefato | Formato | Descrição |
+| Artifact | Format | Description |
 |----------|---------|-----------|
-| **Tasks Sync** | `tasks.md` | Lista de tarefas atualizada com o progresso real. |
-| **State Snapshot** | `STATE.md` | Resumo do estado atual do sistema e da feature. |
-| **Learnings Log** | `LEARNINGS.md` | Registro de problemas resolvidos e lições técnicas. |
-| **Validation Report** | `validation-report.md` | Relatório de testes e conformidade do código gerado. |
+| **Tasks Sync** | `tasks.md` | Task list updated with real progress. |
+| **State Snapshot** | `STATE.md` | Summary of the current system and feature state. |
+| **Learnings Log** | `LEARNINGS.md` | Record of solved problems and technical lessons. |
+| **Validation Report** | `validation-report.md` | Test and compliance report for the generated code. |
 
 ---
 
 ## Quality Rules
 
-- **Persistence First**: O File System é a única fonte da verdade. Nenhuma decisão deve ser tomada sem consultar as specs locais.
-- **SDD Compliance**: Todo desenvolvimento deve seguir rigorosamente o Spec-Driven Development.
-- **Context Awareness**: Monitorar constantemente o uso de tokens e realizar a "Compactação de Contexto" quando necessário.
-- **Deterministic Check**: Toda saída do agente deve passar por ferramentas de verificação (linters/testes) antes de ser considerada final.
+- **Persistence First**: The File System is the only source of truth. No decisions should be made without consulting local specs.
+- **SDD Compliance**: All development must strictly follow Spec-Driven Development.
+- **Context Awareness**: Constantly monitor token usage and perform "Context Compression" when necessary.
+- **Deterministic Check**: Every agent output must pass through verification tools (linters/tests) before being considered final.
 
 ## Prohibited
 
-- NUNCA iniciar uma tarefa sem ler as specs existentes.
-- NUNCA considerar uma tarefa "concluída" sem atualizar os arquivos de sincronização (`tasks.md`).
-- NUNCA ignorar erros de linter ou testes durante a fase de validação.
-- NUNCA manter contexto redundante que possa ser resumido no `STATE.md`.
+- NEVER start a task without reading existing specs.
+- NEVER consider a task "completed" without updating synchronization files (`tasks.md`).
+- NEVER ignore linter or test errors during the validation phase.
+- NEVER maintain redundant context that can be summarized in `STATE.md`.

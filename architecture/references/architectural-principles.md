@@ -1,31 +1,31 @@
-# Architectural Principles — Referência Completa
+# Architectural Principles — Complete Reference
 
-Princípios fundamentais para criar sistemas sustentáveis e robustos.
+Fundamental principles for creating sustainable and robust systems.
 
 ---
 
-## 1. Simplicidade (The Core Principle)
-> "Simplicidade é a sofisticação máxima." (Leonardo da Vinci)
+## 1. Simplicity (The Core Principle)
+> "Simplicity is the ultimate sophistication." (Leonardo da Vinci)
 
-- Comece com o mínimo necessário para resolver o problema.
-- Adicione complexidade apenas quando houver evidências de necessidade (escala, performance, segurança).
-- Lembre-se: É muito mais barato adicionar complexidade depois do que remover complexidade desnecessária agora.
+- Start with the minimum necessary to solve the problem.
+- Add complexity only when there is evidence of need (scale, performance, security).
+- Remember: It is much cheaper to add complexity later than to remove unnecessary complexity now.
 
 ## 2. DRY (Don't Repeat Yourself)
-- Evite duplicar lógica de negócio ou conhecimento no sistema.
-- Cada peça de conhecimento deve ter uma representação única e inequívoca dentro de um sistema.
+- Avoid duplicating business logic or knowledge in the system.
+- Every piece of knowledge must have a single, unambiguous representation within a system.
 
 ## 3. KISS (Keep It Simple, Stupid)
-- A maioria dos sistemas funciona melhor se forem mantidos simples em vez de complicados.
-- Evite abstrações prematuras.
+- Most systems work better if they are kept simple rather than complicated.
+- Avoid premature abstractions.
 
 ## 4. YAGNI (You Ain't Gonna Need It)
-- Não implemente funcionalidades ou infraestrutura até que sejam realmente necessárias.
-- Aplicar o YAGNI reduz o "ruído" arquitetural e o custo de manutenção.
+- Do not implement features or infrastructure until they are truly necessary.
+- Applying YAGNI reduces architectural "noise" and maintenance costs.
 
 ## 5. SOLID
-- **S**: Single Responsibility Principle (Uma classe deve ter um único motivo para mudar).
-- **O**: Open/Closed Principle (Entidades abertas para extensão, fechadas para modificação).
-- **L**: Liskov Substitution Principle (Subtipos devem ser substituíveis por seus tipos base).
-- **I**: Interface Segregation Principle (Muitas interfaces específicas são melhores que uma geral).
-- **D**: Dependency Inversion Principle (Dependa de abstrações, não de implementações).
+- **S**: Single Responsibility Principle (A class should have a single reason to change).
+- **O**: Open/Closed Principle (Entities open for extension, closed for modification).
+- **L**: Liskov Substitution Principle (Subtypes must be replaceable by their base types).
+- **I**: Interface Segregation Principle (Many specific interfaces are better than one general one).
+- **D**: Dependency Inversion Principle (Depend on abstractions, not implementations).

@@ -1,36 +1,36 @@
 # 🏛️ API Architect Skill
 
-> Skill para o desenho, governança e arquitetura de ecossistemas de API interoperáveis, seguros e resilientes.
+> Skill for designing, governing, and architecting interoperable, secure, and resilient API ecosystems.
 
 ---
 
-## 📖 Visão Geral
+## 📖 Overview
 
-A skill **API Architect** (anteriormente `api-designer`) eleva o processo de criação de APIs de um simples "desenho de contrato" para uma arquitetura completa. Ela integra padrões de design modernos (REST, GraphQL, tRPC) com camadas críticas de governança, segurança e resiliência.
+The **API Architect** skill (formerly `api-designer`) elevates the API creation process from simple "contract design" to a complete architecture. It integrates modern design patterns (REST, GraphQL, tRPC) with critical layers of governance, security, and resilience.
 
-Inspirada por padrões de mercado e reforçada por práticas de governança de API, esta skill garante que cada endpoint seja consistente em todo o ecossistema.
-
----
-
-## 🚀 Principais Recursos
-
-- **API Style Guide**: Definição de padrões de resposta (envelopes), erros e nomenclatura para garantir que a API seja previsível.
-- **Multi-Protocolo**: Suporte nativo para decidir entre REST, GraphQL e tRPC com base no contexto técnico.
-- **Segurança (OWASP)**: Auditoria sistemática contra os principais riscos de segurança de API (BOLA, IDOR, Mass Assignment).
-- **Resiliência Pragmática**: Padrões de Rate Limiting, Timeouts e Circuit Breakers integrados ao design.
-- **Contract-First**: Foco total na especificação (OpenAPI, SDL, Zod) antes da implementação.
+Inspired by industry standards and reinforced by API governance practices, this skill ensures that every endpoint is consistent across the entire ecosystem.
 
 ---
 
-## 📂 Estrutura da Skill
+## 🚀 Key Features
+
+- **API Style Guide**: Definition of response standards (envelopes), errors, and naming conventions to ensure the API is predictable.
+- **Multi-Protocol**: Native support for deciding between REST, GraphQL, and tRPC based on the technical context.
+- **Security (OWASP)**: Systematic auditing against key API security risks (BOLA, IDOR, Mass Assignment).
+- **Pragmatic Resilience**: Rate Limiting, Timeouts, and Circuit Breaker patterns integrated into the design.
+- **Contract-First**: Total focus on specification (OpenAPI, SDL, Zod) before implementation.
+
+---
+
+## 📂 Skill Structure
 
 ```
 api-architect/
-├── SKILL.md                 # Definição técnica e workflow
-├── README.md                # Esta documentação
-├── CHANGELOG.md             # Histórico de versões
-├── references/              # Padrões e guias de referência
-│   ├── api-style.md         # Style Guide (Envelopes, Erros, Paginação)
+├── SKILL.md                 # Technical definition and workflow
+├── README.md                # This documentation
+├── CHANGELOG.md             # Version history
+├── references/              # Standards and reference guides
+│   ├── api-style.md         # Style Guide (Envelopes, Errors, Pagination)
 │   ├── rest-best-practices.md
 │   ├── api-security-guide.md
 │   └── api-rate-limiting.md
@@ -40,14 +40,14 @@ api-architect/
 
 ---
 
-## 🛠️ Como Usar
+## 🛠️ How to Use
 
-1. **Invoque a skill** ao planejar uma nova funcionalidade que exija exposição de dados via rede.
-2. Siga as **4 Fases** (Strategy, Design, Resilience, Validate) para garantir que nenhum detalhe crítico seja esquecido.
-3. Utilize os **referenciais** para definir o formato das respostas e erros logo no início da modelagem.
+1. **Invoke the skill** when planning a new feature that requires data exposure over the network.
+2. Follow the **4 Phases** (Strategy, Design, Resilience, Validate) to ensure no critical detail is forgotten.
+3. Use the **references** to define the format of responses and errors at the beginning of modeling.
 
 ---
 
-## 📄 Licença
+## 📄 License
 
-Este módulo faz parte do [Skills Hub](https://github.com/KlebersonCollab/skills) e está sob licença MIT.
+This module is part of the [Skills Hub](https://github.com/KlebersonCollab/skills) and is under the MIT license.

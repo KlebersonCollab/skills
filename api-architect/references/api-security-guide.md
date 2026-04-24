@@ -1,63 +1,63 @@
 # API Security Guide — OWASP API Top 10
 
-Guia de proteção e auditoria de segurança para APIs.
+Security protection and audit guide for APIs.
 
 ---
 
-## 1. O que é o OWASP API Top 10?
+## 1. What is the OWASP API Top 10?
 
-O OWASP (Open Web Application Security Project) mantém uma lista das 10 vulnerabilidades mais críticas em APIs.
+The OWASP (Open Web Application Security Project) maintains a list of the 10 most critical vulnerabilities in APIs.
 
 ---
 
-## 2. Principais Riscos e Como Prevenir
+## 2. Main Risks and How to Prevent Them
 
 ### 2.1 API1: Broken Object Level Authorization (BOLA / IDOR)
-O atacante manipula o ID de um recurso na URL para acessar dados de outro usuário.
-- **Exemplo**: `GET /api/orders/123` → Muda para `GET /api/orders/124`.
-- **Prevenção**: Sempre valide se o usuário logado possui permissão explícita para o ID solicitado no banco de dados. **Nunca** confie apenas no ID da URL.
+The attacker manipulates a resource ID in the URL to access another user's data.
+- **Example**: `GET /api/orders/123` → Changes to `GET /api/orders/124`.
+- **Prevention**: Always validate if the logged-in user has explicit permission for the requested ID in the database. **Never** trust only the URL ID.
 
 ### 2.2 API2: Broken Authentication
-Implementação fraca de autenticação (JWT fraco, tokens que não expiram).
-- **Prevenção**: Use algoritmos fortes (RS256), defina expiração curta para tokens, use HTTPS sempre e implemente rotação de segredos.
+Weak authentication implementation (weak JWT, non-expiring tokens).
+- **Prevention**: Use strong algorithms (RS256), set short expiration for tokens, always use HTTPS, and implement secret rotation.
 
 ### 2.3 API3: Broken Object Property Level Authorization (Mass Assignment)
-O cliente envia campos que não deveria poder alterar.
-- **Exemplo**: Enviar `"is_admin": true` no POST de criação de usuário.
-- **Prevenção**: Use DTOs (Data Transfer Objects) ou schemas de entrada rigorosos que listam apenas os campos permitidos (`allowlist`).
+The client sends fields they should not be able to change.
+- **Example**: Sending `"is_admin": true` in the user creation POST.
+- **Prevention**: Use DTOs (Data Transfer Objects) or rigorous input schemas that list only allowed fields (`allowlist`).
 
 ### 2.4 API4: Unrestricted Resource Consumption (Rate Limit)
-Falta de limites de CPU, memória ou taxa de requisições.
-- **Prevenção**: Implemente Rate Limiting, limite o tamanho do payload (request body) e use paginação obrigatória.
+Lack of limits on CPU, memory, or request rate.
+- **Prevention**: Implement Rate Limiting, limit payload size (request body), and use mandatory pagination.
 
 ### 2.5 API5: Broken Function Level Authorization
-Usuário comum acessando endpoints administrativos.
-- **Exemplo**: Usuário acessando `/api/admin/delete-all`.
-- **Prevenção**: Implemente RBAC (Role-Based Access Control) ou ABAC e valide em cada rota.
+Common user accessing administrative endpoints.
+- **Example**: User accessing `/api/admin/delete-all`.
+- **Prevention**: Implement RBAC (Role-Based Access Control) or ABAC and validate on every route.
 
 ---
 
-## 3. Segurança de Dados
+## 3. Data Security
 
-- **Sensitive Data Exposure**: Nunca retorne senhas, tokens ou dados pessoais (PII) desnecessários na resposta da API.
-- **Error Handling**: Evite expor stack traces ou detalhes do servidor em erros. Use mensagens genéricas para o usuário e logs detalhados internos.
-
----
-
-## 4. Checklist de Segurança para Design de API
-
-- [ ] HTTPS é obrigatório em todos os ambientes?
-- [ ] O sistema valida permissão de posse (Ownership) para cada ID de recurso?
-- [ ] Existem limites de Rate Limit configurados?
-- [ ] O schema de entrada proíbe campos extras (No Mass Assignment)?
-- [ ] Tokens JWT usam algoritmos seguros e expiração curta?
-- [ ] Dados sensíveis estão sendo filtrados da resposta?
-- [ ] A API usa cabeçalhos de segurança (CORS, HSTS, X-Content-Type-Options)?
+- **Sensitive Data Exposure**: Never return passwords, tokens, or unnecessary personal data (PII) in the API response.
+- **Error Handling**: Avoid exposing stack traces or server details in errors. Use generic messages for the user and detailed internal logs.
 
 ---
 
-## 5. Ferramentas de Auditoria
+## 4. Security Checklist for API Design
 
-- **[OWASP ZAP](https://www.zaproxy.org/)**: Scanner de segurança web.
-- **[Postman API Security](https://www.postman.com/api-security/)**: Testes de segurança integrados ao Postman.
-- **[42Crunch](https://42crunch.com/)**: Auditoria de especificações OpenAPI.
+- [ ] Is HTTPS mandatory in all environments?
+- [ ] Does the system validate ownership for each resource ID?
+- [ ] Are Rate Limit limits configured?
+- [ ] Does the input schema prohibit extra fields (No Mass Assignment)?
+- [ ] Do JWT tokens use secure algorithms and short expiration?
+- [ ] Are sensitive data being filtered from the response?
+- [ ] Does the API use security headers (CORS, HSTS, X-Content-Type-Options)?
+
+---
+
+## 5. Audit Tools
+
+- **[OWASP ZAP](https://www.zaproxy.org/)**: Web security scanner.
+- **[Postman API Security](https://www.postman.com/api-security/)**: Integrated security tests in Postman.
+- **[42Crunch](https://42crunch.com/)**: Audit of OpenAPI specifications.

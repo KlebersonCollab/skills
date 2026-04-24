@@ -1,59 +1,59 @@
 # Infrastructure & Variables: Azure DevOps Governance
 
-Este guia cobre a automação e governança de recursos de infraestrutura no Azure DevOps, utilizando a CLI oficial.
+This guide covers the automation and governance of infrastructure resources in Azure DevOps using the official CLI.
 
 ---
 
-## 1. Variable Groups (Grupos de Variáveis)
+## 1. Variable Groups
 
-Variable groups permitem centralizar configurações e segredos compartilhados entre múltiplos pipelines.
+Variable groups allow centralizing configurations and secrets shared across multiple pipelines.
 
-### Listar Variable Groups
-`az pipelines variable-group list --project {projeto}`
+### List Variable Groups
+`az pipelines variable-group list --project {project}`
 
-### Criar um Variable Group (CLI)
+### Create a Variable Group (CLI)
 ```bash
 az pipelines variable-group create \
     --name "Shared-Secrets" \
-    --project "MeuProjeto" \
+    --project "MyProject" \
     --variables "DB_HOST=10.0.0.1" "DB_PORT=5432" \
     --authorize true
 ```
 
-### Integração com Azure Key Vault
-Recomendado para segredos sensíveis. Você pode criar um grupo que mapeia segredos diretamente de um Key Vault:
+### Azure Key Vault Integration
+Recommended for sensitive secrets. You can create a group that maps secrets directly from a Key Vault:
 ```bash
 az pipelines variable-group create \
     --name "Vault-Secrets" \
-    --vault-name "MeuKeyVault" \
+    --vault-name "MyKeyVault" \
     --authorize true
 ```
 
 ## 2. Service Connections (Endpoints)
 
-Conexões de serviço permitem que o AzDO interaja com recursos externos (Azure, Docker, GitHub, etc.).
+Service connections allow AzDO to interact with external resources (Azure, Docker, GitHub, etc.).
 
-### Listar Endpoints
-`az devops service-endpoint list --project {projeto}`
+### List Endpoints
+`az devops service-endpoint list --project {project}`
 
-### Criar uma Conexão com Azure (Service Principal)
-Geralmente feito via JSON template para maior controle:
+### Create an Azure Connection (Service Principal)
+Usually done via JSON template for greater control:
 ```bash
 az devops service-endpoint create --service-endpoint-configuration template.json
 ```
 
-## 3. Autorização de Recursos
+## 3. Resource Authorization
 
-Por padrão, novos grupos de variáveis ou endpoints podem estar bloqueados para pipelines. Sempre verifique a flag `--authorize true` ou utilize:
+By default, new variable groups or endpoints may be blocked for pipelines. Always check the `--authorize true` flag or use:
 
 `az pipelines variable-group variable update --group-id {id} --name {var} --value {val}`
 
-## 4. Variáveis de Pipeline Individuais
+## 4. Individual Pipeline Variables
 
-Para variáveis específicas de uma única execução ou definição de pipeline:
+For variables specific to a single execution or pipeline definition:
 
 ```bash
-# Adicionar variável a um pipeline existente
+# Add variable to an existing pipeline
 az pipelines variable create \
     --name "ENV_NAME" \
     --pipeline-id 42 \
@@ -61,9 +61,9 @@ az pipelines variable create \
     --secret true
 ```
 
-## 5. Boas Práticas
+## 5. Best Practices
 
-- **Nomenclatura**: Utilize prefixos consistentes (ex: `GLOBAL-`, `APP1-`, `INFRA-`).
-- **Segredos**: Nunca use variáveis simples para senhas; utilize a flag `--secret true` ou Variable Groups vinculados ao Key Vault.
-- **Lease Privilege**: Autorize recursos apenas para os pipelines que realmente precisam deles.
-- **Audit**: Periodicamente liste os endpoints (`az devops service-endpoint list`) para identificar conexões obsoletas.
+- **Naming**: Use consistent prefixes (e.g., `GLOBAL-`, `APP1-`, `INFRA-`).
+- **Secrets**: Never use simple variables for passwords; use the `--secret true` flag or Variable Groups linked to Key Vault.
+- **Least Privilege**: Authorize resources only for the pipelines that actually need them.
+- **Audit**: Periodically list endpoints (`az devops service-endpoint list`) to identify obsolete connections.

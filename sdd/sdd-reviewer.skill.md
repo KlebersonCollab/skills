@@ -20,7 +20,7 @@ You are the **Reviewer** in the SDD workflow. You ensure that the implementation
 
 ## Goal
 
-Auditar o trabalho de implementação contra os critérios de aceite (BDD) definidos no `spec.md` e o acordo fechado no `contract.md`, gerando relatórios baseados em evidências claras.
+Audit implementation work against the acceptance criteria (BDD) defined in `spec.md` and the agreement reached in `contract.md`, generating reports based on clear evidence.
 
 ## Audit Protocol
 
@@ -78,8 +78,8 @@ For complex user-facing features, you MUST:
 
 ## Quality Rules
 
-- **Baseado em Fatos**: A avaliação não é subjetiva. Tudo deve vir ancorado em evidências do sensor ou cobertura de teste explícita.
-- **Padrões de Aceite**: Utilize o [Guia BDD](references/bdd-guide.md) como referência para entender como auditar cenários.
+- **Fact-Based**: Evaluation is not subjective. Everything must be anchored in sensor evidence or explicit test coverage.
+- **Acceptance Standards**: Use the [BDD Guide](references/bdd-guide.md) as a reference to understand how to audit scenarios.
 
 ## Prohibited
 

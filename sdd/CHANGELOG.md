@@ -1,62 +1,61 @@
 # Changelog — SDD (Spec-Driven Development)
 
-Todas as mudanças notáveis desta skill serão documentadas neste arquivo.
+All notable changes to this skill will be documented in this file.
 
-O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e o versionamento segue [Semantic Versioning](https://semver.org/lang/pt-BR/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
 ## [1.5.0] - 2026-04-23
 
-### Adicionado
-- **Integração com TLC Spec-Driven**: Adição de 5 novas diretrizes avançadas operacionais em `references/` (`brownfield-mapping.md`, `coding-principles.md`, `context-limits.md`, `session-handoff.md`, `quick-mode.md`).
-- **Delegação a Sub-Agentes**: Documentação do novo protocolo de delegação para orquestradores mitigarem limites de janela de contexto.
-- **Conformidade de Auditoria (Skill Factory)**: Adicionados `## Goal` e `## Quality Rules` obrigatórios nas sub-skills `sdd-implementer`, `sdd-orchestrator` e `sdd-reviewer`.
+### Added
+- **Spec-Driven TLC Integration**: Added 5 new advanced operational guidelines in `references/` (`brownfield-mapping.md`, `coding-principles.md`, `context-limits.md`, `session-handoff.md`, `quick-mode.md`).
+- **Sub-Agent Delegation**: Documentation of the new delegation protocol for orchestrators to mitigate context window limits.
+- **Audit Compliance (Skill Factory)**: Added mandatory `## Goal` and `## Quality Rules` in `sdd-implementer`, `sdd-orchestrator`, and `sdd-reviewer` sub-skills.
 
-### Alterado
-- **Atualização em Massa de Versão**: Sub-skills atualizadas para `1.5.0` sincronizando com a skill base.
+### Changed
+- **Mass Version Update**: Sub-skills updated to `1.5.0` synchronizing with the base skill.
 
 ## [1.4.0] - 2026-04-16
- — 2026-04-18
 
-### Adicionado
-- **Harness Engineering Integration**: Evolução do workflow com foco em contratos, sensores e feedback loops determinísticos.
-- **SDD Contracts**: Novo artefato `contract.md` para definir o acordo de entrega entre Implementador e Revisor.
-- **Sensor-based Reviews**: Vereditos agora são baseados em sinais de ferramentas externas (linters, testes) com Score Global (0-100).
+### Added
+- **Harness Engineering Integration**: Workflow evolution focusing on contracts, sensors, and deterministic feedback loops.
+- **SDD Contracts**: New `contract.md` artifact to define the delivery agreement between Implementer and Reviewer.
+- **Sensor-based Reviews**: Verdicts are now based on signals from external tools (linters, tests) with a Global Score (0-100).
 
-### Alterado
-- **Unificação de Versões**: Sincronização de todas as sub-skills para a versão 1.4.0 para consistência do ecossistema.
-- **Refinamento do Auto-Sizing**: Atualização da tabela de fases para incluir os marcos de Contrato e Review por Score.
-- **Correção de Nomenclatura**: Substituído o termo residual `ork-orchestrator` por `sdd-orchestrator`.
+### Changed
+- **Version Unification**: Synchronization of all sub-skills to version 1.4.0 for ecosystem consistency.
+- **Auto-Sizing Refinement**: Updated phase table to include Contract and Review by Score milestones.
+- **Naming Correction**: Replaced residual term `ork-orchestrator` with `sdd-orchestrator`.
 
 ## [1.3.1] — 2026-04-14
 
-### Adicionado
-- **Mermaid Diagrams Mandate**: Tornada obrigatória a inclusão de diagramas Mermaid na fase de `Specify` para níveis Medium+.
+### Added
+- **Mermaid Diagrams Mandate**: Mandatory inclusion of Mermaid diagrams in the `Specify` phase for Medium+ levels.
 
 ## [1.3.0] — 2026-04-14
 
-### Adicionado
-- **PRD/RFC/BDD Integration**: Incorporação de Product Requirements Documents, Request for Comments e BDD (Given/When/Then) ao workflow baseado no Auto-Sizing.
+### Added
+- **PRD/RFC/BDD Integration**: Incorporation of Product Requirements Documents, Request for Comments, and BDD (Given/When/Then) into the Auto-Sizing based workflow.
 
 ## [1.2.0] — 2026-04-14
 
-### Adicionado
-- **Workflow de Alto Nível**: Introdução de um ciclo de vida de 4 fases (Discovery, Specify, Implement, Review) para orientar a jornada completa do SDD antes da delegação para sub-skills.
+### Added
+- **High-Level Workflow**: Introduction of a 4-phase lifecycle (Discovery, Specify, Implement, Review) to guide the full SDD journey before delegation to sub-skills.
 
 ## [1.1.0] — 2026-04-14
 
-### Adicionado
-- **Persistent Memory Protocol**: Integração de memória de longo prazo com `MEMORY.md` e `LEARNINGS.md`.
-- **Evolução do sdd-planner**: Adição de templates e protocolos para reidratação de contexto e captura de aprendizados incrementais.
-- **Evolução da Estrutura Obrigatória**: Inclusão de novos arquivos de memória em `.specs/project/`.
+### Added
+- **Persistent Memory Protocol**: Integration of long-term memory with `MEMORY.md` and `LEARNINGS.md`.
+- **sdd-planner Evolution**: Added templates and protocols for context rehydration and incremental learning capture.
+- **Mandatory Structure Evolution**: Inclusion of new memory files in `.specs/project/`.
 
 ## [1.0.0] — 2026-04-14
 
-### Adicionado
-- **SKILL.md**: Definição principal do workflow SDD com Auto-Sizing e estrutura de diretórios obrigatória.
-- **sdd-explorer.skill.md**: Sub-skill para mapeamento de codebases existentes (Brownfield).
-- **sdd-planner.skill.md**: Sub-skill para gestão de visão do projeto e memória persistente (`STATE.md`).
-- **sdd-orchestrator.skill.md**: Sub-skill para especificação técnica com Knowledge Verification Chain.
-- **sdd-implementer.skill.md**: Sub-skill para implementação atômica e test-driven.
-- **sdd-reviewer.skill.md**: Sub-skill para auditoria contra critérios de aceitação com evidências.
+### Added
+- **SKILL.md**: Main definition of the SDD workflow with Auto-Sizing and mandatory directory structure.
+- **sdd-explorer.skill.md**: Sub-skill for mapping existing codebases (Brownfield).
+- **sdd-planner.skill.md**: Sub-skill for project vision management and persistent memory (`STATE.md`).
+- **sdd-orchestrator.skill.md**: Sub-skill for technical specification with Knowledge Verification Chain.
+- **sdd-implementer.skill.md**: Sub-skill for atomic and test-driven implementation.
+- **sdd-reviewer.skill.md**: Sub-skill for auditing against acceptance criteria with evidence.

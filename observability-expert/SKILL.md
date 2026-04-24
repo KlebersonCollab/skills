@@ -1,90 +1,90 @@
 ---
 name: observability-expert
 version: 1.0.0
-description: "Skill para especialista em SRE e Observabilidade. Foca em Logs Estruturados, OpenTelemetry, SLIs/SLOs e monitoramento proativo para garantir a resiliência de sistemas."
+description: "Skill for SRE and Observability specialist. Focuses on Structured Logs, OpenTelemetry, SLIs/SLOs, and proactive monitoring to ensure system resilience."
 category: site-reliability-engineering
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 # Observability Expert
 
-> "Se você não pode medir, você não pode gerenciar." — Peter Drucker. O foco aqui é transformar dados brutos em insights acionáveis e sistemas resilientes.
+> "If you can't measure it, you can't manage it." — Peter Drucker. The focus here is on transforming raw data into actionable insights and resilient systems.
 
 ---
 
 ## Goal
 
-Capacitar o agente a projetar e implementar ecossistemas de observabilidade de alta performance, utilizando os pilares de **Logs, Métricas e Tracing**. A skill assegura que o sistema seja transparente para o time de operação, permitindo detecção rápida de falhas, análise de causa raiz e evolução baseada em dados reais de uso.
+Empower the agent to design and implement high-performance observability ecosystems using the pillars of **Logs, Metrics, and Tracing**. The skill ensures that the system is transparent for the operations team, allowing rapid failure detection, root cause analysis, and evolution based on real usage data.
 
 ---
 
-## Workflow (4 Fases)
+## Workflow (4 Phases)
 
-### Fase 1: INSTRUMENT — Codificação para Visibilidade
-1.  **Mapear Contexto**: Identificar os metadados cruciais (TraceID, UserID, TenantID) que devem acompanhar cada operação.
-2.  **Logging Design**: Aplicar o padrão de **Structured Logging** (JSON) em pontos críticos do código (entrada de API, queries, erros).
-3.  **SDK Setup**: Sugerir a integração de SDKs do **OpenTelemetry** para captura automática de spans e métricas de sistema.
+### Phase 1: INSTRUMENT — Coding for Visibility
+1.  **Map Context**: Identify crucial metadata (TraceID, UserID, TenantID) that must accompany each operation.
+2.  **Logging Design**: Apply the **Structured Logging** (JSON) standard at critical code points (API entry, queries, errors).
+3.  **SDK Setup**: Suggest the integration of **OpenTelemetry** SDKs for automatic capture of spans and system metrics.
 
-### Fase 2: COLLECT — Orquestração de Telemetria
-1.  **Pipeline de Dados**: Desenhar o fluxo dos dados desde a aplicação até o armazenamento (ex: OTel Collector -> Prometheus/Loki).
-2.  **Sampling Strategy**: Definir estratégias de amostragem para traces para equilibrar custo e visibilidade em alta escala.
-3.  **Metrics Export**: Configurar a exportação de métricas padrão (RED: Rate, Errors, Duration) e métricas de negócio.
+### Phase 2: COLLECT — Telemetry Orchestration
+1.  **Data Pipeline**: Design data flow from application to storage (e.g., OTel Collector -> Prometheus/Loki).
+2.  **Sampling Strategy**: Define sampling strategies for traces to balance cost and visibility at high scale.
+3.  **Metrics Export**: Configure export of standard metrics (RED: Rate, Errors, Duration) and business metrics.
 
-### Fase 3: VISUALIZE — Dashboards & Insights
-1.  **Dashboard Layout**: Projetar painéis que contem uma história (do macro para o micro).
-2.  **SLI/SLO Mapping**: Traduzir requisitos de negócio em indicadores técnicos monitoráveis.
-3.  **Correlation**: Garantir que, ao clicar em um erro no log, seja possível pular direto para o trace relacionado.
+### Phase 3: VISUALIZE — Dashboards & Insights
+1.  **Dashboard Layout**: Design panels that tell a story (from macro to micro).
+2.  **SLI/SLO Mapping**: Translate business requirements into monitorable technical indicators.
+3.  **Correlation**: Ensure that by clicking an error in the log, it's possible to jump directly to the related trace.
 
-### Fase 4: REACT — Gestão de Incidentes e Alertas
-1.  **Alerting Rules**: Definir alertas baseados em queima de **Error Budget** em vez de limiares estáticos simples.
-2.  **Actionable Alerts**: Garantir que todo alerta tenha um link para o playbook de correção ou dashboard de diagnóstico.
-3.  **Feedback Loop**: Utilizar dados de performance para sugerir otimizações de código ou infraestrutura.
+### Phase 4: REACT — Incident and Alert Management
+1.  **Alerting Rules**: Define alerts based on **Error Budget** burn rate instead of simple static thresholds.
+2.  **Actionable Alerts**: Ensure every alert has a link to a fix playbook or diagnostic dashboard.
+3.  **Feedback Loop**: Use performance data to suggest code or infrastructure optimizations.
 
 ---
 
 ## Quality Rules
 
-- **Structured-First**: Todo log de produção **DEVE** ser emitido em formato estruturado (JSON).
-- **Vendor Agnostic**: Preferir padrões abertos (**OpenTelemetry**, **Prometheus**) sobre soluções proprietárias de cloud.
-- **Trace Propagation**: Toda chamada entre serviços deve propagar o cabeçalho de contexto de rastreio (W3C Trace Context).
-- **Actionable Only**: Não crie alertas que não exijam uma ação imediata; evite a fadiga de alertas.
+- **Structured-First**: Every production log **MUST** be emitted in structured format (JSON).
+- **Vendor Agnostic**: Prefer open standards (**OpenTelemetry**, **Prometheus**) over proprietary cloud solutions.
+- **Trace Propagation**: Every call between services must propagate the trace context header (W3C Trace Context).
+- **Actionable Only**: Do not create alerts that do not require immediate action; avoid alert fatigue.
 
 ## Prohibited
 
-- **NUNCA** logar dados sensíveis (PII, senhas, tokens) em texto claro.
-- **NUNCA** usar strings puras para logs de sistema; utilize chaves fixas para facilitar a busca.
-- **NUNCA** ignorar o custo de armazenamento de telemetria; use amostragem (sampling) quando necessário.
-- **NUNCA** considerar um sistema "pronto para produção" sem um SLO definido e monitorado.
+- **NEVER** log sensitive data (PII, passwords, tokens) in plain text.
+- **NEVER** use pure strings for system logs; use fixed keys to facilitate search.
+- **NEVER** ignore telemetry storage cost; use sampling when necessary.
+- **NEVER** consider a system "production-ready" without a defined and monitored SLO.
 
 ---
 
 ## Reference Documentation
 
-Esta skill inclui documentação de referência detalhada:
+This skill includes detailed reference documentation:
 
-1. **[Structured Logging](references/structured-logging.md)** — Padrões JSON e metadados contextuais.
-2. **[Metrics & Tracing](references/metrics-and-tracing.md)** — Guia prático de OpenTelemetry e Prometheus.
-3. **[SLIs, SLOs & Alerting](references/sli-slo-alerting.md)** — Metodologia de confiabilidade orientada a dados.
-4. **[Framework Monitoring](references/framework_monitoring.md)** — Monitoramento específico para FastAPI e Django (Prometheus/Grafana).
+1. **[Structured Logging](references/structured-logging.md)** — JSON patterns and contextual metadata.
+2. **[Metrics & Tracing](references/metrics-and-tracing.md)** — Practical guide to OpenTelemetry and Prometheus.
+3. **[SLIs, SLOs & Alerting](references/sli-slo-alerting.md)** — Data-driven reliability methodology.
+4. **[Framework Monitoring](references/framework_monitoring.md)** — Specific monitoring for FastAPI and Django (Prometheus/Grafana).
 
 ---
 
 ## Output Structure
 
-A execução desta skill resulta nos seguintes artefatos padronizados:
+Execution of this skill results in the following standardized artifacts:
 
-| Artefato | Formato | Descrição |
+| Artifact | Format | Description |
 |----------|---------|-----------|
-| **Logging Schema** | `.json` | Definição dos campos e tipos para logs estruturados. |
-| **OTel Blueprint** | Mermaid | Diagrama do pipeline de coleta e propagação de contexto. |
-| **SLO Report** | `.md` | Definição formal de indicadores, objetivos e orçamentos de erro. |
-| **Alerting Policy** | `.yaml` | Regras de alerta e pautas de notificação. |
+| **Logging Schema** | `.json` | Definition of fields and types for structured logs. |
+| **OTel Blueprint** | Mermaid | Diagram of context collection and propagation pipeline. |
+| **SLO Report** | `.md` | Formal definition of indicators, objectives, and error budgets. |
+| **Alerting Policy** | `.yaml` | Alerting rules and notification guidelines. |

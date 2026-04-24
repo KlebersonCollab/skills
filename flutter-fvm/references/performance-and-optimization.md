@@ -1,35 +1,35 @@
-# Performance & Otimização
+# Performance & Optimization
 
-Garantir 60/120 FPS exige controle rigoroso sobre o pipeline de renderização.
+Ensuring 60/120 FPS requires strict control over the rendering pipeline.
 
 ## 1. Selective Rebuilds (MediaQuery)
-**Conceito**: Ouvir apenas o que é necessário do contexto para evitar reconstruções globais.
+**Concept**: Listening only to what is necessary from the context to avoid global rebuilds.
 
-### ❌ Ruim
+### ❌ Bad
 ```dart
-// Reconstrói se qualquer coisa no MediaQuery mudar (ex: teclado abre)
+// Rebuilds if anything in MediaQuery changes (e.g., keyboard opens)
 final size = MediaQuery.of(context).size;
 ```
 
-### ✅ Bom
+### ✅ Good
 ```dart
-// Reconstrói APENAS se o tamanho mudar
+// Rebuilds ONLY if size changes
 final size = MediaQuery.sizeOf(context);
 ```
 
 ## 2. Widget Decomposition
-**Conceito**: Isolar partes da UI em classes `StatelessWidget` para aproveitar o cache do framework.
+**Concept**: Isolating parts of the UI into `StatelessWidget` classes to take advantage of the framework's cache.
 
-### ❌ Ruim (Helper Methods)
+### ❌ Bad (Helper Methods)
 ```dart
-Widget _buildHeader() { // Reconstruído sempre que o pai reconstrói
+Widget _buildHeader() { // Rebuilt whenever parent rebuilds
   return Text('Header');
 }
 ```
 
-### ✅ Bom (Widget Classes)
+### ✅ Good (Widget Classes)
 ```dart
-class Header extends StatelessWidget { // Cacheável e suporta const
+class Header extends StatelessWidget { // Cacheable and supports const
   const Header({super.key});
   @override
   Widget build(BuildContext context) => const Text('Header');
@@ -37,18 +37,18 @@ class Header extends StatelessWidget { // Cacheável e suporta const
 ```
 
 ## 3. RepaintBoundary
-**Conceito**: Cria uma camada separada no canvas para subárvores que mudam independentemente.
+**Concept**: Creates a separate layer on the canvas for subtrees that change independently.
 
-### ✅ Bom (Uso em Animações)
+### ✅ Good (Use in Animations)
 ```dart
 RepaintBoundary(
-  child: CircularProgressIndicator(), // O resto da tela não repinta
+  child: CircularProgressIndicator(), // Rest of screen doesn't repaint
 )
 ```
 
-## Checklist de Performance
-- [ ] Usou `MediaQuery.sizeOf` em vez de `.of`?
-- [ ] Métodos `build` têm menos de 100 linhas?
-- [ ] Funções que retornam widgets foram transformadas em classes?
-- [ ] Usou `const` em todos os widgets estáticos?
-- [ ] Imagens pesadas usam `cacheWidth` / `cacheHeight`?
+## Performance Checklist
+- [ ] Used `MediaQuery.sizeOf` instead of `.of`?
+- [ ] Are `build` methods less than 100 lines?
+- [ ] Were functions that return widgets transformed into classes?
+- [ ] Used `const` in all static widgets?
+- [ ] Do heavy images use `cacheWidth` / `cacheHeight`?

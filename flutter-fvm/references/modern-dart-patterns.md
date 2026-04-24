@@ -1,21 +1,21 @@
-# Padrões Modernos de Dart (v3.0+)
+# Modern Dart Patterns (v3.0+)
 
-O Dart 3 transformou o Flutter de um framework puramente imperativo para um modelo rico em tipos e padrões funcionais.
+Dart 3 has transformed Flutter from a purely imperative framework to a model rich in types and functional patterns.
 
 ## 1. Sealed Classes (Unions)
-**Conceito**: Garante que o compilador conheça todos os subtipos possíveis de uma classe, permitindo exaustividade em switches.
+**Concept**: Ensures the compiler knows all possible subtypes of a class, allowing exhaustiveness in switches.
 
-### ❌ Ruim (Boolean Flags)
+### ❌ Bad (Boolean Flags)
 ```dart
 class UserState {
   final bool isLoading;
   final String? error;
   final User? data;
-  // Permite estados impossíveis como isLoading=true E data!=null
+  // Allows impossible states like isLoading=true AND data!=null
 }
 ```
 
-### ✅ Bom (Sealed)
+### ✅ Good (Sealed)
 ```dart
 sealed class UserState {}
 class UserInitial extends UserState {}
@@ -25,22 +25,22 @@ class UserError extends UserState { final String msg; UserError(this.msg); }
 ```
 
 ## 2. Pattern Matching
-**Conceito**: Extração de dados e controle de fluxo baseado na estrutura do objeto.
+**Concept**: Data extraction and flow control based on the object's structure.
 
-### ✅ Bom (Switch Expression)
+### ✅ Good (Switch Expression)
 ```dart
 final message = switch (state) {
-  UserInitial() => 'Bem-vindo',
-  UserLoading() => 'Carregando...',
-  UserSuccess(user: var u) => 'Olá, ${u.name}',
-  UserError(msg: var m) => 'Erro: $m',
+  UserInitial() => 'Welcome',
+  UserLoading() => 'Loading...',
+  UserSuccess(user: var u) => 'Hello, ${u.name}',
+  UserError(msg: var m) => 'Error: $m',
 };
 ```
 
 ## 3. Records
-**Conceito**: Tipos anônimos para retornos múltiplos sem necessidade de classes pesadas.
+**Concept**: Anonymous types for multiple returns without the need for heavy classes.
 
-### ✅ Bom
+### ✅ Good
 ```dart
 (double, double) getCoordinates() => (-23.5, -46.6);
 
@@ -48,8 +48,8 @@ final message = switch (state) {
 final (lat, lng) = getCoordinates();
 ```
 
-## Checklist Modern Dart
-- [ ] Usou `sealed` para estados de UI?
-- [ ] O `switch` é uma expressão (com retorno) sempre que possível?
-- [ ] Evitou `dynamic` habilitando `strict-casts` no analyzer?
-- [ ] Usou `records` para retornos múltiplos simples?
+## Modern Dart Checklist
+- [ ] Used `sealed` for UI states?
+- [ ] Is the `switch` an expression (with return) whenever possible?
+- [ ] Avoided `dynamic` by enabling `strict-casts` in the analyzer?
+- [ ] Used `records` for simple multiple returns?

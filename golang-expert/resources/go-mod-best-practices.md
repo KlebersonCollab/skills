@@ -1,41 +1,41 @@
-# Melhores Práticas: Go Modules
+# Best Practices: Go Modules
 
-Guia prático para gerenciamento de dependências e versionamento em projetos Go.
+Practical guide for dependency management and versioning in Go projects.
 
-## 1. Comandos Essenciais
+## 1. Core Commands
 
-- `go mod init <module-name>`: Inicializa um novo módulo. O nome deve ser a URL do repositório (ex: `github.com/user/repo`).
-- `go mod tidy`: Remove dependências não utilizadas e adiciona as necessárias. **Execute sempre antes de commitar.**
-- `go mod vendor`: Cria uma cópia local de todas as dependências em uma pasta `vendor/`. Útil para builds offline ou ambientes restritos.
-- `go list -m all`: Lista todas as dependências diretas e indiretas.
+- `go mod init <module-name>`: Initializes a new module. The name should be the repository URL (e.g., `github.com/user/repo`).
+- `go mod tidy`: Removes unused dependencies and adds necessary ones. **Always execute before committing.**
+- `go mod vendor`: Creates a local copy of all dependencies in a `vendor/` folder. Useful for offline builds or restricted environments.
+- `go list -m all`: Lists all direct and indirect dependencies.
 
-## 2. Versionamento e Semantic Versioning (SemVer)
+## 2. Versioning and Semantic Versioning (SemVer)
 
-Go Modules seguem o SemVer (`vX.Y.Z`):
-- **Patch (Z)**: Correções de bugs.
-- **Minor (Y)**: Novas funcionalidades retrocompatíveis.
-- **Major (X)**: Mudanças que quebram a compatibilidade.
+Go Modules follow SemVer (`vX.Y.Z`):
+- **Patch (Z)**: Bug fixes.
+- **Minor (Y)**: New backward-compatible features.
+- **Major (X)**: Changes that break compatibility.
 
-**Atenção**: Versões Major >= 2 devem incluir o sufixo no nome do módulo:
+**Note**: Major versions >= 2 must include the suffix in the module name:
 ```go
 module github.com/user/repo/v2
 ```
 
-## 3. O arquivo `go.sum`
-NUNCA edite o `go.sum` manualmente. Ele contém os hashes criptográficos das dependências para garantir que o código baixado hoje seja idêntico ao baixado amanhã (Segurança e Reprodutibilidade).
+## 3. The `go.sum` file
+NEVER edit `go.sum` manually. It contains the cryptographic hashes of dependencies to ensure the code downloaded today is identical to the one downloaded tomorrow (Security and Reproducibility).
 
-## 4. Substituições Locais (Replace)
-Para testar mudanças em uma dependência localmente antes de publicá-la:
+## 4. Local Replacements (Replace)
+To test changes in a dependency locally before publishing it:
 ```bash
-go mod edit -replace github.com/dependencia/projeto=../caminho/local
+go mod edit -replace github.com/dependency/project=../local/path
 ```
-**Lembre-se**: Remova o `replace` antes de fazer o push para o repositório principal.
+**Remember**: Remove the `replace` before pushing to the main repository.
 
-## 5. Estratégia de Commits
-- Commit o `go.mod` e o `go.sum`.
-- O uso da pasta `vendor/` é opcional, mas se utilizada, deve ser commitada integralmente.
+## 5. Commit Strategy
+- Commit `go.mod` and `go.sum`.
+- The use of the `vendor/` folder is optional, but if used, it must be committed entirely.
 
-## Dicas Pro
-1. **Mantenha dependências atualizadas**: Use `go get -u ./...` para atualizar dependências (com cautela).
-2. **Evite Dependências Desnecessárias**: Go preza pela simplicidade. Às vezes, 10 linhas de código próprio são melhores que uma dependência externa pesada.
-3. **Internal Packages**: Use a pasta `internal/` para pacotes que não devem ser exportados para outros módulos.
+## Pro Tips
+1. **Keep dependencies updated**: Use `go get -u ./...` to update dependencies (with caution).
+2. **Avoid Unnecessary Dependencies**: Go values simplicity. Sometimes, 10 lines of own code are better than a heavy external dependency.
+3. **Internal Packages**: Use the `internal/` folder for packages that should not be exported to other modules.

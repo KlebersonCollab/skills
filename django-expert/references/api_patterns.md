@@ -1,7 +1,7 @@
 # Django REST Framework (DRF) Patterns
 
 ## Serializers
-Sempre valide dados de entrada e transforme saídas de forma explícita.
+Always validate input data and transform outputs explicitly.
 
 ```python
 class ProductSerializer(serializers.ModelSerializer):
@@ -19,7 +19,7 @@ class ProductSerializer(serializers.ModelSerializer):
 ```
 
 ## ViewSets
-Utilize ViewSets para agrupar lógica de CRUD e ações customizadas.
+Use ViewSets to group CRUD logic and customized actions.
 
 ```python
 class ProductViewSet(viewsets.ModelViewSet):
@@ -34,10 +34,10 @@ class ProductViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def purchase(self, request, pk=None):
         product = self.get_object()
-        # Lógica de compra...
+        # Purchase logic...
         return Response({'status': 'purchased'})
 ```
 
 ## Auth & Permissions
-- Use `IsAuthenticated` por padrão.
-- Crie permissões customizadas para regras de negócio (ex: `IsOwnerOrReadOnly`).
+- Use `IsAuthenticated` by default.
+- Create custom permissions for business rules (e.g., `IsOwnerOrReadOnly`).

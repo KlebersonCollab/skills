@@ -1,85 +1,85 @@
 ---
 name: clean-code-mentor
 version: 1.0.0
-description: "Skill para mentoria técnica e revisão de código com foco total em SOLID, YAGNI, DRY e KISS. Identifica violações de design e sugere refatorações para código mais simples e mantível."
+description: "Skill for technical mentorship and code review with total focus on SOLID, YAGNI, DRY, and KISS. Identifies design violations and suggests refactorings for simpler and more maintainable code."
 category: code-quality
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define the architecture and schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 # Clean Code Mentor
 
-> "Qualquer tolo consegue escrever código que um computador entenda. Bons programadores escrevem código que humanos entendam." — Martin Fowler
+> "Any fool can write code that a computer can understand. Good programmers write code that humans can understand." — Martin Fowler
 
 ---
 
 ## Goal
 
-Capacitar o agente a atuar como um revisor de código experiente e mentor técnico, auditando o design de software contra os princípios **SOLID**, **YAGNI**, **DRY** e **KISS**, garantindo que a simplicidade e a manutenibilidade sejam a prioridade máxima em cada entrega de código.
+Empower the agent to act as an experienced code reviewer and technical mentor, auditing software design against **SOLID**, **YAGNI**, **DRY**, and **KISS** principles, ensuring that simplicity and maintainability are the highest priority in every code delivery.
 
 ---
 
-## Workflow (4 Fases)
+## Workflow (4 Phases)
 
-### Fase 1: CONTEXT — Compreensão de Escopo
-1.  **Mapear Intenção**: Entender o que o código atual tenta realizar antes de criticar o design.
-2.  **Mapear Dependências**: Identificar relações entre classes e módulos que possam indicar violações de SRP (Responsabilidade Única) ou DIP (Inversão de Dependência).
+### Phase 1: CONTEXT — Scope Understanding
+1.  **Map Intent**: Understand what the current code is trying to achieve before criticizing the design.
+2.  **Map Dependencies**: Identify relationships between classes and modules that may indicate violations of SRP (Single Responsibility Principle) or DIP (Dependency Inversion Principle).
 
-### Fase 2: AUDIT — Verificação de Princípios
-1.  **SOLID Scan**: Avaliar cada um dos 5 princípios. Flagrar classes que fazem "coisas demais" ou heranças que quebram o contrato (LSP).
-2.  **YAGNI & KISS Guard**: Procurar por abstrações desnecessárias, padrões de design complexos aplicados em problemas simples e "código de reserva" para o futuro.
-3.  **DRY Verification**: Verificar duplicidade de lógica no arquivo ou entre arquivos relacionados.
+### Phase 2: AUDIT — Principles Verification
+1.  **SOLID Scan**: Evaluate each of the 5 principles. Flag classes that do "too much" or inheritances that break the contract (LSP).
+2.  **YAGNI & KISS Guard**: Look for unnecessary abstractions, complex design patterns applied to simple problems, and "placeholder code" for the future.
+3.  **DRY Verification**: Check for logic duplication within the file or across related files.
 
-### Fase 3: PROPOSE — Sugestões de Refatoração
-1.  **Draft de Melhoria**: Propor snippets de código comparativos (Antes vs. Depois) que apliquem as melhorias sugeridas.
-2.  **Impacto Mínimo**: Garantir que a refatoração proposta não altere o comportamento funcional do código (apenas a estrutura).
+### Phase 3: PROPOSE — Refactoring Suggestions
+1.  **Improvement Draft**: Propose comparative code snippets (Before vs. After) that apply the suggested improvements.
+2.  **Minimum Impact**: Ensure the proposed refactoring does not change the functional behavior of the code (only the structure).
 
-### Fase 4: MENTOR — Justificativa Técnica
-1.  **Fundamentação**: Explicar a teoria por trás da correção (ex: "Isso reduz o acoplamento...").
-2.  **Handoff**: Entregar um "Relatório de Qualidade" estruturado com Severidade e Recomendações.
+### Phase 4: MENTOR — Technical Rationale
+1.  **Foundational Support**: Explain the theory behind the fix (e.g., "This reduces coupling...").
+2.  **Handoff**: Deliver a structured "Quality Report" with Severity and Recommendations.
 
 ---
 
 ## Quality Rules
 
-- **Simplicity First**: Sempre priorize o código mais legível e direto (KISS) sobre o padrão de design mais elegante.
-- **Evidence-Based**: Toda crítica deve ser acompanhada de uma explicação teórica e um exemplo prático.
-- **Actionable**: Não apenas aponte erros; sempre forneça uma rota de correção clara (refatoração).
-- **Context-Aware**: Entenda que às vezes o prazo ou a tecnologia impõem limites, mas o design deve ser o melhor possível dentro dessas restrições.
+- **Simplicity First**: Always prioritize the most readable and direct code (KISS) over the most elegant design pattern.
+- **Evidence-Based**: Every critique must be accompanied by a theoretical explanation and a practical example.
+- **Actionable**: Don't just point out errors; always provide a clear path for correction (refactoring).
+- **Context-Aware**: Understand that sometimes deadlines or technology impose limits, but the design should be the best possible within those constraints.
 
 ## Prohibited
 
-- **NUNCA** sugerir padrões de design complexos se uma solução simples resolver o problema.
-- **NUNCA** ignorar "Code Smells" óbvios como métodos gigantes ou listas de parâmetros infinitas.
-- **NUNCA** sugerir mudanças que quebrem a consistência de estilo do projeto atual.
-- **NUNCA** criticar o código de forma subjetiva; utilize sempre os princípios estabelecidos como base.
+- **NEVER** suggest complex design patterns if a simple solution solves the problem.
+- **NEVER** ignore obvious "Code Smells" like giant methods or infinite parameter lists.
+- **NEVER** suggest changes that break the style consistency of the current project.
+- **NEVER** criticize code subjectively; always use established principles as a basis.
 
 ---
 
 ## Reference Documentation
 
-Esta skill inclui documentação de referência detalhada:
+This skill includes detailed reference documentation:
 
-1. **[SOLID Principles](references/solid-principles.md)** — Profundidade técnica nos 5 princípios com exemplos.
-2. **[YAGNI & KISS](references/yagni-and-kiss.md)** — O poder da simplicidade e da entrega baseada na necessidade atual.
-3. **[DRY & Clean Tests](references/dry-and-clean-tests.md)** — Eliminação de duplicidade e manutenção da qualidade dos testes.
+1. **[SOLID Principles](references/solid-principles.md)** — Technical depth on the 5 principles with examples.
+2. **[YAGNI & KISS](references/yagni-and-kiss.md)** — The power of simplicity and delivery based on current needs.
+3. **[DRY & Clean Tests](references/dry-and-clean-tests.md)** — Eliminating duplication and maintaining test quality.
 
 ---
 
 ## Output Structure
 
-A execução desta skill deve resultar nos seguintes artefatos padronizados:
+The execution of this skill should result in the following standardized artifacts:
 
-| Artefato | Formato | Descrição |
+| Artifact | Format | Description |
 |----------|---------|-----------|
-| **Review Report** | `.md` | Relatório estruturado de auditoria com severidade (Critical, Warning, Info). |
-| **Refactoring Diff** | Markdown/Diff | Comparativo Antes vs. Depois com a lógica sugerida. |
-| **Mentoring Summary** | `.md` | Breve explicação dos princípios teóricos aplicados na revisão. |
+| **Review Report** | `.md` | Structured audit report with severity (Critical, Warning, Info). |
+| **Refactoring Diff** | Markdown/Diff | Before vs. After comparison with the suggested logic. |
+| **Mentoring Summary** | `.md` | Brief explanation of the theoretical principles applied in the review. |

@@ -1,30 +1,30 @@
-# Limites de Contexto e Tamanho de Artefatos
+# Context Limits and Artifact Size
 
-A gestão de contexto é vital para manter a capacidade de raciocínio lógico em tarefas longas. Siga rigorosamente estes limites.
+Context management is vital to maintaining logical reasoning capacity in long tasks. Strictly follow these limits.
 
-## Limites de Arquivo
+## File Limits
 
-| Arquivo         | Max Tokens | ~Palavras | Aviso em (Warning) |
+| File            | Max Tokens | ~Words    | Warning at         |
 | --------------- | ---------- | --------- | ------------------ |
-| PROJECT.md      | 2.000      | 1.200     | 1.600 (80%)        |
-| ROADMAP.md      | 3.000      | 1.800     | 2.400              |
-| STATE.md        | 10.000     | 6.000     | 7.000 (70%)        |
-| spec.md         | 5.000      | 3.000     | 4.000              |
-| design.md       | 8.000      | 4.800     | 6.400              |
-| tasks.md        | 10.000     | 6.000     | 8.000              |
-| STACK.md        | 2.000      | 1.200     | 1.600              |
+| PROJECT.md      | 2,000      | 1,200     | 1,600 (80%)        |
+| ROADMAP.md      | 3.000      | 1,800     | 2,400              |
+| STATE.md        | 10.000     | 6.000     | 7,000 (70%)        |
+| spec.md         | 5.000      | 3.000     | 4,000              |
+| design.md       | 8.000      | 4,800     | 6,400              |
+| tasks.md        | 10.000     | 6.000     | 8,000              |
+| STACK.md        | 2.000      | 1,200     | 1,600              |
 | ARCHITECTURE.md | 4.000      | 2.400     | 3.200              |
-| CONVENTIONS.md  | 3.000      | 1.800     | 2.400              |
-| STRUCTURE.md    | 2.000      | 1.200     | 1.600              |
+| CONVENTIONS.md  | 3.000      | 1.800     | 2,400              |
+| STRUCTURE.md    | 2.000      | 1,200     | 1,600              |
 | TESTING.md      | 4.000      | 2.400     | 3.200              |
-| INTEGRATIONS.md | 5.000      | 3.000     | 4.000              |
+| INTEGRATIONS.md | 5.000      | 3.000     | 4,000              |
 
-## Zonas de Contexto
-- 🟢 **Saudável** (<40k tokens totais): Silencioso.
-- 🟡 **Moderado** (40-60k): Aviso discreto no rodapé.
-- 🔴 **Crítico** (>60k): Aviso ativo, sugere otimização do contexto (ex: arquivar logs no STATE.md).
+## Context Zones
+- 🟢 **Healthy** (<40k total tokens): Silent.
+- 🟡 **Moderate** (40-60k): Discreet footer warning.
+- 🔴 **Critical** (>60k): Active warning, suggests context optimization (e.g., archiving logs in `STATE.md`).
 
-## Princípios de Operação
-1. **Alvo:** Manter sempre menos de 40k tokens ativos carregados na memória de contexto.
-2. **Reserva Operacional:** Garantir que o modelo sempre tenha mais de 160k tokens disponíveis livres para raciocínio e saída.
-3. **Carregamento Sob Demanda:** Evite carregar múltiplas specs de features diferentes ao mesmo tempo. Carregue artefatos apenas quando forem estritamente necessários para a tarefa atual.
+## Operational Principles
+1. **Target:** Always maintain less than 40k active tokens loaded in context memory.
+2. **Operational Reserve:** Ensure the model always has more than 160k available free tokens for reasoning and output.
+3. **On-Demand Loading:** Avoid loading multiple feature specs at the same time. Load artifacts only when strictly necessary for the current task.

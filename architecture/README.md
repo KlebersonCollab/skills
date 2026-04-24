@@ -1,49 +1,49 @@
 # Architecture — Skill
 
-Arquiteto de Sistemas — guia o agente a projetar sistemas escaláveis, simples e bem documentados, utilizando ADRs e análise rigorosa de trade-offs.
+Systems Architect — guides the agent to design scalable, simple, and well-documented systems, using ADRs and rigorous trade-off analysis.
 
 ---
 
-## 🚀 Visão Geral
+## 🚀 Overview
 
-Esta skill transforma o agente em um arquiteto de software pragmático. O foco não é apenas usar tecnologias de ponta, mas garantir que a solução seja a mais simples e mantível possível para o contexto dado. Ela formaliza o processo de tomada de decisão técnica, garantindo que o "porquê" por trás de cada escolha arquitetural seja registrado e validado.
+This skill transforms the agent into a pragmatic software architect. The focus is not just on using cutting-edge technologies, but on ensuring that the solution is as simple and maintainable as possible for the given context. It formalizes the technical decision-making process, ensuring that the "why" behind each architectural choice is recorded and validated.
 
-### Capacidades Principais:
-- **Descoberta Contextual**: Mapeamento de restrições técnicas, financeiras e de equipe.
-- **Análise de Trade-offs**: Comparação objetiva entre abordagens concorrentes.
-- **Seleção de Padrões**: Escolha fundamentada de estilos (Hexagonal, Microserviços, Monolito, etc.).
-- **Governança via ADR**: Documentação durável de decisões arquiteturais.
+### Key Capabilities:
+- **Contextual Discovery**: Mapping technical, financial, and team constraints.
+- **Trade-off Analysis**: Objective comparison between competing approaches.
+- **Pattern Selection**: Informed choice of styles (Hexagonal, Microservices, Monolith, etc.).
+- **Governance via ADR**: Durable documentation of architectural decisions.
 
 ---
 
-## 📂 Estrutura da Skill
+## 📂 Skill Structure
 
 ```text
 architecture/
-├── SKILL.md                 # Definição e workflow (v1.0.0)
-├── README.md                # Este guia
-├── CHANGELOG.md             # Histórico de versões
-├── references/              # Conhecimento Teórico
+├── SKILL.md                 # Definition and workflow (v1.0.0)
+├── README.md                # This guide
+├── CHANGELOG.md             # Version history
+├── references/              # Theoretical Knowledge
 │   ├── architectural-principles.md
 │   ├── pattern-selection.md
 │   └── adr-template.md
-└── resources/               # ADRs gerados (sugerido)
+└── resources/               # Generated ADRs (suggested)
 ```
 
 ---
 
-## 🛠️ Como Usar
+## 🛠️ How to Use
 
-1. **Ative a skill**: `activate_skill architecture`
-2. **Defina o Contexto**: "Quero desenhar a arquitetura para o novo sistema de processamento de pagamentos."
-3. **Analise Alternativas**: O agente proporá diferentes caminhos (ex: Sync vs Async). Avalie os trade-offs listados.
-4. **Gere o ADR**: Após escolher o caminho, o agente documentará a decisão no formato ADR para consulta futura.
+1. **Activate the skill**: `activate_skill architecture`
+2. **Define the Context**: "I want to design the architecture for the new payment processing system."
+3. **Analyze Alternatives**: The agent will propose different paths (e.g., Sync vs. Async). Evaluate the listed trade-offs.
+4. **Generate the ADR**: After choosing the path, the agent will document the decision in the ADR format for future reference.
 
 ---
 
-## 🎯 Exemplos de Comandos
+## 🎯 Example Commands
 
-- *"Analise os trade-offs entre usar um banco de dados relacional e um NoSQL para este catálogo de produtos."*
-- *"Como estruturar este projeto seguindo a arquitetura hexagonal para facilitar testes?"*
-- *"Crie um ADR justificando a migração para uma arquitetura baseada em eventos."*
-- *"Quais são as restrições arquiteturais que devemos considerar para um sistema que precisa de baixíssima latência?"*
+- *"Analyze the trade-offs between using a relational database and a NoSQL database for this product catalog."*
+- *"How to structure this project following hexagonal architecture to facilitate testing?"*
+- *"Create an ADR justifying the migration to an event-driven architecture."*
+- *"What are the architectural constraints we should consider for a system that needs very low latency?"*

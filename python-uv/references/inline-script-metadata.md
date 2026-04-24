@@ -1,34 +1,34 @@
 # Inline Script Metadata (PEP 723)
 
-Guia completo para scripts Python self-contained com dependências definidas em comentários, eliminando a necessidade de `pyproject.toml` para scripts únicos.
+Complete guide for self-contained Python scripts with dependencies defined in comments, eliminating the need for `pyproject.toml` for single scripts.
 
 ---
 
-## O que é
+## What it is
 
-PEP 723 permite definir dependências diretamente em comentários do script Python. UV lê estes metadados e instala automaticamente as dependências ao executar.
+PEP 723 allows defining dependencies directly in Python script comments. UV reads this metadata and automatically installs dependencies upon execution.
 
-### Sintaxe
+### Syntax
 
 ```python
 # /// script
 # dependencies = [
-#   "pacote-a>=1.0.0",
-#   "pacote-b",
+#   "package-a>=1.0.0",
+#   "package-b",
 # ]
 # requires-python = ">=3.11"
 # ///
 ```
 
-**Regras de sintaxe:**
-- `# /// script` — marcador de abertura (exatamente assim)
-- `# dependencies = [...]` — lista de dependências em formato TOML
-- `# requires-python = "..."` — versão Python (opcional)
-- `# ///` — marcador de fechamento (exatamente assim)
+**Syntax rules:**
+- `# /// script` — opening marker (exactly like this)
+- `# dependencies = [...]` — list of dependencies in TOML format
+- `# requires-python = "..."` — Python version (optional)
+- `# ///` — closing marker (exactly like this)
 
 ---
 
-## Exemplos Práticos
+## Practical Examples
 
 ### Web Scraper
 
@@ -83,10 +83,10 @@ if __name__ == "__main__":
 
 ```bash
 uv run server.py
-# Acesse http://localhost:8000
+# Access http://localhost:8000
 ```
 
-### CLI Tool com Rich
+### CLI Tool with Rich
 
 ```python
 # /// script
@@ -122,7 +122,7 @@ if __name__ == "__main__":
 uv run processor.py ./data --pattern "*.csv"
 ```
 
-### Data Analysis com Polars
+### Data Analysis with Polars
 
 ```python
 # /// script
@@ -141,7 +141,7 @@ def analyze(file_path: str) -> None:
     df = pl.read_csv(file_path)
     print(df.describe())
 
-    # Salvar gráfico
+    # Save chart
     data_pd = df.to_pandas()
     data_pd.hist(figsize=(10, 6))
     plt.tight_layout()
@@ -157,50 +157,50 @@ if __name__ == "__main__":
 
 ---
 
-## Quando Usar vs Não Usar
+## When to Use vs Not to Use
 
-### ✅ Use inline metadata para:
-- Scripts de arquivo único
-- Utilitários e automação rápida
-- Exemplos compartilháveis que "just work"
-- Scripts de análise de dados
-- CLIs simples
-- Prototipação rápida
+### ✅ Use inline metadata for:
+- Single-file scripts
+- Quick utilities and automation
+- Shareable examples that "just work"
+- Data analysis scripts
+- Simple CLIs
+- Rapid prototyping
 
-### ❌ NÃO use para:
-- Projetos multi-arquivo (use `pyproject.toml`)
-- Aplicações com muitas dependências (>10-15 pacotes)
-- Projetos com separação dev/test deps
-- Aplicações de produção
-- Pacotes para publicação no PyPI
+### ❌ DO NOT use for:
+- Multi-file projects (use `pyproject.toml`)
+- Applications with many dependencies (>10-15 packages)
+- Projects with dev/test dependency separation
+- Production applications
+- Packages for PyPI publication
 
 ---
 
-## Boas Práticas
+## Best Practices
 
-### Versionar dependências para reprodução
+### Pin dependencies for reproducibility
 
 ```python
-# ✅ Bom — reproduzível
+# ✅ Good — reproducible
 # dependencies = [
 #   "requests==2.31.0",
 #   "pandas==2.1.0",
 # ]
 
-# ✅ Bom — flexível mas seguro
+# ✅ Good — flexible but secure
 # dependencies = [
 #   "requests>=2.28.0,<3.0.0",
 #   "pandas>=2.0.0",
 # ]
 
-# ⚠️ Arriscado — comportamento pode mudar
+# ⚠️ Risky — behavior might change
 # dependencies = [
 #   "requests",
 #   "pandas",
 # ]
 ```
 
-### Organizar dependências
+### Organize dependencies
 
 ```python
 # /// script
@@ -221,30 +221,30 @@ if __name__ == "__main__":
 
 ### "Failed to parse inline script metadata"
 
-Verificar sintaxe exata dos marcadores:
+Check exact marker syntax:
 
 ```python
-# /// script        ← EXATAMENTE assim (com espaço)
+# /// script        ← EXACTLY like this (with space)
 # dependencies = [
-#   "pacote",       ← Formato TOML válido
+#   "package",      ← Valid TOML format
 # ]
-# ///               ← EXATAMENTE assim
+# ///               ← EXACTLY like this
 ```
 
 ### "Package not found"
 
 ```bash
-# Verificar nome no PyPI
-curl https://pypi.org/pypi/nome-do-pacote/json | head -5
+# Verify name on PyPI
+curl https://pypi.org/pypi/package-name/json | head -5
 ```
 
 ### "Requires Python >=3.11 but found 3.10"
 
 ```bash
-# Instalar versão necessária
+# Install required version
 uv python install 3.11
 
-# Executar com versão específica
+# Execute with specific version
 uv run --python 3.11 script.py
 ```
 
@@ -252,8 +252,8 @@ uv run --python 3.11 script.py
 
 ## Performance
 
-| Execução | Tempo |
+| Execution | Time |
 |----------|-------|
-| Primeira vez (download + setup) | 5-30s (depende das deps) |
-| Execuções subsequentes (cache) | <1s |
-| Após `uv cache clean` | Volta ao tempo da primeira |
+| First time (download + setup) | 5-30s (depends on deps) |
+| Subsequent executions (cache) | <1s |
+| After `uv cache clean` | Reverts to first-time duration |

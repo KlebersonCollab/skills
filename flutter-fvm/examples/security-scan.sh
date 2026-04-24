@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # Flutter Security Scanner
-# Baseado no OWASP Mobile Top 10 (2024)
-# Uso: ./security-scan.sh
+# Based on OWASP Mobile Top 10 (2024)
+# Usage: ./security-scan.sh
 
 set -e
 
 echo "=== Flutter Security Scan (OWASP Mobile Top 10) ==="
 echo ""
 
-# 1. M1: Improper Credential Usage - Credenciais hardcoded
+# 1. M1: Improper Credential Usage - Hardcoded Credentials
 echo "1. 🔍 Scanning for hardcoded secrets (M1)..."
 SECRET_PATTERNS="sk_live_|api[_-]key|secret[_-]|password|token|auth[_-]|bearer|jwt|firebase"
 if grep -r -i -E "$SECRET_PATTERNS" lib/ --include="*.dart" | grep -v "//\|test\|TODO\|FIXME" > /dev/null 2>&1; then
@@ -19,7 +19,7 @@ else
     echo "   ✅ No obvious hardcoded secrets found"
 fi
 
-# 2. M2: Inadequate Supply Chain Security - Dependências
+# 2. M2: Inadequate Supply Chain Security - Dependencies
 echo ""
 echo "2. 📦 Checking dependencies (M2)..."
 if [ -f "pubspec.yaml" ]; then

@@ -3,13 +3,13 @@
 ## [1.1.0] - 2026-04-20
 
 ### Added
-- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+- `🔒 Prerequisites (Mandatory)` section linking the skill mandatorily to the SDD framework.
 
 ## [1.0.0] - 2026-04-18
 
 ### Added
-- Inicialização da skill `fastapi-expert`.
-- Integração com o padrão `python-uv`.
-- Regras estritas para `Annotated` e `Pydantic V2`.
-- Workflow de 4 fases para design e implementação de APIs.
-- Exemplos de "Do's and Don'ts" baseados no padrão oficial do FastAPI.
+- Initialization of the `fastapi-expert` skill.
+- Integration with the `python-uv` standard.
+- Strict rules for `Annotated` and `Pydantic V2`.
+- 4-phase workflow for API design and implementation.
+- "Do's and Don'ts" examples based on official FastAPI standards.

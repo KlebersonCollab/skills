@@ -1,48 +1,48 @@
 # Project Management
 
-Guia completo para inicialização, gerenciamento de dependências, lockfiles, estrutura de projeto e ferramentas de qualidade com UV.
+Complete guide for initialization, dependency management, lockfiles, project structure, and quality tools with UV.
 
 ---
 
-## Inicialização de Projeto
+## Project Initialization
 
-### Criar novo projeto
+### Create a new project
 
 ```bash
-uv init meu-projeto
-cd meu-projeto
+uv init my-project
+cd my-project
 ```
 
-Estrutura gerada:
+Generated structure:
 
 ```
-meu-projeto/
-├── .python-version      # Versão Python fixada
-├── pyproject.toml       # Configuração do projeto
+my-project/
+├── .python-version      # Fixed Python version
+├── pyproject.toml       # Project configuration
 ├── README.md
 └── src/
-    └── meu_projeto/
+    └── my_project/
         └── __init__.py
 ```
 
-### Inicializar projeto existente
+### Initialize an existing project
 
 ```bash
-cd projeto-existente
-uv init --pyproject       # Gera pyproject.toml
+cd existing-project
+uv init --pyproject       # Generates pyproject.toml
 ```
 
 ---
 
 ## pyproject.toml
 
-O `pyproject.toml` é a **fonte única da verdade** para o projeto:
+`pyproject.toml` is the **single source of truth** for the project:
 
 ```toml
 [project]
-name = "meu-projeto"
+name = "my-project"
 version = "0.1.0"
-description = "Meu projeto Python"
+description = "My Python project"
 requires-python = ">=3.11"
 dependencies = [
     "requests>=2.31.0",
@@ -59,7 +59,7 @@ dev = [
 ]
 
 [project.scripts]
-meu-cli = "meu_projeto.cli:main"
+my-cli = "my_project.cli:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -84,61 +84,61 @@ python_files = ["test_*.py"]
 addopts = "-xvs"
 ```
 
-Veja [pyproject-toml-example.md](../examples/pyproject-toml-example.md) para um template completo anotado.
+See [pyproject-toml-example.md](../examples/pyproject-toml-example.md) for a complete annotated template.
 
 ---
 
-## Gerenciamento de Dependências
+## Dependency Management
 
-### Adicionar
+### Add
 
 ```bash
-# Dependência de produção
+# Production dependency
 uv add requests pydantic
 
-# Dependência de desenvolvimento
+# Development dependency
 uv add --dev pytest ruff mypy
 
-# Dependência com versão específica
+# Specific version dependency
 uv add "requests>=2.31.0,<3.0.0"
 
-# Dependência opcional (grupo)
+# Optional dependency (group)
 uv add --optional test pytest-cov
 ```
 
-### Remover
+### Remove
 
 ```bash
 uv remove requests
 uv remove --dev pytest-cov
 ```
 
-### Sincronizar
+### Synchronize
 
 ```bash
-# Instalar tudo do pyproject.toml
+# Install everything from pyproject.toml
 uv sync
 
-# Incluindo deps de desenvolvimento
+# Including development dependencies
 uv sync --dev
 
-# A partir do lockfile (reprodução exata)
+# From lockfile (exact reproduction)
 uv sync --locked
 
-# Recriar ambiente do zero
+# Recreate environment from scratch
 uv sync --recreate
 ```
 
-### Inspecionar
+### Inspect
 
 ```bash
-# Árvore de dependências
+# Dependency tree
 uv tree
 
-# Dependências reversas (quem depende de quê)
+# Reverse dependencies (who depends on what)
 uv tree --reverse
 
-# Listar pacotes instalados
+# List installed packages
 uv pip list
 ```
 
@@ -146,36 +146,36 @@ uv pip list
 
 ## Lockfile (`uv.lock`)
 
-O lockfile garante **reprodução exata** do ambiente:
+The lockfile ensures **exact reproduction** of the environment:
 
 ```bash
-# Gerar/atualizar lockfile
+# Generate/update lockfile
 uv lock
 
-# Sincronizar a partir do lockfile
+# Synchronize from lockfile
 uv sync --locked
 ```
 
-**Regras:**
-- ✅ **Sempre versione** `uv.lock` no git
-- ✅ **Use `--locked`** em CI/CD para builds reproduzíveis
-- ❌ **Nunca edite** `uv.lock` manualmente
+**Rules:**
+- ✅ **Always version** `uv.lock` in git
+- ✅ **Use `--locked`** in CI/CD for reproducible builds
+- ❌ **Never edit** `uv.lock` manually
 
 ---
 
-## Estrutura de Projeto Recomendada
+## Recommended Project Structure
 
-### Src Layout (Recomendado)
+### Src Layout (Recommended)
 
 ```
-meu-projeto/
+my-project/
 ├── pyproject.toml
 ├── uv.lock
 ├── README.md
 ├── .gitignore
 ├── .python-version
 ├── src/
-│   └── meu_projeto/
+│   └── my_project/
 │       ├── __init__.py
 │       ├── core.py
 │       ├── models.py
@@ -189,7 +189,7 @@ meu-projeto/
     └── deploy.py
 ```
 
-### .gitignore para projetos UV
+### .gitignore for UV projects
 
 ```gitignore
 # Python
@@ -207,8 +207,8 @@ build/
 .vscode/
 *.swp
 
-# NÃO ignore uv.lock — sempre versione!
-# uv.lock  ← NÃO faça isso
+# DO NOT ignore uv.lock — always version it!
+# uv.lock  ← DON'T do this
 ```
 
 ---
@@ -216,7 +216,7 @@ build/
 ## Workspaces (Monorepo)
 
 ```toml
-# pyproject.toml na raiz do monorepo
+# pyproject.toml at monorepo root
 [tool.uv.workspace]
 members = ["packages/*"]
 ```
@@ -224,7 +224,7 @@ members = ["packages/*"]
 ```
 monorepo/
 ├── pyproject.toml          # Workspace root
-├── uv.lock                 # Lockfile compartilhado
+├── uv.lock                 # Shared lockfile
 └── packages/
     ├── core/
     │   ├── pyproject.toml
@@ -239,21 +239,21 @@ monorepo/
 
 ---
 
-## Ferramentas de Qualidade
+## Quality Tools
 
 ### Ruff (Linter + Formatter)
 
 ```bash
-# Instalar como dev dep
+# Install as dev dependency
 uv add --dev ruff
 
-# Formatar código
+# Format code
 uv run ruff format .
 
-# Verificar linting
+# Check linting
 uv run ruff check .
 
-# Corrigir automaticamente
+# Auto-fix
 uv run ruff check --fix .
 ```
 
@@ -262,29 +262,29 @@ uv run ruff check --fix .
 ```bash
 uv add --dev mypy
 
-# Executar type checking
+# Run type checking
 uv run mypy .
 ```
 
-### pytest (Testes)
+### pytest (Testing)
 
 ```bash
 uv add --dev pytest pytest-cov
 
-# Executar testes
+# Run tests
 uv run pytest
 
-# Com cobertura
+# With coverage
 uv run pytest --cov=src/
 
-# Testes específicos
+# Specific tests
 uv run pytest tests/test_core.py -xvs
 ```
 
-### Workflow de qualidade completo
+### Complete quality workflow
 
 ```bash
-# Executar toda pipeline de qualidade
+# Execute entire quality pipeline
 uv run ruff format --check .
 uv run ruff check .
 uv run mypy .

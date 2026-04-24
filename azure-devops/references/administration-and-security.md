@@ -1,63 +1,63 @@
 # Administration & Security: Azure DevOps
 
-Este guia foca na gestão de identidades, permissões e governança administrativa no Azure DevOps.
+This guide focuses on identity management, permissions, and administrative governance in Azure DevOps.
 
 ---
 
-## 1. Gestão de Usuários e Níveis de Acesso
+## 1. User Management and Access Levels
 
-Adicionar ou remover usuários da organização e definir seu nível de licença (Basic, Stakeholder, etc.).
+Add or remove users from the organization and define their license level (Basic, Stakeholder, etc.).
 
-### Listar Usuários
+### List Users
 `az devops user list`
 
-### Adicionar Usuário (CLI)
+### Add User (CLI)
 ```bash
 az devops user add \
-    --email-id "novo.dev@exemplo.com" \
+    --email-id "new.dev@example.com" \
     --license-type "basic" \
     --send-email true
 ```
 
-## 2. Times e Membros
+## 2. Teams and Members
 
-Organizar desenvolvedores em times para facilitar a gestão de backlogs e permissões.
+Organize developers into teams to facilitate backlog and permission management.
 
-### Criar um Time
-`az devops team create --name "Frontend-Team" --project "MeuProjeto"`
+### Create a Team
+`az devops team create --name "Frontend-Team" --project "MyProject"`
 
-### Adicionar Membro ao Time
-`az devops team user add --team "Frontend-Team" --user "dev@exemplo.com"`
+### Add Member to Team
+`az devops team user add --team "Frontend-Team" --user "dev@example.com"`
 
-## 3. Segurança e Grupos
+## 3. Security and Groups
 
-O AzDO utiliza grupos de segurança para aplicar permissões em massa.
+AzDO uses security groups to apply permissions in bulk.
 
-### Listar Grupos de Segurança
-`az devops security group list --project "MeuProjeto"`
+### List Security Groups
+`az devops security group list --project "MyProject"`
 
-### Gerenciar Permissões
-Comandos complexos que permitem definir flags de permissão para namespaces específicos (ex: Git Repositories, Build).
+### Manage Permissions
+Complex commands that allow defining permission flags for specific namespaces (e.g., Git Repositories, Build).
 `az devops security permission update --id {namespaceId} --subject {email} --token {token} --allow-bit {bit}`
 
-## 4. Extensões (Marketplace)
+## 4. Extensions (Marketplace)
 
-Auditar e gerenciar extensões que adicionam funcionalidades à organização.
+Audit and manage extensions that add functionality to the organization.
 
-### Listar Extensões Instaladas
+### List Installed Extensions
 `az devops extension list`
 
-### Instalar uma Extensão
-`az devops extension install --extension-id "nome-ext" --publisher-id "editor"`
+### Install an Extension
+`az devops extension install --extension-id "name-ext" --publisher-id "publisher"`
 
-## 5. Auditoria de Segurança
+## 5. Security Audit
 
-- **Branch Policies**: Verifique periodicamente se as branches `main` possuem políticas de PR e build ativas (`az repos policy list`).
-- **Access Review**: Liste usuários e seus últimos logins para remover contas inativas.
-- **Service Connection Audit**: Verifique se há credenciais expiradas em conexões críticas.
+- **Branch Policies**: Periodically check if `main` branches have active PR and build policies (`az repos policy list`).
+- **Access Review**: List users and their last logins to remove inactive accounts.
+- **Service Connection Audit**: Check for expired credentials in critical connections.
 
-## 6. Boas Práticas
+## 6. Best Practices
 
-- **Groups over Users**: Nunca atribua permissões diretamente a um usuário; sempre utilize Grupos de Segurança.
-- **Minimum Access**: Comece com `Stakeholder` e suba para `Basic` apenas se necessário.
-- **Policy Enforcement**: Utilize políticas de branch para garantir que nenhum código entre em produção sem revisão.
+- **Groups over Users**: Never assign permissions directly to a user; always use Security Groups.
+- **Minimum Access**: Start with `Stakeholder` and upgrade to `Basic` only if necessary.
+- **Policy Enforcement**: Use branch policies to ensure no code enters production without review.

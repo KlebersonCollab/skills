@@ -5,7 +5,7 @@ import sys
 
 def analyze_tasks(file_path):
     """
-    Analisa o arquivo tasks.md e separa tarefas concluídas de pendentes.
+    Analyzes the tasks.md file and separates completed tasks from pending ones.
     """
     if not os.path.exists(file_path):
         return None, None
@@ -16,7 +16,7 @@ def analyze_tasks(file_path):
     completed = []
     pending = []
 
-    # Regex para identificar tarefas: "- [ ] Task" ou "- [x] Task"
+    # Regex to identify tasks: "- [ ] Task" or "- [x] Task"
     task_pattern = re.compile(r"^\s*-\s*\[([ xX])\]\s*(.*)")
 
     for line in lines:
@@ -35,30 +35,30 @@ def analyze_tasks(file_path):
 
 def generate_compact_state(completed, pending, feature_name="Context Compressor"):
     """
-    Gera o conteúdo em Markdown para o STATE.md compactado.
+    Generates Markdown content for the compressed STATE.md.
     """
-    summary = f"## 📜 Histórico Compactado: {feature_name}\n"
+    summary = f"## 📜 Compressed History: {feature_name}\n"
     if completed:
-        summary += "- **Concluído**: " + ", ".join(completed) + ".\n"
+        summary += "- **Completed**: " + ", ".join(completed) + ".\n"
     else:
-        summary += "- Nenhuma tarefa concluída no momento.\n"
+        summary += "- No tasks completed at the moment.\n"
 
-    summary += "\n## 🚧 Tarefas Pendentes\n"
+    summary += "\n## 🚧 Pending Tasks\n"
     if pending:
         for task in pending:
             summary += f"- [ ] {task}\n"
     else:
-        summary += "- Todas as tarefas foram concluídas!\n"
+        summary += "- All tasks have been completed!\n"
 
     return summary
 
 
 def update_state_file(state_path, compact_content):
     """
-    Atualiza o arquivo STATE.md com o conteúdo compactado.
+    Updates the STATE.md file with the compressed content.
     """
-    # Mantém o cabeçalho original se existir
-    header = '# Operational State\n\n> "Estado compactado pelo Context Compressor."\n\n'
+    # Maintains the original header if it exists
+    header = '# Operational State\n\n> "State compressed by Context Compressor."\n\n'
 
     with open(state_path, "w", encoding="utf-8") as f:
         f.write(header + compact_content)
@@ -71,31 +71,31 @@ if __name__ == "__main__":
     from distiller import suggest_learnings
 
     parser = argparse.ArgumentParser(description="Harness Context Compressor")
-    parser.add_argument("task_file", help="Caminho do arquivo tasks.md")
-    parser.add_argument("state_file", help="Caminho do arquivo STATE.md")
+    parser.add_argument("task_file", help="Path to tasks.md file")
+    parser.add_argument("state_file", help="Path to STATE.md file")
     parser.add_argument(
-        "--auto", action="store_true", help="Executa apenas se exceder o threshold"
+        "--auto", action="store_true", help="Executes only if threshold is exceeded"
     )
     parser.add_argument(
         "--threshold",
         type=int,
         default=5,
-        help="Número de tasks concluídas para disparar",
+        help="Number of completed tasks to trigger",
     )
     parser.add_argument(
         "--distill",
-        help="Caminho de um validation-report.md para extração de aprendizados",
+        help="Path to a validation-report.md for extracting learnings",
     )
 
     args = parser.parse_args()
 
-    # 1. Destilação de Conhecimento (Fase 3)
+    # 1. Knowledge Distillation (Phase 3)
     if args.distill:
-        print(f"Harness: Iniciando Destilação de Conhecimento de {args.distill}...")
+        print(f"Harness: Starting Knowledge Distillation from {args.distill}...")
         suggestions = suggest_learnings(args.distill)
         print(suggestions)
 
-    # 2. Compactação de Contexto (Fase 1 e 2)
+    # 2. Context Compression (Phases 1 and 2)
     t_file = args.task_file
     s_file = args.state_file
 
@@ -103,14 +103,14 @@ if __name__ == "__main__":
     if comp is not None:
         if args.auto and len(comp) < args.threshold:
             print(
-                f"Harness: {len(comp)} tarefas concluídas. Threshold de {args.threshold} não atingido. Ignorando compactação."
+                f"Harness: {len(comp)} tasks completed. Threshold of {args.threshold} not reached. Ignoring compression."
             )
             sys.exit(0)
 
         state_content = generate_compact_state(comp, pend)
         update_state_file(s_file, state_content)
         print(
-            f"Harness Context Compressor: {len(comp)} tarefas compactadas em {s_file}"
+            f"Harness Context Compressor: {len(comp)} tasks compressed into {s_file}"
         )
     else:
-        print(f"Erro: Arquivo {t_file} não encontrado.")
+        print(f"Error: File {t_file} not found.")

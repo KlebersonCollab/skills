@@ -74,26 +74,26 @@ category: {{category}}
 
 ## Goal
 
-[Objetivo principal da skill — o que ela resolve e por que existe.]
+[Main objective of the skill — what it solves and why it exists.]
 
 ---
 
 ## Output Structure
 
-[Descreva os artefatos, documentos ou resultados que a skill produz.]
+[Describe the artifacts, documents, or results that the skill produces.]
 
 ---
 
 ## Quality Rules
 
-- [Regra de qualidade 1]
-- [Regra de qualidade 2]
-- [Regra de qualidade 3]
+- [Quality rule 1]
+- [Quality rule 2]
+- [Quality rule 3]
 
 ## Prohibited
 
-- [O que a skill NÃO deve fazer 1]
-- [O que a skill NÃO deve fazer 2]
+- [What the skill must NOT do 1]
+- [What the skill must NOT do 2]
 ```
 
 ### README.md Template
@@ -103,38 +103,38 @@ category: {{category}}
 
 > {{description}}
 
-[![Versão](https://img.shields.io/badge/Versão-1.0.0-blue)](#changelog)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue)](#changelog)
 [![Sub-skills](https://img.shields.io/badge/Sub--skills-{{sub_skill_count}}-brightgreen)](#-sub-skills)
 
 ---
 
-## 📖 Visão Geral
+## 📖 Overview
 
-[Descrição detalhada da skill, seu propósito e como se encaixa no ecossistema do Skills Hub.]
+[Detailed description of the skill, its purpose, and how it fits into the Skills Hub ecosystem.]
 
 ---
 
-## ⚙️ Como Usar
+## ⚙️ How to Use
 
-[Instruções de uso, exemplos de invocação ou cenários de aplicação.]
+[Usage instructions, invocation examples, or application scenarios.]
 
 ---
 
 ## 🧩 Sub-skills
 
-| Sub-skill | Arquivo | Responsabilidade |
+| Sub-skill | File | Responsibility |
 |-----------|---------|------------------|
 {{#each sub_skills}}
-| **{{Sub-skill Name}}** | [{{skill_name}}-{{sub_skill_name}}.skill.md]({{skill_name}}-{{sub_skill_name}}.skill.md) | [Descrição da responsabilidade] |
+| **{{Sub-skill Name}}** | [{{skill_name}}-{{sub_skill_name}}.skill.md]({{skill_name}}-{{sub_skill_name}}.skill.md) | [Description of responsibility] |
 {{/each}}
 
-> 💡 Se esta skill não possui sub-skills, remova esta seção.
+> 💡 If this skill has no sub-skills, remove this section.
 
 ---
 
 ## 📝 Changelog
 
-Consulte o [CHANGELOG.md](CHANGELOG.md) para o histórico completo de versões.
+Consult the [CHANGELOG.md](CHANGELOG.md) for the full version history.
 ```
 
 ### CHANGELOG.md Template
@@ -142,19 +142,19 @@ Consulte o [CHANGELOG.md](CHANGELOG.md) para o histórico completo de versões.
 ```markdown
 # Changelog — {{Skill Name (Title Case)}}
 
-Todas as mudanças notáveis desta skill serão documentadas neste arquivo.
+All notable changes to this skill will be documented in this file.
 
-O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e o versionamento segue [Semantic Versioning](https://semver.org/lang/pt-BR/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
 ## [1.0.0] — {{YYYY-MM-DD}}
 
-### Adicionado
-- **SKILL.md**: Definição principal da skill.
-- **README.md**: Documentação detalhada.
+### Added
+- **SKILL.md**: Main skill definition.
+- **README.md**: Detailed documentation.
 {{#each sub_skills}}
-- **{{skill_name}}-{{sub_skill_name}}.skill.md**: Sub-skill para {{sub_skill_description}}.
+- **{{skill_name}}-{{sub_skill_name}}.skill.md**: Sub-skill for {{sub_skill_description}}.
 {{/each}}
 ```
 
@@ -170,43 +170,43 @@ category: {{category}}
 
 # {{Skill Name}} — {{Sub-skill Name (Title Case)}}
 
-You are the **{{Sub-skill Name}}** in the {{Skill Name}} workflow. [Descrição do papel desta sub-skill.]
+You are the **{{Sub-skill Name}}** in the {{Skill Name}} workflow. [Description of this sub-skill's role.]
 
 ## Goal
 
-[Objetivo específico desta sub-skill no contexto da skill principal.]
+[Specific objective of this sub-skill in the context of the main skill.]
 
 ## Protocol
 
-### Step 1: [Nome do Passo]
-[Descrição detalhada]
+### Step 1: [Step Name]
+[Detailed description]
 
-### Step 2: [Nome do Passo]
-[Descrição detalhada]
+### Step 2: [Step Name]
+[Detailed description]
 
 ## Quality Rules
 
-- [Regra 1]
-- [Regra 2]
+- [Rule 1]
+- [Rule 2]
 
 ## Prohibited
 
-- [Proibição 1]
-- [Proibição 2]
+- [Prohibition 1]
+- [Prohibition 2]
 ```
 
 ---
 
 ## Quality Rules
 
-- **Placeholder Clarity**: Todos os campos `[placeholders em colchetes]` devem ser óbvios e auto-explicativos para facilitar o preenchimento.
-- **Consistent Frontmatter**: O frontmatter YAML deve sempre conter `name`, `version`, `description`, `category`.
-- **Date Accuracy**: O `CHANGELOG.md` deve usar a data real de criação, não uma data placeholder.
-- **Title Case**: Nomes de skills em títulos devem usar Title Case (ex: "Deep Research", não "deep research").
+- **Placeholder Clarity**: All `[bracketed placeholders]` should be obvious and self-explanatory to facilitate completion.
+- **Consistent Frontmatter**: YAML frontmatter must always contain `name`, `version`, `description`, `category`.
+- **Date Accuracy**: `CHANGELOG.md` must use the actual date of creation, not a placeholder date.
+- **Title Case**: Skill names in titles must use Title Case (e.g., "Deep Research", not "deep research").
 
 ## Prohibited
 
-- NUNCA gerar arquivos vazios ou com conteúdo mínimo sem estrutura.
-- NUNCA omitir o frontmatter YAML de qualquer arquivo `.skill.md` ou `SKILL.md`.
-- NUNCA criar sub-skills sem que tenham sido solicitadas nos parâmetros.
-- NUNCA alterar arquivos fora do diretório da nova skill.
+- NEVER generate empty files or files with minimal content without structure.
+- NEVER omit YAML frontmatter from any `.skill.md` or `SKILL.md` file.
+- NEVER create sub-skills unless they have been requested in the parameters.
+- NEVER alter files outside the directory of the new skill.

@@ -3,55 +3,55 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# Adiciona o diretório atual ao path para importar utils
+# Add current directory to path to import utils
 sys.path.append(str(Path(__file__).parent))
 from utils import logger, DEFAULT_EXCLUDES
 
 
 def check_memory_sync():
     """
-    Verifica se os arquivos de memória (STATE.md, LEARNINGS.md) foram atualizados
-    recentemente em comparação com as alterações de código no repositório.
+    Checks if memory files (STATE.md, LEARNINGS.md) have been updated
+    recently compared to code changes in the repository.
     """
     root_dir = Path(__file__).parent.parent
     specs_dir = root_dir / ".specs" / "project"
 
-    # Arquivos críticos de memória
+    # Critical memory files
     memory_files = [
         specs_dir / "STATE.md",
         specs_dir / "LEARNINGS.md",
         specs_dir / "MEMORY.md",
     ]
 
-    # 1. Verificar existência
+    # 1. Verify existence
     for f in memory_files:
         if not f.exists():
             logger.error(f"Memory file missing: {f.name}")
             return False
 
-    # 2. Verificar se houve commits de código sem atualização de memória
-    # Pegar data da última modificação dos arquivos de memória
+    # 2. Check if code commits occurred without memory updates
+    # Get last modification time of memory files
     last_memory_update = max(os.path.getmtime(f) for f in memory_files)
     last_memory_dt = datetime.fromtimestamp(last_memory_update)
 
     logger.info(f"Last Memory Update: {last_memory_dt.strftime('%Y-%m-%d %H:%M:%S')}")
 
-    # Verificar se algum arquivo fora de .specs foi alterado DEPOIS da memória
+    # Check if any file outside .specs was changed AFTER memory files
     unsynced_files = []
 
-    # Exclusões baseadas no utils.py + .specs
+    # Exclusions based on utils.py + .specs
     local_excludes = DEFAULT_EXCLUDES.copy()
     local_excludes.add(".specs")
 
     for root, dirs, files in os.walk(root_dir):
-        # Filtra diretórios excluídos
+        # Filter excluded directories
         dirs[:] = [d for d in dirs if d not in local_excludes]
 
         for file in files:
             file_path = Path(root) / file
-            # Monitorar apenas arquivos relevantes de código/doc
+            # Monitor only relevant code/doc files
             if file_path.suffix in [".py", ".md", ".js", ".ts", ".tsx", ".go", ".dart"]:
-                # Ignorar arquivos na raiz como Makefile ou CHANGELOG-HUB
+                # Ignore root files like Makefile or CHANGELOG-HUB
                 if file_path.parent == root_dir and file_path.name != "README.md":
                     continue
 
@@ -62,15 +62,15 @@ def check_memory_sync():
     if unsynced_files:
         print("\n⚠️  WARNING: CONTEXT DRIFT DETECTED!")
         print(
-            "Os seguintes arquivos foram alterados mas a MEMÓRIA (STATE/LEARNINGS) não foi atualizada:"
+            "The following files were modified but MEMORY (STATE/LEARNINGS) was not updated:"
         )
         for f in unsynced_files[:10]:
             print(f"  - {f}")
         if len(unsynced_files) > 10:
-            print(f"  ... e mais {len(unsynced_files) - 10} arquivos.")
+            print(f"  ... and {len(unsynced_files) - 10} more files.")
 
         print(
-            "\n👉 Ação Requerida: Atualize os arquivos em .specs/project/ para refletir o estado atual."
+            "\n👉 Required Action: Update files in .specs/project/ to reflect current state."
         )
         return False
 
@@ -81,5 +81,5 @@ def check_memory_sync():
 if __name__ == "__main__":
     success = check_memory_sync()
     if not success:
-        # Apenas avisa por padrão
+        # Warning only by default
         pass

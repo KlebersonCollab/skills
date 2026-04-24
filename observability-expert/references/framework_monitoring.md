@@ -1,12 +1,12 @@
 # Monitoring Frameworks (FastAPI & Django)
 
-Para APIs modernas, monitorar apenas o servidor não é suficiente. Precisamos de visibilidade sobre o comportamento do framework e da aplicação.
+For modern APIs, monitoring just the server is not enough. We need visibility into framework and application behavior.
 
 ## 1. FastAPI Monitoring (Prometheus)
 
-Utilize o `prometheus-fastapi-instrumentator` para exposição automática de métricas RED.
+Use `prometheus-fastapi-instrumentator` for automatic RED metrics exposure.
 
-### Implementação
+### Implementation
 ```python
 from prometheus_fastapi_instrumentator import Instrumentator
 
@@ -17,14 +17,14 @@ async def startup():
     Instrumentator().instrument(app).expose(app)
 ```
 
-### Dashboard Recomendado (Grafana)
-- **ID 16101**: Dashboard completo para FastAPI com taxas de erro por rota e latência p99.
+### Recommended Dashboard (Grafana)
+- **ID 16101**: Full FastAPI dashboard with error rates per route and p99 latency.
 
 ## 2. Django Monitoring
 
-Utilize o `django-prometheus` para capturar métricas de Middleware, ORM e Banco de Dados.
+Use `django-prometheus` to capture Middleware, ORM, and Database metrics.
 
-### Configuração
+### Configuration
 ```python
 # settings.py
 INSTALLED_APPS = [
@@ -39,12 +39,12 @@ MIDDLEWARE = [
 ]
 ```
 
-### Dashboard Recomendado (Grafana)
-- **ID 9528**: Monitoramento de requisições Django e tempos de resposta de query SQL.
+### Recommended Dashboard (Grafana)
+- **ID 9528**: Django request monitoring and SQL query response times.
 
-## 3. Métricas Customizadas de Negócio
+## 3. Custom Business Metrics
 
-Não monitore apenas erros técnicos. Monitore o sucesso do negócio.
+Do not just monitor technical errors. Monitor business success.
 
 ```python
 from prometheus_client import Counter
@@ -52,12 +52,12 @@ from prometheus_client import Counter
 orders_created = Counter('orders_total', 'Total created orders', ['payment_method'])
 
 def create_order(method):
-    # ... lógica ...
+    # ... logic ...
     orders_created.labels(payment_method=method).inc()
 ```
 
-## 4. Checklist de Dashboards
-- [ ] **Latência (p95, p99)**: Quanto tempo o usuário está esperando?
-- [ ] **Taxa de Erros (5xx vs 4xx)**: O sistema está quebrado ou o usuário está errando?
-- [ ] **Taxa de Requisições (RPS)**: Estamos sob ataque ou em pico de tráfego?
-- [ ] **Conexões de Banco de Dados**: O pool está saturado?
+## 4. Dashboard Checklist
+- [ ] **Latency (p95, p99)**: How long is the user waiting?
+- [ ] **Error Rate (5xx vs 4xx)**: Is the system broken or is the user making a mistake?
+- [ ] **Request Rate (RPS)**: Are we under attack or at peak traffic?
+- [ ] **Database Connections**: Is the pool saturated?

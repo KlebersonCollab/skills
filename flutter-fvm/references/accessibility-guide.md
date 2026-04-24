@@ -1,22 +1,22 @@
-# Guia de Acessibilidade (UX Inclusiva)
+# Accessibility Guide (Inclusive UX)
 
-Apps profissionais devem ser usáveis por todos, incluindo usuários de leitores de tela e pessoas com baixa visão.
+Professional apps must be usable by everyone, including screen reader users and people with low vision.
 
 ## 1. Semantics
-**Conceito**: Fornecer metadados para que o TalkBack/VoiceOver consiga descrever a UI.
+**Concept**: Providing metadata so that TalkBack/VoiceOver can describe the UI.
 
-### ❌ Ruim
+### ❌ Bad
 ```dart
 GestureDetector(
   onTap: () => print('Play'),
-  child: Icon(Icons.play_arrow), // O leitor dirá apenas "Ícone" ou nada.
+  child: Icon(Icons.play_arrow), // The reader will only say "Icon" or nothing.
 )
 ```
 
-### ✅ Bom
+### ✅ Good
 ```dart
 Semantics(
-  label: 'Botão Reproduzir Vídeo',
+  label: 'Play Video Button',
   button: true,
   child: IconButton(
     icon: Icon(Icons.play_arrow),
@@ -25,19 +25,19 @@ Semantics(
 )
 ```
 
-## 2. Alvos de Toque (Hit Targets)
-**Conceito**: Área mínima necessária para interação física confortável.
+## 2. Hit Targets
+**Concept**: Minimum area required for comfortable physical interaction.
 
-### ❌ Ruim
+### ❌ Bad
 ```dart
 SizedBox(
   width: 20,
   height: 20,
-  child: InkWell(onTap: () {}), // Muito difícil de acertar com o dedo
+  child: InkWell(onTap: () {}), // Very hard to hit with a finger
 )
 ```
 
-### ✅ Bom (48x48 dp)
+### ✅ Good (48x48 dp)
 ```dart
 ConstrainedBox(
   constraints: BoxConstraints.tightFor(width: 48, height: 48),
@@ -45,15 +45,15 @@ ConstrainedBox(
 )
 ```
 
-## 3. Contraste de Texto
-**Conceito**: Legibilidade baseada na relação entre cor de fundo e cor da fonte.
+## 3. Text Contrast
+**Concept**: Readability based on the relationship between background color and font color.
 
-### ✅ Bom
-- Contraste mínimo de **4.5:1**.
-- Não use apenas a cor para indicar erro (ex: use um ícone de aviso ⚠️ junto com a borda vermelha).
+### ✅ Good
+- Minimum contrast of **4.5:1**.
+- Don't use color alone to indicate an error (e.g., use a warning icon ⚠️ along with a red border).
 
-## Checklist de Acessibilidade
-- [ ] Todos os ícones interativos têm `semanticLabel` ou estão dentro de `Semantics`?
-- [ ] Alvos de toque têm no mínimo 48x48 dp?
-- [ ] O app foi testado com o tamanho de fonte do sistema no máximo?
-- [ ] Usou `MergeSemantics` para agrupar rótulos e valores?
+## Accessibility Checklist
+- [ ] Do all interactive icons have `semanticLabel` or are they inside `Semantics`?
+- [ ] Do hit targets have at least 48x48 dp?
+- [ ] Was the app tested with the system font size at maximum?
+- [ ] Did you use `MergeSemantics` to group labels and values?

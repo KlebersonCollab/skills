@@ -1,41 +1,40 @@
 # Changelog — Harness Expert
 
-Todas as mudanças notáveis desta skill serão documentadas neste arquivo.
+All notable changes to this skill will be documented in this file.
 
-O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e o versionamento segue [Semantic Versioning](https://semver.org/lang/pt-BR/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
 ## [2.1.0] - 2026-04-22
 
-### Adicionado
-- **GAN-style Feedback Loop**: Implementação do ciclo adversarial entre Gerador e Avaliador para tarefas Large/Complex.
-- **Rubrica de Avaliação**: Nova matriz de pontuação (Design, Craft, Originality, Functionality) com meta de Score >= 7.0.
+### Added
+- **GAN-style Feedback Loop**: Implementation of the adversarial cycle between Generator and Evaluator for Large/Complex tasks.
+- **Evaluation Rubric**: New scoring matrix (Design, Craft, Originality, Functionality) with a target Score >= 7.0.
 
 ## [2.0.0] - 2026-04-20
 
-### Alterado
-- **Refatoração de Papel**: A skill agora foca exclusivamente no **motor técnico** (infraestrutura agêntica).
-- **Desacoplamento**: Removida a gestão estratégica de memória, delegando o protocolo de visão operacional para o `sdd-planner`.
-- **Workflow**: Atualizado para incluir as fases de `AUTOMATED REHYDRATE`, `OPERATE`, `AUTO-SYNC` e `VALIDATE`.
+### Changed
+- **Role Refactoring**: The skill now focuses exclusively on the **technical engine** (agentic infrastructure).
+- **Decoupling**: Strategic memory management removed, delegating the operational vision protocol to the `sdd-planner`.
+- **Workflow**: Updated to include `AUTOMATED REHYDRATE`, `OPERATE`, `AUTO-SYNC`, and `VALIDATE` phases.
 
 ## [1.1.0] - 2026-04-18
- — 2026-04-18
 
-### Alterado
-- **Renomeação Global**: Transição oficial de "Hardness" para **Harness Engineering** para alinhar com padrões da indústria.
-- **Enhanced Rehydration**: Adicionado passo de **Bootstrap** para validação do ambiente operacional e instalação automática de dependências.
+### Changed
+- **Global Renaming**: Official transition from "Hardness" to **Harness Engineering** to align with industry standards.
+- **Enhanced Rehydration**: Added **Bootstrap** step for operational environment validation and automatic dependency installation.
 
-### Adicionado
-- **Harness Principles**: Documentação de Feed Forward, Feedback e Sensores no README.
+### Added
+- **Harness Principles**: Documentation of Feed Forward, Feedback, and Sensors in the README.
 
 ## [1.0.0] — 2026-04-15
 
-### Adicionado
-- **SKILL.md**: Definição principal da skill de Harness Engineering.
-- **README.md**: Documentação detalhada e visão geral.
-- **harness-expert-sync.skill.md**: Sub-skill para sincronização automática de estado.
-- **harness-expert-rehydrate.skill.md**: Sub-skill para injeção de contexto operacional.
-- **harness-expert-compress.skill.md**: Sub-skill para compactação de contexto (Context Compressor).
-- **Resources**: Implementado `compressor.py` para análise e compactação de tarefas.
-- **Exemplos**: Adicionado script de demonstração de sincronização.
+### Added
+- **SKILL.md**: Main definition of the Harness Engineering skill.
+- **README.md**: Detailed documentation and overview.
+- **harness-expert-sync.skill.md**: Sub-skill for automated state synchronization.
+- **harness-expert-rehydrate.skill.md**: Sub-skill for operational context injection.
+- **harness-expert-compress.skill.md**: Sub-skill for context compression (Context Compressor).
+- **Resources**: Implemented `compressor.py` for task analysis and compression.
+- **Examples**: Added synchronization demonstration script.

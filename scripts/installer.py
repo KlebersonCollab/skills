@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Skill Installer CLI
-Permite a instalação granular de skills do Hub (local ou remoto).
+Allows granular installation of Hub skills (local or remote).
 """
 
 import argparse
@@ -10,16 +10,16 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-# Adiciona o diretório atual ao path para importar utils
+# Add current directory to path to import utils
 sys.path.append(str(Path(__file__).parent))
 from utils import get_all_skills, safe_copytree, get_skill_metadata
 
 
 def list_skills():
-    """Lista todas as skills disponíveis no Hub local."""
+    """Lists all available skills in the local Hub."""
     skills = get_all_skills()
-    print("\n📦 Skills Disponíveis no Hub:\n")
-    print(f"{'Nome':<25} | {'Versão':<10} | {'Categoria':<15}")
+    print("\n📦 Available Skills in Hub:\n")
+    print(f"{'Name':<25} | {'Version':<10} | {'Category':<15}")
     print("-" * 55)
 
     for skill_path in skills:
@@ -38,19 +38,19 @@ def install_remote_skill(
     force: bool = False,
     repo_url: str = "https://github.com/KlebersonCollab/skills.git",
 ):
-    """Baixa e instala uma skill usando Git Sparse-Checkout para extração granular."""
+    """Downloads and installs a skill using Git Sparse-Checkout for granular extraction."""
     dest_path = target / name
 
     if dest_path.exists() and not force:
         print(
-            f"⚠️  Aviso: A skill '{name}' já existe em {dest_path}. Use --force para sobrescrever."
+            f"⚠️  Warning: Skill '{name}' already exists in {dest_path}. Use --force to overwrite."
         )
         sys.exit(1)
 
-    print(f"🚀 Baixando '{name}' do repositório remoto via Git Sparse-Checkout...")
+    print(f"🚀 Downloading '{name}' from remote repository via Git Sparse-Checkout...")
     try:
         with tempfile.TemporaryDirectory() as tmpdir:
-            # Clone sem baixar blobs (otimizado)
+            # Clone without downloading blobs (optimized)
             cmd_clone = [
                 "git",
                 "clone",
@@ -61,10 +61,10 @@ def install_remote_skill(
             ]
             res = subprocess.run(cmd_clone, capture_output=True, text=True)
             if res.returncode != 0:
-                print(f"❌ Erro ao clonar o repositório remoto:\n{res.stderr}")
+                print(f"❌ Error cloning remote repository:\n{res.stderr}")
                 sys.exit(1)
 
-            # Adiciona os caminhos possíveis ao sparse-checkout
+            # Add possible paths to sparse-checkout
             cmd_sparse = [
                 "git",
                 "-C",
@@ -77,10 +77,10 @@ def install_remote_skill(
             ]
             res = subprocess.run(cmd_sparse, capture_output=True, text=True)
             if res.returncode != 0:
-                print(f"❌ Erro no sparse-checkout:\n{res.stderr}")
+                print(f"❌ Error in sparse-checkout:\n{res.stderr}")
                 sys.exit(1)
 
-            # Identifica onde a skill foi efetivamente baixada
+            # Identify where the skill was actually downloaded
             src_skill = None
             possible_paths = [
                 Path(tmpdir) / name,
@@ -94,23 +94,23 @@ def install_remote_skill(
                     break
 
             if not src_skill:
-                print(f"❌ Erro: Skill '{name}' não encontrada no repositório remoto.")
+                print(f"❌ Error: Skill '{name}' not found in remote repository.")
                 sys.exit(1)
 
-            print(f"🚀 Instalando {name} em {dest_path}...")
+            print(f"🚀 Installing {name} in {dest_path}...")
             if safe_copytree(src_skill, dest_path):
-                print(f"✅ Skill '{name}' instalada com sucesso a partir do remoto!")
+                print(f"✅ Skill '{name}' successfully installed from remote!")
             else:
-                print(f"❌ Falha ao copiar a skill '{name}'.")
+                print(f"❌ Failed to copy skill '{name}'.")
                 sys.exit(1)
 
     except Exception as e:
-        print(f"❌ Falha inesperada durante download remoto: {e}")
+        print(f"❌ Unexpected failure during remote download: {e}")
         sys.exit(1)
 
 
 def install_local_skill(name: str, target: Path, force: bool = False):
-    """Instala uma skill a partir do repositório local."""
+    """Installs a skill from the local repository."""
     skills = get_all_skills()
     skill_to_install = next(
         (
@@ -122,9 +122,9 @@ def install_local_skill(name: str, target: Path, force: bool = False):
     )
 
     if not skill_to_install:
-        print(f"❌ Erro: Skill '{name}' não encontrada no Hub local.")
+        print(f"❌ Error: Skill '{name}' not found in local Hub.")
         print(
-            "💡 Dica: Tente usar --remote para buscar a skill no repositório oficial."
+            "💡 Tip: Try using --remote to fetch the skill from the official repository."
         )
         sys.exit(1)
 
@@ -132,15 +132,15 @@ def install_local_skill(name: str, target: Path, force: bool = False):
 
     if dest_path.exists() and not force:
         print(
-            f"⚠️  Aviso: A skill '{name}' já existe em {dest_path}. Use --force para sobrescrever."
+            f"⚠️  Warning: Skill '{name}' already exists in {dest_path}. Use --force to overwrite."
         )
         sys.exit(1)
 
-    print(f"🚀 Instalando {name} em {dest_path}...")
+    print(f"🚀 Installing {name} in {dest_path}...")
     if safe_copytree(skill_to_install, dest_path):
-        print(f"✅ Skill '{name}' instalada com sucesso!")
+        print(f"✅ Skill '{name}' successfully installed!")
     else:
-        print(f"❌ Falha ao instalar skill '{name}'.")
+        print(f"❌ Failed to install skill '{name}'.")
         sys.exit(1)
 
 
@@ -153,27 +153,27 @@ def install_skill(name: str, target: Path, force: bool = False, remote: bool = F
 
 def main():
     parser = argparse.ArgumentParser(description="Skill Installer CLI")
-    subparsers = parser.add_subparsers(dest="command", help="Comandos disponíveis")
+    subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
-    # Comando List
-    subparsers.add_parser("list", help="Lista todas as skills do Hub local")
+    # List Command
+    subparsers.add_parser("list", help="Lists all skills in the local Hub")
 
-    # Comando Install
-    install_parser = subparsers.add_parser("install", help="Instala uma skill")
-    install_parser.add_argument("name", help="Nome da skill para instalar")
+    # Install Command
+    install_parser = subparsers.add_parser("install", help="Installs a skill")
+    install_parser.add_argument("name", help="Name of the skill to install")
     install_parser.add_argument(
         "--target",
         type=Path,
         default=Path("./.agent/skills"),
-        help="Diretório de destino (default: ./.agent/skills)",
+        help="Target directory (default: ./.agent/skills)",
     )
     install_parser.add_argument(
-        "--force", action="store_true", help="Sobrescreve se a skill já existir"
+        "--force", action="store_true", help="Overwrite if skill already exists"
     )
     install_parser.add_argument(
         "--remote",
         action="store_true",
-        help="Faz o download diretamente do repositório remoto via Git Sparse-Checkout",
+        help="Download directly from remote repository via Git Sparse-Checkout",
     )
 
     args = parser.parse_args()

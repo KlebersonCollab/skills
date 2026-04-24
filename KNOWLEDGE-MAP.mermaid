@@ -25,7 +25,7 @@ graph TD
     end
 
     subgraph "Core Frameworks"
-        brainstorming["brainstorming (1.1.0) 🛡️"]
+        brainstorming["brainstorming (1.2.1) 🛡️"]
         flutter_fvm["flutter-fvm (1.3.0) 🛡️"]
         git_workflow["git-workflow (1.0.0) 🛡️"]
         knowledge_architect["knowledge-architect (1.0.0) 🛡️"]
@@ -48,8 +48,12 @@ graph TD
     api_architect --(references)--> architecture
     api_architect --(references)--> token_distiller
     architecture --(references)--> token_distiller
+    azure_devops --(references)--> architecture
     azure_devops --(references)--> token_distiller
+    benchmark_expert --(references)--> architecture
+    brainstorming --(references)--> architecture
     brainstorming --(references)--> token_distiller
+    clean_code_mentor --(references)--> architecture
     clean_code_mentor --(references)--> token_distiller
     devsecops_expert --(references)--> harness_expert
     devsecops_expert --(references)--> sdd
@@ -62,25 +66,36 @@ graph TD
     fastapi_expert --(references)--> architecture
     fastapi_expert --(references)--> python_uv
     fastapi_expert --(references)--> token_distiller
+    flutter_fvm --(references)--> architecture
     flutter_fvm --(references)--> token_distiller
+    frontend_expert --(references)--> architecture
     frontend_expert --(references)--> token_distiller
+    git_workflow --(references)--> architecture
     git_workflow --(references)--> token_distiller
     golang_expert --(references)--> architecture
     golang_expert --(references)--> golang_testing_expert
     golang_expert --(references)--> token_distiller
+    golang_testing_expert --(references)--> architecture
     golang_testing_expert --(references)--> token_distiller
+    harness_expert --(references)--> architecture
     harness_expert --(references)--> sdd
     harness_expert --(references)--> token_distiller
+    knowledge_architect --(references)--> architecture
     knowledge_architect --(references)--> harness_expert
     knowledge_architect --(references)--> token_distiller
+    observability_expert --(references)--> architecture
     observability_expert --(references)--> token_distiller
     onboarding_navigator --(references)--> architecture
     onboarding_navigator --(references)--> git_workflow
     onboarding_navigator --(references)--> token_distiller
+    python_uv --(references)--> architecture
     python_uv --(references)--> token_distiller
+    scaffolding_expert --(references)--> architecture
     scaffolding_expert --(references)--> token_distiller
+    sdd --(references)--> architecture
     sdd --(references)--> git_workflow
     sdd --(references)--> token_distiller
+    skill_factory --(references)--> architecture
     skill_factory --(references)--> token_distiller
     swarm_facilitator --(references)--> api_architect
     swarm_facilitator --(references)--> architecture
@@ -91,7 +106,9 @@ graph TD
     swarm_facilitator --(references)--> harness_expert
     swarm_facilitator --(references)--> observability_expert
     swarm_facilitator --(references)--> token_distiller
+    token_distiller --(references)--> architecture
     token_distiller --(references)--> git_workflow
+    youtube_transcript --(references)--> architecture
     youtube_transcript --(references)--> token_distiller
 
     %% Styling
@@ -116,8 +133,8 @@ graph TD
     style swarm_facilitator fill:#fce4ec,stroke:#880e4f
 
     %% Legend
-    subgraph "Legenda"
+    subgraph "Legend"
         L1["🛡️ SDD Compliant"]
-        L2["Uses: Dependência Direta"]
-        L3["References: Menção em Docs"]
+        L2["Uses: Direct Dependency"]
+        L3["References: Documentation Mention"]
     end

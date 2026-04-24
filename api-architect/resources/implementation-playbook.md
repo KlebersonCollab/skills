@@ -1,50 +1,50 @@
 # Implementation Playbook — API Designer
 
-Padrões de implementação, checklists e exemplos de código para design de APIs REST, GraphQL e tRPC.
+Implementation patterns, checklists, and code examples for REST, GraphQL, and tRPC API design.
 
 ---
 
-## 1. REST — Princípios Fundamentais
+## 1. REST — Fundamental Principles
 
 ### Resource-Oriented Architecture
 
-- Recursos são **substantivos** (`users`, `orders`, `products`), nunca verbos.
-- Use HTTP methods para as ações (GET, POST, PUT, PATCH, DELETE).
-- URLs representam hierarquias de recursos.
-- Convenções de nomenclatura consistentes (plural para coleções).
+- Resources are **nouns** (`users`, `orders`, `products`), never verbs.
+- Use HTTP methods for actions (GET, POST, PUT, PATCH, DELETE).
+- URLs represent resource hierarchies.
+- Consistent naming conventions (plural for collections).
 
-### Semântica dos Métodos HTTP
+### HTTP Method Semantics
 
-| Método | Semântica | Idempotente | Safe |
+| Method | Semantics | Idempotent | Safe |
 |--------|-----------|-------------|------|
-| `GET` | Recuperar recursos | ✅ | ✅ |
-| `POST` | Criar novo recurso | ❌ | ❌ |
-| `PUT` | Substituir recurso inteiro | ✅ | ❌ |
-| `PATCH` | Atualizar campos parcialmente | ❌* | ❌ |
-| `DELETE` | Remover recurso | ✅ | ❌ |
+| `GET` | Retrieve resources | ✅ | ✅ |
+| `POST` | Create new resource | ❌ | ❌ |
+| `PUT` | Replace entire resource | ✅ | ❌ |
+| `PATCH` | Partially update fields | ❌* | ❌ |
+| `DELETE` | Remove resource | ✅ | ❌ |
 
 ---
 
-## 2. GraphQL — Princípios Fundamentais
+## 2. GraphQL — Fundamental Principles
 
 ### Schema-First Development
 
-- Tipos definem o modelo de domínio.
-- Queries para leitura de dados.
-- Mutations para modificação de dados.
-- Subscriptions para atualizações em tempo real.
+- Types define the domain model.
+- Queries for data reading.
+- Mutations for data modification.
+- Subscriptions for real-time updates.
 
 ---
 
-## 3. tRPC — Princípios Fundamentais (Novo!)
+## 3. tRPC — Fundamental Principles (New!)
 
 ### End-to-End Type Safety
 
-- O contrato é o código TypeScript.
-- Sem geração de código necessária.
-- Ideal para Monorepos.
+- The contract is the TypeScript code.
+- No code generation necessary.
+- Ideal for Monorepos.
 
-#### Exemplo de Router tRPC (v10+)
+#### tRPC Router Example (v10+)
 ```typescript
 import { initTRPC, TRPCError } from '@trpc/server';
 import { z } from 'zod';
@@ -71,23 +71,23 @@ export const appRouter = t.router({
 
 ---
 
-## 4. Padrões de Resiliência: Rate Limiting
+## 4. Resilience Patterns: Rate Limiting
 
-### Exemplo de Middleware de Rate Limit (Express/Node)
+### Rate Limit Middleware Example (Express/Node)
 
 ```javascript
 const rateLimit = require('express-rate-limit');
 
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100, // Limite de 100 requests por IP
-  standardHeaders: true, // Retorna X-RateLimit-Limit e Remaining
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit to 100 requests per IP
+  standardHeaders: true, // Returns X-RateLimit-Limit and Remaining
   legacyHeaders: false,
   handler: (req, res) => {
     res.status(429).json({
       error: {
         code: "RATE_LIMIT_EXCEEDED",
-        message: "Muitas requisições. Tente novamente em 15 minutos."
+        message: "Too many requests. Try again in 15 minutes."
       }
     });
   }
@@ -98,35 +98,35 @@ app.use('/api/', apiLimiter);
 
 ---
 
-## 5. Checklists de Validação
+## 5. Validation Checklists
 
-### ✅ Checklist de Segurança (OWASP Focus)
+### ✅ Security Checklist (OWASP Focus)
 
-- [ ] **BOLA Check**: O endpoint valida se `user_id` do token é dono do recurso solicitado?
-- [ ] **Mass Assignment**: O DTO de entrada proíbe campos como `is_admin` ou `role`?
-- [ ] **Broken Auth**: Tokens JWT usam RS256 e possuem `exp` (expiração)?
-- [ ] **Rate Limit**: Existe proteção configurada para endpoints sensíveis?
+- [ ] **BOLA Check**: Does the endpoint validate if the token's `user_id` owns the requested resource?
+- [ ] **Mass Assignment**: Does the input DTO prohibit fields like `is_admin` or `role`?
+- [ ] **Broken Auth**: Do JWT tokens use RS256 and have `exp` (expiration)?
+- [ ] **Rate Limit**: Is there protection configured for sensitive endpoints?
 
-### ✅ Checklist REST (v1.1)
+### ✅ REST Checklist (v1.1)
 
-- [ ] Todos os endpoints usam substantivos no plural.
-- [ ] Resposta de erro padronizada (`{ error: { code, message } }`).
-- [ ] Paginação cursor-based para feeds ou grandes coleções.
-- [ ] Estratégia de versionamento clara na URL ou Header.
+- [ ] All endpoints use plural nouns.
+- [ ] Standardized error response (`{ error: { code, message } }`).
+- [ ] Cursor-based pagination for feeds or large collections.
+- [ ] Clear versioning strategy in URL or Header.
 
-### ✅ Checklist tRPC
+### ✅ tRPC Checklist
 
-- [ ] Inputs são validados com Zod?
-- [ ] Procedimentos protegidos usam middlewares de autenticação?
-- [ ] Erros usam a classe `TRPCError` com códigos semânticos?
+- [ ] Are inputs validated with Zod?
+- [ ] Do protected procedures use authentication middlewares?
+- [ ] Do errors use the `TRPCError` class with semantic codes?
 
 ---
 
-## 6. Pitfalls Comuns
+## 6. Common Pitfalls
 
-| Problema | Causa | Solução |
+| Problem | Cause | Solution |
 |----------|-------|---------|
-| Vazamento de ID (BOLA) | Confiar apenas no ID enviado na URL | Validar propriedade do recurso no backend. |
-| Payload muito grande | Falta de limite no body-parser | Configurar limite de tamanho de request. |
-| N+1 em GraphQL/tRPC | Múltiplas chamadas ao banco por item | Usar DataLoaders ou Joins eficientes. |
-| Falta de Headers de Versão | Clientes quebram após update | Sempre versionar ou usar deprecation strategy. |
+| ID Leak (BOLA) | Trusting only the ID sent in the URL | Validate resource ownership in the backend. |
+| Payload too large | Lack of limit in body-parser | Configure request size limit. |
+| N+1 in GraphQL/tRPC | Multiple DB calls per item | Use DataLoaders or efficient Joins. |
+| Missing Version Headers | Clients break after update | Always version or use deprecation strategy. |

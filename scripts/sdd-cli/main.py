@@ -4,7 +4,7 @@ from rich.table import Table
 from pathlib import Path
 import re
 
-app = typer.Typer(help="SDD CLI - Automatizando o workflow Spec-Driven Development.")
+app = typer.Typer(help="SDD CLI - Automating the Spec-Driven Development workflow.")
 console = Console()
 
 SPECS_DIR = Path(".specs/features")
@@ -13,15 +13,15 @@ STATE_FILE = Path(".specs/project/STATE.md")
 
 @app.command()
 def init(feature_name: str):
-    """Inicializa uma nova feature com a estrutura SDD."""
+    """Initializes a new feature with SDD structure."""
     feature_dir = SPECS_DIR / feature_name.lower().replace(" ", "-")
     if feature_dir.exists():
-        console.print(f"[bold red]Erro:[/bold red] Feature '{feature_name}' já existe.")
+        console.print(f"[bold red]Error:[/bold red] Feature '{feature_name}' already exists.")
         return
 
     feature_dir.mkdir(parents=True)
 
-    # Criar templates
+    # Create templates
     (feature_dir / "spec.md").write_text(
         f"# Specification: {feature_name}\n\n## Goal\n\n## Acceptance Criteria (BDD)\n"
     )
@@ -33,20 +33,20 @@ def init(feature_name: str):
     )
 
     console.print(
-        f"[bold green]Sucesso![/bold green] Feature '{feature_name}' inicializada em {feature_dir}"
+        f"[bold green]Success![/bold green] Feature '{feature_name}' initialized at {feature_dir}"
     )
 
 
 @app.command()
 def state():
-    """Mostra o estado atual das features em desenvolvimento."""
+    """Shows the current state of features in development."""
     if not SPECS_DIR.exists():
-        console.print("[yellow]Nenhuma feature encontrada.[/yellow]")
+        console.print("[yellow]No features found.[/yellow]")
         return
 
     table = Table(title="SDD Project State")
     table.add_column("Feature", style="cyan")
-    table.add_column("Progresso", style="magenta")
+    table.add_column("Progress", style="magenta")
     table.add_column("Status", style="green")
 
     for feature in SPECS_DIR.iterdir():
@@ -60,7 +60,7 @@ def state():
             table.add_row(
                 feature.name,
                 f"{done}/{total} ({percent:.0f}%)",
-                "Em andamento" if percent < 100 else "Concluída",
+                "In progress" if percent < 100 else "Completed",
             )
 
     console.print(table)
@@ -68,13 +68,13 @@ def state():
 
 @app.command()
 def task(feature: str, task_id: int, done: bool = True):
-    """Marca uma tarefa como concluída (ou pendente)."""
+    """Marks a task as completed (or pending)."""
     feature_dir = SPECS_DIR / feature.lower()
     task_file = feature_dir / "tasks.md"
 
     if not task_file.exists():
         console.print(
-            f"[bold red]Erro:[/bold red] Arquivo de tarefas não encontrado para '{feature}'."
+            f"[bold red]Error:[/bold red] Tasks file not found for '{feature}'."
         )
         return
 
@@ -93,29 +93,29 @@ def task(feature: str, task_id: int, done: bool = True):
 
     if found:
         task_file.write_text("\n".join(new_content) + "\n")
-        console.print(f"[bold green]Tarefa {task_id} atualizada![/bold green]")
+        console.print(f"[bold green]Task {task_id} updated![/bold green]")
         # Auto-sync STATE.md
         _sync_global_state()
     else:
         console.print(
-            f"[bold yellow]Aviso:[/bold yellow] Tarefa '{task_id}' não encontrada (use o número da lista)."
+            f"[bold yellow]Warning:[/bold yellow] Task '{task_id}' not found (use the list number)."
         )
 
 
 def _sync_global_state():
-    """Sincroniza o STATE.md global com base nas features ativas."""
+    """Synchronizes the global STATE.md based on active features."""
     if not STATE_FILE.exists():
         return
 
-    # Lógica simples de atualização de data e status
-    console.print(f"[dim]Sincronizando {STATE_FILE}...[/dim]")
-    # Aqui poderíamos ler todas as tasks e gerar o resumo automaticamente
+    # Simple logic for date and status updates
+    console.print(f"[dim]Synchronizing {STATE_FILE}...[/dim]")
+    # Here we could read all tasks and generate the summary automatically
 
 
 @app.command()
 def sync():
-    """Sincroniza os mandatos globais (.specs/codebase/GLOBAL_MANDATES.md) com todos os agentes."""
-    console.print("[bold cyan]Sincronizando Mandatos Globais...[/bold cyan]")
+    """Synchronizes global mandates (.specs/codebase/GLOBAL_MANDATES.md) with all agents."""
+    console.print("[bold cyan]Synchronizing Global Mandates...[/bold cyan]")
     import sys
 
     sys.path.append(str(Path(__file__).parent.parent))
@@ -124,19 +124,19 @@ def sync():
 
         sync_mandates()
         console.print(
-            "[bold green]Sucesso![/bold green] Arquivos dos agentes atualizados."
+            "[bold green]Success![/bold green] Agent files updated."
         )
     except ImportError:
         console.print(
-            "[bold red]Erro:[/bold red] Script sync_mandates.py não encontrado."
+            "[bold red]Error:[/bold red] sync_mandates.py script not found."
         )
 
 
 @app.command()
 def graph():
-    """Gera automaticamente o Knowledge Map (Mermaid) do projeto."""
-    console.print("[bold cyan]Gerando Knowledge Map...[/bold cyan]")
-    # Importar e rodar a lógica do script de geração
+    """Automatically generates the project's Knowledge Map (Mermaid)."""
+    console.print("[bold cyan]Generating Knowledge Map...[/bold cyan]")
+    # Import and run generation logic
     import sys
 
     sys.path.append(str(Path(__file__).parent.parent))
@@ -145,11 +145,11 @@ def graph():
 
         generate_knowledge_map()
         console.print(
-            "[bold green]Sucesso![/bold green] Arquivo KNOWLEDGE-MAP.mermaid atualizado."
+            "[bold green]Success![/bold green] KNOWLEDGE-MAP.mermaid file updated."
         )
     except ImportError:
         console.print(
-            "[bold red]Erro:[/bold red] Script generate_knowledge_map.py não encontrado."
+            "[bold red]Error:[/bold red] generate_knowledge_map.py script not found."
         )
 
 

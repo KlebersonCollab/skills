@@ -1,46 +1,46 @@
-# Async Development with UV — Referência Completa
+# Async Development with UV — Complete Reference
 
-Guia de padrões e ferramentas para desenvolvimento de aplicações assíncronas em Python usando o ecossistema `uv`.
-
----
-
-## 1. Por que usar UV para Async?
-
-O `uv` facilita a gestão de projetos assíncronos de alta performance ao:
-- **Resolução de conflitos rápida**: Bibliotecas async costumam ter árvores de dependência complexas.
-- **Ambientes Isolados**: Garante que versões específicas de loop (como `uvloop`) sejam instaladas corretamente.
-- **Execução Direta**: `uv run` permite rodar scripts async com dependências inline (PEP 723) sem setup manual.
+Guide to patterns and tools for developing asynchronous applications in Python using the `uv` ecosystem.
 
 ---
 
-## 2. Setup de Projeto Async
+## 1. Why use UV for Async?
 
-### Inicialização
+`uv` facilitates the management of high-performance asynchronous projects by:
+- **Fast Conflict Resolution**: Async libraries often have complex dependency trees.
+- **Isolated Environments**: Ensures specific loop versions (like `uvloop`) are installed correctly.
+- **Direct Execution**: `uv run` allows running async scripts with inline dependencies (PEP 723) without manual setup.
+
+---
+
+## 2. Async Project Setup
+
+### Initialization
 ```bash
 uv init async-app
 cd async-app
 
-# Adicionar dependências essenciais
+# Add essential dependencies
 uv add httpx pydantic anyio
 uv add --dev pytest-asyncio trio
 ```
 
-### Bibliotecas Recomendadas
+### Recommended Libraries
 
-| Categoria | Biblioteca | Comando UV |
+| Category | Library | UV Command |
 |-----------|------------|------------|
 | **HTTP Client** | `httpx` | `uv add httpx` |
 | **Event Loop (Fast)** | `uvloop` | `uv add uvloop` |
 | **Web Framework** | `FastAPI` | `uv add fastapi` |
-| **Banco de Dados** | `SQLAlchemy` (async) | `uv add sqlalchemy[asyncio]` |
-| **Testes** | `pytest-asyncio` | `uv add --dev pytest-asyncio` |
+| **Database** | `SQLAlchemy` (async) | `uv add sqlalchemy[asyncio]` |
+| **Testing** | `pytest-asyncio` | `uv add --dev pytest-asyncio` |
 
 ---
 
-## 3. Padrões de Código no Ecossistema UV
+## 3. Code Patterns in the UV Ecosystem
 
-### Execução Concorrente (Gather)
-Padrão para buscar múltiplos recursos simultaneamente.
+### Concurrent Execution (Gather)
+Pattern for fetching multiple resources simultaneously.
 
 ```python
 import asyncio
@@ -52,27 +52,27 @@ async def fetch_urls(urls: list[str]):
         responses = await asyncio.gather(*tasks)
         return [r.status_code for r in responses]
 
-# Executar com uv
+# Run with uv
 # uv run python script.py
 ```
 
-### Proteção de Recursos (Semaphores)
-Evita sobrecarga em APIs externas ao limitar a concorrência.
+### Resource Protection (Semaphores)
+Prevents overloading external APIs by limiting concurrency.
 
 ```python
-semaphore = asyncio.Semaphore(10) # No máximo 10 requests simultâneos
+semaphore = asyncio.Semaphore(10) # Maximum 10 simultaneous requests
 
 async def safe_fetch(url):
     async with semaphore:
-        # Lógica de fetch aqui
+        # Fetch logic here
         pass
 ```
 
 ---
 
-## 4. Testando Código Async com UV
+## 4. Testing Async Code with UV
 
-Configure o `pytest-asyncio` no seu `pyproject.toml` para evitar decorators repetitivos.
+Configure `pytest-asyncio` in your `pyproject.toml` to avoid repetitive decorators.
 
 ```toml
 [tool.pytest.ini_options]
@@ -80,7 +80,7 @@ asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 ```
 
-### Exemplo de Teste
+### Test Example
 ```python
 import pytest
 from app import fetch_data
@@ -90,15 +90,15 @@ async def test_fetch():
     data = await fetch_data("https://api.example.com")
     assert data["status"] == "ok"
 
-# Rodar testes
+# Run tests
 # uv run pytest
 ```
 
 ---
 
-## 5. Scripts Inline (PEP 723) para Async
+## 5. Inline Scripts (PEP 723) for Async
 
-Ideal para ferramentas de scraping ou automação rápida.
+Ideal for scraping tools or quick automation.
 
 ```python
 # /// script
@@ -119,9 +119,9 @@ if __name__ == "__main__":
 
 ---
 
-## 6. Performance: Usando `uvloop`
+## 6. Performance: Using `uvloop`
 
-Em sistemas Linux/macOS, o `uvloop` pode tornar o loop do asyncio 2-4x mais rápido.
+On Linux/macOS systems, `uvloop` can make the asyncio loop 2-4x faster.
 
 ```python
 import asyncio
@@ -132,7 +132,7 @@ if sys.platform != "win32":
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 async def main():
-    # Sua aplicação aqui
+    # Your application here
     pass
 
 asyncio.run(main())
@@ -140,10 +140,10 @@ asyncio.run(main())
 
 ---
 
-## 7. Checklist de Desenvolvimento Async
+## 7. Async Development Checklist
 
-- [ ] Usou `asyncio.run()` como ponto de entrada?
-- [ ] Evitou funções bloqueantes como `time.sleep()`? (Use `asyncio.sleep()`)
-- [ ] Configurou timeouts em todas as chamadas de rede?
-- [ ] Usou `uv run` para garantir que as dependências async estão no ambiente correto?
-- [ ] Implementou tratamento de erro robusto no `gather` com `return_exceptions=True`?
+- [ ] Used `asyncio.run()` as the entry point?
+- [ ] Avoided blocking functions like `time.sleep()`? (Use `asyncio.sleep()`)
+- [ ] Configured timeouts in all network calls?
+- [ ] Used `uv run` to ensure async dependencies are in the correct environment?
+- [ ] Implemented robust error handling in `gather` with `return_exceptions=True`?

@@ -11,7 +11,7 @@ You are the **Planner** in the Spec Driven Development (SDD) workflow. Your miss
 
 ## Goal
 
-Provide the "Executive Vision" and "Session Context" so the agent doesn't lose track of long-term goals or immediate blockers. Este agente define as diretrizes de estado que o **harness-expert** executará tecnicamente.
+Provide the "Executive Vision" and "Session Context" so the agent doesn't lose track of long-term goals or immediate blockers. This agent defines the state guidelines that the **harness-expert** will technically execute.
 
 ## Output Structure
 
@@ -31,7 +31,7 @@ This is the most critical tool for long-running projects. It should be updated:
 - **At start of session**: Read all memory files to "rehydrate" context.
 - **When a decision is made**: Document the "Why" in `STATE.md` (decisions log) or `MEMORY.md` (if it's a permanent standard).
 - **When a bug is fixed**: Capture the root cause and solution in `LEARNINGS.md` to avoid future recurrence.
-- **When a preference is expressed**: Store it in `MEMORY.md` (ex: "prefer snake_case").
+- **When a preference is expressed**: Store it in `MEMORY.md` (e.g., "prefer snake_case").
 - **At end of session**: Summarize status in `STATE.md`.
 
 ### STATE.md Template (Operational Memory)
@@ -70,8 +70,8 @@ This is the most critical tool for long-running projects. It should be updated:
 
 - **Zero Ceremony**: Keep the roadmap and vision concise. Focus on Value.
 - **Explicit Decisions**: Never leave an architectural or business decision to "vague memory".
-- **Actionable State**: The `STATE.md` should answer "What do I do now?" if the agent's memory was completely wiped. Considere sempre o [Protocolo de Session Handoff](references/session-handoff.md).
-- **Limites Rigorosos**: O planner não pode deixar o `STATE.md` inchar infinitamente. Respeite as regras de [Limites de Contexto](references/context-limits.md).
+- **Actionable State**: The `STATE.md` should answer "What do I do now?" if the agent's memory was completely wiped. Always consider the [Session Handoff Protocol](references/session-handoff.md).
+- **Strict Limits**: The planner must not let `STATE.md` bloat infinitely. Respect the [Context Limits](references/context-limits.md) rules.
 
 ## Prohibited
 

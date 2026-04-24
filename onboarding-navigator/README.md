@@ -1,56 +1,56 @@
 # Onboarding Navigator
 
-Esta skill atua como o guia mestre para o ecossistema de **20 habilidades** do projeto. Ela transforma a base de conhecimento estática em uma ferramenta ativa para orientar a navegação técnica, garantindo que os padrões Skynet (KISS, SDD) sejam seguidos.
+This skill acts as the master guide for the project's **20 skills** ecosystem. It transforms the static knowledge base into an active tool to guide technical navigation, ensuring that Skynet standards (KISS, SDD) are followed.
 
-## Casos de Uso
+## Use Cases
 
-Sempre invoque o `onboarding-navigator` no início de uma sessão para:
-1. Conheçam o ecossistema completo de 20 skills
-2. Entendam qual skill usar para qual problema
-3. Sejam lembrados da obrigatoriedade do Spec-Driven Development (SDD)
-4. Saibam onde salvar a memória da sessão (`STATE.md`, etc)
+Always invoke `onboarding-navigator` at the beginning of a session to:
+1. Know the complete 20 skills ecosystem
+2. Understand which skill to use for which problem
+3. Be reminded of the mandatory Spec-Driven Development (SDD)
+4. Know where to save session memory (`STATE.md`, etc.)
 
-## Arquivos de Referência
-- `references/skills-catalog.md`: Catálogo completo com 20 skills e matriz de decisão
-- `references/decision-making-framework.md`: Guia de como tomar e registrar decisões técnicas
-- `references/project-structure-guide.md`: Mapa das pastas locais
-- `references/onboarding-checklists.md`: Checklists práticos para começar a codar
+## Reference Files
+- `references/skills-catalog.md`: Complete catalog with 20 skills and decision matrix
+- `references/decision-making-framework.md`: Guide on how to make and record technical decisions
+- `references/project-structure-guide.md`: Map of local folders
+- `references/onboarding-checklists.md`: Practical checklists to start coding
 
-## O que ela entrega
-- **Versões atualizadas** de todas as 20 skills
-- **Estatísticas do Hub**: Visão geral do ecossistema (5 metodologias, 3 arquiteturas, 8 DevOps, 2 automação, 2 navegação)
-- **Integração com MEMORY/LEARNINGS**: Consulta proativa a lições aprendidas
+## What it delivers
+- **Updated versions** of all 20 skills
+- **Hub Statistics**: Ecosystem overview (5 methodologies, 3 architectures, 8 DevOps, 2 automation, 2 navigation)
+- **MEMORY/LEARNINGS Integration**: Proactive consultation of lessons learned
 
-## 🔧 Como Usar
+## 🔧 How to Use
 
-Para ativar as diretrizes desta skill em sua sessão atual:
+To activate this skill's guidelines in your current session:
 
 ```bash
 activate_skill onboarding-navigator
 ```
 
-**Fluxo Recomendado:**
-1. Inicie cada sessão com esta skill
-2. Consulte o catálogo visual em `references/skills-catalog.md`
-3. Use a matriz de decisão para escolher a próxima skill
-4. Siga os fluxos de trabalho recomendados
+**Recommended Flow:**
+1. Start each session with this skill
+2. Consult the visual catalog in `references/skills-catalog.md`
+3. Use the decision matrix to choose the next skill
+4. Follow the recommended workflows
 
-## 🏗️ Estrutura da Skill
+## 🏗️ Skill Structure
 
-- `SKILL.md`: Documento principal com workflow de 4 fases e diagramas
-- `references/skills-catalog.md`: Catálogo completo com 20 skills e matriz de decisão
-- `references/`: Detalhes sobre tomada de decisão e estrutura de pastas
-- `examples/`: Guia de boas-vindas e fluxos de decisão visuais
-- `CHANGELOG.md`: Histórico de versões e melhorias
+- `SKILL.md`: Main document with 4-phase workflow and diagrams
+- `references/skills-catalog.md`: Complete catalog with 20 skills and decision matrix
+- `references/`: Details on decision making and folder structure
+- `examples/`: Welcome guide and visual decision flows
+- `CHANGELOG.md`: Version history and improvements
 
-## 🔄 Atualizações da v1.1.0
+## 🔄 v1.1.0 Updates
 
-- **Diagramação completa** do ecossistema com Mermaid
-- **Versões atualizadas** de todas as 20 skills
-- **Matriz de decisão visual** para fluxos de trabalho
-- **Integração** com STATE.md, MEMORY.md e LEARNINGS.md
-- **Estatísticas** e visão geral do hub
+- **Complete diagramming** of the ecosystem with Mermaid
+- **Updated versions** of all 20 skills
+- **Visual decision matrix** for workflows
+- **Integration** with STATE.md, MEMORY.md, and LEARNINGS.md
+- **Statistics** and hub overview
 
 ---
 
-Baseado nos guias de cultura e engenharia do repositório de documentação. Mantido como skill central do ecossistema.
+Based on the culture and engineering guides of the documentation repository. Maintained as the ecosystem's central skill.

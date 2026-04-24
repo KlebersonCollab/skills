@@ -1,49 +1,49 @@
 ---
 name: youtube-transcript
 version: 1.0.0
-description: "Skill para automatizar a extração de transcrições de vídeos do YouTube com fallback para IA (Whisper)."
+description: "Skill to automate the extraction of transcripts from YouTube videos with AI fallback (Whisper)."
 category: automation
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define architecture, schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 # YouTube Transcript
 
-> Skill para automatizar a extração de transcrições de vídeos do YouTube com fallback para IA (Whisper).
+> Skill to automate the extraction of transcripts from YouTube videos with AI fallback (Whisper).
 
 ---
 
 ## Goal
 
-O objetivo principal desta skill é fornecer uma forma rápida e robusta de obter o conteúdo textual de vídeos do YouTube, priorizando legendas existentes (manuais ou automáticas) para economizar recursos e tempo, e utilizando modelos de IA (Whisper) apenas quando necessário.
+The primary goal of this skill is to provide a fast and robust way to obtain the textual content of YouTube videos, prioritizing existing captions (manual or automatic) to save resources and time, and using AI models (Whisper) only when necessary.
 
 ---
 
 ## Protocol
 
 ### Phase 1: Context & Metadata
-1.  **Extract Info:** Executar `yt-dlp --get-title --list-subs "{{url}}"` para obter o título do vídeo e mapear as legendas disponíveis.
-2.  **Sanitize Title:** Limpar o título de caracteres especiais para uso como nome de arquivo.
+1.  **Extract Info:** Execute `yt-dlp --get-title --list-subs "{{url}}"` to get the video title and map available captions.
+2.  **Sanitize Title:** Clean the title of special characters for use as a filename.
 
 ### Phase 2: Selection Strategy
-Seguir a ordem de prioridade para obter a transcrição:
+Follow the priority order to obtain the transcript:
 
-1.  **Manual Subtitles:** Se houver legendas manuais (`--write-sub`), baixá-las no formato VTT.
-2.  **Automatic Subtitles:** Se não houver manuais, mas houver automáticas (`--write-auto-sub`), baixá-las no formato VTT.
-3.  **AI Fallback (Whisper):** Se nenhuma legenda existir:
-    - Solicitar confirmação ao usuário para baixar apenas o áudio (`bestaudio`).
-    - Executar transcrição via Whisper utilizando `uv run --with openai-whisper whisper audio_file.mp3 --model base`.
+1.  **Manual Subtitles:** If manual captions exist (`--write-sub`), download them in VTT format.
+2.  **Automatic Subtitles:** If no manual ones exist, but automatic ones do (`--write-auto-sub`), download them in VTT format.
+3.  **AI Fallback (Whisper):** If no captions exist:
+    - Request confirmation from the user to download only the audio (`bestaudio`).
+    - Execute transcription via Whisper using `uv run --with openai-whisper whisper audio_file.mp3 --model base`.
 
 ### Phase 3: Text Processing (Cleanup)
-Independentemente da fonte (VTT ou Whisper), processar o texto final para garantir limpeza absoluta utilizando o script Python inline:
+Regardless of the source (VTT or Whisper), process the final text to ensure absolute cleanliness using the inline Python script:
 
 ```python
 import sys, re
@@ -78,31 +78,31 @@ if __name__ == "__main__":
         print(clean_vtt(f.read()))
 ```
 
-Executar via: `uv run python -c "..." input.vtt > output.txt`
+Execute via: `uv run python -c "..." input.vtt > output.txt`
 
 ### Phase 4: Delivery & Cleanup
-1.  Salvar o arquivo final como `{video_title}.txt`.
-2.  Remover arquivos temporários (`.vtt`, `.mp3`, `.wav`) criados durante o processo.
+1.  Save the final file as `{video_title}.txt`.
+2.  Remove temporary files (`.vtt`, `.mp3`, `.wav`) created during the process.
 
 ---
 
 ## Output Structure
 
-A execução desta skill resulta nos seguintes artefatos:
+Execution of this skill results in the following artifacts:
 
-- **Transcrição (.txt):** Arquivo de texto puro com o conteúdo do vídeo limpo e formatado.
-- **Metadados:** Título do vídeo integrado ao nome do arquivo.
+- **Transcript (.txt):** Plain text file with cleaned and formatted video content.
+- **Metadata:** Video title integrated into the filename.
 
 ---
 
 ## Quality Rules
 
-- **Accuracy First:** Priorizar sempre legendas manuais sobre automáticas ou geradas por IA.
-- **Clean Text:** O resultado final não deve conter tags HTML, timestamps VTT ou redundâncias de legendas automáticas.
-- **Dependency Check:** Validar `yt-dlp` e `ffmpeg`. Para `whisper`, utilizar `uv run --with`.
+- **Accuracy First:** Always prioritize manual captions over automatic or AI-generated ones.
+- **Clean Text:** The final result must not contain HTML tags, VTT timestamps, or automatic caption redundancies.
+- **Dependency Check:** Validate `yt-dlp` and `ffmpeg`. For `whisper`, use `uv run --with`.
 
 ## Prohibited
 
-- NUNCA baixar o vídeo completo se apenas o áudio ou legendas forem necessários.
-- NUNCA sobrescrever arquivos existentes sem confirmação.
-- NUNCA ignorar falhas de download sem reportar o motivo claro.
+- NEVER download the full video if only audio or captions are needed.
+- NEVER overwrite existing files without confirmation.
+- NEVER ignore download failures without reporting a clear reason.

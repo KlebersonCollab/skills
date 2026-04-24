@@ -1,18 +1,18 @@
 ---
 name: skill-factory
 version: 1.1.0
-description: "Core Framework para criação padronizada de novas skills com scaffolding, validação e registro automatizados."
+description: "Core Framework for standardized creation of new skills with automated scaffolding, validation, and registration."
 category: skill-management
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define architecture, schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 # Skill Factory: Core Framework
@@ -23,22 +23,22 @@ Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execuç�
 
 ## Goal
 
-Automatizar a criação padronizada de novas skills com qualidade garantida, eliminando erros humanos no scaffolding e assegurando conformidade com os padrões do Skills Hub.
+Automate the standardized creation of new skills with guaranteed quality, eliminating human error in scaffolding and ensuring compliance with Skills Hub standards.
 
 ---
 
 ## Auto-Sizing
 
-A profundidade do scaffolding é determinada pela **estrutura** da skill:
+The depth of scaffolding is determined by the skill's **structure**:
 
-| Mode | Escopo | Arquivos Gerados | Sub-skill Utilizada |
+| Mode | Scope | Generated Files | Sub-skill Used |
 |------|--------|-------------------|---------------------|
-| **Quick** | Skill simples, sem sub-skills | `SKILL.md`, `README.md`, `CHANGELOG.md` | `skill-factory-bootstrap` |
-| **Standard** | Skill com sub-skills | Todos acima + `<skill>-<sub>.skill.md` (N) | `skill-factory-bootstrap` |
+| **Quick** | Simple skill, no sub-skills | `SKILL.md`, `README.md`, `CHANGELOG.md` | `skill-factory-bootstrap` |
+| **Standard** | Skill with sub-skills | All above + `<skill>-<sub>.skill.md` (N) | `skill-factory-bootstrap` |
 
-Após o scaffolding, a validação é **sempre** executada (ambos os modos):
+After scaffolding, validation is **always** executed (both modes):
 
-| Phase | Responsável |
+| Phase | Responsible |
 |-------|-------------|
 | **Validate** | `skill-factory-validator` |
 
@@ -48,69 +48,69 @@ Após o scaffolding, a validação é **sempre** executada (ambos os modos):
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `skill_name` | string | ✅ | Nome da skill (slug: lowercase, hifenizado, sem espaços). Ex: `deep-research` |
-| `description` | string | ✅ | Descrição concisa do que a skill faz. |
-| `category` | string | ✅ | Categoria funcional (livre). Ex: `research`, `automation`, `development-workflow` |
-| `sub_skills` | list[string] | ❌ | Lista de nomes de sub-skills a serem criadas. Se vazio, modo Quick. |
+| `skill_name` | string | ✅ | Skill name (slug: lowercase, hyphenated, no spaces). Ex: `deep-research` |
+| `description` | string | ✅ | Concise description of what the skill does. |
+| `category` | string | ✅ | Functional category (free-form). Ex: `research`, `automation`, `development-workflow` |
+| `sub_skills` | list[string] | ❌ | List of sub-skill names to be created. If empty, Quick mode. |
 
 ---
 
 ## The Modular Engine
 
-Esta skill delega tarefas para sub-skills especializadas:
+This skill delegates tasks to specialized sub-skills:
 
-- **[Bootstrap](skill-factory-bootstrap.skill.md)**: Gera o scaffolding completo da nova skill (diretório, arquivos, conteúdo padronizado).
-- **[Validator](skill-factory-validator.skill.md)**: Audita a skill criada contra o checklist de conformidade e emite relatório.
+- **[Bootstrap](skill-factory-bootstrap.skill.md)**: Generates complete scaffolding for the new skill (directory, files, standardized content).
+- **[Validator](skill-factory-validator.skill.md)**: Audits the created skill against the compliance checklist and issues a report.
 
 ---
 
 ## Workflow (3 Phases)
 
 ### Phase 1: BOOTSTRAP
-Executar `skill-factory-bootstrap` com os parâmetros recebidos.
-- Cria o diretório `<skill_name>/` na raiz do repositório.
-- Gera todos os arquivos a partir dos templates padronizados.
+Execute `skill-factory-bootstrap` with the received parameters.
+- Creates the `<skill_name>/` directory at the repository root.
+- Generates all files from standardized templates.
 
 ### Phase 2: VALIDATE
-Executar `skill-factory-validator` na skill recém-criada.
-- Verifica estrutura, frontmatter, conteúdo e naming.
-- Se **NON-COMPLIANT**, corrigir antes de prosseguir.
+Execute `skill-factory-validator` on the newly created skill.
+- Verifies structure, frontmatter, content, and naming.
+- If **NON-COMPLIANT**, correct before proceeding.
 
 ### Phase 3: REGISTER
-Atualizar o `README.md` raiz do repositório:
-1. Adicionar a nova skill na tabela **Skills Disponíveis**.
-2. Incrementar o badge de contagem de skills.
+Update the repository's root `README.md`:
+1. Add the new skill to the **Available Skills** table.
+2. Increment the skill count badge.
 
 ---
 
 ## Version Policy
 
-Toda nova skill **SEMPRE** inicia na versão `1.0.0`. Não existe suporte para versões pré-release.
+Every new skill **ALWAYS** starts at version `1.0.0`. There is no support for pre-release versions.
 
 ---
 
 ## Output Structure
 
-A execução desta skill resulta nos seguintes artefatos mandatórios para cada nova skill criada:
+Execution of this skill results in the following mandatory artifacts for each new skill created:
 
-| Artefato | Descrição |
+| Artifact | Description |
 |----------|-----------|
-| `SKILL.md` | Definição técnica e workflow da skill. |
-| `README.md` | Documentação de apresentação e uso. |
-| `CHANGELOG.md` | Histórico de versões (inicial 1.0.0). |
-| `references/` | (Opcional) Guias de referência detalhados. |
-| `examples/` | (Opcional) Amostras de código e configurações. |
+| `SKILL.md` | Technical definition and skill workflow. |
+| `README.md` | Presentation and usage documentation. |
+| `CHANGELOG.md` | Version history (starting at 1.0.0). |
+| `references/` | (Optional) Detailed reference guides. |
+| `examples/` | (Optional) Code samples and configurations. |
 
 ## Quality Rules
 
-- **Template-First**: Toda skill gerada deve seguir os templates padronizados definidos na sub-skill `bootstrap`.
-- **Validation-Always**: Nenhuma skill é considerada criada até que o `validator` emita `COMPLIANT`.
-- **Registry-Updated**: O `README.md` raiz é a fonte da verdade para skills existentes e deve estar sempre atualizado.
-- **Self-Consistent**: O nome no frontmatter deve corresponder ao nome do diretório.
+- **Template-First**: Every generated skill must follow the standardized templates defined in the `bootstrap` sub-skill.
+- **Validation-Always**: No skill is considered created until the `validator` issues a `COMPLIANT` verdict.
+- **Registry-Updated**: The root `README.md` is the source of truth for existing skills and must always be up-to-date.
+- **Self-Consistent**: The name in the frontmatter must match the directory name.
 
 ## Prohibited
 
-- NUNCA criar uma skill sem executar a fase de validação.
-- NUNCA registrar uma skill NON-COMPLIANT no README raiz.
-- NUNCA usar caracteres especiais, espaços ou uppercase no `skill_name`.
-- NUNCA criar arquivos fora do diretório da skill (exceto o registro no README raiz).
+- NEVER create a skill without executing the validation phase.
+- NEVER register a NON-COMPLIANT skill in the root README.
+- NEVER use special characters, spaces, or uppercase in `skill_name`.
+- NEVER create files outside the skill directory (except for the root README registration).

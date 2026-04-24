@@ -1,13 +1,13 @@
 # 🛡️ DevSecOps Expert
 
-Bem-vindo à skill de Segurança! Esta skill atua como um portão de qualidade (Quality Gate) focado na resiliência e integridade do código e infraestrutura.
+Welcome to the Security skill! This skill acts as a Quality Gate focused on the resilience and integrity of code and infrastructure.
 
-## 📦 Como usar?
-Agentes utilizando esta skill devem seguir as diretrizes do `SKILL.md` para integrar revisões e auditorias estáticas e dinâmicas nos pipelines, além de revisar a arquitetura usando metodologias como **STRIDE** ou **DREAD**.
+## 📦 How to use?
+Agents using this skill must follow the guidelines in `SKILL.md` to integrate reviews and static/dynamic audits into pipelines, in addition to reviewing architecture using methodologies such as **STRIDE** or **DREAD**.
 
-## 🛠️ Ferramentas Suportadas na Filosofia
+## 🛠️ Supported Tools & Philosophy
 - **SAST**: Semgrep, SonarQube, Bandit.
 - **DAST**: OWASP ZAP.
 - **Dependency**: Trivy, Snyk.
 
-Sempre opere sob a perspectiva de Zero Trust (Confiança Zero).
+Always operate under a Zero Trust perspective.

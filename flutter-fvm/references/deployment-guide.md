@@ -1,10 +1,10 @@
 # Deployment Guide: Flutter with FVM
 
-Este guia descreve os comandos para gerar artefatos de release em diferentes plataformas utilizando o workflow do FVM.
+This guide describes the commands for generating release artifacts on different platforms using the FVM workflow.
 
-## 1. Preparação para o Deploy
+## 1. Preparation for Deployment
 
-Antes de qualquer build de release, execute sempre a limpeza e a atualização de dependências:
+Before any release build, always perform cleaning and dependency update:
 
 ```bash
 fvm flutter clean
@@ -13,43 +13,43 @@ fvm flutter pub get
 
 ## 2. Android
 
-### Gerar APK (Debug/Release)
+### Generate APK (Debug/Release)
 ```bash
-# APK de Debug
+# Debug APK
 fvm flutter build apk --debug
 
-# APK de Release (Geralmente para distribuição interna ou testes)
+# Release APK (Usually for internal distribution or testing)
 fvm flutter build apk --release
 ```
 
-### Gerar Android App Bundle (AAB) - Recomendado para Play Store
+### Generate Android App Bundle (AAB) - Recommended for Play Store
 ```bash
 fvm flutter build appbundle --release
 ```
 
 ## 3. iOS
 
-### Gerar o diretório do app (.app)
+### Generate the app directory (.app)
 ```bash
 fvm flutter build ios --release
 ```
 
-### Gerar o arquivo IPA (Xcode)
-Após o comando acima, é comum abrir o projeto no Xcode para arquivamento e upload:
+### Generate the IPA file (Xcode)
+After the above command, it's common to open the project in Xcode for archiving and uploading:
 ```bash
 open ios/Runner.xcworkspace
 ```
 
-Ou via CLI se você tiver o `fastlane` configurado (altamente recomendado).
+Or via CLI if you have `fastlane` configured (highly recommended).
 
 ## 4. Web
 
-### Gerar os arquivos estáticos
+### Generate static files
 ```bash
 fvm flutter build web --release
 ```
 
-Isso gerará os arquivos na pasta `build/web/`. Eles podem ser servidos por qualquer servidor estático (Firebase Hosting, Netlify, Vercel, S3).
+This will generate the files in the `build/web/` folder. They can be served by any static server (Firebase Hosting, Netlify, Vercel, S3).
 
 ## 5. Desktop
 
@@ -63,25 +63,25 @@ fvm flutter build windows --release
 fvm flutter build macos --release
 ```
 
-## 6. Versionamento do App
+## 6. App Versioning
 
-A versão do app é definida no `pubspec.yaml`:
+The app version is defined in `pubspec.yaml`:
 
 ```yaml
 version: 1.0.0+1
 ```
 
-- `1.0.0`: Versão semântica visível para o usuário.
-- `+1`: Número de build (inteiro, incrementado a cada novo deploy).
+- `1.0.0`: Semantic version visible to the user.
+- `+1`: Build number (integer, incremented with each new deployment).
 
-Para automatizar o incremento em CI/CD, você pode usar flags:
+To automate incrementing in CI/CD, you can use flags:
 ```bash
 fvm flutter build apk --release --build-name=1.1.0 --build-number=42
 ```
 
-## 7. Ofuscação e Segurança
+## 7. Obfuscation and Security
 
-Para proteger seu código contra engenharia reversa:
+To protect your code against reverse engineering:
 
 ```bash
 fvm flutter build apk --release --obfuscate --split-debug-info=./build/debug-info

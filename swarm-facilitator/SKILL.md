@@ -1,79 +1,78 @@
 ---
 name: swarm-facilitator
 version: 1.1.0
-description: "Orquestrador de workflows Multi-Agente (Swarm). Define protocolos de handoff, personas e passagem de contexto usando a estrutura SDD."
+description: "Orchestrator for Multi-Agent (Swarm) workflows. Defines handoff protocols, personas, and context passing using the SDD structure."
 category: orchestration
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define architecture, schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 # Swarm Facilitator
 
-> "Reger múltiplos agentes requer coreografia, não apenas programação. O repositório é o tabuleiro e o Markdown é a linguagem de comunicação inter-agentes."
+> "Conducting multiple agents requires choreography, not just programming. The repository is the board, and Markdown is the inter-agent communication language."
 
 ---
 
 ## Goal
 
-Capacitar agentes de IA a atuarem em um fluxo coreografado (Swarm/Crew), assumindo personas especializadas (ex: Arquiteto, Developer, Revisor) e utilizando protocolos de Handoff (passagem de bastão) baseados no ecossistema SDD. Esta skill transforma a interação em um pipeline de linha de produção invisível.
+Enable AI agents to act in a choreographed flow (Swarm/Crew), assuming specialized personas (e.g., Architect, Developer, Reviewer) and utilizing Handoff protocols based on the SDD ecosystem. This skill transforms interaction into an invisible production line pipeline.
 
 ---
 
-## Personas Suportadas
+## Supported Personas
 
-O orquestrador pode instruir o LLM atual ou instruir o usuário a iniciar uma nova thread com uma destas personas:
+The orchestrator can instruct the current LLM or direct the user to start a new thread with one of these personas:
 
-1. **Solution Architect (Arquiteto)**: Foco em Fases 1 e 2 do SDD. Usa as skills `architecture`, `api-architect` e `brainstorming`. Produz PRDs e ADRs.
-2. **Lead Developer (Engenheiro)**: Foco na Fase 3 do SDD. Consome as especificações do Arquiteto. Usa skills de stack (`fastapi-expert`, `flutter-fvm`). Escreve o código produtivo.
-3. **Quality Assurance / SRE (Revisor)**: Foco na Fase 4 do SDD. Usa `clean-code-mentor` e `observability-expert`. Faz code review e audita a telemetria.
+1. **Solution Architect**: Focuses on Phases 1 and 2 of SDD. Uses `architecture`, `api-architect`, and `brainstorming` skills. Produces PRDs and ADRs.
+2. **Lead Developer (Engineer)**: Focuses on Phase 3 of SDD. Consumes the Architect's specifications. Uses stack-specific skills (`fastapi-expert`, `flutter-fvm`). Writes the production code.
+3. **Quality Assurance / SRE (Reviewer)**: Focuses on Phase 4 of SDD. Uses `clean-code-mentor` and `observability-expert`. Performs code review and audits telemetry.
 
 ---
 
-## Workflow (Protocolo de Handoff)
+## Workflow (Handoff Protocol)
 
-Para orquestrar múltiplos agentes no mesmo projeto local sem perda de contexto, execute este protocolo:
+To orchestrate multiple agents in the same local project without context loss, execute this protocol:
 
-### 1. State Definition (O Estado é Rei)
-O Arquiteto deve atualizar o `STATE.md` com o plano de ação macro e salvar as tarefas em `tasks.md`.
+### 1. State Definition (State is King)
+The Architect must update `STATE.md` with the macro action plan and save tasks in `tasks.md`.
 
-### 2. Context Dump (Salvar o Jogo)
-Antes de finalizar a sessão do Agente 1 (Arquiteto), ele **deve** compilar as decisões recentes em um arquivo de handover na pasta `.specs/features/<feature>/handoff.md`.
-*Exemplo de formato de handoff:*
-- O que foi decidido.
-- Onde está a especificação (caminho absoluto).
-- Qual skill o próximo agente DEVE invocar ao acordar.
+### 2. Context Dump (Save Game)
+Before finishing the session of Agent 1 (Architect), it **must** compile recent decisions into a handoff file in the `.specs/features/<feature>/handoff.md` folder.
+*Example handoff format:*
+- What was decided.
+- Where the specification is (absolute path).
+- Which skill the next agent MUST invoke upon waking up.
 
-### 3. Handoff Message (A Passagem de Bastão)
-A última mensagem da sessão do Agente 1 deve ser um prompt formatado para o usuário copiar e colar na nova sessão do Agente 2.
+### 3. Handoff Message (Passing the Torch)
+The last message of Agent 1's session must be a formatted prompt for the user to copy and paste into Agent 2's new session.
 **Template**: 
-> "Inicie o desenvolvimento da Feature X. Sou o Arquiteto e deixei as specs em `.specs/...`. Invoque a skill `fastapi-expert` e siga os passos 1 e 2."
+> "Start development for Feature X. I am the Architect and I left the specs in `.specs/...`. Invoke the `fastapi-expert` skill and follow steps 1 and 2."
 
 ---
 
 ## Output Structure
 
-- `handoff.md`: Documento contendo as diretrizes para a próxima persona.
-- `STATE.md`: Atualizado via Harness Expert indicando quem está com a bola.
+- `handoff.md`: Document containing guidelines for the next persona.
+- `STATE.md`: Updated via Harness Expert indicating who has the ball.
 
 ---
 
 ## Quality Rules
 
-- O Handoff deve ser enxuto.
-- A comunicação é feita exclusivamente através do Markdown salvo no repositório.
+- The Handoff must be lean.
+- Communication is done exclusively through Markdown saved in the repository.
 
 ---
 
 ## Prohibited
 
-- NUNCA tentar fazer um único agente assumir o papel de Arquiteto e Desenvolvedor simultaneamente em épicos complexos. Dividir para conquistar.
-- NUNCA passar o bastão sem atualizar o `STATE.md` via `harness-expert` ou script.
-
+- NEVER attempt to have a single agent assume the role of Architect and Developer simultaneously in complex epics. Divide and conquer.
+- NEVER pass the torch without updating `STATE.md` via `harness-expert` or script.

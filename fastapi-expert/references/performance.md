@@ -2,25 +2,25 @@
 
 ## 1. Async vs Sync Decision Matrix
 
-O FastAPI executa funções `async def` diretamente no event loop e funções `def` em um threadpool.
+FastAPI executes `async def` functions directly in the event loop and `def` functions in a threadpool.
 
-| Tipo de Função | Quando Usar | Por que? |
+| Function Type | When to Use | Why? |
 |----------------|-------------|----------|
-| `async def` | I/O não bloqueante (HTTPX, Motor, Asyncpg) | Evita bloquear o event loop. |
-| `def` | I/O bloqueante (Requests, SQLAlchemy, File I/O) | Roda em threads separadas para não travar a API. |
-| `def` | CPU-bound (Cálculos pesados, Processamento de imagem) | Threadpool lida melhor sem travar outras requisições. |
+| `async def` | Non-blocking I/O (HTTPX, Motor, Asyncpg) | Avoids blocking the event loop. |
+| `def` | Blocking I/O (Requests, SQLAlchemy, File I/O) | Runs in separate threads so as not to freeze the API. |
+| `def` | CPU-bound (Heavy calculations, image processing) | Threadpool handles it better without freezing other requests. |
 
-### ⚠️ O Perigo do "Fake Async"
-NUNCA use `time.sleep()` ou bibliotecas bloqueantes (como `requests`) dentro de um `async def`. Isso trava TODAS as requisições da sua API simultaneamente.
+### ⚠️ The Danger of "Fake Async"
+NEVER use `time.sleep()` or blocking libraries (like `requests`) inside an `async def`. This freezes ALL your API requests simultaneously.
 
 ## 2. Rust-Powered Serialization (Pydantic V2)
 
-O FastAPI usa Pydantic V2, que é escrito em Rust. Para máxima performance:
+FastAPI uses Pydantic V2, which is written in Rust. For maximum performance:
 
-- **Type Hints Estritos:** Quanto mais preciso o tipo, mais rápido o Rust valida.
-- **Annotated:** Use `Annotated` para evitar que o Pydantic precise inferir tipos complexos múltiplas vezes.
-- **Exclude Unset:** Ao retornar modelos, use `response_model_exclude_unset=True` para reduzir o tamanho do payload.
+- **Strict Type Hints:** The more precise the type, the faster Rust validates.
+- **Annotated:** Use `Annotated` to prevent Pydantic from needing to infer complex types multiple times.
+- **Exclude Unset:** When returning models, use `response_model_exclude_unset=True` to reduce the payload size.
 
 ## 3. Tooling
-- **Uvicorn vs Gunicorn:** Use Uvicorn para dev e Gunicorn com workers Uvicorn para produção.
-- **uv run:** Sempre execute via `uv run` para garantir que as otimizações do ambiente virtual estejam ativas.
+- **Uvicorn vs Gunicorn:** Use Uvicorn for dev and Gunicorn with Uvicorn workers for production.
+- **uv run:** Always execute via `uv run` to ensure virtual environment optimizations are active.
