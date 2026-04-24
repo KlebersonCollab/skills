@@ -1,49 +1,49 @@
-# Estratégias de Ramificação (Branching)
+# Branching Strategies
 
-Escolher a estratégia correta depende do tamanho da equipe, cadência de release e maturidade de automação.
+Choosing the right strategy depends on team size, release cadence, and automation maturity.
 
 ## 1. GitHub Flow
-**Melhor para**: SaaS, aplicações web, equipes pequenas e entrega contínua.
+**Best for**: SaaS, web applications, small teams, and continuous delivery.
 
-### Fluxo:
-1.  **Branch main**: Representa o estado de produção. Deve estar sempre estável.
-2.  **Feature Branches**: Qualquer mudança (nova feature ou correção) deve ser feita em uma branch criada a partir da `main`.
-    - Nomeação: `feature/<desc>` ou `fix/<desc>`.
-3.  **Pull Request (PR)**: Quando a branch está pronta, abre-se um PR para revisão.
-4.  **Discussão e Revisão**: Feedback da equipe e ajustes.
-5.  **Merge**: Após aprovação e aprovação do CI, a branch é integrada à `main`.
-6.  **Deploy**: O deploy é feito imediatamente após o merge.
+### Workflow:
+1.  **main Branch**: Represents the production state. Must always be stable.
+2.  **Feature Branches**: Any change (new feature or fix) must be made in a branch created from `main`.
+    - Naming: `feature/<desc>` or `fix/<desc>`.
+3.  **Pull Request (PR)**: When the branch is ready, a PR is opened for review.
+4.  **Discussion and Review**: Team feedback and adjustments.
+5.  **Merge**: After approval and CI pass, the branch is integrated into `main`.
+6.  **Deploy**: Deployment is done immediately after the merge.
 
 ---
 
 ## 2. Trunk-Based Development
-**Melhor para**: Equipes seniores, alta velocidade de desenvolvimento, arquitetura de microsserviços.
+**Best for**: Senior teams, high development velocity, microservices architecture.
 
-### Fluxo:
-- Desenvolvedores trabalham em uma única branch principal (`trunk` ou `main`).
-- As branches são de vida curtíssima (horas ou 1-2 dias).
-- **Feature Flags**: Funcionalidades incompletas são enviadas para produção, mas escondidas atrás de chaves de configuração.
-- **Integração Contínua**: O código é integrado várias vezes ao dia.
+### Workflow:
+- Developers work on a single main branch (`trunk` or `main`).
+- Branches are very short-lived (hours or 1-2 days).
+- **Feature Flags**: Incomplete functionalities are sent to production but hidden behind configuration keys.
+- **Continuous Integration**: Code is integrated several times a day.
 
 ---
 
 ## 3. GitFlow
-**Melhor para**: Projetos legados, ambientes regulados, releases agendadas (ex: Apps Mobile em lojas).
+**Best for**: Legacy projects, regulated environments, scheduled releases (e.g., Mobile Apps in stores).
 
-### Fluxo:
-- **main**: Código em produção.
-- **develop**: Branch de integração para a próxima release.
-- **feature/**: Criadas a partir da `develop`, integradas de volta na `develop`.
-- **release/**: Criadas a partir da `develop` para preparação final de release. Fundem-se na `main` e `develop`.
-- **hotfix/**: Criadas a partir da `main` para correções críticas imediatas. Fundem-se na `main` e `develop`.
+### Workflow:
+- **main**: Code in production.
+- **develop**: Integration branch for the next release.
+- **feature/**: Created from `develop`, integrated back into `develop`.
+- **release/**: Created from `develop` for final release preparation. Merged into `main` and `develop`.
+- **hotfix/**: Created from `main` for immediate critical fixes. Merged into `main` and `develop`.
 
 ---
 
-## Tabela Comparativa
+## Comparison Table
 
-| Critério | GitHub Flow | Trunk-Based | GitFlow |
+| Criterion | GitHub Flow | Trunk-Based | GitFlow |
 |----------|-------------|-------------|---------|
-| **Complexidade** | Baixa | Média | Alta |
-| **Velocidade** | Alta | Altíssima | Moderada |
-| **Risco de Conflito** | Baixo | Moderado | Alto |
-| **Controle de Release** | Contínuo | Contínuo | Agendado |
+| **Complexity** | Low | Medium | High |
+| **Velocity** | High | Very High | Moderate |
+| **Conflict Risk** | Low | Moderate | High |
+| **Release Control** | Continuous | Continuous | Scheduled |

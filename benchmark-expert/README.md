@@ -1,18 +1,18 @@
 # Benchmark Expert Skill
 
 ## Overview
-A skill `benchmark-expert` permite medir baselines de performance, detectar regressões e comparar alternativas de stack de forma profissional e determinística.
+The `benchmark-expert` skill allows for measuring performance baselines, detecting regressions, and comparing stack alternatives in a professional and deterministic way.
 
-## Características
-- **Medição Full-Stack**: Cobre desde métricas de navegador até performance de build.
-- **Detecção de Regressão**: Compara baselines salvos para garantir que mudanças não degradem a performance.
-- **Pronto para CI**: Comandos otimizados para execução em pipelines de integração contínua.
-- **Standard de Ouro**: Documentação rica com exemplos e targets de performance da indústria.
+## Features
+- **Full-Stack Measurement**: Covers everything from browser metrics to build performance.
+- **Regression Detection**: Compares saved baselines to ensure changes do not degrade performance.
+- **CI Ready**: Optimized commands for execution in continuous integration pipelines.
+- **Gold Standard**: Rich documentation with industry performance examples and targets.
 
-## Como Usar
-Consulte o arquivo [SKILL.md](./SKILL.md) para instruções detalhadas de workflow e comandos.
+## How to Use
+See the [SKILL.md](./SKILL.md) file for detailed workflow instructions and commands.
 
-## Estrutura
-- `SKILL.md`: Guia mestre de execução.
-- `references/`: Targets de performance e guias de análise.
-- `examples/`: Exemplos de baselines e relatórios.
+## Structure
+- `SKILL.md`: Master execution guide.
+- `references/`: Performance targets and analysis guides.
+- `examples/`: Examples of baselines and reports.

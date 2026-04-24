@@ -1,69 +1,69 @@
-# API Rate Limiting — Referência Completa
+# API Rate Limiting — Complete Reference
 
-Guia de estratégias para controle de taxa e proteção de recursos de API.
-
----
-
-## 1. Por que implementar Rate Limiting?
-
-- **Prevenir Abusos**: Evitar ataques de Denial of Service (DoS).
-- **Justiça de Uso**: Garantir que um único cliente não consuma todos os recursos do servidor.
-- **Controle de Custos**: Limitar o uso de recursos computacionais caros (ex: LLMs, APIs de terceiros).
-- **Estabilidade**: Manter a performance da API sob carga alta.
+Guide to strategies for rate control and API resource protection.
 
 ---
 
-## 2. Estratégias de Algoritmo
+## 1. Why Implement Rate Limiting?
+
+- **Prevent Abuse**: Avoid Denial of Service (DoS) attacks.
+- **Fair Usage**: Ensure that a single client does not consume all server resources.
+- **Cost Control**: Limit the use of expensive computational resources (e.g., LLMs, third-party APIs).
+- **Stability**: Maintain API performance under high load.
+
+---
+
+## 2. Algorithm Strategies
 
 ### 2.1 Token Bucket
-Um "balde" de tokens que enche em uma taxa constante. Cada request consome um token.
-- **Vantagem**: Permite picos moderados de tráfego.
-- **Uso**: Padrão de mercado para a maioria das APIs.
+A "bucket" of tokens that fills at a constant rate. Each request consumes a token.
+- **Advantage**: Allows moderate traffic bursts.
+- **Usage**: Market standard for most APIs.
 
 ### 2.2 Fixed Window Counter
-Conta o número de requests em janelas de tempo fixas (ex: 1 minuto).
-- **Vantagem**: Simples de implementar.
-- **Desvantagem**: Pode permitir o dobro do tráfego na borda das janelas.
+Counts the number of requests in fixed time windows (e.g., 1 minute).
+- **Advantage**: Simple to implement.
+- **Disadvantage**: Can allow double the traffic at the edges of the windows.
 
 ### 2.3 Sliding Window Log / Sliding Window Counter
-Usa um timestamp para cada request para calcular a taxa exata no tempo real.
-- **Vantagem**: Mais preciso, evita o problema das bordas da janela fixa.
-- **Desvantagem**: Consome mais memória/CPU.
+Uses a timestamp for each request to calculate the exact rate in real-time.
+- **Advantage**: More accurate, avoids the fixed window edge problem.
+- **Disadvantage**: Consumes more memory/CPU.
 
 ---
 
-## 3. Implementação e Resposta
+## 3. Implementation and Response
 
 ### 3.1 Status Code
-Sempre retorne **429 Too Many Requests** quando o limite for excedido.
+Always return **429 Too Many Requests** when the limit is exceeded.
 
-### 3.2 Headers Padronizados
-Informe o cliente sobre sua situação atual:
+### 3.2 Standardized Headers
+Inform the client about their current situation:
 
-| Header | Descrição |
+| Header | Description |
 |--------|-----------|
-| `X-RateLimit-Limit` | O número máximo de requisições permitidas no período. |
-| `X-RateLimit-Remaining` | Quantas requisições ainda restam na janela atual. |
-| `X-RateLimit-Reset` | Timestamp (epoch) de quando o limite será resetado. |
-| `Retry-After` | Segundos que o cliente deve esperar antes de tentar novamente (opcional). |
+| `X-RateLimit-Limit` | The maximum number of requests allowed in the period. |
+| `X-RateLimit-Remaining` | How many requests are still left in the current window. |
+| `X-RateLimit-Reset` | Timestamp (epoch) of when the limit will be reset. |
+| `Retry-After` | Seconds the client must wait before trying again (optional). |
 
 ---
 
-## 4. Onde Aplicar o Limite?
+## 4. Where to Apply the Limit?
 
-- **Por IP**: Proteção genérica contra bots.
-- **Por API Key / Usuário**: Modelo de negócio (ex: Free tier vs Premium).
-- **Por Endpoint**: Endpoints caros (ex: `/search`) devem ter limites menores que endpoints baratos (ex: `/health`).
+- **By IP**: Generic protection against bots.
+- **By API Key / User**: Business model (e.g., Free tier vs. Premium).
+- **By Endpoint**: Expensive endpoints (e.g., `/search`) should have lower limits than cheap endpoints (e.g., `/health`).
 
 ---
 
-## 5. Exemplo de Resposta (JSON)
+## 5. Response Example (JSON)
 
 ```json
 {
   "error": {
     "code": "RATE_LIMIT_EXCEEDED",
-    "message": "Você excedeu o limite de requisições. Tente novamente em 45 segundos.",
+    "message": "You have exceeded the request limit. Try again in 45 seconds.",
     "details": {
       "limit": 1000,
       "remaining": 0,
@@ -75,9 +75,9 @@ Informe o cliente sobre sua situação atual:
 
 ---
 
-## 6. Boas Práticas
+## 6. Best Practices
 
-1. **Graceful Degradation**: Avise o usuário antes de cortá-lo totalmente (opcional).
-2. **Whitelist**: Permita IPs conhecidos ou serviços internos sem limite (ex: health checks).
-3. **Cache Distribuído**: Use Redis para armazenar os contadores de rate limit em ambientes de múltiplos servidores.
-4. **Comunicação**: Documente claramente os limites na sua especificação de API.
+1. **Graceful Degradation**: Warn the user before cutting them off completely (optional).
+2. **Whitelist**: Allow known IPs or internal services without limits (e.g., health checks).
+3. **Distributed Cache**: Use Redis to store rate limit counters in multi-server environments.
+4. **Communication**: Clearly document limits in your API specification.

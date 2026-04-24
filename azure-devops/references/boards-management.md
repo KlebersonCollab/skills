@@ -1,18 +1,18 @@
 # Boards Management: Azure DevOps
 
-A gestão de trabalho no Azure DevOps (Azure Boards) gira em torno de **Work Items** e consultas estruturadas via **WIQL**.
+Work management in Azure DevOps (Azure Boards) revolves around **Work Items** and structured queries via **WIQL**.
 
-## 1. Tipos de Work Items
+## 1. Work Item Types
 
-Os tipos padrão dependem do processo (Agile, Scrum, Basic):
-- **User Story / PBI**: Requisito de negócio.
-- **Bug**: Erro ou falha.
-- **Task**: Trabalho técnico decomposto.
-- **Epic / Feature**: Níveis superiores de agrupamento.
+Standard types depend on the process (Agile, Scrum, Basic):
+- **User Story / PBI**: Business requirement.
+- **Bug**: Error or failure.
+- **Task**: Decomposed technical work.
+- **Epic / Feature**: Higher-level grouping levels.
 
-## 2. Consultas via WIQL (Work Item Query Language)
+## 2. Queries via WIQL (Work Item Query Language)
 
-WIQL é uma linguagem semelhante ao SQL para filtrar Work Items.
+WIQL is a SQL-like language for filtering Work Items.
 
 ```sql
 SELECT
@@ -28,39 +28,39 @@ WHERE
 ORDER BY [System.ChangedDate] DESC
 ```
 
-**Macros úteis**: `@me`, `@project`, `@today`.
+**Useful Macros**: `@me`, `@project`, `@today`.
 
-## 3. Criando Work Items (JSON Patch)
+## 3. Creating Work Items (JSON Patch)
 
-O Azure DevOps exige o formato `application/json-patch+json` para criar ou atualizar itens.
+Azure DevOps requires the `application/json-patch+json` format to create or update items.
 
-### Exemplo de Payload (POST)
+### Example Payload (POST)
 ```json
 [
   {
     "op": "add",
     "path": "/fields/System.Title",
     "from": null,
-    "value": "Implementar autenticação OAuth2"
+    "value": "Implement OAuth2 authentication"
   },
   {
     "op": "add",
     "path": "/fields/System.Description",
     "from": null,
-    "value": "Necessário para a integração com o novo portal."
+    "value": "Required for integration with the new portal."
   },
   {
     "op": "add",
     "path": "/fields/System.AssignedTo",
     "from": null,
-    "value": "usuario@exemplo.com"
+    "value": "user@example.com"
   }
 ]
 ```
 
-## 4. Atualizando Itens (PATCH)
+## 4. Updating Items (PATCH)
 
-Para atualizar, use o ID do item e envie as operações desejadas (`add`, `replace`, `remove`).
+To update, use the item ID and send the desired operations (`add`, `replace`, `remove`).
 
 ```json
 [
@@ -72,14 +72,14 @@ Para atualizar, use o ID do item e envie as operações desejadas (`add`, `repla
 ]
 ```
 
-## 5. Gerenciando Iterações (Sprints)
+## 5. Managing Iterations (Sprints)
 
-Você pode listar iterações de um time para planejar o trabalho:
+You can list a team's iterations to plan work:
 
 `GET https://dev.azure.com/{org}/{project}/{team}/_apis/work/teamsettings/iterations?api-version=7.1`
 
-## 6. Boas Práticas
+## 6. Best Practices
 
-- **Abstração**: Use funções helper que montem o array JSON Patch para você, reduzindo erros de sintaxe.
-- **WIQL**: Teste suas queries no editor visual do Azure Boards antes de implementá-las na CLI.
-- **Fields**: Fique atento aos campos customizados (ex: `Custom.Severity`). Eles variam de acordo com o processo do projeto.
+- **Abstraction**: Use helper functions that assemble the JSON Patch array for you, reducing syntax errors.
+- **WIQL**: Test your queries in the Azure Boards visual editor before implementing them in the CLI.
+- **Fields**: Be aware of custom fields (e.g., `Custom.Severity`). They vary according to the project process.

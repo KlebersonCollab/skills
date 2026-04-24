@@ -1,17 +1,17 @@
 # Django Forms & Validation
 
-Formulários são a primeira linha de defesa contra dados inválidos ou maliciosos.
+Forms are the first line of defense against invalid or malicious data.
 
 ## 1. Clean Methods
 
-Sempre use métodos `clean_<field>` para validações específicas e o método `clean()` para validações cruzadas.
+Always use `clean_<field>` methods for specific validations and the `clean()` method for cross-validations.
 
 ```python
 class RegistrationForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError("Este e-mail já está em uso.")
+            raise forms.ValidationError("This email is already in use.")
         return email
 
     def clean(self):
@@ -19,19 +19,19 @@ class RegistrationForm(forms.ModelForm):
         password = cleaned_data.get("password")
         confirm = cleaned_data.get("confirm_password")
         if password != confirm:
-            raise forms.ValidationError("Senhas não conferem.")
+            raise forms.ValidationError("Passwords do not match.")
 ```
 
-## 2. Widgets e CSS
-Não coloque lógica de estilo no HTML. Use widgets para gerenciar classes CSS.
+## 2. Widgets and CSS
+Do not put styling logic in HTML. Use widgets to manage CSS classes.
 
 ```python
 widgets = {
-    'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome'}),
+    'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
 }
 ```
 
 ## 3. Best Practices
-- **ModelForms**: Use sempre que o formulário mapear diretamente para um modelo.
-- **CSRF**: Nunca esqueça a tag `{% csrf_token %}` no template.
-- **Error Messages**: Personalize mensagens de erro para melhorar a UX.
+- **ModelForms**: Use whenever the form maps directly to a model.
+- **CSRF**: Never forget the `{% csrf_token %}` tag in the template.
+- **Error Messages**: Customize error messages to improve UX.

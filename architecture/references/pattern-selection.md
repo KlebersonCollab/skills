@@ -1,42 +1,42 @@
-# Pattern Selection — Guia de Decisão
+# Pattern Selection — Decision Guide
 
-Como escolher o estilo arquitetural correto para o seu contexto.
+How to choose the correct architectural style for your context.
 
 ---
 
-## 1. Monolito Modular vs Microserviços
+## 1. Modular Monolith vs Microservices
 
-| Característica | Monolito Modular | Microserviços |
+| Characteristic | Modular Monolith | Microservices |
 |----------------|------------------|---------------|
-| **Custo de Infra** | Baixo | Alto |
-| **Complexidade** | Média | Muito Alta |
-| **Deployment** | Atômico (Tudo ou nada) | Independente por serviço |
-| **Recomendação** | Comece aqui. Ideal para 90% dos casos. | Use apenas se precisar de escala independente extrema. |
+| **Infra Cost** | Low | High |
+| **Complexity** | Medium | Very High |
+| **Deployment** | Atomic (All or nothing) | Independent per service |
+| **Recommendation** | Start here. Ideal for 90% of cases. | Use only if you need extreme independent scaling. |
 
-## 2. Arquitetura Hexagonal (Ports & Adapters)
-Foco em desacoplar a lógica de negócio (Core) do mundo externo (Infra, DB, UI).
-- **Vantagem**: Facilidade extrema para trocar DB ou rodar testes unitários rápidos.
-- **Quando usar**: Em sistemas com lógica de negócio complexa que precisa ser protegida.
+## 2. Hexagonal Architecture (Ports & Adapters)
+Focus on decoupling business logic (Core) from the external world (Infra, DB, UI).
+- **Advantage**: Extreme ease for swapping DB or running fast unit tests.
+- **When to use**: In systems with complex business logic that needs protection.
 
 ## 3. Clean Architecture
-Evolução da Hexagonal, organizando o código em camadas concêntricas.
-- **Vantagem**: Independência de frameworks e UI.
-- **Trade-off**: Pode gerar excesso de arquivos e "boilerplate" para sistemas simples.
+Evolution of Hexagonal, organizing code into concentric layers.
+- **Advantage**: Independence from frameworks and UI.
+- **Trade-off**: Can generate excessive files and "boilerplate" for simple systems.
 
 ## 4. Event-Driven Architecture (EDA)
-Comunicação assíncrona baseada em eventos (Pub/Sub).
-- **Vantagem**: Desacoplamento temporal e resiliência.
-- **Trade-off**: Dificuldade em rastrear fluxos de dados e depuração.
+Asynchronous communication based on events (Pub/Sub).
+- **Advantage**: Temporal decoupling and resilience.
+- **Trade-off**: Difficulty in tracking data flows and debugging.
 
 ---
 
-## Árvore de Decisão Rápida
+## Quick Decision Tree
 
-1. **É um sistema novo (Greenfield)?**
-   - Sim → Comece com Monolito Modular.
-2. **A equipe é pequena (< 10 pessoas)?**
-   - Sim → Fuja de Microserviços.
-3. **A lógica é complexa?**
-   - Sim → Use Arquitetura Hexagonal para o core.
-4. **Precisa de alta performance em escrita?**
-   - Sim → Considere CQRS ou Event Sourcing.
+1. **Is it a new system (Greenfield)?**
+   - Yes → Start with a Modular Monolith.
+2. **Is the team small (< 10 people)?**
+   - Yes → Avoid Microservices.
+3. **Is the logic complex?**
+   - Yes → Use Hexagonal Architecture for the core.
+4. **Needs high write performance?**
+   - Yes → Consider CQRS or Event Sourcing.

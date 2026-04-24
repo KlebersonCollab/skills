@@ -1,47 +1,47 @@
 # Artifacts & Test Plans: Azure DevOps
 
-Este guia cobre a gestão de pacotes (Azure Artifacts) e a orquestração de testes (Azure Test Plans).
+This guide covers package management (Azure Artifacts) and test orchestration (Azure Test Plans).
 
-## 1. Azure Artifacts (Pacotes)
+## 1. Azure Artifacts (Packages)
 
-Artifacts permitem criar feeds privados para compartilhar pacotes entre times. Suporta NuGet, npm, Maven, Python e Universal Packages.
+Artifacts allow creating private feeds to share packages among teams. Supports NuGet, npm, Maven, Python, and Universal Packages.
 
-### Listar Feeds
+### List Feeds
 `GET https://feeds.dev.azure.com/{org}/{project}/_apis/packaging/feeds?api-version=7.1`
 
-### Listar Versões de um Pacote
+### List Package Versions
 `GET https://feeds.dev.azure.com/{org}/{project}/_apis/packaging/Feeds/{feedId}/Packages/{packageId}/versions?api-version=7.1`
 
-## 2. Azure Test Plans (Testes)
+## 2. Azure Test Plans (Tests)
 
-Gerencia todo o ciclo de vida de testes manuais e automatizados.
+Manages the entire life cycle of manual and automated tests.
 
-### Planos e Suítes
-- **Test Plan**: Container de nível superior para testes.
-- **Test Suite**: Agrupamento lógico de casos de teste dentro de um plano.
-- **Test Case**: Passos individuais de teste.
+### Plans and Suites
+- **Test Plan**: Top-level container for tests.
+- **Test Suite**: Logical grouping of test cases within a plan.
+- **Test Case**: Individual test steps.
 
-### Listar Planos de Teste
+### List Test Plans
 `GET https://dev.azure.com/{org}/{project}/_apis/test/plans?api-version=7.1`
 
-## 3. Execução de Testes
+## 3. Test Execution
 
-Registrar resultados de uma execução de teste:
+Record results of a test execution:
 
 `POST https://dev.azure.com/{org}/{project}/_apis/test/runs?api-version=7.1`
 
 Payload:
 ```json
 {
-  "name": "Execução de Teste Automatizado",
+  "name": "Automated Test Execution",
   "plan": { "id": "42" },
   "isAutomated": true
 }
 ```
 
-## 4. Integração com Pipelines
+## 4. Pipeline Integration
 
-Azure Test Plans pode ser integrado aos pipelines para publicar resultados de testes unitários ou de integração:
+Azure Test Plans can be integrated into pipelines to publish results from unit or integration tests:
 
 ```yaml
 - task: PublishTestResults@2
@@ -50,9 +50,9 @@ Azure Test Plans pode ser integrado aos pipelines para publicar resultados de te
     testResultsFiles: '**/TEST-*.xml'
 ```
 
-## 5. Boas Práticas
+## 5. Best Practices
 
-- **Versionamento Imutável**: Nunca substitua uma versão de pacote já publicada. Sempre suba uma nova versão.
-- **Upstream Sources**: Utilize upstream sources no Azure Artifacts para centralizar o consumo de pacotes públicos (ex: npmjs.org) e pacotes privados em um único feed.
-- **Test Case Reusability**: Utilize Shared Steps em Test Cases para evitar duplicação de instruções.
-- **Traceability**: Sempre vincule resultados de teste a Work Items e Pull Requests para garantir rastreabilidade completa.
+- **Immutable Versioning**: Never replace an already published package version. Always upload a new version.
+- **Upstream Sources**: Use upstream sources in Azure Artifacts to centralize the consumption of public packages (e.g., npmjs.org) and private packages in a single feed.
+- **Test Case Reusability**: Use Shared Steps in Test Cases to avoid instruction duplication.
+- **Traceability**: Always link test results to Work Items and Pull Requests to ensure full traceability.

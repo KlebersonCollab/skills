@@ -1,79 +1,79 @@
 ---
 name: knowledge-architect
 version: 1.0.0
-description: "Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). Transforma documentação estática em um mapa de conexões para navegação inteligente de contexto."
+description: "Local knowledge architecture via relational graphs (Local GraphRAG). Transforms static documentation into a connection map for intelligent context navigation."
 category: knowledge-management
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 # Knowledge Architect
 
-> "O conhecimento não está nos arquivos, mas nas conexões entre eles." — Protocolo para transformar documentação linear em um grafo relacional local.
+> "Knowledge is not in the files, but in the connections between them." — Protocol for transforming linear documentation into a local relational graph.
 
 ---
 
 ## Goal
 
-O objetivo desta skill é capacitar o agente a construir, manter e navegar em um **Grafo de Conhecimento Local (LKG)**. Ela permite que o agente entenda as relações complexas entre requisitos, decisões arquiteturais (ADRs), componentes de código e estados de sessão, superando as limitações da busca puramente linear ou vetorial.
+The goal of this skill is to empower the agent to build, maintain, and navigate a **Local Knowledge Graph (LKG)**. It allows the agent to understand complex relationships between requirements, architectural decisions (ADRs), code components, and session states, overcoming the limitations of purely linear or vector search.
 
 ---
 
-## Workflow (4 Fases)
+## Workflow (4 Phases)
 
-### Fase 1: EXTRACT — Destilação de Entidades
-1.  **Identificação de Nós**: Ler os arquivos do projeto e identificar "entidades" (ex: Features, Componentes, Classes, ADRs, Requisitos).
-2.  **Mapeamento de Relações**: Identificar como essas entidades se conectam (ex: `Feature A` **implementada por** `Classe B`, `Decisão C` **impacta** `Módulo D`).
-3.  **Metadados Semânticos**: Extrair tags, versões e dependências críticas de cada nó.
+### Phase 1: EXTRACT — Entity Distillation
+1.  **Node Identification**: Read project files and identify "entities" (e.g., Features, Components, Classes, ADRs, Requirements).
+2.  **Relation Mapping**: Identify how these entities connect (e.g., `Feature A` **implemented by** `Class B`, `Decision C` **impacts** `Module D`).
+3.  **Semantic Metadata**: Extract tags, versions, and critical dependencies for each node.
 
-### Fase 2: LINK — Construção do Grafo
-1.  **Documentação em Mermaid**: Criar ou atualizar o `KNOWLEDGE-MAP.mermaid` (Mapa da Mente do projeto).
-2.  **Cross-Referencing**: Inserir links bidirecionais (`[[link]]`) em arquivos Markdown para facilitar o caminhamento manual e automático.
-3.  **Indexação de Contexto**: Manter um índice de "vizinhos próximos" para entidades críticas.
+### Phase 2: LINK — Graph Construction
+1.  **Mermaid Documentation**: Create or update the `KNOWLEDGE-MAP.mermaid` (the project's Mind Map).
+2.  **Cross-Referencing**: Insert bidirectional links (`[[link]]`) in Markdown files to facilitate manual and automatic traversal.
+3.  **Context Indexing**: Maintain an index of "close neighbors" for critical entities.
 
-### Fase 3: TRAVERSE — Navegação Inteligente
-1.  **Caminhamento de Impacto**: Antes de uma alteração, seguir as conexões no grafo para identificar efeitos colaterais em módulos distantes.
-2.  **Descoberta de Contexto**: Usar o grafo para decidir quais arquivos *adicionais* devem ser lidos (além do arquivo alvo) para obter a visão completa.
-3.  **Poda de Irrelevância**: Ignorar ramos do grafo que não possuem conexão semântica com a tarefa atual, economizando tokens.
+### Phase 3: TRAVERSE — Intelligent Navigation
+1.  **Impact Traversal**: Before a change, follow graph connections to identify side effects in distant modules.
+2.  **Context Discovery**: Use the graph to decide which *additional* files should be read (beyond the target file) to obtain the full view.
+3.  **Irrelevance Pruning**: Ignore graph branches that have no semantic connection to the current task, saving tokens.
 
-### Fase 4: PRUNE — Evolução e Limpeza
-1.  **Refatoração de Conhecimento**: Remover conexões obsoletas ou entidades deletadas do código.
-2.  **Consolidação de Clusters**: Agrupar nós muito conectados em "Módulos de Conhecimento" para simplificar a visão macro.
-3.  **Sync com Harness**: Exportar o mapa de relações para que o `harness-expert` possa realizar a reidratação relacional.
+### Phase 4: PRUNE — Evolution and Cleanup
+1.  **Knowledge Refactoring**: Remove obsolete connections or deleted entities from the code.
+2.  **Cluster Consolidation**: Group highly connected nodes into "Knowledge Modules" to simplify the macro view.
+3.  **Sync with Harness**: Export the relation map so that `harness-expert` can perform relational rehydration.
 
 ---
 
 ## Output Structure
 
-A execução desta skill resulta nos seguintes artefatos mandatórios (geralmente em `.specs/knowledge/` ou na raiz da skill):
+Execution of this skill results in the following mandatory artifacts (usually in `.specs/knowledge/` or the skill root):
 
-| Artefato | Formato | Descrição |
+| Artifact | Format | Description |
 |----------|---------|-----------|
-| **Knowledge Map** | `KNOWLEDGE-MAP.mermaid` | Diagrama visual de todas as entidades e relações do projeto. |
-| **Relations Registry** | `RELATIONS.md` | Lista textual de conexões e suas justificativas técnicas. |
-| **Context Clusters** | `CLUSTERS.json` | (Opcional) Agrupamento de arquivos que devem sempre ser lidos juntos. |
+| **Knowledge Map** | `KNOWLEDGE-MAP.mermaid` | Visual diagram of all project entities and relationships. |
+| **Relations Registry** | `RELATIONS.md` | Textual list of connections and their technical justifications. |
+| **Context Clusters** | `CLUSTERS.json` | (Optional) Grouping of files that should always be read together. |
 
 ---
 
 ## Quality Rules
 
-- **Gold Standard Benchmark**: Utilize os exemplos em `examples/gold-standard/` como referência para mapeamentos complexos.
-- **Relation over Content**: Foque em *como* as coisas se conectam, não apenas no que elas fazem.
-- **Visual-First**: Todo grafo complexo deve ser visualizável via Mermaid.
-- **Bi-directional**: Sempre que possível, as relações devem ser mapeadas nos dois sentidos (quem usa e quem é usado).
-- **KISS Graphing**: Evite criar nós para detalhes triviais; foque em componentes arquiteturais e requisitos.
+- **Gold Standard Benchmark**: Use the examples in `examples/gold-standard/` as a reference for complex mappings.
+- **Relation over Content**: Focus on *how* things connect, not just what they do.
+- **Visual-First**: Every complex graph must be viewable via Mermaid.
+- **Bi-directional**: Whenever possible, relationships should be mapped both ways (who uses and who is used).
+- **KISS Graphing**: Avoid creating nodes for trivial details; focus on architectural components and requirements.
 
 ## Prohibited
 
-- NUNCA crie grafos que não possam ser renderizados (erros de sintaxe Mermaid).
-- NUNCA mantenha relações órfãs (nós sem conexões relevantes).
-- NUNCA use ferramentas externas de banco de dados de grafos; tudo deve ser persistido em arquivos de texto no repositório.
-- NUNCA ignore a atualização do mapa após grandes refatorações de código.
+- NEVER create graphs that cannot be rendered (Mermaid syntax errors).
+- NEVER maintain orphan relationships (nodes without relevant connections).
+- NEVER use external graph database tools; everything must be persisted in text files in the repository.
+- NEVER ignore map updates after major code refactorings.

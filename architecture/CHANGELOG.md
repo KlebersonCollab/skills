@@ -1,24 +1,24 @@
 # Changelog — Architecture
 
 ## [2.0.1] - 2026-04-14
-### Adicionado
-- Diagramas **Mermaid** tornam-se mandatórios para o `System Map`.
-- Foco em visualização de fluxos e componentes distribuídos.
+### Added
+- **Mermaid Diagrams** are now mandatory for the `System Map`.
+- Focus on visualizing distributed components and flows.
 
 ## [2.0.0] - 2026-04-14
 
-### Adicionado
-- **CQRS Blueprint**: Orientação para separação de modelos de leitura e escrita para alta escala.
-- **Event-Driven Architecture**: Suporte a fluxos de mensagens assíncronas, idempotência e consistência eventual.
-- **Evolutionary Architecture**: Introdução de **Fitness Functions** para automação da governança arquitetural.
-- Novos guias de referência para CQRS/Eventos e Arquitetura Evolutiva.
-- Exemplos de diagramas Mermaid para fluxos CQRS e Eventos.
+### Added
+- **CQRS Blueprint**: Guidance for separating read and write models for high scale.
+- **Event-Driven Architecture**: Support for asynchronous message flows, idempotency, and eventual consistency.
+- **Evolutionary Architecture**: Introduction of **Fitness Functions** for automating architectural governance.
+- New reference guides for CQRS/Events and Evolutionary Architecture.
+- Mermaid diagram examples for CQRS and Event flows.
 
 ## [1.0.0] - 2026-04-14
 
-### Adicionado
-- Versão inicial da skill de Arquiteto de Sistemas.
-- Workflow em 4 fases: Context, Analysis, Design e Document.
-- Foco em Simplicidade como prioridade máxima ("Less is more").
-- Integração de ADRs (Architecture Decision Records) no fluxo.
-- Referências para princípios (SOLID, DRY, YAGNI) e seleção de padrões.
+### Added
+- Initial version of the Systems Architect skill.
+- 4-phase workflow: Context, Analysis, Design, and Document.
+- Focus on Simplicity as top priority ("Less is more").
+- Integration of ADRs (Architecture Decision Records) into the flow.
+- References for principles (SOLID, DRY, YAGNI) and pattern selection.

@@ -1,7 +1,7 @@
 # Django Security Hardening Reference
 
 ## 1. Authentication & Passwords
-Fortaleça a entrada do sistema.
+Strengthen system entry.
 
 ### Password Validators
 ```python
@@ -14,7 +14,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ```
 
 ### Password Hashing (Argon2)
-Use Argon2 para proteção superior contra força bruta.
+Use Argon2 for superior protection against brute force.
 ```python
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
@@ -23,7 +23,7 @@ PASSWORD_HASHERS = [
 ```
 
 ## 2. Authorization (RBAC)
-Mantenha a lógica de permissões organizada.
+Keep permissions logic organized.
 
 ### Model-Level Logic
 ```python
@@ -42,7 +42,7 @@ class AdminRequiredMixin:
 ```
 
 ## 3. File Security
-Valide rigorosamente o que o usuário envia.
+Rigorously validate what the user uploads.
 
 ```python
 def validate_file_size(value):
@@ -54,7 +54,7 @@ class Document(models.Model):
 ```
 
 ## 4. API Throttling (DRF)
-Proteja seus recursos de abuso.
+Protect your resources from abuse.
 
 ```python
 REST_FRAMEWORK = {
@@ -71,19 +71,19 @@ REST_FRAMEWORK = {
 
 ## 5. Security Headers & CSP
 ```python
-# Content Security Policy (Middleware customizado ou django-csp)
+# Content Security Policy (Custom middleware or django-csp)
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
 
-# Headers de Proteção
+# Protection Headers
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 ```
 
 ## 6. SQL Injection Prevention
-- **Regra de Ouro**: Use o ORM sempre.
-- **Raw SQL**: Se for usar `.raw()`, NUNCA use f-strings ou concatenação. Use parâmetros.
+- **Golden Rule**: Always use the ORM.
+- **Raw SQL**: If using `.raw()`, NEVER use f-strings or concatenation. Use parameters.
 ```python
 # DO THIS
 User.objects.raw('SELECT * FROM users WHERE email = %s', [email])

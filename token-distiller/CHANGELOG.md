@@ -2,13 +2,13 @@
 
 ## [1.1.0] - 2026-04-23
 ### Changed
-- **Hardening**: Adicionadas seções obrigatórias (Goal, Output, Rules, Prohibited).
-- **Compliance**: Adicionados checks de governança SDD ao hook mandatório.
-- **Structure**: Criadas pastas `references/`, `resources/` e `examples/`.
+- **Hardening**: Added mandatory sections (Goal, Output, Rules, Prohibited).
+- **Compliance**: Added SDD governance checks to the mandatory hook.
+- **Structure**: Created `references/`, `resources/`, and `examples/` folders.
 
 ## [1.0.0] - 2026-04-22
 ### Added
-- Implementação inicial do épico Token Optimization.
-- Modos Caveman e Premium.
-- Integração com CLI `hub`.
-- Motor de compressão Python.
+- Initial implementation of the Token Optimization epic.
+- Caveman and Premium modes.
+- Integration with `hub` CLI.
+- Python compression engine.

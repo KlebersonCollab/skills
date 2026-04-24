@@ -1,24 +1,24 @@
 # Project Persistent Memory
 
-## Convenções de Skills
-- **Marker**: Uma pasta é considerada uma skill se contiver um arquivo `SKILL.md` na sua raiz.
-- **Estrutura Padrão**: Uma skill deve conter `CHANGELOG.md`, `README.md`, `SKILL.md` e opcionalmente as pastas `references/` e `resources/`.
-- **Mandatory Hook**: Skills de execução DEVEM conter a seção `🔒 Prerequisites (Mandatory)` vinculando-as ao SDD.
+## Skill Conventions
+- **Marker**: A folder is considered a skill if it contains a `SKILL.md` file in its root.
+- **Standard Structure**: A skill must contain `CHANGELOG.md`, `README.md`, `SKILL.md` and optionally `references/` and `resources/` folders.
+- **Mandatory Hook**: Execution skills MUST contain the `🔒 Prerequisites (Mandatory)` section linking them to SDD.
 
-## Mapeamento de Agentes
-- **Claude**: Pasta `.claude/`, arquivo mestre `CLAUDE.md`.
-- **Gemini**: Pasta `.gemini/`, arquivo mestre `GEMINI.md`.
-- **Agent**: Pasta `.agent/`, arquivo mestre `AGENT.md`.
+## Agent Mapping
+- **Claude**: `.claude/` folder, `CLAUDE.md` master file.
+- **Gemini**: `.gemini/` folder, `GEMINI.md` master file.
+- **Agent**: `.agent/` folder, `AGENT.md` master file.
 
-## Pipeline de Distribuição
-- Os artefatos são gerados dinamicamente coletando as skills da raiz.
-- A estrutura final nos ZIPs preserva o nome da pasta do agente (ex: `.claude/`) para facilitar a instalação direta.
+## Distribution Pipeline
+- Artifacts are generated dynamically by collecting skills from the root.
+- The final structure in the ZIPs preserves the agent's folder name (e.g., `.claude/`) to facilitate direct installation.
 
-## Governança Operacional
-- **Uso Mandatório de Skills**: Conforme `GLOBAL_MANDATES.md`, qualquer execução técnica **DEVE** ser mediada por uma skill específica do Hub.
-- **Deterministic Lifecycle**: Todo agente operando no Hub deve obrigatoriamente executar o **Session Bootstrap** (início) e o **Session Exit Gate** (fim).
+## Operational Governance
+- **Mandatory Use of Skills**: As per `GLOBAL_MANDATES.md`, any technical execution MUST be mediated by a specific Hub skill.
+- **Deterministic Lifecycle**: Every agent operating in the Hub must mandatorily execute the **Session Bootstrap** (start) and the **Session Exit Gate** (end).
 
-## Convenções de Git Workflow
-- **Conventional Commits**: Obrigatório para todos os commits no repositório. Mensagens devem ser escritas em **Inglês**.
-- **SDD Alignment**: Commits devem ser vinculados a IDs de tarefas do `tasks.md` quando aplicável.
-- **PR Quality**: Todo Pull Request deve seguir o template oficial e incluir o checklist de qualidade SDD.
+## Git Workflow Conventions
+- **Conventional Commits**: Mandatory for all commits in the repository. Messages must be written in **English**.
+- **SDD Alignment**: Commits must be linked to task IDs in `tasks.md` when applicable.
+- **PR Quality**: Every Pull Request must follow the official template and include the SDD quality checklist.

@@ -1,30 +1,30 @@
 # Changelog - Golang Expert
 
-Todas as mudanças notáveis desta skill serão documentadas neste arquivo.
+All notable changes to this skill will be documented in this file.
 
-O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e o versionamento segue [Semantic Versioning](https://semver.org/lang/pt-BR/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
 ## [1.2.0] - 2026-04-22
 
-### Adicionado
-- Integrados Slash Commands para automação de workflows.
-- Estabelecido layout mandatório de Clean Architecture e testes rigorosos.
+### Added
+- Integrated Slash Commands for workflow automation.
+- Established mandatory Clean Architecture layout and rigorous testing.
 
 ## [1.1.0] - 2026-04-20
 
-### Adicionado
-- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+### Added
+- `🔒 Prerequisites (Mandatory)` section linking the skill mandatorily to the SDD framework.
 
 ## [1.0.0] - 2026-04-19
 
-### Adicionado
-- **SKILL.md**: Definição principal da skill de nível Expert em Go.
-- **README.md**: Documentação de apresentação e uso.
-- **Estrutura de Referências**: Consolidação de 35 fontes de conhecimento externas em 5 pilares locais.
-- **foundations.md**: Pilar 1 focado em fundamentos e estilo idiomático.
-- **concurrency.md**: Pilar 2 focado em concorrência e segurança.
-- **development.md**: Pilar 3 focado em ferramentas e processos.
-- **architecture.md**: Pilar 4 focado em sistemas e infraestrutura.
-- **ecosystem.md**: Pilar 5 focado em bibliotecas modernas e Samber.
+### Added
+- **SKILL.md**: Main definition of the Expert level Go skill.
+- **README.md**: Presentation and usage documentation.
+- **Reference Structure**: Consolidation of 35 external knowledge sources into 5 local pillars.
+- **foundations.md**: Pillar 1 focused on foundations and idiomatic style.
+- **concurrency.md**: Pillar 2 focused on concurrency and safety.
+- **development.md**: Pillar 3 focused on tools and processes.
+- **architecture.md**: Pillar 4 focused on systems and infrastructure.
+- **ecosystem.md**: Pillar 5 focused on modern libraries and Samber.

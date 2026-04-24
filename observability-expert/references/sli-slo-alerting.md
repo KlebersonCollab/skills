@@ -1,59 +1,59 @@
 # SLIs, SLOs & Alerting: Reliability by Design
 
-A confiabilidade não é um acidente; é uma meta de engenharia baseada em dados matemáticos e acordos de negócio.
+Reliability is not an accident; it is an engineering goal based on mathematical data and business agreements.
 
 ---
 
-## 1. Definições Fundamentais
+## 1. Fundamental Definitions
 
 ### SLI (Service Level Indicator)
-É o que você mede. Uma métrica técnica específica que indica a saúde de um componente.
-- **Exemplo**: "Percentual de requisições HTTP 200 nas últimas 24h".
+It is what you measure. A specific technical metric that indicates the health of a component.
+- **Example**: "Percentage of HTTP 200 requests in the last 24h".
 
 ### SLO (Service Level Objective)
-É a meta que você deseja atingir para o SLI.
-- **Exemplo**: "99.9% das requisições devem retornar status 200".
+It is the goal you want to reach for the SLI.
+- **Example**: "99.9% of requests must return 200 status".
 
 ### SLA (Service Level Agreement)
-O contrato legal com o cliente. Se o SLA for quebrado, há consequências financeiras. Geralmente, o SLO é mais rigoroso que o SLA para dar uma margem de segurança.
+The legal contract with the customer. If the SLA is broken, there are financial consequences. Generally, the SLO is more rigorous than the SLA to provide a safety margin.
 
-## 2. Error Budget (Orçamento de Erro)
+## 2. Error Budget
 
-O Error Budget é a diferença entre 100% e o seu SLO.
-- **SLO de 99.9%** = 0.1% de orçamento de erro.
-- **Significado**: Você tem permissão para falhar ou ficar fora do ar por esse percentual sem quebrar sua meta.
-- **Uso**: Utilize o orçamento de erro para decidir quando lançar novas features vs. quando focar em estabilidade. Se o orçamento está acabando, pare os lançamentos e foque em correções.
+The Error Budget is the difference between 100% and your SLO.
+- **99.9% SLO** = 0.1% error budget.
+- **Meaning**: You are allowed to fail or be down by this percentage without breaking your goal.
+- **Usage**: Use the error budget to decide when to launch new features vs. when to focus on stability. If the budget is running out, stop releases and focus on fixes.
 
-## 3. Políticas de Alerta (Alerting)
+## 3. Alerting Policies
 
-Evite a fadiga de alertas seguindo estas regras:
+Avoid alert fatigue by following these rules:
 
-1.  **Burn Rate Alerting**: Alerte quando o orçamento de erro está sendo consumido muito rápido (ex: consumiu 5% em 1h). Isso é mais eficaz que alertas de picos momentâneos.
-2.  **Actionable Alerts**: Todo alerta deve responder: "O que o humano precisa fazer agora?". Se não há ação imediata, deve ser um ticket no backlog, não um alerta.
+1.  **Burn Rate Alerting**: Alert when the error budget is being consumed too fast (e.g., consumed 5% in 1h). This is more effective than momentary spike alerts.
+2.  **Actionable Alerts**: Every alert must answer: "What does the human need to do now?". If there is no immediate action, it should be a backlog ticket, not an alert.
 3.  **Severity Levels**:
-    - **P1/Critical**: Acorda alguém (ex: Pagamento fora do ar).
-    - **P2/Warning**: Notifica no Slack durante o horário comercial.
-    - **P3/Info**: Apenas dashboards.
+    - **P1/Critical**: Wakes someone up (e.g., Payments down).
+    - **P2/Warning**: Notifies on Slack during business hours.
+    - **P3/Info**: Dashboards only.
 
 ## 4. Playbooks (Runbooks)
 
-Cada alerta crítico deve ter um link para um documento de instrução contendo:
-- Descrição do problema.
-- Passos de diagnóstico (queries de log, dashboards).
-- Comandos de remediação (ex: como fazer um rollback).
+Each critical alert must have a link to an instruction document containing:
+- Problem description.
+- Diagnostic steps (log queries, dashboards).
+- Remediation commands (e.g., how to do a rollback).
 
 ---
 
-## Ciclo de Vida da Resiliência (Mermaid)
+## Resilience Lifecycle (Mermaid)
 
 ```mermaid
 graph TD
-    A[Monitorar SLI] --> B{SLO Quebrado?}
-    B -- Não --> A
-    B -- Sim --> C[Disparar Alerta]
-    C --> D[Consultar Playbook]
-    D --> E[Remediar Incidente]
+    A[Monitor SLI] --> B{SLO Broken?}
+    B -- No --> A
+    B -- Yes --> C[Trigger Alert]
+    C --> D[Consult Playbook]
+    D --> E[Remedy Incident]
     E --> F[Post-Mortem / Learning]
-    F --> G[Ajustar SLO / Infra]
+    F --> G[Adjust SLO / Infra]
     G --> A
 ```

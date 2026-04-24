@@ -1,29 +1,29 @@
 # Hub Global Changelog
-*Última atualização: 2026-04-23 11:01:56*
+*Last update: 2026-04-23 11:01:56*
 
-Este arquivo consolida as atualizações mais recentes de todas as skills do Hub.
+This file consolidates the latest updates from all Hub skills.
 
 ## 🧩 api-architect
 ## [1.3.0] - 2026-04-14
 
-### Alterado
-- **Workflow & References**: Melhoria no workflow para referenciar explicitamente o uso do `references/api-style.md` durante a fase de design.
+### Changed
+- **Workflow & References**: Improved workflow to explicitly reference the use of `references/api-style.md` during the design phase.
 
 ## [1.2.0] - 2026-04-14
 
-### Alterado
-- **Renomeação**: Skill renomeada de `api-designer` para `api-architect` para refletir um escopo maior de governança e resiliência.
-- **Style Guide**: Adição de `references/api-style.md` com padrões de envelopes de resposta, erros e paginação.
-- **Resilience**: Inclusão de padrões de Timeouts, Retries e Circuit Breakers.
+### Changed
+- **Renaming**: Skill renamed from `api-designer` to `api-architect` to reflect a larger scope of governance and resilience.
+- **Style Guide**: Addition of `references/api-style.md` with patterns for response envelopes, errors, and pagination.
+- **Resilience**: Inclusion of patterns for Timeouts, Retries, and Circuit Breakers.
 
 ## [1.1.0] - 2026-04-14
 
-### Adicionado
-- **Suporte a tRPC**: Referência completa em `references/trpc-patterns.md` para projetos TypeScript Fullstack.
-- **Guia de Segurança (OWASP API Top 10)**: Novo arquivo `references/api-security-guide.md` focando em BOLA, Broken Auth, Mass Assignment, etc.
-- **Rate Limiting**: Novo guia em `references/api-rate-limiting.md` cobrindo algoritmos (Token Bucket) e padronização de headers (status 429).
-- **Árvore de Decisão**: Integrada ao `SKILL.md` para facilitar a escolha entre REST, GraphQL, tRPC e gRPC.
-- **Padrões de Paginação Avançada**: Suporte a Cursor-based pagination (Relay style) e envelopes de resposta.
+### Added
+- **tRPC Support**: Full reference in `references/trpc-patterns.md` for Fullstack TypeScript projects.
+- **Security Guide (OWASP API Top 10)**: New `references/api-security-guide.md` file focusing on BOLA, Broken Auth, Mass Assignment, etc.
+- **Rate Limiting**: New guide in `references/api-rate-limiting.md` covering algorithms (Token Bucket) and header standardization (429 status).
+- **Decision Tree**: Integrated into `SKILL.md` to facilitate choosing between REST, GraphQL, tRPC, and gRPC.
+- **Advanced Pagination Patterns**: Support for Cursor-based pagination (Relay style) and response envelopes.
 
 ---
 
@@ -31,27 +31,27 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 
 ## 🧩 architecture
 ## [2.0.1] - 2026-04-14
-### Adicionado
-- Diagramas **Mermaid** tornam-se mandatórios para o `System Map`.
-- Foco em visualização de fluxos e componentes distribuídos.
+### Added
+- **Mermaid** diagrams become mandatory for the `System Map`.
+- Focus on visualizing flows and distributed components.
 
 ## [2.0.0] - 2026-04-14
 
-### Adicionado
-- **CQRS Blueprint**: Orientação para separação de modelos de leitura e escrita para alta escala.
-- **Event-Driven Architecture**: Suporte a fluxos de mensagens assíncronas, idempotência e consistência eventual.
-- **Evolutionary Architecture**: Introdução de **Fitness Functions** para automação da governança arquitetural.
-- Novos guias de referência para CQRS/Eventos e Arquitetura Evolutiva.
-- Exemplos de diagramas Mermaid para fluxos CQRS e Eventos.
+### Added
+- **CQRS Blueprint**: Guidance for separating read and write models for high scale.
+- **Event-Driven Architecture**: Support for asynchronous message flows, idempotency, and eventual consistency.
+- **Evolutionary Architecture**: Introduction of **Fitness Functions** for architectural governance automation.
+- New reference guides for CQRS/Events and Evolutionary Architecture.
+- Mermaid diagram examples for CQRS and Event flows.
 
 ## [1.0.0] - 2026-04-14
 
-### Adicionado
-- Versão inicial da skill de Arquiteto de Sistemas.
-- Workflow em 4 fases: Context, Analysis, Design e Document.
-- Foco em Simplicidade como prioridade máxima ("Less is more").
-- Integração de ADRs (Architecture Decision Records) no fluxo.
-- Referências para princípios (SOLID, DRY, YAGNI) e seleção de padrões.
+### Added
+- Initial version of the System Architect skill.
+- 4-phase workflow: Context, Analysis, Design, and Document.
+- Focus on Simplicity as top priority ("Less is more").
+- Integration of ADRs (Architecture Decision Records) into the flow.
+- References for principles (SOLID, DRY, YAGNI) and pattern selection.
 
 ---
 
@@ -83,28 +83,28 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ## [1.0.0] - 2026-04-22
 
 ### Added
-- Inicialização da skill `benchmark-expert`.
-- Suporte a 4 modos de performance: Browser, API, Build e Comparison.
-- Integração mandatória com o framework SDD.
-- Guias de referência para targets de performance e análise de regressão.
-- Exemplos de relatórios de comparação.
+- Initialization of the `benchmark-expert` skill.
+- Support for 4 performance modes: Browser, API, Build, and Comparison.
+- Mandatory integration with the SDD framework.
+- Reference guides for performance targets and regression analysis.
+- Comparison report examples.
 
 ---
 
 ## 🧩 brainstorming
 ## [1.1.0] - 2026-04-14
 
-### Adicionado
-- **Output Structure**: Seção H2 obrigatória detalhando os artefatos de saída (Design Spec, Decision Log, Trade-off Matrix).
+### Added
+- **Output Structure**: Mandatory H2 section detailing output artifacts (Design Spec, Decision Log, Trade-off Matrix).
 
 ## [1.0.0] - 2026-04-14
 
-### Adicionado
-- Versão inicial da skill de facilitador de brainstorming.
-- Workflow em 4 fases: Discover, Diverge, Converge e Specify.
-- Conceito de "Understanding Lock" para validação de premissas.
-- Referências para técnicas criativas (SCAMPER, 5 Whys, First Principles).
-- Regras de qualidade para facilitadores (uma pergunta por vez, suposições explícitas).
+### Added
+- Initial version of the brainstorming facilitator skill.
+- 4-phase workflow: Discover, Diverge, Converge, and Specify.
+- "Understanding Lock" concept for assumption validation.
+- References for creative techniques (SCAMPER, 5 Whys, First Principles).
+- Quality rules for facilitators (one question at a time, explicit assumptions).
 
 ---
 
@@ -126,8 +126,8 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ## [1.0.0] - 2026-04-22
 
 ### Added
-- Inicialização da skill.
-- Inclusão dos mandatos SAST/DAST e Zero Trust.
+- Skill initialization.
+- Inclusion of SAST/DAST and Zero Trust mandates.
 
 ---
 
@@ -135,29 +135,29 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ## [1.5.0] - 2026-04-22
 
 ### Added
-- Seção de **Deployment Readiness & Verification** (Fase 12).
-- Mandato de uso do **Ruff** para linting e **Mypy** para Type Checking.
-- Checklists de pre-deployment e auditoria de segurança.
-- Template de **GitHub Actions** para verificação automatizada.
-- Consolidação de redundâncias no `SKILL.md`.
+- **Deployment Readiness & Verification** section (Phase 12).
+- Mandate to use **Ruff** for linting and **Mypy** for Type Checking.
+- Pre-deployment checklists and security audit.
+- **GitHub Actions** template for automated verification.
+- Consolidation of redundancies in `SKILL.md`.
 
 ## [1.4.0] - 2026-04-22
 
 ### Added
-- Seção de **Testing Excellence** (Fase 11).
-- Mandatos para uso de **Factories** (Factory Boy) em vez de fixtures estáticas.
-- Configurações de infraestrutura de teste ultrarrápida (SQLite in-memory, `--nomigrations`).
-- Padrões de **Mocking** para serviços externos e APIs.
-- Metas explícitas de cobertura de código por camada.
+- **Testing Excellence** section (Phase 11).
+- Mandates for using **Factories** (Factory Boy) instead of static fixtures.
+- Ultra-fast test infrastructure configurations (SQLite in-memory, `--nomigrations`).
+- **Mocking** patterns for external services and APIs.
+- Explicit code coverage goals per layer.
 
 ## [1.3.0] - 2026-04-22
 
 ### Added
-- Seção de **Security Hardening** (Fase 10).
-- Padrões de hashing com Argon2 e validadores de senha de 12+ caracteres.
-- Mandatos para validação de tipo e tamanho de arquivos.
-- Padrões de RBAC (Role-Based Access Control) e Throttling para APIs.
-- Regras proibitivas contra SQL Injection e uso inseguro de `mark_safe`.
+- **Security Hardening** section (Phase 10).
+- Hashing patterns with Argon2 and 12+ character password validators.
+- Mandates for file type and size validation.
+- RBAC (Role-Based Access Control) and Throttling patterns for APIs.
+- Prohibitive rules against SQL Injection and unsafe use of `mark_safe`.
 
 ---
 
@@ -165,16 +165,16 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ## [1.1.0] - 2026-04-20
 
 ### Added
-- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+- `🔒 Prerequisites (Mandatory)` section mandatorily linking the skill to the SDD framework.
 
 ## [1.0.0] - 2026-04-18
 
 ### Added
-- Inicialização da skill `fastapi-expert`.
-- Integração com o padrão `python-uv`.
-- Regras estritas para `Annotated` e `Pydantic V2`.
-- Workflow de 4 fases para design e implementação de APIs.
-- Exemplos de "Do's and Don'ts" baseados no padrão oficial do FastAPI.
+- Initialization of the `fastapi-expert` skill.
+- Integration with the `python-uv` pattern.
+- Strict rules for `Annotated` and `Pydantic V2`.
+- 4-phase workflow for API design and implementation.
+- "Do's and Don'ts" examples based on the official FastAPI standard.
 
 ---
 
@@ -182,21 +182,21 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ## [1.3.0] - 2026-04-22
 
 ### Added
-- **Modern Dart Patterns**: Suporte completo a Dart 3+ (Sealed classes, Pattern Matching, Records).
-- **Acessibilidade Mandatória**: Diretrizes para Semantics, alvos de toque e UX inclusiva.
-- **Performance Avançada**: Reconstruções seletivas com `MediaQuery.sizeOf` e decomposição de widgets.
-- **Gestão de Segredos**: Padronização de chaves via `--dart-define` e `.env`.
-- **Resiliência**: Protocolos de captura global de erros (`FlutterError.onError`).
+- **Modern Dart Patterns**: Full support for Dart 3+ (Sealed classes, Pattern Matching, Records).
+- **Mandatory Accessibility**: Guidelines for Semantics, touch targets, and inclusive UX.
+- **Advanced Performance**: Selective rebuilds with `MediaQuery.sizeOf` and widget decomposition.
+- **Secret Management**: Standardizing keys via `--dart-define` and `.env`.
+- **Resilience**: Global error capture protocols (`FlutterError.onError`).
 
 ### Changed
-- Atualizado `SKILL.md` para refletir padrões de excelência técnica ECC.
-- Enriquecido `references/testing-and-quality.md` com testes de acessibilidade e goldens.
-- Enriquecido `references/project-structure.md` com integração MVVM + Dart 3.
+- Updated `SKILL.md` to reflect ECC technical excellence standards.
+- Enriched `references/testing-and-quality.md` with accessibility and golden tests.
+- Enriched `references/project-structure.md` with MVVM + Dart 3 integration.
 
 ## [1.2.0] - 2026-04-20
 
 ### Added
-- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+- `🔒 Prerequisites (Mandatory)` section mandatorily linking the skill to the SDD framework.
 
 ## [1.1.0] - 2026-04-15
 
@@ -221,103 +221,101 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ## 🧩 frontend-expert
 ## [1.1.0] - 2026-04-20
 ### Added
-- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+- `🔒 Prerequisites (Mandatory)` section mandatorily linking the skill to the SDD framework.
 
 ## [1.0.0] - 2026-04-19
 ### Added
-- Versão inicial da skill `frontend-expert`.
-- Suporte a React, Next.js, Tailwind v4 e Shadcn/UI.
-- Workflow focado em Server Components e Acessibilidade.
+- Initial version of the `frontend-expert` skill.
+- Support for React, Next.js, Tailwind v4, and Shadcn/UI.
+- Workflow focused on Server Components and Accessibility.
 
 ---
 
 ## 🧩 git-workflow
 ## [1.0.0] - 2026-04-22
 ### Added
-- Versão inicial da skill importada da ECC e traduzida para PT-BR.
-- Integração com o framework SDD (Spec-Driven Development).
-- Guias de Conventional Commits e Branching Strategies.
-- Mandatos para utilização de Merge vs Rebase.
-- Templates de Pull Request e configuração de Git.
+- Initial version of the skill imported from ECC and translated to PT-BR.
+- Integration with the SDD (Spec-Driven Development) framework.
+- Conventional Commits and Branching Strategies guides.
+- Mandates for using Merge vs Rebase.
+- Pull Request templates and Git configuration.
 
 ---
 
 ## 🧩 golang-expert
 ## [1.2.0] - 2026-04-22
 
-### Adicionado
-- Integrados Slash Commands para automação de workflows.
-- Estabelecido layout mandatório de Clean Architecture e testes rigorosos.
+### Added
+- Integrated Slash Commands for workflow automation.
+- Established mandatory Clean Architecture layout and rigorous testing.
 
 ## [1.1.0] - 2026-04-20
 
-### Adicionado
-- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+### Added
+- `🔒 Prerequisites (Mandatory)` section mandatorily linking the skill to the SDD framework.
 
 ## [1.0.0] - 2026-04-19
 
-### Adicionado
-- **SKILL.md**: Definição principal da skill de nível Expert em Go.
-- **README.md**: Documentação de apresentação e uso.
-- **Estrutura de Referências**: Consolidação de 35 fontes de conhecimento externas em 5 pilares locais.
-- **foundations.md**: Pilar 1 focado em fundamentos e estilo idiomático.
-- **concurrency.md**: Pilar 2 focado em concorrência e segurança.
-- **development.md**: Pilar 3 focado em ferramentas e processos.
-- **architecture.md**: Pilar 4 focado em sistemas e infraestrutura.
-- **ecosystem.md**: Pilar 5 focado em bibliotecas modernas e Samber.
+### Added
+- **SKILL.md**: Main definition of the Expert level Go skill.
+- **README.md**: Presentation and usage documentation.
+- **Reference Structure**: Consolidation of 35 external knowledge sources into 5 local pillars.
+- **foundations.md**: Pillar 1 focused on foundations and idiomatic style.
+- **concurrency.md**: Pillar 2 focused on concurrency and safety.
+- **development.md**: Pillar 3 focused on tools and processes.
+- **architecture.md**: Pillar 4 focused on systems and infrastructure.
+- **ecosystem.md**: Pillar 5 focused on modern libraries and Samber.
 
 ---
 
 ## 🧩 golang-testing-expert
 ## [1.1.0] - 2026-04-22
 ### Added
-- Adicionados comandos de verificação detalhados (Race, Coverage, Integration).
-- Integrado ciclo TDD com comandos de barra.
+- Added detailed verification commands (Race, Coverage, Integration).
+- Integrated TDD cycle with slash commands.
 
 ## [1.0.0] - 2026-04-22
 ### Added
-- Criação da skill baseada no ECC.
-- Referências para TDD, Table-Driven Tests e Subtests.
-- Referências para Mocks, httptest e Golden Files.
-- Referências para Benchmarks, Fuzzing e Coverage.
+- Skill creation based on ECC.
+- References for TDD, Table-Driven Tests, and Subtests.
+- References for Mocks, httptest, and Golden Files.
+- References for Benchmarks, Fuzzing, and Coverage.
 
 ---
 
 ## 🧩 harness-expert
 ## [2.1.0] - 2026-04-22
 
-### Adicionado
-- **GAN-style Feedback Loop**: Implementação do ciclo adversarial entre Gerador e Avaliador para tarefas Large/Complex.
-- **Rubrica de Avaliação**: Nova matriz de pontuação (Design, Craft, Originality, Functionality) com meta de Score >= 7.0.
+### Added
+- **GAN-style Feedback Loop**: Implementation of the adversarial cycle between Generator and Evaluator for Large/Complex tasks.
+- **Evaluation Rubric**: New scoring matrix (Design, Craft, Originality, Functionality) with a Score threshold >= 7.0.
 
 ## [2.0.0] - 2026-04-20
 
-### Alterado
-- **Refatoração de Papel**: A skill agora foca exclusivamente no **motor técnico** (infraestrutura agêntica).
-- **Desacoplamento**: Removida a gestão estratégica de memória, delegando o protocolo de visão operacional para o `sdd-planner`.
-- **Workflow**: Atualizado para incluir as fases de `AUTOMATED REHYDRATE`, `OPERATE`, `AUTO-SYNC` e `VALIDATE`.
+### Changed
+- **Role Refactoring**: The skill now focuses exclusively on the **technical engine** (agentic infrastructure).
+- **Decoupling**: Removed strategic memory management, delegating the operational vision protocol to the `sdd-planner`.
+- **Workflow**: Updated to include `AUTOMATED REHYDRATE`, `OPERATE`, `AUTO-SYNC`, and `VALIDATE` phases.
 
 ## [1.1.0] - 2026-04-18
- — 2026-04-18
 
-### Alterado
-- **Renomeação Global**: Transição oficial de "Hardness" para **Harness Engineering** para alinhar com padrões da indústria.
-- **Enhanced Rehydration**: Adicionado passo de **Bootstrap** para validação do ambiente operacional e instalação automática de dependências.
+### Changed
+- **Global Renaming**: Official transition from "Hardness" to **Harness Engineering** to align with industry standards.
+- **Enhanced Rehydration**: Added **Bootstrap** step for operational environment validation and automatic dependency installation.
 
-### Adicionado
-- **Harness Principles**: Documentação de Feed Forward, Feedback e Sensores no README.
+### Added
+- **Harness Principles**: Documentation of Feed Forward, Feedback, and Sensors in the README.
 
 ---
 
 ## 🧩 knowledge-architect
 ## [1.0.0] - 2026-04-16
- — 2026-04-16
 
-### Adicionado
-- **SKILL.md**: Definição inicial do protocolo de Local Knowledge Graphing (LKG).
-- **README.md**: Visão geral e cenários de aplicação para Grafos de Conhecimento Locais.
-- **Workflow**: Implementado ciclo de 4 fases (Extract, Link, Traverse, Prune).
-- **Artefatos**: Definidos `KNOWLEDGE-MAP.mermaid` e `RELATIONS.md` como saídas mandatórias.
+### Added
+- **SKILL.md**: Initial definition of the Local Knowledge Graphing (LKG) protocol.
+- **README.md**: Overview and application scenarios for Local Knowledge Graphs.
+- **Workflow**: Implemented 4-phase cycle (Extract, Link, Traverse, Prune).
+- **Artifacts**: `KNOWLEDGE-MAP.mermaid` and `RELATIONS.md` defined as mandatory outputs.
 
 ---
 
@@ -337,135 +335,132 @@ Este arquivo consolida as atualizações mais recentes de todas as skills do Hub
 ## 🧩 onboarding-navigator
 ## [1.5.0] - 2026-04-23
 ### Changed
-- **Integrity Audit**: Auditoria estrita de conformidade realizada.
-- **Sync**: Sincronizado para refletir o novo total de 25 skills.
-- **Token Distiller**: Integração profunda com o modo Caveman para bootstrap de sessão.
+- **Integrity Audit**: Strict compliance audit performed.
+- **Sync**: Synchronized to reflect the new total of 25 skills.
+- **Token Distiller**: Deep integration with Caveman mode for session bootstrap.
 
 ## [1.4.0] - 2026-04-22
 ### Changed
-- Atualização do Hub Exit Gate e auditorias do SDD.
+- Hub Exit Gate update and SDD audits.
 
 ## [1.3.1] - 2026-04-22
 ### Changed
-- **Governance Hardening**: Inclusão de auditoria de commits e branches no Session Exit Gate.
-- **Mandatos Proibitivos**: Adição de regra contra o encerramento de sessão sem auditoria de conformidade Git.
+- **Governance Hardening**: Inclusion of commit and branch audit at the Session Exit Gate.
+- **Prohibitive Mandates**: Added rule against ending session without Git compliance audit.
 
 ---
 
 ## 🧩 python-uv
 ## [3.0.0] - 2026-04-22
 
-### Adicionado
-- **Expert Enrichment**: Integração de conhecimentos de alto nível sobre padrões e testes Python.
-- **Python Patterns**: Nova referência em `references/patterns.md` cobrindo EAFP, Protocol, Type Hints e Performance.
-- **Advanced Testing**: Nova referência em `references/testing.md` cobrindo ciclo TDD, Fixtures avançadas e Mocking.
-- **Modern Python**: Suporte explícito a Python 3.9+ idioms e `__slots__` para eficiência de memória.
+### Added
+- **Expert Enrichment**: Integration of high-level knowledge on Python patterns and testing.
+- **Python Patterns**: New reference in `references/patterns.md` covering EAFP, Protocol, Type Hints, and Performance.
+- **Advanced Testing**: New reference in `references/testing.md` covering TDD cycle, advanced Fixtures, and Mocking.
+- **Modern Python**: Explicit support for Python 3.9+ idioms and `__slots__` for memory efficiency.
 
 ## [2.6.0] - 2026-04-20
 
-### Adicionado
-- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+### Added
+- `🔒 Prerequisites (Mandatory)` section mandatorily linking the skill to the SDD framework.
 
 ## [2.5.0] - 2026-04-14
 
-### Adicionado
-- **Workflow Operacional**: Introdução de um workflow estruturado em 4 fases (Environment, Project, Develop, Deploy) para orientar agentes de IA passo a passo.
+### Added
+- **Operational Workflow**: Introduction of a structured 4-phase workflow (Environment, Project, Develop, Deploy) to guide AI agents step by step.
 
 ---
 
 ## 🧩 scaffolding-expert
 ## [1.0.0] - 2026-04-19
-### Adicionado
-- Estrutura base para a skill.
-- Especificação de workflow para uso com `uvx copier`.
+### Added
+- Base structure for the skill.
+- Workflow specification for use with `uvx copier`.
 
 ---
 
 ## 🧩 sdd
 ## [1.5.0] - 2026-04-23
 
-### Adicionado
-- **Integração com TLC Spec-Driven**: Adição de 5 novas diretrizes avançadas operacionais em `references/` (`brownfield-mapping.md`, `coding-principles.md`, `context-limits.md`, `session-handoff.md`, `quick-mode.md`).
-- **Delegação a Sub-Agentes**: Documentação do novo protocolo de delegação para orquestradores mitigarem limites de janela de contexto.
-- **Conformidade de Auditoria (Skill Factory)**: Adicionados `## Goal` e `## Quality Rules` obrigatórios nas sub-skills `sdd-implementer`, `sdd-orchestrator` e `sdd-reviewer`.
+### Added
+- **TLC Spec-Driven Integration**: Addition of 5 new advanced operational guidelines in `references/` (`brownfield-mapping.md`, `coding-principles.md`, `context-limits.md`, `session-handoff.md`, `quick-mode.md`).
+- **Delegation to Sub-Agents**: Documentation of the new delegation protocol for orchestrators to mitigate context window limits.
+- **Audit Compliance (Skill Factory)**: Mandatory `## Goal` and `## Quality Rules` added to `sdd-implementer`, `sdd-orchestrator`, and `sdd-reviewer` sub-skills.
 
-### Alterado
-- **Atualização em Massa de Versão**: Sub-skills atualizadas para `1.5.0` sincronizando com a skill base.
+### Changed
+- **Mass Version Update**: Sub-skills updated to `1.5.0` synchronizing with the base skill.
 
-## [1.4.0] - 2026-04-16
- — 2026-04-18
+## [1.4.0] - 2026-04-18
 
-### Adicionado
-- **Harness Engineering Integration**: Evolução do workflow com foco em contratos, sensores e feedback loops determinísticos.
-- **SDD Contracts**: Novo artefato `contract.md` para definir o acordo de entrega entre Implementador e Revisor.
-- **Sensor-based Reviews**: Vereditos agora são baseados em sinais de ferramentas externas (linters, testes) com Score Global (0-100).
+### Added
+- **Harness Engineering Integration**: Workflow evolution with focus on contracts, sensors, and deterministic feedback loops.
+- **SDD Contracts**: New `contract.md` artifact to define the delivery agreement between Implementer and Reviewer.
+- **Sensor-based Reviews**: Verdicts are now based on signals from external tools (linters, tests) with Global Score (0-100).
 
-### Alterado
-- **Unificação de Versões**: Sincronização de todas as sub-skills para a versão 1.4.0 para consistência do ecossistema.
-- **Refinamento do Auto-Sizing**: Atualização da tabela de fases para incluir os marcos de Contrato e Review por Score.
-- **Correção de Nomenclatura**: Substituído o termo residual `ork-orchestrator` por `sdd-orchestrator`.
+### Changed
+- **Version Unification**: Synchronization of all sub-skills to version 1.4.0 for ecosystem consistency.
+- **Auto-Sizing Refinement**: Phase table update to include Contract and Review by Score milestones.
+- **Nomenclature Correction**: Replaced residual term `ork-orchestrator` with `sdd-orchestrator`.
 
 ## [1.3.1] — 2026-04-14
 
-### Adicionado
-- **Mermaid Diagrams Mandate**: Tornada obrigatória a inclusão de diagramas Mermaid na fase de `Specify` para níveis Medium+.
+### Added
+- **Mermaid Diagrams Mandate**: Inclusion of Mermaid diagrams in the `Specify` phase for Medium+ levels made mandatory.
 
 ---
 
 ## 🧩 skill-factory
 ## [1.1.0] - 2026-04-16
- — 2026-04-16
 
-### Adicionado
-- **skill-factory-validator**: Adicionado Check 6 (Registry Status) e Check 7 (Onboarding Sync).
-- **GitHub Actions**: Integração com CI/CD para validação automática de conformidade.
+### Added
+- **skill-factory-validator**: Added Check 6 (Registry Status) and Check 7 (Onboarding Sync).
+- **GitHub Actions**: Integration with CI/CD for automatic compliance validation.
 
 ## [1.0.0] — 2026-04-14
 
-### Adicionado
-- **SKILL.md**: Definição principal do Core Framework com Auto-Sizing (Quick/Standard), workflow em 3 fases e Version Policy.
-- **skill-factory-bootstrap.skill.md**: Sub-skill para scaffolding automatizado com templates padronizados para `SKILL.md`, `README.md`, `CHANGELOG.md` e sub-skills.
-- **skill-factory-validator.skill.md**: Sub-skill para validação de conformidade com 5 checks (Structural, Frontmatter, Content, Naming, Registry) e relatório de evidências.
-- **README.md**: Documentação detalhada com exemplos de uso para ambos os modos (Quick e Standard).
+### Added
+- **SKILL.md**: Core Framework main definition with Auto-Sizing (Quick/Standard), 3-phase workflow, and Version Policy.
+- **skill-factory-bootstrap.skill.md**: Sub-skill for automated scaffolding with standardized templates for `SKILL.md`, `README.md`, `CHANGELOG.md`, and sub-skills.
+- **skill-factory-validator.skill.md**: Sub-skill for compliance validation with 5 checks (Structural, Frontmatter, Content, Naming, Registry) and evidence report.
+- **README.md**: Detailed documentation with usage examples for both modes (Quick and Standard).
 
 ---
 
 ## 🧩 swarm-facilitator
 ## [1.1.0] - 2026-04-20
-### Alterado
-- **Renomeação**: Skill renomeada de `multi-agent-orchestrator` para `swarm-facilitator` para evitar colisão semântica com o `sdd-orchestrator`.
-- **Identidade**: Atualizada para focar explicitamente na coreografia e protocolos de handoff de personas.
+### Changed
+- **Renaming**: Skill renamed from `multi-agent-orchestrator` to `swarm-facilitator` to avoid semantic collision with `sdd-orchestrator`.
+- **Identity**: Updated to focus explicitly on choreography and persona handoff protocols.
 
 ## [1.0.0] - 2026-04-19
-### Adicionado
-- Estrutura inicial e definição das personas do Swarm.
-- Protocolo formal de Handoff.
+### Added
+- Initial structure and definition of Swarm personas.
+- Formal Handoff Protocol.
 
 ---
 
 ## 🧩 token-distiller
 ## [1.1.0] - 2026-04-23
 ### Changed
-- **Hardening**: Adicionadas seções obrigatórias (Goal, Output, Rules, Prohibited).
-- **Compliance**: Adicionados checks de governança SDD ao hook mandatório.
-- **Structure**: Criadas pastas `references/`, `resources/` e `examples/`.
+- **Hardening**: Mandatory sections added (Goal, Output, Rules, Prohibited).
+- **Compliance**: SDD governance checks added to the mandatory hook.
+- **Structure**: `references/`, `resources/`, and `examples/` folders created.
 
 ## [1.0.0] - 2026-04-22
 ### Added
-- Implementação inicial do épico Token Optimization.
-- Modos Caveman e Premium.
-- Integração com CLI `hub`.
-- Motor de compressão Python.
+- Initial implementation of the Token Optimization epic.
+- Caveman and Premium modes.
+- Integration with `hub` CLI.
+- Python compression engine.
 
 ---
 
 ## 🧩 youtube-transcript
 ## [1.0.0] - 2026-04-15
- — 2026-04-15
 
-### Adicionado
-- **SKILL.md**: Definição principal da skill com fluxo de decisão e fallback.
-- **README.md**: Documentação de visão geral e uso.
-- **Estrutura Base**: Scaffolding inicial seguindo os padrões do Skills Hub.
+### Added
+- **SKILL.md**: Main definition of the skill with decision flow and fallback.
+- **README.md**: Overview and usage documentation.
+- **Base Structure**: Initial scaffolding following the Skills Hub standards.
 
 ---

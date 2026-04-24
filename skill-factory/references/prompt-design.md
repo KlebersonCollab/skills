@@ -10,7 +10,7 @@ Define a clear persona and mission for the skill or sub-skill.
 ## 2. Contextual Grounding
 Provide the necessary context for the skill to operate correctly.
 - **Rule**: Use absolute paths for file operations and explain the environment structure.
-- **Good Example**: "This skill operates within the `/Users/user/project` directory. Always verify the existence of the `pyproject.toml` file before making changes."
+- **Good Example**: "This skill operates within the project root directory. Always verify the existence of the `pyproject.toml` file before making changes."
 
 ## 3. Instruction Clarity (The 'Core Instructions')
 Break down instructions into logical sections: Goal, Output Structure, Quality Rules, and Prohibited actions.
@@ -22,14 +22,23 @@ Break down instructions into logical sections: Goal, Output Structure, Quality R
 ## 4. Constraint-Based Engineering
 Clearly state what the skill **cannot** do to prevent hallucination or unsafe actions.
 - **Rule**: Use the `## Prohibited` section for all critical constraints.
-- **Good Example**: "NUNCA reescreva um arquivo inteiro se uma alteração pontual (replace) for suficiente."
+- **Good Example**: "NEVER rewrite an entire file if a surgical change (replace) is sufficient."
 
-## 5. Output structure
+## 5. Output Structure
 Define the expected artifacts or responses.
 - **Rule**: Specify the file format and the key information it must contain.
-- **Good Example**: "A execução desta skill resulta em um `ADR.md` seguindo o template oficial."
+- **Good Example**: "Executing this skill results in an `ADR.md` following the official template."
 
-## 6. Iterative refinement
+## 6. Structural Rigor
+- Use clear headers and sections.
+- Use Markdown for structure and clarity.
+- Define explicit roles, constraints, and objectives.
+
+## 7. Few-Shot Examples
+- Provide 3-5 high-quality examples of desired inputs and outputs.
+- This significantly improves the agent's ability to follow complex patterns.
+
+## 8. Iterative Refinement
 Prompts are never final. Use `LEARNINGS.md` to identify failures and improve the instructions.
 - **Rule**: Update the prompt based on real-world edge cases encountered by the agents.
 - **Good Example**: "Added a rule to ignore `.DS_Store` files after a common listing error."

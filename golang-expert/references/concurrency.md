@@ -1,33 +1,33 @@
-# Pilar 2: Concurrency & Advanced
+# Pillar 2: Concurrency & Advanced
 
-> Concorrência em Go não é sobre paralelismo, mas sobre a composição de tarefas independentes que se comunicam via channels e sinais de cancelamento.
+> Concurrency in Go is not about parallelism, but about the composition of independent tasks that communicate via channels and cancellation signals.
 
 ---
 
 ## 🏎️ Concurrency Fundamentals (Goroutines & Channels)
 
-- **Share Memory by Communicating**: Siga o mantra do Go — não comunique compartilhando memória, compartilhe memória comunicando.
-- **Channels**: Utilize channels para sincronização e transferência de dados entre goroutines.
-  - Channels com buffer para desacoplamento temporal controlado.
-  - Channels sem buffer para sincronização rígida.
-- **Select Statement**: Utilize o `select` para orquestrar múltiplos channels e timeouts.
+- **Share Memory by Communicating**: Follow the Go mantra — do not communicate by sharing memory; share memory by communicating.
+- **Channels**: Use channels for synchronization and data transfer between goroutines.
+  - Buffered channels for controlled temporal decoupling.
+  - Unbuffered channels for rigid synchronization.
+- **Select Statement**: Use `select` to orchestrate multiple channels and timeouts.
 
 ---
 
-## 🚦 Context Management (Pacote `context`)
+## 🚦 Context Management (`context` Package)
 
-O pacote `context` é a espinha dorsal de qualquer sistema resiliente em Go:
-- **Propagation**: Sempre passe o `context.Context` como o primeiro argumento de funções de longa duração (IO, DB, HTTP).
-- **Cancellation**: Utilize `WithCancel`, `WithTimeout` ou `WithDeadline` para evitar goroutines "zumbis" que rodam indefinidamente.
-- **Values**: Utilize `WithValue` apenas para dados transientes e globais (ex: Request ID, Logs), nunca para lógica de negócio.
+The `context` package is the backbone of any resilient system in Go:
+- **Propagation**: Always pass `context.Context` as the first argument to long-running functions (IO, DB, HTTP).
+- **Cancellation**: Use `WithCancel`, `WithTimeout`, or `WithDeadline` to avoid "zombie" goroutines that run indefinitely.
+- **Values**: Use `WithValue` only for transient and global data (e.g., Request ID, Logs), never for business logic.
 
 ---
 
-## 🛡️ Concurrency Safety (Segurança)
+## 🛡️ Concurrency Safety (Security)
 
-- **Race Conditions**: Utilize `go test -race` religiosamente para detectar condições de corrida.
-- **WaitGroups**: Utilize `sync.WaitGroup` para esperar a finalização de um conjunto de goroutines.
-- **errgroup**: Utilize `golang.org/x/sync/errgroup` para coordenar grupos de goroutines que podem retornar erros, permitindo o cancelamento do grupo inteiro se uma falhar.
+- **Race Conditions**: Use `go test -race` religiously to detect race conditions.
+- **WaitGroups**: Use `sync.WaitGroup` to wait for a set of goroutines to finish.
+- **errgroup**: Use `golang.org/x/sync/errgroup` to coordinate groups of goroutines that can return errors, allowing the entire group to be canceled if one fails.
   ```go
   g, ctx := errgroup.WithContext(ctx)
   for _, url := range urls {
@@ -38,29 +38,29 @@ O pacote `context` é a espinha dorsal de qualquer sistema resiliente em Go:
   }
   if err := g.Wait(); err != nil { return err }
   ```
-- **Mutexes**: Utilize `sync.Mutex` ou `sync.RWMutex` para proteger estados compartilhados quando channels não forem a melhor opção.
-- **Atomic Operations**: Para contadores simples ou flags de estado, utilize `sync/atomic` para máxima performance sem travas.
+- **Mutexes**: Use `sync.Mutex` or `sync.RWMutex` to protect shared state when channels are not the best option.
+- **Atomic Operations**: For simple counters or state flags, use `sync/atomic` for maximum performance without locks.
 
 ---
 
 ## 🧩 Advanced Design Patterns
 
-- **Fan-out/Fan-in**: Distribua trabalho pesado em múltiplas goroutines e consolide os resultados em um único channel.
-- **Worker Pools**: Limite o número de goroutines simultâneas para evitar sobrecarga de recursos.
-- **Graceful Shutdown**: Capture sinais do SO (SIGINT, SIGTERM) para fechar recursos e finalizar goroutines antes de encerrar o processo.
-- **Circuit Breaker**: Implemente padrões de resiliência para falhas em cascata em serviços externos.
-- **Singleton**: Utilize `sync.Once` para inicializações únicas seguras para múltiplas goroutines.
+- **Fan-out/Fan-in**: Distribute heavy work across multiple goroutines and consolidate the results into a single channel.
+- **Worker Pools**: Limit the number of concurrent goroutines to avoid resource overload.
+- **Graceful Shutdown**: Capture OS signals (SIGINT, SIGTERM) to close resources and finalize goroutines before terminating the process.
+- **Circuit Breaker**: Implement resilience patterns for cascading failures in external services.
+- **Singleton**: Use `sync.Once` for safe one-time initializations for multiple goroutines.
 
 ---
 
 ## 💉 Dependency Injection (DI)
 
-- **Interface-based**: Injete dependências como interfaces, não como tipos concretos, para facilitar mocks em testes.
-- **Constructor Pattern**: Utilize funções `New...` para inicializar structs com suas dependências.
-- **DI Containers**: Para projetos de larga escala, utilize containers de injeção de dependência para evitar o "Constructor Hell".
+- **Interface-based**: Inject dependencies as interfaces, not as concrete types, to facilitate mocks in testing.
+- **Constructor Pattern**: Use `New...` functions to initialize structs with their dependencies.
+- **DI Containers**: For large-scale projects, use dependency injection containers to avoid "Constructor Hell".
 
 ---
 
-## 📚 Bibliotecas de Apoio (Concurrency & Advanced)
-- `samber/do`: Uma biblioteca de injeção de dependência baseada em tipos, simples e poderosa.
-- `samber/hot`: Para recarregamento dinâmico de configurações ou código sem interromper o serviço.
+## 📚 Supporting Libraries (Concurrency & Advanced)
+- `samber/do`: A simple and powerful type-based dependency injection library.
+- `samber/hot`: For dynamic reloading of configurations or code without interrupting the service.

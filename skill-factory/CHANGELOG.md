@@ -1,22 +1,21 @@
 # Changelog — Skill Factory
 
-Todas as mudanças notáveis desta skill serão documentadas neste arquivo.
+All notable changes to this skill will be documented in this file.
 
-O formato segue o padrão [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e o versionamento segue [Semantic Versioning](https://semver.org/lang/pt-BR/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
 ## [1.1.0] - 2026-04-16
- — 2026-04-16
 
-### Adicionado
-- **skill-factory-validator**: Adicionado Check 6 (Registry Status) e Check 7 (Onboarding Sync).
-- **GitHub Actions**: Integração com CI/CD para validação automática de conformidade.
+### Added
+- **skill-factory-validator**: Added Check 6 (Registry Status) and Check 7 (Onboarding Sync).
+- **GitHub Actions**: CI/CD integration for automatic compliance validation.
 
 ## [1.0.0] — 2026-04-14
 
-### Adicionado
-- **SKILL.md**: Definição principal do Core Framework com Auto-Sizing (Quick/Standard), workflow em 3 fases e Version Policy.
-- **skill-factory-bootstrap.skill.md**: Sub-skill para scaffolding automatizado com templates padronizados para `SKILL.md`, `README.md`, `CHANGELOG.md` e sub-skills.
-- **skill-factory-validator.skill.md**: Sub-skill para validação de conformidade com 5 checks (Structural, Frontmatter, Content, Naming, Registry) e relatório de evidências.
-- **README.md**: Documentação detalhada com exemplos de uso para ambos os modos (Quick e Standard).
+### Added
+- **SKILL.md**: Main definition of the Core Framework with Auto-Sizing (Quick/Standard), 3-phase workflow, and Version Policy.
+- **skill-factory-bootstrap.skill.md**: Sub-skill for automated scaffolding with standardized templates for `SKILL.md`, `README.md`, `CHANGELOG.md`, and sub-skills.
+- **skill-factory-validator.skill.md**: Sub-skill for compliance validation with 5 checks (Structural, Frontmatter, Content, Naming, Registry) and evidence report.
+- **README.md**: Detailed documentation with usage examples for both modes (Quick and Standard).

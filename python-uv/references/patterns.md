@@ -1,182 +1,182 @@
-# Padrões Idiomáticos e Performance em Python
+# Idiomatic Patterns and Performance in Python
 
-Este guia define os padrões de excelência para escrita de código Python robusto, eficiente e mantível, integrado ao workflow de alta performance do **UV**.
+This guide defines excellence standards for writing robust, efficient, and maintainable Python code, integrated into the high-performance **UV** workflow.
 
 ---
 
-## 1. Princípios Fundamentais (The Zen of Python)
+## 1. Fundamental Principles (The Zen of Python)
 
-### Legibilidade em Primeiro Lugar
-O código deve ser óbvio e fácil de entender. Se o código é difícil de explicar, é uma má ideia.
+### Readability First
+Code should be obvious and easy to understand. If the code is hard to explain, it's a bad idea.
 
 ```python
-# ✅ GOOD: Claro e legível
-def obter_usuarios_ativos(usuarios: list[User]) -> list[User]:
-    """Retorna apenas usuários ativos da lista fornecida."""
-    return [u for u in usuarios if u.esta_ativo]
+# ✅ GOOD: Clear and readable
+def get_active_users(users: list[User]) -> list[User]:
+    """Returns only active users from the provided list."""
+    return [u for u in users if u.is_active]
 
-# ❌ BAD: "Clever" mas confuso
+# ❌ BAD: "Clever" but confusing
 def get_act_u(u):
     return [x for x in u if x.a]
 ```
 
-### Explícito é melhor que Implícito
-Evite "mágica" e efeitos colaterais ocultos. Seja claro sobre o que o seu código faz.
+### Explicit is better than Implicit
+Avoid "magic" and hidden side effects. Be clear about what your code does.
 
 ```python
-# ✅ GOOD: Configuração explícita
+# ✅ GOOD: Explicit configuration
 import logging
 logging.basicConfig(level=logging.INFO)
 
-# ❌ BAD: Efeitos colaterais escondidos
-import modulo_magico # Configura logging internamente sem avisar
+# ❌ BAD: Hidden side effects
+import magic_module # Configures logging internally without warning
 ```
 
 ---
 
 ## 2. EAFP vs LBYL
 
-Python prefere o estilo **EAFP** (*Easier to Ask Forgiveness than Permission*) em vez de **LBYL** (*Look Before You Leap*).
+Python prefers the **EAFP** (*Easier to Ask Forgiveness than Permission*) style over **LBYL** (*Look Before You Leap*).
 
 ```python
-# ✅ GOOD (EAFP): Tente e trate a exceção
+# ✅ GOOD (EAFP): Try and handle the exception
 try:
-    valor = dicionario["chave"]
+    value = dictionary["key"]
 except KeyError:
-    valor = padrao
+    value = default
 
-# ❌ BAD (LBYL): Verifique antes de agir
-if "chave" in dicionario:
-    valor = dicionario["chave"]
+# ❌ BAD (LBYL): Check before acting
+if "key" in dictionary:
+    value = dictionary["key"]
 else:
-    valor = padrao
+    value = default
 ```
 
 ---
 
 ## 3. Modern Type Hints (Python 3.9+)
 
-Utilize tipagem estática para melhorar a manutenção e permitir que ferramentas como `mypy` (via `uv run mypy`) detectem erros precocemente.
+Use static typing to improve maintenance and allow tools like `mypy` (via `uv run mypy`) to detect errors early.
 
 ```python
-# Python 3.9+ - Use tipos built-in diretamente
-def processar_itens(itens: list[str]) -> dict[str, int]:
-    return {item: len(item) for item in itens}
+# Python 3.9+ - Use built-in types directly
+def process_items(items: list[str]) -> dict[str, int]:
+    return {item: len(item) for item in items}
 
-# Generic Types e Union (3.10+)
-def primeiro_elemento[T](lista: list[T]) -> T | None:
-    return lista[0] if lista else None
+# Generic Types and Union (3.10+)
+def first_element[T](items_list: list[T]) -> T | None:
+    return items_list[0] if items_list else None
 ```
 
 ### Protocol-Based Duck Typing (Interfaces)
-Use `Protocol` para definir contratos sem herança rígida.
+Use `Protocol` to define contracts without rigid inheritance.
 
 ```python
 from typing import Protocol
 
-class Renderizavel(Protocol):
+class Renderable(Protocol):
     def render(self) -> str: ...
 
-def exibir_tudo(itens: list[Renderizavel]) -> None:
-    for item in itens:
+def display_all(items: list[Renderable]) -> None:
+    for item in items:
         print(item.render())
 ```
 
 ---
 
-## 4. Gestão de Exceções Avançada
+## 4. Advanced Exception Management
 
 ### Exception Chaining
-Sempre use `from e` ao relançar exceções para preservar o traceback original.
+Always use `from e` when re-raising exceptions to preserve the original traceback.
 
 ```python
-def processar_dados(dados: str):
+def process_data(data: str):
     try:
-        resultado = json.loads(dados)
+        result = json.loads(data)
     except json.JSONDecodeError as e:
-        raise ValueError("Dados JSON inválidos") from e
+        raise ValueError("Invalid JSON data") from e
 ```
 
-### Hierarquia de Exceções Customizada
-Crie uma base para sua aplicação para facilitar o tratamento global.
+### Customized Exception Hierarchy
+Create a base for your application to facilitate global handling.
 
 ```python
-class AppError(Exception): """Base para todos os erros da app"""
-class ValidationError(AppError): """Erro de validação de input"""
+class AppError(Exception): """Base for all app errors"""
+class ValidationError(AppError): """Input validation error"""
 ```
 
 ---
 
-## 5. Performance e Eficiência de Memória
+## 5. Performance and Memory Efficiency
 
-### Otimização com `__slots__`
-Para classes com milhões de instâncias, use `__slots__` para reduzir drasticamente o uso de memória (evita a criação do `__dict__`).
+### Optimization with `__slots__`
+For classes with millions of instances, use `__slots__` to drastically reduce memory usage (avoids `__dict__` creation).
 
 ```python
-class Ponto:
+class Point:
     __slots__ = ['x', 'y']
     def __init__(self, x: float, y: float):
         self.x = x
         self.y = y
 ```
 
-### Geradores para Grandes Volumes de Dados
-Nunca retorne listas gigantescas se puder usar geradores (Lazy Evaluation).
+### Generators for Large Data Volumes
+Never return giant lists if you can use generators (Lazy Evaluation).
 
 ```python
-# ✅ GOOD: Processa linha por linha
-def ler_arquivo_gigante(caminho: str):
-    with open(caminho) as f:
-        for linha in f:
-            yield linha.strip()
+# ✅ GOOD: Processes line by line
+def read_giant_file(path: str):
+    with open(path) as f:
+        for line in f:
+            yield line.strip()
 
-# ❌ BAD: Carrega tudo na RAM
-def ler_tudo(caminho: str):
-    with open(caminho) as f:
+# ❌ BAD: Loads everything into RAM
+def read_everything(path: str):
+    with open(path) as f:
         return f.readlines()
 ```
 
-### Manipulação de Strings
-Evite concatenação com `+` em loops (O(n²)). Use `.join()` ou `io.StringIO` (O(n)).
+### String Manipulation
+Avoid concatenation with `+` in loops (O(n²)). Use `.join()` or `io.StringIO` (O(n)).
 
 ```python
 # ✅ GOOD
-resultado = "".join(lista_de_strings)
+result = "".join(string_list)
 ```
 
 ---
 
-## 6. Data Classes com Validação
+## 6. Data Classes with Validation
 
-Use `dataclasses` para contêineres de dados, e `__post_init__` para validações simples. Para validações complexas, considere `Pydantic` (integrado via `uv add pydantic`).
+Use `dataclasses` for data containers, and `__post_init__` for simple validations. For complex validations, consider `Pydantic` (integrated via `uv add pydantic`).
 
 ```python
 from dataclasses import dataclass
 
 @dataclass
-class Usuario:
+class User:
     email: str
-    idade: int
+    age: int
 
     def __post_init__(self):
         if "@" not in self.email:
-            raise ValueError("Email inválido")
-        if self.idade < 0:
-            raise ValueError("Idade não pode ser negativa")
+            raise ValueError("Invalid email")
+        if self.age < 0:
+            raise ValueError("Age cannot be negative")
 ```
 
 ---
 
-## 7. Anti-Padrões a Evitar
+## 7. Anti-Patterns to Avoid
 
-1. **Argumentos Default Mutáveis**: Nunca use `list` ou `dict` como default. Use `None`.
+1. **Mutable Default Arguments**: Never use `list` or `dict` as a default. Use `None`.
    ```python
    # ❌ BAD
-   def add_item(item, lista=[]): ... 
+   def add_item(item, items_list=[]): ... 
    # ✅ GOOD
-   def add_item(item, lista=None):
-       if lista is None: lista = []
+   def add_item(item, items_list=None):
+       if items_list is None: items_list = []
    ```
-2. **Bare Except**: Nunca use `except:`. Capture exceções específicas ou `Exception`.
-3. **Verificação de Tipo com `type()`**: Use `isinstance(obj, classe)`.
-4. **Comparação com `None`**: Use `is None` em vez de `== None`.
+2. **Bare Except**: Never use `except:`. Catch specific exceptions or `Exception`.
+3. **Type Checking with `type()`**: Use `isinstance(obj, class)`.
+4. **Comparison with `None`**: Use `is None` instead of `== None`.

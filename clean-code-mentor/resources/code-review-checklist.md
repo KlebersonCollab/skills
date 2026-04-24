@@ -1,26 +1,26 @@
-# Checklist de Revisão de Código
+# Code Review Checklist
 
-Este checklist serve como guia para revisões de código focadas em qualidade e manutenibilidade.
+This checklist serves as a guide for code reviews focused on quality and maintainability.
 
-## 1. Princípios SOLID
-- [ ] **S (Single Responsibility)**: Cada classe/função tem apenas uma razão para mudar?
-- [ ] **O (Open/Closed)**: O código está aberto para extensão, mas fechado para modificação?
-- [ ] **L (Liskov Substitution)**: Subclasses podem ser usadas no lugar de suas classes base sem quebrar o sistema?
-- [ ] **I (Interface Segregation)**: Interfaces são específicas e não forçam implementações desnecessárias?
-- [ ] **D (Dependency Inversion)**: O código depende de abstrações e não de implementações concretas?
+## 1. SOLID Principles
+- [ ] **S (Single Responsibility)**: Does each class/function have only one reason to change?
+- [ ] **O (Open/Closed)**: Is the code open for extension but closed for modification?
+- [ ] **L (Liskov Substitution)**: Can subclasses be substituted for their base classes without breaking the system?
+- [ ] **I (Interface Segregation)**: Are interfaces specific and don't force unnecessary implementations?
+- [ ] **D (Dependency Inversion)**: Does the code depend on abstractions rather than concrete implementations?
 
-## 2. YAGNI, DRY e KISS
-- [ ] **YAGNI (You Ain't Gonna Need It)**: Existe código que tenta prever o futuro ou resolve problemas que ainda não existem? (Remova se sim)
-- [ ] **DRY (Don't Repeat Yourself)**: Existe lógica duplicada que deveria ser abstraída em um único lugar?
-- [ ] **KISS (Keep It Simple, Stupid)**: A solução é a mais simples possível para o problema? Existe alguma complexidade desnecessária?
+## 2. Engineering Mandates
+- [ ] **YAGNI (You Ain't Gonna Need It)**: Is there code that tries to predict the future or solves problems that don't exist yet? (Remove if so)
+- [ ] **DRY (Don't Repeat Yourself)**: Is there duplicated logic that should be abstracted in a single place?
+- [ ] **KISS (Keep It Simple, Stupid)**: Is the solution the simplest possible for the problem? Is there any unnecessary complexity?
 
-## 3. Qualidade Geral e Legibilidade
-- [ ] **Nomes**: Classes, métodos e variáveis têm nomes claros e revelam sua intenção?
-- [ ] **Tamanho**: Métodos e classes são pequenos o suficiente para serem compreendidos rapidamente?
-- [ ] **Comentários**: O código é autoexplicativo? Existem comentários que explicam "por que" em vez de "o que"?
-- [ ] **Tratamento de Erros**: Erros são tratados adequadamente? Existe uso correto de logs/exceções?
-- [ ] **Testes**: As alterações estão cobertas por testes automatizados (unitários/integração)?
+## 3. Readability and Style
+- [ ] **Names**: Do classes, methods, and variables have clear names that reveal their intent?
+- [ ] **Size**: Are methods and classes small enough to be understood quickly?
+- [ ] **Comments**: Is the code self-explanatory? Are there comments that explain "why" instead of "what"?
+- [ ] **Error Handling**: Are errors handled appropriately? Is there correct use of logs/exceptions?
+- [ ] **Tests**: Are changes covered by automated tests (unit/integration)?
 
-## 4. Segurança e Performance
-- [ ] **Segurança**: Existe algum risco de injeção (SQL, XSS, etc)? Algum dado sensível está sendo exposto indevidamente?
-- [ ] **Performance**: Existe algum gargalo óbvio (N+1 queries, loops aninhados pesados, etc)?
+## 4. Security and Performance
+- [ ] **Security**: Is there any risk of injection (SQL, XSS, etc)? Is any sensitive data being improperly exposed?
+- [ ] **Performance**: Is there any obvious bottleneck (N+1 queries, heavy nested loops, etc)?

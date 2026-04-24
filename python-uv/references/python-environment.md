@@ -1,70 +1,70 @@
 # Python Environment
 
-Guia completo de gerenciamento de versões Python, Python 3.14 default, free-threaded Python e paths por plataforma.
+Complete guide for Python version management, Python 3.14 default, free-threaded Python, and platform-specific paths.
 
 ---
 
-## Gerenciamento de Versões Python
+## Python Version Management
 
-### Comandos Essenciais
+### Essential Commands
 
 ```bash
-# Listar versões disponíveis
+# List available versions
 uv python list
 
-# Listar versões instaladas
+# List installed versions
 uv python list --installed
 
-# Instalar versão específica
+# Install a specific version
 uv python install 3.12
 uv python install 3.13
 uv python install 3.14
 
-# Fixar versão para o projeto
+# Pin a version for the project
 uv python pin 3.12
 
-# Verificar versão fixada
+# Check the pinned version
 cat .python-version
 ```
 
-### Executar com versão específica
+### Execute with a specific version
 
 ```bash
-# Executar script com Python específico
+# Run script with a specific Python
 uv run --python 3.12 script.py
 
-# Criar venv com versão específica
+# Create venv with a specific version
 uv venv --python 3.12 .venv
 ```
 
 ---
 
-## Python 3.14 — Novo Default (UV 0.9.6+)
+## Python 3.14 — New Default (UV 0.9.6+)
 
-A partir do UV 0.9.6, `uv python install` sem versão instala **Python 3.14** (antes era 3.13).
+Starting from UV 0.9.6, `uv python install` without a version installs **Python 3.14** (previously it was 3.13).
 
-### Impacto
+### Impact
 
 ```bash
-# Antes (UV < 0.9.6)
+# Before (UV < 0.9.6)
 uv python install    # → Python 3.13
 
-# Agora (UV 0.9.6+)
+# Now (UV 0.9.6+)
 uv python install    # → Python 3.14
 ```
 
-### Migração
+### Migration
 
-Se o projeto requer Python 3.13 ou anterior:
+If the project requires Python 3.13 or earlier:
 
 ```bash
-# Fixar versão no projeto
+# Pin version in the project
 uv python pin 3.13
 
-# Instalar versão específica
+# Install specific version
 uv python install 3.13
 
-# Verificar
+# Verify
 cat .python-version
 # Output: 3.13
 ```
@@ -73,24 +73,24 @@ cat .python-version
 
 ## Free-Threaded Python (PEP 703)
 
-Python 3.14+ suporta **free-threading** — execução paralela real sem o GIL (Global Interpreter Lock).
+Python 3.14+ supports **free-threading** — real parallel execution without the GIL (Global Interpreter Lock).
 
-### O que muda
+### What changes
 
-- **Antes**: GIL impedia threads Python de executar código em paralelo
-- **Agora**: Free-threaded Python permite true multi-core parallelism
+- **Before**: GIL prevented Python threads from executing code in parallel
+- **Now**: Free-threaded Python allows true multi-core parallelism
 
-### Como usar
+### How to use
 
 ```bash
-# UV 0.9.6+ — free-threaded é automático para 3.14+
+# UV 0.9.6+ — free-threaded is automatic for 3.14+
 uv python install 3.14
 
-# Ou explicitamente
+# Or explicitly
 uv python install 3.14t
 ```
 
-### Exemplo
+### Example
 
 ```python
 # /// script
@@ -105,7 +105,7 @@ def cpu_task(n: int) -> int:
     """CPU-intensive task."""
     return sum(i ** 2 for i in range(n))
 
-# Com free-threaded Python, estas threads rodam em paralelo
+# With free-threaded Python, these threads run in parallel
 threads = []
 for i in range(4):
     t = threading.Thread(target=cpu_task, args=(10_000_000,))
@@ -115,58 +115,58 @@ for i in range(4):
 for t in threads:
     t.join()
 
-print("Threads executaram em paralelo!")
+print("Threads executed in parallel!")
 ```
 
-### Quando usar
+### When to use
 
-- ✅ Código CPU-intensive com multi-threading
-- ✅ Processamento paralelo crítico para performance
-- ⚠️ Verificar compatibilidade de bibliotecas antes de usar em produção
+- ✅ CPU-intensive code with multi-threading
+- ✅ Performance-critical parallel processing
+- ⚠️ Check library compatibility before using in production
 
 ---
 
-## Paths por Plataforma
+## Platform-Specific Paths
 
-### Cache do UV
+### UV Cache
 
-| Plataforma | Caminho |
+| Platform | Path |
 |------------|---------|
 | macOS | `~/Library/Caches/uv/` |
 | Linux | `~/.cache/uv/` |
 | Windows | `%LOCALAPPDATA%\uv\cache\` |
 
-### Ferramentas Instaladas
+### Installed Tools
 
-| Plataforma | Caminho |
+| Platform | Path |
 |------------|---------|
 | macOS / Linux | `~/.local/share/uv/tools/` |
 | Windows | `%APPDATA%\uv\tools\` |
 
-### Binários Python
+### Python Binaries
 
-| Plataforma | Caminho |
+| Platform | Path |
 |------------|---------|
 | macOS / Linux | `~/.local/share/uv/python/` |
 | Windows | `%APPDATA%\uv\python\` |
 
-### Gerenciamento de Cache
+### Cache Management
 
 ```bash
-# Ver tamanho do cache
+# Check cache size
 du -sh ~/.cache/uv/          # macOS/Linux
 dir /s %LOCALAPPDATA%\uv\cache  # Windows
 
-# Limpar cache
+# Clean cache
 uv cache clean
 
-# Informações do cache
+# Cache info
 uv cache info
 ```
 
 ---
 
-## Compatibilidade
+## Compatibility
 
 | UV Version | Python 3.10 | Python 3.11 | Python 3.12 | Python 3.13 | Python 3.14 | Free-Threading |
 |------------|-------------|-------------|-------------|-------------|-------------|----------------|

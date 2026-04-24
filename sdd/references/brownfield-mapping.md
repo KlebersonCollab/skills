@@ -1,48 +1,48 @@
-# Mapeamento Brownfield (Projetos Existentes)
+# Brownfield Mapping (Existing Projects)
 
-**Gatilho:** "Mapear codebase", "Analisar código existente", "Documentar arquitetura atual"
-**Propósito:** Entender a estrutura existente do projeto antes de adicionar novas features.
+**Trigger:** "Map codebase", "Analyze existing code", "Document current architecture"
+**Purpose:** Understand the existing project structure before adding new features.
 
-## Processo
-Antes de iniciar, utilize ferramentas de análise de código (ast-grep, ripgrep) para explorar sistematicamente:
-1. Estrutura de diretórios
-2. Stack tecnológica a partir dos manifestos de dependência
-3. Padrões extraídos de exemplos de código representativos
-4. Integrações externas e dependências
-5. Pontos de atenção (Tech debt, bugs, riscos de segurança)
+## Process
+Before starting, use code analysis tools (ast-grep, ripgrep) to systematically explore:
+1. Directory structure
+2. Technology stack from dependency manifests
+3. Patterns extracted from representative code examples
+4. External integrations and dependencies
+5. Points of attention (Tech debt, bugs, security risks)
 
-## Artefatos Gerados (em `.specs/codebase/`)
+## Artifacts Generated (in `.specs/codebase/`)
 
 ### 1. STACK.md
-Documenta a stack tecnológica.
-- **Tamanho Limite:** ~1.200 palavras
-- **Conteúdo:** Linguagem, Framework, Runtime, Banco de Dados, Bibliotecas de Teste.
+Documents the technology stack.
+- **Size Limit:** ~1,200 words
+- **Content:** Language, Framework, Runtime, Database, Test Libraries.
 
 ### 2. ARCHITECTURE.md
-Documenta padrões arquiteturais e fluxo de dados.
-- **Tamanho Limite:** ~2.400 palavras
-- **Conteúdo:** Diagrama estrutural (Mermaid), padrões identificados, fluxo de dados principal.
+Documents architectural patterns and data flow.
+- **Size Limit:** ~2,400 words
+- **Content:** Structural diagram (Mermaid), identified patterns, main data flow.
 
 ### 3. CONVENTIONS.md
-Documenta estilo de código e convenções de nomenclatura.
-- **Tamanho Limite:** ~1.800 palavras
-- **Conteúdo:** Nomes de arquivos, funções, tratamento de erros e tipagem baseados em evidências do código.
+Documents code style and naming conventions.
+- **Size Limit:** ~1,800 words
+- **Content:** Filenames, functions, error handling, and typing based on evidence from code.
 
 ### 4. STRUCTURE.md
-Documenta o layout de diretórios.
-- **Tamanho Limite:** ~1.200 palavras
-- **Conteúdo:** Árvore de diretórios (máx 3 níveis), organização de módulos.
+Documents the directory layout.
+- **Size Limit:** ~1,200 words
+- **Content:** Directory tree (max 3 levels), module organization.
 
 ### 5. TESTING.md
-Documenta a infraestrutura de testes.
-- **Tamanho Limite:** ~2.400 palavras
-- **Conteúdo:** Frameworks de teste, organização, comandos de execução, cobertura e suporte a paralelismo.
+Documents the testing infrastructure.
+- **Size Limit:** ~2,400 words
+- **Content:** Test frameworks, organization, execution commands, coverage, and parallelism support.
 
 ### 6. INTEGRATIONS.md
-Documenta integrações com serviços externos.
-- **Conteúdo:** APIs, Webhooks, Jobs em background e suas formas de autenticação.
+Documents integrations with external services.
+- **Content:** APIs, Webhooks, background jobs, and their authentication methods.
 
 ### 7. CONCERNS.md
-Superfície de avisos acionáveis sobre a codebase.
-- **Tamanho Limite:** ~3.000 palavras
-- **Conteúdo:** Dívida técnica (Tech Debt), bugs conhecidos, falhas de segurança, gargalos de performance e fragilidades. *Obrigatório sempre incluir arquivo/caminho como evidência.*
+Surface of actionable warnings about the codebase.
+- **Size Limit:** ~3,000 words
+- **Content:** Technical Debt, known bugs, security flaws, performance bottlenecks, and fragilities. *Mandatory to always include file/path as evidence.*

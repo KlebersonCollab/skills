@@ -1,44 +1,44 @@
-# Princípios de Codificação
+# Coding Principles
 
-Viés comportamental, não apenas um checklist. Leia antes de cada implementação.
-
----
-
-## Antes de Codificar
-- **Explicit assumições:** Declare suas premissas. Se incerto, pergunte.
-- **Interpretações múltiplas:** Se houver várias formas de interpretar a tarefa, apresente-as. Não escolha silenciosamente.
-- **Simplicidade:** Existe uma abordagem mais simples? Diga. Questione quando necessário.
-- **Incerteza:** Se algo está confuso, PARE. Nomeie o que está confuso e peça esclarecimentos.
+Behavioral bias, not just a checklist. Read before every implementation.
 
 ---
 
-## Durante a Implementação
-
-### Simplicidade
-- Sem features além do que foi solicitado (YAGNI).
-- Sem abstrações para códigos de uso único.
-- Sem "flexibilidade" ou "configuração" que não foi pedida.
-- 200 linhas de código que poderiam ser 50? Refatore para simplificar.
-
-### Alterações Cirúrgicas
-- Não "melhore" código adjacente, comentários ou formatações não relacionados à tarefa.
-- Não refatore o que não está quebrado.
-- Siga o estilo de código existente no repositório.
-- Remova APENAS imports/variáveis/funções que as SUAS mudanças deixaram órfãos. Não apague código morto pré-existente, a menos que solicitado.
-
-### Integridade dos Testes
-- **NUNCA** enfraqueça uma asserção de teste existente para fazê-lo passar.
-- **NUNCA** delete um teste para reduzir a contagem de falhas.
-- **NUNCA** use mecanismos de skip/disable para ignorar testes falhando.
-- Os testes são a especificação — a implementação se conforma aos testes, não o contrário.
-
-### Orientação a Objetivos
-- Transforme tarefas vagas em objetivos verificáveis.
-- Em tarefas multi-etapas, declare um plano breve com pontos de verificação.
-- Cada linha alterada deve ter rastreabilidade direta com a solicitação do usuário.
+## Before Coding
+- **Explicit Assumptions:** State your assumptions. If uncertain, ask.
+- **Multiple Interpretations:** If there are multiple ways to interpret the task, present them. Do not choose silently.
+- **Simplicity:** Is there a simpler approach? Say so. Question when necessary.
+- **Uncertainty:** If something is confusing, STOP. Name what is confusing and request clarification.
 
 ---
 
-## Após Cada Alteração
-Pergunte a si mesmo: *"Um engenheiro sênior chamaria isso de sobre-engenharia?"*
-Se a resposta for sim → **simplifique antes de prosseguir**.
+## During Implementation
+
+### Simplicity
+- No features beyond what was requested (YAGNI).
+- No abstractions for single-use code.
+- No "flexibility" or "configuration" that wasn't asked for.
+- 200 lines of code that could be 50? Refactor to simplify.
+
+### Surgical Changes
+- Do not "improve" unrelated adjacent code, comments, or formatting.
+- Do not refactor what is not broken.
+- Follow the existing code style in the repository.
+- Remove ONLY imports/variables/functions that YOUR changes orphaned. Do not delete pre-existing dead code unless requested.
+
+### Test Integrity
+- **NEVER** weaken an existing test assertion to make it pass.
+- **NEVER** delete a test to reduce the failure count.
+- **NEVER** use skip/disable mechanisms to ignore failing tests.
+- Tests are the specification — the implementation conforms to the tests, not the other way around.
+
+### Goal Orientation
+- Transform vague tasks into verifiable objectives.
+- In multi-step tasks, state a brief plan with verification points.
+- Every changed line must have direct traceability to the user's request.
+
+---
+
+## After Each Change
+Ask yourself: *"Would a senior engineer call this over-engineering?"*
+If the answer is yes → **simplify before proceeding**.

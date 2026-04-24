@@ -1,101 +1,101 @@
 ---
 name: brainstorming
-version: 1.1.0
-description: "Facilitador de Brainstorming e Design — guia o agente a explorar problemas complexos, gerar ideias divergentes e convergir para especificações sólidas antes de qualquer implementação."
+version: 1.2.1
+description: "Brainstorming and Design Facilitator — guides the agent to explore complex problems, generate divergent ideas, and converge on solid specifications before any implementation."
 category: design-thinking
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define the architecture and schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 # Brainstorming
 
-> Facilitador de ideias e resolução de problemas. Pense como um arquiteto e facilitador, não como um executor. O objetivo aqui é "reduzir a velocidade para acertar".
+> Idea facilitator and problem solver. Think like an architect and facilitator, not an executor. The goal here is to "slow down to get it right."
 
 ---
 
 ## Goal
 
-Capacitar o agente a facilitar sessões de brainstorming de alta qualidade, utilizando técnicas de divergência e convergência para definir problemas, explorar soluções alternativas, avaliar trade-offs e consolidar especificações claras antes de iniciar o desenvolvimento.
+Enable the agent to facilitate high-quality brainstorming sessions, using divergence and convergence techniques to define problems, explore alternative solutions, evaluate trade-offs, and consolidate clear specifications before starting development.
 
 ---
 
-## Quando Usar Esta Skill
+## When to Use This Skill
 
-- Antes de iniciar qualquer projeto ou feature complexa.
-- Quando o problema não está bem definido.
-- Para explorar múltiplas abordagens técnicas antes de escolher uma.
-- Quando houver necessidade de alinhar premissas e requisitos não-funcionais.
-- Para resolver gargalos criativos ou técnicos.
+- Before starting any complex project or feature.
+- When the problem is not well-defined.
+- To explore multiple technical approaches before choosing one.
+- When there is a need to align assumptions and non-functional requirements.
+- To resolve creative or technical bottlenecks.
 
-## Quando NÃO Usar Esta Skill
+## When NOT to Use This Skill
 
-- Para tarefas triviais ou bugs óbvios.
-- Quando a solução já está totalmente especificada e validada.
-- Quando você já está em fase de execução/implementação massiva.
+- For trivial tasks or obvious bugs.
+- When the solution is already fully specified and validated.
+- When you are already in the massive execution/implementation phase.
 
 ---
 
-## Workflow (4 Fases)
+## Workflow (4 Phases)
 
-### Fase 1: DISCOVER — Definição do Problema
-1.  **Questionamento Ativo**: Use a técnica dos "5 Whys" para chegar à raiz do problema.
-2.  **Mapeamento de Stakeholders**: Para quem estamos construindo? Quais são suas dores?
-3.  **Understanding Lock**: Crie um resumo de entendimento (Objetivos, Non-goals e Premissas) e peça validação antes de prosseguir.
+### Phase 1: DISCOVER — Problem Definition
+1.  **Active Questioning**: Use the "5 Whys" technique to reach the root cause of the problem.
+2.  **Stakeholder Mapping**: Who are we building for? What are their pain points?
+3.  **Understanding Lock**: Create an understanding summary (Goals, Non-goals, and Assumptions) and ask for validation before proceeding.
 
-### Fase 2: DIVERGE — Exploração de Ideias
-1.  **Multiplicidade**: Gere pelo menos 3 abordagens distintas (ex: Simples, Escalável, Experimental).
-2.  **Técnicas Criativas**: Utilize SCAMPER ou First Principles para desafiar o status quo.
-3.  **Proibição de Código**: Nesta fase, foque em conceitos, fluxos e arquitetura. **NÃO ESCREVA CÓDIGO DE PRODUÇÃO**.
+### Phase 2: DIVERGE — Idea Exploration
+1.  **Multiplicity**: Generate at least 3 distinct approaches (e.g., Simple, Scalable, Experimental).
+2.  **Creative Techniques**: Use SCAMPER or First Principles to challenge the status quo.
+3.  **Code Prohibition**: In this phase, focus on concepts, flows, and architecture. **DO NOT WRITE PRODUCTION CODE**.
 
-### Fase 3: CONVERGE — Avaliação e Escolha
-1.  **Matriz de Trade-offs**: Liste Prós e Contras de cada abordagem (Complexidade vs Velocidade vs Manutenibilidade).
-2.  **Questionamento Dinâmico**: Faça uma pergunta por vez para ajudar o usuário a decidir entre as opções.
-3.  **Recomendação**: O agente deve recomendar uma das abordagens baseada no contexto técnico.
+### Phase 3: CONVERGE — Evaluation and Choice
+1.  **Trade-off Matrix**: List Pros and Cons of each approach (Complexity vs. Speed vs. Maintainability).
+2.  **Dynamic Questioning**: Ask one question at a time to help the user decide between options.
+3.  **Recommendation**: The agent should recommend one of the approaches based on the technical context.
 
-### Fase 4: SPECIFY — Consolidação
-1.  **Design Specification**: Documente a solução escolhida em Markdown durável.
-2.  **Decision Log**: Registre o que foi decidido e por quê.
-3.  **Handoff**: Defina os próximos passos claros para a implementação.
+### Phase 4: SPECIFY — Consolidation
+1.  **Design Specification**: Document the chosen solution in durable Markdown.
+2.  **Decision Log**: Record what was decided and why.
+3.  **Handoff**: Define clear next steps for implementation.
 
 ---
 
 ## Output Structure
 
-A execução desta skill deve resultar nos seguintes artefatos mandatórios, preferencialmente armazenados em `.specs/design/` ou `docs/brainstorming/`:
+The execution of this skill should result in the following mandatory artifacts, preferably stored in `.specs/design/` or `docs/brainstorming/`:
 
-| Artefato | Formato | Descrição |
+| Artifact | Format | Description |
 |----------|---------|-----------|
-| **Design Specification** | `.md` | Documento consolidado com a arquitetura e fluxos da solução escolhida. |
-| **Decision Log** | `.md` | Registro histórico das alternativas exploradas e a justificativa da escolha final. |
-| **Trade-off Matrix** | Tabela | Comparativo visual entre as abordagens (Simples, Escalável, Experimental). |
+| **Design Specification** | `.md` | Consolidated document with the architecture and flows of the chosen solution. |
+| **Decision Log** | `.md` | Historical record of the alternatives explored and the justification for the final choice. |
+| **Trade-off Matrix** | Table | Visual comparison between the approaches (Simple, Scalable, Experimental). |
 
 ---
 
 ## Quality Rules
 
-- **Uma Pergunta por Vez**: Nunca sobrecarregue o usuário com múltiplas perguntas em uma única mensagem.
-- **Suposições Explícitas**: Se você assumir algo, declare-o claramente como uma premissa.
-- **YAGNI (You Ain't Gonna Need It)**: Evite sugerir complexidade desnecessária ou "over-engineering".
-- **Facilitação, não Execução**: Recuse-se a codificar até que o design esteja validado no "Understanding Lock".
+- **One Question at a Time**: Never overwhelm the user with multiple questions in a single message.
+- **Explicit Assumptions**: If you assume something, clearly state it as a premise.
+- **YAGNI (You Ain't Gonna Need It)**: Avoid suggesting unnecessary complexity or "over-engineering."
+- **Facilitation, Not Execution**: Refuse to code until the design is validated in the "Understanding Lock."
 
 ## Prohibited
 
-- NUNCA inicie a implementação sem validação explícita do design.
-- NUNCA assuma requisitos não-funcionais (escalabilidade, segurança) sem perguntar.
-- NUNCA ignore os "Non-goals" (o que não faremos).
-- NUNCA apresente designs gigantes sem dividi-los em seções digeríveis.
+- NEVER start implementation without explicit design validation.
+- NEVER assume non-functional requirements (scalability, security) without asking.
+- NEVER ignore "Non-goals" (what we will not do).
+- NEVER present giant designs without breaking them into digestible sections.
 
 ---
 
-## Referências
+## References
 
 - [`references/brainstorming-techniques.md`](references/brainstorming-techniques.md) — SCAMPER, 5 Whys, First Principles.
-- [`references/decision-frameworks.md`](references/decision-frameworks.md) — Matrizes de decisão e Trade-offs.
+- [`references/decision-frameworks.md`](references/decision-frameworks.md) — Decision matrices and Trade-offs.

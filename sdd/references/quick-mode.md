@@ -1,19 +1,19 @@
-# Quick Mode (Modo Rápido)
+# Quick Mode
 
-**Gatilhos:** "Correção rápida", "Ajuste rápido", "Bugfix trivial"
+**Triggers:** "Quick fix", "Quick adjustment", "Trivial bugfix"
 
-Para tarefas que se enquadram na categoria **Quick** (correção de bugs simples, configuração, alterações em até 3 arquivos e que podem ser descritas em uma frase).
+For tasks that fall into the **Quick** category (simple bug fixes, configuration, changes in up to 3 files that can be described in one sentence).
 
-## Fluxo
-1. **Pule as fases de Specify, Design e Tasks.** A burocracia é desnecessária.
-2. **Execute (Implement & Verify):** Vá direto para a correção do código.
-3. Garanta que os testes continuam passando.
-4. Confirme que não houve regressões visuais ou lógicas.
-5. **Comite diretamente** (ou utilize uma branch de curta vida sem criar uma especificação inteira de feature).
+## Flow
+1. **Skip the Specify, Design, and Tasks phases.** The bureaucracy is unnecessary.
+2. **Execute (Implement & Verify):** Go straight to fixing the code.
+3. Ensure that tests continue to pass.
+4. Confirm that there are no visual or logical regressions.
+5. **Commit directly** (or use a short-lived branch without creating an entire feature specification).
 
-## Válvula de Segurança
-Se, ao iniciar a tarefa em *Quick Mode*, você perceber que a implementação exigirá alterações estruturais, adição de novas bibliotecas ou modificar mais de 3 arquivos substancialmente, **PARE**.
+## Safety Valve
+If, upon starting the task in *Quick Mode*, you realize that the implementation will require structural changes, the addition of new libraries, or substantially modifying more than 3 files, **STOP**.
 
-Neste caso, declare ao usuário:
-> *"Esta tarefa parecia rápida, mas envolve mudanças arquiteturais profundas. Abortando o Quick Mode e elevando para o escopo Small/Medium."*
-Em seguida, inicie as etapas convencionais do framework SDD (gerar spec, tasks, etc).
+In this case, declare to the user:
+> *"This task seemed quick, but it involves deep architectural changes. Aborting Quick Mode and elevating to Small/Medium scope."*
+Then, start the conventional steps of the SDD framework (generate spec, tasks, etc).

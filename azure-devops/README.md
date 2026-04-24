@@ -1,29 +1,29 @@
 # Azure DevOps Skill
 
-Esta skill fornece uma interface profissional para gerenciar recursos do **Azure DevOps (AzDO)** através do Gemini CLI. Ela abstrai a complexidade da API REST e das operações JSON Patch, permitindo gerenciar Boards, Repos, Pipelines e Artifacts de forma eficiente.
+This skill provides a professional interface for managing **Azure DevOps (AzDO)** resources through the Gemini CLI. It abstracts the complexity of the REST API and JSON Patch operations, allowing you to manage Boards, Repos, Pipelines, and Artifacts efficiently.
 
-## Recursos
+## Features
 
-- **Azure Boards**: CRUD de Work Items e consultas via WIQL.
-- **Azure Repos**: Gestão de Pull Requests e políticas de branch.
-- **Azure Pipelines**: Execução e monitoramento de builds e releases.
-- **Azure Artifacts**: Gestão de feeds e pacotes.
-- **Segurança**: Autenticação robusta via Personal Access Tokens (PAT).
+- **Azure Boards**: Work Items CRUD and queries via WIQL.
+- **Azure Repos**: Pull Request management and branch policies.
+- **Azure Pipelines**: Execution and monitoring of builds and releases.
+- **Azure Artifacts**: Feed and package management.
+- **Security**: Robust authentication via Personal Access Tokens (PAT).
 
-## Como Usar
+## How to Use
 
-Para ativar as diretrizes desta skill em sua sessão atual, utilize:
+To activate the guidelines of this skill in your current session, use:
 
 ```bash
 activate_skill azure-devops
 ```
 
-## Estrutura da Skill
+## Skill Structure
 
-- `SKILL.md`: Documento principal com o workflow e comandos.
-- `references/`: Guias detalhados sobre cada módulo do AzDO.
-- `examples/`: Modelos de queries WIQL e payloads JSON Patch.
+- `SKILL.md`: Main document with workflow and commands.
+- `references/`: Detailed guides on each AzDO module.
+- `examples/`: WIQL query templates and JSON Patch payloads.
 
 ---
 
-Baseado no padrão da skill `python-uv` e `flutter-fvm`.
+Based on the `python-uv` and `flutter-fvm` skill pattern.

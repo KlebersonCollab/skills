@@ -5,7 +5,9 @@ description = "AI Agent Skills Hub Utilities"
 requires-python = ">=3.10"
 dependencies = [
     "pyyaml>=6.0.1",
+    "rich>=15.0.0",
     "streamlit>=1.56.0",
+    "typer>=0.24.2",
 ]
 
 [project.scripts]

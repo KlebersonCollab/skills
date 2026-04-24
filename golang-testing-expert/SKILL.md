@@ -12,94 +12,94 @@ category: development-testing
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 
 ## Goal
 
-Atuar como um especialista em QA e Testes para Go (Golang). Esta skill fornece diretrizes rigorosas para implementar o ciclo TDD, garantir alta cobertura de código, validar performance via benchmarks e aumentar a resiliência via fuzzing, seguindo os padrões mais modernos da linguagem.
+Act as a QA and Testing expert for Go (Golang). This skill provides rigorous guidelines for implementing the TDD cycle, ensuring high code coverage, validating performance via benchmarks, and increasing resilience via fuzzing, following the language's most modern standards.
 
 ---
 
 ## 🛠️ Expert Workflows
 
 ### 1. The TDD Cycle (Red-Green-Refactor)
-Ao desenvolver novas funcionalidades, siga rigorosamente:
-1. **RED**: Escreva um teste que falha primeiro.
-2. **GREEN**: Escreva o código mínimo necessário para passar no teste.
-3. **REFACTOR**: Melhore o código mantendo os testes verdes.
+When developing new features, strictly follow:
+1. **RED**: Write a test that fails first.
+2. **GREEN**: Write the minimum code necessary to pass the test.
+3. **REFACTOR**: Improve the code while keeping tests green.
 
 ### 2. Table-Driven Testing
-Utilize structs anônimas para definir múltiplos casos de teste em uma única função, garantindo cobertura de casos de borda e erros.
+Use anonymous structs to define multiple test cases in a single function, ensuring coverage of edge cases and errors.
 
 ### 3. Integration Testing with Testcontainers
-Para testes que dependem de infraestrutura (Banco de Dados, Redis, etc.), utilize **testcontainers-go** para subir instâncias efêmeras em Docker, garantindo isolamento total.
+For tests that depend on infrastructure (Database, Redis, etc.), use **testcontainers-go** to spin up ephemeral Docker instances, ensuring total isolation.
 
 ### 4. Verification Commands
-Utilize os seguintes comandos para garantir a qualidade:
+Use the following commands to ensure quality:
 
-| Cenário | Comando |
+| Scenario | Command |
 |---------|---------|
-| **Unitários** | `go test ./internal/... -short -count=1` |
-| **Integração** | `go test ./internal/repository/... -count=1 -timeout 120s` |
+| **Unit** | `go test ./internal/... -short -count=1` |
+| **Integration** | `go test ./internal/repository/... -count=1 -timeout 120s` |
 | **Race Detector** | `go test ./... -race -count=1` |
-| **Cobertura** | `go test ./... -coverprofile=coverage.out && go tool cover -func=coverage.out` |
+| **Coverage** | `go test ./... -coverprofile=coverage.out && go tool cover -func=coverage.out` |
 
 ---
 
 ## ⚡ Testing Checklist
-- [ ] O ciclo RED-GREEN-REFACTOR foi seguido?
-- [ ] Foram utilizados Table-Driven Tests para casos de sucesso e erro?
-- [ ] Subtests (`t.Run`) foram utilizados para isolar os casos?
-- [ ] Helpers chamam `t.Helper()` para logs de erro precisos?
-- [ ] Recursos são limpos via `t.Cleanup()` ou `defer`?
-- [ ] A cobertura de código (`go test -cover`) foi verificada?
-- [ ] O race detector (`go test -race`) foi executado?
+- [ ] Was the RED-GREEN-REFACTOR cycle followed?
+- [ ] Were Table-Driven Tests used for success and error cases?
+- [ ] Were subtests (`t.Run`) used to isolate cases?
+- [ ] Do helpers call `t.Helper()` for accurate error logs?
+- [ ] Are resources cleaned up via `t.Cleanup()` or `defer`?
+- [ ] Was code coverage (`go test -cover`) verified?
+- [ ] Was the race detector (`go test -race`) executed?
 
 ---
 
 ## Output Structure
 
-A execução desta skill resulta nos seguintes artefatos e orientações:
+Execution of this skill results in the following artifacts and guidance:
 
-| Artefato | Descrição |
+| Artifact | Description |
 |----------|-----------|
-| **Test Suite** | Arquivos `_test.go` robustos e idiomáticos. |
-| **Mocks & Stubs** | Implementações leves para isolamento de dependências. |
-| **Benchmarks** | Análises de performance e alocação de memória. |
-| **Fuzz Tests** | Testes de mutação para validação de inputs complexos. |
-| **Coverage Report** | Relatórios detalhados de cobertura de código. |
+| **Test Suite** | Robust and idiomatic `_test.go` files. |
+| **Mocks & Stubs** | Lightweight implementations for dependency isolation. |
+| **Benchmarks** | Performance and memory allocation analysis. |
+| **Fuzz Tests** | Mutation tests for complex input validation. |
+| **Coverage Report** | Detailed code coverage reports. |
 
 ---
 
 ## Quality Rules
 
-- **Behavior over Implementation**: Teste o comportamento público, não os detalhes internos.
-- **Fast Feedback**: Mantenha os testes unitários extremamente rápidos.
-- **Meaningful Names**: Use nomes de subtests que expliquem o cenário (ex: "success_valid_user").
-- **No Sleep**: NUNCA use `time.Sleep()` em testes; utilize channels ou sinais de sincronização.
-- **TDD First**: Sempre escreva o teste antes do código de produção.
+- **Behavior over Implementation**: Test public behavior, not internal details.
+- **Fast Feedback**: Keep unit tests extremely fast.
+- **Meaningful Names**: Use subtest names that explain the scenario (e.g., "success_valid_user").
+- **No Sleep**: NEVER use `time.Sleep()` in tests; use channels or synchronization signals.
+- **TDD First**: Always write the test before the production code.
 
 ## Prohibited
 
-- **NUNCA** utilizar `time.Sleep()` para sincronização em testes.
-- **NUNCA** ignorar erros retornados em funções de cleanup.
-- **NUNCA** deixar de usar `t.Helper()` em funções auxiliares de teste.
-- **NUNCA** realizar commits de código de produção sem a suíte de testes correspondente passar.
-- **NUNCA** usar frameworks de mock pesados quando uma interface simples resolve o problema.
+- **NEVER** use `time.Sleep()` for synchronization in tests.
+- **NEVER** ignore errors returned in cleanup functions.
+- **NEVER** fail to use `t.Helper()` in auxiliary test functions.
+- **NEVER** commit production code without the corresponding test suite passing.
+- **NEVER** use heavy mock frameworks when a simple interface solves the problem.
 
 ---
 
 ## 📚 References
 
-Esta skill está organizada em 3 pilares fundamentais:
+This skill is organized into 3 fundamental pillars:
 
 1. [Testing Foundations](references/foundations.md) (TDD, Table-driven, Subtests)
 2. [Advanced Testing](references/advanced.md) (Mocks, Helpers, Golden Files, HTTP)

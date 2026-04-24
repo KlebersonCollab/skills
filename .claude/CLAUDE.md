@@ -4,81 +4,81 @@
 
 # Global Engineering Mandates
 
-Estas instruções são fundamentais e devem ser seguidas por todos os agentes operando neste Hub.
+These instructions are fundamental and must be followed by all agents operating in this Hub.
 
 ## 🔒 0. SESSION BOOTSTRAP (EXECUTE BEFORE ANY RESPONSE)
-Antes de responder ao usuário, o agente **DEVE** realizar este checklist mental e operacional:
-1. **Rehydrate Context**: Ler `.specs/project/STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
-2. **Onboarding Check**: Consultar `onboarding-navigator` para alinhar com a cultura do projeto.
-3. **Task Sizing**: Classificar a complexidade da tarefa (Quick, Small, Medium, Large, Complex) conforme a tabela SDD.
-4. **Skill Matching**: Consultar o **Skill Router** abaixo para selecionar as ferramentas adequadas.
-5. **SDD Verification**: Se a tarefa for de desenvolvimento, validar se `spec.md` e `plan.md` existem.
+Before responding to the user, the agent **MUST** perform this mental and operational checklist:
+1. **Rehydrate Context**: Read `.specs/project/STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+2. **Onboarding Check**: Consult `onboarding-navigator` to align with the project culture.
+3. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
+4. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
+5. **SDD Verification**: If it is a development task, validate if `spec.md` and `plan.md` exist.
 
 ## 📍 SKILL ROUTER
-Utilize este guia para identificar a skill mandatória para cada contexto:
+Use this guide to identify the mandatory skill for each context:
 
-| Se a tarefa envolve... | USE esta skill |
-|------------------------|----------------|
-| Início de Projeto/Feature | `onboarding-navigator` |
-| Especificação e Planejamento | `sdd` (`orchestrator`, `planner`) |
-| Desenvolvimento Python (FastAPI/Django) | `python-uv` + `fastapi-expert` / `django-expert` |
-| Desenvolvimento Frontend (React/Next) | `frontend-expert` |
-| Desenvolvimento Mobile (Flutter) | `flutter-fvm` |
-| Desenvolvimento Backend (Go) | `golang-expert` |
-| Arquitetura e ADRs | `architecture` + `api-architect` |
-| Qualidade e Clean Code | `clean-code-mentor` |
-| Observabilidade e SRE | `observability-expert` |
-| Brainstorming e Ideação | `brainstorming` |
-| Automação e Scaffolding | `scaffolding-expert` |
-| Gestão de Conhecimento | `knowledge-architect` |
-| Sincronização de Estado | `harness-expert` |
-| Gestão de Git e Commits | `git-workflow` |
+| If the task involves... | USE this skill |
+|-------------------------|----------------|
+| Project/Feature Start   | `onboarding-navigator` |
+| Specification & Planning | `sdd` (`orchestrator`, `planner`) |
+| Python Development (FastAPI/Django) | `python-uv` + `fastapi-expert` / `django-expert` |
+| Frontend Development (React/Next) | `frontend-expert` |
+| Mobile Development (Flutter) | `flutter-fvm` |
+| Backend Development (Go) | `golang-expert` |
+| Architecture & ADRs     | `architecture` + `api-architect` |
+| Quality & Clean Code    | `clean-code-mentor` |
+| Observability & SRE     | `observability-expert` |
+| Brainstorming & Ideation | `brainstorming` |
+| Automation & Scaffolding | `scaffolding-expert` |
+| Knowledge Management    | `knowledge-architect` |
+| State Synchronization   | `harness-expert` |
+| Git & Commit Management | `git-workflow` |
 
 ## 1. SDD Framework (Mandatory for Development)
-Qualquer tarefa de construção, desenvolvimento ou refatoração significativa **DEVE** obrigatoriamente utilizar o framework **SDD (Spec-Driven Development)** desde o planejamento inicial.
-- **Workflow & Persistence**: Ao concluir tecnicamente uma tarefa, o agente **DEVE** realizar proativamente a Fase 4 do SDD (Review & Persistence).
-  - **Atualizar Specs**: Marcar tarefas como concluídas no `tasks.md` e atualizar o `plan.md`.
-  - **Relatórios**: Gerar ou atualizar `validation-report.md`.
-  - **Estado**: Manter `STATE.md`, `MEMORY.md` e `LEARNINGS.md` atualizados via **SDD CLI**.
+Any construction, development, or significant refactoring task **MUST** utilize the **SDD (Spec-Driven Development)** framework from the initial planning stage.
+- **Workflow & Persistence**: Upon technically completing a task, the agent **MUST** proactively perform SDD Phase 4 (Review & Persistence).
+  - **Update Specs**: Mark tasks as completed in `tasks.md` and update `plan.md`.
+  - **Reports**: Generate or update `validation-report.md`.
+  - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via **SDD CLI**.
 
 ## 2. Architectural Integrity
-- **Architecture-First**: Decisões críticas devem ser registradas em um **ADR** na pasta `.specs/architecture/`.
-- **Skill Standardization**: Novas skills devem ser validadas obrigatoriamente via `skill-factory-validator`.
-- **Diagram-as-Code**: Desenhos técnicos devem usar **Mermaid** integrados ao Markdown.
+- **Architecture-First**: Critical decisions must be recorded in an **ADR** in the `.specs/architecture/` folder.
+- **Skill Standardization**: New skills must be validated via `skill-factory-validator`.
+- **Diagram-as-Code**: Technical drawings must use **Mermaid** integrated into Markdown.
 
 ## 3. Quality Standards (Clean Code)
-- Seguir rigorosamente **SOLID, YAGNI, DRY e KISS**.
-- Priorizar a simplicidade e a manutenibilidade; evitar sobre-engenharia.
-- Todo código deve passar por validação automatizada (linters/testes).
+- Strictly follow **SOLID, YAGNI, DRY, and KISS**.
+- Prioritize simplicity and maintainability; avoid over-engineering.
+- All code must pass automated validation (linters/tests).
 
 ## 4. Operational Infrastructure (Harness Expert)
-- **State Synchronization**: O agente **DEVE** garantir que o estado operacional (memória de longo prazo) seja sincronizado via `harness-expert` ao final de cada iteração.
-- **Context Efficiency**: Utilizar a compactação de contexto proativamente para evitar saturação de tokens, mantendo o `STATE.md` como a bússola do progresso.
+- **State Synchronization**: The agent **MUST** ensure that the operational state (long-term memory) is synchronized via `harness-expert` at the end of each iteration.
+- **Context Efficiency**: Proactively use context compression to avoid token saturation, keeping `STATE.md` as the progress compass.
 
 ## 5. Knowledge Management (Knowledge Architect)
-- **Local Knowledge Graph (LKG)**: Toda nova feature ou mudança arquitetural significativa **DEVE** ser mapeada no `KNOWLEDGE-MAP.mermaid`.
-- **Relationship Mapping**: Antes de grandes refatorações, o agente **DEVE** utilizar o `knowledge-architect` para analisar o impacto nas entidades e relações existentes.
+- **Local Knowledge Graph (LKG)**: Every new feature or significant architectural change **MUST** be mapped in `KNOWLEDGE-MAP.mermaid`.
+- **Relationship Mapping**: Before major refactors, the agent **MUST** use `knowledge-architect` to analyze the impact on existing entities and relationships.
 
 ## 6. Mandatory Skill Usage
-- **Skill-Driven Execution**: O agente **DEVE** obrigatoriamente identificar e utilizar a skill mais adequada para cada tarefa. A execução de qualquer atividade técnica sem o suporte de uma skill específica ou do framework de automação do Hub é proibida.
+- **Skill-Driven Execution**: The agent **MUST** identify and use the most appropriate skill for each task. Executing any technical activity without the support of a specific skill or the Hub's automation framework is prohibited.
 
 ## 7. Dynamic Scaffolding (Scaffolding Expert)
-- **Zero-Boilerplate Policy**: O agente **DEVE** preferir utilizar as ferramentas de CLI de templates (como `uvx copier` via `scaffolding-expert`) para inicializar a estrutura de projetos e arquivos complexos (como `pyproject.toml`, Dockerfiles). O código boilerplate NUNCA deve ser escrito linha por linha se existir um template de scaffolding disponível.
+- **Zero-Boilerplate Policy**: The agent **SHOULD** prefer using template CLI tools (like `uvx copier` via `scaffolding-expert`) to initialize the structure of projects and complex files (like `pyproject.toml`, Dockerfiles). Boilerplate code should NEVER be written line by line if a scaffolding template is available.
 
 ## 9. Version Control & Git (Git Workflow)
-Todo agente **DEVE** seguir rigorosamente a skill `git-workflow` para qualquer operação de versionamento:
-- **English-Only Commits**: Todas as mensagens de commit devem ser escritas em **Inglês**.
-- **Conventional Commits**: O uso do padrão Conventional Commits é obrigatório.
-- **SDD Linking**: Commits devem ser atômicos e, sempre que possível, referenciar IDs de tarefas do `tasks.md`.
-- **History Integrity**: O uso de `rebase` é mandatório para manter um histórico linear antes de merges na `main`.
+Every agent **MUST** strictly follow the `git-workflow` skill for any versioning operation:
+- **English-Only Commits**: All commit messages must be written in **English**.
+- **Conventional Commits**: Use of the Conventional Commits standard is mandatory.
+- **SDD Linking**: Commits must be atomic and, whenever possible, reference task IDs from `tasks.md`.
+- **History Integrity**: Using `rebase` is mandatory to maintain a linear history before merging into `main`.
 
 ## 🔒 10. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
-Antes de encerrar a sessão ou entregar a tarefa, o agente **DEVE** validar:
-1. **Tasks Update**: O `tasks.md` reflete o estado real da implementação?
-2. **State Sync**: O `STATE.md` foi atualizado com o progresso e próximos passos?
-3. **Learnings Capture**: Novos padrões ou bugs corrigidos foram para o `LEARNINGS.md`?
-4. **Validation**: O código passou por linters/testes e recebeu um Score no `validation-report.md`?
-5. **Knowledge Update**: O `KNOWLEDGE-MAP.mermaid` precisa de atualização?
+Before ending the session or delivering the task, the agent **MUST** validate:
+1. **Tasks Update**: Does `tasks.md` reflect the real state of implementation?
+2. **State Sync**: Has `STATE.md` been updated with progress and next steps?
+3. **Learnings Capture**: Have new patterns or fixed bugs been added to `LEARNINGS.md`?
+4. **Validation**: Has the code passed linters/tests and received a score in `validation-report.md`?
+5. **Knowledge Update**: Does `KNOWLEDGE-MAP.mermaid` need an update?
 
 
 <!-- GLOBAL_MANDATES_END -->

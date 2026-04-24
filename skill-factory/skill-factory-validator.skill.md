@@ -20,7 +20,7 @@ Ensure that every skill in the repository meets the minimum structural and conte
 
 ## Validation Protocol
 
-Execute **all 6 checks** in order. Every check produces a `PASS` or `FAIL` result with evidence.
+Execute **all 7 checks** in order. Every check produces a `PASS` or `FAIL` result with evidence.
 
 ---
 
@@ -94,7 +94,7 @@ Validate naming patterns and version consistency:
 
 ### Check 5: Reference Integrity
 
-Verify that all local files referenced in `SKILL.md` (usually under `## Referências` or `## Referências`) exist:
+Verify that all local files referenced in `SKILL.md` (usually under `## References`) exist:
 
 | Reference | Status |
 |-----------|--------|
@@ -109,7 +109,7 @@ Verify that all local files referenced in `SKILL.md` (usually under `## Referên
 
 Verify the `README.md` at the repository root:
 
-1. The skill appears in the **Skills Disponíveis** table with the correct version.
+1. The skill appears in the **Available Skills** table with the correct version.
 2. The badge count matches the actual number of skill directories.
 
 **Evidence**: Quote the relevant table row and version.
@@ -169,7 +169,7 @@ Verify that the new or updated skill is registered in the **Onboarding Navigator
 
 ## Verdict Logic
 
-- **COMPLIANT**: All 6 checks pass.
+- **COMPLIANT**: All 7 checks pass.
 - **NON-COMPLIANT**: Any check fails. List all violations.
 
 ## Quality Rules

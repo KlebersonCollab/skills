@@ -1,6 +1,6 @@
 """
-Módulos compartilhados para scripts do Hub de Skills.
-Centraliza lógica de navegação, leitura segura de arquivos e extração de metadados.
+Shared modules for Skills Hub scripts.
+Centralizes navigation logic, safe file reading, and metadata extraction.
 """
 
 import logging
@@ -12,13 +12,13 @@ from typing import List, Set, Optional, Dict, Any
 
 import yaml
 
-# Configuração de logging padrão
+# Standard logging configuration
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
-# Diretórios que nunca devem ser tratados como skills
+# Directories that should never be treated as skills
 DEFAULT_EXCLUDES: Set[str] = {
     ".git",
     ".github",
@@ -40,15 +40,15 @@ def get_all_skills(
     root: Path = Path("."), excludes: Optional[Set[str]] = None
 ) -> List[Path]:
     """
-    Retorna uma lista de Paths para diretórios que contêm uma skill válida.
-    Uma skill válida é identificada pela presença de um arquivo SKILL.md.
+    Returns a list of Paths to directories containing a valid skill.
+    A valid skill is identified by the presence of a SKILL.md file.
     """
     excludes = excludes or DEFAULT_EXCLUDES
-    # Garante que root é um objeto Path
+    # Ensure root is a Path object
     root_path = Path(root)
 
     if not root_path.exists():
-        logger.warning(f"Diretório raiz não encontrado: {root_path}")
+        logger.warning(f"Root directory not found: {root_path}")
         return []
 
     skills = []
@@ -58,32 +58,32 @@ def get_all_skills(
                 if (d / "SKILL.md").exists():
                     skills.append(d)
     except PermissionError as e:
-        logger.error(f"Permissão negada ao listar diretórios em {root_path}: {e}")
+        logger.error(f"Permission denied listing directories in {root_path}: {e}")
     except Exception as e:
-        logger.error(f"Erro ao listar skills em {root_path}: {e}")
+        logger.error(f"Error listing skills in {root_path}: {e}")
 
     return sorted(skills, key=lambda x: x.name)
 
 
 def safe_read_file(path: Path, encoding: str = "utf-8") -> Optional[str]:
-    """Lê o conteúdo de um arquivo com tratamento de exceções."""
+    """Reads file content with exception handling."""
     try:
         return path.read_text(encoding=encoding)
     except FileNotFoundError:
-        logger.error(f"Arquivo não encontrado: {path}")
+        logger.error(f"File not found: {path}")
         return None
     except PermissionError:
-        logger.error(f"Permissão negada ao ler arquivo: {path}")
+        logger.error(f"Permission denied reading file: {path}")
         return None
     except Exception as e:
-        logger.error(f"Erro inesperado ao ler arquivo {path}: {e}")
+        logger.error(f"Unexpected error reading file {path}: {e}")
         return None
 
 
 def get_skill_metadata(skill_path: Path) -> Dict[str, Any]:
     """
-    Extrai metadados do frontmatter YAML do arquivo SKILL.md.
-    Retorna um dicionário vazio se falhar.
+    Extracts metadata from the YAML frontmatter of the SKILL.md file.
+    Returns an empty dictionary if it fails.
     """
     skill_md = skill_path / "SKILL.md"
     content = safe_read_file(skill_md)
@@ -91,25 +91,25 @@ def get_skill_metadata(skill_path: Path) -> Dict[str, Any]:
         return {}
 
     try:
-        # Busca o bloco entre ---
+        # Search for the block between ---
         fm_match = re.search(r"^---\n(.*?)\n---", content, re.DOTALL)
         if fm_match:
             data = yaml.safe_load(fm_match.group(1))
             return data if isinstance(data, dict) else {}
     except Exception as e:
-        logger.error(f"Erro ao parsear YAML em {skill_md}: {e}")
+        logger.error(f"Error parsing YAML in {skill_md}: {e}")
 
     return {}
 
 
 def safe_copytree(src: Path, dst: Path) -> bool:
     """
-    Copia uma árvore de diretórios de forma atômica/segura.
-    Usa um diretório temporário para garantir que falhas no meio da cópia
-    não deixem o destino em estado inconsistente.
+    Copies a directory tree atomically/safely.
+    Uses a temporary directory to ensure that failures mid-copy
+    do not leave the destination in an inconsistent state.
     """
     if not src.exists():
-        logger.error(f"Fonte não encontrada: {src}")
+        logger.error(f"Source not found: {src}")
         return False
 
     try:
@@ -117,16 +117,16 @@ def safe_copytree(src: Path, dst: Path) -> bool:
             tmp_dst = Path(tmpdir) / src.name
             shutil.copytree(src, tmp_dst)
 
-            # Se o destino já existe, remove de forma segura
+            # If destination already exists, remove it safely
             if dst.exists():
                 shutil.rmtree(dst)
 
-            # Garante que o diretório pai do destino existe
+            # Ensure the destination's parent directory exists
             dst.parent.mkdir(parents=True, exist_ok=True)
 
-            # Move o diretório temporário para o destino final
+            # Move the temporary directory to the final destination
             shutil.move(str(tmp_dst), str(dst))
             return True
     except Exception as e:
-        logger.error(f"Falha na cópia segura de {src} para {dst}: {e}")
+        logger.error(f"Failed safe copy from {src} to {dst}: {e}")
         return False

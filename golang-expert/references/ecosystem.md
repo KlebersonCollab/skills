@@ -1,60 +1,60 @@
-# Pilar 5: Ecosystem & Samber
+# Pillar 5: Ecosystem & Samber
 
-> O ecossistema Go evoluiu rapidamente com a introdução de Generics e logging estruturado nativo. Conhecer as ferramentas certas diferencia um desenvolvedor de um Expert.
-
----
-
-## 🚀 Modernizing Go (Modernização)
-
-Go 1.18 (Generics) e 1.21 (slog) mudaram as regras do jogo:
-- **Generics**: Utilize tipos genéricos para criar estruturas de dados e funções reutilizáveis sem sacrificar a segurança de tipos (ex: bibliotecas de utilitários).
-- **Native Structured Logging**: Substitua `logrus` ou `zap` pelo pacote nativo `slog` sempre que possível para reduzir dependências externas.
-- **errors.Join**: Utilize a nova funcionalidade de agregação de múltiplos erros do Go 1.20+.
+> The Go ecosystem has evolved rapidly with the introduction of Generics and native structured logging. Knowing the right tools differentiates a developer from an Expert.
 
 ---
 
-## 🧩 Samber Ecosystem (Produtividade Expert)
+## 🚀 Modernizing Go (Modernization)
 
-A suíte de bibliotecas `samber` é referência em Go moderno por utilizar Generics para resolver problemas comuns com elegância:
+Go 1.18 (Generics) and 1.21 (slog) changed the rules of the game:
+- **Generics**: Use generic types to create reusable data structures and functions without sacrificing type safety (e.g., utility libraries).
+- **Native Structured Logging**: Replace `logrus` or `zap` with the native `slog` package whenever possible to reduce external dependencies.
+- **errors.Join**: Use the new multi-error aggregation functionality from Go 1.20+.
 
-### 1. samber/lo (Lodash para Go)
-O canivete suíço para manipulação de coleções:
-- **Map / Filter / Reduce**: Transforme slices e maps sem loops verbosos.
-- **Find / Uniq / GroupBy**: Operações complexas de busca e agrupamento em uma única linha.
+---
 
-### 2. samber/mo (Monads & Funcional)
-Traga padrões de programação funcional para Go de forma idiomática:
-- **Option[T]**: Lide com valores nulos/ausentes sem `nil` checks constantes.
-- **Result[T]**: Encapsule resultados e erros em uma única estrutura.
+## 🧩 Samber Ecosystem (Expert Productivity)
+
+The `samber` suite of libraries is a reference in modern Go for using Generics to solve common problems elegantly:
+
+### 1. samber/lo (Lodash for Go)
+The Swiss Army knife for collection manipulation:
+- **Map / Filter / Reduce**: Transform slices and maps without verbose loops.
+- **Find / Uniq / GroupBy**: Complex search and grouping operations in a single line.
+
+### 2. samber/mo (Monads & Functional)
+Bring functional programming patterns to Go idiomatically:
+- **Option[T]**: Handle null/missing values without constant `nil` checks.
+- **Result[T]**: Encapsulate results and errors in a single structure.
 
 ### 3. samber/do (Dependency Injection)
-Injeção de dependência simples e baseada em tipos:
-- **Service Discovery**: Registre e recupere dependências sem reflexão pesada ou configurações globais complexas.
-- **Lifecycle Management**: Gerencie o ciclo de vida (inicialização/finalização) de seus serviços.
+Simple and type-based dependency injection:
+- **Service Discovery**: Register and retrieve dependencies without heavy reflection or complex global configurations.
+- **Lifecycle Management**: Manage the lifecycle (initialization/shutdown) of your services.
 
-### 4. samber/oops (Erro Rico)
-Tratamento de erros de nível industrial:
-- **Stack Traces**: Obtenha o rastro exato de onde o erro ocorreu.
-- **Contextual Data**: Anexe metadados (User ID, Request ID) aos erros automaticamente.
-
----
-
-## 📚 Outras Bibliotecas Populares
-
-- **Echo / Chi / Gin**: Frameworks e roteadores HTTP para todos os gostos e necessidades.
-- **sqlc**: Compila SQL puro em código Go tipado — a melhor forma de interagir com bancos SQL hoje.
-- **GoMock / Testify**: Essenciais para garantir a testabilidade de sistemas complexos.
+### 4. samber/oops (Rich Errors)
+Industrial-grade error handling:
+- **Stack Traces**: Get the exact trace of where the error occurred.
+- **Contextual Data**: Automatically attach metadata (User ID, Request ID) to errors.
 
 ---
 
-## 📈 Staying Updated (Evolução Contínua)
+## 📚 Other Popular Libraries
 
-O ecossistema Go não para. Um Expert deve acompanhar:
-- **Go Blog**: O canal oficial para anúncios de novas versões e propostas de mudanças (Gopher proposals).
-- **Go Weekly**: Newsletter semanal com os melhores artigos e bibliotecas da comunidade.
-- **Github samber/cc-skills-golang**: O repositório base que inspirou esta skill, sempre atualizado com novos padrões.
+- **Echo / Chi / Gin**: HTTP frameworks and routers for all tastes and needs.
+- **sqlc**: Compiles pure SQL into typed Go code — the best way to interact with SQL databases today.
+- **GoMock / Testify**: Essential for ensuring the testability of complex systems.
 
 ---
 
-## 💡 Dica Expert
-Não tente reinventar a roda. Se precisar de uma função utilitária para slices, verifique primeiro o `samber/lo`. Se precisar de tratamento de erros robusto, vá de `samber/oops`. A produtividade vem de saber o que usar e quando usar.
+## 📈 Staying Updated (Continuous Evolution)
+
+The Go ecosystem never stops. An Expert must follow:
+- **Go Blog**: The official channel for announcements of new versions and change proposals (Gopher proposals).
+- **Go Weekly**: Weekly newsletter with the best articles and libraries from the community.
+- **Github samber/cc-skills-golang**: The base repository that inspired this skill, always updated with new patterns.
+
+---
+
+## 💡 Expert Tip
+Don't try to reinvent the wheel. If you need a utility function for slices, check `samber/lo` first. If you need robust error handling, use `samber/oops`. Productivity comes from knowing what to use and when to use it.

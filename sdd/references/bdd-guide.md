@@ -1,6 +1,6 @@
 # BDD Guide: Writing Effective Scenarios
 
-Behavior-Driven Development (BDD) focus on the behavior of the software from the perspective of the user. Effective scenarios provide clarity, documentation, and a basis for automated testing.
+Behavior-Driven Development (BDD) focuses on the behavior of the software from the perspective of the user. Effective scenarios provide clarity, documentation, and a basis for automated testing.
 
 ## The Gherkin Syntax: Given / When / Then
 
@@ -38,3 +38,7 @@ Describes the expected result or change in state after the action.
 - **When** the user submits valid credentials
 - **Then** the user should be redirected to the dashboard
 - **And** a welcome notification should be displayed
+
+## Integration with SDD
+- Include BDD scenarios in your `spec.md` for Medium+ complexity tasks.
+- Use these scenarios to drive your test implementation and validation report.

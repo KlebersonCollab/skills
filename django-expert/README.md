@@ -1,19 +1,19 @@
 # Django Expert
 
-Skill para desenvolvimento profissional com o framework Django, focando em arquitetura limpa e alta performance.
+Skill for professional development with the Django framework, focusing on clean architecture and high performance.
 
-## O que esta skill faz?
+## What does this skill do?
 
-- Implementa padrões avançados de **ORM**.
-- Promove o uso de **HTMX** para interfaces modernas.
-- Garante segurança via checklists de deploy rigorosos.
-- Integra-se ao ecossistema **Python UV**.
+- Implements advanced **ORM** patterns.
+- Promotes the use of **HTMX** for modern interfaces.
+- Ensures security via rigorous deploy checklists.
+- Integrates into the **Python UV** ecosystem.
 
-## Referências Inclusas
+## Included References
 
-- **ORM Performance**: Guia para evitar N+1 e otimizar queries.
-- **HTMX Guide**: Padrões de reatividade server-side.
-- **Testing**: Setup com Pytest e Factories.
+- **ORM Performance**: Guide to avoiding N+1 and optimizing queries.
+- **HTMX Guide**: Server-side reactivity patterns.
+- **Testing**: Setup with Pytest and Factories.
 
 ---
-*Parte do KlebersonCollab Skills Hub.*
+*Part of the KlebersonCollab Skills Hub.*

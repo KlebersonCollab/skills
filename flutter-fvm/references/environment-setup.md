@@ -1,10 +1,10 @@
-# Configuração do Ambiente (FVM)
+# Environment Setup (FVM)
 
-Este guia detalha como configurar o ambiente de desenvolvimento Flutter utilizando o FVM.
+This guide details how to set up the Flutter development environment using FVM.
 
-## 1. Instalação do FVM
+## 1. FVM Installation
 
-O FVM pode ser instalado de várias formas:
+FVM can be installed in several ways:
 
 ### macOS / Linux
 ```bash
@@ -15,71 +15,71 @@ brew install fvm
 ### Windows
 ```powershell
 choco install fvm
-# Ou via Pub
+# Or via Pub
 dart pub global activate fvm
 ```
 
-## 2. Configurando o PATH
+## 2. Configuring the PATH
 
-Certifique-se de que o diretório de binários do Dart/Pub está no seu PATH se você instalou via Pub:
+Ensure the Dart/Pub binaries directory is in your PATH if you installed via Pub:
 
 ```bash
 # macOS/Linux (zsh)
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 ```
 
-## 3. Gerenciando Versões do SDK
+## 3. Managing SDK Versions
 
-### Instalar uma versão específica
+### Install a specific version
 ```bash
 fvm install 3.19.0
 ```
 
-### Instalar a versão stable
+### Install the stable version
 ```bash
 fvm install stable
 ```
 
-### Listar versões instaladas
+### List installed versions
 ```bash
 fvm list
 ```
 
-## 4. Fixando a Versão no Projeto
+## 4. Pinning the Version to the Project
 
-No diretório raiz do seu projeto Flutter, execute:
+In the root directory of your Flutter project, run:
 
 ```bash
 fvm use stable
 ```
 
-Isso criará uma pasta `.fvm` com o arquivo `fvm_config.json` e um link simbólico `flutter_sdk` apontando para a versão selecionada.
+This will create a `.fvm` folder with the `fvm_config.json` file and a `flutter_sdk` symbolic link pointing to the selected version.
 
-## 5. Verificação de Saúde (FVM Doctor)
+## 5. Health Check (FVM Doctor)
 
-Execute o comando abaixo para verificar se tudo está configurado corretamente para o FVM:
+Run the command below to check if everything is configured correctly for FVM:
 
 ```bash
 fvm doctor
 ```
 
-Para verificar o estado do Flutter via FVM:
+To check the Flutter state via FVM:
 
 ```bash
 fvm flutter doctor
 ```
 
-## 6. .gitignore Recomendado
+## 6. Recommended .gitignore
 
-Adicione o seguinte ao seu `.gitignore` para não versionar o cache local do SDK:
+Add the following to your `.gitignore` so as not to version the local SDK cache:
 
 ```gitignore
 .fvm/flutter_sdk
 ```
 
-Mas **não** adicione o `fvm_config.json`, ele deve ser versionado para que o time use a mesma versão.
-## Checklist de Ambiente
-- [ ] O arquivo `fvm_config.json` está versionado?
-- [ ] A pasta `.fvm/flutter_sdk` está no `.gitignore`?
-- [ ] Rodou `fvm flutter doctor` e todas as dependências estão OK?
-- [ ] A versão do Flutter no projeto é a mesma do `fvm list`?
+But **do not** add `fvm_config.json`; it must be versioned so the team uses the same version.
+## Environment Checklist
+- [ ] Is the `fvm_config.json` file versioned?
+- [ ] Is the `.fvm/flutter_sdk` folder in `.gitignore`?
+- [ ] Did you run `fvm flutter doctor` and are all dependencies OK?
+- [ ] Is the Flutter version in the project the same as in `fvm list`?

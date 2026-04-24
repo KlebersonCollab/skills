@@ -1,10 +1,10 @@
 # Django + HTMX Patterns
 
-O HTMX permite criar interfaces ricas usando apenas HTML, mantendo o estado no servidor.
+HTMX allows creating rich interfaces using only HTML, keeping the state on the server.
 
-## 1. Retornando Fragmentos (Partials)
+## 1. Returning Fragments (Partials)
 
-No Django, você deve configurar suas views para detectar requisições HTMX e retornar apenas o pedaço do HTML necessário.
+In Django, you must configure your views to detect HTMX requests and return only the necessary HTML fragment.
 
 ```python
 def item_list(request):
@@ -14,10 +14,10 @@ def item_list(request):
     return render(request, 'items.html', {'items': items})
 ```
 
-## 2. Padrões de Interação Common
+## 2. Common Interaction Patterns
 
 ### Inline Validation
-Validar campos de formulário enquanto o usuário digita.
+Validate form fields while the user types.
 ```html
 <input name="email" hx-post="/validate-email/" hx-trigger="blur">
 ```
@@ -29,7 +29,7 @@ Validar campos de formulário enquanto o usuário digita.
 </div>
 ```
 
-## 3. Middleware Úteis
-Recomenda-se o uso do `django-htmx` para facilitar a manipulação de headers.
-- `request.htmx`: Verifica se a request veio do HTMX.
-- `HX-Trigger`: Disparar eventos no frontend a partir do backend.
+## 3. Useful Middleware
+It is recommended to use `django-htmx` to facilitate header manipulation.
+- `request.htmx`: Checks if the request came from HTMX.
+- `HX-Trigger`: Trigger events on the frontend from the backend.

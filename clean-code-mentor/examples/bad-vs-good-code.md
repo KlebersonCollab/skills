@@ -1,12 +1,12 @@
 # Examples: Bad vs. Good Code Design
 
-Comparações práticas de aplicação de princípios Clean Code e SOLID.
+Practical comparisons of Clean Code and SOLID principles application.
 
 ---
 
 ## 1. Single Responsibility Principle (SRP)
 
-### ❌ Ruim (Classe God)
+### ❌ Bad (God Class)
 ```dart
 class UserProfile {
   void saveToDatabase() { /* ... */ }
@@ -16,7 +16,7 @@ class UserProfile {
 }
 ```
 
-### ✅ Bom (Especialização)
+### ✅ Good (Specialization)
 ```dart
 class UserRepository { void save(User user) { /* ... */ } }
 class AvatarService { void upload(File file) { /* ... */ } }
@@ -26,33 +26,33 @@ class ProfileScreen extends StatelessWidget { /* UI only */ }
 
 ---
 
-## 2. DRY vs. Duplicação de Conhecimento
+## 2. DRY vs. Knowledge Duplication
 
-### ❌ Ruim (Lógica Duplicada)
+### ❌ Bad (Duplicated Logic)
 ```python
-# em auth.py
-if "@" not in email: raise Error("Email inválido")
+# in auth.py
+if "@" not in email: raise Error("Invalid email")
 
-# em newsletter.py
-if "@" not in email: raise Error("Email inválido")
+# in newsletter.py
+if "@" not in email: raise Error("Invalid email")
 ```
 
-### ✅ Bom (Centralização)
+### ✅ Good (Centralization)
 ```python
-# em utils/validators.py
+# in utils/validators.py
 def validate_email(email):
-    if "@" not in email: raise Error("Email inválido")
+    if "@" not in email: raise Error("Invalid email")
 
-# Reuso
+# Reuse
 from utils.validators import validate_email
 validate_email(email)
 ```
 
 ---
 
-## 3. KISS & YAGNI (Abstração Excessiva)
+## 3. KISS & YAGNI (Excessive Abstraction)
 
-### ❌ Ruim (Over-engineering)
+### ❌ Bad (Over-engineering)
 ```typescript
 interface IStringConcatenator {
   concatenate(a: string, b: string): string;
@@ -62,12 +62,12 @@ class StandardConcatenator implements IStringConcatenator {
   concatenate(a: string, b: string): string { return a + b; }
 }
 
-// Uso:
+// Usage:
 const concat = new StandardConcatenator();
 console.log(concat.concatenate("Hello", "World"));
 ```
 
-### ✅ Bom (Direto ao ponto)
+### ✅ Good (Straight to the point)
 ```typescript
 const fullName = `${firstName} ${lastName}`;
 ```
@@ -76,10 +76,10 @@ const fullName = `${firstName} ${lastName}`;
 
 ## 4. Dependency Inversion Principle (DIP)
 
-### ❌ Ruim (Dependência Concreta)
+### ❌ Bad (Concrete Dependency)
 ```dart
 class OrderService {
-  final SqlDatabase db = SqlDatabase(); // Acoplamento forte
+  final SqlDatabase db = SqlDatabase(); // Tight coupling
   
   void saveOrder(Order order) {
     db.insert(order);
@@ -87,13 +87,13 @@ class OrderService {
 }
 ```
 
-### ✅ Bom (Injeção de Abstração)
+### ✅ Good (Abstraction Injection)
 ```dart
 abstract class IDatabase { void insert(dynamic data); }
 
 class OrderService {
   final IDatabase db;
-  OrderService(this.db); // Recebe qualquer banco que implemente IDatabase
+  OrderService(this.db); // Receives any database that implements IDatabase
   
   void saveOrder(Order order) {
     db.insert(order);

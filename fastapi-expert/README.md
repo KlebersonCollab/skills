@@ -1,24 +1,24 @@
 # FastAPI Expert
 
-Skill especializada na construção de APIs modernas, robustas e de alta performance com FastAPI.
+Skill specialized in building modern, robust, and high-performance APIs with FastAPI.
 
-## O que esta skill faz?
+## What does this skill do?
 
-- Implementa padrões avançados de **Injeção de Dependência**.
-- Garante conformidade com **Pydantic V2**.
-- Otimiza o uso de **Async vs Sync** para performance máxima.
-- Integra-se nativamente com o **Python UV**.
+- Implements advanced **Dependency Injection** patterns.
+- Ensures compliance with **Pydantic V2**.
+- Optimizes **Async vs Sync** usage for maximum performance.
+- Integrates natively with **Python UV**.
 
-## Como usar
+## How to use
 
-1. **Ativação**: Mencione `@fastapi-expert` para iniciar o design de uma API.
-2. **Contexto**: A skill utiliza o `pyproject.toml` (via UV) como fonte de verdade para dependências.
+1. **Activation**: Mention `@fastapi-expert` to start an API design.
+2. **Context**: The skill uses `pyproject.toml` (via UV) as the source of truth for dependencies.
 
-## Padrões Principais
+## Key Patterns
 
-- **Annotated Everywhere**: Tipagem limpa e reutilizável.
-- **Service Layer**: Separação total entre transporte (FastAPI) e lógica de negócio.
-- **Automatic Docs**: Uso extensivo de metadados para Swagger/Redoc impecáveis.
+- **Annotated Everywhere**: Clean and reusable typing.
+- **Service Layer**: Total separation between transport (FastAPI) and business logic.
+- **Automatic Docs**: Extensive use of metadata for impeccable Swagger/Redoc.
 
 ---
-*Parte do KlebersonCollab Skills Hub.*
+*Part of the KlebersonCollab Skills Hub.*

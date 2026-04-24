@@ -1,52 +1,52 @@
 ---
 name: python-uv
 version: 3.0.0
-description: "Skill de nível EXPERT para desenvolvimento Python profissional com UV. Engloba gerenciamento de ambientes, padrões idiomáticos (Clean Code) e testes avançados com Pytest."
+description: "EXPERT level skill for professional Python development with UV. Encompasses environment management, idiomatic patterns (Clean Code), and advanced testing with Pytest."
 category: development-workflow
 ---
 
-# Python com UV
+# Python with UV
 
-> Gerenciador de pacotes e projetos Python extremamente rápido, escrito em Rust. Substitui pip, pipx, poetry, pyenv e mais — com performance 10-100x superior.
+> Extremely fast Python package and project manager, written in Rust. Replaces pip, pipx, poetry, pyenv, and more — with 10-100x superior performance.
 
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
+1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 ## Goal
 
-Capacitar o agente a desenvolver aplicações Python de nível profissional, utilizando o **UV** para performance extrema e aplicando padrões de excelência em codificação (Idioms/Patterns) e rigor técnico em testes (TDD/Pytest). A skill unifica o gerenciamento de pacotes, padrões idiomáticos e qualidade de software em um workflow único e determinístico.
+Empower the agent to develop professional-level Python applications, using **UV** for extreme performance and applying excellence standards in coding (Idioms/Patterns) and technical rigor in testing (TDD/Pytest). The skill unifies package management, idiomatic patterns, and software quality into a single, deterministic workflow.
 
 ---
 
 ## Version Awareness
 
-**Versão Recomendada: UV 0.9.7+**
+**Recommended Version: UV 0.9.7+**
 
-Antes de começar, verifique a versão instalada:
+Before starting, check the installed version:
 
 ```bash
 uv --version
 ```
 
-**Mudanças por versão:**
+**Changes by version:**
 
-| Versão | Mudança |
+| Version | Change |
 |--------|---------|
-| **0.9.6+** | Python 3.14 é o default (antes era 3.13) |
-| **0.9.6+** | Free-threaded Python 3.14+ sem opt-in explícito |
-| **0.9.6+** | `uv build --clear` para limpar artefatos de build |
-| **0.9.7+** | Updates de segurança para handling de tar/ZIP |
+| **0.9.6+** | Python 3.14 is the default (previously 3.13) |
+| **0.9.6+** | Free-threaded Python 3.14+ without explicit opt-in |
+| **0.9.6+** | `uv build --clear` to clear build artifacts |
+| **0.9.7+** | Security updates for tar/ZIP handling |
 
-Se a versão for anterior a 0.9.0, atualize:
+If the version is earlier than 0.9.0, update:
 
 ```bash
 # macOS / Linux
@@ -59,94 +59,94 @@ brew install uv
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-Veja [Recent Changes](references/python-environment.md) para detalhes de migração.
+See [Recent Changes](references/python-environment.md) for migration details.
 
 ## When to Use This Skill
 
 Use this skill when:
-- Criando ou inicializando um projeto Python novo
-- Gerenciando dependências com `pyproject.toml`
-- Instalando ou gerenciando versões de Python
-- Configurando ambientes virtuais
-- Instalando ferramentas CLI de desenvolvimento (black, ruff, mypy, pytest)
-- Executando scripts Python com dependências inline (PEP 723)
-- Configurando CI/CD com UV (GitHub Actions)
-- Decidindo entre `uv tool install` vs `uvx`
-- Migrando de pip, pipx ou poetry para UV
-- Resolvendo erros relacionados ao UV
+- Creating or initializing a new Python project
+- Managing dependencies with `pyproject.toml`
+- Installing or managing Python versions
+- Configuring virtual environments
+- Installing development CLI tools (black, ruff, mypy, pytest)
+- Executing Python scripts with inline dependencies (PEP 723)
+- Configuring CI/CD with UV (GitHub Actions)
+- Deciding between `uv tool install` vs `uvx`
+- Migrating from pip, pipx, or poetry to UV
+- Resolving errors related to UV
 
 Skip this skill when:
-- O projeto usa Python 2.x (UV não suporta)
-- O projeto NÃO usa Python como linguagem
-- Apenas precisa de documentação básica de pip (sem UV)
+- The project uses Python 2.x (UV does not support it)
+- The project does NOT use Python as a language
+- You only need basic pip documentation (without UV)
 
 ---
 
-## Workflow (4 Fases)
+## Workflow (4 Phases)
 
-### Fase 1: ENVIRONMENT — Configuração e Alinhamento
-1.  **Verificar Versão**: Executar `uv --version` para garantir compatibilidade (Recomendado 0.9.7+).
-2.  **Definir Versão Python**: Se não existir `.python-version`, use `uv python pin 3.12` (ou versão desejada).
-3.  **Ambiente Isolado**: Garantir que o `.venv/` existe ou será criado via `uv venv`.
+### Phase 1: ENVIRONMENT — Configuration and Alignment
+1.  **Check Version**: Run `uv --version` to ensure compatibility (Recommended 0.9.7+).
+2.  **Define Python Version**: If `.python-version` does not exist, use `uv python pin 3.12` (or desired version).
+3.  **Isolated Environment**: Ensure `.venv/` exists or will be created via `uv venv`.
 
-### Fase 2: PROJECT — Inicialização e Estrutura
-1.  **Scaffolding**: Para novos projetos, use `uv init`. Para migrações, use `uv init --bare`.
-2.  **Declarar Dependências**: Adicionar pacotes via `uv add` (produção) e `uv add --dev` (ferramentas).
-3.  **Sync Global**: Executar `uv sync` para criar o `uv.lock` e sincronizar o ambiente virtual.
+### Phase 2: PROJECT — Initialization and Structure
+1.  **Scaffolding**: For new projects, use `uv init`. For migrations, use `uv init --bare`.
+2.  **Declare Dependencies**: Add packages via `uv add` (production) and `uv add --dev` (tools).
+3.  **Global Sync**: Run `uv sync` to create `uv.lock` and synchronize the virtual environment.
 
-### Fase 3: DEVELOP — Qualidade e Execução
-1.  **Configurar Tooling**: Definir regras no `pyproject.toml` para Ruff e Mypy.
-2.  **Execução Segura**: Sempre utilize `uv run <comando>` para garantir que o código rode no ambiente correto.
-3.  **Qualidade Incremental**: Rodar `uv run ruff check .` e `uv run pytest` periodicamente.
+### Phase 3: DEVELOP — Quality and Execution
+1.  **Configure Tooling**: Define rules in `pyproject.toml` for Ruff and Mypy.
+2.  **Safe Execution**: Always use `uv run <command>` to ensure code runs in the correct environment.
+3.  **Incremental Quality**: Run `uv run ruff check .` and `uv run pytest` periodically.
 
-### Fase 4: DEPLOY — Build e Distribuição
-1.  **Lock Reproduzível**: Garantir que o `uv.lock` está atualizado e no controle de versão.
-2.  **Compilação**: Usar `uv build --clear` para gerar distribuições limpas (sdist/wheel).
-3.  **Publicação**: Executar `uv publish` para distribuir no PyPI ou repositório privado.
+### Phase 4: DEPLOY — Build and Distribution
+1.  **Reproducible Lock**: Ensure `uv.lock` is updated and under version control.
+2.  **Compilation**: Use `uv build --clear` to generate clean distributions (sdist/wheel).
+3.  **Publication**: Run `uv publish` to distribute to PyPI or a private repository.
 
 ---
 
 ## UV Commands Overview
 
-| Comando | Propósito | Exemplo |
+| Command | Purpose | Example |
 |---------|-----------|---------|
-| `uv init` | Criar novo projeto | `uv init meu-projeto` |
-| `uv add` | Adicionar dependência | `uv add requests pydantic` |
-| `uv remove` | Remover dependência | `uv remove requests` |
-| `uv sync` | Sincronizar ambiente | `uv sync --dev` |
-| `uv lock` | Gerar/atualizar lockfile | `uv lock` |
-| `uv run` | Executar no ambiente virtual | `uv run pytest` |
-| `uv pip install` | Instalar pacotes (modo pip) | `uv pip install requests` |
-| `uv tool install` | Instalar CLI tool global isolada | `uv tool install black` |
-| `uvx` | Executar pacote em ambiente temporário | `uvx ruff check .` |
-| `uv venv` | Criar ambiente virtual | `uv venv .venv` |
-| `uv python install` | Instalar versão Python | `uv python install 3.12` |
-| `uv python pin` | Fixar versão Python no projeto | `uv python pin 3.12` |
-| `uv build` | Construir distribuição | `uv build --clear` |
-| `uv publish` | Publicar no PyPI | `uv publish` |
+| `uv init` | Create new project | `uv init my-project` |
+| `uv add` | Add dependency | `uv add requests pydantic` |
+| `uv remove` | Remove dependency | `uv remove requests` |
+| `uv sync` | Synchronize environment | `uv sync --dev` |
+| `uv lock` | Generate/update lockfile | `uv lock` |
+| `uv run` | Execute in virtual environment | `uv run pytest` |
+| `uv pip install` | Install packages (pip mode) | `uv pip install requests` |
+| `uv tool install` | Install isolated global CLI tool | `uv tool install black` |
+| `uvx` | Execute package in temporary environment | `uvx ruff check .` |
+| `uv venv` | Create virtual environment | `uv venv .venv` |
+| `uv python install` | Install Python version | `uv python install 3.12` |
+| `uv python pin` | Pin Python version in the project | `uv python pin 3.12` |
+| `uv build` | Build distribution | `uv build --clear` |
+| `uv publish` | Publish to PyPI | `uv publish` |
 
 ---
 
 ## Tool vs UVX Decision Tree
 
 ```text
-Precisa executar um pacote Python?
+Need to execute a Python package?
 │
-├─ Usa diariamente/frequentemente?
-│  └─ SIM → `uv tool install pacote`
-│     Exemplos: black, ruff, mypy, pytest
+├─ Use it daily/frequently?
+│  └─ YES → `uv tool install package`
+│     Examples: black, ruff, mypy, pytest
 │
-├─ Execução temporária / teste?
-│  └─ SIM → `uvx pacote`
-│     Exemplos: testar nova ferramenta, comparar versões
+├─ Temporary execution / testing?
+│  └─ YES → `uvx package`
+│     Examples: test a new tool, compare versions
 │
 ├─ MCP server?
-│  └─ SIM → `uvx pacote` ou `uvx --from path script.py`
-│     Exemplos: mcp-server-sqlite, custom MCP servers
+│  └─ YES → `uvx package` or `uvx --from path script.py`
+│     Examples: mcp-server-sqlite, custom MCP servers
 │
-└─ Script local de projeto?
-   └─ SIM → `uvx --from . script.py`
-      Exemplos: scripts project-specific
+└─ Project local script?
+   └─ YES → `uvx --from . script.py`
+      Examples: project-specific scripts
 ```
 
 ---
@@ -154,51 +154,51 @@ Precisa executar um pacote Python?
 ## Project Initialization
 
 ```bash
-# Criar novo projeto
-uv init meu-projeto
-cd meu-projeto
+# Create new project
+uv init my-project
+cd my-project
 
-# Estrutura gerada:
-# meu-projeto/
+# Generated structure:
+# my-project/
 # ├── .python-version
 # ├── pyproject.toml
 # ├── README.md
 # └── src/
-#     └── meu_projeto/
+#     └── my_project/
 #         └── __init__.py
 
-# Adicionar dependências
+# Add dependencies
 uv add requests pydantic
 
-# Adicionar dependências de desenvolvimento
+# Add development dependencies
 uv add --dev pytest ruff mypy
 
-# Executar
-uv run python -m meu_projeto
+# Execute
+uv run python -m my_project
 ```
 
-### Gerenciamento de Dependências
+### Dependency Management
 
 ```bash
-# Adicionar dependência de produção
+# Add production dependency
 uv add requests pydantic
 
-# Adicionar dependência de desenvolvimento
+# Add development dependency
 uv add --dev pytest ruff mypy
 
-# Adicionar dependência opcional
+# Add optional dependency
 uv add --optional dev pytest-cov
 
-# Remover dependência
+# Remove dependency
 uv remove requests
 
-# Sincronizar ambiente (instala tudo do pyproject.toml)
+# Synchronize environment (installs everything from pyproject.toml)
 uv sync --dev
 
-# Gerar lockfile
+# Generate lockfile
 uv lock
 
-# Sincronizar do lockfile (reprodução exata)
+# Synchronize from lockfile (exact reproduction)
 uv sync --locked
 ```
 
@@ -207,20 +207,20 @@ uv sync --locked
 ## Virtual Environment Management
 
 ```bash
-# UV cria automaticamente ao usar uv sync/run
-# Mas se precisar criar manualmente:
+# UV automatically creates when using uv sync/run
+# But if you need to create manually:
 uv venv .venv
 
-# Ativar (macOS / Linux)
+# Activate (macOS / Linux)
 source .venv/bin/activate
 
-# Ativar (Windows Git Bash)
+# Activate (Windows Git Bash)
 . .venv/Scripts/activate
 
-# Ativar (Windows CMD)
+# Activate (Windows CMD)
 .venv\Scripts\activate.bat
 
-# Executar SEM ativar (recomendado)
+# Execute WITHOUT activating (recommended)
 uv run python script.py
 uv run pytest
 ```
@@ -229,7 +229,7 @@ uv run pytest
 
 ## Inline Script Metadata (PEP 723)
 
-Scripts Python self-contained com dependências definidas em comentários:
+Self-contained Python scripts with dependencies defined in comments:
 
 ```python
 # /// script
@@ -248,35 +248,35 @@ response = requests.get("https://api.github.com")
 console.print(response.json())
 ```
 
-Executar com instalação automática de dependências:
+Execute with automatic dependency installation:
 
 ```bash
 uv run script.py
 ```
 
-**Quando usar**: Scripts únicos, utilitários, automação, exemplos compartilháveis.
-**Quando NÃO usar**: Projetos multi-arquivo (use `pyproject.toml`).
+**When to use**: Single scripts, utilities, automation, sharable examples.
+**When NOT to use**: Multi-file projects (use `pyproject.toml`).
 
-Veja [Inline Script Metadata Reference](references/inline-script-metadata.md) para exemplos completos.
+See [Inline Script Metadata Reference](references/inline-script-metadata.md) for full examples.
 
 ---
 
 ## Development Tools Setup
 
 ```bash
-# Instalar ferramentas de desenvolvimento uma vez
+# Install development tools once
 uv tool install ruff
 uv tool install mypy
 uv tool install pytest
 
-# Usar diariamente (disponíveis globalmente)
+# Use daily (available globally)
 ruff format .
 ruff check .
 mypy .
 pytest tests/
 ```
 
-### Configuração recomendada no `pyproject.toml`
+### Recommended configuration in `pyproject.toml`
 
 ```toml
 [tool.ruff]
@@ -304,92 +304,92 @@ python_files = ["test_*.py"]
 ### Project Management
 
 **DO:**
-- Use `uv init` para novos projetos (cria estrutura completa)
-- Use `uv add` / `uv remove` para gerenciar dependências (não edite pyproject.toml manualmente)
-- Sempre versione `uv.lock` no git para reprodução exata
-- Use `uv sync --locked` em CI/CD para builds reproduzíveis
-- Use `uv run` para executar comandos (não precisa ativar venv)
+- Use `uv init` for new projects (creates full structure)
+- Use `uv add` / `uv remove` to manage dependencies (do not edit pyproject.toml manually)
+- Always version `uv.lock` in git for exact reproduction
+- Use `uv sync --locked` in CI/CD for reproducible builds
+- Use `uv run` to execute commands (no need to activate venv)
 
 **DON'T:**
-- Não instale pacotes globalmente sem venv
-- Não misture `pip install` e `uv add` no mesmo projeto
-- Não ignore o `uv.lock` no `.gitignore`
-- Não use `@latest` em produção (instável)
+- Do not install packages globally without venv
+- Do not mix `pip install` and `uv add` in the same project
+- Do not ignore `uv.lock` in `.gitignore`
+- Do not use `@latest` in production (unstable)
 
 ### Tool Management
 
 **DO:**
-- Use `uv tool install` para ferramentas de uso diário (ruff, mypy, pytest)
-- Use `uvx` para execuções temporárias e teste de ferramentas
-- Mantenha ferramentas atualizadas com `uv tool upgrade --all`
+- Use `uv tool install` for daily use tools (ruff, mypy, pytest)
+- Use `uvx` for temporary executions and tool testing
+- Keep tools updated with `uv tool upgrade --all`
 
 **DON'T:**
-- Não use `pip install` global para CLI tools (causa conflitos)
-- Não use `uvx` para ferramentas diárias (overhead desnecessário)
-- Não misture instalações pip e uv tool
+- Do not use global `pip install` for CLI tools (causes conflicts)
+- Do not use `uvx` for daily tools (unnecessary overhead)
+- Do not mix pip and uv tool installations
 
 ### Code Quality
 
 **DO:**
-- Sempre use type hints em código Python
-- Configure `ruff` para linting e formatting
-- Configure `mypy` em modo strict
-- Escreva testes com `pytest`
+- Always use type hints in Python code
+- Configure `ruff` for linting and formatting
+- Configure `mypy` in strict mode
+- Write tests with `pytest`
 
 **DON'T:**
-- Não promova código sem type hints
-- Não pule linting, formatting ou type checking
-- Não use práticas deprecated como `pip` sem venv
+- Do not promote code without type hints
+- Do not skip linting, formatting, or type checking
+- Do not use deprecated practices like `pip` without venv
 
 ---
 
 ## Troubleshooting
 
-### "UV não encontrado" / "spawn uvx ENOENT"
-**Causa**: UV/UVX não está no PATH.
-**Solução**:
+### "UV not found" / "spawn uvx ENOENT"
+**Cause**: UV/UVX is not in the PATH.
+**Solution**:
 ```bash
-# macOS/Linux — adicionar ao ~/.zshrc ou ~/.bashrc
+# macOS/Linux — add to ~/.zshrc or ~/.bashrc
 export PATH="$HOME/.local/bin:$PATH"
 source ~/.zshrc
 
-# Verificar
+# Verify
 uv --version
 ```
 
 ### "Package not found"
-**Causa**: Nome do pacote incorreto ou pacote não publicado no PyPI.
-**Solução**:
+**Cause**: Incorrect package name or package not published on PyPI.
+**Solution**:
 ```bash
-# Verificar no PyPI
-curl https://pypi.org/pypi/nome-do-pacote/json | head -5
+# Check on PyPI
+curl https://pypi.org/pypi/package-name/json | head -5
 
-# Para projetos locais, verificar pyproject.toml
+# For local projects, check pyproject.toml
 ls pyproject.toml
 ```
 
 ### "No virtual environment found"
-**Causa**: Ambiente virtual não ativado ou inexistente.
-**Solução**:
+**Cause**: Virtual environment not activated or non-existent.
+**Solution**:
 ```bash
-# Criar e sincronizar
+# Create and synchronize
 uv sync
 
-# Ou executar diretamente (sem ativar)
+# Or execute directly (without activating)
 uv run python script.py
 ```
 
-### Conflitos de versão
-**Causa**: Versões incompatíveis de dependências.
-**Solução**:
+### Version conflicts
+**Cause**: Incompatible dependency versions.
+**Solution**:
 ```bash
-# Verificar árvore de dependências
+# Check dependency tree
 uv tree
 
-# Verificar conflitos reversos
+# Check reverse conflicts
 uv tree --reverse
 
-# Limpar cache e ressincronizar
+# Clean cache and resync
 uv cache clean
 uv sync --recreate
 ```
@@ -400,15 +400,15 @@ uv sync --recreate
 
 ### From pip
 ```bash
-# Antes                          # Depois
+# Before                          # After
 pip install requests      →      uv add requests
 pip install -r req.txt    →      uv pip install -r req.txt
-pip freeze > req.txt      →      uv lock  (usa uv.lock)
+pip freeze > req.txt      →      uv lock  (uses uv.lock)
 ```
 
 ### From poetry
 ```bash
-# Antes                          # Depois
+# Before                          # After
 poetry add requests       →      uv add requests
 poetry install            →      uv sync
 poetry run pytest         →      uv run pytest
@@ -417,7 +417,7 @@ poetry build              →      uv build
 
 ### From pipx
 ```bash
-# Antes                          # Depois
+# Before                          # After
 pipx install black        →      uv tool install black
 pipx run black .          →      uvx black .
 ```
@@ -426,30 +426,30 @@ pipx run black .          →      uvx black .
 
 ## Reference Documentation
 
-Esta skill inclui documentação de referência detalhada:
+This skill includes detailed reference documentation:
 
-1. **[Installation & Setup](references/installation-and-setup.md)** — Instalação cross-platform, virtual environments, troubleshooting
-2. **[Project Management](references/project-management.md)** — Init, dependências, lockfile, workspaces, estrutura de projeto
-3. **[Tool Management](references/tool-management.md)** — `uv tool install` vs `uvx`, decision matrix, manutenção
-4. **[Python Patterns](references/patterns.md)** — [NOVO] Padrões idiomáticos, performance, EAFP, Modern Type Hints, __slots__
-5. **[Advanced Testing](references/testing.md)** — [NOVO] TDD, Pytest Mastery, Fixtures, Mocking, Cobertura
-6. **[Inline Script Metadata](references/inline-script-metadata.md)** — PEP 723, scripts self-contained, exemplos práticos
-7. **[Python Environment](references/python-environment.md)** — Versões, Python 3.14, free-threaded Python, paths
-8. **[CI/CD Workflows](references/ci-cd-workflows.md)** — GitHub Actions, Docker, packaging, publicação
+1. **[Installation & Setup](references/installation-and-setup.md)** — Cross-platform installation, virtual environments, troubleshooting
+2. **[Project Management](references/project-management.md)** — Init, dependencies, lockfile, workspaces, project structure
+3. **[Tool Management](references/tool-management.md)** — `uv tool install` vs `uvx`, decision matrix, maintenance
+4. **[Python Patterns](references/patterns.md)** — [NEW] Idiomatic patterns, performance, EAFP, Modern Type Hints, __slots__
+5. **[Advanced Testing](references/testing.md)** — [NEW] TDD, Pytest Mastery, Fixtures, Mocking, Coverage
+6. **[Inline Script Metadata](references/inline-script-metadata.md)** — PEP 723, self-contained scripts, practical examples
+7. **[Python Environment](references/python-environment.md)** — Versions, Python 3.14, free-threaded Python, paths
+8. **[CI/CD Workflows](references/ci-cd-workflows.md)** — GitHub Actions, Docker, packaging, publication
 
 ---
 
 ## Output Structure
 
-A execução desta skill em projetos Python deve resultar na criação ou atualização dos seguintes artefatos padronizados pelo UV:
+Execution of this skill in Python projects must result in the creation or update of the following UV-standardized artifacts:
 
-| Artefato | Arquivo | Descrição |
+| Artifact | File | Description |
 |----------|---------|-----------|
-| **Project Spec** | `pyproject.toml` | Definição de metadados, dependências e configurações de ferramentas (Ruff, Mypy). |
-| **Lockfile** | `uv.lock` | Registro determinístico de todas as dependências e sub-dependências (deve ser versionado). |
-| **Python Version** | `.python-version` | Arquivo que fixa a versão do Python utilizada no projeto para o UV. |
-| **Virtual Env** | `.venv/` | Ambiente virtual isolado contendo as dependências instaladas (não deve ser versionado). |
-| **Source Code** | `src/` ou root | Estrutura de pacotes Python seguindo as boas práticas de layout. |
+| **Project Spec** | `pyproject.toml` | Metadata definition, dependencies, and tool settings (Ruff, Mypy). |
+| **Lockfile** | `uv.lock` | Deterministic record of all dependencies and sub-dependencies (must be versioned). |
+| **Python Version** | `.python-version` | File that pins the Python version used in the project for UV. |
+| **Virtual Env** | `.venv/` | Isolated virtual environment containing installed dependencies (must not be versioned). |
+| **Source Code** | `src/` or root | Python package structure following layout best practices. |
 
 ---
 
@@ -465,19 +465,19 @@ A execução desta skill em projetos Python deve resultar na criação ou atuali
 
 ## Quality Rules
 
-- **Referência Oficial**: Sempre referenciar a documentação oficial do UV (<https://docs.astral.sh/uv/>)
-- **Exemplos Práticos**: Todos os exemplos devem ser testáveis e reproduzíveis
-- **Cross-Platform**: Comandos e configurações devem funcionar em macOS, Linux e Windows
-- **Boas Práticas Modernas**: Promover type hints, ruff, pytest, mypy
-- **Versionamento Semântico**: Seguir SemVer para configurações de projeto
-- **Lockfiles**: Sempre usar e versionar `uv.lock`
-- **UV-First**: Preferir comandos UV nativos (`uv add`, `uv run`) sobre equivalentes legados (`pip install`)
+- **Official Reference**: Always reference the official UV documentation (<https://docs.astral.sh/uv/>)
+- **Practical Examples**: All examples must be testable and reproducible
+- **Cross-Platform**: Commands and configurations must work on macOS, Linux, and Windows
+- **Modern Best Practices**: Promote type hints, ruff, pytest, mypy
+- **Semantic Versioning**: Follow SemVer for project configurations
+- **Lockfiles**: Always use and version `uv.lock`
+- **UV-First**: Prefer native UV commands (`uv add`, `uv run`) over legacy equivalents (`pip install`)
 
 ## Prohibited
 
-- **Não assumir SO**: Não assumir configurações específicas de sistema operacional sem oferecer alternativas
-- **Não duplicar documentação**: Não copiar conteúdo da documentação oficial, apenas referenciar
-- **Não promover práticas obsoletas**: Não ensinar `pip install` sem venv, `setup.py`, ou `requirements.txt` como gestão principal
-- **Não ignorar type safety**: Não promover código Python sem type hints
-- **Não pular validação**: Não pular linting, formatting ou type checking
-- **Não misturar gerenciadores**: Não misturar pip e uv no mesmo workflow de projeto
+- **Do not assume OS**: Do not assume specific OS configurations without offering alternatives
+- **Do not duplicate documentation**: Do not copy content from official documentation, only reference it
+- **Do not promote obsolete practices**: Do not teach `pip install` without venv, `setup.py`, or `requirements.txt` as primary management
+- **Do not ignore type safety**: Do not promote Python code without type hints
+- **Do not skip validation**: Do not skip linting, formatting, or type checking
+- **Do not mix managers**: Do not mix pip and uv in the same project workflow

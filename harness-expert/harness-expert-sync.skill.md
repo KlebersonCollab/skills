@@ -1,7 +1,7 @@
 ---
 name: harness-expert-sync
 version: 1.1.0
-description: "Sub-skill para sincronizar o progresso das tarefas (tasks.md) e registrar aprendizados técnicos (LEARNINGS.md) no File System."
+description: "Sub-skill to synchronize task progress (tasks.md) and record technical learnings (LEARNINGS.md) in the File System."
 category: development-workflow
 ---
 
@@ -35,6 +35,6 @@ Briefly verify if the current `tasks.md` accurately reflects the work done. If t
 
 ## Prohibited
 
-- NUNCA termine uma sessão sem realizar o `harness-sync`.
-- NUNCA invente progressos; sincronize apenas o que foi empiricamente validado.
-- NUNCA ignore conflitos de estado no `tasks.md`.
+- NEVER end a session without performing `harness-sync`.
+- NEVER invent progress; sync only what was empirically validated.
+- NEVER ignore state conflicts in `tasks.md`.

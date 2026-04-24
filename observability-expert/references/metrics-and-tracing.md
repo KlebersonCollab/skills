@@ -1,48 +1,48 @@
 # Metrics & Tracing: The Vital Signs
 
-Métricas e Tracing permitem entender o *desempenho* e o *fluxo* do sistema em tempo real.
+Metrics and Tracing allow understanding system *performance* and *flow* in real-time.
 
 ---
 
-## 1. Métricas (O "Quanto")
+## 1. Metrics (The "How Much")
 
-Métricas são agregações numéricas ao longo do tempo.
+Metrics are numerical aggregations over time.
 
-### Padrão RED (Para Serviços de API)
-- **R: Rate**: Número de requisições por segundo.
-- **E: Errors**: Número de requisições que falharam.
-- **D: Duration**: Tempo que as requisições levaram (Latência).
+### RED Pattern (For API Services)
+- **R: Rate**: Number of requests per second.
+- **E: Errors**: Number of requests that failed.
+- **D: Duration**: Time requests took (Latency).
 
-### Padrão USE (Para Infraestrutura)
-- **U: Utilization**: Percentual de uso (CPU, RAM).
-- **S: Saturation**: Fila de trabalho extra.
-- **E: Errors**: Erros de hardware ou sistema operacional.
+### USE Pattern (For Infrastructure)
+- **U: Utilization**: Percentage of use (CPU, RAM).
+- **S: Saturation**: Extra work queue.
+- **E: Errors**: Hardware or operating system errors.
 
-## 2. Distributed Tracing (O "Onde")
+## 2. Distributed Tracing (The "Where")
 
-O rastreamento distribuído segue uma requisição através de múltiplos serviços.
+Distributed tracing follows a request through multiple services.
 
-- **Trace**: A jornada completa de uma requisição.
-- **Span**: Uma operação individual dentro do trace (ex: uma query SQL, uma chamada HTTP externa).
-- **Context Propagation**: O ato de passar o `TraceID` nos cabeçalhos HTTP para que o próximo serviço possa continuar o rastro.
+- **Trace**: The complete journey of a request.
+- **Span**: An individual operation within the trace (e.g., a SQL query, an external HTTP call).
+- **Context Propagation**: The act of passing the `TraceID` in HTTP headers so the next service can continue the trail.
 
 ## 3. OpenTelemetry (OTel)
 
-O padrão de mercado em 2026 para telemetria.
+The 2026 market standard for telemetry.
 
-### Componentes:
-1.  **SDKs**: Bibliotecas na aplicação para gerar dados.
-2.  **Collector**: Um proxy que recebe, processa e exporta os dados para diferentes backends.
-3.  **Protocolo (OTLP)**: O formato universal de envio de dados.
+### Components:
+1.  **SDKs**: Libraries in the application to generate data.
+2.  **Collector**: A proxy that receives, processes, and exports data to different backends.
+3.  **Protocol (OTLP)**: The universal data sending format.
 
-## 4. Visualização
+## 4. Visualization
 
-- **Prometheus/Grafana**: O par perfeito para métricas.
-- **Jaeger/Tempo**: Ferramentas para visualizar a linha do tempo dos traces.
+- **Prometheus/Grafana**: The perfect pair for metrics.
+- **Jaeger/Tempo**: Tools to visualize trace timelines.
 
 ---
 
-## Exemplo de Propagação de Contexto (Mermaid)
+## Context Propagation Example (Mermaid)
 
 ```mermaid
 sequenceDiagram

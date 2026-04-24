@@ -1,101 +1,101 @@
 ---
 name: api-architect
 version: 1.3.0
-description: "Arquiteto de APIs — guia o agente a projetar sistemas de API interoperáveis, seguros e resilientes, definindo contratos e padrões de governança."
+description: "API Architect — guides the agent to design interoperable, secure, and resilient API systems, defining contracts and governance standards."
 category: api-design
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verificar o modo operacional atual (`.hub-mode`) e aplicar as diretrizes da skill `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros? (BDD mandatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the guidelines of the `token-distiller` skill.
+1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 # API Architect
 
-> Projetista de APIs de alta performance e guardião da governança técnica. "Design is for developers; architecture is for the system."
+> High-performance API designer and technical governance guardian. "Design is for developers; architecture is for the system."
 
 ---
 
 ## Goal
 
-Capacitar o agente a projetar ecossistemas de API robustos aplicando princípios de design REST, GraphQL e tRPC, garantindo interoperabilidade através de **Style Guides** rigorosos, segurança (OWASP) e resiliência (Rate Limiting, Circuit Breaker).
+Empower the agent to design robust API ecosystems applying REST, GraphQL, and tRPC design principles, ensuring interoperability through rigorous **Style Guides**, security (OWASP), and resilience (Rate Limiting, Circuit Breaker).
 
-A skill assegura que a API não seja apenas "funcional", mas **consistente**, **segura** e **sustentável** ao longo do tempo.
+The skill ensures that the API is not just "functional," but **consistent**, **secure**, and **sustainable** over time.
 
 ---
 
-## Quando Usar Esta Skill
+## When to Use This Skill
 
-- Projetando novas APIs do zero (REST, GraphQL, tRPC).
-- Definindo o **API Style Guide** para garantir consistência entre múltiplos serviços.
-- Refatorando APIs legadas para padrões modernos de segurança e resiliência.
-- Implementando estratégias de governança (versionamento, paginação, rate limit).
-- Revisando segurança contra vulnerabilidades críticas (BOLA/BFLA).
+- Designing new APIs from scratch (REST, GraphQL, tRPC).
+- Defining the **API Style Guide** to ensure consistency across multiple services.
+- Refactoring legacy APIs to modern security and resilience standards.
+- Implementing governance strategies (versioning, pagination, rate limit).
+- Reviewing security against critical vulnerabilities (BOLA/BFLA).
 
 ---
 
 ## Workflow (4 Fases)
 
-### Fase 1: STRATEGY — Definição de Protocolo
-1.  **Consumer Analysis**: Identificar quem consome (Web, Mobile, B2B).
-2.  **Protocol Selection**: Escolher entre REST (Público), GraphQL (Flexível) ou tRPC (Monorepo TS).
-3.  **Governance Baseline**: Definir versão inicial, política de deprecation e rate limiting.
+### Phase 1: STRATEGY — Protocol Definition
+1.  **Consumer Analysis**: Identify who consumes (Web, Mobile, B2B).
+2.  **Protocol Selection**: Choose between REST (Public), GraphQL (Flexible), or tRPC (TS Monorepo).
+3.  **Governance Baseline**: Define initial version, deprecation policy, and rate limiting.
 
-### Fase 2: DESIGN — Modelagem e Style Guide
-1.  **Resource Modeling**: Definir entidades e relações (plural, substantivos).
-2.  **Consistency Layer**: Aplicar rigorosamente o `references/api-style.md` (formato de erro padrão, envelopes de resposta).
-3.  **Schema Definition**: Escrever OpenAPI (REST), SDL (GraphQL) ou Zod (tRPC).
+### Phase 2: DESIGN — Modeling and Style Guide
+1.  **Resource Modeling**: Define entities and relations (plural, nouns).
+2.  **Consistency Layer**: Rigorously apply `references/api-style.md` (standard error format, response envelopes).
+3.  **Schema Definition**: Write OpenAPI (REST), SDL (GraphQL), or Zod (tRPC).
 
-### Fase 3: RESILIENCE — Segurança e Performance
-1.  **Security Audit**: Aplicar checklist de OWASP API Top 10 (AuthN/AuthZ).
-2.  **Stability Patterns**: Definir timeouts, retries e Circuit Breakers.
-3.  **Data Filtering**: Implementar paginação (Cursor/Offset) e projeção de campos.
+### Phase 3: RESILIENCE — Security and Performance
+1.  **Security Audit**: Apply OWASP API Top 10 checklist (AuthN/AuthZ).
+2.  **Stability Patterns**: Define timeouts, retries, and Circuit Breakers.
+3.  **Data Filtering**: Implement pagination (Cursor/Offset) and field projection.
 
-### Fase 4: VALIDATE — Verificação Automatizada
-1.  **Contract Testing**: Validar se o schema gerado é válido e sem erros.
-2.  **Security Scan**: Revisar permissões de objeto (BOLA) em todos os endpoints.
-3.  **Documentation Handoff**: Entregar o contrato aprovado e o guia de implementação.
+### Phase 4: VALIDATE — Automated Verification
+1.  **Contract Testing**: Validate if the generated schema is valid and error-free.
+2.  **Security Scan**: Review object permissions (BOLA) on all endpoints.
+3.  **Documentation Handoff**: Deliver the approved contract and implementation guide.
 
 ---
 
 ## Output Structure
 
-A execução desta skill deve resultar nos seguintes artefatos mandatórios:
+The execution of this skill must result in the following mandatory artifacts:
 
-| Artefato | Formato | Descrição |
+| Artifact | Format | Description |
 |----------|---------|-----------|
-| **API Spec** | `.yaml` / `.graphql` / `.ts` | Contrato técnico completo (OpenAPI, SDL ou Zod). |
-| **API Style Guide** | `.md` | Definição de padrões de resposta, erro e nomenclatura. |
-| **Security Checklist** | `.md` | Relatório de conformidade com OWASP e padrões de Auth. |
-| **Resilience Policy** | `.md` | Definição de limites de taxa, timeouts e estratégia de cache. |
+| **API Spec** | `.yaml` / `.graphql` / `.ts` | Complete technical contract (OpenAPI, SDL, or Zod). |
+| **API Style Guide** | `.md` | Definition of response, error, and naming patterns. |
+| **Security Checklist** | `.md` | Compliance report with OWASP and Auth standards. |
+| **Resilience Policy** | `.md` | Definition of rate limits, timeouts, and cache strategy. |
 
 ---
 
 ## Quality Rules
 
-- **Contract-First**: O código de implementação só deve ser escrito após a aprovação do contrato.
-- **Uniform Error Handling**: Erros devem seguir um padrão único de estrutura e status code.
-- **Security by Default**: Todo endpoint deve ser protegido por padrão (necessita de opt-out explícito).
-- **YAGNI in Data**: Retorne apenas o necessário; evite over-fetching através de projeções ou campos opcionais.
+- **Contract-First**: Implementation code should only be written after contract approval.
+- **Uniform Error Handling**: Errors must follow a single pattern of structure and status code.
+- **Security by Default**: Every endpoint must be protected by default (requires explicit opt-out).
+- **YAGNI in Data**: Return only what is necessary; avoid over-fetching through projections or optional fields.
 
 ## Prohibited
 
-- NUNCA exponha IDs sequenciais (use UUIDs ou HashIDs).
-- NUNCA use verbos em URLs de recursos (ex: `/getUsers` -> use `GET /users`).
-- NUNCA ignore o versionamento; APIs públicas devem ter versão na URL ou Headers.
-- NUNCA retorne logs ou stack traces em respostas de erro de produção.
+- NEVER expose sequential IDs (use UUIDs or HashIDs).
+- NEVER use verbs in resource URLs (e.g., `/getUsers` -> use `GET /users`).
+- NEVER ignore versioning; public APIs must have a version in the URL or Headers.
+- NEVER return logs or stack traces in production error responses.
 
 ---
 
-## Referências
+## References
 
-- [`references/rest-best-practices.md`](references/rest-best-practices.md) — Guia de design REST.
-- [`references/api-security-guide.md`](references/api-security-guide.md) — Segurança e OWASP API Top 10.
-- [`references/api-style.md`](references/api-style.md) — (Novo) Padrões de consistência de interface.
-- [`references/api-rate-limiting.md`](references/api-rate-limiting.md) — Resiliência e controle de taxa.
-- [`resources/implementation-playbook.md`](resources/implementation-playbook.md) — Checklists de implementação.
+- [`references/rest-best-practices.md`](references/rest-best-practices.md) — REST design guide.
+- [`references/api-security-guide.md`](references/api-security-guide.md) — Security and OWASP API Top 10.
+- [`references/api-style.md`](references/api-style.md) — (New) Interface consistency patterns.
+- [`references/api-rate-limiting.md`](references/api-rate-limiting.md) — Resilience and rate control.
+- [`resources/implementation-playbook.md`](resources/implementation-playbook.md) — Implementation checklists.

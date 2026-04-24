@@ -1,38 +1,38 @@
-# Brainstorming Techniques — Referência Completa
+# Brainstorming Techniques — Complete Reference
 
-Guia de técnicas para exploração divergente e resolução de problemas.
+Guide to techniques for divergent exploration and problem-solving.
 
 ---
 
-## 1. 5 Whys (Os 5 Porquês)
-Utilizada para chegar à causa raiz de um problema, evitando tratar apenas os sintomas.
-- **Como usar**: Pergunte "Por quê?" para a resposta anterior sucessivamente até que o problema fundamental seja revelado.
+## 1. 5 Whys
+Used to reach the root cause of a problem, avoiding treating only the symptoms.
+- **How to use**: Ask "Why?" to the previous answer successively until the fundamental problem is revealed.
 
 ## 2. SCAMPER
-Técnica para gerar novas ideias modificando processos ou produtos existentes.
-- **S**ubstituir: O que pode ser substituído? (ex: componente, material, pessoa).
-- **C**ombinar: O que pode ser combinado com outra coisa?
-- **A**daptar: O que pode ser adaptado de outro contexto?
-- **M**odificar/Magnificar: O que pode ser aumentado ou alterado?
-- **P**ropor: Pode ser usado para outro propósito?
-- **E**liminar: O que pode ser removido? (YAGNI).
-- **R**eorganizar/Reverter: O que pode ser invertido ou mudado de ordem?
+Technique for generating new ideas by modifying existing processes or products.
+- **S**ubstitute: What can be replaced? (e.g., component, material, person).
+- **C**ombine: What can be combined with something else?
+- **A**dapt: What can be adapted from another context?
+- **M**odify/Magnify: What can be increased or altered?
+- **P**ut to another use: Can it be used for another purpose?
+- **E**liminate: What can be removed? (YAGNI).
+- **R**earrange/Reverse: What can be inverted or changed in order?
 
-## 3. First Principles (Primeiros Princípios)
-Desconstruir o problema até suas verdades fundamentais e reconstruir do zero.
-- **Como usar**: Ignore analogias e "como sempre foi feito". Foque nas leis da física, lógica básica ou restrições reais.
+## 3. First Principles
+Deconstruct the problem to its fundamental truths and rebuild from scratch.
+- **How to use**: Ignore analogies and "how it has always been done." Focus on the laws of physics, basic logic, or real constraints.
 
 ## 4. Reverse Brainstorming
-Em vez de perguntar "Como posso resolver isso?", pergunte "Como eu poderia causar este problema?".
-- **Utilidade**: Identifica pontos cegos e riscos de segurança/performance que seriam ignorados.
+Instead of asking "How can I solve this?", ask "How could I cause this problem?".
+- **Utility**: Identifies blind spots and security/performance risks that would otherwise be ignored.
 
 ---
 
-## 5. Matriz de Escolha (Diverge -> Converge)
+## 5. Choice Matrix (Diverge -> Converge)
 
-| Critério | Opção A (Simples) | Opção B (Robusta) | Opção C (Inovadora) |
+| Criterion | Option A (Simple) | Option B (Robust) | Option C (Innovative) |
 |----------|-------------------|-------------------|---------------------|
-| Esforço  | Baixo             | Alto              | Médio               |
-| Impacto  | Médio             | Alto              | Incerto             |
-| Risco    | Baixo             | Baixo             | Alto                |
-| Manutenção| Fácil            | Complexa          | Experimental        |
+| Effort  | Low             | High              | Medium               |
+| Impact  | Medium             | High              | Uncertain             |
+| Risk    | Low             | Low             | High                |
+| Maintenance| Easy            | Complex          | Experimental        |

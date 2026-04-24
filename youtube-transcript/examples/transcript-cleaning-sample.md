@@ -1,25 +1,25 @@
-# Exemplo: Limpeza de Transcrição para IA
+# Example: Transcript Cleaning for AI
 
-Este documento demonstra a diferença entre uma transcrição bruta (gerada automaticamente) e uma versão limpa, otimizada para processamento por LLMs.
+This document demonstrates the difference between a raw transcript (auto-generated) and a clean version optimized for processing by LLMs.
 
-## 1. Transcrição Bruta (Raw)
-> "então pessoal ah hoje a gente vai falar sobre é flutter né e como que o fvm ajuda a gente a manter as versões é do sdk certinhas né então tipo você roda fvm install e aí ele instala pra você..."
+## 1. Raw Transcript
+> "so guys ah today we're gonna talk about it's flutter right and how fvm helps us keep the versions eh of the sdk right so like you run fvm install and then it installs for you..."
 
-**Problemas:**
-- Vícios de linguagem ("ah", "né", "tipo").
-- Falta de pontuação.
-- Repetições desnecessárias.
+### Issues:
+- Filler words ("ah", "eh", "so like").
+- Lack of punctuation.
+- Unnecessary repetitions.
 
-## 2. Transcrição Limpa (Cleaned)
-> "Hoje discutiremos o Flutter e como o FVM (Flutter Version Management) auxilia na manutenção das versões do SDK. Ao executar o comando `fvm install`, a ferramenta instala a versão especificada automaticamente."
+## 2. Cleaned Transcript
+> "Today we will discuss Flutter and how FVM (Flutter Version Management) assists in maintaining SDK versions. By running the `fvm install` command, the tool automatically installs the specified version."
 
-**Melhorias:**
-- Remoção de ruídos.
-- Aplicação de norma culta/técnica.
-- Pontuação adequada.
-- Termos técnicos destacados.
+### Improvements:
+- Removal of filler words.
+- Application of formal/technical standards.
+- Proper punctuation.
+- Highlighted technical terms.
 
-## 💡 Por que limpar?
-1. **Redução de Tokens**: Versões limpas são até 30% menores.
-2. **Clareza de Intenção**: Facilita para a IA extrair pontos-chave sem se perder em "filler words".
-3. **Melhor Summarização**: O resumo gerado será muito mais preciso e profissional.
+## Why Clean Transcripts?
+1. **Token Reduction**: Clean versions are up to 30% smaller.
+2. **Clarity of Intent**: Makes it easier for the AI to extract key points without getting lost in "filler words".
+3. **Better Summarization**: The generated summary will be much more accurate and professional.

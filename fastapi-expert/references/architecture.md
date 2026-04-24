@@ -1,10 +1,10 @@
 # FastAPI Clean Architecture
 
-Para APIs de nível enterprise, a `fastapi-expert` recomenda a separação em camadas para garantir testabilidade e manutenção.
+For enterprise-level APIs, `fastapi-expert` recommends layer separation to ensure testability and maintenance.
 
-## 1. Camada de Repositório (Data Access)
+## 1. Repository Layer (Data Access)
 
-Abstrai o acesso ao banco de dados (SQLAlchemy, Tortoise, etc).
+Abstracts database access (SQLAlchemy, Tortoise, etc.).
 
 ```python
 from typing import Generic, TypeVar, Type
@@ -22,9 +22,9 @@ class BaseRepository(Generic[T]):
         return result.scalars().first()
 ```
 
-## 2. Camada de Serviço (Business Logic)
+## 2. Service Layer (Business Logic)
 
-Onde reside a inteligência da aplicação. Endpoints devem apenas chamar serviços.
+Where the application's intelligence resides. Endpoints should only call services.
 
 ```python
 class UserService:
@@ -32,13 +32,13 @@ class UserService:
         self.repo = repo
 
     async def create_user(self, db: AsyncSession, data: UserCreate) -> User:
-        # Lógica de validação de negócio, hashing de senha, etc.
+        # Business validation logic, password hashing, etc.
         ...
 ```
 
 ## 3. Lifespan Management
 
-Gerenciamento moderno de recursos da aplicação.
+Modern management of application resources.
 
 ```python
 from contextlib import asynccontextmanager
@@ -46,10 +46,10 @@ from fastapi import FastAPI
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup: Conectar ao banco, carregar modelos de IA, etc.
+    # Startup: Connect to the database, load AI models, etc.
     await database.connect()
     yield
-    # Shutdown: Fechar conexões
+    # Shutdown: Close connections
     await database.disconnect()
 
 app = FastAPI(lifespan=lifespan)

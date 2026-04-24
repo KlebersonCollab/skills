@@ -1,40 +1,40 @@
 # Project Structure: Flutter with FVM (2026 Edition)
 
-A organização por funcionalidades (**Feature-First**) isola o escopo e facilita a manutenção de times grandes.
+Organization by features (**Feature-First**) isolates scope and facilitates maintenance for large teams.
 
-## 1. Estrutura de Diretórios
+## 1. Directory Structure
 ```text
 lib/
-├── core/                # Código transversal (di, network, theme)
-├── features/            # Funcionalidades de negócio
+├── core/                # Transversal code (di, network, theme, utils)
+├── features/            # Business features
 │   ├── [feature_name]/  
-│   │   ├── data/        # Repositories, API Sources
-│   │   ├── domain/      # Sealed States, Entities
+│   │   ├── data/        # Repositories, API Sources, Models
+│   │   ├── domain/      # Sealed States, Entities, Use Cases
 │   │   └── presentation/# ViewModels, Views, Widgets
-├── main_dev.dart        # Entry points por flavor
+├── main_dev.dart        # Entry points per flavor
 └── main_prod.dart
 ```
 
-## 2. Padrão Arquitetural: MVVM + Dart 3
-O Dart 3 permite que o ViewModel exponha estados imutáveis e exaustivos.
+## 2. Architectural Pattern: MVVM + Dart 3
+Dart 3 allows the ViewModel to expose immutable and exhaustive states.
 
-### ❌ Ruim (Lógica Espalhada)
-- Widgets fazendo chamadas de API diretamente.
-- Uso de `if (loading) ... else if (error) ...`.
+### ❌ Bad (Scattered Logic)
+- Widgets making direct API calls.
+- Using `if (loading) ... else if (error) ...`.
 
-### ✅ Bom (Reativo e Tipado)
-- **ViewModel**: Usa `AsyncNotifier` (Riverpod) ou `Bloc` e emite uma `sealed class`.
-- **View**: Usa `switch (state)` para renderizar a UI.
+### ✅ Good (Reactive and Typed)
+- **ViewModel**: Uses `AsyncNotifier` (Riverpod) or `Bloc` and emits a `sealed class`.
+- **View**: Uses `switch (state)` to render the UI.
 
-## 3. Gestão de Secrets via Flavors
-Use `--dart-define-from-file` para carregar configurações JSON.
+## 3. Secrets Management via Flavors
+Use `--dart-define-from-file` to load JSON configurations.
 
 ```bash
 fvm flutter run --flavor dev --dart-define-from-file=env/dev.json
 ```
 
-## Checklist de Estrutura
-- [ ] A feature está isolada (não importa widgets privados de outras)?
-- [ ] Usou `sealed classes` no `domain/` para representar estados?
-- [ ] O `main.dart` está limpo, delegando a lógica para o `core/`?
-- [ ] Os entry points por flavor (`main_dev.dart`, etc) estão configurados?
+## Structure Checklist
+- [ ] Is the feature isolated (does not import private widgets from others)?
+- [ ] Are `sealed classes` used in `domain/` to represent states?
+- [ ] Is `main.dart` clean, delegating logic to `core/`?
+- [ ] Are entry points per flavor (`main_dev.dart`, etc.) configured?

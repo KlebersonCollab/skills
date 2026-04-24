@@ -1,65 +1,65 @@
 # Advanced CLI Commands: Azure DevOps
 
-Este guia cobre comandos de utilidade e baixo nível para automação avançada no Azure DevOps.
+This guide covers utility and low-level commands for advanced automation in Azure DevOps.
 
 ---
 
-## 1. Gestão de Contexto (`configure`)
+## 1. Context Management (`configure`)
 
-Evite passar `--org` e `--project` em todos os comandos fixando os defaults para a sessão atual.
+Avoid passing `--org` and `--project` in every command by fixing the defaults for the current session.
 
-### Configurar Defaults
-`az devops configure --defaults organization=https://dev.azure.com/MinhaOrg project=MeuProjeto`
+### Configure Defaults
+`az devops configure --defaults organization=https://dev.azure.com/MyOrg project=MyProject`
 
-### Limpar Defaults
+### Clear Defaults
 `az devops configure --defaults organization='' project=''`
 
-## 2. Invocação Direta de API (`invoke`)
+## 2. Direct API Invocation (`invoke`)
 
-Quando não existe um comando CLI para uma funcionalidade específica, você pode invocar a API REST diretamente mantendo o contexto de autenticação do PAT.
+When there is no CLI command for a specific functionality, you can invoke the REST API directly while maintaining the PAT authentication context.
 
-### Sintaxe Base
+### Base Syntax
 `az devops invoke --area {area} --resource {resource} --route-values {key=val} --query-parameters {key=val}`
 
-### Exemplo: Listar Definições de Auditoria
+### Example: List Audit Definitions
 ```bash
 az devops invoke \
     --area "audit" \
     --resource "auditlog" \
-    --route-values project="MeuProjeto" \
+    --route-values project="MyProject" \
     --http-method GET
 ```
 
 ## 3. Wiki Management
 
-Gerenciar documentação técnica integrada ao repositório ou como Wiki de projeto.
+Manage technical documentation integrated into the repository or as a project Wiki.
 
-### Listar Wikis
+### List Wikis
 `az devops wiki list`
 
-### Criar uma Wiki
-`az devops wiki create --name "Manual-Tecnico" --type projectwiki`
+### Create a Wiki
+`az devops wiki create --name "Technical-Manual" --type projectwiki`
 
-### Gerenciar Páginas
-- `az devops wiki page create`: Adicionar novo conteúdo.
-- `az devops wiki page update`: Atualizar documentação existente.
+### Manage Pages
+- `az devops wiki page create`: Add new content.
+- `az devops wiki page update`: Update existing documentation.
 
 ## 4. Agent Pools & Queues
 
-Gerenciar a infraestrutura de runners para pipelines.
+Manage the runner infrastructure for pipelines.
 
-### Listar Pools de Agentes
+### List Agent Pools
 `az pipelines pool list`
 
-### Listar Filas de Execução
+### List Execution Queues
 `az pipelines queue list`
 
-## 5. Dica de Automação (JSON Output)
+## 5. Automation Tip (JSON Output)
 
-Todos os comandos suportam a flag `--output json`. Combine com `jq` para extrair IDs e valores para scripts complexos:
+All commands support the `--output json` flag. Combine with `jq` to extract IDs and values for complex scripts:
 
 ```bash
-# Exemplo: Pegar o ID do primeiro PR aberto
+# Example: Get the ID of the first active PR
 PR_ID=$(az repos pr list --status active --query "[0].pullRequestId" -o tsv)
-echo "Processando PR #$PR_ID"
+echo "Processing PR #$PR_ID"
 ```

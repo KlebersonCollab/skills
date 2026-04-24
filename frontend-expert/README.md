@@ -1,17 +1,17 @@
 # Frontend Expert Skill
 
-Esta skill fornece diretrizes e padrões para o desenvolvimento de aplicações frontend modernas.
+This skill provides guidelines and patterns for modern frontend development.
 
-## 🚀 O que está incluído?
-- Padrões Next.js (App Router, Server Components).
-- Guia de TailwindCSS v4.
-- Integração com Shadcn/UI.
-- Melhores práticas de acessibilidade.
+## 🚀 What's included?
+- Next.js patterns (App Router, Server Components).
+- TailwindCSS v4 guide.
+- Shadcn/UI integration.
+- Accessibility best practices.
 
-## 📖 Como usar
-1. Ative a skill: `activate_skill(name="frontend-expert")`.
-2. Siga o workflow de design e implementação descrito no `SKILL.md`.
+## 📖 How to use
+1. Activate the skill: `activate_skill(name="frontend-expert")`.
+2. Follow the design and implementation workflow described in `SKILL.md`.
 
-## 🛠️ Recursos
-- `references/tailwind-v4-guide.md`: Guia de transição para o novo motor do Tailwind.
-- `references/nextjs-patterns.md`: Melhores práticas de App Router.
+## 🛠️ Resources
+- `references/tailwind-v4-guide.md`: Transition guide to the new Tailwind engine.
+- `references/nextjs-app-router.md`: App Router best practices.

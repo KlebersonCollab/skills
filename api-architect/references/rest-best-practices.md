@@ -1,35 +1,35 @@
-# REST Best Practices — Referência Completa
+# REST Best Practices — Complete Reference
 
-Guia de referência de boas práticas para design de APIs REST. Use em conjunto com o `resources/implementation-playbook.md`.
+Reference guide for REST API design best practices. Use in conjunction with `resources/implementation-playbook.md`.
 
 ---
 
-## 1. Nomenclatura de Endpoints
+## 1. Endpoint Naming
 
-### ✅ Regras de Nomenclatura
+### ✅ Naming Rules
 
-| Regra | Correto | Incorreto |
+| Rule | Correct | Incorrect |
 |-------|---------|-----------|
-| Plural para coleções | `/users` | `/user` |
-| Substantivos, não verbos | `/orders` | `/getOrders` |
-| Lowercase com hifens | `/user-profiles` | `/UserProfiles`, `/user_profiles` |
-| Hierarquia lógica | `/users/{id}/orders` | `/getUserOrders` |
-| Sem extensões de arquivo | `/api/users` | `/api/users.json` |
+| Plural for collections | `/users` | `/user` |
+| Nouns, not verbs | `/orders` | `/getOrders` |
+| Lowercase with hyphens | `/user-profiles` | `/UserProfiles`, `/user_profiles` |
+| Logical hierarchy | `/users/{id}/orders` | `/getUserOrders` |
+| No file extensions | `/api/users` | `/api/users.json` |
 
-### Padrão de URLs
+### URL Patterns
 
 ```
-# Coleção
+# Collection
 GET  /api/v1/users
 
-# Recurso individual
+# Individual resource
 GET  /api/v1/users/{user_id}
 
-# Sub-recurso (relação)
+# Sub-resource (relationship)
 GET  /api/v1/users/{user_id}/orders
 GET  /api/v1/users/{user_id}/orders/{order_id}
 
-# Ação especial (quando realmente necessário — use com parcimônia)
+# Special action (when really necessary — use sparingly)
 POST /api/v1/users/{user_id}/deactivate
 POST /api/v1/orders/{order_id}/cancel
 ```
@@ -38,44 +38,44 @@ POST /api/v1/orders/{order_id}/cancel
 
 ## 2. HTTP Status Codes
 
-### 2xx — Sucesso
+### 2xx — Success
 
-| Code | Nome | Quando Usar |
+| Code | Name | When to Use |
 |------|------|-------------|
-| `200` | OK | GET, PUT, PATCH com retorno de dados |
-| `201` | Created | POST que cria recurso (inclua `Location` header) |
-| `204` | No Content | DELETE, PUT/PATCH sem retorno de dados |
+| `200` | OK | GET, PUT, PATCH with data return |
+| `201` | Created | POST that creates resource (include `Location` header) |
+| `204` | No Content | DELETE, PUT/PATCH without data return |
 
-### 4xx — Erro do Cliente
+### 4xx — Client Error
 
-| Code | Nome | Quando Usar |
+| Code | Name | When to Use |
 |------|------|-------------|
-| `400` | Bad Request | Request malformada, parâmetros inválidos |
-| `401` | Unauthorized | Não autenticado (sem token ou token inválido) |
-| `403` | Forbidden | Autenticado mas sem permissão |
-| `404` | Not Found | Recurso não existe |
-| `409` | Conflict | Conflito de estado (ex: email duplicado) |
-| `422` | Unprocessable Entity | Dados válidos sintaticamente mas inválidos semanticamente |
-| `429` | Too Many Requests | Rate limit excedido |
+| `400` | Bad Request | Malformed request, invalid parameters |
+| `401` | Unauthorized | Not authenticated (no token or invalid token) |
+| `403` | Forbidden | Authenticated but no permission |
+| `404` | Not Found | Resource does not exist |
+| `409` | Conflict | State conflict (e.g., duplicate email) |
+| `422` | Unprocessable Entity | Syntactically valid but semantically invalid data |
+| `429` | Too Many Requests | Rate limit exceeded |
 
-### 5xx — Erro do Servidor
+### 5xx — Server Error
 
-| Code | Nome | Quando Usar |
+| Code | Name | When to Use |
 |------|------|-------------|
-| `500` | Internal Server Error | Erro inesperado no servidor |
-| `502` | Bad Gateway | Serviço upstream indisponível |
-| `503` | Service Unavailable | Servidor temporariamente indisponível |
+| `500` | Internal Server Error | Unexpected server error |
+| `502` | Bad Gateway | Upstream service unavailable |
+| `503` | Service Unavailable | Server temporarily unavailable |
 
 ---
 
-## 3. Estrutura de Resposta Padronizada
+## 3. Standardized Response Structure
 
-### Envelopes vs Direct Data
+### Envelopes vs. Direct Data
 
-- **Direct Data**: Retorna o recurso diretamente (mais simples, padrão REST clássico).
-- **Envelope Pattern**: Envolve o dado em um objeto central (melhor para metadados e consistência).
+- **Direct Data**: Returns the resource directly (simpler, classic REST standard).
+- **Envelope Pattern**: Wraps the data in a central object (better for metadata and consistency).
 
-#### Exemplo de Envelope Pattern (Recomendado para coleções)
+#### Envelope Pattern Example (Recommended for collections)
 ```json
 {
   "success": true,
@@ -90,13 +90,13 @@ POST /api/v1/orders/{order_id}/cancel
 }
 ```
 
-### Tipos de Paginação
+### Pagination Types
 
-1. **Offset Pagination** (`page`, `page_size`): Simples, mas ineficiente em datasets gigantes.
-2. **Cursor Pagination** (`after`, `first`): Mais eficiente para datasets que mudam rápido (ex: feeds) e volumes massivos.
-3. **Keyset Pagination** (`last_id`, `limit`): Usa a última chave de ordenação.
+1. **Offset Pagination** (`page`, `page_size`): Simple, but inefficient on giant datasets.
+2. **Cursor Pagination** (`after`, `first`): More efficient for fast-changing datasets (e.g., feeds) and massive volumes.
+3. **Keyset Pagination** (`last_id`, `limit`): Uses the last sorting key.
 
-#### Exemplo Cursor-Based (Relay Style)
+#### Cursor-Based Example (Relay Style)
 ```json
 {
   "data": [...],
@@ -109,17 +109,17 @@ POST /api/v1/orders/{order_id}/cancel
 }
 ```
 
-### Resposta de Erro
+### Error Response
 ```json
 {
   "error": {
     "code": "VALIDATION_ERROR",
-    "message": "Os dados enviados são inválidos.",
+    "message": "The sent data is invalid.",
     "details": [
       {
         "field": "email",
-        "message": "Formato de e-mail inválido.",
-        "value": "nao-e-um-email"
+        "message": "Invalid email format.",
+        "value": "not-an-email"
       }
     ],
     "timestamp": "2026-04-14T20:00:00Z",
@@ -131,115 +131,115 @@ POST /api/v1/orders/{order_id}/cancel
 
 ---
 
-## 4. Headers Importantes
+## 4. Important Headers
 
 ### Request Headers
 ```
 Authorization: Bearer <jwt_token>
 Content-Type: application/json
 Accept: application/json
-X-Request-ID: <uuid>         # Rastreabilidade
-X-API-Version: 2             # (se usar header versioning)
+X-Request-ID: <uuid>         # Traceability
+X-API-Version: 2             # (if using header versioning)
 ```
 
 ### Response Headers
 ```
 Content-Type: application/json; charset=utf-8
-X-Request-ID: <uuid>         # Echo do request ID
+X-Request-ID: <uuid>         # Request ID echo
 X-RateLimit-Limit: 1000
 X-RateLimit-Remaining: 999
 X-RateLimit-Reset: 1713128400
-Location: /api/v1/users/123  # Após POST 201
+Location: /api/v1/users/123  # After POST 201
 ```
 
 ---
 
-## 5. Filtragem, Ordenação e Busca
+## 5. Filtering, Sorting, and Search
 
 ```
-# Filtragem por campos
+# Filtering by fields
 GET /api/v1/orders?status=pending&created_after=2026-01-01
 
-# Ordenação
+# Sorting
 GET /api/v1/users?sort=name&order=asc
-GET /api/v1/users?sort=-created_at    # Prefixo - para DESC
+GET /api/v1/users?sort=-created_at    # - prefix for DESC
 
-# Busca textual
+# Text search
 GET /api/v1/users?search=joao
 
-# Projeção de campos (sparse fieldsets)
+# Field projection (sparse fieldsets)
 GET /api/v1/users?fields=id,name,email
 
-# Combinado
+# Combined
 GET /api/v1/orders?status=confirmed&sort=-created_at&page=2&page_size=10
 ```
 
 ---
 
-## 6. Segurança
+## 6. Security
 
-### Autenticação
+### Authentication
 
-| Método | Quando Usar |
+| Method | When to Use |
 |--------|-------------|
-| **JWT Bearer** | APIs stateless, microservices, SPAs |
-| **API Key** | Integrações B2B, scripts, third-party |
-| **OAuth 2.0** | Delegação de acesso, APIs públicas com escopos |
-| **mTLS** | Comunicação serviço-a-serviço (service mesh) |
+| **JWT Bearer** | Stateless APIs, microservices, SPAs |
+| **API Key** | B2B integrations, scripts, third-party |
+| **OAuth 2.0** | Access delegation, public APIs with scopes |
+| **mTLS** | Service-to-service communication (service mesh) |
 
-### Boas Práticas de Segurança
+### Security Best Practices
 
-- **HTTPS obrigatório** — Nunca HTTP em produção
-- **Rate limiting** — Por IP, por API key, por usuário
-- **CORS configurado** — Apenas origens autorizadas
-- **Validação de input** — Nunca confiar em dados do cliente
-- **Sanitização** — Prevenir XSS e SQL Injection
-- **Logs de auditoria** — Registrar todas as operações sensíveis
+- **HTTPS mandatory** — Never HTTP in production
+- **Rate limiting** — By IP, by API key, by user
+- **CORS configured** — Only authorized origins
+- **Input validation** — Never trust client data
+- **Sanitization** — Prevent XSS and SQL Injection
+- **Audit logs** — Record all sensitive operations
 
 ---
 
-## 7. Idempotência
+## 7. Idempotency
 
-| Operação | Idempotente | Explicação |
+| Operation | Idempotent | Explanation |
 |----------|-------------|------------|
-| `GET /users/123` | ✅ | Múltiplas chamadas = mesmo resultado |
-| `DELETE /users/123` | ✅ | Deletar algo que já foi deletado = 404 (aceitável) |
-| `PUT /users/123` | ✅ | Substituir com mesmo payload = mesmo estado |
-| `POST /users` | ❌ | Cria novo recurso a cada chamada |
-| `PATCH /users/123` | Depende | Pode ou não ser idempotente |
+| `GET /users/123` | ✅ | Multiple calls = same result |
+| `DELETE /users/123` | ✅ | Deleting something already deleted = 404 (acceptable) |
+| `PUT /users/123` | ✅ | Replace with same payload = same state |
+| `POST /users` | ❌ | Creates a new resource on each call |
+| `PATCH /users/123` | Depend | May or may not be idempotent |
 
-**Padrão para POST idempotente** (quando necessário):
+**Pattern for idempotent POST** (when necessary):
 ```
 POST /api/v1/payments
-Idempotency-Key: <uuid-gerado-pelo-cliente>
+Idempotency-Key: <client-generated-uuid>
 ```
 
 ---
 
-## 8. Documentação OpenAPI
+## 8. OpenAPI Documentation
 
-### Estrutura mínima do `openapi.yaml`
+### Minimum `openapi.yaml` structure
 
 ```yaml
 openapi: "3.1.0"
 info:
-  title: "API de Pedidos"
+  title: "Orders API"
   version: "1.0.0"
-  description: "API para gerenciamento de pedidos e usuários."
+  description: "API for managing orders and users."
   contact:
-    name: "Equipe de API"
-    email: "api@empresa.com"
+    name: "API Team"
+    email: "api@company.com"
 
 servers:
-  - url: "https://api.empresa.com/v1"
-    description: "Produção"
-  - url: "https://api-staging.empresa.com/v1"
+  - url: "https://api.company.com/v1"
+    description: "Production"
+  - url: "https://api-staging.company.com/v1"
     description: "Staging"
 
 paths:
   /users:
     get:
-      summary: "Listar usuários"
+      summary: "List users"
       operationId: "listUsers"
       tags: ["users"]
       parameters:
@@ -256,7 +256,7 @@ paths:
             maximum: 100
       responses:
         "200":
-          description: "Lista de usuários"
+          description: "Users list"
           content:
             application/json:
               schema:
@@ -284,7 +284,7 @@ components:
 
   responses:
     Unauthorized:
-      description: "Não autenticado"
+      description: "Not authenticated"
       content:
         application/json:
           schema:

@@ -1,98 +1,98 @@
 ---
 name: benchmark-expert
 version: 1.0.0
-description: "Expert Skill para medição de baselines de performance, detecção de regressões e comparação de stacks."
+description: "Expert Skill for measuring performance baselines, detecting regressions, and comparing stacks."
 category: performance
 ---
 
 # Benchmark Expert — Performance Baseline & Regression Detection
 
 ## 🔒 Prerequisites (Mandatory)
-Esta skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer benchmark:
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos e Critérios de Aceitação (ACs) claros?
-3. **Plan Check**: O arquivo `plan.md` define a arquitetura, schemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com os sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
-6. **Phase 4 Integration**: benchmarks devem ser executados preferencialmente na **Fase 4 (Review & Persistence)** do SDD para validar o impacto da implementação.
-7. **Clean Environment**: Garanta que o ambiente de teste esteja isolado e sem processos de fundo pesados.
+This skill operates WITHIN the **SDD** framework. Before starting any benchmark:
+1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)?
+3. **Plan Check**: Does the `plan.md` file define the architecture and schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Was the `contract.md` file established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
+6. **Phase 4 Integration**: Benchmarks should preferably be executed in **Phase 4 (Review & Persistence)** of the SDD to validate the implementation impact.
+7. **Clean Environment**: Ensure the test environment is isolated and without heavy background processes.
 
 ---
 
 ## Goal
 
-O objetivo desta skill é fornecer um framework padronizado para medição de performance, permitindo que desenvolvedores estabeleçam baselines confiáveis, detectem regressões de forma antecipada e comparem alternativas técnicas com base em dados quantitativos.
+The goal of this skill is to provide a standardized framework for performance measurement, allowing developers to establish reliable baselines, detect regressions early, and compare technical alternatives based on quantitative data.
 
 ---
 
 ## Output Structure
 
-A execução desta skill produz os seguintes artefatos:
+The execution of this skill produces the following artifacts:
 
-| Artefato | Localização | Descrição |
+| Artifact | Location | Description |
 |----------|-------------|-----------|
-| **Baseline JSON** | `.benchmarks/baseline-*.json` | Dados brutos da medição para persistência no Git. |
-| **Comparison Report** | `artifacts/benchmark-report.md` | Tabela comparativa com deltas e veredito de performance. |
-| **Performance Logs** | Console | Logs detalhados da execução do benchmark. |
+| **Baseline JSON** | `.benchmarks/baseline-*.json` | Raw measurement data for persistence in Git. |
+| **Comparison Report** | `artifacts/benchmark-report.md` | Comparative table with deltas and performance verdict. |
+| **Performance Logs** | Console | Detailed benchmark execution logs. |
 
 ---
 
-## Quando Usar
+## When to Use
 
-- Antes e depois de um PR para medir o impacto na performance.
-- Configuração de baselines iniciais para novos projetos.
-- Quando usuários reportam que o sistema "está lento".
-- Antes de um lançamento oficial para garantir que os targets foram atingidos.
-- Comparação de diferentes bibliotecas ou stacks (ex: Vite vs Webpack).
+- Before and after a PR to measure the performance impact.
+- Setting up initial baselines for new projects.
+- When users report that the system "is slow."
+- Before an official release to ensure targets have been met.
+- Comparing different libraries or stacks (e.g., Vite vs. Webpack).
 
 ---
 
-## Modos de Operação
+## Operating Modes
 
-### Modo 1: Performance de Página (Browser)
-Mede métricas reais do navegador via ferramentas de automação.
+### Mode 1: Page Performance (Browser)
+Measures real browser metrics via automation tools.
 
-**Fluxo:**
-1. Navegar para URLs alvo.
-2. Medir **Core Web Vitals**:
-   - **LCP (Largest Contentful Paint)**: Alvo < 2.5s.
-   - **CLS (Cumulative Layout Shift)**: Alvo < 0.1.
-   - **INP (Interaction to Next Paint)**: Alvo < 200ms.
-   - **FCP (First Contentful Paint)**: Alvo < 1.8s.
-   - **TTFB (Time to First Byte)**: Alvo < 800ms.
-3. Medir tamanhos de recursos:
-   - Peso total da página (Alvo < 1MB).
-   - JS Bundle (Alvo < 200KB gzipped).
-   - CSS, Imagens e Scripts de terceiros.
+**Workflow:**
+1. Navigate to target URLs.
+2. Measure **Core Web Vitals**:
+   - **LCP (Largest Contentful Paint)**: Target < 2.5s.
+   - **CLS (Cumulative Layout Shift)**: Target < 0.1.
+   - **INP (Interaction to Next Paint)**: Target < 200ms.
+   - **FCP (First Contentful Paint)**: Target < 1.8s.
+   - **TTFB (Time to First Byte)**: Target < 800ms.
+3. Measure resource sizes:
+   - Total page weight (Target < 1MB).
+   - JS Bundle (Target < 200KB gzipped).
+   - CSS, Images, and third-party scripts.
 
-### Modo 2: Performance de API
-Benchmarks de endpoints de API para latência e robustez.
+### Mode 2: API Performance
+Benchmarks API endpoints for latency and robustness.
 
-**Fluxo:**
-1. Executar 100+ requisições no endpoint alvo.
-2. Medir percentis: **p50, p95, p99**.
-3. Monitorar códigos de status e tamanho das respostas.
-4. Testar sob carga concorrente (ex: 10-50 conexões simultâneas).
+**Workflow:**
+1. Run 100+ requests on the target endpoint.
+2. Measure percentiles: **p50, p95, p99**.
+3. Monitor status codes and response sizes.
+4. Test under concurrent load (e.g., 10-50 simultaneous connections).
 
-### Modo 3: Performance de Build & Dev Loop
-Mede a agilidade do ecossistema de desenvolvimento.
+### Mode 3: Build & Dev Loop Performance
+Measures the agility of the development ecosystem.
 
-**Métricas:**
-1. **Cold Build**: Tempo de build do zero.
-2. **Hot Reload (HMR)**: Tempo entre salvar arquivo e refletir na UI.
-3. **Test Duration**: Tempo total da suíte de testes.
-4. **Tooling Latency**: Tempo de Lint e Type Check.
+**Metrics:**
+1. **Cold Build**: Build time from scratch.
+2. **Hot Reload (HMR)**: Time between saving a file and reflecting in the UI.
+3. **Test Duration**: Total time for the test suite.
+4. **Tooling Latency**: Time for Lint and Type Check.
 
-### Modo 4: Comparação Antes/Depois (Regressão)
-O coração da skill para validação de PRs.
+### Mode 4: Before/After Comparison (Regression)
+The heart of the skill for PR validation.
 
 ```bash
-# Salva o estado atual como baseline
+# Save current state as baseline
 /benchmark-expert baseline
 
-# ... aplica mudanças de código ...
+# ... apply code changes ...
 
-# Compara o estado atual contra o baseline salvo
+# Compare current state against saved baseline
 /benchmark-expert compare
 ```
 
@@ -100,21 +100,21 @@ O coração da skill para validação de PRs.
 
 ## Quality Rules
 
-- **Deterministic Measurements**: Sempre execute o benchmark 3 vezes e use a média.
-- **Context Awareness**: Documente as especificações da máquina onde o benchmark foi rodado.
-- **Fail Fast**: Se o delta de uma métrica crítica (LCP) subir > 15%, o veredito deve ser **FAIL** mandatório.
-- **Git Persistence**: Baselines críticos devem ser commitados no diretório `.benchmarks/`.
+- **Deterministic Measurements**: Always run the benchmark 3 times and use the average.
+- **Context Awareness**: Document the specifications of the machine where the benchmark was run.
+- **Fail Fast**: If a critical metric (LCP) delta increases by > 15%, the verdict must be a mandatory **FAIL**.
+- **Git Persistence**: Critical baselines must be committed to the `.benchmarks/` directory.
 
 ---
 
 ## Prohibited
 
-- **NUNCA** ignore regressões de performance em PRs sem justificativa técnica documentada.
-- **NUNCA** execute benchmarks em máquinas com alta carga de CPU/Memória (instabilidade).
-- **NUNCA** use ferramentas de benchmark que não meçam o p99 para APIs.
+- **NEVER** ignore performance regressions in PRs without documented technical justification.
+- **NEVER** run benchmarks on machines with high CPU/Memory load (instability).
+- **NEVER** use benchmark tools that do not measure p99 for APIs.
 
 ---
 
-## Referências
+## References
 - [Performance Targets](./references/performance_targets.md)
-- [Análise de Regressão](./references/regression_analysis.md)
+- [Regression Analysis](./references/regression_analysis.md)

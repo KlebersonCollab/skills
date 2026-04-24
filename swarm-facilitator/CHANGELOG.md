@@ -1,13 +1,13 @@
 # Changelog — Swarm Facilitator
 
-Todas as mudanças notáveis nesta skill serão documentadas neste arquivo.
+All notable changes to this skill will be documented in this file.
 
 ## [1.1.0] - 2026-04-20
-### Alterado
-- **Renomeação**: Skill renomeada de `multi-agent-orchestrator` para `swarm-facilitator` para evitar colisão semântica com o `sdd-orchestrator`.
-- **Identidade**: Atualizada para focar explicitamente na coreografia e protocolos de handoff de personas.
+### Changed
+- **Renaming**: Skill renamed from `multi-agent-orchestrator` to `swarm-facilitator` to avoid semantic collision with `sdd-orchestrator`.
+- **Identity**: Updated to focus explicitly on choreography and persona handoff protocols.
 
 ## [1.0.0] - 2026-04-19
-### Adicionado
-- Estrutura inicial e definição das personas do Swarm.
-- Protocolo formal de Handoff.
+### Added
+- Initial structure and definition of Swarm personas.
+- Formal Handoff protocol.

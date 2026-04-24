@@ -1,53 +1,53 @@
 # Project Structure Guide: The Source of Truth
 
-Este guia explica a organização física e lógica do projeto para garantir uma navegação eficiente e o cumprimento do workflow SDD.
+This guide explains the project's physical and logical organization to ensure efficient navigation and compliance with the SDD workflow.
 
 ---
 
-## 1. Hierarquia Global
+## 1. Global Hierarchy
 
 ```text
 skills/
-├── .specs/                      # O Coração do SDD
-│   ├── project/                 # Visão, Roadmap e Memória Triade
-│   ├── codebase/                # Stack, Convenções e Arquitetura Global
-│   └── features/                # Especificações detalhadas por funcionalidade
-├── .gemini/ | .claude/ | .agent/ # Configurações e Mandatos dos Agentes
-├── <skill-name>/                # Diretórios de Habilidades (ex: python-uv)
-│   ├── SKILL.md                 # Definição técnica
-│   ├── references/              # Guias de suporte
-│   └── examples/                # Amostras reais
-├── README.md                    # Registro central de skills
-└── .gitignore                   # Regras de versionamento (inclui Mandatos de Agentes)
+├── .specs/                      # The Heart of SDD
+│   ├── project/                 # Vision, Roadmap, and Memory Triad
+│   ├── codebase/                # Stack, Conventions, and Global Architecture
+│   └── features/                # Detailed specifications per functionality
+├── .gemini/ | .claude/ | .agent/ # Agent Configurations and Mandates
+├── <skill-name>/                # Skill Directories (e.g., python-uv)
+│   ├── SKILL.md                 # Technical definition
+│   ├── references/              # Support guides
+│   └── examples/                # Real samples
+├── README.md                    # Central skill registry
+└── .gitignore                   # Versioning rules (includes Agent Mandates)
 ```
 
-## 2. O Papel da pasta `.specs/`
+## 2. The Role of the `.specs/` folder
 
-Aqui reside toda a inteligência estratégica do projeto. Nunca inicie uma mudança sem consultar este diretório.
-- **`STATE.md`**: O que está acontecendo agora?
-- **`MEMORY.md`**: O que aprendemos e não devemos esquecer?
-- **`LEARNINGS.md`**: Soluções para bugs e padrões técnicos descobertos.
+Here resides all project strategic intelligence. Never start a change without consulting this directory.
+- **`STATE.md`**: What is happening now?
+- **`MEMORY.md`**: What have we learned and should not forget?
+- **`LEARNINGS.md`**: Solutions for bugs and discovered technical patterns.
 
-## 3. Diretórios de Agentes
+## 3. Agent Directories
 
-Estes diretórios contêm os arquivos **`GEMINI.md`**, **`CLAUDE.md`** e **`AGENT.md`**.
-- Eles são mandatórios e definem como o agente de IA deve se comportar.
-- **Importante**: Estes arquivos `.md` são versionados (não estão no ignore), garantindo que todos os agentes sigam as mesmas regras de qualidade.
+These directories contain the **`GEMINI.md`**, **`CLAUDE.md`**, and **`AGENT.md`** files.
+- They are mandatory and define how the AI agent should behave.
+- **Important**: These `.md` files are versioned (not ignored), ensuring all agents follow the same quality rules.
 
-## 4. Onde encontrar cada coisa?
+## 4. Where to find everything?
 
-| Necessidade (O que você quer fazer?) | Localização / Skill Recomendada |
+| Need (What do you want to do?) | Location / Recommended Skill |
 |-------------------------------------|---------------------------------|
-| **Criar uma nova skill no Hub** | `skill-factory/` |
-| **Orquestrar um Swarm de Agentes** | `swarm-facilitator/` |
-| **Consultar/Criar ADRs e Arquitetura Macro** | `architecture/` ou `.specs/codebase/` |
-| **Desenhar Contratos e APIs (REST/GraphQL)** | `api-architect/` |
-| **Garantir/Verificar regras de Clean Code** | `clean-code-mentor/` |
-| **Salvar estado e Gerenciar Memória da Sessão**| `harness-expert/` ou `.specs/project/STATE.md` |
-| **Mapear e Visualizar grafos de dependência** | `knowledge-architect/` ou `KNOWLEDGE-MAP.mermaid` |
-| **Gerar projetos base / Boilerplates do zero** | `scaffolding-expert/` |
-| **Configurar CI/CD, Boards ou Azure Pipelines**| `azure-devops/` |
-| **Planejar próxima sprint ou Roadmap** | `.specs/project/ROADMAP.md` |
+| **Create a new skill in the Hub** | `skill-factory/` |
+| **Orchestrate an Agent Swarm** | `swarm-facilitator/` |
+| **Consult/Create ADRs and Macro Architecture** | `architecture/` or `.specs/codebase/` |
+| **Design Contracts and APIs (REST/GraphQL)** | `api-architect/` |
+| **Ensure/Verify Clean Code rules** | `clean-code-mentor/` |
+| **Save state and Manage Session Memory** | `harness-expert/` or `.specs/project/STATE.md` |
+| **Map and Visualize dependency graphs** | `knowledge-architect/` or `KNOWLEDGE-MAP.mermaid` |
+| **Generate base projects / Boilerplates from scratch** | `scaffolding-expert/` |
+| **Configure CI/CD, Boards, or Azure Pipelines** | `azure-devops/` |
+| **Plan next sprint or Roadmap** | `.specs/project/ROADMAP.md` |
 
-## 5. Dica de Navegação
-Sempre comece sua sessão pedindo ao agente para "Reidratar o contexto lendo os arquivos de memória na pasta `.specs/`". Isso garante que ele saiba exatamente onde paramos.
+## 5. Navigation Tip
+Always start your session by asking the agent to "Rehydrate the context by reading the memory files in the `.specs/` folder". This ensures it knows exactly where we left off.

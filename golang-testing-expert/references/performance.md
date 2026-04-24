@@ -1,17 +1,17 @@
-# Pilar 3: Performance & Fuzzing
+# Pillar 3: Performance & Fuzzing in Go
 
-> Validar não apenas a correção lógica, mas também a eficiência e a resiliência contra entradas inesperadas.
+Validate not only logical correctness but also efficiency and resilience against unexpected inputs.
 
 ---
 
 ## ⏱️ Benchmarking
 
-O Go possui suporte nativo a benchmarks integrados ao comando `go test`.
+Go has native support for benchmarks integrated into the `go test` command.
 
-- Funções devem começar com `Benchmark`.
-- Utilize o loop `b.N` para execuções repetidas controladas pelo runtime.
-- **b.ResetTimer()**: Use após setups pesados para não distorcer o tempo de execução.
-- **b.ReportAllocs()**: Ativa o relatório de alocações de memória por operação.
+- Functions must start with `Benchmark`.
+- Use the `b.N` loop for repeated executions controlled by the runtime.
+- **b.ResetTimer()**: Use after heavy setups so as not to distort execution time.
+- **b.ReportAllocs()**: Activates memory allocation reporting per operation.
 
 ```go
 func BenchmarkProcess(b *testing.B) {
@@ -27,34 +27,46 @@ func BenchmarkProcess(b *testing.B) {
 
 ## 🧪 Fuzz Testing (Go 1.18+)
 
-O Fuzzing gera inputs aleatórios para encontrar falhas de segurança ou crashes que testes manuais não pegariam.
+Fuzzing generates random inputs to find security flaws or crashes that manual tests would not catch.
 
-- Utilize `f.Add()` para fornecer exemplos iniciais (seed corpus).
-- O Go tentará mutar esses inputs para quebrar seu código.
+- Use `f.Add()` to provide initial examples (seed corpus).
+- Go will attempt to mutate these inputs to break your code.
 
 ```go
 func FuzzParse(f *testing.F) {
-    f.Add("input inicial")
+    f.Add("initial input")
     f.Fuzz(func(t *testing.T, str string) {
-        Parse(str) // Deve ser resiliente a qualquer string
+        Parse(str) // Must be resilient to any string
     })
 }
 ```
 
 ---
 
-## 📊 Test Coverage (Cobertura)
+## 📊 Test Coverage
 
-- **go test -cover**: Exibe a porcentagem de cobertura no console.
-- **go test -coverprofile=c.out**: Gera um arquivo de profile.
-- **go tool cover -html=c.out**: Abre um visualizador no browser destacando as linhas não testadas.
+- **go test -cover**: Displays the coverage percentage in the console.
+- **go test -coverprofile=c.out**: Generates a profile file.
+- **go tool cover -html=c.out**: Opens a browser viewer highlighting untested lines.
 
 ---
 
 ## 🏁 Race Detection
 
-Sempre rode seus testes com a flag `-race` em ambientes de CI e durante o desenvolvimento local de código concorrente.
+Always run your tests with the `-race` flag in CI environments and during local development of concurrent code.
 
 ```bash
 go test -race ./...
 ```
+
+---
+
+## 🔍 Profiling (pprof)
+
+`pprof` is the definitive tool for identifying bottlenecks:
+
+- **CPU Profile**: Where the code spends the most time.
+- **Memory/Heap Profile**: Where excessive allocations occur.
+- **Usage**:
+  1. Generate profile: `go test -cpuprofile=cpu.out -bench=.`
+  2. Analyze: `go tool pprof -http=:8080 cpu.out`

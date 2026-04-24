@@ -1,29 +1,29 @@
 # Architecture Decision Record (ADR)
 
-**Status**: [Proposto | Aceito | Deprecado | Superado]
-**Data**: YYYY-MM-DD
-**Autor**: [Nome do Autor]
+**Status**: [Proposed | Accepted | Deprecated | Superseded]  
+**Date**: YYYY-MM-DD  
+**Author**: [Author Name]
 
 ---
 
-## 1. Contexto
-[Descreva o problema que precisa ser resolvido e as restrições envolvidas.]
+## 1. Context
+[Describe the problem that needs to be solved and the constraints involved.]
 
-## 2. Decisão
-[Descreva a solução escolhida de forma clara e direta.]
+## 2. Decision
+[Describe the chosen solution clearly and directly.]
 
-## 3. Alternativas Consideradas
-- **Opção A**: [Breve descrição e por que foi descartada]
-- **Opção B**: [Breve descrição e por que foi descartada]
+## 3. Alternatives Considered
+- **Option A**: [Brief description and why it was discarded]
+- **Option B**: [Brief description and why it was discarded]
 
-## 4. Análise de Trade-offs
-- **Ganhos (Pros)**: [O que melhoramos?]
-- **Perdas (Cons)**: [O que sacrificamos?]
+## 4. Trade-off Analysis
+- **Pros (Gains)**: [What did we improve?]
+- **Cons (Losses)**: [What did we sacrifice?]
 
-## 5. Impacto
-- **Desenvolvimento**: [Mudanças no workflow ou stack]
-- **Infraestrutura**: [Novos recursos necessários]
-- **Equipe**: [Necessidade de novo conhecimento?]
+## 5. Impact
+- **Development**: [Changes in workflow or stack]
+- **Infrastructure**: [New resources required]
+- **Team**: [Need for new knowledge?]
 
-## 6. Notas Adicionais
-[Qualquer outra informação relevante.]
+## 6. Additional Notes
+[Any other relevant information.]

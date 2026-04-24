@@ -1,7 +1,7 @@
 # Django Testing Excellence Reference
 
 ## 1. Fast Infrastructure
-Reduza o tempo de feedback para o desenvolvedor.
+Reduce developer feedback time.
 
 ### Pytest Configuration
 ```ini
@@ -24,7 +24,7 @@ PASSWORD_HASHERS = ['django.contrib.auth.hashers.MD5PasswordHasher']
 ```
 
 ## 2. Advanced Factories (Factory Boy)
-Elimine a criação manual de dados.
+Eliminate manual data creation.
 
 ```python
 class ProductFactory(factory.django.DjangoModelFactory):
@@ -42,13 +42,13 @@ class ProductFactory(factory.django.DjangoModelFactory):
 ```
 
 ## 3. Mocking & External Services
-Isole sua aplicação do mundo externo.
+Isolate your application from the external world.
 
 ```python
 @patch('apps.payments.services.stripe.Charge.create')
 def test_successful_payment(self, mock_stripe, client):
     mock_stripe.return_value = {'id': 'ch_123', 'status': 'succeeded'}
-    # ... executa view ...
+    # ... executes view ...
     mock_stripe.assert_called_once()
 ```
 
@@ -67,9 +67,9 @@ def test_create_product(authenticated_api_client):
 ```
 
 ## 5. Coverage Goals
-Mantenha a qualidade visível.
+Keep quality visible.
 
-| Camada | Meta de Cobertura |
+| Layer | Coverage Goal |
 |--------|-------------------|
 | Models | 90%+ |
 | Services | 90%+ |

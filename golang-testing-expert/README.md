@@ -1,11 +1,11 @@
 # Golang Testing Expert
 
-Skill especializada em padrões avançados de teste em Go (Golang).
+Specialized skill in advanced testing patterns in Go (Golang).
 
-## Estrutura
-- `SKILL.md`: Guia mestre e mandatos.
-- `references/`: Documentação detalhada por pilar.
-- `examples/`: Exemplos de código reais.
+## Structure
+- `SKILL.md`: Master guide and mandates.
+- `references/`: Detailed documentation per pillar.
+- `examples/`: Real code examples.
 
-## Uso
-Invoque esta skill quando precisar garantir a qualidade, performance (benchmarks) e resiliência (fuzzing) de componentes escritos em Go.
+## Usage
+Invoke this skill when you need to ensure the quality, performance (benchmarks), and resilience (fuzzing) of components written in Go.

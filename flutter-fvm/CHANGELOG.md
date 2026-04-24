@@ -8,39 +8,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.0] - 2026-04-22
 
 ### Added
-- **Modern Dart Patterns**: Suporte completo a Dart 3+ (Sealed classes, Pattern Matching, Records).
-- **Acessibilidade Mandatória**: Diretrizes para Semantics, alvos de toque e UX inclusiva.
-- **Performance Avançada**: Reconstruções seletivas com `MediaQuery.sizeOf` e decomposição de widgets.
-- **Gestão de Segredos**: Padronização de chaves via `--dart-define` e `.env`.
-- **Resiliência**: Protocolos de captura global de erros (`FlutterError.onError`).
+- **Modern Dart Patterns**: Full support for Dart 3+ (Sealed classes, Pattern Matching, Records).
+- **Mandatory Accessibility**: Guidelines for Semantics, touch targets, and inclusive UX.
+- **Advanced Performance**: Selective rebuilding with `MediaQuery.sizeOf` and widget decomposition.
+- **Secret Management**: Standardized keys via `--dart-define` and `.env`.
+- **Resilience**: Global error capture protocols (`FlutterError.onError`).
 
 ### Changed
-- Atualizado `SKILL.md` para refletir padrões de excelência técnica ECC.
-- Enriquecido `references/testing-and-quality.md` com testes de acessibilidade e goldens.
-- Enriquecido `references/project-structure.md` com integração MVVM + Dart 3.
+- Updated `SKILL.md` to reflect ECC technical excellence standards.
+- Enriched `references/testing-and-quality.md` with accessibility and golden tests.
+- Enriched `references/project-structure.md` with MVVM + Dart 3 integration.
 
 ## [1.2.0] - 2026-04-20
 
 ### Added
-- Seção `🔒 Prerequisites (Mandatory)` vinculando a skill obrigatoriamente ao framework SDD.
+- `🔒 Prerequisites (Mandatory)` section linking the skill mandatorily to the SDD framework.
 
 ## [1.1.0] - 2026-04-15
 
 ### Added
-- Advanced testing patterns guide with layer-by-layer testing strategies
-- Flutter security guide based on OWASP Mobile Top 10 (2024)
-- Riverpod state management testing patterns
-- Widget testing best practices with keys and platform testing
-- Security scanning workflows for hardcoded secrets and dependencies
-- Build protection recommendations with obfuscation
+- Advanced testing patterns guide with layer-by-layer testing strategies.
+- Flutter security guide based on OWASP Mobile Top 10 (2024).
+- Riverpod state management testing patterns.
+- Widget testing best practices with keys and platform testing.
+- Security scanning workflows for hardcoded secrets and dependencies.
+- Build protection recommendations with obfuscation.
 
 ### Enhanced
-- Updated SKILL.md with security and advanced testing integration
-- Expanded "When to Use This Skill" section with security considerations
-- Enhanced DEVELOP phase with testing by architectural layers
-- Enhanced DEPLOY phase with security analysis and secure builds
-- Updated Best Practices with security do's and don'ts
-- Added references to new advanced guides in testing-and-quality.md
+- Updated SKILL.md with security and advanced testing integration.
+- Expanded "When to Use This Skill" section with security considerations.
+- Enhanced DEVELOP phase with testing by architectural layers.
+- Enhanced DEPLOY phase with security analysis and secure builds.
+- Updated Best Practices with security do's and don'ts.
+- Added references to new advanced guides in testing-and-quality.md.
 
 ## [1.0.0] - 2026-04-14
 

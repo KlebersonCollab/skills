@@ -1,34 +1,34 @@
-# Decision Frameworks — Referência Completa
+# Decision Frameworks — Complete Reference
 
-Padrões para tomada de decisão e documentação de escolhas técnicas.
+Patterns for decision-making and documenting technical choices.
 
 ---
 
-## 1. Matriz de Trade-offs
-Toda escolha técnica possui vantagens e sacrifícios. Esta matriz ajuda a tornar esses sacrifícios explícitos.
+## 1. Trade-off Matrix
+Every technical choice has advantages and sacrifices. This matrix helps make these sacrifices explicit.
 
-| Atributo | Decisão A | Decisão B | Trade-off |
+| Attribute | Decision A | Decision B | Trade-off |
 |----------|-----------|-----------|-----------|
-| Velocidade de Dev | Alta | Baixa | A é mais rápido agora, mas B é melhor a longo prazo. |
-| Escalabilidade | Baixa | Alta | B suporta 10x mais carga que A. |
-| Custo Operacional | Baixo | Médio | B exige manutenção de infra extra. |
+| Dev Speed | High | Low | A is faster now, but B is better in the long run. |
+| Scalability | Low | High | B supports 10x more load than A. |
+| Operational Cost | Low | Medium | B requires extra infra maintenance. |
 
-## 2. Decision Log (Registro de Decisão)
-Documente o raciocínio para que outros desenvolvedores (ou você no futuro) entendam o porquê de uma escolha.
+## 2. Decision Log
+Document the reasoning so that other developers (or you in the future) understand why a choice was made.
 
 ### Template:
-- **Data**: 2026-04-14
-- **Status**: Decidido / Em Discussão
-- **Contexto**: Qual era o problema?
-- **Opções Consideradas**: Opção 1, Opção 2.
-- **Opção Escolhida**: Opção 1.
-- **Racional**: Por que a Opção 1 venceu? (ex: Menor risco técnico).
+- **Date**: 2026-04-14
+- **Status**: Decided / In Discussion
+- **Context**: What was the problem?
+- **Options Considered**: Option 1, Option 2.
+- **Option Chosen**: Option 1.
+- **Rationale**: Why did Option 1 win? (e.g., Lower technical risk).
 
 ## 3. Understanding Lock (Checklist)
-Antes de passar do brainstorming para a especificação, garanta que estes pontos foram validados pelo usuário:
+Before moving from brainstorming to specification, ensure these points have been validated by the user:
 
-- [ ] **Objetivos**: O que queremos alcançar?
-- [ ] **Non-goals**: O que **não** faremos?
-- [ ] **Restrições**: Tempo, orçamento, stack tecnológica.
-- [ ] **Premissas**: O que estamos assumindo como verdade?
-- [ ] **Riscos**: O que pode dar errado?
+- [ ] **Goals**: What do we want to achieve?
+- [ ] **Non-goals**: What will we **not** do?
+- [ ] **Constraints**: Time, budget, technology stack.
+- [ ] **Assumptions**: What are we assuming to be true?
+- [ ] **Risks**: What could go wrong?

@@ -1,44 +1,44 @@
 # Technical Decision Making Framework
 
-Este guia fornece o roteiro para avaliar e documentar decisões técnicas críticas no projeto, garantindo que a cultura de simplicidade e rigor seja mantida.
+This guide provides the roadmap for evaluating and documenting critical technical decisions in the project, ensuring that the culture of simplicity and rigor is maintained.
 
 ---
 
-## 1. Quando uma Decisão Exige Formalização?
-Uma decisão deve ser documentada via **RFC (Request for Comments)** ou **ADR (Architecture Decision Record)** quando:
-- Introduz uma nova tecnologia ou biblioteca.
-- Altera a estrutura fundamental do sistema (ex: mudar de REST para GraphQL).
-- Impacta múltiplos times ou módulos.
-- Define um novo padrão de codificação ou segurança.
+## 1. When Does a Decision Require Formalization?
+A decision must be documented via **RFC (Request for Comments)** or **ADR (Architecture Decision Record)** when:
+- It introduces a new technology or library.
+- It changes the fundamental structure of the system (e.g., switching from REST to GraphQL).
+- It impacts multiple teams or modules.
+- It defines a new coding or security standard.
 
-## 2. Perguntas Diagnósticas (Cultura Skynet)
-Antes de decidir, responda:
-1.  **Escalabilidade**: Esta solução suporta o aumento esperado de carga? (Consulte a skill `architecture`).
-2.  **Manutenção**: Quem cuidará disso daqui a 6 meses? É uma tecnologia de mercado ou algo obscuro?
-3.  **Simplicidade (KISS)**: Existe uma forma de fazer isso sem adicionar uma nova dependência?
-4.  **Custo**: Qual o impacto no orçamento de infraestrutura ou tempo de desenvolvimento?
-5.  **Reversibilidade**: Se descobrirmos que esta foi uma escolha errada, quão difícil é voltar atrás?
+## 2. Diagnostic Questions (Skynet Culture)
+Before deciding, answer:
+1.  **Scalability**: Does this solution support the expected increase in load? (Consult the `architecture` skill).
+2.  **Maintenance**: Who will take care of this in 6 months? Is it a mainstream technology or something obscure?
+3.  **Simplicity (KISS)**: Is there a way to do this without adding a new dependency?
+4.  **Cost**: What is the impact on the infrastructure budget or development time?
+5.  **Reversibility**: If we discover this was a wrong choice, how difficult is it to go back?
 
-## 3. O Processo de Decisão
+## 3. The Decision Process
 
 ```mermaid
 graph TD
-    A[Identificar Necessidade] --> B[Pesquisar Alternativas]
-    B --> C[Aplicar Perguntas Diagnósticas]
-    C --> D{Decisão Crítica?}
-    D -- Sim --> E[Escrever RFC]
-    D -- Não --> F[Executar Implementação]
-    E --> G[Coletar Feedback]
-    G --> H[Gerar ADR Final]
+    A[Identify Need] --> B[Research Alternatives]
+    B --> C[Apply Diagnostic Questions]
+    C --> D{Critical Decision?}
+    D -- Yes --> E[Write RFC]
+    D -- No --> F[Execute Implementation]
+    E --> G[Collect Feedback]
+    G --> H[Generate Final ADR]
     H --> F
 ```
 
-## 4. Estrutura do ADR (Architecture Decision Record)
-Utilize o template oficial na pasta `.specs/architecture/`:
+## 4. ADR (Architecture Decision Record) Structure
+Use the official template in the `.specs/architecture/` folder:
 - **Status**: Proposed, Accepted, Superceded.
-- **Contexto**: O problema que estamos tentando resolver.
-- **Decisão**: A solução escolhida.
-- **Consequências**: Os trade-offs (positivos e negativos) da escolha.
+- **Context**: The problem we are trying to solve.
+- **Decision**: The chosen solution.
+- **Consequences**: The trade-offs (positive and negative) of the choice.
 
-## 5. Dica do Mentor
-"Não escolha a tecnologia que você quer aprender, escolha a tecnologia que o projeto precisa para sobreviver." — Priorize a estabilidade e a facilidade de contratação de novos talentos.
+## 5. Mentor's Tip
+"Don't choose the technology you want to learn, choose the technology the project needs to survive." — Prioritize stability and the ease of hiring new talent.

@@ -1,6 +1,6 @@
-# Multi-Agent Orchestrator
+# Swarm Facilitator
 
-Esta skill capacita agentes de IA a coreografar a execução de projetos envolvendo múltiplas "personas" virtuais. Ela atua como a cola entre as fases do SDD, garantindo passagem limpa de contexto.
+This skill empowers AI agents to choreograph project execution involving multiple virtual "personas". It acts as the glue between SDD phases, ensuring clean context passing.
 
-## Uso
-Utilize esta skill quando o projeto for muito grande para uma única sessão. Instancie o Agente como "Solution Architect" e o instrua a fazer o handoff ao terminar a arquitetura.
+## Usage
+Use this skill when the project is too large for a single session. Instantiate the Agent as a "Solution Architect" and instruct it to perform a handoff upon finishing the architecture.

@@ -1,41 +1,41 @@
-# Protocolo de Handoff entre Agentes
+# Inter-Agent Handoff Protocol
 
-O arquivo `handoff.md` é o contrato de transição entre personas (ex: Arquiteto para Engenheiro). Ele deve garantir que o próximo agente tenha contexto total sem redundância.
+The `handoff.md` file is the transition contract between personas (e.g., Architect to Engineer). It must ensure that the next agent has full context without redundancy.
 
-## Estrutura Obrigatória
+## Mandatory Structure
 
-### 1. Resumo do Estado (State Summary)
-- **O que foi feito**: Lista sucinta de tarefas concluídas.
-- **Bloqueios**: Impedimentos encontrados e como foram resolvidos ou contornados.
+### 1. State Summary
+- **What was done**: Succinct list of completed tasks.
+- **Blockers**: Impediments encountered and how they were resolved or bypassed.
 
-### 2. Artefatos Gerados
-- Links para novos arquivos, specs (PRD/RFC), ADRs e diagramas Mermaid.
+### 2. Generated Artifacts
+- Links to new files, specs (PRD/RFC), ADRs, and Mermaid diagrams.
 
-### 3. Missão para a Próxima Persona
-- **Objetivo Imediato**: O que deve ser feito a seguir.
-- **Critérios de Aceite**: Como o próximo agente saberá que concluiu sua parte.
+### 3. Mission for the Next Persona
+- **Immediate Objective**: What should be done next.
+- **Acceptance Criteria**: How the next agent will know they have completed their part.
 
-### 4. Contexto Técnico (Deep Dive)
-- Variáveis de ambiente necessárias.
-- Decisões de design críticas que não estão em ADRs (decisões "táticas").
+### 4. Technical Context (Deep Dive)
+- Necessary environment variables.
+- Critical design decisions not in ADRs ("tactical" decisions).
 
-## Exemplo de Template
+## Example Template
 
 ```markdown
-# Handoff: [Persona Origem] -> [Persona Destino]
+# Handoff: [Source Persona] -> [Destination Persona]
 
-## 📝 Status Atual
-- [X] Spec Finalizada em `.specs/features/auth-v2/prd.md`
-- [X] ADR-005 aprovado para uso de JWT.
+## 📝 Current Status
+- [X] Spec finalized in `.specs/features/auth-v2/prd.md`
+- [X] ADR-005 approved for JWT usage.
 
-## 🔗 Artefatos
+## 🔗 Artifacts
 - Spec: `prd.md`
 - Mockup: `ui-draft.mermaid`
 
-## 🎯 Próximos Passos (Para [Persona Destino])
-1. Implementar o repositório de usuários seguindo a interface `IUserRepository`.
-2. Validar contra os testes em `tests/auth_test.py`.
+## 🎯 Next Steps (For [Destination Persona])
+1. Implement the user repository following the `IUserRepository` interface.
+2. Validate against tests in `tests/auth_test.py`.
 
-## ⚠️ Observações
-- O banco de dados de dev deve estar rodando na porta 5432.
+## ⚠️ Notes
+- The dev database should be running on port 5432.
 ```

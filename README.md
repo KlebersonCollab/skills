@@ -1,132 +1,132 @@
 # 🧠 AI Agent Skills Hub
 
-> Hub centralizado para desenvolvimento, armazenamento e evolução **Skills** modulares para agentes IA.
+> Centralized hub for the development, storage, and evolution of modular **Skills** for AI agents.
 
-[![Skills](https://img.shields.io/badge/Skills-25-brightgreen)](#-skills-disponíveis)
-[![Licença](https://img.shields.io/badge/Licença-MIT-blue)](LICENSE)
+[![Skills](https://img.shields.io/badge/Skills-25-brightgreen)](#-available-skills)
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/KlebersonCollab/skills/generate-skills-artifacts.yml?branch=main&label=Build%20Artifacts)](https://github.com/KlebersonCollab/skills/actions)
-[![Status](https://img.shields.io/badge/Status-Ativo-brightgreen)](#-roadmap)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](#-roadmap)
 
 ---
 
-## 📖 Sobre o Projeto
+## 📖 About the Project
 
-Este repositório é **fonte verdade** para todas habilidades (skills) utilizadas por agentes IA. Cada skill é módulo independente, documentado e versionado, que pode ser integrado qualquer agente compatível.
+This repository is the **source of truth** for all skills used by AI agents. Each skill is an independent, documented, and versioned module that can be integrated into any compatible agent.
 
-Utilizamos metodologia **[SDD](sdd/)** (Spec-Driven Development) para garantir que cada nova funcionalidade seja rigorosamente especificada, planejada e verificada antes implementação.
+We use the **[SDD](sdd/)** (Spec-Driven Development) methodology to ensure that each new functionality is rigorously specified, planned, and verified before implementation.
 
 ---
 
-## 📦 Download & Uso Rápido
+## 📦 Download & Quick Start
 
-Geramos automaticamente pacotes pré-configurados para principais agentes IA. Basta baixar, descompactar na raiz seu projeto e começar usar:
+We automatically generate pre-configured packages for the main AI agents. Just download, extract to your project's root, and start using:
 
-| Agente | Artefato | Conteúdo |
+| Agent | Artifact | Content |
 |--------|----------|----------|
-| **Claude AI** | [📥 claude-skills.zip](https://github.com/KlebersonCollab/skills/releases/latest/download/claude-skills.zip) | Pasta `.claude/` com `CLAUDE.md` e todas as skills. |
-| **Gemini CLI** | [📥 gemini-skills.zip](https://github.com/KlebersonCollab/skills/releases/latest/download/gemini-skills.zip) | Pasta `.gemini/` com `GEMINI.md` e todas as skills. |
-| **AI Agent (Generic)** | [📥 agent-skills.zip](https://github.com/KlebersonCollab/skills/releases/latest/download/agent-skills.zip) | Pasta `.agent/` com `AGENT.md` e todas as skills. |
+| **Claude AI** | [📥 claude-skills.zip](https://github.com/KlebersonCollab/skills/releases/latest/download/claude-skills.zip) | `.claude/` folder with `CLAUDE.md` and all skills. |
+| **Gemini CLI** | [📥 gemini-skills.zip](https://github.com/KlebersonCollab/skills/releases/latest/download/gemini-skills.zip) | `.gemini/` folder with `GEMINI.md` and all skills. |
+| **AI Agent (Generic)** | [📥 agent-skills.zip](https://github.com/KlebersonCollab/skills/releases/latest/download/agent-skills.zip) | `.agent/` folder with `AGENT.md` and all skills. |
 
-> 💡 *Nota: links acima baixam automaticamente versão mais recente aba **Releases**.*
+> 💡 *Note: The links above automatically download the latest version from the **Releases** tab.*
 
-### 🚀 Como usar as Skills
-1. Baixe ZIP correspondente ao seu agente.
-2. Extraia conteúdo na raiz diretório seu projeto.
-3. Certifique-se que pasta oculta (ex: `.claude/`) foi criada corretamente.
-4. Seu agente IA detectará automaticamente novas capacidades.
+### 🚀 How to use the Skills
+1. Download the ZIP corresponding to your agent.
+2. Extract the content to your project's root directory.
+3. Ensure the hidden folder (e.g., `.claude/`) was created correctly.
+4. Your AI agent will automatically detect the new capabilities.
 
 ---
 
-## 🛠️ Ferramentas & Automação
+## 🛠️ Tools & Automation
 
- Hub inclui **SDD CLI**, ferramenta Python que automatiza ciclo vida skills e gestão conhecimento:
+The Hub includes the **SDD CLI**, a Python tool that automates the skill lifecycle and knowledge management:
 
-| Comando | Descrição |
+| Command | Description |
 |---------|-----------|
-| `uv run sdd init <name>` | Inicializa nova feature com estrutura SDD completa. |
-| `uv run sdd task <feat> <id>` | Marca progresso tarefas e sincroniza estado global. |
-| `uv run sdd graph` | Gera automaticamente **Knowledge Map** (Mermaid) projeto. |
-| `uv run sdd sync` | Sincroniza mandatos globais em todos agentes (.gemini, .claude, .agent). |
+| `uv run sdd init <name>` | Initializes a new feature with full SDD structure. |
+| `uv run sdd task <feat> <id>` | Marks task progress and synchronizes global state. |
+| `uv run sdd graph` | Automatically generates the project **Knowledge Map** (Mermaid). |
+| `uv run sdd sync` | Synchronizes global mandates across all agents (.gemini, .claude, .agent). |
 
-> 💡 *Nota: Requer [Python UV](https://docs.astral.sh/uv/) instalado.*
+> 💡 *Note: Requires [Python UV](https://docs.astral.sh/uv/) installed.*
 
 ---
 
-## 🛠️ Skills Disponíveis
+## 🛠️ Available Skills
 
-| # | Skill | Descrição | Versão |
+| # | Skill | Description | Version |
 |---|-------|-----------|--------|
-| 1 | **[SDD](sdd/)** | Spec-Driven Development — Workflow modular e adaptativo com **Persistent Memory Protocol**. | `1.5.0` |
-| 2 | **[Skill Factory](skill-factory/)** | Core Framework para criação padronizada de novas skills com scaffolding e validação. | `1.1.0` |
-| 3 | **[Python com UV](python-uv/)** | Desenvolvimento Python profissional com UV — gerenciador 10-100x mais rápido. | `2.6.0` |
-| 4 | **[API Architect](api-architect/)** | Arquiteto de APIs — design interoperável e seguro (OpenAPI, GraphQL, tRPC). | `1.3.0` |
-| 5 | **[Brainstorming](brainstorming/)** | Facilitador de design e resolução de problemas — exploração profunda e validação. | `1.1.0` |
-| 6 | **[Architecture](architecture/)** | Arquiteto de Sistemas — design pragmático, trade-offs e registros de decisão (ADR). | `2.0.1` |
-| 7 | **[Flutter com FVM](flutter-fvm/)** | Desenvolvimento Flutter profissional com FVM. Inclui Dart 3+, performance otimizada, acessibilidade mandatória e segurança OWASP. | `1.3.0` |
-| 8 | **[Azure DevOps](azure-devops/)** | Gerenciamento profissional de Boards, Repos, Pipelines e Artifacts no AzDO. | `1.1.0` |
-| 9 | **[Clean Code Mentor](clean-code-mentor/)** | Mentor técnico e revisor de código focado em SOLID, YAGNI, DRY e KISS. | `1.0.0` |
-| 10 | **[Observability Expert](observability-expert/)** | Especialista em SRE — Logs Estruturados, OpenTelemetry e Confiabilidade (SLI/SLO). | `1.0.0` |
-| 11 | **[Onboarding Navigator](onboarding-navigator/)** | Guia interativo de cultura e engenharia para novos membros e projetos. | `1.5.0` |
-| 12 | **[YouTube Transcript](youtube-transcript/)** | Extração de transcrições de vídeos com fallback para IA (Whisper) e limpeza automática. | `1.0.0` |
-| 13 | **[Harness Expert](harness-expert/)** | Motor técnico para Harness Engineering (Sync, Rehydrate, Automação). | `2.0.0` |
-| 14 | **[Knowledge Architect](knowledge-architect/)** | Arquitetura de conhecimento local via grafos relacionais (Local GraphRAG). | `1.0.0` |
-| 15 | **[FastAPI Expert](fastapi-expert/)** | Excelência em APIs com FastAPI — performance, Annotated e Pydantic V2. | `1.1.0` |
-| 16 | **[Django Expert](django-expert/)** | Desenvolvimento profissional com Django — Arquitetura, Segurança e TDD. | `1.5.0` |
-| 17 | **[Swarm Facilitator](swarm-facilitator/)** | Orquestrador de workflows Multi-Agente (Swarm). Define protocolos de handoff. | `1.1.0` |
-| 18 | **[Scaffolding Expert](scaffolding-expert/)** | Gerador dinâmico de projetos. Utiliza CLI tools (uvx copier) para inicializar boilerplates. | `1.0.0` |
-| 19 | **[Golang Expert](golang-expert/)** | Excelência em Go — Performance, concorrência idiomática e ecossistema Samber. | `1.2.0` |
-| 20 | **[Frontend Expert](frontend-expert/)** | Expert em interfaces modernas com React, Next.js e TailwindCSS v4. | `1.1.0` |
-| 21 | **[Git Workflow](git-workflow/)** | Padrões de fluxo de trabalho Git, estratégias de branching e integração com SDD. | `1.0.0` |
-| 22 | **[Golang Testing Expert](golang-testing-expert/)** | Especialista em QA para Go — TDD, Table-Driven Tests, Benchmarks e Fuzzing. | `1.0.0` |
-| 23 | **[Benchmark Expert](benchmark-expert/)** | Expert Skill para medição de baselines de performance, detecção de regressões e comparação de stacks. | `1.0.0` |
-| 24 | **[DevSecOps Expert](devsecops-expert/)** | Auditoria estática de qualidade, segurança SAST/DAST e Hardening. | `1.0.0` |
-| 25 | **[Token Distiller](token-distiller/)** | Gerenciador de densidade de tokens e modos de compressão (Caveman/Premium). | `1.1.0` |
+| 1 | **[SDD](sdd/)** | Spec-Driven Development — Modular and adaptive workflow with **Persistent Memory Protocol**. | `1.5.0` |
+| 2 | **[Skill Factory](skill-factory/)** | Core Framework for standardized creation of new skills with scaffolding and validation. | `1.1.0` |
+| 3 | **[Python with UV](python-uv/)** | Professional Python development with UV — 10-100x faster manager. | `2.6.0` |
+| 4 | **[API Architect](api-architect/)** | API Architect — interoperable and secure design (OpenAPI, GraphQL, tRPC). | `1.3.0` |
+| 5 | **[Brainstorming](brainstorming/)** | Design and problem-solving facilitator — deep exploration and validation. | `1.1.0` |
+| 6 | **[Architecture](architecture/)** | Systems Architect — pragmatic design, trade-offs, and decision records (ADR). | `2.0.1` |
+| 7 | **[Flutter with FVM](flutter-fvm/)** | Professional Flutter development with FVM. Includes Dart 3+, optimized performance, mandatory accessibility, and OWASP security. | `1.3.0` |
+| 8 | **[Azure DevOps](azure-devops/)** | Professional management of Boards, Repos, Pipelines, and Artifacts in AzDO. | `1.1.0` |
+| 9 | **[Clean Code Mentor](clean-code-mentor/)** | Technical mentor and code reviewer focused on SOLID, YAGNI, DRY, and KISS. | `1.0.0` |
+| 10 | **[Observability Expert](observability-expert/)** | SRE Specialist — Structured Logging, OpenTelemetry, and Reliability (SLI/SLO). | `1.0.0` |
+| 11 | **[Onboarding Navigator](onboarding-navigator/)** | Interactive culture and engineering guide for new members and projects. | `1.5.0` |
+| 12 | **[YouTube Transcript](youtube-transcript/)** | Video transcript extraction with AI fallback (Whisper) and automatic cleanup. | `1.0.0` |
+| 13 | **[Harness Expert](harness-expert/)** | Technical engine for Harness Engineering (Sync, Rehydrate, Automation). | `2.0.0` |
+| 14 | **[Knowledge Architect](knowledge-architect/)** | Local knowledge architecture via relational graphs (Local GraphRAG). | `1.0.0` |
+| 15 | **[FastAPI Expert](fastapi-expert/)** | API Excellence with FastAPI — performance, Annotated, and Pydantic V2. | `1.1.0` |
+| 16 | **[Django Expert](django-expert/)** | Professional development with Django — Architecture, Security, and TDD. | `1.5.0` |
+| 17 | **[Swarm Facilitator](swarm-facilitator/)** | Multi-Agent workflow orchestrator (Swarm). Defines handoff protocols. | `1.1.0` |
+| 18 | **[Scaffolding Expert](scaffolding-expert/)** | Dynamic project generator. Uses CLI tools (uvx copier) to initialize boilerplates. | `1.0.0` |
+| 19 | **[Golang Expert](golang-expert/)** | Go Excellence — Performance, idiomatic concurrency, and Samber ecosystem. | `1.2.0` |
+| 20 | **[Frontend Expert](frontend-expert/)** | Expert in modern interfaces with React, Next.js, and TailwindCSS v4. | `1.1.0` |
+| 21 | **[Git Workflow](git-workflow/)** | Git workflow patterns, branching strategies, and SDD integration. | `1.0.0` |
+| 22 | **[Golang Testing Expert](golang-testing-expert/)** | QA Specialist for Go — TDD, Table-Driven Tests, Benchmarks, and Fuzzing. | `1.0.0` |
+| 23 | **[Benchmark Expert](benchmark-expert/)** | Expert Skill for measuring performance baselines, detecting regressions, and comparing stacks. | `1.0.0` |
+| 24 | **[DevSecOps Expert](devsecops-expert/)** | Static quality auditing, SAST/DAST security, and Hardening. | `1.0.0` |
+| 25 | **[Token Distiller](token-distiller/)** | Token density manager and compression modes (Caveman/Premium). | `1.1.0` |
 
 ---
 
-## 🏗️ Estrutura do Repositório
+## 🏗️ Repository Structure
 
 ```
 skills/
-85: ├── .github/workflows/           # Automação de CI/CD (GitHub Actions)
-86: ├── .specs/                      # Especificações do projeto (SDD)
-87: │   ├── project/                 # Visão, Roadmap e Estado
-88: │   └── codebase/                # Stack e Convenções
-89: ├── scripts/                     # Scripts de automação e distribuição
-90: ├── <skill>/                     # 🧩 Cada skill em seu diretório
-91: │   ├── README.md                # Documentação detalhada
-92: │   ├── SKILL.md                 # Definição técnica principal
-93: │   └── CHANGELOG.md             # Histórico de versões
-94: └── README.md                    # ← Você está aqui
-95: ```
+├── .github/workflows/           # CI/CD Automation (GitHub Actions)
+├── .specs/                      # Project Specifications (SDD)
+│   ├── project/                 # Vision, Roadmap, and State
+│   └── codebase/                # Stack and Conventions
+├── scripts/                     # Automation and distribution scripts
+├── <skill>/                     # 🧩 Each skill in its directory
+│   ├── README.md                # Detailed documentation
+│   ├── SKILL.md                 # Main technical definition
+│   └── CHANGELOG.md             # Version history
+└── README.md                    # ← You are here
+```
 
 ---
 
-## 📐 Como Criar uma Nova Skill
+## 📐 How to Create a New Skill
 
-Utilize skill **[Skill Factory](skill-factory/)** para criar novas skills forma padronizada. processo garante que cada skill seja gerada com estrutura correta e passe por auditoria qualidade antes ser integrada ao hub.
+Use the **[Skill Factory](skill-factory/)** skill to create new skills in a standardized way. This process ensures that each skill is generated with the correct structure and passes a quality audit before being integrated into the hub.
 
-> 📖 Consulte [documentação do Skill Factory](skill-factory/) para detalhes.
-
----
-
-## 🗺️ Roadmap & Estado do Projeto
-
-Acompanhe evolução hub através documentos planejamento:
-- 🛤️ **[ROADMAP.md](.specs/project/ROADMAP.md)**: Visão longo prazo e metas.
-- 📊 **[STATE.md](.specs/project/STATE.md)**: Status atual e tarefas em andamento.
+> 📖 See the [Skill Factory documentation](skill-factory/) for details.
 
 ---
 
-## 📄 Licença
+## 🗺️ Roadmap & Project State
 
-Este projeto está licenciado sob [Licença MIT](LICENSE).
+Follow the Hub's evolution through the planning documents:
+- 🛤️ **[ROADMAP.md](.specs/project/ROADMAP.md)**: Long-term vision and goals.
+- 📊 **[STATE.md](.specs/project/STATE.md)**: Current status and tasks in progress.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
 <div align="center">
 
-**Construído com 🧠 por [Kleberson Romero](https://github.com/KlebersonCollab)**
+**Built with 🧠 by [Kleberson Romero](https://github.com/KlebersonCollab)**
 
 *Precision at scale. Rigor when needed, speed when possible.*
 

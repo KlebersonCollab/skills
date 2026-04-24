@@ -1,49 +1,49 @@
 # CQRS & Event-Driven Design
 
-Este guia detalha a aplicação de padrões de alta performance para sistemas distribuídos e escaláveis.
+This guide details the application of high-performance patterns for distributed and scalable systems.
 
 ---
 
 ## 1. CQRS (Command Query Responsibility Segregation)
 
-O CQRS propõe a separação entre a lógica de alteração de dados (Commands) e a lógica de leitura de dados (Queries).
+CQRS proposes the separation between data modification logic (Commands) and data reading logic (Queries).
 
-- **Write Side (Commands)**: Focado em validar regras de negócio e garantir a integridade transacional. Geralmente utiliza um banco de dados normalizado ou Event Store.
-- **Read Side (Queries)**: Focado em performance de leitura. Utiliza bancos de dados desnormalizados, caches ou índices de busca (ex: Elasticsearch, Redis).
-- **Sincronização**: O lado de escrita notifica o lado de leitura sobre mudanças através de eventos (Projections).
+- **Write Side (Commands)**: Focused on validating business rules and ensuring transactional integrity. Generally uses a normalized database or Event Store.
+- **Read Side (Queries)**: Focused on reading performance. Uses denormalized databases, caches, or search indexes (e.g., Elasticsearch, Redis).
+- **Synchronization**: The write side notifies the read side about changes through events (Projections).
 
-**Quando usar**: Quando o volume de leitura é drasticamente superior ao de escrita ou quando as visões de dados exigem junções complexas que degradam o banco principal.
+**When to use**: When the read volume is drastically higher than the write volume or when data views require complex joins that degrade the main database.
 
 ## 2. Event-Driven Architecture (EDA)
 
-Sistemas onde a comunicação ocorre via emissão e consumo de eventos assíncronos.
+Systems where communication occurs via the emission and consumption of asynchronous events.
 
-- **Event**: Uma representação de algo que já aconteceu no passado (ex: `OrderPlaced`, `UserRegistered`).
-- **Broker**: O intermediário que gerencia as mensagens (ex: RabbitMQ, Kafka, AWS EventBridge).
-- **Producer/Consumer**: Desacoplamento total; o produtor não sabe quem consome a mensagem.
+- **Event**: A representation of something that has already happened in the past (e.g., `OrderPlaced`, `UserRegistered`).
+- **Broker**: The intermediary that manages messages (e.g., RabbitMQ, Kafka, AWS EventBridge).
+- **Producer/Consumer**: Total decoupling; the producer does not know who consumes the message.
 
-## 3. Estratégias Críticas
+## 3. Critical Strategies
 
-### A. Idempotência
-Garantir que processar a mesma mensagem múltiplas vezes não gere efeitos colaterais.
-- **Técnica**: Utilizar um `Unique Message ID` e checar em uma tabela de controle (`Idempotency Key`) antes de processar.
+### A. Idempotency
+Ensure that processing the same message multiple times does not generate side effects.
+- **Technique**: Use a `Unique Message ID` and check in a control table (`Idempotency Key`) before processing.
 
-### B. Consistência Eventual
-Aceitar que os dados no Read Side podem levar alguns milissegundos (ou segundos) para refletir a escrita.
-- **Impacto**: O design de UI deve prever estados de "processando" ou atualizações otimistas.
+### B. Eventual Consistency
+Accept that data on the Read Side may take a few milliseconds (or seconds) to reflect the write.
+- **Impact**: UI design should provide for "processing" states or optimistic updates.
 
 ### C. DLQ (Dead Letter Queue)
-Fila para onde mensagens que falharam repetidamente são enviadas para análise manual ou reprocessamento posterior.
+Queue to which messages that have failed repeatedly are sent for manual analysis or later reprocessing.
 
-## 4. Event Sourcing (Opcional)
+## 4. Event Sourcing (Optional)
 
-Em vez de armazenar o estado atual do objeto, armazena-se a sequência completa de eventos que levaram a esse estado.
-- **Vantagem**: Auditabilidade total e capacidade de reconstruir o estado em qualquer ponto no tempo.
-- **Desvantagem**: Alta complexidade de implementação e necessidade de `Snapshots`.
+Instead of storing the object's current state, the full sequence of events that led to that state is stored.
+- **Advantage**: Total auditability and ability to reconstruct the state at any point in time.
+- **Disadvantage**: High implementation complexity and need for `Snapshots`.
 
 ---
 
-## Exemplo de Fluxo (Mermaid)
+## Flow Example (Mermaid)
 
 ```mermaid
 sequenceDiagram
@@ -54,13 +54,13 @@ sequenceDiagram
     participant Projector
     participant DB_Read
 
-    UI->>CommandAPI: Enviar Comando (Criar Pedido)
-    CommandAPI->>DB_Write: Salvar Transação
-    CommandAPI->>Broker: Emitir Evento (PedidoCriado)
-    CommandAPI-->>UI: Retornar 202 Accepted
+    UI->>CommandAPI: Send Command (Create Order)
+    CommandAPI->>DB_Write: Save Transaction
+    CommandAPI->>Broker: Emit Event (OrderCreated)
+    CommandAPI-->>UI: Return 202 Accepted
     
-    Broker->>Projector: Consumir Evento
-    Projector->>DB_Read: Atualizar View de Pedidos
+    Broker->>Projector: Consume Event
+    Projector->>DB_Read: Update Orders View
     
-    UI->>DB_Read: Consultar Pedido (Polling/WebSocket)
+    UI->>DB_Read: Query Order (Polling/WebSocket)
 ```

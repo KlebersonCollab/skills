@@ -2,82 +2,82 @@
 
 > Precision at scale. Rigor when needed, speed when possible.
 
-[![Versão](https://img.shields.io/badge/Versão-1.5.0-blue)](#changelog)
+[![Version](https://img.shields.io/badge/Version-1.5.0-blue)](#changelog)
 [![Sub-skills](https://img.shields.io/badge/Sub--skills-5-brightgreen)](#-sub-skills)
 
 ---
 
-## 📖 Visão Geral
+## 📖 Overview
 
-Skill de **desenvolvimento orientado a especificações** com workflow modular e adaptativo. O SDD ajusta automaticamente a profundidade do processo à complexidade da tarefa (Auto-Sizing), garantindo rigor quando necessário e velocidade quando possível.
+A skill for **spec-driven development** with a modular and adaptive workflow. SDD automatically adjusts the depth of the process to the complexity of the task (Auto-Sizing), ensuring rigor when necessary and speed when possible.
 
-A versão `1.5.0` integra os princípios de **Harness Engineering** e as diretrizes avançadas do **TLC Spec-Driven**, introduzindo **Contratos de Desenvolvimento (SDC)**, validação determinística via **Sensores** e protocolos de gestão de contexto.
+Version `1.5.0` integrates the principles of **Harness Engineering** and the advanced guidelines of **TLC Spec-Driven**, introducing **Software Development Contracts (SDC)**, deterministic validation via **Sensors**, and context management protocols.
 
-> **Lei do SDD**: Se não está na spec, não existe. Se não foi verificado, não está pronto.
+> **SDD Law**: If it's not in the spec, it doesn't exist. If it hasn't been verified, it's not ready.
 
 ---
 
 ## ⚙️ Auto-Sizing
 
-A profundidade do workflow é determinada pela **complexidade** da tarefa:
+The depth of the workflow is determined by the **complexity** of the task:
 
-| Nível | Escopo | Fases | Sub-skills Utilizadas |
+| Level | Scope | Phases | Sub-skills Used |
 |-------|--------|-------|-----------------------|
-| **Quick** | Bug fixes, configs, <3 arquivos | Implementar → Verificar | `implementer` |
-| **Small** | Feature clara, <5 tarefas | Spec → Impl → Verificar | `orchestrator`, `implementer` |
-| **Medium** | Feature + UI, <10 tarefas | Explorar → Spec → Impl → Verificar | `explorer`, `orchestrator` |
-| **Large** | Multi-componente, novo módulo | Planejar → Explorar → Spec → Design → Impl → Verificar | Todas |
-| **Complex** | Ambiguidade, alto risco | Todas as fases + UAT Interativo | Todas + `reviewer` |
+| **Quick** | Bug fixes, configs, <3 files | Implement → Verify | `implementer` |
+| **Small** | Clear feature, <5 tasks | Spec → Impl → Verify | `orchestrator`, `implementer` |
+| **Medium** | Feature + UI, <10 tasks | Explore → Spec → Impl → Verify | `explorer`, `orchestrator` |
+| **Large** | Multi-component, new module | Plan → Explore → Spec → Design → Impl → Verify | All |
+| **Complex** | Ambiguity, high risk | All phases + Interactive UAT | All + `reviewer` |
 
 ---
 
 ## 🧩 Sub-skills
 
-| Sub-skill | Arquivo | Responsabilidade |
+| Sub-skill | File | Responsibility |
 |-----------|---------|------------------|
-| **Explorer** | [sdd-explorer.skill.md](sdd-explorer.skill.md) | Mapeia codebases existentes gerando `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md` e outros artefatos de contexto. |
-| **Planner** | [sdd-planner.skill.md](sdd-planner.skill.md) | Gerencia a visão do projeto e a **Memória Triádica** (`STATE.md`, `MEMORY.md`, `LEARNINGS.md`). |
-| **Orchestrator** | [sdd-orchestrator.skill.md](sdd-orchestrator.skill.md) | Traduz requisitos em especificações técnicas (`spec.md`, `plan.md`, `tasks.md`) com rastreabilidade completa. |
-| **Implementer** | [sdd-implementer.skill.md](sdd-implementer.skill.md) | Executa código atômico e test-driven, seguindo rigorosamente as specs e convenções do projeto. |
-| **Reviewer** | [sdd-reviewer.skill.md](sdd-reviewer.skill.md) | Audita implementações contra critérios de aceitação com relatório de evidências e UAT. |
+| **Explorer** | [sdd-explorer.skill.md](sdd-explorer.skill.md) | Maps existing codebases, generating `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, and other context artifacts. |
+| **Planner** | [sdd-planner.skill.md](sdd-planner.skill.md) | Manages project vision and **Triadic Memory** (`STATE.md`, `MEMORY.md`, `LEARNINGS.md`). |
+| **Orchestrator** | [sdd-orchestrator.skill.md](sdd-orchestrator.skill.md) | Translates requirements into technical specifications (`spec.md`, `plan.md`, `tasks.md`) with full traceability. |
+| **Implementer** | [sdd-implementer.skill.md](sdd-implementer.skill.md) | Executes atomic and test-driven code, strictly following the project's specs and conventions. |
+| **Reviewer** | [sdd-reviewer.skill.md](sdd-reviewer.skill.md) | Audits implementations against acceptance criteria with an evidence report and UAT. |
 
 ---
 
 ## 🔗 Knowledge Verification Chain
 
-Ao pesquisar ou decidir, siga esta hierarquia estrita:
+When researching or deciding, follow this strict hierarchy:
 
-1. **Codebase Docs** → Consulte `.specs/codebase/` (gerado pelo Explorer).
-2. **Project Docs** → Verifique READMEs, `PROJECT.md`, `ROADMAP.md`.
-3. **Existing Code** → Leia o código-fonte diretamente.
-4. **Web Search** → Apenas documentação oficial.
-5. **Flag Uncertainty** → Se os passos 1-4 falharem, comunique a incerteza ao usuário.
+1. **Codebase Docs** → Consult `.specs/codebase/` (generated by the Explorer).
+2. **Project Docs** → Check READMEs, `PROJECT.md`, `ROADMAP.md`.
+3. **Existing Code** → Read the source code directly.
+4. **Web Search** → Official documentation only.
+5. **Flag Uncertainty** → If steps 1-4 fail, communicate the uncertainty to the user.
 
 ---
 
-## 📁 Estrutura de Diretórios (Obrigatória)
+## 📁 Directory Structure (Mandatory)
 
-### Por Feature (`spec/` ou `.specs/features/[nome]/`)
-- `spec.md` — Requisitos rastreáveis (FR-X) e critérios de aceitação.
-- `plan.md` — Design técnico e schemas.
-- `tasks.md` — Lista atômica de tarefas com status.
+### Per Feature (`spec/` or `.specs/features/[name]/`)
+- `spec.md` — Traceable requirements (FR-X) and acceptance criteria.
+- `plan.md` — Technical design and schemas.
+- `tasks.md` — Atomic list of tasks with status.
 
-### Por Projeto (`.specs/`)
+### Per Project (`.specs/`)
 - `project/` — `PROJECT.md`, `ROADMAP.md`, `STATE.md`, `MEMORY.md`, `LEARNINGS.md`.
 - `codebase/` — `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `CONCERNS.md`.
 
 ---
 
-## 📋 Protocolos Operacionais
+## 📋 Operational Protocols
 
 ### Safety Valve
-Se uma tarefa identificada como **Quick** ou **Small** revelar complexidade oculta (>5 passos ou dependências profundas), **PARE**. Formalize a tarefa como **Large** com spec e plan completos.
+If a task identified as **Quick** or **Small** reveals hidden complexity (>5 steps or deep dependencies), **STOP**. Formalize the task as **Large** with full spec and plan.
 
 ### Persistent Memory (Triad State)
-Sempre atualize o `STATE.md` (operacional), `MEMORY.md` (fatos) e `LEARNINGS.md` (sabedoria) via `sdd-planner` ao final de cada sessão ou após decisões importantes.
+Always update `STATE.md` (operational), `MEMORY.md` (facts), and `LEARNINGS.md` (wisdom) via `sdd-planner` at the end of each session or after major decisions.
 
 ### Verification Standards
-Uma feature **NÃO** está completa até que o **Reviewer** emita um veredito `APPROVED` baseado em evidências (paths e line numbers).
+A feature is **NOT** complete until the **Reviewer** issues an `APPROVED` verdict based on evidence (paths and line numbers).
 
 ### Skill Reference
 
@@ -87,4 +87,4 @@ Uma feature **NÃO** está completa até que o **Reviewer** emita um veredito `A
 
 ## 📝 Changelog
 
-Consulte o [CHANGELOG.md](CHANGELOG.md) para o histórico completo de versões.
+See [CHANGELOG.md](CHANGELOG.md) for full version history.

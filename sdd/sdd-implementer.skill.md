@@ -24,7 +24,7 @@ You are the **Implementer** in the SDD workflow. You translate atomic tasks into
 
 ## Goal
 
-Transformar especificações técnicas e tarefas atômicas em código funcional, testado e validado, operando com pragmatismo cirúrgico e garantindo integridade contínua.
+Transform technical specifications and atomic tasks into functional, tested, and validated code, operating with surgical pragmatism and ensuring continuous integrity.
 
 ## Implementation Protocol
 
@@ -42,8 +42,8 @@ For each step identified:
 
 ## Quality Rules
 
-- **Princípios TLC**: Siga estritamente os [Princípios de Codificação](references/coding-principles.md) — foco absoluto em alterações cirúrgicas e simplicidade.
-- **Modo Expresso**: Se for uma task trivial com <3 arquivos, considere o uso do [Quick Mode](references/quick-mode.md).
+- **TLC Principles**: Strictly follow the [Coding Principles](references/coding-principles.md) — absolute focus on surgical changes and simplicity.
+- **Express Mode**: If it's a trivial task with <3 files, consider using [Quick Mode](references/quick-mode.md).
 - **TDD (Test-Driven Development)**: Write or update a test that fails without your change, then make it pass.
 - **Project Alignment**: Follow the naming, structure, and styling defined in `CONVENTIONS.md`.
 - **Dry/Solid**: Apply basic clean code principles without over-engineering.

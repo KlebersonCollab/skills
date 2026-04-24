@@ -1,48 +1,48 @@
 # Harness Expert
 
-> "Se você não é o modelo, então você é o harness." — Infraestrutura de suporte para transformar LLMs em agentes operacionais.
+> "If you are not the model, then you are the harness." — Support infrastructure to transform LLMs into operational agents.
 
-[![Versão](https://img.shields.io/badge/Versão-1.1.0-blue)](#changelog)
+[![Version](https://img.shields.io/badge/Version-1.1.0-blue)](#changelog)
 [![Sub-skills](https://img.shields.io/badge/Sub--skills-3-brightgreen)](#-sub-skills)
 
 ---
 
-## 📖 Visão Geral
+## 📖 Overview
 
-O **Harness Expert** é a skill que orquestra a infraestrutura necessária para que um modelo de linguagem (LLM) se comporte como um agente confiável, seguro e persistente. Inspirado nos conceitos de "Harness Engineering", ele foca em garantir que o agente tenha acesso às ferramentas certas, mantenha seu estado entre sessões e valide rigorosamente suas próprias saídas.
+**Harness Expert** is the skill that orchestrates the infrastructure necessary for a language model (LLM) to behave as a reliable, secure, and persistent agent. Inspired by "Harness Engineering" concepts, it focuses on ensuring the agent has access to the right tools, maintains its state between sessions, and rigorously validates its own outputs.
 
-No ecossistema deste Hub, o Harness Expert atua como o "zelador" do workflow SDD (Spec-Driven Development), garantindo que a memória de longo prazo do projeto (specs, logs e estados) esteja sempre sincronizada com as ações do agente.
+In this Hub's ecosystem, the Harness Expert acts as the "caretaker" of the SDD (Spec-Driven Development) workflow, ensuring that the project's long-term memory (specs, logs, and states) is always synchronized with the agent's actions.
 
-### 🧠 Princípios de Harness Engineering
+### 🧠 Harness Engineering Principles
 
-1.  **Feed Forward (Preventivo)**: O uso de Specs, Planos e Contratos para orientar o agente antes da ação.
-2.  **Sensors & Feedback (Corretivo)**: O uso mandatório de ferramentas (linters, testes) para validar o trabalho. O agente não é o juiz; os sensores são.
-3.  **Bootstrapping**: Garantir que o ambiente operacional (dependências, scripts) esteja sempre pronto para o agente operar com precisão.
-4.  **Contract-based Review**: Toda entrega é avaliada contra um contrato pré-estabelecido com um Score de conformidade.
+1.  **Feed Forward (Preventive)**: Using Specs, Plans, and Contracts to guide the agent before action.
+2.  **Sensors & Feedback (Corrective)**: Mandatory use of tools (linters, tests) to validate work. The agent is not the judge; the sensors are.
+3.  **Bootstrapping**: Ensuring the operational environment (dependencies, scripts) is always ready for the agent to operate with precision.
+4.  **Contract-based Review**: Every delivery is evaluated against a pre-established contract with a compliance Score.
 
 ---
 
-## ⚙️ Como Usar
+## ⚙️ How to Use
 
-Esta skill é ativada automaticamente sempre que uma tarefa de implementação é iniciada, ou pode ser invocada manualmente para realizar auditorias de estado ou sincronização de progresso.
+This skill is automatically activated whenever an implementation task begins, or it can be manually invoked to perform state audits or progress synchronization.
 
-**Cenários de Aplicação:**
-1.  **Início de Sessão**: Rehidratar o contexto lendo os arquivos de especificação.
-2.  **Durante a Implementação**: Sincronizar sub-tarefas concluídas no `tasks.md`.
-3.  **Finalização**: Gerar relatórios de validação e persistir lições aprendidas.
+**Application Scenarios:**
+1.  **Session Start**: Rehydrate context by reading specification files.
+2.  **During Implementation**: Synchronize completed sub-tasks in `tasks.md`.
+3.  **Finalization**: Generate validation reports and persist lessons learned.
 
 ---
 
 ## 🧩 Sub-skills
 
-| Sub-skill | Arquivo | Responsabilidade |
+| Sub-skill | File | Responsibility |
 |-----------|---------|------------------|
-| **Harness Sync** | [harness-expert-sync.skill.md](harness-expert-sync.skill.md) | Sincroniza o progresso das tarefas e registra aprendizados no File System. |
-| **Harness Rehydrate** | [harness-expert-rehydrate.skill.md](harness-expert-rehydrate.skill.md) | Reconstrói o contexto operacional lendo specs e estados persistidos. |
-| **Harness Compress** | [harness-expert-compress.skill.md](harness-expert-compress.skill.md) | Compacta o histórico de tarefas concluídas no STATE.md para eficiência de tokens. |
+| **Harness Sync** | [harness-expert-sync.skill.md](harness-expert-sync.skill.md) | Synchronizes task progress and records learnings in the File System. |
+| **Harness Rehydrate** | [harness-expert-rehydrate.skill.md](harness-expert-rehydrate.skill.md) | Rebuilds the operational context by reading persisted specs and states. |
+| **Harness Compress** | [harness-expert-compress.skill.md](harness-expert-compress.skill.md) | Compresses completed task history in STATE.md for token efficiency. |
 
 ---
 
 ## 📝 Changelog
 
-Consulte o [CHANGELOG.md](CHANGELOG.md) para o histórico completo de versões.
+Consult [CHANGELOG.md](CHANGELOG.md) for full version history.

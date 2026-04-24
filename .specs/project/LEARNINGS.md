@@ -1,111 +1,118 @@
 # Project Incremental Wisdom (Learnings)
 
-## Automação & Scripting
-- **Zipping Hidden Folders**: Ao criar ZIPs de pastas ocultas (como `.claude`), é fundamental entrar no diretório pai (`cd dist_staging`) antes de executar o comando `zip` para garantir que o ZIP contenha a pasta como sua raiz, facilitando o uso pelo usuário final.
-- **Dynamic Skill Discovery**: O uso de `find . -maxdepth 2 -name "SKILL.md"` é uma estratégia robusta para listar skills sem precisar de um arquivo de manifesto manual, tornando o projeto auto-expansível.
+## Automation & Scripting
+- **Zipping Hidden Folders**: When creating ZIPs of hidden folders (like `.claude`), it is fundamental to enter the parent directory (`cd dist_staging`) before executing the `zip` command to ensure the ZIP contains the folder as its root, facilitating use by the end user.
+- **Dynamic Skill Discovery**: Using `find . -maxdepth 2 -name "SKILL.md"` is a robust strategy for listing skills without needing a manual manifest file, making the project self-expanding.
 
 ## CI/CD (GitHub Actions)
-- A separação de artefatos por nome no `upload-artifact` v4 melhora muito a experiência do usuário.
-- **GitHub Releases vs Artifacts**: Para distribuição de software final (como os ZIPs de skills), Releases são preferíveis por serem permanentes e permitirem links estáticos (`/releases/latest/download/`), o que simplifica a integração e documentação.
-- **Tag-Driven Releases**: Automatizar a criação de releases a partir do push de tags (`v*`) garante que apenas versões validadas sejam distribuídas aos usuários.
+- The separation of artifacts by name in `upload-artifact` v4 greatly improves the user experience.
+- **GitHub Releases vs Artifacts**: For final software distribution (like skill ZIPs), Releases are preferable because they are permanent and allow static links (`/releases/latest/download/`), which simplifies integration and documentation.
+- **Tag-Driven Releases**: Automating release creation from tag pushes (`v*`) ensures that only validated versions are distributed to users.
 
 ## Skill Management & Documentation
-- **Centralized Version Tracking**: Manter um catálogo centralizado com versões atualizadas de todas as 16 skills é essencial para consistência do ecossistema.
-- **Mermaid Diagrams for Navigation**: Diagramas visuais no catálogo de skills melhoram significativamente a compreensão do ecossistema e fluxos de trabalho.
-- **Automated Version Collection**: Scripts para extrair versões e descrições automaticamente dos arquivos `SKILL.md` previnem desatualização do catálogo.
-- **Onboarding Navigator as Living Documentation**: A skill de onboarding deve evoluir junto com o ecossistema, refletindo mudanças em tempo real.
+- **Centralized Version Tracking**: Maintaining a centralized catalog with updated versions of all 16 skills is essential for ecosystem consistency.
+- **Mermaid Diagrams for Navigation**: Visual diagrams in the skill catalog significantly improve the understanding of the ecosystem and workflows.
+- **Automated Version Collection**: Scripts to automatically extract versions and descriptions from `SKILL.md` files prevent the catalog from becoming outdated.
+- **Onboarding Navigator as Living Documentation**: The onboarding skill must evolve with the ecosystem, reflecting changes in real-time.
+
 ## 2026-04-16 - Knowledge Graphing Strategy
-- **Learning**: Implementing a modular 'knowledge-architect' is superior to bloat the 'sdd' or 'harness' skills.
+- **Learning**: Implementing a modular 'knowledge-architect' is superior to bloating the 'sdd' or 'harness' skills.
 - **Pattern**: Using Mermaid for relational mapping allows agents to visualize impact before coding.
 
 ## 2026-04-18 - Expert Skills & Global Sync Audit
-- **Sync Blind Spots**: Foi descoberto que sincronizar apenas arquivos de texto (como mandatos globais) não é suficiente para o ecossistema. Novas skills criadas na raiz ficam "invisíveis" aos agentes se o script de sync não realizar o espelhamento completo de diretórios para as pastas ocultas (`.agent/skills`, etc).
-- **Automation of Consistency**: Ferramentas simples de "cross-check" entre o README e o frontmatter das skills (como o `verify_versions.py`) são fundamentais para evitar que o repositório entre em um estado de entropia documental.
-- **Skill Consolidation**: Integrar conhecimento de múltiplas fontes externas (GitHub) e modularizar em referências específicas (como `orm_performance.md` e `security.md`) torna a skill muito mais acionável do que um arquivo único gigante.
-- **Mandatory Skill Governance**: Definir explicitamente em mandatos globais que o uso de skills é mandatório reduz a execução ad-hoc e garante que os agentes operem dentro dos trilhos de qualidade estabelecidos pelo Hub.
-- **Workflow Automation with Makefile**: A criação de um Makefile centralizado reduz a carga cognitiva do desenvolvedor e garante que processos complexos (como o sync de mandatos e geração de dist) sejam executados de forma idêntica por qualquer agente ou humano.
-- **Automated Knowledge Mapping**: O script `generate_knowledge_map.py` permite visualizar a topologia do projeto e dependências entre skills e features em tempo real, facilitando a análise de impacto em refatorações.
+- **Sync Blind Spots**: It was discovered that synchronizing only text files (like global mandates) is not enough for the ecosystem. New skills created in the root remain "invisible" to agents if the sync script does not perform a complete directory mirroring to hidden folders (`.agent/skills`, etc.).
+- **Automation of Consistency**: Simple "cross-check" tools between the README and the skill frontmatter (like `verify_versions.py`) are fundamental to prevent the repository from entering a state of documental entropy.
+- **Skill Consolidation**: Integrating knowledge from multiple external sources (GitHub) and modularizing into specific references (like `orm_performance.md` and `security.md`) makes the skill much more actionable than a single giant file.
+- **Mandatory Skill Governance**: Explicitly defining in global mandates that the use of skills is mandatory reduces ad-hoc execution and ensures that agents operate within the quality tracks established by the Hub.
+- **Workflow Automation with Makefile**: Creating a centralized Makefile reduces the developer's cognitive load and ensures that complex processes (like mandate sync and dist generation) are executed identically by any agent or human.
+- **Automated Knowledge Mapping**: The `generate_knowledge_map.py` script allows visualizing the project topology and dependencies between skills and features in real-time, facilitating impact analysis in refactorings.
 
-### [2026-04-19] Validação Rigorosa de Changelog
-- **Ocorrência**: Falha no pipeline devido ao formato de data no CHANGELOG.md.
-- **Solução**: O validador local exige estritamente o formato '## [X.Y.Z] - YYYY-MM-DD' (com hífen simples e espaços). O uso de travessão (—) ou formatos alternativos resulta em FAIL.
+### [2026-04-19] Rigorous Changelog Validation
+- **Occurrence**: Pipeline failure due to date format in CHANGELOG.md.
+- **Solution**: The local validator strictly requires the format '## [X.Y.Z] - YYYY-MM-DD' (with simple hyphen and spaces). Using a dash (—) or alternative formats results in FAIL.
 
 ### [2026-04-20] Deterministic Enforcement & Context Inertia
-- **Context Inertia**: LLMs tendem a ignorar instruções de "limpeza" (sync/memory) ao atingir o objetivo direto do usuário. A solução é transformar essas ações em **Exit Gates** imperativos e visuais no contexto.
-- **Enforcement Layering**: O reforço funciona melhor em camadas:
-    1. **Mandato Global** (Bootstrap/Exit Gate no topo do contexto).
-    2. **Hook Local** (Prerequisites dentro da skill específica).
-    3. **Visibilidade Total** (Compilação automática de todas as skills no .cursorrules).
-- **Redundancy is Reliability**: Ter o SDD Hook tanto no mandato quanto dentro da skill de stack garante que o agente não pule etapas, mesmo se a tarefa for curta.
-- **The "Brain Shell" Pattern**: Agrupar mandatos operacionais sob um subgraph de "Enforcement Shell" no Knowledge Map ajuda o agente a visualizar que a governança não é opcional, mas o esqueleto do sistema.
+- **Context Inertia**: LLMs tend to ignore "cleanup" instructions (sync/memory) upon reaching the user's direct goal. The solution is to transform these actions into imperative and visual **Exit Gates** in the context.
+- **Enforcement Layering**: Reinforcement works best in layers:
+    1. **Global Mandate** (Bootstrap/Exit Gate at the top of the context).
+    2. **Local Hook** (Prerequisites within the specific skill).
+    3. **Total Visibility** (Automatic compilation of all skills in .cursorrules).
+- **Redundancy is Reliability**: Having the SDD Hook both in the mandate and within the stack skill ensures the agent doesn't skip steps, even if the task is short.
+- **The "Brain Shell" Pattern**: Grouping operational mandates under an "Enforcement Shell" subgraph in the Knowledge Map helps the agent visualize that governance is not optional, but the system's skeleton.
 
 ### [2026-04-20] Automated Distilling & Memory Resilience
-- **Automated Knowledge Distiller**: Extrair metadados diretamente do frontmatter YAML das skills para gerar o mapa Mermaid reduz o erro humano e permite visualização dinâmica de versões e categorias. O uso de badges visuais (🛡️) para conformidade SDD cria uma camada de pressão social/técnica positiva para a manutenção da qualidade.
-- **Auto-Fix as Resilience**: Em ecossistemas complexos, ferramentas que apenas detectam erros (Sensores) não são suficientes. Ter scripts que "reparam" o estado (como o `auto_fix_memory.py`) permite que o sistema recupere a integridade operacional sem intervenção humana, o que é crucial para agents autônomos.
-- **The v2.0 Milestone**: A transição para um ecossistema determinístico (Bootstrap/Exit Gates) elimina a necessidade de "torcer" para que o agente siga os padrões. A governança agora está codificada no ciclo de vida da sessão.
+- **Automated Knowledge Distiller**: Extracting metadata directly from the YAML frontmatter of the skills to generate the Mermaid map reduces human error and allows dynamic visualization of versions and categories. Using visual badges (🛡️) for SDD compliance creates a layer of positive social/technical pressure for quality maintenance.
+- **Auto-Fix as Resilience**: In complex ecosystems, tools that only detect errors (Sensors) are not enough. Having scripts that "repair" the state (like `auto_fix_memory.py`) allows the system to recover operational integrity without human intervention, which is crucial for autonomous agents.
+- **The v2.0 Milestone**: Transitioning to a deterministic ecosystem (Bootstrap/Exit Gates) eliminates the need to "hope" the agent follows the patterns. Governance is now encoded in the session lifecycle.
 
 ### [2026-04-20] Code Audit Findings (Full Hub)
-- **Duplication Crisis**: Skills estão duplicadas em ~5 localizações (`.agent/skills/`, `.gemini/skills/`, `.claude/skills/`, `dist_staging/`, `.claude/worktrees/`). Isso viola DRY e cria risco de inconsistência de versionamento.
-- **Safe File Operations**: O script `sync_mandates.py` usa `shutil.rmtree` antes de `copytree`, criando risco de perda de dados se houver interrupção. Solução: usar TemporaryDirectory com transação segura.
-- **Code Sharing Opportunity**: A lógica de walking de diretórios e listas de exclude está replicada em 4+ scripts. Criar `scripts/utils.py` compartilhado resolveria.
+- **Duplication Crisis**: Skills are duplicated in ~5 locations (`.agent/skills/`, `.gemini/skills/`, `.claude/skills/`, `dist_staging/`, `.claude/worktrees/`). This violates DRY and creates a risk of versioning inconsistency.
+- **Safe File Operations**: The `sync_mandates.py` script uses `shutil.rmtree` before `copytree`, creating a risk of data loss if there is an interruption. Solution: use TemporaryDirectory with safe transaction.
+- **Code Sharing Opportunity**: Directory walking logic and exclude lists are replicated in 4+ scripts. Creating a shared `scripts/utils.py` would solve this.
 
 ### [2026-04-21] Skill Enrichment & Content Density
-- **Learning**: Uma skill sem exemplos práticos e referências externas é 50% menos eficaz para um agente de IA. A densidade de contexto (pasta `examples/` e `references/`) permite que o agente entenda não apenas *o que* fazer, mas *como* fazer seguindo padrões de mercado.
-- **Pattern**: O uso de diretórios padronizados (`references/`, `resources/`, `examples/`) em todas as skills cria uma interface de navegação previsível para o agente, reduzindo a latência de busca por informação.
+- **Learning**: A skill without practical examples and external references is 50% less effective for an AI agent. Context density (`examples/` and `references/` folders) allows the agent to understand not only *what* to do, but *how* to do it following market standards.
+- **Pattern**: Using standardized directories (`references/`, `resources/`, `examples/`) in all skills creates a predictable navigation interface for the agent, reducing information search latency.
 
-### [2026-04-22] Consolidação de Skills "Expert"
-- **Learning**: Integrar conhecimentos de múltiplas fontes externas (Patterns, Security, TDD, Verification) em uma única skill "Expert" local reduz drasticamente a alternância de contexto e cria um "Standard de Ouro" robusto.
-- **Pattern**: O workflow em 12 fases (do Setup ao Verification) garante que nenhum pilar técnico seja negligenciado durante o ciclo de vida do desenvolvimento.
+### [2026-04-22] Consolidation of "Expert" Skills
+- **Learning**: Integrating knowledge from multiple external sources (Patterns, Security, TDD, Verification) into a single local "Expert" skill drastically reduces context switching and creates a robust "Gold Standard".
+- **Pattern**: The 12-phase workflow (from Setup to Verification) ensures that no technical pillar is neglected during the development lifecycle.
 
-### [2026-04-22] Modernização e Resiliência Mobile
-- **Learning**: A integração de padrões modernos (Dart 3 Sealed Classes) em skills de Flutter não apenas melhora o código, mas força o agente a pensar em termos de **Exaustividade de Estado**, eliminando classes inteiras de bugs de UI.
-- **Pattern**: A inclusão de **Acessibilidade Mandatória** e **Global Error Handling** no workflow core da skill garante que esses pilares "não-funcionais" sejam tratados como requisitos de primeira classe em todas as tarefas.
+### [2026-04-22] Mobile Modernization and Resilience
+- **Learning**: Integrating modern patterns (Dart 3 Sealed Classes) into Flutter skills not only improves the code but forces the agent to think in terms of **State Exhaustiveness**, eliminating entire classes of UI bugs.
+- **Pattern**: Including **Mandatory Accessibility** and **Global Error Handling** in the skill's core workflow ensures these "non-functional" pillars are treated as first-class requirements in all tasks.
 
 ### [2026-04-22] Cohesion Audit & Validator Evolution
-- **Learning (Validator Lag)**: Scripts de validação tendem a ficar defasados em relação à governança documental (ex: `MEMORY.md`). É vital que mudanças na política de governança sejam refletidas imediatamente no código do auditor (`validate_skills.py`).
-- **Pattern (Mass Fixing)**: O uso de scripts de correção em massa (`fix_missing_hooks.py`) é a única forma escalável de manter a coesão em um Hub com 20+ skills, garantindo que o "Standard de Ouro" seja aplicado uniformemente sem erro humano.
-- **Enforcement Success**: A auditoria de coesão manual seguida de automação elevou o Hub de 40% para 100% de conformidade com o mandado de `🔒 Prerequisites (Mandatory)`.
+- **Learning (Validator Lag)**: Validation scripts tend to lag behind documental governance (e.g.: `MEMORY.md`). It is vital that governance policy changes are immediately reflected in the auditor's code (`validate_skills.py`).
+- **Pattern (Mass Fixing)**: Using mass-fixing scripts (`fix_missing_hooks.py`) is the only scalable way to maintain cohesion in a Hub with 20+ skills, ensuring the "Gold Standard" is applied uniformly without human error.
+- **Enforcement Success**: Manual cohesion audit followed by automation raised the Hub from 40% to 100% compliance with the `🔒 Prerequisites (Mandatory)` mandate.
+
 ### [2026-04-22] GAN-style Harness Integration & Quality Enforcement
-- **Learning**: Agentes de IA tendem a ser "otimistas patológicos" ao avaliar seu próprio trabalho. Separar o papel de **Generator** (quem implementa) e **Evaluator** (quem critica implacavelmente) via skill `harness-expert` cria uma tensão adversarial que elimina o "AI slop" e garante polimento de nível de produção.
-- **Pattern (The Quality Loop)**: Introduzir uma rubrica de 4 pilares (**Design Quality, Craft, Originality, Functionality**) com uma "nota de corte" (Pass Threshold) transforma a Fase 4 do SDD (Review) em um ciclo iterativo, garantindo que o resultado final seja não apenas funcional, mas premium.
-- **Implementation (Cross-Skill Fusion)**: Integrar essa lógica diretamente no framework `sdd` e no `onboarding-navigator` institucionaliza a qualidade como parte da infraestrutura, e não apenas como um desejo opcional.
+- **Learning**: AI agents tend to be "pathological optimists" when evaluating their own work. Separating the role of **Generator** (who implements) and **Evaluator** (who criticizes relentlessly) via the `harness-expert` skill creates an adversarial tension that eliminates "AI slop" and ensures production-level polish.
+- **Pattern (The Quality Loop)**: Introducing a 4-pillar rubric (**Design Quality, Craft, Originality, Functionality**) with a "Pass Threshold" transforms SDD Phase 4 (Review) into an iterative cycle, ensuring the final result is not only functional but premium.
+- **Implementation (Cross-Skill Fusion)**: Integrating this logic directly into the `sdd` framework and `onboarding-navigator` institutionalizes quality as part of the infrastructure, and not just as an optional desire.
 
 ### [2026-04-22] Idiomatic Go Patterns & Composition
-- **Learning**: No Go, a simplicidade e a composição são os pilares da manutenibilidade. Adotar padrões como "Accept Interfaces, Return Structs" e "Zero Value Useful" reduz drasticamente a necessidade de mocks complexos e inicializações verbosas, tornando o sistema mais resiliente e fácil de entender.
-- **Pattern (Interface Decoupling)**: Definir interfaces no lado do consumidor (Consumer-Defined Interfaces) é a chave para o desacoplamento real em Go, permitindo que diferentes implementações satisfaçam os requisitos sem que o provedor precise conhecer o contrato.
-- **Enforcement (Concurrency Safety)**: A adoção do `errgroup` simplifica a orquestração de goroutines e garante que erros em fluxos paralelos não sejam perdidos, elevando o padrão de segurança de concorrência do Hub.
+- **Learning**: In Go, simplicity and composition are the pillars of maintainability. Adopting patterns like "Accept Interfaces, Return Structs" and "Zero Value Useful" drastically reduces the need for complex mocks and verbose initializations, making the system more resilient and easier to understand.
+- **Pattern (Interface Decoupling)**: Defining interfaces on the consumer side (Consumer-Defined Interfaces) is the key to real decoupling in Go, allowing different implementations to satisfy requirements without the provider needing to know the contract.
+- **Enforcement (Concurrency Safety)**: Adopting `errgroup` simplifies goroutine orchestration and ensures errors in parallel flows are not lost, raising the Hub's concurrency safety standard.
 
 ### [2026-04-22] SDD-Git Compliance & Mandatory Rigor
-- **Learning**: O rigor técnico não é opcional. A ausência de mandatos proibitivos explícitos pode levar ao relaxamento de workflows críticos (como commits atômicos por task). A governança deve ser codificada como um "guardrail" intransponível, não apenas uma recomendação.
-- **Pattern (Atomic Cycle)**: O ciclo `Task -> Test -> Commit` deve ser o átomo indivisível do desenvolvimento. Qualquer marcação de progresso no `tasks.md` sem os artefatos de validação (testes) e persistência (git) correspondentes é uma falha de integridade.
-- **Enforcement (Prohibitive Mandates)**: Inserir mandatos proibitivos ("NUNCA...") nas skills core (`sdd`) é mais eficaz para a consistência do Hub do que diretrizes passivas, pois cria um Exit Gate claro para a inteligência do agente.
-- **Branching Strategy (GitHub Flow)**: Commitar diretamente na `main` é um anti-padrão que compromete a estabilidade. O uso de **Feature Branches** é obrigatório para isolar o desenvolvimento e permitir auditorias antes da integração. O Hub deve operar em modo "Always Shippable".
+- **Learning**: Technical rigor is not optional. The absence of explicit prohibitive mandates can lead to the relaxation of critical workflows (like atomic commits per task). Governance must be encoded as an insurmountable "guardrail", not just a recommendation.
+- **Pattern (Atomic Cycle)**: The `Task -> Test -> Commit` cycle must be the indivisible atom of development. Any progress marking in `tasks.md` without the corresponding validation artifacts (tests) and persistence (git) is an integrity failure.
+- **Enforcement (Prohibitive Mandates)**: Inserting prohibitive mandates ("NEVER...") in the core skills (`sdd`) is more effective for Hub consistency than passive guidelines, as it creates a clear Exit Gate for agent intelligence.
+- **Branching Strategy (GitHub Flow)**: Committing directly to `main` is an anti-pattern that compromises stability. Using **Feature Branches** is mandatory to isolate development and allow audits before integration. The Hub must operate in "Always Shippable" mode.
+
 ### [2026-04-22] Python Expert Enrichment & UV Synergy
-- **Learning**: Integrar padrões de linguagem (Patterns) e metodologia de teste (TDD) diretamente na skill de gerenciamento de ambiente (`python-uv`) cria uma fundação de "Linguagem + Ferramenta" muito poderosa. O UV não é apenas um instalador, é o motor que viabiliza o ciclo `Test -> Refactor` com latência zero.
-- **Pattern**: O uso de `Protocol` em vez de herança múltipla ou herança baseada em classes abstratas rígidas é o caminho idiomático moderno para Python, facilitando o Mocking e a manutenção de grandes codebases.
-- **Enforcement**: Meta de cobertura (80%+) e ciclo TDD obrigatório devem ser parte integrante da documentação de "Quality Rules" de qualquer skill de stack técnica.
+- **Learning**: Integrating language patterns (Patterns) and testing methodology (TDD) directly into the environment management skill (`python-uv`) creates a very powerful "Language + Tool" foundation. UV is not just an installer; it is the engine that enables the `Test -> Refactor` cycle with zero latency.
+- **Pattern**: Using `Protocol` instead of multiple inheritance or rigid abstract base class inheritance is the modern idiomatic path for Python, facilitating Mocking and maintenance of large codebases.
+- **Enforcement**: Coverage goal (80%+) and mandatory TDD cycle must be an integral part of the "Quality Rules" documentation of any technical stack skill.
 
 ### [2026-04-22] Benchmark Expert & Git Rigor
-- **Learning**: Adaptar skills externas (ECC) exige não apenas tradução, mas re-contextualização para os mandatos locais (SDD, Git Workflow). A falha em iniciar o desenvolvimento por uma branch de feature é um sinal de "Context Drift" que deve ser corrigido imediatamente via auditoria de Exit Gate.
-- **Pattern**: O ciclo de vida de uma nova skill deve ser: `Spec -> Branch -> Scaffolding -> Atomic Commits -> Validation -> Registry`.
-- **Enforcement**: O uso de benchmarks determinísticos (média de 3 execuções) e o veredito de regressão (>15% FAIL) transformam a performance de um desejo subjetivo em um requisito técnico verificável na Fase 4 do SDD.
+- **Learning**: Adapting external skills (ECC) requires not just translation, but re-contextualization for local mandates (SDD, Git Workflow). Failing to start development with a feature branch is a sign of "Context Drift" that must be corrected immediately via Exit Gate audit.
+- **Pattern**: The lifecycle of a new skill must be: `Spec -> Branch -> Scaffolding -> Atomic Commits -> Validation -> Registry`.
+- **Enforcement**: Using deterministic benchmarks (average of 3 runs) and regression verdict (>15% FAIL) transform performance from a subjective desire into a verifiable technical requirement in SDD Phase 4.
+
 # Project Learnings
 
 ## Technical Learnings
 - **Go Microservices Patterns (ECC Integration)**: 
-    - A estrutura de Clean Architecture com `internal/domain`, `service`, `repository` e `handler` é o padrão ouro para microserviços em Go.
-    - O uso de `sqlc` para gerar código SQL type-safe e `Wire` para injeção de dependência explícita reduz significativamente o boilerplate e erros em tempo de execução.
-    - `testcontainers-go` é a ferramenta recomendada para testes de integração robustos e isolados.
+    - The Clean Architecture structure with `internal/domain`, `service`, `repository`, and `handler` is the gold standard for microservices in Go.
+    - Using `sqlc` to generate type-safe SQL code and `Wire` for explicit dependency injection significantly reduces boilerplate and runtime errors.
+    - `testcontainers-go` is the recommended tool for robust and isolated integration tests.
 - **AI Operational Patterns**: 
-    - A implementação de Slash Commands (`/plan`, `/go-test`, `/go-review`) dentro da própria documentação da skill padroniza as respostas da IA e facilita o workflow do usuário.
+    - Implementing Slash Commands (`/plan`, `/go-test`, `/go-review`) within the skill documentation itself standardizes AI responses and facilitates the user workflow.
+- **Content Loss in Normalization [2026-04-23]**: During large-scale translations or "normalization" tasks, LLMs may tend to summarize content instead of performing a faithful 1:1 translation. This can result in significant loss of technical detail (up to 60% in some cases). 
+    - *Mitigation*: Always perform byte-count or line-count audits after bulk translations to identify anomalies. Use tools like `git diff --stat` to find files with disproportionate size changes.
 
 ## Architectural Decisions
-- **Proibição de `init()`**: Decisão de banir o uso de funções `init()` para garantir que todas as dependências sejam inicializadas explicitamente no `main()`, facilitando testes e depuração.
-- **Imutabilidade Global**: Banimento de estado mutável global para evitar efeitos colaterais imprevisíveis em sistemas concorrentes.
+- **`init()` Prohibition**: Decision to ban the use of `init()` functions to ensure all dependencies are explicitly initialized in `main()`, facilitating testing and debugging.
+- **Global Immutability**: Banning global mutable state to avoid unpredictable side effects in concurrent systems.
 
 ## Operational Learnings
-- **SD-Consistency**: Ao enriquecer skills, é crucial validar se a estrutura de comandos e regras de qualidade estão alinhadas com as sub-skills (como a `golang-testing-expert`).
+- **SD-Consistency**: When enriching skills, it is crucial to validate if the command structure and quality rules are aligned with sub-skills (like `golang-testing-expert`).
+
 ### [2026-04-23] Validator Rigor & SDD Compliance Hooks
-- **Learning**: O script de validação do Hub (`validate_skills.py`) impõe um rigor léxico absoluto para o bloco `## 🔒 Prerequisites (Mandatory)`. Mesmo que o conteúdo seja semanticamente correto, o script busca por palavras-chave específicas como `Spec Check`, `Plan Check`, `Contract Check` e `Task Check`.
-- **Solution**: A estrutura do bloco de Prerequisites deve ser mantida idêntica em todas as skills para garantir que a auditoria automatizada passe sem falsos negativos. O SDD é a "cola" que une todo o ecossistema, e sua verificação é o primeiro portão de segurança de qualquer execução agêntica.
-- **Impact**: O enriquecimento da skill SDD para a v1.5.0 agora serve como o "template de ouro" para essa seção, garantindo que novas diretrizes (como Brownfield Mapping) sejam integradas sem quebrar a governança do repositório.
+- **Learning**: The Hub's validation script (`validate_skills.py`) imposes absolute lexical rigor for the `## 🔒 Prerequisites (Mandatory)` block. Even if the content is semantically correct, the script looks for specific keywords like `Spec Check`, `Plan Check`, `Contract Check`, and `Task Check`.
+- **Solution**: The structure of the Prerequisites block must be kept identical across all skills to ensure the automated audit passes without false negatives. SDD is the "glue" that holds the entire ecosystem together, and its verification is the first security gate of any agentic execution.
+- **Impact**: The enrichment of the SDD skill for v1.5.0 now serves as the "gold template" for this section, ensuring new guidelines (like Brownfield Mapping) are integrated without breaking repository governance.

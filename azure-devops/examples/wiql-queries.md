@@ -1,10 +1,10 @@
 # Examples: WIQL Queries (Azure Boards)
 
-Modelos de consultas estruturadas em **WIQL** para uso programático no Azure Boards.
+Structured **WIQL** query templates for programmatic use in Azure Boards.
 
-## 1. Bugs Ativos (Sprint Atual)
+## 1. Active Bugs (Current Sprint)
 
-Retorna todos os bugs que não estão fechados ou resolvidos na iteração atual do projeto.
+Returns all bugs that are not closed or resolved in the project's current iteration.
 
 ```sql
 SELECT
@@ -21,9 +21,9 @@ WHERE
 ORDER BY [Microsoft.VSTS.Common.Priority] ASC, [System.CreatedDate] DESC
 ```
 
-## 2. Minhas Tarefas (Backlog)
+## 2. My Tasks (Backlog)
 
-Lista todas as tarefas (Tasks) atribuídas ao usuário autenticado que ainda não foram iniciadas.
+Lists all tasks assigned to the authenticated user that haven't started yet.
 
 ```sql
 SELECT
@@ -39,9 +39,9 @@ WHERE
 ORDER BY [System.Id] ASC
 ```
 
-## 3. Histórias de Usuário por Tag
+## 3. User Stories by Tag
 
-Filtra User Stories que contenham uma tag específica (ex: 'Refatoração').
+Filters User Stories containing a specific tag (e.g., 'Refactoring').
 
 ```sql
 SELECT
@@ -52,12 +52,12 @@ FROM workitems
 WHERE
     [System.TeamProject] = @project
     AND [System.WorkItemType] = 'User Story'
-    AND [System.Tags] CONTAINS 'Refatoração'
+    AND [System.Tags] CONTAINS 'Refactoring'
 ```
 
-## 4. Itens Alterados nas Últimas 24h
+## 4. Items Changed in the Last 24h
 
-Monitorar mudanças recentes no projeto.
+Monitor recent changes in the project.
 
 ```sql
 SELECT
@@ -72,9 +72,9 @@ WHERE
 ORDER BY [System.ChangedDate] DESC
 ```
 
-## 5. Work Items Sem Atribuição
+## 5. Unassigned Work Items
 
-Ideal para triagem de backlog.
+Ideal for backlog grooming.
 
 ```sql
 SELECT

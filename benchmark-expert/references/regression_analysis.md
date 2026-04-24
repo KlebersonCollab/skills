@@ -1,23 +1,23 @@
-# Análise de Regressão de Performance
+# Performance Regression Analysis
 
-Este guia explica como interpretar as mudanças de performance entre diferentes estados do código.
+This guide explains how to interpret performance changes between different code states.
 
-## Por que analisar regressões?
-Código novo pode introduzir lentidão imperceptível em ambientes de desenvolvimento, mas crítica em produção. A análise de regressão quantifica esse impacto.
+## Why analyze regressions?
+New code can introduce imperceptible slowness in development environments, but critical slowness in production. Regression analysis quantifies this impact.
 
-## Metodologia de Comparação
-1. **Fator de Confiança**: Sempre execute o benchmark 3 vezes para eliminar ruídos estatísticos.
-2. **Delta de Mudança**: Diferença percentual entre `After` e `Before`.
-3. **Threshold de Alerta**:
-   - < 5%: Variação normal.
-   - 5% - 15%: Alerta (WARNING). Investigue a causa.
-   - > 15%: Regressão Crítica (FAIL). Reverter ou otimizar.
+## Comparison Methodology
+1. **Confidence Factor**: Always run the benchmark 3 times to eliminate statistical noise.
+2. **Change Delta**: Percentage difference between `After` and `Before`.
+3. **Alert Thresholds**:
+   - < 5%: Normal variation.
+   - 5% - 15%: WARNING. Investigate the cause.
+   - > 15%: Critical Regression (FAIL). Revert or optimize.
 
-## O Que Observar
-- **JS Bundle Size**: O aumento do bundle impacta diretamente o TTI (Time to Interactive).
-- **TTFB (Time to First Byte)**: Se subir, indica regressão no backend ou banco de dados.
-- **LCP**: Se subir, indica problemas de priorização de recursos ou renderização pesada.
+## What to Observe
+- **JS Bundle Size**: Increased bundle size directly impacts TTI (Time to Interactive).
+- **TTFB (Time to First Byte)**: If it increases, it indicates a regression in the backend or database.
+- **LCP**: If it increases, it indicates resource prioritization issues or heavy rendering.
 
-## Como Reportar
-Use tabelas claras que destaquem as mudanças negativas em vermelho e positivas em verde.
-Consulte [examples/comparison_report.md](../examples/comparison_report.md) para um modelo.
+## How to Report
+Use clear tables that highlight negative changes in red and positive changes in green.
+See [examples/comparison_report.md](../examples/comparison_report.md) for a template.

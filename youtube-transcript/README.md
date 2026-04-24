@@ -1,61 +1,61 @@
 # YouTube Transcript
 
-> Skill para automatizar a extração de transcrições de vídeos do YouTube com fallback para IA (Whisper).
+> Skill to automate the extraction of transcripts from YouTube videos with AI fallback (Whisper).
 
-[![Versão](https://img.shields.io/badge/Versão-1.0.0-blue)](#changelog)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue)](#changelog)
 [![Status](https://img.shields.io/badge/Status-Beta-yellow)](#)
 
 ---
 
-## 📖 Visão Geral
+## 📖 Overview
 
-A skill **YouTube Transcript** é uma ferramenta de orquestração projetada para obter o conteúdo textual de vídeos do YouTube da forma mais eficiente possível. Ela automatiza o fluxo de decisão entre legendas existentes e transcrição sintética via IA, garantindo sempre um arquivo de saída limpo e pronto para consumo.
+The **YouTube Transcript** skill is an orchestration tool designed to obtain the textual content of YouTube videos in the most efficient way possible. It automates the decision flow between existing captions and synthetic AI transcription, always ensuring a clean output file ready for consumption.
 
-### 🚀 Diferenciais
-- **Eficiência de Recursos:** Não baixa o vídeo completo; apenas metadados, legendas ou áudio.
-- **Limpeza Inteligente:** Algoritmo Python para remover tags HTML e deduplicar palavras repetidas comuns em legendas automáticas.
-- **Fallback Local:** Utiliza o modelo OpenAI Whisper localmente (via \`uv\`) quando o vídeo não possui legendas originais.
-
----
-
-## ⚙️ Pré-requisitos
-
-Para o pleno funcionamento, certifique-se de ter as seguintes ferramentas instaladas:
-
-1.  **[yt-dlp](https://github.com/yt-dlp/yt-dlp):** Para extração de metadados e legendas.
-    - Instalação: \`brew install yt-dlp\` ou \`uv add yt-dlp\`
-2.  **[ffmpeg](https://ffmpeg.org/):** Necessário para manipulação de áudio e fallback para Whisper.
-    - Instalação: \`brew install ffmpeg\`
-3.  **[uv](https://github.com/astral-sh/uv):** Gerenciador de dependências Python utilizado para rodar o Whisper sem poluir seu ambiente global.
+### 🚀 Key Differentiators
+- **Resource Efficiency:** Does not download the full video; only metadata, captions, or audio.
+- **Intelligent Cleaning:** Python algorithm to remove HTML tags and deduplicate repeated words common in automatic captions.
+- **Local Fallback:** Utilizes the local OpenAI Whisper model (via `uv`) when the video lacks original captions.
 
 ---
 
-## 🛠️ Como Usar
+## ⚙️ Prerequisites
 
-A skill é invocada passando a URL do vídeo desejado.
+For full functionality, ensure you have the following tools installed:
 
-### Fluxo Automático
-1.  **Mapeamento:** A skill verifica se existem legendas manuais (Ex: PT-BR, EN).
-2.  **Download:** Se encontradas, baixa o arquivo VTT.
-3.  **Fallback:** Se não houver legendas, a skill solicitará permissão para baixar o áudio e rodar o **Whisper (IA)**.
-4.  **Limpeza:** O texto passa por um script de sanitização para gerar o \`.txt\` final.
-
-### Exemplo de Output
-\`\`\`text
-Nome do Vídeo: "Como fazer café.txt"
-Conteúdo:
-Olá, hoje vamos aprender a fazer café de uma forma simples e rápida...
-\`\`\`
+1.  **[yt-dlp](https://github.com/yt-dlp/yt-dlp):** For metadata and caption extraction.
+    - Installation: `brew install yt-dlp` or `uv add yt-dlp`
+2.  **[ffmpeg](https://ffmpeg.org/):** Necessary for audio manipulation and Whisper fallback.
+    - Installation: `brew install ffmpeg`
+3.  **[uv](https://github.com/astral-sh/uv):** Python dependency manager used to run Whisper without polluting your global environment.
 
 ---
 
-## 🧩 Detalhes Técnicos
+## 🛠️ How to Use
 
-- **Modelo Whisper:** Por padrão, utiliza o modelo \`base\` para equilíbrio entre velocidade e precisão.
-- **Formato Final:** Sempre UTF-8, sem metadados de tempo (timestamps).
+The skill is invoked by passing the URL of the desired video.
+
+### Automatic Flow
+1.  **Mapping:** The skill checks for manual captions (e.g., EN, PT-BR).
+2.  **Download:** If found, it downloads the VTT file.
+3.  **Fallback:** If no captions are present, the skill will request permission to download the audio and run **Whisper (AI)**.
+4.  **Cleaning:** The text passes through a sanitization script to generate the final `.txt`.
+
+### Output Example
+```text
+Video Name: "How to make coffee.txt"
+Content:
+Hello, today we are going to learn how to make coffee in a simple and fast way...
+```
+
+---
+
+## 🧩 Technical Details
+
+- **Whisper Model:** By default, it uses the `base` model for a balance between speed and precision.
+- **Final Format:** Always UTF-8, without timestamps.
 
 ---
 
 ## 📝 Changelog
 
-Consulte o [CHANGELOG.md](CHANGELOG.md) para o histórico completo de versões.
+Consult the [CHANGELOG.md](CHANGELOG.md) for the full version history.

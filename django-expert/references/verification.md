@@ -1,10 +1,10 @@
 # Django Deployment & Verification Reference
 
 ## 1. Static Analysis Loop
-Mantenha o código limpo e tipado.
+Keep the code clean and typed.
 
 ### Linting (Ruff)
-Ruff substitui Flake8, Isort e Black com 10-100x mais velocidade.
+Ruff replaces Flake8, Isort, and Black with 10-100x more speed.
 ```bash
 uv run ruff check . --fix
 uv run ruff format .
@@ -16,27 +16,27 @@ uv run mypy .
 ```
 
 ## 2. Security Auditing
-NUNCA deploye com vulnerabilidades conhecidas.
+NEVER deploy with known vulnerabilities.
 
 ```bash
-# Auditoria de dependências
+# Dependency audit
 uv run pip-audit
 
-# Auditoria de código (Bandit)
+# Code audit (Bandit)
 uv run bandit -r apps/
 ```
 
 ## 3. Pre-Deployment Checklist
-Execute antes de cada merge em `main` ou deploy em `prod`.
+Execute before each merge into `main` or deploy to `prod`.
 
-- [ ] `python manage.py check --deploy` (Zero erros)
-- [ ] `python manage.py makemigrations --check` (Nenhuma migration faltando)
-- [ ] `pytest --cov` (Cobertura mínima atingida)
-- [ ] `DEBUG=False` em ambiente de produção.
-- [ ] Variáveis críticas (`SECRET_KEY`, `DATABASE_URL`) configuradas no ambiente.
+- [ ] `python manage.py check --deploy` (Zero errors)
+- [ ] `python manage.py makemigrations --check` (No missing migrations)
+- [ ] `pytest --cov` (Minimum coverage reached)
+- [ ] `DEBUG=False` in production environment.
+- [ ] Critical variables (`SECRET_KEY`, `DATABASE_URL`) configured in the environment.
 
 ## 4. GitHub Actions Template
-Boilerplate para verificação automática.
+Boilerplate for automatic verification.
 
 ```yaml
 name: Django Verification
@@ -59,5 +59,5 @@ jobs:
 ```
 
 ## 5. Performance Verification
-- **N+1 Queries**: Use `django-debug-toolbar` em dev. Alvo: < 50 queries/página.
-- **Indexes**: Verifique `db_index=True` em campos usados em filtros frequentes.
+- **N+1 Queries**: Use `django-debug-toolbar` in dev. Target: < 50 queries/page.
+- **Indexes**: Verify `db_index=True` on fields used in frequent filters.

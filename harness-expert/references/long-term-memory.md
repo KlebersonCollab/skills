@@ -1,23 +1,23 @@
-# Memória de Longo Prazo (LTM) no Harness
+# Long-Term Memory (LTM) in Harness
 
-O `harness-expert` é responsável por garantir que o agente não sofra de "amnésia" entre sessões, mantendo o estado operacional sincronizado.
+The `harness-expert` is responsible for ensuring the agent does not suffer from "amnesia" between sessions, keeping the operational state synchronized.
 
-## 🧠 Conceitos de Memória
+## 🧠 Memory Concepts
 
-### 1. Estado Operacional (`STATE.md`)
-É o "ponteiro" atual. Contém o progresso das tarefas, o que está pendente e o foco da sessão atual. É a memória de curto prazo estruturada.
+### 1. Operational State (`STATE.md`)
+It is the current "pointer". It contains task progress, what is pending, and the focus of the current session. It is structured short-term memory.
 
-### 2. Memória Persistente (`MEMORY.md`)
-Armazena fatos, decisões tomadas e o contexto do projeto que não muda com frequência. Ex: "O projeto usa Postgres 15", "O padrão de logs é JSON".
+### 2. Persistent Memory (`MEMORY.md`)
+Stores facts, decisions made, and project context that does not change frequently. Ex: "The project uses Postgres 15", "The log pattern is JSON".
 
-### 3. Lições Aprendidas (`LEARNINGS.md`)
-Registra erros cometidos, correções e "eureka moments". Serve para evitar a repetição de falhas passadas e melhorar a eficiência do agente.
+### 3. Lessons Learned (`LEARNINGS.md`)
+Records mistakes made, corrections, and "eureka moments". It serves to avoid repeating past failures and improve agent efficiency.
 
-## 🔄 Fluxo de Sincronização
+## 🔄 Synchronization Flow
 
-1. **Reidratação**: No início da sessão, o agente lê esses arquivos via `harness-expert-rehydrate`.
-2. **Atualização**: Durante a execução, o agente atualiza o `STATE.md` conforme as tasks são concluídas.
-3. **Persistência Final**: Ao final, o `harness-expert-sync` garante que as mudanças sejam salvas no disco.
+1. **Rehydration**: At the start of the session, the agent reads these files via `harness-expert-rehydrate`.
+2. **Update**: During execution, the agent updates `STATE.md` as tasks are completed.
+3. **Final Persistence**: At the end, `harness-expert-sync` ensures that changes are saved to disk.
 
-## 💡 Por que isso importa?
-Sem LTM, o agente perderia o progresso a cada nova interação, forçando o usuário a repetir instruções e aumentando o custo de tokens e tempo.
+## 💡 Why does this matter?
+Without LTM, the agent would lose progress with each new interaction, forcing the user to repeat instructions and increasing token cost and time.

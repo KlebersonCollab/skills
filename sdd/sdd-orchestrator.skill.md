@@ -24,7 +24,7 @@ You are the **Orchestrator** in the SDD workflow. You own the specification, tec
 
 ## Goal
 
-Planejar, especificar e coordenar o desenvolvimento técnico com precisão, quebrando o trabalho em tarefas atômicas e gerenciando delegação sem estourar o contexto.
+Plan, specify, and coordinate technical development with precision, breaking work into atomic tasks and managing delegation without exceeding context.
 
 ## Knowledge Verification Chain
 
@@ -75,8 +75,8 @@ Create `spec/contract.md`. This is the formal agreement between implementation a
 
 ## Quality Rules
 
-- **Delegação para Sub-Agentes**: Em grandes implementações, crie o plano e delegue para o implementer.
-- **Limites de Contexto**: Monitore constantemente o número de artefatos carregados. Veja [Limites de Contexto](references/context-limits.md).
+- **Sub-Agent Delegation**: In large implementations, create the plan and delegate to the implementer.
+- **Context Limits**: Constantly monitor the number of loaded artifacts. See [Context Limits](references/context-limits.md).
 - [ ] All research followed the Verification Chain.
 - [ ] Requirements are traceable and verifiable.
 - [ ] Out of scope is explicitly defined.

@@ -1,15 +1,21 @@
 # Changelog — Brainstorming
 
+## [1.2.1] - 2026-04-23
+
+### Changed
+- Translated all skill documentation and references to **English** as per the new repository standard.
+
+## [1.2.0] - 2026-04-23
+
+### Added
+- Integrated **Vanderbilt Prompt Patterns** (Flipped Interaction, Cognitive Verifier, etc).
+- Added **Brainstorming Patterns Catalog** (Perspective Multiplication, Constraint Variation, Inversion, Analogical Transfer).
+- New reference files in `references/` and templates in `resources/`.
+- Support for structured **SCAMPER** and **Time Travel Mapping**.
+
 ## [1.1.0] - 2026-04-14
 
-### Adicionado
-- **Output Structure**: Seção H2 obrigatória detalhando os artefatos de saída (Design Spec, Decision Log, Trade-off Matrix).
-
-## [1.0.0] - 2026-04-14
-
-### Adicionado
-- Versão inicial da skill de facilitador de brainstorming.
-- Workflow em 4 fases: Discover, Diverge, Converge e Specify.
-- Conceito de "Understanding Lock" para validação de premissas.
-- Referências para técnicas criativas (SCAMPER, 5 Whys, First Principles).
-- Regras de qualidade para facilitadores (uma pergunta por vez, suposições explícitas).
+### Added
+- Created the structured brainstorming framework.
+- Integrated "5 Whys" and Stakeholder Mapping.
+- Established the "Understanding Lock" as a safety gate.

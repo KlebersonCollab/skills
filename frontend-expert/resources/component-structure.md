@@ -1,31 +1,31 @@
-# Estrutura de Componentes Modernos
+# Modern Component Structure
 
-Este guia define o padrão para criação de componentes React utilizando TailwindCSS v4 e princípios de Design System.
+This guide defines the standard for creating React components using TailwindCSS v4 and Design System principles.
 
-## 📁 Organização de Pastas
+## 📁 Folder Organization
 ```text
 components/
-├── ui/                 # Componentes base (Botões, Inputs, Modais)
-├── layout/             # Componentes de estrutura (Header, Sidebar)
-└── features/           # Componentes específicos de funcionalidades
+├── ui/                 # Base components (Buttons, Inputs, Modals)
+├── layout/             # Structural components (Header, Sidebar)
+└── features/           # Feature-specific components
 ```
 
-## 🏗️ Estrutura de Arquivo
-Cada componente deve ser contido em sua própria pasta se possuir lógica complexa ou estilos específicos:
+## 🏗️ File Structure
+Each component should be contained in its own folder if it has complex logic or specific styles:
 ```text
 MyComponent/
-├── index.ts            # Exportação limpa
-├── MyComponent.tsx     # Lógica e Estrutura
-├── MyComponent.test.ts # Testes Unitários
-└── types.ts            # Interfaces e Tipos
+├── index.ts            # Clean export
+├── MyComponent.tsx     # Logic and Structure
+├── MyComponent.test.ts # Unit Tests
+└── types.ts            # Interfaces and Types
 ```
 
-## 🎨 TailwindCSS v4 + CSS Moderno
-- **Abstração**: Use `@apply` apenas para padrões globais. Para componentes específicos, prefira classes utilitárias no JSX.
-- **Variáveis**: Utilize variáveis CSS para cores e espaçamentos definidos no tema.
-- **Interatividade**: Aproveite as novas capacidades do Tailwind v4 para estados complexos (ex: `group-has-*`).
+## 🎨 TailwindCSS v4 + Modern CSS
+- **Abstraction**: Use `@apply` only for global patterns. For specific components, prefer utility classes in the JSX.
+- **Variables**: Use CSS variables for colors and spacing defined in the theme.
+- **Interactivity**: Leverage Tailwind v4's new capabilities for complex states (e.g., `group-has-*`).
 
-## 📏 Regras de Ouro
-1. **Single Responsibility**: Um componente deve fazer apenas uma coisa bem feita.
-2. **Composition over Inheritance**: Use o padrão `children` para criar componentes flexíveis.
-3. **Props Tipadas**: Sempre use TypeScript para definir as props, garantindo segurança em tempo de desenvolvimento.
+## 📏 Golden Rules
+1. **Single Responsibility**: A component should do only one thing well.
+2. **Composition over Inheritance**: Use the `children` pattern to create flexible components.
+3. **Typed Props**: Always use TypeScript to define props, ensuring safety at development time.

@@ -1,22 +1,22 @@
 # AI Agent Skills Hub
 
-Este repositório serve como um hub centralizado para o desenvolvimento, armazenamento e evolução de "Skills" (habilidades) para agentes de IA. 
+This repository serves as a centralized hub for the development, storage, and evolution of "Skills" for AI agents.
 
-## Visão do Projeto
-Capacitar agentes de IA com capacidades modulares, repetíveis e altamente especializadas, garantindo que cada nova funcionalidade siga um padrão rigoroso de qualidade e documentação.
+## Project Vision
+Empower AI agents with modular, repeatable, and highly specialized capabilities, ensuring that each new functionality follows a rigorous quality and documentation standard.
 
-## Objetivos Core
-1. **Modularidade**: Cada skill deve ser independente e facilmente integrável.
-2. **Qualidade Técnica**: Uso obrigatório da metodologia **SDD v2** (Spec-Driven Development) para garantir que cada skill seja verificável.
-3. **Distribuição Contínua**: Geração automática de artefatos (.zip) para múltiplos agentes através do pipeline de CI/CD.
-4. **Escalabilidade**: Facilitar a adição de novas habilidades conforme as necessidades dos agentes evoluem.
+## Core Objectives
+1. **Modularity**: Each skill must be independent and easily integrable.
+2. **Technical Quality**: Mandatory use of the **SDD v2** (Spec-Driven Development) methodology to ensure that each skill is verifiable.
+3. **Continuous Distribution**: Automatic generation of artifacts (.zip) for multiple agents through the CI/CD pipeline.
+4. **Scalability**: Facilitate the addition of new skills as the needs of agents evolve.
 
-## Público Alvo
-- Desenvolvedores de agentes de IA (Antigravity e outros).
-- Usuários que buscam expandir as capacidades de seus auxiliares digitais.
+## Target Audience
+- AI agent developers (Antigravity and others).
+- Users seeking to expand the capabilities of their digital assistants.
 
-## Capacidades Técnicas
-- **Automação**: **SDD CLI** (Python/UV) para gestão de workflow e sincronização de estado.
-- **Inteligência**: **Local GraphRAG** para mapeamento de relações entre requisitos e código.
-- **Qualidade**: **CI/CD Validator** integrado para conformidade automática de skills.
-- **Unificação**: Fonte única de verdade para mandatos globais entre múltiplos agentes.
+## Technical Capabilities
+- **Automation**: **SDD CLI** (Python/UV) for workflow management and state synchronization.
+- **Intelligence**: **Local GraphRAG** for mapping relationships between requirements and code.
+- **Quality**: Integrated **CI/CD Validator** for automatic skill compliance.
+- **Unification**: Single source of truth for global mandates among multiple agents.

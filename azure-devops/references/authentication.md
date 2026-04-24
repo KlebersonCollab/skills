@@ -1,55 +1,55 @@
 # Authentication & Setup: Azure DevOps
 
-O Azure DevOps utiliza o **Personal Access Token (PAT)** como o principal mecanismo de autenticação para sua API REST e CLI. Este guia descreve como configurar e gerenciar sua conexão de forma segura.
+Azure DevOps uses the **Personal Access Token (PAT)** as the primary authentication mechanism for its REST API and CLI. This guide describes how to configure and manage your connection securely.
 
-## 1. Gerando um PAT
+## 1. Generating a PAT
 
-1.  Acesse seu Azure DevOps (`https://dev.azure.com/{sua-organizacao}`).
-2.  No canto superior direito, clique em **User settings** > **Personal access tokens**.
-3.  Clique em **New Token**.
-4.  Defina um nome (ex: `Gemini-CLI`) e a expiração.
-5.  **Escopos (Scopes)**: Selecione os escopos mínimos necessários:
+1.  Access your Azure DevOps (`https://dev.azure.com/{your-organization}`).
+2.  In the top right corner, click **User settings** > **Personal access tokens**.
+3.  Click **New Token**.
+4.  Define a name (e.g., `Gemini-CLI`) and expiration.
+5.  **Scopes**: Select the minimum required scopes:
     - **Build**: Read & Execute
     - **Code**: Read, Write, & Manage
     - **Release**: Read, Write, & Execute
     - **Test Management**: Read & Write
     - **Work Items**: Read, Write, & Manage
 
-## 2. Configurando Variáveis de Ambiente
+## 2. Configuring Environment Variables
 
-Para segurança, nunca armazene o PAT em arquivos de código. Utilize variáveis de ambiente no seu shell ou arquivo `.env`.
+For security, never store the PAT in code files. Use environment variables in your shell or a `.env` file.
 
 ```bash
-# Adicione ao seu ~/.zshrc ou ~/.bashrc
-export AZURE_DEVOPS_EXT_PAT="seu-pat-aqui"
-export AZURE_DEVOPS_ORG="https://dev.azure.com/sua-organizacao"
-export AZURE_DEVOPS_PROJECT="seu-projeto"
+# Add to your ~/.zshrc or ~/.bashrc
+export AZURE_DEVOPS_EXT_PAT="your-pat-here"
+export AZURE_DEVOPS_ORG="https://dev.azure.com/your-organization"
+export AZURE_DEVOPS_PROJECT="your-project"
 ```
 
-## 3. Padrão de Cabeçalho HTTP
+## 3. HTTP Header Pattern
 
-Se você estiver realizando chamadas manuais via cURL ou scripts, utilize o PAT codificado em Base64 no cabeçalho `Authorization`.
+If you are performing manual calls via cURL or scripts, use the Base64-encoded PAT in the `Authorization` header.
 
 ```bash
-# O formato é ":{PAT}" (o colon antes do PAT é obrigatório)
+# The format is ":{PAT}" (the colon before the PAT is mandatory)
 TOKEN=$(echo -n ":$AZURE_DEVOPS_EXT_PAT" | base64)
 
 curl -H "Authorization: Basic $TOKEN" \
      -H "Content-Type: application/json" \
-     "https://dev.azure.com/{org}/{projeto}/_apis/projects?api-version=7.1"
+     "https://dev.azure.com/{org}/{project}/_apis/projects?api-version=7.1"
 ```
 
-## 4. Multi-Tenancy (Várias Orgs/Projetos)
+## 4. Multi-Tenancy (Multiple Orgs/Projects)
 
-Se você trabalha em múltiplas organizações, pode configurar perfis ou utilizar o comando de configuração do AzDO CLI:
+If you work across multiple organizations, you can configure profiles or use the AzDO CLI configuration command:
 
 ```bash
-# Configurar default via CLI oficial
+# Configure default via official CLI
 az devops configure --defaults organization=https://dev.azure.com/org1 project=proj1
 ```
 
-## 5. Melhores Práticas de Segurança
+## 5. Security Best Practices
 
-- **Rotação**: Defina uma expiração curta (ex: 30 a 90 dias) e rotacione o token periodicamente.
-- **Least Privilege**: Conceda apenas os escopos necessários para a tarefa atual.
-- **Secret Management**: Utilize ferramentas como AWS Secrets Manager, Azure Key Vault ou 1Password CLI para injetar o PAT dinamicamente.
+- **Rotation**: Set a short expiration (e.g., 30 to 90 days) and rotate the token periodically.
+- **Least Privilege**: Grant only the scopes necessary for the current task.
+- **Secret Management**: Use tools like AWS Secrets Manager, Azure Key Vault, or 1Password CLI to inject the PAT dynamically.

@@ -1,36 +1,36 @@
-# tRPC Patterns — Referência Completa
+# tRPC Patterns — Complete Reference
 
-Guia de padrões para APIs usando tRPC em monorepos TypeScript.
-
----
-
-## 1. O que é tRPC?
-
-tRPC (TypeScript Remote Procedure Call) permite construir APIs com **segurança de tipos ponta a ponta** (End-to-End Type Safety) sem a necessidade de gerar código ou manter esquemas manuais (como OpenAPI ou GraphQL SDL).
-
-**O contrato é o próprio código TypeScript.**
+Guide to patterns for APIs using tRPC in TypeScript monorepos.
 
 ---
 
-## 2. Quando Usar tRPC?
+## 1. What is tRPC?
 
-### ✅ Use tRPC se:
-- O projeto é **Fullstack TypeScript** (Frontend e Backend em TS).
-- Você está em um **Monorepo** (ou pode compartilhar tipos via package).
-- Você quer velocidade de desenvolvimento máxima e refatoração segura.
-- O consumidor da API é controlado por você (não é uma API pública para terceiros).
+tRPC (TypeScript Remote Procedure Call) allows you to build APIs with **End-to-End Type Safety** without the need to generate code or maintain manual schemas (like OpenAPI or GraphQL SDL).
 
-### ❌ NÃO use tRPC se:
-- A API será consumida por outras linguagens (Python, Go, Java, etc.).
-- Você precisa de uma API pública padrão de mercado (prefira REST/OpenAPI).
-- O Frontend e Backend estão em repositórios completamente isolados sem compartilhamento de tipos.
+**The contract is the TypeScript code itself.**
 
 ---
 
-## 3. Estrutura de Procedimentos
+## 2. When to Use tRPC?
 
-### Queries (Leitura)
-Use para buscar dados. Devem ser puras e sem efeitos colaterais.
+### ✅ Use tRPC if:
+- The project is **Fullstack TypeScript** (Frontend and Backend in TS).
+- You are in a **Monorepo** (or can share types via a package).
+- You want maximum development speed and safe refactoring.
+- The API consumer is controlled by you (not a public API for third parties).
+
+### ❌ DO NOT use tRPC if:
+- The API will be consumed by other languages (Python, Go, Java, etc.).
+- You need a market-standard public API (prefer REST/OpenAPI).
+- Frontend and Backend are in completely isolated repositories without type sharing.
+
+---
+
+## 3. Procedure Structure
+
+### Queries (Read)
+Use for fetching data. Must be pure and without side effects.
 ```typescript
 publicProcedure
   .input(z.object({ id: z.string() }))
@@ -39,8 +39,8 @@ publicProcedure
   });
 ```
 
-### Mutations (Escrita)
-Use para criar, atualizar ou deletar dados.
+### Mutations (Write)
+Use for creating, updating, or deleting data.
 ```typescript
 protectedProcedure
   .input(createUserSchema)
@@ -51,10 +51,10 @@ protectedProcedure
 
 ---
 
-## 4. Melhores Práticas de Design
+## 4. Design Best Practices
 
-### 4.1 Organização de Routers
-Divida a API em sub-routers lógicos para manter a escalabilidade.
+### 4.1 Router Organization
+Divide the API into logical sub-routers to maintain scalability.
 ```typescript
 // appRouter.ts
 export const appRouter = router({
@@ -64,8 +64,8 @@ export const appRouter = router({
 });
 ```
 
-### 4.2 Middlewares e Contexto
-Use middlewares para lógica reutilizável (Auth, Logging, Error Handling).
+### 4.2 Middlewares and Context
+Use middlewares for reusable logic (Auth, Logging, Error Handling).
 ```typescript
 const isAuthed = middleware(({ next, ctx }) => {
   if (!ctx.session) {
@@ -79,14 +79,14 @@ const isAuthed = middleware(({ next, ctx }) => {
 export const protectedProcedure = publicProcedure.use(isAuthed);
 ```
 
-### 4.3 Validação com Zod
-Sempre valide o `input` usando schemas Zod para garantir que os dados cheguem corretos ao resolver.
+### 4.3 Validation with Zod
+Always validate `input` using Zod schemas to ensure data arrives correctly at the resolver.
 
 ---
 
-## 5. Tratamento de Erros
+## 5. Error Handling
 
-O tRPC mapeia erros para status codes HTTP correspondentes.
+tRPC maps errors to corresponding HTTP status codes.
 
 | tRPC Error Code | HTTP Status |
 |-----------------|-------------|
@@ -100,11 +100,11 @@ O tRPC mapeia erros para status codes HTTP correspondentes.
 
 ---
 
-## 6. Versionamento no tRPC
+## 6. Versioning in tRPC
 
-Como o tRPC compartilha tipos, o "versionamento" geralmente acontece via refatoração no Monorepo. Se você mudar um campo no Backend, o Frontend quebrará em tempo de compilação, o que é a maior vantagem do tRPC.
+Since tRPC shares types, "versioning" usually happens via refactoring in the Monorepo. If you change a field in the Backend, the Frontend will break at compile time, which is the biggest advantage of tRPC.
 
-Para migrações graduais:
-1. Adicione o novo campo como opcional.
-2. Atualize o Frontend para usar o novo campo.
-3. Remova o campo antigo após a migração.
+For gradual migrations:
+1. Add the new field as optional.
+2. Update the Frontend to use the new field.
+3. Remove the old field after migration.

@@ -1,67 +1,67 @@
-# API Versioning Strategies — Referência Completa
+# API Versioning Strategies — Complete Reference
 
-Guia de estratégias de versionamento de API e gerenciamento de breaking changes.
-
----
-
-## 1. Por Que Versionar?
-
-APIs são contratos públicos. Quebrar um contrato sem versionamento adequado:
-
-- Derruba clientes em produção instantaneamente
-- Gera retrabalho emergencial do lado do consumidor
-- Destrói a confiança na sua API
-- Viola o **Princípio da Compatibilidade de Cauda** (clients podem ser muito mais velhos que a API)
-
-**Regra de ouro**: Toda API, desde o primeiro endpoint, deve ter uma estratégia de versionamento definida.
+Guide to API versioning strategies and management of breaking changes.
 
 ---
 
-## 2. Estratégias de Versionamento
+## 1. Why Version?
 
-### 2.1 URL Versioning (Mais Comum)
+APIs are public contracts. Breaking a contract without proper versioning:
+
+- Instantly drops clients in production
+- Generates emergency rework on the consumer side
+- Destroys trust in your API
+- Violates the **Tail Compatibility Principle** (clients can be much older than the API)
+
+**Golden rule**: Every API, from the first endpoint, must have a defined versioning strategy.
+
+---
+
+## 2. Versioning Strategies
+
+### 2.1 URL Versioning (Most Common)
 
 ```
 /api/v1/users
 /api/v2/users
 ```
 
-**Prós:**
-- Visível e explícito
-- Fácil de testar no browser
-- Fácil de fazer cache por versão
-- Logs claros por versão
+**Pros:**
+- Visible and explicit
+- Easy to test in the browser
+- Easy to cache by version
+- Clear logs by version
 
-**Contras:**
-- URLs ficam "feias" para puristas REST
-- Pode ser confuso com versionamento de recursos individuais
+**Cons:**
+- URLs look "ugly" to REST purists
+- Can be confusing with individual resource versioning
 
-**Quando usar:** APIs públicas, terceiros, mobile apps.
+**When to use:** Public APIs, third parties, mobile apps.
 
 ### 2.2 Header Versioning
 
 ```http
 GET /api/users HTTP/1.1
-Accept: application/vnd.empresa.v2+json
+Accept: application/vnd.company.v2+json
 ```
 
-ou
+or
 
 ```http
 GET /api/users HTTP/1.1
 X-API-Version: 2
 ```
 
-**Prós:**
-- URLs "limpas"
-- Segue o princípio REST de content negotiation
+**Pros:**
+- "Clean" URLs
+- Follows the REST principle of content negotiation
 
-**Contras:**
-- Menos visível (difícil de testar no browser)
-- Cache mais complexo (precisa do header no `Vary`)
-- Clientes precisam saber qual header usar
+**Cons:**
+- Less visible (hard to test in the browser)
+- More complex cache (needs the header in `Vary`)
+- Clients need to know which header to use
 
-**Quando usar:** APIs internas, quando URLs limpas são requisito.
+**When to use:** Internal APIs, when clean URLs are a requirement.
 
 ### 2.3 Query Parameter Versioning
 
@@ -70,81 +70,81 @@ X-API-Version: 2
 /api/users?api-version=2026-04-14
 ```
 
-**Prós:**
-- Simples de implementar
-- Fácil de testar
+**Pros:**
+- Simple to implement
+- Easy to test
 
-**Contras:**
-- Pode conflitar com parâmetros de negócio
-- Considerado antipadrão por alguns arquitetos
+**Cons:**
+- Can conflict with business parameters
+- Considered an anti-pattern by some architects
 
-**Quando usar:** APIs simples, prototipagem, migração gradual.
+**When to use:** Simple APIs, prototyping, gradual migration.
 
-### 2.4 Data-Based Versioning (Azure style)
+### 2.4 Date-Based Versioning (Azure style)
 
 ```
 /api/users?api-version=2026-04-14
 ```
 
-**Prós:**
-- Sem ambiguidade de qual versão é mais nova
-- Facilita deprecation com datas específicas
+**Pros:**
+- No ambiguity about which version is newer
+- Facilitates deprecation with specific dates
 
-**Quando usar:** APIs enterprise com ciclos de vida longos (estilo Azure API).
-
----
-
-## 3. O Que É Uma Breaking Change?
-
-### ❌ Breaking Changes (sempre requerem nova versão major)
-
-| Categoria | Exemplos |
-|-----------|---------|
-| **Remoção** | Remover campo, endpoint ou parâmetro |
-| **Renomeação** | Renomear campo `user_id` → `userId` |
-| **Tipo** | Mudar tipo de campo `string` → `integer` |
-| **Obrigatoriedade** | Tornar campo opcional em obrigatório |
-| **Comportamento** | Mudar semântica de endpoint existente |
-| **Auth** | Tornar endpoint público em privado |
-| **Status code** | Mudar `200` → `201` em criação existente |
-
-### ✅ Non-Breaking Changes (compatíveis retroativamente)
-
-| Categoria | Exemplos |
-|-----------|---------|
-| **Adição** | Adicionar novo campo opcional na resposta |
-| **Adição** | Adicionar novo endpoint |
-| **Adição** | Adicionar novo parâmetro opcional |
-| **Relaxamento** | Tornar campo obrigatório em opcional |
-| **Performance** | Melhorar tempo de resposta |
-| **Correção** | Corrigir bug sem mudar contrato |
+**When to use:** Enterprise APIs with long life cycles (Azure API style).
 
 ---
 
-## 4. Estratégia de Deprecation
+## 3. What is a Breaking Change?
 
-### Ciclo de Vida de uma Versão
+### ❌ Breaking Changes (always require a new major version)
+
+| Category | Examples |
+|-----------|---------|
+| **Removal** | Remove field, endpoint, or parameter |
+| **Renaming** | Rename field `user_id` → `userId` |
+| **Type** | Change field type `string` → `integer` |
+| **Obligatoriness** | Make optional field mandatory |
+| **Behavior** | Change semantics of an existing endpoint |
+| **Auth** | Make public endpoint private |
+| **Status code** | Change `200` → `201` in existing creation |
+
+### ✅ Non-Breaking Changes (backwards compatible)
+
+| Category | Examples |
+|-----------|---------|
+| **Addition** | Add new optional field in the response |
+| **Addition** | Add new endpoint |
+| **Addition** | Add new optional parameter |
+| **Relaxation** | Make mandatory field optional |
+| **Performance** | Improve response time |
+| **Correction** | Fix bug without changing contract |
+
+---
+
+## 4. Deprecation Strategy
+
+### Life Cycle of a Version
 
 ```
-v1: CURRENT     → versão ativa, suportada
-v1: DEPRECATED  → ainda funciona, mas aconselhado a migrar
-v1: RETIRED     → removida (retorna 410 Gone)
+v1: CURRENT     → active, supported version
+v1: DEPRECATED  → still works, but advised to migrate
+v1: RETIRED     → removed (returns 410 Gone)
 ```
 
-### Comunicação de Deprecation
+### Deprecation Communication
 
-1. **Documentação** — Marcar versão/campo como deprecated com data de remoção
-2. **Response Headers** — Incluir aviso em toda resposta
-3. **Email/Changelog** — Notificar consumidores registrados
-4. **Prazo mínimo** — Mínimo 6 meses para APIs públicas, 3 meses para internas
+1. **Documentation** — Mark version/field as deprecated with removal date
+2. **Response Headers** — Include notice in every response
+3. **Email/Changelog** — Notify registered consumers
+4. **Minimum period** — Minimum 6 months for public APIs, 3 months for internal
 
-### Headers de Deprecation
+### Deprecation Headers
 
 ```http
 HTTP/1.1 200 OK
 Deprecation: Sun, 01 Jan 2027 00:00:00 GMT
 Sunset: Sun, 01 Jul 2027 00:00:00 GMT
-Link: <https://docs.empresa.com/api/v2>; rel="successor-version"
+Link: <https://docs.company.com/api/v2>; rel="successor-version"
 ```
 
 ### GraphQL Deprecation
@@ -153,25 +153,25 @@ Link: <https://docs.empresa.com/api/v2>; rel="successor-version"
 type User {
   id: ID!
   email: String!
-  # Campo deprecated — use email
-  username: String @deprecated(reason: "Use 'email' field. Será removido em v3 (2027-01-01).")
+  # Deprecated field — use email
+  username: String @deprecated(reason: "Use 'email' field. Will be removed in v3 (2027-01-01).")
 }
 ```
 
 ---
 
-## 5. Estratégia de Migração
+## 5. Migration Strategy
 
-### Abordagem Gradual (Recomendada)
+### Gradual Approach (Recommended)
 
 ```
-Fase 1: Lançar v2 em /api/v2/* (v1 continua funcionando)
-Fase 2: Período de coexistência (6+ meses para público, 3+ meses para interno)
-Fase 3: Deprecar v1 (headers + documentação + email)
-Fase 4: Sunset v1 — retorna 410 Gone com instrução de migração
+Phase 1: Launch v2 at /api/v2/* (v1 continues to work)
+Phase 2: Coexistence period (6+ months for public, 3+ months for internal)
+Phase 3: Deprecate v1 (headers + documentation + email)
+Phase 4: Sunset v1 — returns 410 Gone with migration instruction
 ```
 
-### Resposta de Endpoint Aposentado
+### Retired Endpoint Response
 
 ```http
 HTTP/1.1 410 Gone
@@ -180,50 +180,50 @@ Content-Type: application/json
 {
   "error": {
     "code": "API_VERSION_RETIRED",
-    "message": "A versão v1 desta API foi removida em 2027-01-01.",
-    "migration_guide": "https://docs.empresa.com/api/migration/v1-to-v2"
+    "message": "Version v1 of this API was removed on 2027-01-01.",
+    "migration_guide": "https://docs.company.com/api/migration/v1-to-v2"
   }
 }
 ```
 
 ---
 
-## 6. Versionamento Interno vs Externo
+## 6. Internal vs. External Versioning
 
-| Aspecto | API Pública | API Interna |
+| Aspect | Public API | Internal API |
 |---------|-------------|-------------|
-| **Breaking change notice** | 6+ meses | 3+ meses |
-| **Coexistência de versões** | Obrigatória | Recomendada |
-| **Documentação** | OpenAPI spec pública | Interno/Confluence |
-| **Consumidores notificados** | Email, status page | Slack, PR review |
-| **Versões ativas simultâneas** | 2-3 max | 1-2 max |
+| **Breaking change notice** | 6+ months | 3+ months |
+| **Version coexistence** | Mandatory | Recommended |
+| **Documentation** | Public OpenAPI spec | Internal/Confluence |
+| **Consumers notified** | Email, status page | Slack, PR review |
+| **Simultaneous active versions** | 2-3 max | 1-2 max |
 
 ---
 
-## 7. Checklist de Versionamento
+## 7. Versioning Checklist
 
-### Antes de Lançar uma Nova Versão
-- [ ] Documentar todas as breaking changes
-- [ ] Criar guia de migração (v_old → v_new)
-- [ ] Definir data de sunset da versão anterior
-- [ ] Comunicar consumidores com antecedência mínima
-- [ ] Implementar headers de deprecation na versão anterior
-- [ ] Atualizar documentação OpenAPI/GraphQL schema
+### Before Launching a New Version
+- [ ] Document all breaking changes
+- [ ] Create migration guide (v_old → v_new)
+- [ ] Define sunset date for the previous version
+- [ ] Communicate with consumers with minimum notice
+- [ ] Implement deprecation headers in the previous version
+- [ ] Update OpenAPI documentation/GraphQL schema
 
-### Após Lançar Nova Versão
-- [ ] Monitorar uso por versão (logs/métricas)
-- [ ] Identificar clientes ainda na versão antiga
-- [ ] Enviar lembretes de migração conforme aproxima sunset
-- [ ] Implementar 410 Gone na data de sunset
-- [ ] Remover código da versão aposentada após período de retenção
+### After Launching a New Version
+- [ ] Monitor usage by version (logs/metrics)
+- [ ] Identify clients still on the old version
+- [ ] Send migration reminders as sunset approaches
+- [ ] Implement 410 Gone on the sunset date
+- [ ] Remove code for the retired version after the retention period
 
 ---
 
-## 8. Ferramentas
+## 8. Tools
 
-| Ferramenta | Propósito |
+| Tool | Purpose |
 |------------|-----------|
-| **[openapi-diff](https://github.com/OpenAPITools/openapi-diff)** | Detectar breaking changes entre specs OpenAPI |
-| **[graphql-inspector](https://the-guild.dev/graphql/inspector)** | Detectar breaking changes em schemas GraphQL |
-| **[Bump.sh](https://bump.sh/)** | Documentação versioned e diff automático |
-| **[Optic](https://www.useoptic.com/)** | API versioning e governance |
+| **[openapi-diff](https://github.com/OpenAPITools/openapi-diff)** | Detect breaking changes between OpenAPI specs |
+| **[graphql-inspector](https://the-guild.dev/graphql/inspector)** | Detect breaking changes in GraphQL schemas |
+| **[Bump.sh](https://bump.sh/)** | Versioned documentation and automatic diff |
+| **[Optic](https://www.useoptic.com/)** | API versioning and governance |

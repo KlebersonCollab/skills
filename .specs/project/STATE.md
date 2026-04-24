@@ -1,69 +1,72 @@
 # Current Project State (April 22, 2026)
 
-## Status Atual
-- **Feature**: Hub Enterprise Upgrade - **CONCLUÍDO (v4.2.0)** ✅
-- **Auditoria**: Hub Integrity Audit - **CONCLUÍDO** (Correção de registros e estrutura) ✅
-- **Sessão**: Estruturação de 5 trilhas para levar a arquitetura do Hub à maturidade completa (Testes, UI, Distiller, Installer, DevSecOps).
+## Current Status
+- **Feature**: Hub Enterprise Upgrade - **COMPLETED (v4.2.0)** ✅
+- **Audit**: Hub Integrity Audit - **COMPLETED** (Registry and structure correction) ✅
+- **Session**: Structuring of 5 tracks to bring the Hub architecture to full maturity (Tests, UI, Distiller, Installer, DevSecOps).
 
-## Últimas Alterações
+## Latest Changes
 - [x] **SDD Skill Enrichment (v1.5.0)**:
-    - Integradas 5 novas diretrizes avançadas operacionais (Brownfield, Coding Principles, Context Limits, Session Handoff, Quick Mode).
-    - Implementado protocolo de delegação para sub-agentes mitigarem limites de contexto.
-    - Realizada auditoria completa de conformidade com a Skill Factory em todas as sub-skills.
-    - Sincronizada versão em todo o ecossistema e gerada nova release de artefatos.
-
+    - Integrated 5 new advanced operational guidelines (Brownfield, Coding Principles, Context Limits, Session Handoff, Quick Mode).
+    - Implemented delegation protocol for sub-agents to mitigate context limits.
+    - Performed full Skill Factory compliance audit on all sub-skills.
+    - Synchronized version across the entire ecosystem and generated new artifact release.
 - [x] **Benchmark Expert Skill (v1.0.0)**:
-    - Criada nova skill especializada em performance (Browser, API, Build).
-    - Integrada detecção de regressão com comparação de baselines.
-    - Adicionados guias de referência para targets de performance e análise de regressão.
-    - Registrada como a 23ª skill do Hub.
+    - Created new specialized performance skill (Browser, API, Build).
+    - Integrated regression detection with baseline comparison.
+    - Added reference guides for performance targets and regression analysis.
+    - Registered as the Hub's 23rd skill.
 - [x] **Golang Expert Enrichment (v1.2.0)**:
-    - Integrados Slash Commands para automação de workflows (`/plan`, `/go-test`, etc.).
-    - Estabelecido layout mandatório de Clean Architecture.
-    - Adicionado suporte a ferramentas modernas: `sqlc`, `Wire` e `testcontainers`.
-    - Implementadas diretrizes proibitivas rigorosas (Sem `init()`, sem estado global).
+    - Integrated Slash Commands for workflow automation (`/plan`, `/go-test`, etc.).
+    - Established mandatory Clean Architecture layout.
+    - Added support for modern tools: `sqlc`, `Wire`, and `testcontainers`.
+    - Implemented rigorous prohibitive guidelines (No `init()`, no global state).
 - [x] **Golang Testing Expert Enrichment (v1.1.0)**:
-    - Adicionados comandos de verificação detalhados (Race, Coverage, Integration).
-    - Integrado ciclo TDD com comandos de barra.
+    - Added detailed verification commands (Race, Coverage, Integration).
+    - Integrated TDD cycle with slash commands.
 - [x] **Governance Hardening (v1.0.0)**:
-    - Endurecida a Fase 3 do SDD com mandatos proibitivos de Git e Testes.
-    - Atualizado o Onboarding Navigator para incluir auditoria de commits no Exit Gate.
-    - Estabelecida a atomicidade mandatória de commits por tarefa no tasks.md.
-    - Importada skill original da ECC e traduzida para PT-BR.
-    - Integrado workflow Git com o ciclo SDD (Commits por Task, Atomicidade).
-    - Criados guias de referência para Conventional Commits e Branching Strategies.
-    - Adicionados templates de Pull Request e Git Message.
-    - Registrada como a 21ª skill do Hub no `README.md` raiz.
+    - Hardened SDD Phase 3 with prohibitive Git and Test mandates.
+    - Updated Onboarding Navigator to include commit audit at the Exit Gate.
+    - Established mandatory commit atomicity per task in `tasks.md`.
+    - Imported original skill from ECC and translated to PT-BR.
+    - Integrated Git workflow with the SDD cycle (Commits per Task, Atomicity).
+    - Created reference guides for Conventional Commits and Branching Strategies.
+    - Added Pull Request and Git Message templates.
+    - Registered as the Hub's 21st skill in the root `README.md`.
 - [x] **Flutter Skill Enrichment (v1.3.0)**:
-    - Integrado suporte a Dart 3+ (Sealed Classes, Patterns).
-    - Adicionado guias de Acessibilidade, Performance e Modern Dart.
-    - Implementado padrões de Resiliência (Error Handling global).
+    - Integrated support for Dart 3+ (Sealed Classes, Patterns).
+    - Added Accessibility, Performance, and Modern Dart guides.
+    - Implemented Resilience patterns (Global Error Handling).
 - [x] **Skill Enrichment (v3.3.0)**:
-    - Adicionado `references/` e `examples/` em skills críticas.
+    - Added `references/` and `examples/` in critical skills.
 - [x] **GAN-style Harness Integration (v2.1.0/v1.5.0)**:
-    - Implementado loop adversarial Gerador-Avaliador em `harness-expert`.
-    - Evoluído o framework `sdd` para suportar Revisões Adversariais.
+    - Implemented Generator-Evaluator adversarial loop in `harness-expert`.
+    - Evolved the `sdd` framework to support Adversarial Reviews.
 - [x] **Python Expert Enrichment (v3.0.0)**:
-    - Integrado padrões idiomáticos avançados (EAFP, Protocols, Type Hints 3.9+).
-    - Implementado guia avançado de Testes com ciclo TDD e Pytest Mastery (Fixtures, Mocking).
-    - Adicionado suporte a otimização de memória via `__slots__` e geradores.
-    - Traduzido todo o conteúdo enriquecido para PT-BR.
-- [x] **Full Hub Cohesion Audit (v4.1.2)**: 
-    - Corrigido posicionamento da skill `token-distiller`.
-    - Atualizados `README.md`, `KNOWLEDGE-MAP.mermaid` e `onboarding-navigator`.
-    - Todas as 25 skills agora 100% conformes. **CONCLUÍDO** ✅
+    - Integrated advanced idiomatic patterns (EAFP, Protocols, Type Hints 3.9+).
+    - Implemented advanced Testing guide with TDD cycle and Pytest Mastery (Fixtures, Mocking).
+    - Added support for memory optimization via `__slots__` and generators.
+    - Translated all enriched content to PT-BR.
+- [x] **Ecosystem Localization (v1.1.0)**:
+    - Translated all 25 skills and their references/resources to English.
+    - Localized internal scripts, root files (README, Makefile), and Knowledge Map.
+    - Audited and recovered 22 files that suffered significant content loss during normalization (13 initial + 9 during final audit).
+    - Maintained 100% technical parity with the original Portuguese content.
+- [x] **Full Hub Cohesion Audit (v4.2.0)**: 
+    - Corrected `token-distiller` skill positioning.
+    - Updated `README.md`, `KNOWLEDGE-MAP.mermaid`, and `onboarding-navigator`.
+    - All 25 skills now 100% compliant and English-localized. **COMPLETED** ✅
+- [x] **Hub Test Suite**: Create first test battery via `pytest` to shield base scripts (`/scripts/`).
+- [x] **DevSecOps Skill**: Start new skill focused on static quality and security audits via `skill-factory`.
+- [x] **Automated Knowledge Distiller**: Script dynamic extraction of Mermaid nodes.
+- [x] **Skill Installer CLI**: Implemented `hub install <skill> --remote` CLI with Git Sparse-Checkout for granular direct download from the repository.
+- [x] **Marketplace UI / Dashboard**: Created Streamlit interactive panel (`dashboard/app.py`) for catalog and architecture visualization.
 
-- [x] **Hub Test Suite**: Criar primeira bateria de testes via `pytest` para blindar scripts base (`/scripts/`).
-- [x] **DevSecOps Skill**: Iniciar via `skill-factory` a nova skill focada em auditorias estáticas de qualidade e segurança.
-- [x] **Automated Knowledge Distiller**: Roteirizar extração dinâmica de nós do Mermaid.
-- [x] **Skill Installer CLI**: Implementada CLI `hub install <skill> --remote` com Git Sparse-Checkout para download granular direto do repositório.
-- [x] **Marketplace UI / Dashboard**: Criado painel interativo Streamlit (`dashboard/app.py`) para visualização do catálogo e arquitetura.
-
-## Bloqueios / Próximos Passos
-- [x] **Release V4.0.1 (Bunker Strategy)**: Executada com sucesso com 100% de integridade (`make release-check`) e Changelog gerado.
-- [x] **Novo Épico: Token Optimization & Dual Mode (Caveman/Premium)**:
-    - [x] Planejamento SDD (Complex Task Mode): `spec.md`, `plan.md`, `contract.md`, `tasks.md`.
-    - [x] Implementação da Meta 1 (Infraestrutura e Skill Core).
-    - [x] Implementação da Meta 2 (Motor de Compressão Python).
-    - [x] Implementação da Meta 3 (Integração e Automação).
-    - [x] Validação Final e Benchmark (Meta 4). **CONCLUÍDO** ✅
+## Blockers / Next Steps
+- [x] **Release V4.0.1 (Bunker Strategy)**: Successfully executed with 100% integrity (`make release-check`) and Changelog generated.
+- [x] **New Epic: Token Optimization & Dual Mode (Caveman/Premium)**:
+    - [x] SDD Planning (Complex Task Mode): `spec.md`, `plan.md`, `contract.md`, `tasks.md`.
+    - [x] Implementation of Goal 1 (Infrastructure and Skill Core).
+    - [x] Implementation of Goal 2 (Python Compression Engine).
+    - [x] Implementation of Goal 3 (Integration and Automation).
+    - [x] Final Validation and Benchmark (Goal 4). **COMPLETED** ✅

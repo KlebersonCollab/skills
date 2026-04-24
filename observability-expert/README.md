@@ -1,29 +1,29 @@
 # Observability Expert Skill
 
-Esta skill capacita o agente a atuar como um especialista em **SRE (Site Reliability Engineering)** e Observabilidade. Ela fornece um framework rigoroso para projetar sistemas que sejam monitoráveis, previsíveis e resilientes, baseando-se nos três pilares: **Logs, Métricas e Tracing**.
+This skill empowers the agent to act as an **SRE (Site Reliability Engineering)** and Observability expert. It provides a rigorous framework for designing systems that are monitorable, predictable, and resilient, based on the three pillars: **Logs, Metrics, and Tracing**.
 
-## Recursos
+## Resources
 
-- **Workflow SRE**: Framework de 4 fases para instrumentação e reação a incidentes.
-- **Logging Estruturado**: Padrões para logs em JSON que facilitam a análise automatizada.
-- **OpenTelemetry-First**: Design agnóstico de fornecedor focado em rastreamento distribuído e métricas.
-- **Governança de Dados**: Metodologia para definir SLIs, SLOs e orçamentos de erro.
-- **Visualização**: Orientações para Dashboards-as-Code e diagramação Mermaid.
+- **SRE Workflow**: 4-phase framework for instrumentation and incident reaction.
+- **Structured Logging**: Standards for JSON logs that facilitate automated analysis.
+- **OpenTelemetry-First**: Vendor-agnostic design focused on distributed tracing and metrics.
+- **Data Governance**: Methodology for defining SLIs, SLOs, and error budgets.
+- **Visualization**: Guidance for Dashboards-as-Code and Mermaid diagramming.
 
-## Como Usar
+## How to Use
 
-Para ativar as diretrizes desta skill em sua sessão atual, utilize:
+To activate this skill's guidelines in your current session, use:
 
 ```bash
 activate_skill observability-expert
 ```
 
-## Estrutura da Skill
+## Skill Structure
 
-- `SKILL.md`: Documento principal com o workflow SRE e regras de qualidade.
-- `references/`: Guias profundos sobre logging, tracing e SLIs/SLOs.
-- `examples/`: Exemplos práticos de payloads de log e arquiteturas de monitoramento.
+- `SKILL.md`: Main document with the SRE workflow and quality rules.
+- `references/`: Deep guides on logging, tracing, and SLIs/SLOs.
+- `examples/`: Practical examples of log payloads and monitoring architectures.
 
 ---
 
-Baseado em princípios modernos de SRE e observabilidade distribuída.
+Based on modern SRE and distributed observability principles.

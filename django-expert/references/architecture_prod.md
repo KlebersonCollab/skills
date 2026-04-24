@@ -1,25 +1,25 @@
 # Production Architecture & Layout
 
 ## Recommended Layout
-Separe a configuração dos aplicativos locais.
+Separate global configuration from local applications.
 
 ```
 myproject/
-├── config/             # Configurações globais
+├── config/             # Global configurations
 │   ├── settings/       # Split Settings
 │   │   ├── base.py
 │   │   ├── development.py
 │   │   └── production.py
 │   ├── urls.py
 │   └── wsgi.py
-├── apps/               # Todos os apps locais aqui
+├── apps/               # All local apps here
 │   ├── users/
 │   └── products/
 └── manage.py
 ```
 
 ## Split Settings Pattern
-Evite condicionais gigantes no `settings.py`.
+Avoid giant conditionals in `settings.py`.
 
 ```python
 # config/settings/production.py
@@ -35,7 +35,7 @@ CSRF_COOKIE_SECURE = True
 ```
 
 ## App Registration
-Sempre registre apps locais usando o caminho completo se estiverem em `apps/`.
+Always register local apps using the full path if they are in `apps/`.
 ```python
 INSTALLED_APPS = [
     # ...

@@ -1,60 +1,60 @@
-# Pilar 4: Systems & Architecture
+# Pillar 4: Systems & Architecture
 
-> Construir sistemas resilientes e escaláveis em Go requer uma compreensão profunda da infraestrutura e das ferramentas que sustentam aplicações de missão crítica.
-
----
-
-## 🔌 Communication & gRPC (Microserviços)
-
-Go é a escolha dominante para microserviços de alta performance:
-- **gRPC & Protobuf**: Utilize para comunicação inter-serviços de baixa latência e contratos tipados e versionáveis.
-- **RESTful APIs**: Utilize o pacote `net/http` ou frameworks leves como `chi` ou `echo`.
-- **API Versioning**: Planeje o versionamento desde o início, seja via cabeçalhos, URL ou pacotes Protobuf.
+> Building resilient and scalable systems in Go requires a deep understanding of the infrastructure and tools that support mission-critical applications.
 
 ---
 
-## 🗄️ Database Interoperability (Bancos de Dados)
+## 🔌 Communication & gRPC (Microservices)
 
-O ecossistema Go oferece flexibilidade total para acesso a dados:
-- **database/sql**: O pacote nativo para interação com SQL. Utilize-o diretamente para controle total.
-- **ORMs & Query Builders**: Considere bibliotecas como `GORM` para produtividade ou `sqlc` para gerar código Go idiomático a partir de SQL puro.
-- **NoSQL**: Utilize drivers oficiais para MongoDB, Redis, Cassandra, etc., sempre injetando dependências via interfaces.
-- **Transaction Management**: Garanta a atomicidade utilizando padrões de gerenciamento de transações no repositório.
+Go is the dominant choice for high-performance microservices:
+- **gRPC & Protobuf**: Use for low-latency inter-service communication and typed, versionable contracts.
+- **RESTful APIs**: Use the `net/http` package or lightweight frameworks like `chi` or `echo`.
+- **API Versioning**: Plan versioning from the start, whether via headers, URL, or Protobuf packages.
+
+---
+
+## 🗄️ Database Interoperability
+
+The Go ecosystem offers total flexibility for data access:
+- **database/sql**: The native package for SQL interaction. Use it directly for full control.
+- **ORMs & Query Builders**: Consider libraries like `GORM` for productivity or `sqlc` to generate idiomatic Go code from pure SQL.
+- **NoSQL**: Use official drivers for MongoDB, Redis, Cassandra, etc., always injecting dependencies via interfaces.
+- **Transaction Management**: Ensure atomicity using transaction management patterns in the repository.
 
 ---
 
 ## 📊 Observability (Logs, Metrics, Tracing)
 
-Um sistema Expert deve ser visível internamente:
-- **Structured Logging**: Utilize o pacote nativo `slog` para logs em JSON estruturado, facilitando a ingestão por sistemas como ELK ou Datadog.
-- **Metrics**: Utilize bibliotecas como `prometheus/client_golang` para expor métricas de performance e negócio.
-- **Distributed Tracing**: Implemente `OpenTelemetry` para rastrear requisições através de múltiplos microserviços.
+An Expert system must be internally visible:
+- **Structured Logging**: Use the native `slog` package for structured JSON logs, facilitating ingestion by systems like ELK or Datadog.
+- **Metrics**: Use libraries like `prometheus/client_golang` to expose performance and business metrics.
+- **Distributed Tracing**: Implement `OpenTelemetry` to trace requests across multiple microservices.
 
 ---
 
-## ⚡ Performance & Benchmarking (Otimização)
+## ⚡ Performance & Benchmarking (Optimization)
 
-Go foi projetada para ser rápida. Prove que seu código é rápido:
-- **Micro-benchmarks**: Utilize `testing.B` para medir funções específicas.
+Go was designed to be fast. Prove that your code is fast:
+- **Micro-benchmarks**: Use `testing.B` to measure specific functions.
   ```go
   func BenchmarkSum(b *testing.B) {
       for i := 0; i < b.N; i++ { Sum(1, 2) }
   }
   ```
-- **Heap vs Stack**: Entenda a análise de escape (`go build -gcflags="-m"`) para minimizar alocações no heap e reduzir a carga do Garbage Collector.
-- **Optimization Strategy**: Meça primeiro (`pprof`), identifique o gargalo e otimize apenas o necessário (YAGNI).
+- **Heap vs Stack**: Understand escape analysis (`go build -gcflags="-m"`) to minimize heap allocations and reduce Garbage Collector load.
+- **Optimization Strategy**: Measure first (`pprof`), identify the bottleneck, and optimize only what is necessary (YAGNI).
 
 ---
 
-## 🛡️ Security & CI/CD (Governança)
+## 🛡️ Security & CI/CD (Governance)
 
-- **Input Validation**: Nunca confie no input do usuário. Valide todos os dados na entrada da API.
-- **Secrets Management**: Nunca comite chaves de API ou segredos. Utilize variáveis de ambiente ou gerenciadores de segredos (HashiCorp Vault, AWS Secrets Manager).
-- **CI Pipelines**: Configure pipelines automatizados para rodar testes, linters e scans de segurança em cada commit.
-- **Dockerization**: Crie imagens Docker otimizadas utilizando `distroless` ou imagens multi-stage para reduzir a superfície de ataque.
+- **Input Validation**: Never trust user input. Validate all data at the API entry.
+- **Secrets Management**: Never commit API keys or secrets. Use environment variables or secrets managers (HashiCorp Vault, AWS Secrets Manager).
+- **CI Pipelines**: Configure automated pipelines to run tests, linters, and security scans on every commit.
+- **Dockerization**: Create optimized Docker images using `distroless` or multi-stage images to reduce the attack surface.
 
 ---
 
-## 📚 Bibliotecas de Apoio (Architecture)
-- `samber/slog`: Handlers e utilitários para enriquecer o log estruturado nativo `slog`.
-- `samber/do`: Para orquestrar a injeção de dependências em microserviços complexos.
+## 📚 Supporting Libraries (Architecture)
+- `samber/slog`: Handlers and utilities to enrich the native `slog` structured log.
+- `samber/do`: To orchestrate dependency injection in complex microservices.

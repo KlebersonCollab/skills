@@ -3,12 +3,12 @@
 ## Component Design
 
 ### Atomic Design Pattern
-Organize componentes em uma hierarquia clara:
-- **Atoms**: Elementos básicos (Button, Input, Label)
-- **Molecules**: Composições de átomos (SearchBar, Card)
-- **Organisms**: Estruturas complexas (Header, Form)
-- **Templates**: Layouts de página
-- **Pages**: Instâncias completas
+Organize components in a clear hierarchy:
+- **Atoms**: Basic elements (Button, Input, Label)
+- **Molecules**: Compositions of atoms (SearchBar, Card)
+- **Organisms**: Complex structures (Header, Form)
+- **Templates**: Page layouts
+- **Pages**: Complete instances
 
 ### Component Composition
 ```tsx
@@ -27,7 +27,7 @@ Organize componentes em uma hierarquia clara:
 ### When to Use What
 | Scenario | Solution |
 |----------|----------|
-| UI local (modals, toggles) | React Context / useState |
+| Local UI (modals, toggles) | React Context / useState |
 | Server state (API data) | TanStack Query |
 | Form state | React Hook Form |
 | Global app state | Zustand / Redux |

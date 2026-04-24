@@ -1,27 +1,27 @@
 # REST API Design Guide
 
-Padrões de design para garantir que a API seja intuitiva e escalável.
+Design patterns to ensure the API is intuitive and scalable.
 
-## 1. Nomenclatura de Recursos
-- Use **Substantivos no Plural**: `/users`, `/items`, `/orders`.
-- NUNCA use verbos no caminho: `/getUsers` (Errado) -> `/users` (Certo).
+## 1. Resource Naming
+- Use **Plural Nouns**: `/users`, `/items`, `/orders`.
+- NEVER use verbs in the path: `/getUsers` (Wrong) -> `/users` (Right).
 
-## 2. Versionamento
-- Sempre use versionamento no caminho: `/v1/users`, `/v2/items`.
-- Isso permite evoluir a API sem quebrar clientes antigos.
+## 2. Versioning
+- Always use versioning in the path: `/v1/users`, `/v2/items`.
+- This allows evolving the API without breaking old clients.
 
-## 3. Status Codes Mandatórios
-| Code | Significado | Quando usar |
+## 3. Mandatory Status Codes
+| Code | Meaning | When to use |
 |------|-------------|-------------|
-| 200 | OK | Sucesso em GET ou PUT. |
-| 201 | Created | Sucesso em POST (Criação). |
-| 204 | No Content | Sucesso em DELETE (Sem corpo). |
-| 400 | Bad Request | Erro de lógica do cliente. |
-| 401 | Unauthorized | Falta de autenticação. |
-| 403 | Forbidden | Autenticado, mas sem permissão (Scopes). |
-| 404 | Not Found | Recurso inexistente. |
+| 200 | OK | Success in GET or PUT. |
+| 201 | Created | Success in POST (Creation). |
+| 204 | No Content | Success in DELETE (No body). |
+| 400 | Bad Request | Client logic error. |
+| 401 | Unauthorized | Lack of authentication. |
+| 403 | Forbidden | Authenticated, but without permission (Scopes). |
+| 404 | Not Found | Non-existent resource. |
 
-## 4. Filtragem e Paginação
-Use Query Parameters para busca e paginação:
+## 4. Filtering and Pagination
+Use Query Parameters for search and pagination:
 - `GET /users?limit=10&offset=20`
 - `GET /items?status=active`

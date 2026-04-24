@@ -1,22 +1,22 @@
 # Pubspec Standards Guide
 
-Este guia define os padrões de organização, versionamento e manutenção do arquivo `pubspec.yaml` em projetos que utilizam o ecossistema do Hub.
+This guide defines the standards for organization, versioning, and maintenance of the `pubspec.yaml` file in projects using the Hub ecosystem.
 
-## 1. Organização de Seções
-O arquivo deve seguir a ordem padrão do SDK do Flutter, mantendo seções claras:
-1. Meta-informações (name, description, version, etc.)
+## 1. Section Organization
+The file should follow the default Flutter SDK order, maintaining clear sections:
+1. Meta-information (name, description, version, etc.)
 2. Environment (sdk, flutter version)
-3. Dependencies (ordenadas alfabeticamente)
-4. Dev Dependencies (ordenadas alfabeticamente)
+3. Dependencies (alphabetically ordered)
+4. Dev Dependencies (alphabetically ordered)
 5. Flutter Assets/Fonts/etc.
 
-## 2. Regras de Versionamento
-- **Dependências de Produção**: Use o prefixo careta (`^`) para permitir atualizações de patch e minor, garantindo compatibilidade.
-- **Dependências Críticas**: Fixe a versão (ex: `1.2.3`) apenas em casos de breaking changes conhecidas.
-- **FVM**: Utilize `fvm flutter pub get` para garantir que as versões das dependências sejam resolvidas com o SDK correto.
+## 2. Versioning Rules
+- **Production Dependencies**: Use the caret prefix (`^`) to allow patch and minor updates, ensuring compatibility.
+- **Critical Dependencies**: Fix the version (e.g., `1.2.3`) only in cases of known breaking changes.
+- **FVM**: Use `fvm flutter pub get` to ensure that dependency versions are resolved with the correct SDK.
 
-## 3. Comentários e Agrupamento
-Agrupe dependências relacionadas com comentários:
+## 3. Comments and Grouping
+Group related dependencies with comments:
 ```yaml
 dependencies:
   # Core
@@ -33,7 +33,7 @@ dependencies:
   json_annotation: ^4.8.0
 ```
 
-## 4. Manutenção
-- Execute `flutter pub outdated` mensalmente.
-- Evite dependências não utilizadas (DRY).
-- Sempre verifique a pontuação no Pub.dev antes de adicionar novas bibliotecas.
+## 4. Maintenance
+- Run `flutter pub outdated` monthly.
+- Avoid unused dependencies (DRY).
+- Always check the score on Pub.dev before adding new libraries.

@@ -1,10 +1,11 @@
 # Gold Standard Output: Knowledge Mapping
 
 ## 1. Relational Mapping (KNOWLEDGE-MAP.mermaid)
+The agent generated a clear mapping focusing on cause and effect (Impact Path):
 
 ```mermaid
 graph LR
-    REQ_REFUND["📄 Req: Estorno Parcial"] --(imp)--> SVC_PAY["⚙️ PaymentService"]
+    REQ_REFUND["📄 Req: Partial Refund"] --(imp)--> SVC_PAY["⚙️ PaymentService"]
     SVC_PAY --(uses)--> GATEWAY["🔌 StripeGateway"]
     SVC_PAY --(updates)--> DB_TRANS["🗄️ TransactionsTable"]
     
@@ -13,8 +14,8 @@ graph LR
 ```
 
 ## 2. Rationale
-Este output é Gold Standard porque:
-- Identifica **Entidades** (Requisitos, Serviços, Gateways).
-- Define **Verbos de Relação** claros (`imp`, `uses`, `updates`).
-- Utiliza **Styling** Mermaid para diferenciar tipos de nós.
-- Fornece uma visão de **Causa e Efeito** (Caminhamento de Impacto).
+This output is Gold Standard because:
+- Identifies **Entities** (Requirements, Services, Gateways).
+- Defines clear **Relationship Verbs** (`imp`, `uses`, `updates`).
+- Uses Mermaid **Styling** to differentiate node types.
+- Provides a **Cause and Effect** view (Impact Path).

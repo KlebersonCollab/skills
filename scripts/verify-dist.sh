@@ -1,15 +1,15 @@
 #!/bin/bash
-# Script para verificar a integridade dos artefatos gerados.
+# Script to verify the integrity of generated artifacts.
 set -e
 
-echo "🔍 Verificando estrutura dos artefatos gerados..."
+echo "🔍 Verifying structure of generated artifacts..."
 
 ARTIFACTS=("claude-skills.zip" "gemini-skills.zip" "agent-skills.zip")
 AGENTS=(".claude" ".gemini" ".agent")
 INSTR_FILES=("CLAUDE.md" "GEMINI.md" "AGENT.md")
 
 if [ ! -d "artifacts" ]; then
-    echo "❌ Erro: Diretório 'artifacts' não encontrado!"
+    echo "❌ Error: 'artifacts' directory not found!"
     exit 1
 fi
 
@@ -18,41 +18,41 @@ for i in "${!ARTIFACTS[@]}"; do
     AGENT_DIR="${AGENTS[$i]}"
     INSTR_FILE="${INSTR_FILES[$i]}"
     
-    echo "--- Validando $FILE ---"
+    echo "--- Validating $FILE ---"
     
     if [ ! -f "$FILE" ]; then
-        echo "❌ Erro: $FILE não encontrado!"
+        echo "❌ Error: $FILE not found!"
         exit 1
     fi
     
-    # Lista arquivos no zip para checar estrutura
+    # List files in zip to check structure
     FILES_IN_ZIP=$(unzip -l "$FILE")
     
-    # Verifica presença da pasta do agente (ex: .claude/)
+    # Verify presence of agent directory (e.g., .claude/)
     if ! echo "$FILES_IN_ZIP" | grep -q "$AGENT_DIR/"; then
-        echo "❌ Erro: Diretório $AGENT_DIR/ não encontrado em $FILE!"
+        echo "❌ Error: Directory $AGENT_DIR/ not found in $FILE!"
         exit 1
     fi
     
-    # Verifica presença do arquivo de instruções na raiz do pacote (dentro da pasta do agente)
+    # Verify presence of instruction file at the package root (inside agent folder)
     if ! echo "$FILES_IN_ZIP" | grep -q "$AGENT_DIR/$INSTR_FILE"; then
-        echo "❌ Erro: $INSTR_FILE não encontrado em $AGENT_DIR/ dentro de $FILE!"
+        echo "❌ Error: $INSTR_FILE not found in $AGENT_DIR/ inside $FILE!"
         exit 1
     fi
     
-    # Verifica presença da pasta de skills
+    # Verify presence of skills folder
     if ! echo "$FILES_IN_ZIP" | grep -q "$AGENT_DIR/skills/"; then
-        echo "❌ Erro: Pasta 'skills/' não encontrada em $AGENT_DIR/ dentro de $FILE!"
+        echo "❌ Error: 'skills/' folder not found in $AGENT_DIR/ inside $FILE!"
         exit 1
     fi
     
-    # Verifica se pelo menos uma skill conhecida está presente (ex: api-architect)
+    # Verify if at least one known skill is present (e.g., api-architect)
     if ! echo "$FILES_IN_ZIP" | grep -q "$AGENT_DIR/skills/api-architect/"; then
-        echo "❌ Erro: Skill 'api-architect' não encontrada em $FILE!"
+        echo "❌ Error: Skill 'api-architect' not found in $FILE!"
         exit 1
     fi
     
-    echo "✅ Estrutura de $FILE validada com sucesso!"
+    echo "✅ Structure of $FILE successfully validated!"
 done
 
-echo "🎉 Todos os artefatos foram verificados com sucesso!"
+echo "🎉 All artifacts verified successfully!"

@@ -1,29 +1,29 @@
 # Clean Code Mentor Skill
 
-Esta skill atua como um mentor técnico e revisor de código focado 100% em princípios de design limpo, como **SOLID**, **YAGNI**, **DRY** e **KISS**. Ela foi projetada para garantir que o código gerado ou revisado seja altamente mantível, simples e livre de engenharia excessiva.
+This skill acts as a technical mentor and code reviewer focused 100% on clean design principles such as **SOLID**, **YAGNI**, **DRY**, and **KISS**. It was designed to ensure that the code generated or reviewed is highly maintainable, simple, and free of over-engineering.
 
-## Recursos
+## Features
 
-- **Auditoria SOLID**: Identifica violações dos 5 princípios fundamentais de design orientado a objetos.
-- **Guardião YAGNI & KISS**: Detecta complexidade desnecessária e sugere simplificações diretas.
-- **Verificação DRY**: Analisa duplicidade de lógica entre múltiplos arquivos.
-- **Sugestões de Refatoração**: Fornece snippets de código prontos para melhorar o design.
-- **Mentoria Técnica**: Explica os fundamentos por trás de cada sugestão de melhoria.
+- **SOLID Audit**: Identifies violations of the 5 fundamental principles of object-oriented design.
+- **YAGNI & KISS Guardian**: Detects unnecessary complexity and suggests direct simplifications.
+- **DRY Verification**: Analyzes logic duplication across multiple files.
+- **Refactoring Suggestions**: Provides ready-to-use code snippets to improve design.
+- **Technical Mentorship**: Explains the fundamentals behind each improvement suggestion.
 
-## Como Usar
+## How to Use
 
-Para ativar as diretrizes desta skill em sua sessão atual, utilize:
+To activate this skill's guidelines in your current session, use:
 
 ```bash
 activate_skill clean-code-mentor
 ```
 
-## Estrutura da Skill
+## Skill Structure
 
-- `SKILL.md`: Documento principal com o workflow de revisão e regras.
-- `references/`: Guias profundos sobre SOLID, YAGNI, KISS e DRY.
-- `examples/`: Exemplos comparativos de código "Bom vs. Ruim".
+- `SKILL.md`: Main document with the review workflow and rules.
+- `references/`: Deep guides on SOLID, YAGNI, KISS, and DRY.
+- `examples/`: Comparative "Good vs. Bad" code examples.
 
 ---
 
-Baseado nos princípios de design limpo e mentoria técnica.
+Based on the principles of clean design and technical mentorship.
