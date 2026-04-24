@@ -19,8 +19,9 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 ## 🔒 Mandatory Tooling
 The use of **HB CLI** is **MANDATORY** for this skill:
 - **Task Tracking**: Use `hb sdd task <feature> <id>` for every task update.
-- **Verification**: Use `hb sdd review <feature>` before moving to Phase 4.
+- **Verification**: Use `hb sdd review <feature>` and **`hb harness evaluate <feature>`** before moving to Phase 4.
 - **Audit**: Use `hb audit` to validate quality score.
+- **Synchronization**: Use **`hb sync`** to distribute mandates and skills. **Note**: Sync is blocked if quality score is < 7.0.
 
 ---
 
@@ -55,10 +56,12 @@ The depth of the workflow is determined by the **Complexity** of the task, not a
 The SDD lifecycle follows an iterative and rigorous delivery flow:
 
 ### Phase 1: DISCOVERY — Mapping and Context
-1.  **Explore the Terrain**: Use `sdd-explorer` to understand the current stack and architecture.
-2.  **Define Vision**: Use `sdd-planner` to align objectives in `PROJECT.md` and `ROADMAP.md`.
-3.  **Memory Capture**: Rehydrate context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
-4.  **Product Requirements**: For **Complex** tasks, audit the existing PRD (Product Requirements Document).
+1.  **Initialize Feature**: Run **`hb sdd start <feature>`** to bootstrap the artifact structure.
+2.  **Explore the Terrain**: Use `sdd-explorer` to understand the current stack and architecture.
+3.  **Rehydrate Memory**: Run **`hb harness rehydrate [feature]`** to instantly load the operational triad (STATE, MEMORY, LEARNINGS).
+4.  **Impact Analysis**: Run **`hb map --impact <file>`** to identify dependencies and potential regressions before changing code.
+5.  **Define Vision**: Use `sdd-planner` to align objectives in `PROJECT.md` and `ROADMAP.md`.
+6.  **Product Requirements**: For **Complex** tasks, audit the existing PRD (Product Requirements Document).
 
 ### Phase 2: SPECIFY — Contracts and Planning
 1.  **Write the Spec**: Use `sdd-orchestrator` to define technical requirements (`spec.md`). For **Medium+** levels, use **BDD** format (Given/When/Then) in Acceptance Criteria.
@@ -76,11 +79,13 @@ The SDD lifecycle follows an iterative and rigorous delivery flow:
 
 ### Phase 4: REVIEW — Audit and Finalization
 1.  **Verdict via Sensors**: Use `sdd-reviewer` to audit delivery against `spec.md` and `contract.md`.
-    - Run `hb sdd review <feature>` to ensure all artifacts are present and consistent.
+    - Run `hb sdd review <feature>` to ensure all artifacts are present.
+    - Run **`hb harness evaluate <feature>`** to generate the GAN-style quality score.
+    - Run **`hb doctor --deep`** to verify architectural compliance (ADRs/Specs).
     - Run `hb audit` to verify overall code quality and Hub compliance.
-2.  **Score Report**: Generate a validation report with a score from 0-100.
+2.  **Score Report**: A score >= 7.0 is required for deployment.
 3.  **UAT**: Validate with the user if Acceptance Criteria (BDD) were met.
-4.  **Persistence**: Update memory logs and state in the Planner before closing.
+4.  **Sync & Persistence**: Execute **`hb sync`** to update the ecosystem and persist memory logs.
 
 ---
 

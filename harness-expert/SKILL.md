@@ -8,7 +8,7 @@ category: agentic-infrastructure
 ## 🔒 Prerequisites (Mandatory)
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
 0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
-1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+1. **Context Check**: Run **`hb harness rehydrate [feature]`** to instantly load state, memory, and learnings.
 2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
 3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
 4. **Contract Check**: Was the `contract.md` file established with validation sensors?
@@ -33,10 +33,13 @@ For high-complexity tasks (**Large/Complex**), the Harness must operate in **Adv
 
 | Role | Responsibility | Tools |
 |-------|------------------|-------------|
-| **Generator** | Implement the feature according to the Spec and Plan. | SDD CLI, UV, Frameworks (React, Flutter). |
-| **Evaluator** | Act as a relentless QA, testing the live application and rejecting "AI slop". | Playwright, Screenshotting, Log Analysis. |
+| **Generator** | Implement the feature according to the Spec and Plan. | HB CLI, SDD CLI, Frameworks. |
+| **Evaluator** | Act as a relentless QA, testing and scoring. | **`hb harness evaluate`**, Playwright. |
 
 ### 📊 Evaluation Rubric (Target: Score >= 7.0)
+
+> [!IMPORTANT]
+> The score is calculated and recorded via **`hb harness evaluate`**. If the score is **< 7.0**, the `hb sync` command will be **BLOCKED**.
 
 | Criterion | Weight | Description |
 |----------|------|-----------|
@@ -50,9 +53,9 @@ For high-complexity tasks (**Large/Complex**), the Harness must operate in **Adv
 ## Workflow (4 Phases)
 
 ### Phase 1: AUTOMATED REHYDRATE — Technical Loading
-1.  **Context Injection**: Execute mass reading scripts of `.specs/` to rehydrate agent memory.
-2.  **Health Check**: Validate if state files (`STATE.md`, `tasks.md`) are intact.
-3.  **Context Compression**: Use `harness-expert-compress` to maintain critical tokens.
+1.  **Context Injection**: Run **`hb harness rehydrate [feature]`** to instantly align agent memory with the project state.
+2.  **Impact Mapping**: Run **`hb map --impact <file>`** to visualize technical dependencies.
+3.  **Health Check**: Run `hb doctor` to ensure the environment is ready for operation.
 
 ### Phase 2: OPERATE — Execution Automation (Generator Mode)
 1.  **Tool Orchestration**: Invoke MCPs and local scripts according to the plan.
@@ -60,14 +63,15 @@ For high-complexity tasks (**Large/Complex**), the Harness must operate in **Adv
 3.  **Self-Correction**: Immediately fix linter/test bugs via `hb audit` and `sdd-implementer`.
 
 ### Phase 3: ADVERSARIAL REVIEW — Feedback Cycle (Evaluator Mode)
-1.  **Live Testing**: Start dev server and use Playwright to test real flows.
-2.  **Strict Scoring**: Assign grades from 1 to 10 based on the rubric. **NEVER praise mediocre work**.
-3.  **Feedback Iteration**: Generate `validation-report.md` with actionable criticism for the Generator.
+1.  **Strict Scoring**: Execute **`hb harness evaluate`** providing grades based on the rubric.
+2.  **Deep Audit**: Execute **`hb doctor --deep`** to ensure ADR/Spec compliance.
+3.  **Feedback Iteration**: Review the generated `validation-report.md`. If rejected, iterate.
 
 ### Phase 4: FINAL SYNC — Determinism and Closing
-1.  **Exit Gates**: Ensure the GAN score reached the approval threshold (Default: 7.0).
-2.  **Auto-Sync**: Update `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
-3.  **Handoff**: Prepare distribution artifacts in `dist/`.
+1.  **Exit Gates**: Ensure the score is >= 7.0 (The CLI will enforce this).
+2.  **Capture Insights**: Run **`hb learn`** to record new patterns or bug fixes in `LEARNINGS.md`.
+3.  **Auto-Sync**: Execute **`hb sync`** to update the ecosystem and agents.
+4.  **Handoff**: Prepare distribution artifacts in `dist/`.
 
 ---
 

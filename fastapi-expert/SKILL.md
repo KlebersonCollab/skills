@@ -52,6 +52,7 @@ Escrita dos endpoints e handlers de exceção.
 ### Phase 4: VALIDATION & PERF
 Auditoria de performance e documentação.
 - **Check**: Validar se não há código bloqueante dentro de `async def`.
+- **Mandate**: Executar **`hb bench <target>`** para garantir que a latência dos serviços críticos não sofreu regressão.
 
 ### Phase 5: TESTING
 Implementação de testes unitários e de integração.
