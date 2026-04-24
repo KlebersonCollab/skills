@@ -47,7 +47,10 @@ The goal of this skill is to empower the agent to build, maintain, and navigate 
 ### Phase 4: PRUNE — Evolution and Cleanup
 1.  **Knowledge Refactoring**: Remove obsolete connections or deleted entities from the code.
 2.  **Cluster Consolidation**: Group highly connected nodes into "Knowledge Modules" to simplify the macro view.
-3.  **Sync with Harness**: Export the relation map so that `harness-expert` can perform relational rehydration.
+3.  **Harness Synchronization**: 
+    - Use `hb map` to generate the visual knowledge map.
+    - Use `hb learn "Subject" --desc "..." --cat "..."` to record structured learnings and patterns.
+    - Export the relation map so that `harness-expert` can perform relational rehydration.
 
 ---
 

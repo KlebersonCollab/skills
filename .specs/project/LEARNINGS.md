@@ -116,3 +116,7 @@
 - **Learning**: The Hub's validation script (`validate_skills.py`) imposes absolute lexical rigor for the `## 🔒 Prerequisites (Mandatory)` block. Even if the content is semantically correct, the script looks for specific keywords like `Spec Check`, `Plan Check`, `Contract Check`, and `Task Check`.
 - **Solution**: The structure of the Prerequisites block must be kept identical across all skills to ensure the automated audit passes without false negatives. SDD is the "glue" that holds the entire ecosystem together, and its verification is the first security gate of any agentic execution.
 - **Impact**: The enrichment of the SDD skill for v1.5.0 now serves as the "gold template" for this section, ensuring new guidelines (like Brownfield Mapping) are integrated without breaking repository governance.
+## [2026-04-23] Automated ADR Generation
+- **Category**: Pattern
+- **Description**: Implementing a CLI tool to automate ADR creation ensures consistency and traceability in architectural decisions.
+

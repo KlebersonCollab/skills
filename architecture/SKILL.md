@@ -61,7 +61,9 @@ Empower the agent to design high-quality and complex software architectures, spa
 3.  **Design Components**: Apply SOLID, DRY, and YAGNI to the proposed design.
 
 ### Phase 4: DOCUMENT — Recording and Governance (ADR & Fitness)
-1.  **Write the ADR**: Document the technical choice using the official template.
+1.  **Write the ADR**: Use **HB CLI** to record the technical choice:
+    - `hb adr new "Decision Title"`: Creates the ADR artifact with the official template.
+    - `hb adr list`: Reviews existing decisions to ensure alignment.
 2.  **Define Fitness Functions**: Propose scripts or automated tests to validate that the proposed architecture will not suffer regressions (e.g., avoiding circular coupling).
 3.  **Handoff**: Deliver the architectural specification ready for implementation.
 

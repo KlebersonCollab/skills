@@ -4,6 +4,16 @@
 
 This file consolidates the most recent updates from all skills in the Hub.
 
+## [4.5.0] - 2026-04-23
+### 🚀 Hub Super-Tools (Governance & Productivity)
+- **hb adr [new|list]**: Automação total de Architecture Decision Records.
+- **hb audit**: Auditoria de conformidade (Python/Go/Hub) com sistema de pontuação.
+- **hb learn**: Registro estruturado de aprendizados e padrões em `LEARNINGS.md`.
+- **hb skill new**: Scaffolding instantâneo de novas skills seguindo o padrão Hub.
+- **hb doctor**: Diagnóstico e reparo automático de integridade do ambiente.
+- **hb distill**: Otimização de tokens via compressão de arquivos e sessões.
+- **hb sdd review**: Validador automatizado de artefatos SDD para features.
+
 ## [4.4.0] - 2026-04-23
 ### 🚀 Governance & Autonomy Hardening
 - **hb init**: Novo comando root para inicialização "Zero-to-Hero" de projetos (Bootstrap + Mandatos + Core Skills).

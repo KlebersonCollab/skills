@@ -230,10 +230,46 @@ var sddTaskCmd = &cobra.Command{
 	},
 }
 
+var sddReviewCmd = &cobra.Command{
+	Use:   "review [feature]",
+	Short: "Verifica se a feature cumpre todos os requisitos do SDD",
+	Args:  cobra.MinimumNArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		feature := args[0]
+		wd, _ := os.Getwd()
+		root := wd
+		if filepath.Base(wd) == "hb" {
+			root = filepath.Dir(wd)
+		}
+
+		featureDir := filepath.Join(root, ".specs", "features", feature)
+		artifacts := []string{"spec.md", "plan.md", "tasks.md", "contract.md", "validation-report.md"}
+		
+		color.Blue("🔍 Revisando Feature: %s", feature)
+		allFound := true
+		for _, art := range artifacts {
+			path := filepath.Join(featureDir, art)
+			if _, err := os.Stat(path); err == nil {
+				color.Green("   ✅ %s encontrado.", art)
+			} else {
+				color.Red("   ❌ %s faltando!", art)
+				allFound = false
+			}
+		}
+
+		if allFound {
+			color.Green("\n✨ Feature '%s' está em conformidade com o SDD!", feature)
+		} else {
+			color.Yellow("\n⚠️  Feature incompleta. Finalize os artefatos antes da implementação.")
+		}
+	},
+}
+
 func init() {
 	sddCmd.AddCommand(sddInitCmd)
 	sddCmd.AddCommand(sddStatusCmd)
 	sddCmd.AddCommand(sddBootstrapCmd)
 	sddCmd.AddCommand(sddTaskCmd)
+	sddCmd.AddCommand(sddReviewCmd)
 	rootCmd.AddCommand(sddCmd)
 }
