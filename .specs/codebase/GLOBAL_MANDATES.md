@@ -35,7 +35,7 @@ Any construction, development, or significant refactoring task **MUST** utilize 
 - **Workflow & Persistence**: Upon technically completing a task, the agent **MUST** proactively perform SDD Phase 4 (Review & Persistence).
   - **Update Specs**: Mark tasks as completed in `tasks.md` and update `plan.md`.
   - **Reports**: Generate or update `validation-report.md`.
-  - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via **SDD CLI**.
+  - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via **HB CLI**.
 
 ## 2. Architectural Integrity
 - **Architecture-First**: Critical decisions must be recorded in an **ADR** in the `.specs/architecture/` folder.
@@ -60,6 +60,10 @@ Any construction, development, or significant refactoring task **MUST** utilize 
 
 ## 7. Dynamic Scaffolding (Scaffolding Expert)
 - **Zero-Boilerplate Policy**: The agent **SHOULD** prefer using template CLI tools (like `uvx copier` via `scaffolding-expert`) to initialize the structure of projects and complex files (like `pyproject.toml`, Dockerfiles). Boilerplate code should NEVER be written line by line if a scaffolding template is available.
+
+## 8. Autonomous Skill Discovery & Installation
+- **On-Demand Intelligence**: If a task requires a specialized domain where no local skill is installed, the agent **MUST** proactively use `hb listskills` to discover if a relevant skill exists in the remote Hub.
+- **Just-in-Time Setup**: If found, the agent **MUST** use `hb install <skill> --remote` to equip itself with the necessary intelligence before starting execution.
 
 ## 9. Version Control & Git (Git Workflow)
 Every agent **MUST** strictly follow the `git-workflow` skill for any versioning operation:

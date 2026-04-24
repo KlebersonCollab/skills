@@ -226,3 +226,74 @@ func CheckLinks(root string) error {
 	color.Green("   ✅ Todos os links internos estão funcionais.")
 	return nil
 }
+
+// CheckSemanticState cruza informações do STATE.md com a existência real de arquivos/diretórios
+func CheckSemanticState(root string) error {
+	color.Blue("\n🧠 Iniciando Validação Semântica de Estado...")
+
+	statePath := filepath.Join(root, ".specs", "project", "STATE.md")
+	content, err := os.ReadFile(statePath)
+	if err != nil {
+		return fmt.Errorf("STATE.md not found at %s", statePath)
+	}
+
+	// Regex para identificar features concluídas: - [x] **Nome da Feature**
+	re := regexp.MustCompile(`- \[x\] \*\*([^*]+)\*\*`)
+	matches := re.FindAllStringSubmatch(string(content), -1)
+
+	if len(matches) == 0 {
+		color.Yellow("   ⚠️  Nenhuma feature concluída encontrada para validação no STATE.md")
+		return nil
+	}
+
+	errorsFound := false
+	for _, match := range matches {
+		featureName := strings.TrimSpace(match[1])
+		
+		// Heurística de validação baseada no nome
+		// 1. Se contém "Skill", procurar pasta correspondente
+		if strings.Contains(strings.ToLower(featureName), "skill") || 
+		   strings.Contains(strings.ToLower(featureName), "expert") ||
+		   strings.Contains(strings.ToLower(featureName), "enrichment") {
+			
+			// Tentar extrair o slug (ex: "Golang Expert" -> "golang-expert")
+			slug := strings.ToLower(featureName)
+			slug = strings.Split(slug, " enrichment")[0]
+			slug = strings.Split(slug, " skill")[0]
+			slug = strings.Split(slug, " enrichment")[0]
+			slug = strings.ReplaceAll(slug, " ", "-")
+			slug = strings.TrimSpace(slug)
+
+			// Verificar se a pasta existe
+			path := filepath.Join(root, slug)
+			if _, err := os.Stat(path); os.IsNotExist(err) {
+				// Busca fuzzy simples nas pastas do root
+				found := false
+				entries, _ := os.ReadDir(root)
+				for _, e := range entries {
+					if e.IsDir() && strings.Contains(strings.ToLower(e.Name()), strings.Split(slug, "-")[0]) {
+						found = true
+						break
+					}
+				}
+				
+				if !found {
+					color.Red("   ❌ Inconsistência Semântica: STATE.md indica '%s' como concluído, mas diretório '%s' não existe.", featureName, slug)
+					errorsFound = true
+				}
+			} else {
+				color.Cyan("   ✅ Validado: %s", featureName)
+			}
+		} else {
+			// Apenas logar que foi detectado mas a heurística não se aplica
+			color.Black("   🔍 Ignorado (Heurística n/a): %s", featureName)
+		}
+	}
+
+	if errorsFound {
+		return fmt.Errorf("semantic state mismatch detected")
+	}
+
+	color.Green("   ✅ Estado semântico consistente com o File System.")
+	return nil
+}

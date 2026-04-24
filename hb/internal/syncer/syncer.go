@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -22,6 +23,10 @@ var agentFolders = []string{".gemini", ".claude", ".agent", ".agents"}
 // SyncMandates injeta o conteúdo de GLOBAL_MANDATES.md nos arquivos dos agentes
 func SyncMandates(root string) error {
 	mandatesPath := filepath.Join(root, ".specs", "codebase", "GLOBAL_MANDATES.md")
+
+	// Se não existir, tenta criar pasta
+	os.MkdirAll(filepath.Dir(mandatesPath), 0755)
+
 	mandates, err := os.ReadFile(mandatesPath)
 	if err != nil {
 		return fmt.Errorf("failed to read GLOBAL_MANDATES.md: %w", err)
@@ -153,4 +158,21 @@ func CopyFile(src, dst string) error {
 		return err
 	}
 	return out.Sync()
+}
+
+// DownloadMandates baixa os mandatos globais do repositório remoto
+func DownloadMandates(root string) error {
+	repoURL := "https://raw.githubusercontent.com/KlebersonCollab/skills/main/.specs/codebase/GLOBAL_MANDATES.md"
+	color.Cyan("   -> Baixando mandatos globais de %s...", repoURL)
+
+	mandatesPath := filepath.Join(root, ".specs", "codebase", "GLOBAL_MANDATES.md")
+	os.MkdirAll(filepath.Dir(mandatesPath), 0755)
+
+	cmd := exec.Command("curl", "-s", "-o", mandatesPath, repoURL)
+	if out, err := cmd.CombinedOutput(); err != nil {
+		return fmt.Errorf("failed to download mandates: %v\nOutput: %s", err, string(out))
+	}
+
+	color.Green("   ✅ Mandatos globais baixados com sucesso!")
+	return nil
 }
