@@ -15,6 +15,13 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
+
+## 🔒 Mandatory Tooling
+The use of **HB CLI** is **MANDATORY** for this skill:
+- **Scaffolding**: Use `hb skill new <name>` to initialize any new skill.
+- **Health Check**: Run `hb doctor` if the scaffolding fails or files are missing.
+
+---
 # Skill Factory: Core Framework
 
 > Every skill deserves a solid foundation. Consistency breeds quality.

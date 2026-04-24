@@ -16,6 +16,14 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ---
 
+## 🔒 Mandatory Tooling
+The use of **HB CLI** is **MANDATORY** for this skill:
+- **Task Tracking**: Use `hb sdd task <feature> <id>` for every task update.
+- **Verification**: Use `hb sdd review <feature>` before moving to Phase 4.
+- **Audit**: Use `hb audit` to validate quality score.
+
+---
+
 # SDD: Modular & Adaptive Workflow
 
 > Precision at scale. Rigor when needed, speed when possible.
