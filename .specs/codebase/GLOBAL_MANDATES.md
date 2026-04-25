@@ -92,5 +92,8 @@ Before ending the session or delivering the task, the agent **MUST** validate:
 Every agent **MUST** use the **HB CLI** (`hb`) as the primary interface for repository maintenance.
 - **Architectural Change**: Use `hb adr new` for any decision.
 - **New Skill**: Use `hb skill new` for scaffolding.
-- **Token Management**: Use `hb distill` when context exceeds 80% of the limit.
-- **Code Audit**: `hb audit` is the mandatory quality gate for all merges.
+- **Token Management**: Use `hb harness distill` when context exceeds 80% of the limit.
+- **Code Audit**: `hb harness audit` is the mandatory quality gate for all merges.
+- **Architecture Drift**: Use `hb harness contract` to validate code against `contract.md`.
+- **Governance Check**: Run `hb sdd audit` to verify documentation completeness before PRs.
+- **Auto-Sync**: Use `hb sdd reconcile` to keep artifacts updated with the codebase.

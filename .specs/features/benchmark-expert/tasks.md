@@ -5,7 +5,7 @@
     - [ ] Gerar `SKILL.md`, `README.md` e `CHANGELOG.md` via `skill-factory-bootstrap`.
     - [ ] Validar estrutura inicial.
 
-- [ ] **Task 2: Content Authoring (SKILL.md)** (ID: `BE-002`)
+- [x] **Task 2: Content Authoring (SKILL.md)** (ID: `BE-002`)
     - [ ] Traduzir conteúdo original da ECC para PT-BR.
     - [ ] Adicionar seção `🔒 Prerequisites (Mandatory)` integrada ao SDD.
     - [ ] Detalhar os 4 modos de operação com comandos sugeridos.

@@ -6,11 +6,14 @@ import (
 	"path/filepath"
 
 	"github.com/fatih/color"
+	"github.com/klebersonromero/hb/internal/harness"
 	"github.com/klebersonromero/hb/internal/mapper"
 	"github.com/spf13/cobra"
 )
 
 var impactFile string
+var autoMap    bool
+var applyMap   bool
 
 var mapCmd = &cobra.Command{
 	Use:   "map",
@@ -20,6 +23,15 @@ var mapCmd = &cobra.Command{
 		root := wd
 		if filepath.Base(wd) == "hb" {
 			root = filepath.Dir(wd)
+		}
+
+		if autoMap || applyMap {
+			err := harness.ExecuteKnowledgeSync(root, applyMap)
+			if err != nil {
+				color.Red("❌ Erro no Knowledge Sync: %v", err)
+				os.Exit(1)
+			}
+			return
 		}
 
 		if impactFile != "" {
@@ -54,5 +66,7 @@ var mapCmd = &cobra.Command{
 
 func init() {
 	mapCmd.Flags().StringVarP(&impactFile, "impact", "i", "", "Analisa o impacto de alterar um arquivo específico")
+	mapCmd.Flags().BoolVar(&autoMap, "auto", false, "Sincroniza o mapa com as mudanças recentes do Git")
+	mapCmd.Flags().BoolVar(&applyMap, "apply", false, "Aplica as sugestões de mapeamento automaticamente")
 	rootCmd.AddCommand(mapCmd)
 }

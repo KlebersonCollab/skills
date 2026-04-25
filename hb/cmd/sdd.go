@@ -231,6 +231,55 @@ var sddTaskCmd = &cobra.Command{
 	},
 }
 
+var sddAuditCmd = &cobra.Command{
+	Use:   "audit",
+	Short: "Audita a conformidade SDD e o progresso de todas as features",
+	Run: func(cmd *cobra.Command, args []string) {
+		wd, _ := os.Getwd()
+		root := wd
+		if filepath.Base(wd) == "hb" {
+			root = filepath.Dir(wd)
+		}
+
+		results, err := sdd.AuditFeatures(root)
+		if err != nil {
+			color.Red("❌ Erro ao auditar features: %v", err)
+			os.Exit(1)
+		}
+
+		sdd.PrintAuditReport(results)
+	},
+}
+
+var sddReconcileCmd = &cobra.Command{
+	Use:   "reconcile [feature]",
+	Short: "Sincroniza os artefatos SDD com a implementação real (Preenchimento Reverso)",
+	Run: func(cmd *cobra.Command, args []string) {
+		wd, _ := os.Getwd()
+		root := wd
+		if filepath.Base(wd) == "hb" {
+			root = filepath.Dir(wd)
+		}
+
+		if len(args) > 0 {
+			feature := args[0]
+			err := sdd.ReconcileFeature(root, feature)
+			if err != nil {
+				color.Red("❌ Erro ao reconciliar: %v", err)
+				os.Exit(1)
+			}
+		} else {
+			// Reconcilia todas as features com falhas ou progresso baixo
+			results, _ := sdd.AuditFeatures(root)
+			for _, s := range results {
+				if !s.Contract || s.Progress < 100 {
+					sdd.ReconcileFeature(root, s.Name)
+				}
+			}
+		}
+	},
+}
+
 var sddReviewCmd = &cobra.Command{
 	Use:   "review [feature]",
 	Short: "Verifica se a feature cumpre todos os requisitos do SDD",
@@ -295,5 +344,7 @@ func init() {
 	sddCmd.AddCommand(sddBootstrapCmd)
 	sddCmd.AddCommand(sddTaskCmd)
 	sddCmd.AddCommand(sddReviewCmd)
+	sddCmd.AddCommand(sddAuditCmd)
+	sddCmd.AddCommand(sddReconcileCmd)
 	rootCmd.AddCommand(sddCmd)
 }

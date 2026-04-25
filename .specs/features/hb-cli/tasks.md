@@ -43,7 +43,7 @@
 - [ ] Criar `test_fixtures` para validação de erros.
 - [ ] Rodar `hb audit` contra o próprio repositório.
 - [ ] Executar benchmark de tempo de execução.
-- [ ] Atualizar `STATE.md` e `LEARNINGS.md`.
+- [x] Atualizar `STATE.md` e `LEARNINGS.md`.
 
 ---
 *Tasks geradas via SDD para o HB-CLI.*
