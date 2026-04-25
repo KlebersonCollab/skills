@@ -18,6 +18,7 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ## 🔒 Mandatory Tooling
 The use of **HB CLI** is **MANDATORY** for this skill:
+- **Focus**: Use `hb project focus "Task"` to mark review and refactoring milestones.
 - **Audit**: Run `hb audit` to identify quality violations and hub compliance.
 - **Learning**: Use `hb learn` to document patterns or optimizations found.
 

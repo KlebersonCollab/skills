@@ -30,8 +30,10 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ## 🔒 Mandatory Tooling
 The use of **HB CLI** is **MANDATORY** for this skill:
+- **Focus**: Use `hb project focus "Task"` to mark architectural design milestones.
 - **ADR Management**: Every critical decision **MUST** be recorded via `hb adr new "Title"`.
 - **Discovery**: Use `hb adr list` to ensure alignment with previous decisions.
+- **Audit**: Use `hb arch audit` to verify ADR coverage across features.
 
 ---
 
