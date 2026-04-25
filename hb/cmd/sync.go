@@ -24,11 +24,19 @@ var syncCmd = &cobra.Command{
 			root = filepath.Dir(wd)
 		}
 
-		// 0. Harness Gate (Evaluation Check)
+		// 0. Harness Gate (Evaluation & Audit Check)
 		score, feature, err := harness.GetLatestScore(root)
 		if err == nil && score < 7.0 {
 			color.Red("❌ SYNC BLOQUEADO: A feature '%s' possui um score de %.1f (abaixo do threshold de 7.0).", feature, score)
 			color.Yellow("Por favor, melhore a qualidade da entrega e execute 'hb harness evaluate' novamente.")
+			os.Exit(1)
+		}
+
+		auditPassed, auditFile, _ := harness.CheckAuditStatus(root)
+		if !auditPassed {
+			color.Red("❌ SYNC BLOQUEADO: Auditoria de Segurança/Qualidade falhou!")
+			color.Yellow("Relatório com falha: %s", auditFile)
+			color.Yellow("Por favor, corrija os problemas críticos e execute 'hb harness audit' novamente.")
 			os.Exit(1)
 		}
 

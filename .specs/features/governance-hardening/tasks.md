@@ -9,6 +9,6 @@
 - [x] T4: Atualizar `onboarding-navigator/SKILL.md` (Checklist de Exit Gate).
 
 ## Fase 4: Review & Persistence
-- [ ] T5: Gerar `contract.md` para a feature.
-- [ ] T6: Validar as alterações e gerar `validation-report.md`.
-- [ ] T7: Atualizar `STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
+- [x] T5: Gerar `contract.md` para a feature.
+- [x] T6: Validar as alterações e gerar `validation-report.md`.
+- [x] T7: Atualizar `STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
