@@ -50,8 +50,28 @@ var sessionStopCmd = &cobra.Command{
 	},
 }
 
+var sessionHandoffCmd = &cobra.Command{
+	Use:   "handoff",
+	Aliases: []string{"end"},
+	Short: "Gera um relatório de handoff para a próxima sessão",
+	Run: func(cmd *cobra.Command, args []string) {
+		wd, _ := os.Getwd()
+		root := wd
+		if filepath.Base(wd) == "hb" {
+			root = filepath.Dir(wd)
+		}
+
+		err := session.ExecuteHandoff(root)
+		if err != nil {
+			color.Red("❌ Erro ao realizar handoff: %v", err)
+			os.Exit(1)
+		}
+	},
+}
+
 func init() {
 	sessionCmd.AddCommand(sessionStartCmd)
 	sessionCmd.AddCommand(sessionStopCmd)
+	sessionCmd.AddCommand(sessionHandoffCmd)
 	rootCmd.AddCommand(sessionCmd)
 }

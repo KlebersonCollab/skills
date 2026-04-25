@@ -1,7 +1,7 @@
 ---
 name: harness-expert
-version: 2.1.0
-description: "Technical engine for Harness Engineering. Implements adversarial feedback loops (GAN-style) to ensure production quality, in addition to state management and determinism."
+version: 3.0.0
+description: "Technical engine for Harness Engineering. Implements agentic infrastructure patterns (Memory Tiering, Explore-Plan-Act, Context Compression) and adversarial feedback loops (GAN-style) for production-grade autonomy."
 category: agentic-infrastructure
 ---
 
@@ -9,21 +9,37 @@ category: agentic-infrastructure
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
 0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
 1. **Context Check**: Run **`hb harness rehydrate [feature]`** to instantly load state, memory, and learnings.
-2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)?
 3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
-4. **Contract Check**: Was the `contract.md` file established with validation sensors?
-5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
-# Harness Expert (v2.1.0)
+# Harness Expert (v3.0.0)
 
-> "If you are not the model, then you are the harness." — Support infrastructure to transform LLMs into high-performance operational agents.
+> "If you are not the model, then you are the harness." — Master of the agentic substrate, ensuring deterministic state, tiered memory, and isolated execution.
 
 ---
 
-## Goal
+## 🏗️ Agentic Harness Patterns
 
-The goal of this skill is to provide the "machinery" (CLI, scripts, automation) for the **SDD Planner** to execute its directives. While the Planner defines the *what* and *why*, the Harness provides the technical *how* to maintain deterministic state and close adversarial feedback loops (GAN-style) that ensure the final delivery is **production-ready**.
+### Group 1: Memory & Context
+1.  **Persistent Instruction File**: Use `.cursorrules` or `.agent` files for project-level conventions.
+2.  **Scoped Context Assembly**: Dynamically load instructions based on the current directory (Monorepo support).
+3.  **Tiered Memory**: Organize memory into **Index** (context), **Topic** (on-demand), and **Archive** (disk).
+4.  **Dream Consolidation**: Periodic background pruning and deduplication of agent state.
+5.  **Context Compression**: multi-stage summarization (Snip, Microcompact, Collapse) for long sessions.
+
+### Group 2: Workflow & Orchestration
+6.  **Explore-Plan-Act Loop**: Enforce a strict separation between understanding, designing, and editing.
+7.  **Context-Isolated Subagents**: Use specialized agents for research vs. implementation to avoid context pollution.
+8.  **Fork-Join Parallelism**: Spawn parallel agents in isolated git worktrees for independent tasks.
+
+### Group 3: Tools & Permissions
+9.  **Progressive Tool Expansion**: Start with a minimal toolset and activate specialized tools on demand.
+10. **Command Risk Classification**: Deterministic pre-parsing and permission gating for shell commands.
+11. **Single-Purpose Tool Design**: Use specialized tools (FileRead, FileEdit) instead of generic bash commands.
+
+### Group 4: Automation
+12. **Lifecycle Hooks**: Run automatic actions at `PreToolUse`, `PostToolUse`, `SessionStart`, etc.
 
 ---
 
@@ -38,9 +54,6 @@ For high-complexity tasks (**Large/Complex**), the Harness must operate in **Adv
 
 ### 📊 Evaluation Rubric (Target: Score >= 7.0)
 
-> [!IMPORTANT]
-> The score is calculated and recorded via **`hb harness evaluate`**. If the score is **< 7.0**, the `hb sync` command will be **BLOCKED**.
-
 | Criterion | Weight | Description |
 |----------|------|-----------|
 | **Design Quality** | 0.3 | Visual cohesion, absence of generic AI patterns, premium aesthetics. |
@@ -52,52 +65,45 @@ For high-complexity tasks (**Large/Complex**), the Harness must operate in **Adv
 
 ## Workflow (4 Phases)
 
-### Phase 1: AUTOMATED REHYDRATE — Technical Loading
-1.  **Context Injection**: Run **`hb harness rehydrate [feature]`** to instantly align agent memory with the project state.
-2.  **Impact Mapping**: Run **`hb map --impact <file>`** to visualize technical dependencies.
-3.  **Health Check**: Run `hb doctor` to ensure the environment is ready for operation.
+### Phase 1: REHYDRATE & MAP — Context Loading
+1.  **Context Injection**: Run **`hb harness rehydrate [feature]`**.
+2.  **Tiered Loading**: Determine which "Memory Tier" needs to be in context.
+3.  **Impact Mapping**: Run **`hb map --impact <file>`** to visualize technical dependencies.
 
-### Phase 2: OPERATE — Execution Automation (Generator Mode)
-1.  **Tool Orchestration**: Invoke MCPs and local scripts according to the plan.
-2.  **Implementation Loop**: Write code focused on passing the ACs in `spec.md`.
-3.  **Self-Correction**: Immediately fix linter/test bugs via `hb audit` and `sdd-implementer`.
+### Phase 2: EXPLORE & PLAN — The Loop
+1.  **Isolation**: Ensure sub-agents are spawned for heavy research.
+2.  **Strategy**: Define the plan using **Lifecycle Hooks** for automated validations.
+3.  **Tool Check**: Activate necessary tools via **Progressive Expansion**.
 
-### Phase 3: ADVERSARIAL REVIEW — Feedback Cycle (Evaluator Mode)
-1.  **Strict Scoring**: Execute **`hb harness evaluate`** providing grades based on the rubric.
-2.  **Deep Audit**: Execute **`hb doctor --deep`** to ensure ADR/Spec compliance.
-3.  **Feedback Iteration**: Review the generated `validation-report.md`. If rejected, iterate.
+### Phase 3: ACT — Execution Automation
+1.  **Atomic Implementation**: Write code focused on passing the ACs in `spec.md`.
+2.  **Risk Mitigation**: Pass all commands through **Risk Classification**.
+3.  **Self-Correction**: Immediately fix linter/test bugs via `hb audit`.
 
-### Phase 4: FINAL SYNC — Determinism and Closing
-1.  **Exit Gates**: Ensure the score is >= 7.0 (The CLI will enforce this).
-2.  **Capture Insights**: Run **`hb learn`** to record new patterns or bug fixes in `LEARNINGS.md`.
-3.  **Auto-Sync**: Execute **`hb sync`** to update the ecosystem and agents.
-4.  **Handoff**: Prepare distribution artifacts in `dist/`.
-
----
-
-## Output Structure
-
-Execution of this skill results in the following mandatory artifacts:
-
-| Artifact | Format | Description |
-|----------|---------|-----------|
-| **Tasks Sync** | `tasks.md` | Task list updated with real progress. |
-| **State Snapshot** | `STATE.md` | Summary of the current system and feature state. |
-| **Learnings Log** | `LEARNINGS.md` | Record of solved problems and technical lessons. |
-| **Validation Report** | `validation-report.md` | Test and compliance report for the generated code. |
+### Phase 4: CONSOLIDATE & SYNC — Closing
+1.  **Dreaming**: Run background consolidation of `STATE.md` and `MEMORY.md`.
+2.  **Strict Scoring**: Execute **`hb harness evaluate`**.
+3.  **Final Sync**: Run **`hb sync`** to persist the new state.
 
 ---
 
 ## Quality Rules
 
-- **Persistence First**: The File System is the only source of truth. No decisions should be made without consulting local specs.
-- **SDD Compliance**: All development must strictly follow Spec-Driven Development.
-- **Context Awareness**: Constantly monitor token usage and perform "Context Compression" when necessary.
-- **Deterministic Check**: Every agent output must pass through verification tools (linters/tests) before being considered final.
+- **Persistence First**: The File System is the only source of truth.
+- **Context Awareness**: Use `Context Compression` to prevent window overflow.
+- **Deterministic Check**: Every agent output must pass through hooks (linters/tests).
+- **Zero Pollution**: Keep research logs out of implementation context.
 
 ## Prohibited
 
-- NEVER start a task without reading existing specs.
-- NEVER consider a task "completed" without updating synchronization files (`tasks.md`).
-- NEVER ignore linter or test errors during the validation phase.
+- NEVER commit directly to `main` without passing through the Act phase.
 - NEVER maintain redundant context that can be summarized in `STATE.md`.
+- NEVER bypass Risk Classification for destructive commands.
+
+---
+
+## References
+
+- [12 Agentic Harness Patterns from Claude Code](https://generativeprogrammer.com/p/12-agentic-harness-patterns-from)
+- [Claude Code Documentation](https://code.claude.com/)
+- [Harness Engineering Principles](https://github.com/anthropics/harness)

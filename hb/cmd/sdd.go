@@ -337,6 +337,48 @@ var sddStartCmd = &cobra.Command{
 	},
 }
 
+var sddContractCmd = &cobra.Command{
+	Use:   "contract [feature]",
+	Short: "Gerencia o contrato de validação da feature",
+	Args:  cobra.MinimumNArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		feature := args[0]
+		wd, _ := os.Getwd()
+		root := wd
+		if filepath.Base(wd) == "hb" {
+			root = filepath.Dir(wd)
+		}
+
+		check, _ := cmd.Flags().GetBool("check")
+		gen, _ := cmd.Flags().GetBool("generate")
+
+		if gen {
+			err := sdd.GenerateContract(root, feature)
+			if err != nil {
+				color.Red("❌ Erro ao gerar contrato: %v", err)
+				os.Exit(1)
+			}
+			return
+		}
+
+		if check {
+			err := sdd.CheckContract(root, feature)
+			if err != nil {
+				color.Red("❌ Erro ao auditar contrato: %v", err)
+				os.Exit(1)
+			}
+			return
+		}
+
+		// Comportamento padrão: apenas mostra o status do contrato
+		err := sdd.CheckContract(root, feature)
+		if err != nil {
+			color.Red("❌ Erro: %v", err)
+			os.Exit(1)
+		}
+	},
+}
+
 func init() {
 	sddCmd.AddCommand(sddInitCmd) // Mantendo compatibilidade
 	sddCmd.AddCommand(sddStartCmd)
@@ -346,5 +388,10 @@ func init() {
 	sddCmd.AddCommand(sddReviewCmd)
 	sddCmd.AddCommand(sddAuditCmd)
 	sddCmd.AddCommand(sddReconcileCmd)
+	
+	sddContractCmd.Flags().BoolP("check", "c", false, "Audita a conformidade dos sensores")
+	sddContractCmd.Flags().BoolP("generate", "g", false, "Gera o contrato baseado na spec.md")
+	sddCmd.AddCommand(sddContractCmd)
+	
 	rootCmd.AddCommand(sddCmd)
 }

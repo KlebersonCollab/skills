@@ -1,7 +1,7 @@
 ---
 name: sdd
-version: 1.5.0
-description: Spec-Driven Development. Modular workflow with PRD/RFC, BDD, and Mermaid Diagrams mandate.
+version: 2.0.0
+description: Spec-Driven Development. High-performance workflow with Explore-Plan-Act Loop and Plan-Validate-Execute mandates.
 category: development-workflow
 ---
 
@@ -9,188 +9,85 @@ category: development-workflow
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
 0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
 1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
-2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)?
 3. **Plan Check**: Does the `plan.md` file define architecture, schemas, and include **Mermaid** diagrams?
-4. **Contract Check**: Was the `contract.md` file established with validation sensors?
-5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
-
-## 🔒 Mandatory Tooling
-The use of **HB CLI** is **MANDATORY** for this skill:
-- **Task Tracking**: Use `hb sdd task <feature> <id>` for every task update.
-- **Verification**: Use `hb sdd review <feature>` and **`hb harness evaluate <feature>`** before moving to Phase 4.
-- **Audit**: Use `hb audit` to validate quality score.
-- **Synchronization**: Use **`hb sync`** to distribute mandates and skills. **Note**: Sync is blocked if quality score is < 7.0.
-
----
-
-# SDD: Modular & Adaptive Workflow
+# SDD: Modular & Adaptive Workflow (v2.0.0)
 
 > Precision at scale. Rigor when needed, speed when possible.
 
 ---
 
-## Goal
+## 🏗️ Production Workflow Patterns
 
-The objective of SDD is to ensure precision, traceability, and integrity throughout the software development lifecycle, transforming ambiguous requirements into verified and documented code through a modular and adaptive workflow, now enhanced by **Harness Engineering** principles.
+### 1. The Explore-Plan-Act Loop
+The SDD workflow is now strictly organized around three permission-gated phases:
+- **EXPLORE**: Read-only mapping of the terrain. No code changes allowed.
+- **PLAN**: Designing the solution and validating it via **Plan-Validate-Execute**.
+- **ACT**: Implementation and verification.
+
+### 2. Plan-Validate-Execute (PVE)
+For **Medium+** complexity, a verifiable plan (JSON/YAML or strict Markdown) must be validated by a script or the user before any code is modified.
 
 ---
 
 ## The Core Principle: Auto-Sizing
 
-The depth of the workflow is determined by the **Complexity** of the task, not a fixed pipeline.
-
-| Level | Scope | Phases | Required Sub-skills | Directory |
-|---|---|---|---|---|
-| **Quick** | Bug fixes, config, <3 files | (Implement) + (Verify) | `sdd-implementer` | Root |
-| **Small** | Clear feature, <5 tasks | (Spec) + Impl + Verify | `sdd-orchestrator`, `sdd-implementer` | `spec/` |
-| **Medium** | Feature + UI, <10 tasks | Explorer + Spec (BDD) + Plan + **Contract** + Impl + Verify | `sdd-explorer`, `sdd-orchestrator` | `spec/` |
-| **Large** | Multi-component, new module | Planner + Explorer + RFC + Spec + Plan + **Contract** + Impl + Verify | All modules | `.specs/` |
-| **Complex** | Ambiguity, high risk | Same as Large + PRD Audit + Score Review | All modules + `sdd-reviewer` | `.specs/` |
+| Level | Scope | Phases | Required Sub-skills |
+|---|---|---|---|
+| **Quick** | Bug fixes, config, <3 files | (Act) | `sdd-implementer` |
+| **Small** | Clear feature, <5 tasks | (Plan) + (Act) | `sdd-orchestrator` |
+| **Medium** | Feature + UI, <10 tasks | Explore + Plan (PVE) + Act | `sdd-explorer`, `sdd-orchestrator` |
+| **Large** | Multi-component | Explore + Plan (PVE + RFC) + Act | All modules |
+| **Complex** | Ambiguity, high risk | Explore + Plan + Act (Parallel) | All modules + `sdd-reviewer` |
 
 ---
 
 ## Workflow (4 Phases)
 
-The SDD lifecycle follows an iterative and rigorous delivery flow:
+### Phase 1: EXPLORE — Mapping and Context (Read-Only)
+1.  **Initialize Feature**: Run **`hb sdd start <feature>`**.
+2.  **Terrain Mapping**: Use `sdd-explorer` to understand the stack and architecture.
+3.  **Impact Analysis**: Run **`hb map --impact <file>`** to identify regressions.
 
-### Phase 1: DISCOVERY — Mapping and Context
-1.  **Initialize Feature**: Run **`hb sdd start <feature>`** to bootstrap the artifact structure.
-2.  **Explore the Terrain**: Use `sdd-explorer` to understand the current stack and architecture.
-3.  **Rehydrate Memory**: Run **`hb harness rehydrate [feature]`** to instantly load the operational triad (STATE, MEMORY, LEARNINGS).
-4.  **Impact Analysis**: Run **`hb map --impact <file>`** to identify dependencies and potential regressions before changing code.
-5.  **Define Vision**: Use `sdd-planner` to align objectives in `PROJECT.md` and `ROADMAP.md`.
-6.  **Product Requirements**: For **Complex** tasks, audit the existing PRD (Product Requirements Document).
+### Phase 2: PLAN — Contracts and Validation (PVE)
+1.  **Write the Spec**: Define requirements in `spec.md` (BDD format mandatory).
+2.  **Design the Plan**: Draft `plan.md` with **Mermaid** diagrams.
+3.  **Validate the Plan**: Apply **Plan-Validate-Execute**. For destructive tasks, verify the plan artifact before moving to ACT.
+4.  **Contract (SDC)**: Define validation sensors in `contract.md`.
 
-### Phase 2: SPECIFY — Contracts and Planning
-1.  **Write the Spec**: Use `sdd-orchestrator` to define technical requirements (`spec.md`). For **Medium+** levels, use **BDD** format (Given/When/Then) in Acceptance Criteria.
-2.  **Technical Proposal (RFC)**: For **Large+** levels, draft an **RFC** (Request for Comments) detailing architecture and trade-offs before `plan.md`.
-3.  **Design the Solution**: Draft `plan.md` with architecture and schemas. **Mandatory**: Include **Mermaid** diagrams (Flowcharts, Sequence, Class) to visualize flows and structures in **Medium+** levels.
-4.  **Development Contract (SDC)**: Create `contract.md` defining the agreement between Implementer and Reviewer on what will be delivered and how it will be measured (Sensors).
-5.  **Atomic Tasks**: Generate the task list (`tasks.md`) for execution.
+### Phase 3: ACT — Atomic Execution
+1.  **Isolation**: Create a feature branch.
+2.  **Implementation**: Use `sdd-implementer` to write TDD code.
+3.  **Task Sync**: Use `hb sdd task <feature> <id>` to track progress.
+4.  **Risk Classification**: Approve commands through the harness risk classifier.
 
-### Phase 3: IMPLEMENT — Atomic Execution
-1.  **Isolation**: **MANDATORY** create a feature branch (`feat/`, `fix/`, `docs/`) from `main` before starting code. NEVER commit directly to `main`.
-2.  **Automation**: Use **HB CLI** (`hb sdd task <feature> <id>`) to track progress.
-3.  **Code Cycle**: Use `sdd-implementer` to write test-driven code (TDD) aligned with BDD scenarios.
-4.  **Prohibitive Mandate**: **NEVER** mark a task as complete in `tasks.md` without passing 100% of tests and performing the corresponding git commit on the feature branch.
-5.  **Integrity**: Ensure each task in `tasks.md` is marked as complete only after passing tests and being committed individually.
-
-### Phase 4: REVIEW — Audit and Finalization
-1.  **Verdict via Sensors**: Use `sdd-reviewer` to audit delivery against `spec.md` and `contract.md`.
-    - Run `hb sdd review <feature>` to ensure all artifacts are present.
-    - Run **`hb harness evaluate <feature>`** to generate the GAN-style quality score.
-    - Run **`hb doctor --deep`** to verify architectural compliance (ADRs/Specs).
-    - Run `hb audit` to verify overall code quality and Hub compliance.
-2.  **Score Report**: A score >= 7.0 is required for deployment.
-3.  **UAT**: Validate with the user if Acceptance Criteria (BDD) were met.
-4.  **Sync & Persistence**: Execute **`hb sync`** to update the ecosystem and persist memory logs.
+### Phase 4: VERIFY — Audit and Handoff
+1.  **Verdict**: Use `sdd-reviewer` to audit against `spec.md` and `contract.md`.
+2.  **Evaluation**: Run **`hb harness evaluate`** (Score >= 7.0 required).
+3.  **Consolidation**: Run `hb sync` to update memory and state.
 
 ---
-
-## The Modular Engine: When, How & Why
-
-This skill delegates tasks to specialized sub-skills to ensure scalability and context efficiency:
-
-| Sub-skill | **When** to use? (Trigger) | **How** to delegate? | **Why** is it vital? |
-|---|---|---|---|
-| **[Explorer](sdd-explorer.skill.md)** | When starting in legacy or unknown code. | Request a stack and architecture mapping (`STACK.md`, `ARCHITECTURE.md`). | Prevents hallucinations about existing dependencies and patterns. |
-| **[Planner](sdd-planner.skill.md)** | At the end of sessions, after decisions or roadmap changes. | Instruct to update `STATE.md`, `MEMORY.md`, and capture `LEARNINGS.md`. | Ensures state persistence and continuity between sessions (Harness). |
-| **[Orchestrator](sdd-orchestrator.skill.md)** | Whenever a feature (**Small+**) is started. | Delegate the creation of `spec.md`, `plan.md`, and the breakdown into `tasks.md`. | Maintains separation between "what to do" and "how to do it," ensuring traceability. |
-| **[Implementer](sdd-implementer.skill.md)** | When the plan and atomic tasks are ready. | Delegate execution of specific tasks from `tasks.md` via TDD and commits. | Focuses the agent on writing clean code and tests without the cognitive load of design. |
-| **[Reviewer](sdd-reviewer.skill.md)** | When Phase 3 implementation ends or at critical milestones. | Request an evidence-based audit against ACs (BDD) and `contract.md`. | Ensures delivery meets quality standards and original criteria. |
-
-> [!TIP]
-> In **High Complexity** scenarios, the Orchestrator should act as the "Central Brain," maintaining only the plan and delegating research (Explorer) and coding (Implementer) to keep its own context window clean and focused.
-
----
-
-## The Knowledge Verification Chain
-
-When researching or deciding, follow this strict hierarchy:
-
-1. **Codebase Docs**: Consult `.specs/codebase/` (generated by Explorer).
-2. **Project Docs**: Check READMEs, `PROJECT.md`, `ROADMAP.md`.
-3. **Existing Code**: Read the source directly for patterns.
-4. **Web Search**: Official documentation only.
-5. **Flag Uncertainty**: If Steps 1-4 fail, communicate uncertainty to the user.
-
----
-
-## Operational Protocols
-
-### The Safety Valve
-If a task identified as **Quick** or **Small** reveals hidden complexity (>5 steps or deep dependencies), **STOP**. Formalize the task as **Large** by creating a full spec and plan.
-
-### State Management
-Utilize the **Planner** (`sdd-planner`) to manage three distinct types of memory:
-1.  **Operational Memory (`STATE.md`)**: Tasks, session status, and blockers.
-2.  **Persistent Knowledge (`MEMORY.md`)**: Enduring facts, style guides, and user preferences.
-3.  **Incremental Wisdom (`LEARNINGS.md`)**: Solutions to bugs and code patterns discovered.
-
-This triad ensures that context persists even if the agent is restarted or the context window shifts.
-
-### Sub-Agent Delegation
-To maximize performance and avoid exceeding the context window, delegate heavy tasks to sub-agents (when supported):
-- **Research/Brownfield:** Delegate and require only a summary.
-- **Implementation and Tests:** A sub-agent focuses on code, edits files, and returns status.
-- Never delegate *Planning* or *Task Creation*; the Orchestrator must always maintain consolidated context.
-
-### Verification Standards
-A feature is NOT complete until the **Reviewer** issues an `APPROVED` verdict based on evidence (file paths and line numbers).
-
----
-
-## References & Policies
-
-To maintain rigorous compliance and handle specific situations, consult the detailed guidelines (aggregated from the TLC Spec-Driven standard):
-
-- **[Brownfield Mapping](references/brownfield-mapping.md)**: How to audit and map existing repositories (STACK, ARCHITECTURE, CONCERNS).
-- **[Coding Principles](references/coding-principles.md)**: Simplicity, integrity in testing, and objective focus.
-- **[Context Limits](references/context-limits.md)**: Maximum artifact sizes and token warning zones.
-- **[Session Handoff](references/session-handoff.md)**: Mandatory protocol for pausing and resuming work without losing context.
-- **[Quick Mode](references/quick-mode.md)**: Express route for trivial tasks (<3 files) not requiring the overhead of all phases.
-- **[BDD Guide](references/bdd-guide.md)**: Standard for writing acceptance specifications.
-
----
-
-## Directory Structure (Mandatory)
-
-### Feature-Specific (`spec/` or `.specs/features/[name]/`)
-- `spec.md`: Traceable requirements (FR-X) and ACs.
-- `plan.md`: Technical design, schemas, and Mermaid diagrams.
-- `tasks.md`: Atomic task list with status.
-
-### Project-Wide (`.specs/`)
-- `project/`: `PROJECT.md`, `ROADMAP.md`, `STATE.md`, `MEMORY.md`, `LEARNINGS.md`.
-- `codebase/`: `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `CONCERNS.md`.
-
-## Output Structure
-
-Execution of this workflow must result in the following mandatory artifacts, organized in `.specs/features/[name]/`:
-
-| Artifact | File | Description |
-|----------|---------|-----------|
-| **Specification** | `spec.md` | Functional requirements, ACs (BDD), and constraints. |
-| **Technical Plan** | `plan.md` | Architecture, schemas, and Mermaid diagrams. |
-| **Contract** | `contract.md` | Delivery agreement and validation sensors. |
-| **Atomic Tasks** | `tasks.md` | Detailed task list with status. |
-| **Audit Reports** | `validation-report.md` | Compliance reports with score and evidence. |
 
 ## Quality Rules
 
-- **Gold Standard Benchmark**: Always consult `examples/gold-standard/` to align delivery quality with the expected level of rigor.
-- **Adaptive Rigor**: The level of detail must strictly follow the Auto-Sizing table.
-- **BDD-First**: Acceptance criteria for Medium+ levels must use Given/When/Then.
-- **Continuous Verification**: A task is only considered complete after passing 100% of tests and being committed individually following `git-workflow`.
-- **Mandatory Atomicity**: Each `[x]` entry in `tasks.md` must correspond to at least one Git commit with a message linked to the task ID.
-- **Branch-First**: Development must always occur in short-lived branches, protecting the main branch (`main`).
-- **Diagram-as-Code**: Technical drawings must use Mermaid integrated into Markdown.
+- **Explore Before Act**: Never edit a file you haven't first read and mapped.
+- **PVE Mandate**: High-stakes operations require a separate validation step before execution.
+- **Diagram-as-Code**: All plans must include Mermaid visualizations.
+- **Branch-First**: No commits directly to `main`.
 
 ## Prohibited
 
-- **NEVER** start implementation (Phase 3) without an approved `spec.md`.
-- **NEVER** ignore proactive updates to `STATE.md` and `MEMORY.md`.
-- **NEVER** skip Phase 4 (Review) and spec closure when finishing a feature.
-- **NEVER** use placeholders like "todo" or "..." in finalized specification files.
+- NEVER mark a task as complete without individual git commits.
+- NEVER skip the Explore phase for features in unfamiliar codebases.
+- NEVER use placeholders in `spec.md` or `plan.md`.
+
+---
+
+## References
+
+- [12 Agentic Harness Patterns (Explore-Plan-Act)](https://generativeprogrammer.com/p/12-agentic-harness-patterns-from)
+- [Skill Authoring Patterns (Plan-Validate-Execute)](https://generativeprogrammer.com/p/skill-authoring-patterns-from-anthropics)
+- [BDD Guide](references/bdd-guide.md)
+cation files.

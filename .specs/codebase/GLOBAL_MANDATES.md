@@ -4,7 +4,7 @@ These instructions are fundamental and must be followed by all agents operating 
 
 ## 🔒 0. SESSION BOOTSTRAP (EXECUTE BEFORE ANY RESPONSE)
 Before responding to the user, the agent **MUST** perform this mental and operational checklist:
-1. **Rehydrate Context**: Run **`hb harness rehydrate [feature]`** to instantly align state, memory, and learnings.
+1. **Rehydrate Context**: Run **`hb project context`** to instantly align state, memory, and learnings.
 2. **Onboarding Check**: Consult `onboarding-navigator` to align with the project culture.
 3. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
 4. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
@@ -38,7 +38,7 @@ Any construction, development, or significant refactoring task **MUST** utilize 
 - **Workflow & Persistence**: Upon technically completing a task, the agent **MUST** proactively perform SDD Phase 4 (Review & Persistence).
   - **Update Specs**: Mark tasks as completed in `tasks.md` and update `plan.md`.
   - **Reports**: Generate or update `validation-report.md`.
-  - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via **HB CLI**.
+  - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via **HB CLI** (Use `hb project focus` to mark milestones).
 
 ## 2. Architectural Integrity
 - **Architecture-First**: Critical decisions must be recorded in an **ADR** in the `.specs/architecture/` folder.
@@ -87,6 +87,7 @@ Before ending the session or delivering the task, the agent **MUST** validate:
 6. **State Sync**: Execute **`hb sync`** to persist the state across the ecosystem.
 7. **Learnings Capture**: Use **`hb learn`** to capture technical insights or patterns discovered.
 8. **Knowledge Update**: Use `hb map` to refresh the relational graph.
+9. **Handoff & Exit**: Run **`hb session handoff`** to generate the final summary for the next agent.
 
 ## 11. Mandatory HB-CLI Governance
 Every agent **MUST** use the **HB CLI** (`hb`) as the primary interface for repository maintenance.
@@ -94,6 +95,7 @@ Every agent **MUST** use the **HB CLI** (`hb`) as the primary interface for repo
 - **New Skill**: Use `hb skill new` for scaffolding.
 - **Token Management**: Use `hb harness distill` when context exceeds 80% of the limit.
 - **Code Audit**: `hb harness audit` is the mandatory quality gate for all merges.
-- **Architecture Drift**: Use `hb harness contract` to validate code against `contract.md`.
+- **Contract Enforcement**: Use `hb sdd contract <feature> --check` to validate code against `contract.md`.
 - **Governance Check**: Run `hb sdd audit` to verify documentation completeness before PRs.
 - **Auto-Sync**: Use `hb sdd reconcile` to keep artifacts updated with the codebase.
+- **Context Governance**: Use `hb project context` for session start and `hb session handoff` for session end.

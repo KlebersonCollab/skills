@@ -1,7 +1,7 @@
 ---
 name: skill-factory
-version: 1.1.0
-description: "Core Framework for standardized creation of new skills with automated scaffolding, validation, and registration."
+version: 2.0.0
+description: "Core Framework for high-performance Skill Authoring. Implements Anthropics's 14 patterns (Activation Metadata, Progressive Disclosure, Execution Checklist) for standardized, efficient, and robust agent extensions."
 category: skill-management
 ---
 
@@ -9,115 +9,89 @@ category: skill-management
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
 0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
 1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
-2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)?
 3. **Plan Check**: Does the `plan.md` file define architecture, schemas, and include **Mermaid** diagrams?
-4. **Contract Check**: Was the `contract.md` file established with validation sensors?
-5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
+
+---
+# Skill Factory: Core Framework (v2.0.0)
+
+> "Every skill deserves a solid foundation. Consistency breeds quality."
 
 ---
 
-## 🔒 Mandatory Tooling
-The use of **HB CLI** is **MANDATORY** for this skill:
-- **Scaffolding**: Use `hb skill new <name>` to initialize any new skill.
-- **Health Check**: Run `hb doctor` if the scaffolding fails or files are missing.
+## 🏗️ Skill Authoring Patterns
 
----
-# Skill Factory: Core Framework
+### Group 1: Discovery & Selection
+1.  **Activation Metadata**: Write "pushy" and clear descriptions (capped at 1024 chars) that trigger Claude correctly.
+2.  **Exclusion Clause**: Use explicit "Do NOT use for..." lines to prevent skill hijacking and over-triggering.
 
-> Every skill deserves a solid foundation. Consistency breeds quality.
+### Group 2: Context Economy
+3.  **Context Budget**: Every sentence must justify its token cost. Avoid re-explaining common knowledge.
+4.  **Progressive Disclosure**: Treat `SKILL.md` as a Table of Contents; move details to sub-files (`REFERENCE.md`, `FORMS.md`).
 
----
+### Group 3: Instruction Calibration
+5.  **Control Tuning**: Match instruction freedom to task fragility (High freedom for reviews, Low for migrations).
+6.  **Explain-the-Why**: State the rule, then explain *why* so Claude can generalize to edge cases.
+7.  **Template Scaffold**: Provide explicit placeholders for reports/logs to ensure machine-parsable output.
+8.  **In-Skill Examples**: Embed 2-3 Input/Output pairs to calibrate style and tone (Few-shot prompting).
+9.  **Known Gotchas**: Document concrete failure modes (e.g., "Empty JSON returns on timeout") to prevent hallucinations.
 
-## Goal
+### Group 4: Workflow Control
+10. **Execution Checklist**: Provide a copyable checklist that Claude ticks off in the chat to track progress.
+11. **Self-Correcting Loop**: Wire in explicit "produce-validate-fix" loops for quality-critical output.
+12. **Plan-Validate-Execute**: Insert a verifiable plan (JSON/YAML) before performing side effects.
 
-Automate the standardized creation of new skills with guaranteed quality, eliminating human error in scaffolding and ensuring compliance with Skills Hub standards.
-
----
-
-## Auto-Sizing
-
-The depth of scaffolding is determined by the skill's **structure**:
-
-| Mode | Scope | Generated Files | Sub-skill Used |
-|------|--------|-------------------|---------------------|
-| **Quick** | Simple skill, no sub-skills | `SKILL.md`, `README.md`, `CHANGELOG.md` | `skill-factory-bootstrap` |
-| **Standard** | Skill with sub-skills | All above + `<skill>-<sub>.skill.md` (N) | `skill-factory-bootstrap` |
-
-After scaffolding, validation is **always** executed (both modes):
-
-| Phase | Responsible |
-|-------|-------------|
-| **Validate** | `skill-factory-validator` |
-
----
-
-## Parameters
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `skill_name` | string | ✅ | Skill name (slug: lowercase, hyphenated, no spaces). Ex: `deep-research` |
-| `description` | string | ✅ | Concise description of what the skill does. |
-| `category` | string | ✅ | Functional category (free-form). Ex: `research`, `automation`, `development-workflow` |
-| `sub_skills` | list[string] | ❌ | List of sub-skill names to be created. If empty, Quick mode. |
-
----
-
-## The Modular Engine
-
-This skill delegates tasks to specialized sub-skills:
-
-- **[Bootstrap](skill-factory-bootstrap.skill.md)**: Generates complete scaffolding for the new skill (directory, files, standardized content).
-- **[Validator](skill-factory-validator.skill.md)**: Audits the created skill against the compliance checklist and issues a report.
+### Group 5: Executable Code
+13. **Utility Bundle**: Ship purpose-built scripts in `scripts/` for deterministic logic.
+14. **Autonomy Calibration**: Declare `allowed-tools` in frontmatter to minimize approval friction.
 
 ---
 
 ## Workflow (3 Phases)
 
-### Phase 1: BOOTSTRAP
-Execute `hb skill new <skill_name>` to generate complete scaffolding.
-- Creates the `<skill_name>/` directory at the repository root.
-- Generates all files from standardized templates.
+### Phase 1: BOOTSTRAP — Designing the Soul
+1.  **Intent Audit**: Define the core task and triggers (**Activation Metadata**).
+2.  **Scaffolding**: Run `hb skill new <skill_name>` to generate the directory structure.
+3.  **Tiering**: Decide which content goes into `SKILL.md` vs. sub-files (**Progressive Disclosure**).
 
-### Phase 2: VALIDATE
-Execute `skill-factory-validator` on the newly created skill.
-- Verifies structure, frontmatter, content, and naming.
-- If **NON-COMPLIANT**, correct before proceeding.
+### Phase 2: AUTHOR — Calibrating instructions
+1.  **Gotcha Discovery**: Analyze common failures and document them.
+2.  **Instruction Design**: Apply **Control Tuning** and **Explain-the-Why**.
+3.  **Few-Shotting**: Select 2 representative examples for the **In-Skill Examples** section.
 
-### Phase 3: REGISTER
-Update the repository's root `README.md`:
-1. Add the new skill to the **Available Skills** table.
-2. Increment the skill count badge.
-
----
-
-## Version Policy
-
-Every new skill **ALWAYS** starts at version `1.0.0`. There is no support for pre-release versions.
+### Phase 3: VALIDATE — Compliance Audit
+1.  **Validator Audit**: Run `skill-factory-validator` to check for pattern compliance.
+2.  **Token Audit**: Verify that `SKILL.md` stays under the ~500 line target.
+3.  **Registry Update**: Register the new skill in the root `README.md`.
 
 ---
 
 ## Output Structure
 
-Execution of this skill results in the following mandatory artifacts for each new skill created:
-
 | Artifact | Description |
 |----------|-----------|
-| `SKILL.md` | Technical definition and skill workflow. |
-| `README.md` | Presentation and usage documentation. |
-| `CHANGELOG.md` | Version history (starting at 1.0.0). |
-| `references/` | (Optional) Detailed reference guides. |
-| `examples/` | (Optional) Code samples and configurations. |
+| `SKILL.md` | The "Central Brain" of the skill (Patterns 1-12). |
+| `scripts/` | Deterministic helpers (Pattern 13). |
+| `references/` | Deep-dive documentation (Pattern 4). |
+| `examples/` | Contextual samples for the agent. |
+
+---
 
 ## Quality Rules
 
-- **Template-First**: Every generated skill must follow the standardized templates defined in the `bootstrap` sub-skill.
-- **Validation-Always**: No skill is considered created until the `validator` issues a `COMPLIANT` verdict.
-- **Registry-Updated**: The root `README.md` is the source of truth for existing skills and must always be up-to-date.
-- **Self-Consistent**: The name in the frontmatter must match the directory name.
+- **Zero Redundancy**: If a rule is in `GLOBAL_MANDATES.md`, do not repeat it in the skill.
+- **Pushy Descriptions**: The description must explicitly tell the agent *when* to activate.
+- **Human-Readable, Agent-Executable**: The skill must be clear to a human author but optimized for LLM attention.
 
 ## Prohibited
 
-- NEVER create a skill without executing the validation phase.
-- NEVER register a NON-COMPLIANT skill in the root README.
-- NEVER use special characters, spaces, or uppercase in `skill_name`.
-- NEVER create files outside the skill directory (except for the root README registration).
+- NEVER use all-caps imperatives (MUST/ALWAYS) without an explanation (**Pattern 6**).
+- NEVER stuff a `SKILL.md` with >800 lines of content; use **Pattern 4**.
+- NEVER register a skill without a **Gotchas** section if the domain has known edge cases.
+
+---
+
+## References
+
+- [Skill Authoring Patterns from Anthropic's Best Practices](https://generativeprogrammer.com/p/skill-authoring-patterns-from-anthropics)
+- [Anthropic Skill Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
