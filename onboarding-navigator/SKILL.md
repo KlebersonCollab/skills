@@ -7,7 +7,7 @@ category: project-management
 
 # Onboarding Navigator
 
-> "To navigate with precision, you need to know the map." — This skill is the authoritative guide for all 25 abilities and standards in this repository.
+> "To navigate with precision, you need to know the map." — This skill is the authoritative guide for all 26 abilities and standards in this repository.
 
 ---
 
@@ -50,7 +50,7 @@ Execution of this skill results in the following artifacts:
 - **Decision-Support**: Never just "choose", but guide the choice process through diagnostic questions.
 - **Pedagogical**: Explain the reason for each recommended pattern or skill.
 - **Mermaid-Enabled**: Use visual visualization to explain onboarding or decision-making flows.
-- **Stats-Aware**: Always mention the total number of skills (25) and their categories.
+- **Stats-Aware**: Always mention the total number of skills (26) and their categories.
 - **Token-Efficient**: Always verify the current operating mode (`.hub-mode`) and apply the appropriate token density via `token-distiller`.
 
 ## Prohibited
@@ -69,8 +69,8 @@ flowchart TD
     Start[Session Start] --> Onboarding{onboarding-navigator}
     
     Onboarding --> Analysis[Context Analysis]
-    Analysis --> Catalog[Consult 25 Skills Catalog]
-    Catalog --> Recommendation[Specific 25 Skills Recommendation]
+    Analysis --> Catalog[Consult 26 Skills Catalog]
+    Catalog --> Recommendation[Specific 26 Skills Recommendation]
     Recommendation --> Handoff[Handoff to Specialized Skill]
     
     style Start fill:#e1f5fe
@@ -83,7 +83,7 @@ flowchart TD
 
 ### Phase 1: 🎪 WELCOME — Welcome and Mapping
 1.  **Survey the Terrain**: Identify the repository's current state and session goals.
-2.  **Present the Hub**: Use `references/skills-catalog.md` to provide an overview of the **25 available abilities** with Mermaid diagrams.
+2.  **Present the Hub**: Use `references/skills-catalog.md` to provide an overview of the **26 available abilities** with Mermaid diagrams.
 3.  **Session Boot (Token Optimization)**: Read the `.hub-mode` file and activate the corresponding mode via `token-distiller`. Suggest **Low Token** mode for simple tasks detected in bootstrap.
 4.  **Start Checklist**: Suggest initial actions based on user needs.
 
@@ -111,14 +111,14 @@ flowchart TD
 - **Decision-Support**: Never just "choose", but guide the choice process through diagnostic questions.
 - **Pedagogical**: Explain the reason for each recommended pattern or skill.
 - **Mermaid-Enabled**: Use visual visualization to explain onboarding or decision-making flows.
-- **Stats-Aware**: Always mention the total number of skills (25) and their categories.
+- **Stats-Aware**: Always mention the total number of skills (26) and their categories.
 
 ## 🚫 Prohibited
 
 - **NEVER** ignore the existence of an already implemented skill when suggesting a solution.
 - **NEVER** reference non-existent external files in the local repository without context.
 - **NEVER** start a large-scale task without validating cultural alignment in this skill.
-- **NEVER** forget to consult `MEMORY.md` and `LEARNINGS.md` for previous lessons.
+- **NEVER** forget to consult `MEMORY.md`, `LEARNINGS.md`, and the **Context Graph** (`DECISIONS.md`) for previous lessons.
 - **NEVER** allow the start of a construction or development without the **SDD** framework.
 - **NEVER** end a session without auditing if all task commits (`tasks.md`) were made following the `git-workflow`.
 
@@ -126,7 +126,7 @@ flowchart TD
 
 ## 📚 Reference Documentation
 
-1. **[Skills Catalog](references/skills-catalog.md)** — The authoritative map of the hub's 25 abilities with Mermaid diagrams.
+1. **[Skills Catalog](references/skills-catalog.md)** — The authoritative map of the hub's 26 abilities with Mermaid diagrams.
 2. **[Decision Making Framework](references/decision-making-framework.md)** — How to choose and document technologies.
 3. **[Project Structure Guide](references/project-structure-guide.md)** — The local folder map.
 4. **[Onboarding Checklists](references/onboarding-checklists.md)** — Practical action plans.

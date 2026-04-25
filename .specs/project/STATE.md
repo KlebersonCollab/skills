@@ -1,12 +1,18 @@
 # Current Project State (April 22, 2026)
 
 ## Current Status
-- **Focus**: Implementação do Protocolo de Handoff (2026-04-25) 🎯
+- **Focus**: Implementação do Protocolo de Handoff & Context Graph (2026-04-25) 🎯
+- **Feature**: Context Graph (Meta-Knowledge) Skill - **IN PROGRESS (Retroactive SDD applied)** 🛠️
 - **Feature**: Hub Enterprise Upgrade - **COMPLETED (v4.3.0)** ✅
 - **Audit**: Hub Integrity Audit - **COMPLETED** (Registry and structure correction) ✅
 - **Session**: Structuring of 5 tracks to bring Hub architecture to full maturity (Tests, UI, Distiller, Installer, DevSecOps).
 
 ## Latest Changes
+- [x] **Context Graph Skill (v1.0.0)**:
+  - Implemented Meta-Knowledge layer for Agentic Memory (Episodic, Semantic, Procedural).
+  - Retroactively applied full SDD cycle (`spec.md`, `plan.md`, `contract.md`).
+  - Generated architectural diagram in `resources/`.
+  - Registered Hub's 26th skill.
 - [x] **SDD Skill Enrichment (v1.5.0)**:
  - Integrated 5 new advanced operational guidelines (Brownfield, Coding Principles, Context Limits, Session Handoff, Quick Mode).
  - Implemented delegation protocol for sub-agents to mitigate context limits.

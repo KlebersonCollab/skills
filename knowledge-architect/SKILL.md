@@ -9,7 +9,8 @@ category: knowledge-management
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
 0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
 1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
-2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+2. **Meta-Knowledge Check**: Consult the **Context Graph** (`DECISIONS.md`) to understand the rationale behind existing relations.
+3. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
 3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
 4. **Contract Check**: Was the `contract.md` file established with validation sensors?
 5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
