@@ -4,6 +4,14 @@
 
 This file consolidates the most recent updates from all skills in the Hub.
 
+## [4.7.0] - 2026-04-25
+### 🧠 Meta-Knowledge & Governance Hardening
+- **context-graph**: New skill for Meta-Knowledge and Decision Intelligence management.
+- **Decision Ledger**: Centralized rationale tracking via `DECISIONS.md`.
+- **Zero-Tolerance SDD**: Hardened global mandates prohibiting phase-skipping in Medium+ tasks.
+- **Ecosystem Integration**: Linked `context-graph` rationale to `architecture`, `knowledge-architect`, and `sdd`.
+- **Onboarding Sync**: Total skills count updated to 26.
+
 ## [4.6.1] - 2026-04-25
 ### 🚀 Project Focus & SDD Contracts
 - **hb focus**: Gerenciamento de foco do projeto e contexto dinâmico.
