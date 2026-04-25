@@ -4,6 +4,19 @@
 
 This file consolidates the most recent updates from all skills in the Hub.
 
+## [4.6.1] - 2026-04-25
+### 🚀 Project Focus & SDD Contracts
+- **hb focus**: Gerenciamento de foco do projeto e contexto dinâmico.
+- **hb sdd contract**: Novo comando para geração e gestão de contratos SDD.
+- **Unified Harness/SDD**: Comandos unificados para auditoria, destilação de contexto e reconciliação de conhecimento.
+- **Governance Update**: Atualização de mandatos de sistema e documentação técnica.
+
+## [4.6.0] - 2026-04-25
+### 🚀 CLI Hardening & Scaffolding Expert
+- **Benchmarking & Git Workflow**: Integração nativa de ferramentas de benchmark e fluxos git especializados.
+- **Expert Scaffolding**: Novos templates de scaffolding para skills de nível expert.
+- **Refactoring**: Remoção de READMEs redundantes e otimização de mandatos globais.
+
 ## [4.5.1] - 2026-04-23
 ### 🔒 Governance Hardening
 - **Mandate #11**: Estabelecido uso mandatório do HB-CLI nas regras globais.
