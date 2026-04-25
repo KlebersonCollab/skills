@@ -1,6 +1,6 @@
 # Skills Catalog: AI Agent Hub
 
-This guide provides a detailed overview of all 25 abilities available in this repository, serving as a compass for the Onboarding Navigator.
+This guide provides a detailed overview of all 26 abilities available in this repository, serving as a compass for the Onboarding Navigator.
 
 ## 🗺️ Visual Map of the Skills Ecosystem
 
@@ -21,6 +21,7 @@ flowchart TD
     Method --> Brainstorm{brainstorming}
     Method --> Harness{harness-expert}
     Method --> Knowledge{knowledge-architect}
+    Method --> Context{context-graph}
     Method --> Distiller{token-distiller}
     
     Architecture --> Arch{architecture}
@@ -52,7 +53,7 @@ flowchart TD
 
 ---
 
-## 📚 Complete Skills Catalog (25 Total)
+## 📚 Complete Skills Catalog (26 Total)
 
 ### 1. 🏗️ Core Frameworks (Methodology and Creation)
 
@@ -63,6 +64,7 @@ flowchart TD
 | **[Brainstorming](../../brainstorming/)** | `1.1.0` | Brainstorming and Design Facilitator — guides the agent to explore complex problems. | Before any technical specification. |
 | **[Harness Expert](../../harness-expert/)** | `2.0.0` | Technical engine for Harness Engineering (Sync, Rehydrate, Automation). | When technical support from the agentic engine is needed. |
 | **[Knowledge Architect](../../knowledge-architect/)** | `1.0.0` | Local knowledge architecture via relational graphs (Local GraphRAG). | To map complex relationships. |
+| **[Context Graph](../../context-graph/)** | `1.0.0` | Meta-Knowledge and Decision Intelligence manager. Captures the "why" and rationale of the ecosystem. | To understand architectural precedents and log rationale. |
 | **[Token Distiller](../../token-distiller/)** | `1.0.0` | Token density manager and compression modes (Caveman/Premium). | To optimize token consumption in long tasks. |
 
 ### 2. 🎨 Architecture & Design (Quality and Structure)
@@ -128,6 +130,7 @@ flowchart LR
     Decision --> NewAPI["🔌 Design New API"]
     Decision --> GoTask["🐹 Work with Go"]
     Decision --> FrontendTask["💻 Work with Frontend"]
+    Decision --> WhyArchitecture["❓ Why was it built this way?"]
     
     NewApp --> Path1[onboarding-navigator → architecture → sdd]
     CodeSmell --> Path2[clean-code-mentor]
@@ -145,9 +148,7 @@ flowchart LR
     NewAPI --> Path14[api-architect]
     GoTask --> Path15[golang-expert]
     FrontendTask --> Path16[frontend-expert]
-    GitTask --> Path17[git-workflow]
-    GoTestTask --> Path18[golang-testing-expert]
-    PerformanceTask --> Path19[benchmark-expert]
+    WhyArchitecture --> Path17[context-graph]
     
     style Problem fill:#bbdefb
     style Decision fill:#ffcc80
@@ -157,10 +158,10 @@ flowchart LR
 
 ## 📈 Hub Statistics
 
-- **Total Skills**: 25
-- **Methodology Skills**: 6
+- **Total Skills**: 26
+- **Methodology Skills**: 7
 - **Architecture Skills**: 3  
 - **DevOps/Framework Skills**: 12
 - **Automation Skills**: 2
 - **Navigation/Orchestration Skills**: 2
-- **Last Update**: April 23, 2026
+- **Last Update**: April 25, 2026

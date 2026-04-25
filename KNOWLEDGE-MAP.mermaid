@@ -77,6 +77,7 @@ graph TD
         skill_factory["skill-factory (1.1.0) 🛡️"]
         skill_factory["skill-factory (1.1.0) 🛡️"]
         skill_factory["skill-factory (1.1.0) 🛡️"]
+        context_graph["context-graph (1.0.0) 🛡️"]
     end
 
     subgraph "Automation & Utils"
@@ -161,6 +162,9 @@ graph TD
     brainstorming --(references)--> token_distiller
     clean_code_mentor --(references)--> architecture
     clean_code_mentor --(references)--> token_distiller
+    context_graph --(uses)--> sdd
+    context_graph --(references)--> knowledge_architect
+    context_graph --(references)--> architecture
     devsecops_expert --(references)--> harness_expert
     devsecops_expert --(references)--> sdd
     devsecops_expert --(references)--> token_distiller
@@ -201,6 +205,9 @@ graph TD
     sdd --(references)--> architecture
     sdd --(references)--> git_workflow
     sdd --(references)--> token_distiller
+    architecture --(uses)--> context_graph
+    knowledge_architect --(references)--> context_graph
+    sdd --(references)--> context_graph
     skill_factory --(references)--> architecture
     skill_factory --(references)--> token_distiller
     swarm_facilitator --(references)--> api_architect

@@ -88,6 +88,7 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 - NEVER use all-caps imperatives (MUST/ALWAYS) without an explanation (**Pattern 6**).
 - NEVER stuff a `SKILL.md` with >800 lines of content; use **Pattern 4**.
 - NEVER register a skill without a **Gotchas** section if the domain has known edge cases.
+- NEVER create a skill without a corresponding SDD feature folder (e.g., `.specs/features/<skill-name>`) containing `spec.md` and `plan.md`.
 
 ---
 

@@ -54,8 +54,10 @@ For **Medium+** complexity, a verifiable plan (JSON/YAML or strict Markdown) mus
 ### Phase 2: PLAN — Contracts and Validation (PVE)
 1.  **Write the Spec**: Define requirements in `spec.md` (BDD format mandatory).
 2.  **Design the Plan**: Draft `plan.md` with **Mermaid** diagrams.
-3.  **Validate the Plan**: Apply **Plan-Validate-Execute**. For destructive tasks, verify the plan artifact before moving to ACT.
-4.  **Contract (SDC)**: Define validation sensors in `contract.md`.
+3.  **Meta-Knowledge Check**: Query the **Context Graph** for precedents/patterns using the `context-graph` skill.
+4.  **Log Decisions**: Record critical architectural choices in the project's `DECISIONS.md`.
+5.  **Validate the Plan**: Apply **Plan-Validate-Execute**. For destructive tasks, verify the plan artifact before moving to ACT.
+6.  **Contract (SDC)**: Define validation sensors in `contract.md`.
 
 ### Phase 3: ACT — Atomic Execution
 1.  **Isolation**: Create a feature branch.
@@ -81,7 +83,9 @@ For **Medium+** complexity, a verifiable plan (JSON/YAML or strict Markdown) mus
 
 - NEVER mark a task as complete without individual git commits.
 - NEVER skip the Explore phase for features in unfamiliar codebases.
+- NEVER skip the Plan phase (PVE) for Medium+ tasks, even if the implementation seems trivial.
 - NEVER use placeholders in `spec.md` or `plan.md`.
+- NEVER ignore the "Visual-First" mandate (Mermaid diagrams are mandatory in all plans).
 
 ---
 

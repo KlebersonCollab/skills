@@ -2,7 +2,7 @@
 
 > Centralized hub for modular **Skills** and **Intelligence Governance**. Powered by the **HB-CLI**.
 
-[![Skills](https://img.shields.io/badge/Skills-25-brightgreen)](#-available-skills)
+[![Skills](https://img.shields.io/badge/Skills-26-brightgreen)](#-available-skills)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 [![Build Status](https://github.com/KlebersonCollab/skills/actions/workflows/validate.yml/badge.svg)](https://github.com/KlebersonCollab/skills/actions)
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen)](#-roadmap)
@@ -79,12 +79,13 @@ The HB-CLI replaces legacy scripts for managing the SDD lifecycle:
 
 ---
 
-## 🛠️ Available Skills (25 Total)
+## 🛠️ Available Skills (26 Total)
 
 | Skill | Purpose | Version |
 |-------|---------|---------|
 | **[SDD](sdd/)** | Spec-Driven Development Framework. | `1.5.0` |
 | **[Architecture](architecture/)** | Systems Architect & ADR Management. | `2.0.1` |
+| **[Context Graph](context-graph/)** | Meta-Knowledge & Decision Intelligence. | `1.0.0` |
 | **[Harness Expert](harness-expert/)** | Agentic support for Sync & Rehydration. | `2.1.0` |
 | **[Golang Expert](golang-expert/)** | High-performance Go development. | `1.2.0` |
 | **[Token Distiller](token-distiller/)** | Token optimization & dual modes. | `1.1.0` |
