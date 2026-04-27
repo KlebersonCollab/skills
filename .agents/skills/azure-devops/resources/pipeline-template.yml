@@ -1,0 +1,65 @@
+# Azure DevOps CI/CD Pipeline Template
+
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: 'common-variables'
+  - name: 'buildConfiguration'
+    value: 'Release'
+
+stages:
+  - stage: Build
+    displayName: 'Build Stage'
+    jobs:
+      - job: BuildJob
+        displayName: 'Build and Test'
+        steps:
+          - task: UseDotNet@2
+            inputs:
+              packageType: 'sdk'
+              version: '7.x'
+          
+          - script: dotnet build --configuration $(buildConfiguration)
+            displayName: 'Dotnet Build'
+          
+          - script: dotnet test --configuration $(buildConfiguration) --logger trx
+            displayName: 'Run Unit Tests'
+          
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFormat: 'VSTest'
+              testResultsFiles: '**/*.trx'
+          
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
+
+  - stage: Deploy_Staging
+    displayName: 'Deploy to Staging'
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - deployment: DeployStaging
+        displayName: 'Deploy Job'
+        environment: 'Staging'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: DownloadBuildArtifacts@0
+                  inputs:
+                    buildType: 'current'
+                    downloadType: 'single'
+                    artifactName: 'drop'
+                    downloadPath: '$(System.ArtifactsDirectory)'
+                
+                - script: echo "Deploying to Staging..."
+                  displayName: 'Execute Deploy Script'
