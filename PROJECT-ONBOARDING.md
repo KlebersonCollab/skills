@@ -1,33 +1,33 @@
 # AI Agent Skills Hub - Project Governance
 
-Este documento explica como utilizar a governança deste Hub em **novos projetos**.
+This document explains how to use the governance of this Hub in **new projects**.
 
-## 1. Instalação Rápida (One-Liner)
+## 1. Quick Installation (One-Liner)
 
-Para habilitar a governança do HB-CLI em qualquer projeto, execute:
+To enable HB-CLI governance in any project, run:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/KlebersonCollab/skills/main/scripts/install-hb.sh | bash
 ```
 
-Isso instalará o `hb` em `~/.local/bin/hb`. Certifique-se de que este diretório está no seu PATH.
+This will install `hb` in `~/.local/bin/hb`. Ensure this directory is in your PATH.
 
-## 2. Bootstrapping do Projeto
+## 2. Project Bootstrapping
 
-Após instalar, inicialize a governança no diretório raiz do seu novo projeto:
+After installation, initialize governance in the root directory of your new project:
 
 ```bash
 hb sdd bootstrap
 ```
 
-Isso criará a estrutura de Tríade de Memória em `.specs/project/`:
-- `STATE.md`: Progresso e foco atual.
-- `MEMORY.md`: Contextos e decisões de longo prazo.
-- `LEARNINGS.md`: Aprendizados técnicos e padrões.
+This will create the **Triad of Memory** structure in `.specs/project/`:
+- `STATE.md`: Progress and current focus.
+- `MEMORY.md`: Long-term context and decisions.
+- `LEARNINGS.md`: Technical insights and patterns.
 
-## 3. Integração com GitHub Actions
+## 3. GitHub Actions Integration
 
-Para que seu projeto seja auditado automaticamente seguindo os padrões do Hub, crie o arquivo `.github/workflows/governance.yml` no seu projeto:
+To have your project automatically audited following the Hub's standards, create a `.github/workflows/governance.yml` file in your project:
 
 ```yaml
 name: Project Governance Audit
@@ -43,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      # Usa a Action oficial do Skills Hub para instalar o HB-CLI
+      # Use the official Skills Hub Action to setup HB-CLI
       - uses: KlebersonCollab/skills/.github/actions/hb-setup@main
       
       - name: Run Integrity Audit
@@ -53,16 +53,16 @@ jobs:
         run: hb sdd audit
 ```
 
-## 4. Uso de Skills do Hub
+## 4. Using Hub Skills
 
-Você pode "equipar" seu projeto com inteligência específica do Hub:
+You can "equip" your project with specific intelligence from the Hub:
 
 ```bash
-# Instala o suporte a Python com todas as regras de governança
+# Install Python support with all governance rules
 hb install python-uv --remote
 ```
 
-## 5. Templates Disponíveis
+## 5. Available Templates
 
-Você pode usar nossos templates base como ponto de partida:
-- `templates/go-service`: Estrutura base para serviços Go com governança nativa.
+You can use our base templates as a starting point:
+- `templates/go-service`: Base structure for Go services with native governance.

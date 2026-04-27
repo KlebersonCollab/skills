@@ -1,48 +1,48 @@
-# Brownfield Mapping (Existing Projects)
+# Brownfield Mapping (TECHNICAL-MAP)
 
 **Trigger:** "Map codebase", "Analyze existing code", "Document current architecture"
-**Purpose:** Understand the existing project structure before adding new features.
 
-## Process
-Before starting, use code analysis tools (ast-grep, ripgrep) to systematically explore:
-1. Directory structure
-2. Technology stack from dependency manifests
-3. Patterns extracted from representative code examples
-4. External integrations and dependencies
-5. Points of attention (Tech debt, bugs, security risks)
+**Purpose:** Understand the existing project structure and identify risks before planning features.
 
-## Artifacts Generated (in `.specs/codebase/`)
+## The Output: `.specs/codebase/TECHNICAL-MAP.md`
 
-### 1. STACK.md
-Documents the technology stack.
-- **Size Limit:** ~1,200 words
-- **Content:** Language, Framework, Runtime, Database, Test Libraries.
+Instead of multiple fragmented files, the Explorer consolidates knowledge into a single high-fidelity map.
 
-### 2. ARCHITECTURE.md
-Documents architectural patterns and data flow.
-- **Size Limit:** ~2,400 words
-- **Content:** Structural diagram (Mermaid), identified patterns, main data flow.
+### Section 1: Tech Stack & Ecosystem
+- **Core:** Languages, frameworks, and runtimes with versions.
+- **Tools:** Package managers, build tools, and CLI utilities.
+- **Testing:** Unit, Integration, and E2E frameworks.
 
-### 3. CONVENTIONS.md
-Documents code style and naming conventions.
-- **Size Limit:** ~1,800 words
-- **Content:** Filenames, functions, error handling, and typing based on evidence from code.
+### Section 2: Architecture & Patterns
+- **High-Level Structure:** Directory organization and layer definitions.
+- **Observed Patterns:** Concrete examples of how logic is decoupled (e.g., Services, Repositories, Hooks).
+- **Data Flow:** Mermaid diagram of primary request/response cycles.
 
-### 4. STRUCTURE.md
-Documents the directory layout.
-- **Size Limit:** ~1,200 words
-- **Content:** Directory tree (max 3 levels), module organization.
+### Section 3: Core Conventions
+- **Naming:** Files, functions, and variables based on codebase evidence.
+- **Style:** Error handling patterns, type safety approach, and commenting style.
 
-### 5. TESTING.md
-Documents the testing infrastructure.
-- **Size Limit:** ~2,400 words
-- **Content:** Test frameworks, organization, execution commands, coverage, and parallelism support.
+### Section 4: Critical Risks (Concerns)
+*This is the most important section for the Safety Valve protocol.*
+- **Technical Debt:** Shortcuts that impact maintainability.
+- **Fragile Areas:** Components that break easily or have low test coverage.
+- **Security & Performance:** Known bottlenecks or exposed patterns.
+- **Mandatory:** Every concern must include file paths as evidence.
 
-### 6. INTEGRATIONS.md
-Documents integrations with external services.
-- **Content:** APIs, Webhooks, background jobs, and their authentication methods.
+### Section 5: External Bridges
+- **Integrations:** Third-party APIs, databases, and message queues.
+- **Authentication:** How external services are secured.
 
-### 7. CONCERNS.md
-Surface of actionable warnings about the codebase.
-- **Size Limit:** ~3,000 words
-- **Content:** Technical Debt, known bugs, security flaws, performance bottlenecks, and fragilities. *Mandatory to always include file/path as evidence.*
+---
+
+## Analysis Protocol
+
+1. **Systematic Scan:** Use `ls -R` and dependency manifests to build Section 1.
+2. **Pattern Extraction:** Analyze 5-10 representative files to define Sections 2 and 3.
+3. **Risk Discovery:** Search for "TODO", "FIXME", "HACK", or complex legacy structures for Section 4.
+4. **Integration Audit:** Check environment variables and client initializations for Section 5.
+
+## Quality Rules
+- **Evidence-Based:** Reference specific file paths for every claim.
+- **Current State Only:** Document what IS, not what you think it should be.
+- **Concise:** Use bullet points and tables. Avoid prose.

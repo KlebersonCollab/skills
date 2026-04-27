@@ -64,7 +64,7 @@ When researching or deciding, follow this strict hierarchy:
 
 ### Per Project (`.specs/`)
 - `project/` — `PROJECT.md`, `ROADMAP.md`, `STATE.md`, `MEMORY.md`, `LEARNINGS.md`.
-- `codebase/` — `STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `CONCERNS.md`.
+- `codebase/` — `TECHNICAL-MAP.md` (Consolidated map of stack, architecture, and risks).
 
 ---
 
