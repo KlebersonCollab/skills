@@ -8,5 +8,5 @@
     - [x] Update `devsecops-expert/CHANGELOG.md` [task-4]
     - [x] Commit changes per task [task-5]
 - [ ] **Phase 4: Review**
-    - [ ] Run `hb audit` [task-6]
-    - [ ] Finalize feature branch [task-7]
+    - [x] Run `hb audit` [task-6]
+    - [x] Finalize feature branch [task-7]
