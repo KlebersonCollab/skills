@@ -1,6 +1,6 @@
 ---
 name: context-graph
-version: 1.0.0
+version: 1.1.0
 description: "Meta-Knowledge and Decision Intelligence manager. Implements a Context Graph layer to capture the 'how' and 'why' of agentic decisions, enabling institutional memory and self-improving workflows."
 category: intelligence-governance
 ---
@@ -85,6 +85,43 @@ Execution of this skill results in the following artifacts (usually in `.specs/c
 - NEVER store sensitive PII in decision traces.
 - NEVER use implicit memory (hoping the agent "just remembers"); everything must be externalized in the graph.
 - NEVER allow "Fresh Start" syndrome; every task must begin by querying the Context Graph for precedents.
+
+---
+
+## 7. Technical Memory Protocol (MemDir Standard)
+
+To prevent context bloat and ensure deterministic memory retrieval, the agent **MUST** follow the **Index vs Topic** architecture.
+
+### 📁 Memory Structure
+1. **The Index (`MEMORY.md`)**:
+   - **Limit**: Max 200 lines or 25,000 bytes.
+   - **Purpose**: High-level map of existing knowledge topics.
+   - **Format**: `- [Topic Name](topic-file.md) — Concise one-line description (max 150 chars).`
+2. **Topic Files (`memory/*.md`)**:
+   - **Purpose**: Deep-dive information on specific subjects.
+   - **Format**: Must include the standard YAML frontmatter.
+
+### 📄 Standard Frontmatter (Mandatory)
+All topic files must start with:
+```markdown
+---
+name: "Human Readable Name"
+description: "Brief summary of what this memory contains"
+type: "User | Project | Local | Managed | AutoMem"
+---
+```
+
+### 🏷️ Memory Taxonomy
+- **User**: Global preferences, style, and identity.
+- **Project**: Architecture, specific patterns, and long-term goals.
+- **Local**: Environment-specific config (OS, paths, tool versions).
+- **Managed**: Information explicitly provided by the user for the agent.
+- **AutoMem**: Insights automatically extracted by the agent (to be distilled later).
+
+### 🛠️ Maintenance Workflow
+1. **Detect Bloat**: If `MEMORY.md` hits the line/byte limit, move the oldest or least relevant items to topic files.
+2. **Atomic Update**: Every time a topic file is created/updated, ensure the index link is current.
+3. **Semantic Pruning**: Regularly review `AutoMem` to promote useful insights to `Project` or `User` memory.
 
 ---
 
