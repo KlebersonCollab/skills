@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [2.1.0] - 2026-04-27
+
+### Added
+- **Modular Orchestration**: Refactored `SKILL.md` to act as a central hub delegating tasks to sub-skills.
+- **Safety Valve Protocol**: Mandatory re-planning trigger when implementation complexity drifts or touches high-risk files.
+- **Knowledge Verification Chain**: Strict hierarchy for research to prevent hallucinations (Code > Internal Specs > Docs > MCP > Web).
+- **Consolidated Mapping**: Integrated 7 fragmented codebase docs into a single, high-fidelity `TECHNICAL-MAP.md`.
+- **English-Native Compliance**: All documentation and instructions migrated to English for maximum model performance.
+
 ## [1.5.0] - 2026-04-23
 
 ### Added

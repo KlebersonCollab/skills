@@ -4,6 +4,14 @@
 
 This file consolidates the most recent updates from all skills in the Hub.
 
+## [4.9.0] - 2026-04-27
+### 🧠 SDD Evolution & Global English Compliance
+- **sdd v2.1.0**: Major refactor into a modular Orchestrator with Safety Valve and Knowledge Chain protocols.
+- **Technical Map**: Consolidated fragmented codebase documentation into a single `TECHNICAL-MAP.md`.
+- **Global Compliance**: All project onboarding guides and core skills documentation translated to English.
+- **HB-CLI Governance**: Hardened integration between SDD phases and CLI commands.
+- **Artifact Cleanup**: Removed redundant Portuguese documentation across the repository.
+
 ## [4.7.0] - 2026-04-25
 ### 🧠 Meta-Knowledge & Governance Hardening
 - **context-graph**: New skill for Meta-Knowledge and Decision Intelligence management.

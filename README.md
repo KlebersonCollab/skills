@@ -1,4 +1,4 @@
-# 🧠 AI Agent Skills Hub (v4.7.0)
+# 🧠 AI Agent Skills Hub (v4.9.0)
 
 > Centralized hub for modular **Skills** and **Intelligence Governance**. Powered by the **HB-CLI**.
 
