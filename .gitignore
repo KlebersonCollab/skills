@@ -14,6 +14,7 @@
 artifacts/
 dist_staging/
 
+src/
 
 # Python / Environment
 __pycache__/
