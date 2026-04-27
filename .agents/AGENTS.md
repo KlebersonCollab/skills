@@ -109,6 +109,12 @@ Every agent **MUST** use the **HB CLI** (`hb`) as the primary interface for repo
 - **Auto-Sync**: Use `hb sdd reconcile` to keep artifacts updated with the codebase.
 - **Context Governance**: Use `hb project context` for session start and `hb session handoff` for session end.
 
+## 12. Single Source of Truth (Root First)
+The root directory is the ONLY allowed location for editing instructions and skills.
+- **Root-Only Edits**: Agents MUST NEVER edit `.agents/`, `.agent/`, `.claude/`, or `.gemini/` folders directly. These are derived runtime environments.
+- **Mandatory Synchronization**: After any change to root skills or instructions, the agent MUST execute **`hb sync`** to propagate changes to runtime folders.
+- **Conflict Resolution**: If a divergence is detected, the root version always prevails. Any improvement found in runtime folders must be backported to the root before synchronization.
+
 
 <!-- GLOBAL_MANDATES_END -->
 
