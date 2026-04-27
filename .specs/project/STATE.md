@@ -8,9 +8,28 @@
 - **Session**: Structuring of 5 tracks to bring Hub architecture to full maturity (Tests, UI, Distiller, Installer, DevSecOps).
 
 ## Latest Changes
-- [x] **Context Graph Skill (v1.0.0)**:
-  - Implemented Meta-Knowledge layer for Agentic Memory (Episodic, Semantic, Procedural).
-  - Retroactively applied full SDD cycle (`spec.md`, `plan.md`, `contract.md`).
+- [x] **New Skill: Harness Science (v1.0.0)**:
+  - Introduced the discipline of Ablation Testing for AI agents.
+  - Defined standard flags for performance measurement (DISABLE_THINKING, SIMPLE_MODE).
+  - Established the Scientific Cycle for feature validation.
+  - Registered as the Hub's 29th skill.
+- [x] **New Skill: CLI Expert (v1.0.0)**:
+  - Created brand new skill focused on AI-Native CLI design.
+  - Defined "Slash Command" architecture (Prompt vs Local vs Bundled).
+  - Established TUI standards using React/Ink for interactive agent output.
+  - Registered as the Hub's 28th skill.
+- [x] **Swarm Facilitator Enrichment (v1.2.0)**:
+  - Integrated technical governance for multi-agent synchronization.
+  - Added support/guidelines for iTerm2, Tmux, and In-Process runners.
+  - Implemented the "Permission Bridge" for guardrail propagation to teammates.
+- [x] **DevSecOps Expert Enrichment (v1.1.0)**:
+  - Integrated "Agentic Safety Guardrails" based on cybernetic mining.
+  - Added mandatory audit protocol for 20+ dangerous shell patterns.
+  - Expanded coverage for Cross-Platform execution risks (interpreters/runners).
+- [x] **Context Graph Skill Enrichment (v1.1.0)**:
+  - Integrated MemDir technical protocol (Index vs Topic architecture).
+  - Enforced 200-line/25KB limit for `MEMORY.md` to prevent context bloat.
+  - Standardized memory taxonomy (User, Project, Local, Managed, AutoMem).
   - Generated architectural diagram in `resources/`.
   - Registered Hub's 26th skill.
 - [x] **SDD Skill Enrichment (v1.5.0)**:

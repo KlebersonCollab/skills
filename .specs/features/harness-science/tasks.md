@@ -9,5 +9,5 @@
     - [x] Write `harness-science/CHANGELOG.md` and mandatory files [task-5]
     - [x] Commit implementation [task-6]
 - [ ] **Phase 4: Review**
-    - [ ] Run `hb audit` [task-7]
-    - [ ] Update Hub registry and `STATE.md` [task-8]
+    - [x] Run `hb audit` [task-7]
+    - [x] Update Hub registry and `STATE.md` [task-8]

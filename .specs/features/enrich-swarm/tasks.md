@@ -8,5 +8,5 @@
     - [x] Update `swarm-facilitator/CHANGELOG.md` [task-4]
     - [x] Commit changes [task-5]
 - [ ] **Phase 4: Review**
-    - [ ] Run `hb audit` [task-6]
-    - [ ] Update `STATE.md` [task-7]
+    - [x] Run `hb audit` [task-6]
+    - [x] Update `STATE.md` [task-7]
