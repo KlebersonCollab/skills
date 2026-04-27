@@ -1,6 +1,6 @@
 ---
 name: swarm-facilitator
-version: 1.1.0
+version: 1.2.0
 description: "Orchestrator for Multi-Agent (Swarm) workflows. Defines handoff protocols, personas, and context passing using the SDD structure."
 category: orchestration
 ---
@@ -76,3 +76,27 @@ The last message of Agent 1's session must be a formatted prompt for the user to
 
 - NEVER attempt to have a single agent assume the role of Architect and Developer simultaneously in complex epics. Divide and conquer.
 - NEVER pass the torch without updating `STATE.md` via `harness-expert` or script.
+
+## 5. Technical Governance & Synchronization (Teammates)
+
+When orchestrating multiple agents in parallel (via terminal backends), the Leader agent must ensure technical parity and security across all sessions.
+
+### 🚩 Terminal Backends
+- **iTerm2 (Visual)**: Use for local debugging where the user needs to see the teammate's terminal state. Requires `It2SetupPrompt`.
+- **Tmux (Headless)**: Use for long-running, multi-agent background tasks. Enables persistent sessions that survive disconnections.
+- **In-Process (Ephemeral)**: Use for lightweight sub-tasks (e.g., file reading, simple linting) that don't require a full terminal environment.
+
+### 🛡️ Permission Bridge (Security Sync)
+The Leader **MUST** synchronize its security guardrails with all teammates:
+1. **Blocked Patterns**: Propagate the `DANGEROUS_BASH_PATTERNS` list (see `devsecops-expert`) to teammates via the initialization prompt.
+2. **Auto-Mode Parity**: If the Leader is in `auto-mode`, teammates should assume the same level of autonomy but with restricted write access to global config files.
+
+### 🔄 Teammate Lifecycle
+1. **Initialization**: Use `teammateInit.ts` patterns to define the sub-agent's restricted identity.
+2. **Heartbeat**: The Leader should periodically query the teammate's status (running/done/error).
+3. **Reconnection**: Use the `SessionID` to re-attach to a Tmux session if the connection is lost.
+
+### 📊 Layout Management
+Organize the workspace visually:
+- **Leader**: Main pane.
+- **Teammates**: Split panes or dedicated tabs, labeled by persona (e.g., `[Teammate-Reviewer]`).
