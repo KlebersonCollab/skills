@@ -40,8 +40,22 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ### Group 4: Automation
 12. **Lifecycle Hooks**: Run automatic actions at `PreToolUse`, `PostToolUse`, `SessionStart`, etc.
-13. **System Doctor (`hb doctor`)**: Auto-diagnostic checklist for Hub integrity.
-14. **Session VCR (Recording & Replay)**: Capture and replay agent traces for determinism.
+13. **System Doctor (`hb doctor`)**: Auto-diagnostic checklist for Hub integrity. Verifies environment, skill validity, and SDD compliance.
+14. **Session VCR (Recording & Replay)**: Capture and replay agent traces for determinism. Uses de-hydrated traces for portability.
+
+---
+
+## 🔬 Protocols & Diagnostics
+
+### 🩺 System Doctor Protocol
+Quando acionado, o `hb doctor` deve realizar:
+- **Integridade de Skills**: Busca por `SKILL.md` órfãos ou sem cabeçalhos YAML.
+- **Validação de SDD**: Verifica se há specs/plans sem tarefas associadas.
+- **Health Check de Memória**: Alerta se o `MEMORY.md` ultrapassar o limite de densidade de tokens sugerido.
+
+### 📼 VCR Recording Protocol
+- **Record**: Captura `thought`, `tool_use` e `tool_result` em JSON determinístico.
+- **Hydrate**: Substitui caminhos absolutos por placeholders (ex: `[CWD]`) para portabilidade entre máquinas.
 
 ---
 
