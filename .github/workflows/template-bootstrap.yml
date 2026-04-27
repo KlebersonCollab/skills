@@ -1,0 +1,22 @@
+name: Template Cleanup
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    if: github.event.created == true && github.repository != 'KlebersonCollab/skills'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Initialize Governance
+        run: |
+          rm -rf sdd/ adr-template.md # Remove hub-specific modules if it's a new project
+          ./hb-bin sdd bootstrap
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "chore: initial governance bootstrap from template"
+          git push

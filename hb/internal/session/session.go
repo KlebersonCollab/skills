@@ -7,16 +7,27 @@ import (
 	"time"
 
 	"github.com/fatih/color"
+	"github.com/klebersonromero/hb/internal/domain"
+	"github.com/klebersonromero/hb/internal/stats"
 )
 
 func Start(root string) error {
 	sessionFile := filepath.Join(root, ".specs", "project", "SESSION.tmp")
-	startTime := time.Now().Format(time.RFC3339)
+	now := time.Now()
+	startTime := now.Format(time.RFC3339)
 	
 	err := os.WriteFile(sessionFile, []byte(startTime), 0644)
 	if err != nil {
 		return err
 	}
+
+	// Inicializa estatísticas
+	initialStats := &domain.SessionStats{
+		SessionID: fmt.Sprintf("session-%d", now.Unix()),
+		StartTime: now,
+		Models:    make(map[string]*domain.ModelUsage),
+	}
+	stats.SaveStats(root, initialStats)
 
 	color.Cyan("🎬 Sessão iniciada em %s", startTime)
 	color.Blue("O estado operacional está sendo monitorado.")
@@ -36,8 +47,18 @@ func Stop(root string) error {
 	color.Cyan("🛑 Sessão encerrada.")
 	fmt.Printf("Duração: %s\n", duration.Round(time.Second))
 
-	// Remove o arquivo de sessão
+	// Exibe sumário de estatísticas se existir
+	s, _ := stats.LoadStats(root)
+	if s != nil {
+		fmt.Printf("Custo Total: $%.4f\n", s.TotalCostUSD)
+		if s.Git.LinesAdded > 0 || s.Git.LinesRemoved > 0 {
+			fmt.Printf("Alterações: +%d -%d linhas\n", s.Git.LinesAdded, s.Git.LinesRemoved)
+		}
+	}
+
+	// Remove os arquivos temporários
 	os.Remove(sessionFile)
+	os.Remove(filepath.Join(root, ".specs", "project", stats.StatsFileName))
 
 	color.Yellow("\nSugestão: Execute 'hb learn' para capturar os aprendizados desta sessão.")
 	color.Blue("Não esqueça de rodar 'hb sync' para persistir o estado global.")

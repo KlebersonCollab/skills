@@ -128,3 +128,8 @@
 ### [BENCHMARK] ./internal/benchmark: 1164579.00 ns/op (2026-04-24)
 
 ### [BENCHMARK] ./internal/benchmark: 1140608.00 ns/op (2026-04-24)
+
+### [2026-04-27] CLI Visibility & Native Dependencies
+- **Learning**: Implementar lógica interna (`internal/`) sem expor o comando correspondente no `cmd/` cria "funcionalidades fantasmas" que degradam a experiência do usuário. Auditoria de comandos via `hb` deve ser parte do Exit Gate.
+- **Pattern**: Em binários CLI nativos (Go), prefira o uso de bibliotecas padrão (`text/tabwriter`) em vez de dependências externas complexas para visualização de tabelas, garantindo portabilidade e build rápido sem conflitos de API.
+- **YOLO Mode Success**: O modo de alta autonomia permitiu a correção imediata da estrutura de sessões ao descobrir que os comandos de controle estavam faltando no CLI.

@@ -83,9 +83,9 @@ Every agent **MUST** strictly follow the `git-workflow` skill and use the **HB C
 
 ## 🔒 10. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
 Before ending the session or delivering the task, the agent **MUST** validate:
-1. **Adversarial Evaluation**: Run **`hb harness evaluate <feature>`**. A score below **7.0** blocks final delivery.
-2. **Deep Audit**: Run **`hb doctor --deep`** to ensure ADRs are documented and SDD feature structure is intact.
-3. **Validation**: Run `hb audit` and `hb sdd review <feature>`.
+    1. **Adversarial Evaluation**: Run **`hb harness evaluate <feature>`**. A score below **7.0** blocks final delivery.
+    2. **Deep Audit**: Run **`hb harness audit --deep`** to ensure ADRs are documented and SDD feature structure is intact.
+    3. **Validation**: Run **`hb harness audit`** and `hb sdd review <feature>`.
 4. **Benchmarking**: Run **`hb bench`** to verify performance against baselines.
 5. **Tasks Update**: Does `tasks.md` reflect the real state of implementation?
 6. **State Sync**: Execute **`hb sync`** to persist the state across the ecosystem.
@@ -98,8 +98,8 @@ Before ending the session or delivering the task, the agent **MUST** validate:
 Every agent **MUST** use the **HB CLI** (`hb`) as the primary interface for repository maintenance.
 - **Architectural Change**: Use `hb adr new` for any decision.
 - **New Skill**: Use `hb skill new` for scaffolding.
-- **Token Management**: Use `hb harness distill` when context exceeds 80% of the limit.
-- **Code Audit**: `hb harness audit` is the mandatory quality gate for all merges.
+- **Token Management**: Use **`hb harness distill`** when context exceeds 80% of the limit.
+- **Quality Gate**: **`hb harness audit`** is the mandatory gate for all merges.
 - **Contract Enforcement**: Use `hb sdd contract <feature> --check` to validate code against `contract.md`.
 - **Governance Check**: Run `hb sdd audit` to verify documentation completeness before PRs.
 - **Auto-Sync**: Use `hb sdd reconcile` to keep artifacts updated with the codebase.

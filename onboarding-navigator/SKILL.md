@@ -23,10 +23,10 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ## 🔒 Mandatory Tooling
 The use of **HB CLI** is **MANDATORY** for this skill:
-- **Context Hydration**: Use `hb project context` to instantly rehydrate the operational triad (State, Memory, Learnings).
-- **Health Check**: Run `hb doctor` to diagnose and fix missing ecosystem components.
+- **Context Hydration**: Use `hb harness rehydrate` to instantly rehydrate the operational triad (State, Memory, Learnings).
+- **Health Check**: Run `hb harness audit --deep` to diagnose and fix missing ecosystem components.
 - **Skill Scaffolding**: Recommend `hb skill new` when a user wants to create a new ability.
-- **Session Handoff**: Use `hb session handoff` (or `hb session end`) before closing any session to ensure continuity.
+- **Session Handoff**: Use `hb harness handoff` before closing any session to ensure continuity.
 
 ---
 ## Goal

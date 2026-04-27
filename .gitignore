@@ -26,3 +26,9 @@ caveman-main/
 
 # OS
 .DS_Store
+
+# Binaries
+bin/
+hb-bin
+hb/hb-bin
+*.exe

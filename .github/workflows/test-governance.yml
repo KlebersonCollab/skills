@@ -1,0 +1,12 @@
+name: Test Governance
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-audit:
+    uses: ./.github/workflows/reusable-audit.yml
+    with:
+      hb-version: 'latest'

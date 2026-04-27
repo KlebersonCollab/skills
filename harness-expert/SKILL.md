@@ -40,15 +40,15 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ### Group 4: Automation
 12. **Lifecycle Hooks**: Run automatic actions at `PreToolUse`, `PostToolUse`, `SessionStart`, etc.
-13. **System Doctor (`hb doctor`)**: Auto-diagnostic checklist for Hub integrity. Verifies environment, skill validity, and SDD compliance.
+13. **System Audit (`hb harness audit --deep`)**: Auto-diagnostic checklist for Hub integrity. Verifies environment, skill validity, and SDD compliance.
 14. **Session VCR (Recording & Replay)**: Capture and replay agent traces for determinism. Uses de-hydrated traces for portability.
 
 ---
 
 ## 🔬 Protocols & Diagnostics
 
-### 🩺 System Doctor Protocol
-Quando acionado, o `hb doctor` deve realizar:
+### 🩺 System Audit Protocol
+Quando acionado, o `hb harness audit --deep` deve realizar:
 - **Integridade de Skills**: Busca por `SKILL.md` órfãos ou sem cabeçalhos YAML.
 - **Validação de SDD**: Verifica se há specs/plans sem tarefas associadas.
 - **Health Check de Memória**: Alerta se o `MEMORY.md` ultrapassar o limite de densidade de tokens sugerido.
@@ -94,7 +94,7 @@ For high-complexity tasks (**Large/Complex**), the Harness must operate in **Adv
 ### Phase 3: ACT — Execution Automation
 1.  **Atomic Implementation**: Write code focused on passing the ACs in `spec.md`.
 2.  **Risk Mitigation**: Pass all commands through **Risk Classification**.
-3.  **Self-Correction**: Immediately fix linter/test bugs via `hb audit`.
+3.  **Self-Correction**: Immediately fix linter/test bugs via `hb harness audit`.
 
 ### Phase 4: CONSOLIDATE & SYNC — Closing
 1.  **Dreaming**: Run background consolidation of `STATE.md` and `MEMORY.md`.
