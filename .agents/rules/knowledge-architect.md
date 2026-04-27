@@ -9,8 +9,7 @@ category: knowledge-management
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
 0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
 1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
-2. **Meta-Knowledge Check**: Consult the **Context Graph** (`DECISIONS.md`) to understand the rationale behind existing relations.
-3. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
 3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
 4. **Contract Check**: Was the `contract.md` file established with validation sensors?
 5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
@@ -19,9 +18,7 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ## 🔒 Mandatory Tooling
 The use of **HB CLI** is **MANDATORY** for this skill:
-- **Focus**: Use `hb project focus "Task"` to track mapping and relational analysis progress.
 - **Knowledge Management**: Use `hb learn` to document new architectural patterns or bugs.
-- **Visualization**: Use `hb map` to generate and update the `KNOWLEDGE-MAP.mermaid`.
 
 ---
 # Knowledge Architect
@@ -61,15 +58,6 @@ The goal of this skill is to empower the agent to build, maintain, and navigate 
     - Use `hb learn "Subject" --desc "..." --cat "..."` to record structured learnings and patterns.
     - Export the relation map so that `harness-expert` can perform relational rehydration.
 
-### Phase 5: DREAM — Knowledge Consolidation (Background)
-1.  **Trigger**: Every 5 sessions or after a `Phase 4: REVIEW` of a Large/Complex feature.
-2.  **Self-Reflection**: The agent should suggest a "Dream State" to the user: "Would you like me to consolidate our recent learnings?"
-3.  **Action**:
-    - Review `LEARNINGS.md` and merge duplicated patterns.
-    - Prune obsolete context from `MEMORY.md`.
-    - Update the `KNOWLEDGE-MAP.mermaid` to reflect the final architectural state.
-    - Generate a "State of the Hub" report.
-
 ---
 
 ## Output Structure
@@ -98,10 +86,3 @@ Execution of this skill results in the following mandatory artifacts (usually in
 - NEVER maintain orphan relationships (nodes without relevant connections).
 - NEVER use external graph database tools; everything must be persisted in text files in the repository.
 - NEVER ignore map updates after major code refactorings.
-- NEVER perform a "Dream" consolidation without user confirmation if it involves deleting information.
-
----
-
-## 5. References
-- [Local GraphRAG Patterns](resource:resources/GRAPHRAG_PATTERNS.md)
-- [Auto-Dream Protocol](resource:resources/AUTODREAM_PROTOCOL.md)
