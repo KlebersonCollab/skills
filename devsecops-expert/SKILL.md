@@ -1,6 +1,6 @@
 ---
 name: "devsecops-expert"
-version: "1.0.0"
+version: "1.1.0"
 description: "Skill focused on DevSecOps, Information Security, SAST, DAST, and hardening practices in infrastructure and code."
 uses:
   - "architecture"
@@ -52,3 +52,27 @@ The execution of this skill produces the following artifacts:
 
 ## 4. Adversarial Review Guide (Security Gate)
 - The `harness-expert` may call this skill at the end of an architectural refactoring to "attack" the created logical decisions (Threat Modeling / STRIDE).
+
+## 5. Agentic Safety & Guardrails (Mandatory Audit)
+
+Before proposing any shell command, the agent **MUST** perform a lexical audit against the following dangerous patterns. If a match is found, include a warning and require explicit user confirmation.
+
+### 🚩 Dangerous Command Prefixes (DANGEROUS_BASH_PATTERNS)
+- **Privilege Escalation**: `sudo`, `su`.
+- **Arbitrary Execution**: `eval`, `exec`, `env`, `xargs`.
+- **System Destabilization**: `rm -rf /`, `chmod -R 777`.
+- **Network/Exfiltration**: `curl`, `wget`, `nc`, `telnet`.
+- **Cloud/Resource Mutation**: `kubectl`, `aws`, `gcloud`, `gsutil`.
+- **Tool-Specific Risks**: `gh api`, `git config`.
+
+### 🚩 Cross-Platform Code Execution Risks
+Apply extreme caution when proposing execution via these interpreters/runners, as they bypass most standard shell filters:
+- **Interpreters**: `python`, `node`, `deno`, `tsx`, `ruby`, `perl`, `php`, `lua`.
+- **Package Runners**: `npx`, `bunx`, `npm run`, `yarn run`, `pnpm run`, `bun run`.
+- **Remote Access**: `ssh`, `bash`, `sh`, `zsh`, `fish`.
+
+### 🛡️ Pre-proposal Protocol
+1. **Detect**: Check command prefix against the lists above.
+2. **Warn**: Inform the user: *"This command contains a dangerous prefix ([prefix]). Propose with caution?"*
+3. **Justify**: Explain why this command is necessary for the task.
+4. **Execute**: Only after explicit approval.
