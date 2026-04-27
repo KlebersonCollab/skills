@@ -8,7 +8,7 @@ These instructions are fundamental and must be followed by all agents operating 
 
 ## 🔒 0. SESSION BOOTSTRAP (EXECUTE BEFORE ANY RESPONSE)
 Before responding to the user, the agent **MUST** perform this mental and operational checklist:
-1. **Rehydrate Context**: Run **`hb harness rehydrate [feature]`** to instantly align state, memory, and learnings.
+1. **Rehydrate Context**: Run **`hb project context`** to instantly align state, memory, and learnings.
 2. **Onboarding Check**: Consult `onboarding-navigator` to align with the project culture.
 3. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
 4. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
@@ -33,6 +33,7 @@ Use this guide to identify the mandatory skill for each context:
 | Brainstorming & Ideation | `brainstorming` |
 | Automation & Scaffolding | `scaffolding-expert` |
 | Knowledge Management    | `knowledge-architect` |
+| Meta-Knowledge / Rationale | `context-graph` |
 | State Synchronization   | `harness-expert` |
 | Git & Commit Management | `git-workflow` |
 
@@ -42,10 +43,12 @@ Any construction, development, or significant refactoring task **MUST** utilize 
 - **Workflow & Persistence**: Upon technically completing a task, the agent **MUST** proactively perform SDD Phase 4 (Review & Persistence).
   - **Update Specs**: Mark tasks as completed in `tasks.md` and update `plan.md`.
   - **Reports**: Generate or update `validation-report.md`.
-  - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via **HB CLI**.
+  - **Context Graph**: Update the project's **`DECISIONS.md`** with rationale and patterns discovered.
+  - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via **HB CLI** (Use `hb project focus` to mark milestones).
 
 ## 2. Architectural Integrity
 - **Architecture-First**: Critical decisions must be recorded in an **ADR** in the `.specs/architecture/` folder.
+- **Rationale-First**: Every architectural change must be justified in the **Context Graph** (`DECISIONS.md`).
 - **Skill Standardization**: New skills must be validated via `skill-factory-validator`.
 - **Diagram-as-Code**: Technical drawings must use **Mermaid** integrated into Markdown.
 
@@ -62,6 +65,7 @@ Any construction, development, or significant refactoring task **MUST** utilize 
 ## 5. Knowledge Management (Knowledge Architect)
 - **Local Knowledge Graph (LKG)**: Every new feature or significant architectural change **MUST** be mapped in `KNOWLEDGE-MAP.mermaid`.
 - **Impact Analysis**: Before modifying existing code, the agent **MUST** use **`hb map --impact <file>`** to identify potential side effects on other skills or docs.
+- **Decision Audit**: Consult the **Context Graph** (`DECISIONS.md`) to verify if the proposed change conflicts with previous rationale.
 
 ## 6. Mandatory Skill Usage
 - **Skill-Driven Execution**: The agent **MUST** identify and use the most appropriate skill for each task. Executing any technical activity without the support of a specific skill or the Hub's automation framework is prohibited.
@@ -91,6 +95,8 @@ Before ending the session or delivering the task, the agent **MUST** validate:
 6. **State Sync**: Execute **`hb sync`** to persist the state across the ecosystem.
 7. **Learnings Capture**: Use **`hb learn`** to capture technical insights or patterns discovered.
 8. **Knowledge Update**: Use `hb map` to refresh the relational graph.
+9. **Meta-Knowledge Sync**: Ensure all new decisions and rationale are captured in the **Context Graph** (`DECISIONS.md`).
+10. **Handoff & Exit**: Run **`hb session handoff`** to generate the final summary for the next agent.
 
 ## 11. Mandatory HB-CLI Governance
 Every agent **MUST** use the **HB CLI** (`hb`) as the primary interface for repository maintenance.
@@ -98,9 +104,10 @@ Every agent **MUST** use the **HB CLI** (`hb`) as the primary interface for repo
 - **New Skill**: Use `hb skill new` for scaffolding.
 - **Token Management**: Use `hb harness distill` when context exceeds 80% of the limit.
 - **Code Audit**: `hb harness audit` is the mandatory quality gate for all merges.
-- **Architecture Drift**: Use `hb harness contract` to validate code against `contract.md`.
+- **Contract Enforcement**: Use `hb sdd contract <feature> --check` to validate code against `contract.md`.
 - **Governance Check**: Run `hb sdd audit` to verify documentation completeness before PRs.
 - **Auto-Sync**: Use `hb sdd reconcile` to keep artifacts updated with the codebase.
+- **Context Governance**: Use `hb project context` for session start and `hb session handoff` for session end.
 
 
 <!-- GLOBAL_MANDATES_END -->

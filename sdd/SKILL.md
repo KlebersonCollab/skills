@@ -101,4 +101,3 @@ Para tarefas de nível **Complex** com alta ambiguidade, o agente deve sugerir u
 - [Skill Authoring Patterns (Plan-Validate-Execute)](https://generativeprogrammer.com/p/skill-authoring-patterns-from-anthropics)
 - [BDD Guide](references/bdd-guide.md)
 - [UltraPlan Protocol](resource:resources/ULTRAPLAN_PROTOCOL.md)
-cation files.

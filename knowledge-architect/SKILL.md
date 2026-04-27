@@ -98,7 +98,7 @@ Execution of this skill results in the following mandatory artifacts (usually in
 - NEVER maintain orphan relationships (nodes without relevant connections).
 - NEVER use external graph database tools; everything must be persisted in text files in the repository.
 - NEVER ignore map updates after major code refactorings.
-- NEVER perform a "Dream" consolidation without user confirmation if it involves deleting information.
+- NEVER perform a "Dream" consolidation without user confirmation if it involves deleting or merging information.
 
 ---
 
