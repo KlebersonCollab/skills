@@ -1,7 +1,7 @@
 # Current Project State (April 22, 2026)
 
 ## Current Status
-- **Focus**: Implementação do Protocolo de Handoff & Context Graph (2026-04-25) 🎯
+- **Focus**: Test Focus (2026-04-27) 🎯
 - **Feature**: Context Graph (Meta-Knowledge) Skill - **IN PROGRESS (Retroactive SDD applied)** 🛠️
 - **Feature**: Hub Enterprise Upgrade - **COMPLETED (v4.3.0)** ✅
 - **Audit**: Hub Integrity Audit - **COMPLETED** (Registry and structure correction) ✅
@@ -95,6 +95,12 @@
 - [x] Validador de Estado Semântico (`hb check --semantic`)
 - [x] Novo Comando `hb sdd task` (Gestão de tarefas atômicas)
 - [x] Atualização de todas as Skills para uso do HB-CLI v4.3.1
+- [x] **New Feature: Advanced Stats & Cost Tracking (`hb stats`)**:
+    - Rastreamento de tokens por modelo (Input/Output/Cache).
+    - Cálculo automático de custo USD.
+    - Integração com métricas Git (+/- linhas).
+    - Persistência atômica via `STATS.tmp`.
+- [x] **CLI Bugfix**: Exposição dos comandos `hb session start/stop` na CLI (estavam ocultos).
 - [ ] CI/CD: Automação de distribuição de binários multi-OS.
 
 ## Blockers / Next Steps

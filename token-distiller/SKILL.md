@@ -21,8 +21,8 @@ This skill operates integrated with the **SDD** framework. Before any technical 
 
 ## 🔒 Mandatory Tooling
 The use of **HB CLI** is **MANDATORY** for this skill:
-- **Focus**: Use `hb project focus "Task"` to track optimization milestones.
-- **Optimization**: Run `hb distill <file>` when a file becomes too large to process within context limits.
+- **Focus**: Use `hb harness focus "Task"` to track optimization milestones.
+- **Optimization**: Use `hb harness distill` if the context exceeds 80% of the token limit (Snip, Micro-compact, Collapse).
 
 ---
 

@@ -18,8 +18,8 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ## 🔒 Mandatory Tooling
 The use of **HB CLI** is **MANDATORY** for this skill:
-- **Focus**: Use `hb project focus "Task"` to mark review and refactoring milestones.
-- **Audit**: Run `hb audit` to identify quality violations and hub compliance.
+- **Focus**: Use `hb harness focus "Task"` to mark review and refactoring milestones.
+- **Audit**: Run `hb harness audit` to identify quality violations and hub compliance.
 - **Learning**: Use `hb learn` to document patterns or optimizations found.
 
 ---
@@ -54,7 +54,7 @@ Empower the agent to act as an experienced code reviewer and technical mentor, a
 ### Phase 4: MENTOR — Technical Rationale
 1.  **Foundational Support**: Explain the theory behind the fix (e.g., "This reduces coupling...").
 2.  **Automated Audit**: 
-    - Run **`hb audit`** to generate the Hub Score and identify automated violations.
+    - Run **`hb harness audit`** to generate the Hub Score and identify automated violations.
 3.  **Handoff**: Deliver a structured "Quality Report" with Severity and Recommendations.
 
 ---

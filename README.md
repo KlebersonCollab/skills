@@ -17,6 +17,14 @@ Instead of manual downloads, we provide a high-performance CLI tool (**HB-CLI**)
 
 ---
 
+## 🏗️ For New Projects
+If you want to apply this governance and these skills to a **new project**, check our **[Project Onboarding Guide](PROJECT-ONBOARDING.md)**. It includes:
+- **One-liner installation** for the HB-CLI.
+- **GitHub Actions integration** for automatic auditing.
+- **Ready-to-use templates**.
+
+---
+
 ## 🚀 HB-CLI: The Intelligence Manager
 
 The **HB-CLI** (Harness Binary) is a standalone tool that makes the Hub **Plug & Play**. It handles installations, recursive dependencies, and agent rule distribution.

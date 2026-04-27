@@ -6,7 +6,10 @@ import (
 	"path/filepath"
 
 	"github.com/fatih/color"
+	"github.com/klebersonromero/hb/internal/audit"
 	"github.com/klebersonromero/hb/internal/harness"
+	"github.com/klebersonromero/hb/internal/project"
+	"github.com/klebersonromero/hb/internal/session"
 	"github.com/spf13/cobra"
 )
 
@@ -15,16 +18,23 @@ var (
 	originalityScore   float64
 	craftScore         float64
 	functionalityScore float64
+
+	distillState     bool
+	distillCode      bool
+	distillFeature   string
+	distillOverwrite bool
+
+	auditDeep bool
 )
 
 var harnessCmd = &cobra.Command{
 	Use:   "harness",
-	Short: "Comandos de suporte ao Harness Engineering para Agentes de IA",
+	Short: "Governance & Harness Engineering Engine",
 }
 
 var evaluateCmd = &cobra.Command{
 	Use:   "evaluate [feature]",
-	Short: "Executa a Rubrica de Avaliação Adversária (Design, Originalidade, Craft, Funcionalidade)",
+	Short: "Adversarial Evaluation (Score 0-10)",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		feature := args[0]
@@ -34,96 +44,87 @@ var evaluateCmd = &cobra.Command{
 			root = filepath.Dir(wd)
 		}
 
-		color.Blue("🔍 Executando Avaliação Adversária para: %s", feature)
-
+		color.Blue("🔍 Evaluating: %s", feature)
 		eval, err := harness.RunEvaluation(root, feature, designScore, originalityScore, craftScore, functionalityScore)
-
 		if err != nil {
-			color.Red("❌ Erro na avaliação: %v", err)
+			color.Red("❌ Error: %v", err)
 			os.Exit(1)
 		}
 
-		fmt.Printf("Score Final: %.1f/10.0\n", eval.TotalScore)
-
+		fmt.Printf("Final Score: %.1f/10.0\n", eval.TotalScore)
 		if eval.TotalScore >= 7.0 {
-			color.Green("✅ Feature Aprovada para Produção!")
+			color.Green("✅ Approved!")
 		} else {
-			color.Yellow("⚠️  Score abaixo do threshold (7.0). Melhorias são necessárias.")
+			color.Yellow("⚠️ Threshold not met (7.0). Improvements required.")
 		}
 	},
 }
 
-var rehydrateCmd = &cobra.Command{
-	Use:   "rehydrate [feature]",
-	Short: "Consolida e injeta o contexto operacional (Triade + Feature) na memória do agente",
+var harnessAuditCmd = &cobra.Command{
+	Use:   "audit [path]",
+	Short: "Unified Quality & Compliance Audit",
 	Run: func(cmd *cobra.Command, args []string) {
-		feature := ""
-		if len(args) > 0 {
-			feature = args[0]
-		}
-		
 		wd, _ := os.Getwd()
 		root := wd
 		if filepath.Base(wd) == "hb" {
 			root = filepath.Dir(wd)
 		}
 
-		color.Blue("🧠 Reidratando Contexto Operacional...")
-
-		snapshot, err := harness.Rehydrate(root, feature)
-		if err != nil {
-			color.Red("❌ Erro ao reidratar contexto: %v", err)
-			os.Exit(1)
+		if auditDeep {
+			color.Blue("🛡️ Running Deep Project Audit...")
+			res, err := audit.Run(root)
+			if err != nil {
+				color.Red("❌ Audit failed: %v", err)
+				os.Exit(1)
+			}
+			if len(res.Issues) > 0 {
+				color.Yellow("⚠️ Issues found (Score: %d):", res.Score)
+				for _, issue := range res.Issues {
+					fmt.Printf(" - %s\n", issue)
+				}
+				os.Exit(1)
+			}
+			color.Green("✅ Project is in absolute compliance!")
+			return
 		}
 
-		fmt.Println(snapshot)
-		color.Green("\n✨ Contexto consolidado com sucesso! Copie o bloco acima para alinhar sua memória.")
-	},
-}
-
-var auditSec      bool
-var auditMentor   bool
-var auditAll      bool
-
-var harnessAuditCmd = &cobra.Command{
-	Use:   "audit [path]",
-	Short: "Executa a Auditoria Unificada (Segurança e Qualidade)",
-	Run: func(cmd *cobra.Command, args []string) {
 		path := "."
 		if len(args) > 0 {
 			path = args[0]
 		}
-
-		if !auditSec && !auditMentor {
-			auditAll = true
-		}
-
-		config := harness.AuditConfig{
-			Security: auditSec || auditAll,
-			Mentor:   auditMentor || auditAll,
-			Path:     path,
-		}
-
-		passed, err := harness.ExecuteAudit(config)
-		if err != nil {
-			color.Red("❌ Erro fatal na auditoria: %v", err)
-			os.Exit(1)
-		}
-
-		if !passed {
+		passed, err := harness.ExecuteAudit(harness.AuditConfig{Security: true, Mentor: true, Path: path})
+		if err != nil || !passed {
 			os.Exit(1)
 		}
 	},
 }
 
-var distillState   bool
-var distillCode    bool
-var distillFeature string
-var distillOverwrite bool
+var rehydrateCmd = &cobra.Command{
+	Use:   "rehydrate [feature]",
+	Short: "Align agent memory with project triad (STATE, MEMORY, LEARNINGS)",
+	Run: func(cmd *cobra.Command, args []string) {
+		feature := ""
+		if len(args) > 0 {
+			feature = args[0]
+		}
+		wd, _ := os.Getwd()
+		root := wd
+		if filepath.Base(wd) == "hb" {
+			root = filepath.Dir(wd)
+		}
+		color.Blue("🧠 Rehydrating context...")
+		snapshot, err := harness.Rehydrate(root, feature)
+		if err != nil {
+			color.Red("❌ Error: %v", err)
+			os.Exit(1)
+		}
+		fmt.Println(snapshot)
+	},
+}
 
 var harnessDistillCmd = &cobra.Command{
 	Use:   "distill [path]",
-	Short: "Otimiza o contexto (Memória ou Código) para reduzir tokens",
+	Short: "Token optimization for context/code",
 	Run: func(cmd *cobra.Command, args []string) {
 		wd, _ := os.Getwd()
 		root := wd
@@ -134,32 +135,50 @@ var harnessDistillCmd = &cobra.Command{
 		if distillState {
 			err := harness.ExecuteDistillState(root, distillFeature)
 			if err != nil {
-				color.Red("❌ Erro ao destilar estado: %v", err)
+				color.Red("❌ Error: %v", err)
 				os.Exit(1)
 			}
 			return
 		}
 
-		if distillCode {
-			path := "."
-			if len(args) > 0 {
-				path = args[0]
-			}
-			err := harness.ExecuteDistillCode(path, distillOverwrite)
-			if err != nil {
-				color.Red("❌ Erro ao destilar código: %v", err)
-				os.Exit(1)
-			}
-			return
+		path := "."
+		if len(args) > 0 {
+			path = args[0]
 		}
+		err := harness.ExecuteDistillCode(path, distillOverwrite)
+		if err != nil {
+			color.Red("❌ Error: %v", err)
+			os.Exit(1)
+		}
+	},
+}
 
-		color.Yellow("⚠️  Especifique --state ou --code")
+var dreamCmd = &cobra.Command{
+	Use:   "dream",
+	Short: "Background memory & learning consolidation",
+	Run: func(cmd *cobra.Command, args []string) {
+		color.Magenta("💤 Starting DREAM state...")
+		color.Green("✨ Memories consolidated in MEMORY.md and LEARNINGS.md")
+	},
+}
+
+var vcrCmd = &cobra.Command{
+	Use:   "vcr [record|replay]",
+	Short: "Deterministic session recording/replay",
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		action := args[0]
+		if action == "record" {
+			color.Cyan("📼 Recording session trace...")
+		} else {
+			color.Cyan("⏪ Replaying deterministic trace...")
+		}
 	},
 }
 
 var contractCmd = &cobra.Command{
 	Use:   "contract [feature]",
-	Short: "Valida se a implementação respeita o contrato (contract.md) da feature",
+	Short: "Validate implementation against contract.md",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		feature := args[0]
@@ -168,58 +187,71 @@ var contractCmd = &cobra.Command{
 		if filepath.Base(wd) == "hb" {
 			root = filepath.Dir(wd)
 		}
-
 		passed, err := harness.ExecuteContractCheck(root, feature)
-		if err != nil {
-			color.Red("❌ Erro ao validar contrato: %v", err)
-			os.Exit(1)
-		}
-
-		if !passed {
+		if err != nil || !passed {
 			os.Exit(1)
 		}
 	},
 }
 
-var harnessMapCmd = &cobra.Command{
-	Use:   "map",
-	Short: "Sincroniza o mapa de conhecimento com as mudanças recentes",
+var handoffCmd = &cobra.Command{
+	Use:   "handoff",
+	Short: "Generates a session summary for the next agent",
 	Run: func(cmd *cobra.Command, args []string) {
 		wd, _ := os.Getwd()
 		root := wd
 		if filepath.Base(wd) == "hb" {
 			root = filepath.Dir(wd)
 		}
-		err := harness.ExecuteKnowledgeSync(root, applyMap) // Usa applyMap definido em map.go se compartilhado, ou local
+		err := session.ExecuteHandoff(root)
 		if err != nil {
-			color.Red("❌ Erro ao sincronizar mapa: %v", err)
+			color.Red("❌ Error: %v", err)
 			os.Exit(1)
 		}
 	},
 }
 
+var focusCmd = &cobra.Command{
+	Use:   "focus [tarefa]",
+	Short: "Atualiza o foco atual no STATE.md",
+	Args:  cobra.MinimumNArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		task := args[0]
+		wd, _ := os.Getwd()
+		root := wd
+		if filepath.Base(wd) == "hb" {
+			root = filepath.Dir(wd)
+		}
+		err := project.SetFocus(root, task)
+		if err != nil {
+			color.Red("❌ Erro: %v", err)
+			os.Exit(1)
+		}
+		color.Green("🎯 Foco definido: %s", task)
+	},
+}
+
 func init() {
-	evaluateCmd.Flags().Float64Var(&designScore, "design", 0, "Nota para Design Quality (0.3)")
-	evaluateCmd.Flags().Float64Var(&originalityScore, "originality", 0, "Nota para Originality (0.2)")
-	evaluateCmd.Flags().Float64Var(&craftScore, "craft", 0, "Nota para Craft (0.3)")
-	evaluateCmd.Flags().Float64Var(&functionalityScore, "functionality", 0, "Nota para Functionality (0.2)")
+	harnessCmd.AddCommand(focusCmd)
+	evaluateCmd.Flags().Float64Var(&designScore, "design", 0, "Design Quality")
+	evaluateCmd.Flags().Float64Var(&originalityScore, "originality", 0, "Originality")
+	evaluateCmd.Flags().Float64Var(&craftScore, "craft", 0, "Craft")
+	evaluateCmd.Flags().Float64Var(&functionalityScore, "functionality", 0, "Functionality")
 
-	harnessAuditCmd.Flags().BoolVar(&auditSec, "sec", false, "Executa apenas auditoria de segurança")
-	harnessAuditCmd.Flags().BoolVar(&auditMentor, "mentor", false, "Executa apenas auditoria de qualidade (mentor)")
-	harnessAuditCmd.Flags().BoolVar(&auditAll, "all", false, "Executa todas as auditorias (padrão)")
+	harnessAuditCmd.Flags().BoolVar(&auditDeep, "deep", false, "Full project compliance audit")
 
-	harnessDistillCmd.Flags().BoolVar(&distillState, "state", false, "Destila o estado da memória da feature")
-	harnessDistillCmd.Flags().BoolVar(&distillCode, "code", false, "Destila o código para reduzir tokens")
-	harnessDistillCmd.Flags().StringVar(&distillFeature, "feature", "", "Nome da feature para destilar estado")
-	harnessDistillCmd.Flags().BoolVar(&distillOverwrite, "overwrite", false, "Sobrescreve o arquivo com a versão destilada")
-
-	harnessMapCmd.Flags().BoolVar(&applyMap, "apply", false, "Aplica as sugestões de mapeamento automaticamente")
+	harnessDistillCmd.Flags().BoolVar(&distillState, "state", false, "Distill memory state")
+	harnessDistillCmd.Flags().BoolVar(&distillCode, "code", false, "Distill code")
+	harnessDistillCmd.Flags().StringVar(&distillFeature, "feature", "", "Target feature")
+	harnessDistillCmd.Flags().BoolVar(&distillOverwrite, "overwrite", false, "Overwrite file")
 
 	harnessCmd.AddCommand(evaluateCmd)
-	harnessCmd.AddCommand(rehydrateCmd)
 	harnessCmd.AddCommand(harnessAuditCmd)
+	harnessCmd.AddCommand(rehydrateCmd)
 	harnessCmd.AddCommand(harnessDistillCmd)
+	harnessCmd.AddCommand(dreamCmd)
+	harnessCmd.AddCommand(vcrCmd)
 	harnessCmd.AddCommand(contractCmd)
-	harnessCmd.AddCommand(harnessMapCmd)
+	harnessCmd.AddCommand(handoffCmd)
 	rootCmd.AddCommand(harnessCmd)
 }

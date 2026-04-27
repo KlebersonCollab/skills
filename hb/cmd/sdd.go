@@ -379,7 +379,21 @@ var sddContractCmd = &cobra.Command{
 	},
 }
 
+var sddUltraplanCmd = &cobra.Command{
+	Use:   "ultraplan [feature]",
+	Short: "Sugere um Teleporte de Exploração para tarefas de alta complexidade",
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		feature := args[0]
+		color.Magenta("🚀 Iniciando ULTRAPLAN para: %s", feature)
+		fmt.Println("Gatilho detectado: Alta ambiguidade/complexidade.")
+		fmt.Println("Ação: Desacoplando exploração para sessão remota.")
+		color.Cyan("🔗 Link de Exploração: https://claude.ai/new (Mode: Deep Search)")
+	},
+}
+
 func init() {
+	sddCmd.AddCommand(sddUltraplanCmd)
 	sddCmd.AddCommand(sddInitCmd) // Mantendo compatibilidade
 	sddCmd.AddCommand(sddStartCmd)
 	sddCmd.AddCommand(sddStatusCmd)

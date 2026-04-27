@@ -1,0 +1,24 @@
+# Tasks: HB-CLI Advanced Stats & Cost Tracking
+
+- [x] **Task 0: Scaffolding e Infraestrutura**
+    - [x] Criar diretório `hb/internal/stats`
+    - [x] Definir interface e structs em `hb/internal/domain/stats.go`
+- [x] **Task 1: Engine de Persistência**
+    - [x] Implementar `LoadStats()` e `SaveStats()` no pacote `stats`
+    - [x] Adicionar suporte a JSON marshal/unmarshal
+- [x] **Task 2: Integração com Session**
+    - [x] Atualizar `hb/internal/session/session.go` para criar `STATS.tmp` no `Start()`
+    - [x] Atualizar `Stop()` para exibir o sumário de custos final
+- [x] **Task 3: Comando CLI `hb stats`**
+    - [x] Criar `hb/cmd/stats.go`
+    - [x] Implementar a visualização formatada (Tabela/Resumo)
+- [x] **Task 4: Métricas de Git**
+    - [x] Implementar coletor de linhas alteradas usando `git diff`
+    - [x] Integrar métricas de Git no output do `hb stats`
+- [x] **Task 5: Comando de Ingestão de Tokens**
+    - [x] Implementar `hb stats add --model <name> --input <N> --output <M>` para permitir que o agente atualize seu próprio uso (Self-Reporting)
+- [x] **Task 6: Verificação e Auditoria**
+    - [x] Criar testes unitários para o cálculo de custos
+    - [x] Validar output visual com dados fictícios
+- [x] **Task EXTRA: Fix Missing Commands**
+    - [x] Criar `hb/cmd/session.go` para expor comandos de sessão na CLI

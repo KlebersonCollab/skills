@@ -19,7 +19,7 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ## 🔒 Mandatory Tooling
 The use of **HB CLI** is **MANDATORY** for this skill:
-- **Focus**: Use `hb project focus "Task"` to track mapping and relational analysis progress.
+- **Focus**: Use `hb harness focus "Task"` to track mapping and relational analysis progress.
 - **Knowledge Management**: Use `hb learn` to document new architectural patterns or bugs.
 - **Visualization**: Use `hb map` to generate and update the `KNOWLEDGE-MAP.mermaid`.
 
