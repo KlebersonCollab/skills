@@ -61,6 +61,15 @@ The goal of this skill is to empower the agent to build, maintain, and navigate 
     - Use `hb learn "Subject" --desc "..." --cat "..."` to record structured learnings and patterns.
     - Export the relation map so that `harness-expert` can perform relational rehydration.
 
+### Phase 5: DREAM — Knowledge Consolidation (Background)
+1.  **Trigger**: Every 5 sessions or after a `Phase 4: REVIEW` of a Large/Complex feature.
+2.  **Self-Reflection**: The agent should suggest a "Dream State" to the user: "Would you like me to consolidate our recent learnings?"
+3.  **Action**:
+    - Review `LEARNINGS.md` and merge duplicated patterns.
+    - Prune obsolete context from `MEMORY.md`.
+    - Update the `KNOWLEDGE-MAP.mermaid` to reflect the final architectural state.
+    - Generate a "State of the Hub" report.
+
 ---
 
 ## Output Structure
@@ -89,3 +98,10 @@ Execution of this skill results in the following mandatory artifacts (usually in
 - NEVER maintain orphan relationships (nodes without relevant connections).
 - NEVER use external graph database tools; everything must be persisted in text files in the repository.
 - NEVER ignore map updates after major code refactorings.
+- NEVER perform a "Dream" consolidation without user confirmation if it involves deleting information.
+
+---
+
+## 5. References
+- [Local GraphRAG Patterns](resource:resources/GRAPHRAG_PATTERNS.md)
+- [Auto-Dream Protocol](resource:resources/AUTODREAM_PROTOCOL.md)

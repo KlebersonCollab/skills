@@ -1,6 +1,6 @@
 ---
 name: harness-expert
-version: 3.0.0
+version: 3.1.0
 description: "Technical engine for Harness Engineering. Implements agentic infrastructure patterns (Memory Tiering, Explore-Plan-Act, Context Compression) and adversarial feedback loops (GAN-style) for production-grade autonomy."
 category: agentic-infrastructure
 ---
@@ -40,6 +40,8 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ### Group 4: Automation
 12. **Lifecycle Hooks**: Run automatic actions at `PreToolUse`, `PostToolUse`, `SessionStart`, etc.
+13. **System Doctor (`hb doctor`)**: Auto-diagnostic checklist for Hub integrity.
+14. **Session VCR (Recording & Replay)**: Capture and replay agent traces for determinism.
 
 ---
 
@@ -105,5 +107,5 @@ For high-complexity tasks (**Large/Complex**), the Harness must operate in **Adv
 ## References
 
 - [12 Agentic Harness Patterns from Claude Code](https://generativeprogrammer.com/p/12-agentic-harness-patterns-from)
-- [Claude Code Documentation](https://code.claude.com/)
-- [Harness Engineering Principles](https://github.com/anthropics/harness)
+- [Doctor Checklist](resource:resources/DOCTOR_CHECKLIST.md)
+- [VCR Protocol](resource:resources/VCR_PROTOCOL.md)
