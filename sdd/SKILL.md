@@ -30,6 +30,12 @@ The SDD workflow is now strictly organized around three permission-gated phases:
 ### 2. Plan-Validate-Execute (PVE)
 For **Medium+** complexity, a verifiable plan (JSON/YAML or strict Markdown) must be validated by a script or the user before any code is modified.
 
+### 3. UltraPlan (Remote Exploration)
+Para tarefas de nível **Complex** com alta ambiguidade, o agente deve sugerir um "Teleporte" de exploração.
+- **O que:** Desacoplar a exploração inicial para uma sessão remota (web/detached) para evitar a saturação de tokens do Hub local.
+- **Gatilho:** Quando o mapeamento inicial (Explore) revelar dependências desconhecidas em mais de 3 sistemas externos ou o plano exceder 20 tasks.
+- **Resultado:** O plano aprovado remotamente deve ser trazido de volta como uma especificação técnica consolidada (`spec.md`).
+
 ---
 
 ## The Core Principle: Auto-Sizing
@@ -94,4 +100,5 @@ For **Medium+** complexity, a verifiable plan (JSON/YAML or strict Markdown) mus
 - [12 Agentic Harness Patterns (Explore-Plan-Act)](https://generativeprogrammer.com/p/12-agentic-harness-patterns-from)
 - [Skill Authoring Patterns (Plan-Validate-Execute)](https://generativeprogrammer.com/p/skill-authoring-patterns-from-anthropics)
 - [BDD Guide](references/bdd-guide.md)
+- [UltraPlan Protocol](resource:resources/ULTRAPLAN_PROTOCOL.md)
 cation files.
