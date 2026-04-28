@@ -4,6 +4,13 @@
 
 This file consolidates the most recent updates from all skills in the Hub.
 
+## [5.0.0] - 2026-04-28
+### 🚀 The Layout Revolution & Governance Hardening
+- **HB-CLI v5.0.0**: Migração total para o motor de layout Flexbox (Yoga-inspired) nativo em Go.
+- **Premium UI Dashboard**: Dashboard em tempo real com barra de progresso, custos e suporte a margens/padding.
+- **Robust CI/CD**: Integração nativa com GitHub Actions usando `uv` e auditoria profunda automatizada.
+- **Dependency Management**: Automação total de dependências via `hb install --remote`.
+
 ## [4.9.0] - 2026-04-27
 ### 🧠 SDD Evolution & Global English Compliance
 - **sdd v2.1.0**: Major refactor into a modular Orchestrator with Safety Valve and Knowledge Chain protocols.

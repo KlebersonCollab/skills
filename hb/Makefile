@@ -1,5 +1,5 @@
 BINARY_NAME=hb
-VERSION=1.5.0
+VERSION=5.0.0
 BUILD_DIR=bin
 
 all: build
