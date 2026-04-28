@@ -14,14 +14,14 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
-        go-version: '1.21'
+        go-version: '1.25.0'
     
     - name: Build HB CLI
       run: go build -v -o hb main.go
       working-directory: ./hb
 
     - name: Run HB Audit
-      run: ./hb/hb sdd audit
+      run: ./hb/hb harness audit --deep
     
     - name: Run Unit Tests
       run: go test -v ./...
