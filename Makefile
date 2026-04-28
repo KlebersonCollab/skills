@@ -32,7 +32,7 @@ release:
 	@echo "✅ Multi-OS releases ready in bin/"
 
 audit: build
-	$(HB_BIN) audit
+	$(HB_BIN) harness audit --deep
 
 sync: build
 	$(HB_BIN) sync
@@ -41,7 +41,7 @@ rules: build
 	$(HB_BIN) rules
 
 check: build
-	$(HB_BIN) check
+	$(HB_BIN) doctor
 
 map: build
 	$(HB_BIN) map
@@ -59,9 +59,9 @@ clean:
 
 
 
-ui-sync:
+ui-sync: build
 	@echo "🔄 Syncing project data to UI..."
-	./hb-cli ui sync
+	$(HB_BIN) ui sync
 
 ui: ui-sync
 	@echo "🚀 Starting Premium UI..."

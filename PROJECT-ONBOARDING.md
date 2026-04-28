@@ -47,7 +47,7 @@ jobs:
       - uses: KlebersonCollab/skills/.github/actions/hb-setup@main
       
       - name: Run Integrity Audit
-        run: hb audit
+        run: hb harness audit --deep
         
       - name: Check SDD Compliance
         run: hb sdd audit

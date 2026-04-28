@@ -21,7 +21,7 @@ jobs:
           version: ${{ inputs.hb-version }}
 
       - name: Run Governance Audit
-        run: hb audit
+        run: hb harness audit --deep
 
       - name: Check SDD Compliance
         run: hb sdd audit
