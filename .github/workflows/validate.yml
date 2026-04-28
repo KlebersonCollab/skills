@@ -18,6 +18,11 @@ jobs:
           go-version: '1.25.0'
           cache-dependency-path: hb/go.sum
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+
       - name: Build HB-CLI
         run: make build
 
