@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"golang.org/x/term"
+	"github.com/klebersonromero/hb/internal/ui/layout"
 )
 
 // UIState represents the current data to be displayed in the UI
@@ -88,46 +89,79 @@ func (m *UIManager) render() {
 	state := m.state
 	m.mu.RUnlock()
 
-	width, _, _ := TerminalSize()
+	width, height, _ := TerminalSize()
 	if width < 10 {
 		width = 80
+	}
+	if height < 5 {
+		height = 5
 	}
 
 	m.clear()
 
-	// Build the status bar
-	// Pattern: [FEATURE] Task Description... [■■■■□] 80% | $0.05
+	// 1. Define Layout Tree
+	root := layout.NewNode(layout.Style{
+		Direction: layout.Column,
+		Width:     width,
+		Height:    3, // Status bar height
+	})
+
+	header := layout.NewNode(layout.Style{
+		Direction: layout.Row,
+		Justify:   layout.JustifySpaceBetween,
+		Padding:   layout.EdgeValues{Left: 1, Right: 1},
+		FlexGrow:  1,
+	})
+
+	body := layout.NewNode(layout.Style{
+		Direction: layout.Row,
+		Padding:   layout.EdgeValues{Left: 1, Right: 1},
+		FlexGrow:  1,
+	})
+
+	root.AddChild(header)
+	root.AddChild(body)
+
+	// 2. Calculate Layout
+	root.Calculate(width, 3)
+
+	// 3. Render to Virtual Screen
+	screen := layout.NewScreen(width, 3)
+	
+	// Draw Header (Feature | Status)
+	feature := state.FeatureName
+	if feature == "" {
+		feature = "IDLE"
+	}
+	screen.DrawText(header.Result.X, header.Result.Y, fmt.Sprintf("[%s]", feature))
+	screen.DrawText(header.Result.X+header.Result.Width-len(state.Status)-2, header.Result.Y, state.Status)
+
+	// Draw Body (Progress Bar + Cost)
 	barWidth := 20
 	filled := int(state.Progress * float64(barWidth))
-	progressLine := ""
+	bar := ""
 	for i := 0; i < barWidth; i++ {
 		if i < filled {
-			progressLine += "■"
+			bar += "■"
 		} else {
-			progressLine += "□"
+			bar += "□"
 		}
 	}
+	
+	barText := fmt.Sprintf("%s %d%%", bar, int(state.Progress*100))
+	screen.DrawText(body.Result.X, body.Result.Y, barText)
+	
+	costInfo := fmt.Sprintf("$%.2f | %d tkn", state.Cost, state.TokenCount)
+	screen.DrawText(body.Result.X+body.Result.Width-len(costInfo)-1, body.Result.Y, costInfo)
 
-	feature := Colorize(fmt.Sprintf("[%s]", state.FeatureName), Cyan)
-	if state.FeatureName == "" {
-		feature = Colorize("[IDLE]", White)
-	}
-
-	statusLine := fmt.Sprintf("%s %s %s %d%% | Tokens: %d | Cost: $%.2f",
-		feature,
-		truncate(state.CurrentTask, width-50),
-		Colorize(progressLine, Green),
-		int(state.Progress*100),
-		state.TokenCount,
-		state.Cost,
-	)
-
-	// Inject at bottom
+	// 4. Output to terminal
 	fmt.Fprint(m.output, SaveCursor)
-	fmt.Fprint(m.output, statusLine)
+	// We want to draw at the bottom of the screen
+	fmt.Fprint(m.output, fmt.Sprintf("\033[%d;1H", height-2)) // Move to line height-2
+	fmt.Fprint(m.output, screen.String())
 	fmt.Fprint(m.output, RestoreCursor)
 	
-	m.lastLines = 1 // Track how many lines we occupied
+	m.lastLines = 3
 }
 
 func (m *UIManager) clear() {
