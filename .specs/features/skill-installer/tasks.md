@@ -1,8 +1,13 @@
-# Tasks: Skill Installer CLI
+# Tasks: Skill Installer
 
-- [ ] Criar entrypoint `scripts/installer.py` <!-- id: 1 -->
-- [x] Implementar comando `list` com cores no terminal <!-- id: 2 -->
-- [ ] Implementar comando `install` usando `safe_copytree` <!-- id: 3 -->
-- [ ] Adicionar validação de existência da skill <!-- id: 4 -->
-- [ ] Adicionar suporte a `--target` e `--force` <!-- id: 5 -->
-- [ ] Adicionar instrução de uso no README global <!-- id: 6 -->
+## Phase 1: Local Installation
+- [x] T1: Implement local skill discovery. `id: SKI-001`
+- [x] T2: Implement recursive dependency resolution. `id: SKI-002`
+
+## Phase 2: Remote Installation
+- [x] T3: Implement Git-based remote fetching (sparse-checkout). `id: SKI-003`
+- [x] T4: Create the `hb install --remote` flag. `id: SKI-004`
+
+## Phase 3: Updates
+- [x] T5: Implement the `hb update` command. `id: SKI-005`
+- [x] T6: Add bulk update support for all installed skills. `id: SKI-006`

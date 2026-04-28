@@ -1,13 +1,14 @@
-# Tasks: New Skill - Harness Science
+# Tasks: Harness Science
 
-- [ ] **Phase 2: Planning & Contract**
-    - [x] Create `spec.md` and `plan.md` [task-1]
-    - [x] Create `contract.md` [task-2]
-- [ ] **Phase 3: Implementation**
-    - [x] Scaffold `harness-science` directory structure [task-3]
-    - [x] Write `harness-science/SKILL.md` [task-4]
-    - [x] Write `harness-science/CHANGELOG.md` and mandatory files [task-5]
-    - [x] Commit implementation [task-6]
-- [ ] **Phase 4: Review**
-    - [x] Run `hb audit` [task-7]
-    - [x] Update Hub registry and `STATE.md` [task-8]
+## Phase 1: Metrics Engine
+- [x] T1: Implement basic token counting heuristics. `id: SCI-001`
+- [x] T2: Implement state density calculation. `id: SCI-002`
+
+## Phase 2: Drift Analysis
+- [x] T3: Implement memory vs state comparator. `id: SCI-003`
+- [x] T4: Create the drift alerting system. `id: SCI-004`
+
+## Phase 3: CLI Tools
+- [x] T9: Implement `hb mode` for governance level switching. `id: SCI-009`
+- [x] T10: Implement `hb compress` for context optimization. `id: SCI-010`
+- [x] T11: Implement the "Harness Report" generator. `id: SCI-011`

@@ -1,4 +1,4 @@
-.PHONY: help build release audit sync rules check map list status clean dashboard
+.PHONY: help build release audit sync rules check map list status clean ui ui-sync
 
 HB_BIN := ./bin/hb
 
@@ -16,7 +16,9 @@ help:
 	@echo "  make list          - List all available skills"
 	@echo "  make status        - Show SDD development status"
 	@echo "  make clean         - Remove artifacts and temporary folders"
-	@echo "  make dashboard     - Run the visual dashboard (Python/Streamlit)"
+	@echo "  make ui            - Run the new Premium UI (Vue 3)"
+	@echo "  make ui-sync       - Sync real project data to UI"
+
 
 build:
 	@mkdir -p bin
@@ -55,6 +57,12 @@ clean:
 	rm -rf artifacts/
 	find . -name "__pycache__" -type d -exec rm -rf {} +
 
-dashboard:
-	@echo "📊 Starting Dashboard..."
-	streamlit run dashboard/app.py
+
+
+ui-sync:
+	@echo "🔄 Syncing project data to UI..."
+	./hb-cli ui sync
+
+ui: ui-sync
+	@echo "🚀 Starting Premium UI..."
+	cd ui && npm run dev

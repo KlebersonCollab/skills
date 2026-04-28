@@ -9,5 +9,5 @@
 - [x] T4: Implement the `export` command logic. `id: TEL-004`
 
 ## Phase 3: Inheritance (Import)
-- [ ] T5: Implement knowledge injector (merges bundles into local MD). `id: TEL-005`
-- [ ] T6: Implement the `import` command logic. `id: TEL-006`
+- [x] T5: Implement knowledge injector (merges bundles into local MD). `id: TEL-005`
+- [x] T6: Implement the `import` command logic. `id: TEL-006`

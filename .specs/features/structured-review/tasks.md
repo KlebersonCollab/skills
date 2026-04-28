@@ -6,7 +6,7 @@
 
 ## Phase 2: SDD Context Integration
 - [x] T3: Implement task extractor (finds active task in `tasks.md`). `id: REV-003`
-- [ ] T4: Implement file-to-task mapper (checks if touched files are expected). `id: REV-004`
+- [x] T4: Implement file-to-task mapper (checks if touched files are expected). `id: REV-004`
 
 ## Phase 3: Semantic Auditor
 - [x] T5: Implement basic heuristics (print detector, large hunk warnings). `id: REV-005`
@@ -14,4 +14,4 @@
 
 ## Phase 4: CLI & UI
 - [x] T7: Create the `hb review` command. `id: REV-007`
-- [ ] T8: Integrate `internal/ui` for premium audit reports. `id: REV-008`
+- [x] T8: Integrate `internal/ui` for premium audit reports. `id: REV-008`
