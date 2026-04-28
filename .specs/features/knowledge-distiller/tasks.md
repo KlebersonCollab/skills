@@ -1,8 +1,9 @@
-# Tasks: Automated Knowledge Distiller
+# Tasks: Knowledge Distiller
 
-- [ ] Atualizar `scripts/generate_knowledge_map.py` para usar `utils.py` <!-- id: 1 -->
-- [ ] Implementar lógica de `subgraph` baseada em categorias do YAML <!-- id: 2 -->
-- [ ] Implementar suporte ao campo `uses` (array) no frontmatter <!-- id: 3 -->
-- [ ] Adicionar suporte a badges visuais (🛡️, 📦) baseados no conteúdo <!-- id: 4 -->
-- [ ] Adicionar legenda explicativa no final do Mermaid <!-- id: 5 -->
-- [ ] Garantir que o comando `make knowledge-map` continua funcionando <!-- id: 6 -->
+## Phase 1: Aggregation Logic
+- [x] T1: Implement file scanner for LEARNINGS.md artifacts. `id: DIS-001`
+- [x] T2: Create the distillation engine (MD merger). `id: DIS-002`
+
+## Phase 2: CLI Integration
+- [x] T3: Create the `hb distill` command. `id: DIS-003`
+- [x] T4: Automate global learnings update. `id: DIS-004`

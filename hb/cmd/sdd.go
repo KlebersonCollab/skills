@@ -203,7 +203,7 @@ var sddStatusCmd = &cobra.Command{
 var sddTaskCmd = &cobra.Command{
 	Use:   "task [feature] [task-id]",
 	Short: "Marca uma tarefa como concluída no arquivo tasks.md da feature",
-	Args:  cobra.RangeArgs(1, 2),
+	Args:  cobra.RangeArgs(0, 2),
 	Run: func(cmd *cobra.Command, args []string) {
 		wd, _ := os.Getwd()
 		root := wd
@@ -211,10 +211,27 @@ var sddTaskCmd = &cobra.Command{
 			root = filepath.Dir(wd)
 		}
 
-		feature := args[0]
+		feature := ""
 		taskID := ""
-		if len(args) > 1 {
-			taskID = args[1]
+
+		if len(args) == 0 {
+			// Interactive Mode
+			var err error
+			feature, err = sdd.SelectFeatureInteractively(root)
+			if err != nil {
+				color.Red("❌ %v", err)
+				os.Exit(1)
+			}
+			taskID, err = sdd.SelectTaskInteractively(root, feature)
+			if err != nil {
+				color.Red("❌ %v", err)
+				os.Exit(1)
+			}
+		} else {
+			feature = args[0]
+			if len(args) > 1 {
+				taskID = args[1]
+			}
 		}
 
 		specsDir := filepath.Join(root, ".specs", "features", feature)

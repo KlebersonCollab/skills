@@ -31,19 +31,16 @@
 - [x] **Comando `hb rules`**: Geração de `.cursorrules` (Substituiu `generate_cursorrules.py`).
 - [x] **Comando `hb mode/compress`**: Gestão de densidade de tokens (Substituiu `hub.py` e `compressor_utility.py`).
 - [x] **Eliminação Total de Débito Python**: 13 scripts legados removidos.
-- [ ] **Estratégia de CI/CD**: Implementar GitHub Action para build/release automático dos binários.
+- [x] **Estratégia de CI/CD**: Implementar GitHub Action para build/release automático dos binários.
 
 ### 5. Multi-OS Distribution & CI/CD
-- [ ] Adicionar targets de cross-compilation no `Makefile`.
-- [ ] Criar workflow do GitHub Actions (`.github/workflows/release-hb.yml`).
-- [ ] Implementar comando `hb version` para rastreabilidade de build.
-- [ ] Criar script de instalação rápida `install.sh`.
+- [x] Adicionar targets de cross-compilation no `Makefile`.
+- [x] Criar workflow do GitHub Actions (`.github/workflows/ci.yml`).
+- [x] Implementar comando `hb version` para rastreabilidade de build.
+- [x] Criar script de instalação rápida `install.sh`.
 
 ## 🏁 Fase 4: REVIEW
-- [ ] Criar `test_fixtures` para validação de erros.
-- [ ] Rodar `hb audit` contra o próprio repositório.
-- [ ] Executar benchmark de tempo de execução.
+- [x] Criar `test_fixtures` para validação de erros.
+- [x] Rodar `hb audit` contra o próprio repositório.
+- [x] Executar benchmark de tempo de execução.
 - [x] Atualizar `STATE.md` e `LEARNINGS.md`.
-
----
-*Tasks geradas via SDD para o HB-CLI.*

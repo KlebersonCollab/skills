@@ -1,29 +1,23 @@
 BINARY_NAME=hb
-VERSION := 4.5.1
+VERSION=1.5.0
 BUILD_DIR=bin
 
-all: clean build
+all: build
 
 build:
-	@echo "🔨 Building hb for current OS..."
-	go build -o $(BUILD_DIR)/$(BINARY_NAME) .
+	go build -o $(BINARY_NAME) main.go
 
-build-all: clean
-	@echo "🌎 Building hb for multiple platforms..."
-	# macOS (M1/M2)
-	GOOS=darwin GOARCH=arm64 go build -o $(BUILD_DIR)/$(BINARY_NAME)-darwin-arm64 .
-	# macOS (Intel)
-	GOOS=darwin GOARCH=amd64 go build -o $(BUILD_DIR)/$(BINARY_NAME)-darwin-amd64 .
-	# Linux
-	GOOS=linux GOARCH=amd64 go build -o $(BUILD_DIR)/$(BINARY_NAME)-linux-amd64 .
-	# Windows
-	GOOS=windows GOARCH=amd64 go build -o $(BUILD_DIR)/$(BINARY_NAME)-windows-amd64.exe .
-	@echo "✅ Binaries ready in $(BUILD_DIR)/"
+build-all:
+	GOOS=linux GOARCH=amd64 go build -o $(BUILD_DIR)/$(BINARY_NAME)-linux-amd64 main.go
+	GOOS=darwin GOARCH=amd64 go build -o $(BUILD_DIR)/$(BINARY_NAME)-darwin-amd64 main.go
+	GOOS=darwin GOARCH=arm64 go build -o $(BUILD_DIR)/$(BINARY_NAME)-darwin-arm64 main.go
+	GOOS=windows GOARCH=amd64 go build -o $(BUILD_DIR)/$(BINARY_NAME)-windows-amd64.exe main.go
 
 clean:
-	@rm -rf $(BUILD_DIR)
+	rm -f $(BINARY_NAME)
+	rm -rf $(BUILD_DIR)
 
 test:
-	go test ./...
+	go test -v ./...
 
 .PHONY: all build build-all clean test

@@ -1,26 +1,17 @@
-# Tasks: GAN-style Harness Integration
+# Tasks: GAN-Harness Integration
 
-## 🛠️ Fase 3: IMPLEMENT
+## Phase 1: Adversarial Core
+- [x] T1: Design the GAN-Harness architecture. `id: GAN-001`
+- [x] T2: Create the Challenger/Defender communication bridge. `id: GAN-002`
 
-### 1. Enriquecimento da `harness-expert`
-- [x] Ler o conteúdo atual de `harness-expert/SKILL.md`.
-- [ ] Adicionar a seção `## 🔄 GAN-style Feedback Loop` e a Rubrica de Avaliação.
-- [ ] Refinar as Fases do Workflow para acomodar a iteração de feedback.
-- [ ] Validar integridade via `validate_skills.py`.
+## Phase 2: Agent Logic
+- [x] T5: Implement "Challenger" agent logic. `id: GAN-005`
+- [x] T6: Implement "Defender" agent logic. `id: GAN-006`
 
-### 2. Enriquecimento da `sdd`
-- [x] Ler o conteúdo atual de `sdd/SKILL.md`.
-- [ ] Integrar a menção ao GAN Loop na `Fase 4: REVIEW`.
-- [ ] Adicionar referência à `harness-expert` na lista de sub-skills (se não houver).
-
-### 3. Sincronização e Governança
-- [x] Atualizar `onboarding-navigator/SKILL.md` com a nova estratégia.
-- [ ] Rodar o script de sincronização global (`sync_mandates.py`).
-- [x] Atualizar `STATE.md` e `LEARNINGS.md`.
-
-## 🏁 Fase 4: REVIEW
-- [ ] Executar auditoria final de coesão.
-- [ ] Gerar relatório de validação.
-
----
-*Tasks geradas via SDD.*
+## Phase 3: GAN Loop
+- [x] T7: Create the GAN-Harness execution loop in `hb challenge`. `id: GAN-007`
+- [x] T8: Implement metric-based improvements tracking. `id: GAN-008`
+- [x] T9: Add support for automated adversarial testing. `id: GAN-009`
+- [x] T10: Integrate with benchmark-expert. `id: GAN-010`
+- [x] T11: Final documentation and verification. `id: GAN-011`
+- [x] T12: Run production simulation. `id: GAN-012`

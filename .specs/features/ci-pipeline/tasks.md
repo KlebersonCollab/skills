@@ -1,6 +1,9 @@
 # Tasks: CI Pipeline
 
-- [ ] Criar diretório `.github/workflows` <!-- id: 1 -->
-- [x] Criar arquivo `validate.yml` com suporte a `astral-sh/setup-uv` <!-- id: 2 -->
-- [ ] Adicionar steps: `make validate`, `make verify-vers`, `make check-memory` <!-- id: 3 -->
-- [ ] Configurar triggers para `push` e `pull_request` <!-- id: 4 -->
+## Phase 1: Setup
+- [x] T1: Design the CI workflow architecture. `id: CI-001`
+- [x] T2: Create GitHub Action for automated testing. `id: CI-002`
+
+## Phase 2: Integration
+- [x] T3: Integrate `hb review` in the pipeline. `id: CI-003`
+- [x] T4: Implement badge generation for README. `id: CI-004`

@@ -1,13 +1,14 @@
-# Tasks: New Skill - CLI Expert
+# Tasks: CLI Expert
 
-- [ ] **Phase 2: Planning & Contract**
-    - [x] Create `spec.md` and `plan.md` [task-1]
-    - [x] Create `contract.md` [task-2]
-- [ ] **Phase 3: Implementation**
-    - [x] Scaffold `cli-expert` directory structure [task-3]
-    - [x] Write `cli-expert/SKILL.md` [task-4]
-    - [x] Write `cli-expert/CHANGELOG.md` and mandatory files [task-5]
-    - [x] Commit implementation [task-6]
-- [ ] **Phase 4: Review**
-    - [x] Run `hb audit` [task-7]
-    - [x] Update Hub registry and `STATE.md` [task-8]
+## Phase 1: Core Commands
+- [x] T1: Implement `hb version` and basic help. `id: CLI-001`
+- [x] T2: Implement recursive root discovery. `id: CLI-002`
+
+## Phase 2: Premium UI
+- [x] T3: Integrate `fatih/color` for meaningful output. `id: CLI-003`
+- [x] T4: Implement progress bars and status indicators. `id: CLI-004`
+
+## Phase 3: Expert Tooling
+- [x] T9: Implement `hb stats` for project overview. `id: CLI-009`
+- [x] T10: Implement `hb doctor` for environment health check. `id: CLI-010`
+- [x] T11: Implement interactive mode for task selection. `id: CLI-011`

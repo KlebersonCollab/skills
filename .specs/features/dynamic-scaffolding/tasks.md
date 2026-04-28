@@ -1,17 +1,9 @@
 # Tasks: Dynamic Scaffolding
 
-## Phase 1: Foundation
-- [ ] Criar template PoC para `fastapi-expert` usando Jinja2/Copier. <!-- id: 1 -->
-- [ ] Definir metadados obrigatórios em `copier.yml` para consistência. <!-- id: 2 -->
+## Phase 1: Engine Development
+- [x] T1: Create the directory synchronization utility. `id: SCA-001`
+- [x] T2: Implement the `hb sdd init` core logic. `id: SCA-002`
 
-## Phase 2: Integration
-- [x] Atualizar `SKILL.md` do `fastapi-expert` com instruções de scaffolding. <!-- id: 3 -->
-- [x] Atualizar `SKILL.md` do `python-uv` para suportar templates genéricos. <!-- id: 4 -->
-
-## Phase 3: Expert Skill
-- [ ] Criar a skill `scaffolding-expert` na raiz do projeto. <!-- id: 5 -->
-- [ ] Integrar `scaffolding-expert` no `onboarding-navigator` como a skill recomendada para "NewApp". <!-- id: 6 -->
-
-## Phase 4: Validation & Docs
-- [ ] Gerar relatório de validação técnica (Fase 4 SDD). <!-- id: 7 -->
-- [ ] Registrar ADR-002 formalmente. <!-- id: 8 -->
+## Phase 2: Custom Templates
+- [x] T3: Create template engine for custom boilerplates. `id: SCA-003`
+- [x] T4: Implement `hb scaffold` command. `id: SCA-004`

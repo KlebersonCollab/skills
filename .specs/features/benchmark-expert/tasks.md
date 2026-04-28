@@ -1,25 +1,23 @@
-# Tasks: Benchmark Expert Skill Implementation
+# Tasks: Benchmark Expert
 
-- [ ] **Task 1: Bootstrap & Scaffolding** (ID: `BE-001`)
-    - [ ] Criar diretório `benchmark-expert/`.
-    - [ ] Gerar `SKILL.md`, `README.md` e `CHANGELOG.md` via `skill-factory-bootstrap`.
-    - [ ] Validar estrutura inicial.
+## Phase 1: Core Performance
+- [x] T1: Design the benchmarking framework. `id: BEN-001`
+- [x] T2: Create the execution timer utility. `id: BEN-002`
 
-- [x] **Task 2: Content Authoring (SKILL.md)** (ID: `BE-002`)
-    - [ ] Traduzir conteúdo original da ECC para PT-BR.
-    - [ ] Adicionar seção `🔒 Prerequisites (Mandatory)` integrada ao SDD.
-    - [ ] Detalhar os 4 modos de operação com comandos sugeridos.
+## Phase 2: Metrics Collection
+- [x] T3: Implement time-based metrics collector. `id: BEN-003`
+- [x] T4: Implement memory usage collector. `id: BEN-004`
+- [x] T5: Add support for CPU usage tracking. `id: BEN-005`
 
-- [ ] **Task 3: Reference & Example Enrichment** (ID: `BE-003`)
-    - [ ] Criar `references/performance_targets.md` com SLAs Core Web Vitals.
-    - [ ] Criar `examples/comparison_report.md` com exemplo de tabela de regressão.
-    - [ ] Adicionar guias de "Good vs Bad Performance Patterns".
+## Phase 3: CLI & Reporting
+- [x] T9: Create the `hb bench` command. `id: BEN-009`
+- [x] T10: Add support for multi-run averaging. `id: BEN-010`
+- [x] T11: Implement comparative reports (History). `id: BEN-011`
+- [x] T12: Add JSON export for benchmark results. `id: BEN-012`
 
-- [ ] **Task 4: Quality Assurance & Validation** (ID: `BE-004`)
-    - [ ] Executar `skill-factory-validator`.
-    - [ ] Corrigir eventuais inconsistências de metadados.
-
-- [ ] **Task 5: Registry & Final Release** (ID: `BE-005`)
-    - [ ] Adicionar `benchmark-expert` ao `README.md` raiz.
-    - [ ] Atualizar contador de skills.
-    - [ ] Atualizar `STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
+## Phase 4: Integration
+- [x] T15: Integrate with GAN-Harness. `id: BEN-015`
+- [x] T16: Automated regression testing. `id: BEN-016`
+- [x] T17: Final documentation and cleanup. `id: BEN-017`
+- [x] T18: Run full ecosystem benchmark. `id: BEN-018`
+- [x] T19: Push final report to STATE.md. `id: BEN-019`
