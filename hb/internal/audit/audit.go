@@ -25,17 +25,24 @@ func Run(root string) (Result, error) {
 	// 1. Check Python Quality (if applicable)
 	if _, err := os.Stat(filepath.Join(root, "pyproject.toml")); err == nil {
 		color.Cyan("   -> Verificando Python (Ruff)...")
-		cmd := exec.Command("ruff", "check", ".")
+		// Tenta 'uv run ruff' primeiro, depois 'ruff' direto
+		cmd := exec.Command("uv", "run", "ruff", "check", ".")
+		if _, err := exec.LookPath("uv"); err != nil {
+			cmd = exec.Command("ruff", "check", ".")
+		}
+		
 		if out, err := cmd.CombinedOutput(); err != nil {
 			result.Score -= 20
-			result.Issues = append(result.Issues, fmt.Sprintf("Python: %s", string(out)))
+			result.Issues = append(result.Issues, fmt.Sprintf("Python (Ruff): %s", string(out)))
 		}
 	}
 
 	// 2. Check Go Quality (if applicable)
-	if _, err := os.Stat(filepath.Join(root, "go.mod")); err == nil {
+	goModPath := filepath.Join(root, "hb", "go.mod")
+	if _, err := os.Stat(goModPath); err == nil {
 		color.Cyan("   -> Verificando Go (vet)...")
 		cmd := exec.Command("go", "vet", "./...")
+		cmd.Dir = filepath.Join(root, "hb")
 		if out, err := cmd.CombinedOutput(); err != nil {
 			result.Score -= 20
 			result.Issues = append(result.Issues, fmt.Sprintf("Go: %s", string(out)))

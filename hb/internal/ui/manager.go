@@ -103,12 +103,18 @@ func (m *UIManager) render() {
 	root := layout.NewNode(layout.Style{
 		Direction: layout.Column,
 		Width:     width,
-		Height:    3, // Status bar height
+		Height:    4, // Status bar height
 	})
 
 	header := layout.NewNode(layout.Style{
 		Direction: layout.Row,
 		Justify:   layout.JustifySpaceBetween,
+		Padding:   layout.EdgeValues{Left: 1, Right: 1},
+		FlexGrow:  1,
+	})
+
+	taskRow := layout.NewNode(layout.Style{
+		Direction: layout.Row,
 		Padding:   layout.EdgeValues{Left: 1, Right: 1},
 		FlexGrow:  1,
 	})
@@ -120,13 +126,14 @@ func (m *UIManager) render() {
 	})
 
 	root.AddChild(header)
+	root.AddChild(taskRow)
 	root.AddChild(body)
 
 	// 2. Calculate Layout
-	root.Calculate(width, 3)
+	root.Calculate(width, 4)
 
 	// 3. Render to Virtual Screen
-	screen := layout.NewScreen(width, 3)
+	screen := layout.NewScreen(width, 4)
 	
 	// Draw Header (Feature | Status)
 	feature := state.FeatureName
@@ -135,6 +142,12 @@ func (m *UIManager) render() {
 	}
 	screen.DrawText(header.Result.X, header.Result.Y, fmt.Sprintf("[%s]", feature))
 	screen.DrawText(header.Result.X+header.Result.Width-len(state.Status)-2, header.Result.Y, state.Status)
+
+	// Draw Task
+	if state.CurrentTask != "" {
+		taskStr := truncate(state.CurrentTask, width-2)
+		screen.DrawText(taskRow.Result.X, taskRow.Result.Y, taskStr)
+	}
 
 	// Draw Body (Progress Bar + Cost)
 	barWidth := 20
@@ -157,11 +170,11 @@ func (m *UIManager) render() {
 	// 4. Output to terminal
 	fmt.Fprint(m.output, SaveCursor)
 	// We want to draw at the bottom of the screen
-	fmt.Fprint(m.output, fmt.Sprintf("\033[%d;1H", height-2)) // Move to line height-2
+	fmt.Fprint(m.output, fmt.Sprintf("\033[%d;1H", height-3)) // Move to line height-3
 	fmt.Fprint(m.output, screen.String())
 	fmt.Fprint(m.output, RestoreCursor)
 	
-	m.lastLines = 3
+	m.lastLines = 4
 }
 
 func (m *UIManager) clear() {
