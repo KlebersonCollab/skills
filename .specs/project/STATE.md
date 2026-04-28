@@ -1,117 +1,16 @@
-# Current Project State (April 22, 2026)
+# Project State
 
-## Current Status
-- **Focus**: Premium Visual & Real-time Monitoring (2026-04-28) 🎨
-- **Feature**: Premium UI v2 (Vue 3 + Synapse Core Design) - **COMPLETED (v1.0.0)** ✅
-- **Feature**: Hub Enterprise Upgrade - **COMPLETED (v4.3.0)** ✅
-- **Audit**: Hub Integrity Audit - **COMPLETED** (Registry and structure correction) ✅
-- **Session**: Structuring of 5 tracks to bring Hub architecture to full maturity (Tests, UI, Distiller, Installer, DevSecOps).
+## Active Feature
+- **CLI Flexbox Layout (Yoga-inspired)**: Planning complete, starting implementation.
 
-## Latest Changes
-- [x] **New Skill: Harness Science (v1.0.0)**:
-  - Introduced the discipline of Ablation Testing for AI agents.
-  - Defined standard flags for performance measurement (DISABLE_THINKING, SIMPLE_MODE).
-  - Established the Scientific Cycle for feature validation.
-  - Registered as the Hub's 29th skill.
-- [x] **New Skill: CLI Expert (v1.0.0)**:
-  - Created brand new skill focused on AI-Native CLI design.
-  - Defined "Slash Command" architecture (Prompt vs Local vs Bundled).
-  - Established TUI standards using React/Ink for interactive agent output.
-  - Registered as the Hub's 28th skill.
-- [x] **Swarm Facilitator Enrichment (v1.2.0)**:
-  - Integrated technical governance for multi-agent synchronization.
-  - Added support/guidelines for iTerm2, Tmux, and In-Process runners.
-  - Implemented the "Permission Bridge" for guardrail propagation to teammates.
-- [x] **DevSecOps Expert Enrichment (v1.1.0)**:
-  - Integrated "Agentic Safety Guardrails" based on cybernetic mining.
-  - Added mandatory audit protocol for 20+ dangerous shell patterns.
-  - Expanded coverage for Cross-Platform execution risks (interpreters/runners).
-- [x] **Context Graph Skill Enrichment (v1.1.0)**:
-  - Integrated MemDir technical protocol (Index vs Topic architecture).
-  - Enforced 200-line/25KB limit for `MEMORY.md` to prevent context bloat.
-  - Standardized memory taxonomy (User, Project, Local, Managed, AutoMem).
-  - Generated architectural diagram in `resources/`.
-  - Registered Hub's 26th skill.
-- [x] **SDD Skill Enrichment (v1.5.0)**:
- - Integrated 5 new advanced operational guidelines (Brownfield, Coding Principles, Context Limits, Session Handoff, Quick Mode).
- - Implemented delegation protocol for sub-agents to mitigate context limits.
- - Performed full Skill Factory compliance audit on all sub-skills.
- - Synchronized version across entire ecosystem and generated new artifact release.
-- [x] **Benchmark Expert Skill (v1.0.0)**:
- - Created new specialized performance skill (Browser, API, Build).
- - Integrated regression detection with baseline comparison.
- - Added reference guides for performance targets and regression analysis.
- - Registered Hub's 23rd skill.
-- [x] **Golang Expert Enrichment (v1.2.0)**:
- - Integrated Slash Commands for workflow automation (`/plan`, `/go-test`, etc.).
- - Established mandatory Clean Architecture layout.
- - Added support for modern tools: `sqlc`, `Wire`, and `testcontainers`.
- - Implemented rigorous prohibitive guidelines (No `init()`, no global state).
-- [x] **Golang Testing Expert Enrichment (v1.1.0)**:
- - Added detailed verification commands (Race, Coverage, Integration).
- - Integrated TDD cycle with slash commands.
-- [x] **Governance Hardening (v1.0.0)**:
- - Hardened SDD Phase 3 with prohibitive Git and Test mandates.
- - Updated Onboarding Navigator to include commit audit at Exit Gate.
- - Established mandatory commit atomicity per task in `tasks.md`.
- - Imported original skill from ECC and translated to PT-BR.
- - Integrated Git workflow with SDD cycle (Commits per Task, Atomicity).
- - Created reference guides for Conventional Commits and Branching Strategies.
- - Added Pull Request and Git Message templates.
- - Registered Hub's 21st skill in root `README.md`.
-- [x] **Flutter Skill Enrichment (v1.3.0)**:
- - Integrated support for Dart 3+ (Sealed Classes, Patterns).
- - Added Accessibility, Performance, and Modern Dart guides.
- - Implemented Resilience patterns (Global Error Handling).
-- [x] **Skill Enrichment (v3.3.0)**:
- - Added `references/` and `examples/` in critical skills.
-- [x] **GAN-style Harness Integration (v2.1.0/v1.5.0)**:
- - Implemented Generator-Evaluator adversarial loop in `harness-expert`.
- - Evolved `sdd` framework to support Adversarial Reviews.
-- [x] **Python Expert Enrichment (v3.0.0)**:
- - Integrated advanced idiomatic patterns (EAFP, Protocols, Type Hints 3.9+).
- - Implemented advanced Testing guide with TDD cycle and Pytest Mastery (Fixtures, Mocking).
- - Added support for memory optimization via `__slots__` and generators.
- - Translated all enriched content to PT-BR.
-- [x] **Ecosystem Localization (v1.1.0)**:
- - Translated all 25 skills and their references/resources to English.
- - Localized internal scripts, root files (README, Makefile), and Knowledge Map.
- - Audited and recovered 22 files that suffered significant content loss during normalization (13 initial + 9 during final audit).
- - Maintained 100% technical parity with original Portuguese content.
-- [x] **Full Hub Cohesion Audit (v4.2.0)**: 
- - Corrected `token-distiller` skill positioning.
- - Updated `README.md`, `KNOWLEDGE-MAP.mermaid`, and `onboarding-navigator`.
- - All 25 skills now 100% compliant and English-localized. **COMPLETED** ✅
-- [x] **Hub Test Suite**: Create first test battery via `pytest` to shield base scripts (`/scripts/`).
-- [x] **DevSecOps Skill**: Start new skill focused on static quality and security audits via `skill-factory`.
-- [x] **Automated Knowledge Distiller**: Script dynamic extraction of Mermaid nodes.
-- [x] **Skill Installer CLI**: Implemented `hub install <skill> --remote` CLI with Git Sparse-Checkout for granular direct download from repository.
-- [x] **Marketplace UI / Dashboard**: Created Streamlit interactive panel (`dashboard/app.py`) for catalog and architecture visualization.
-- [x] **HB-CLI (Harness Binary) v4.3.0**: 
-    - Substituição total de todos os scripts Python de infraestrutura (incluindo `sdd-cli`) por binário nativo Go.
-    - Comandos implementados: `audit`, `sync`, `fix`, `list`, `install`, `check`, `changelog`, `map`, `rules`, `mode`, `compress`, `sdd` (init/status/bootstrap).
-    - Link Validator integrado ao `hb check` (0 links quebrados em 25 skills).
-    - [x] Novo Comando `hb listskills` (Discovery remoto)
-- [x] Validador de Estado Semântico (`hb check --semantic`)
-- [x] Novo Comando `hb sdd task` (Gestão de tarefas atômicas)
-- [x] Atualização de todas as Skills para uso do HB-CLI v4.3.1
-- [x] **New Feature: Advanced Stats & Cost Tracking (`hb stats`)**:
-    - Rastreamento de tokens por modelo (Input/Output/Cache).
-    - Cálculo automático de custo USD.
-    - Integração com métricas Git (+/- linhas).
-    - Persistência atômica via `STATS.tmp`.
-- [x] **New Feature: Premium Terminal UI (`hb sdd status --ui`)**:
-    - Implementação de barra de status ANSI persistente no rodapé do terminal.
-    - Suporte a monitoramento em tempo real via flag `--watch`.
-    - Cálculo automático de progresso global e por feature.
-    - Isolamento de interface (não polui o scrollback).
-- [ ] CI/CD: Automação de distribuição de binários multi-OS.
+## Recent Progress
+- Initial analysis of legacy `src` project completed.
+- Identified "Yoga Layout" as a high-value feature to port to `hb`.
+- SDD artifacts (Spec, Plan, Tasks, Contract) created in `.specs/features/cli-layout-yoga/`.
 
-## Blockers / Next Steps
-- [x] **Release V4.0.1 (Bunker Strategy)**: Successfully executed with 100% integrity (`make release-check`) and Changelog generated.
-- [x] **New Epic: Token Optimization & Dual Mode (Caveman/Premium)**:
- - [x] SDD Planning (Complex Task Mode): `spec.md`, `plan.md`, `contract.md`, `tasks.md`.
- - [x] Implementation of Goal 1 (Infrastructure and Skill Core).
- - [x] Implementation of Goal 2 (Python Compression Engine).
- - [x] Implementation of Goal 3 (Integration and Automation).
- - [x] Final Validation and Benchmark (Goal 4). **COMPLETED** ✅
+## Current Blockers
+- None.
+
+## Next Steps
+1. Initialize the `hb/internal/ui/layout` package.
+2. Implement core `Node` and `Style` types.
