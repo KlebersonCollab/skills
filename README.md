@@ -65,7 +65,7 @@ hb install architecture --remote
 hb rules
 
 # 5. Check ecosystem integrity
-hb check
+hb doctor
 ```
 
 ### 🧠 Intelligent Dependency Management
