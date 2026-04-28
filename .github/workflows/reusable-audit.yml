@@ -4,10 +4,15 @@ on:
   workflow_call:
     inputs:
       hb-version:
-        description: 'Versão do HB-CLI a ser utilizada'
+        description: 'Versão do HB-CLI a ser utilizada (ignorada se build-from-source for true)'
         required: false
         type: string
         default: 'latest'
+      build-from-source:
+        description: 'Se verdadeiro, compila o HB-CLI a partir do código fonte'
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   audit:
@@ -15,10 +20,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.25.0'
+          cache-dependency-path: hb/go.sum
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+
       - name: Setup HB-CLI
+        if: ${{ inputs.build-from-source == false }}
         uses: KlebersonCollab/skills/.github/actions/hb-setup@main
         with:
           version: ${{ inputs.hb-version }}
+
+      - name: Build HB-CLI (from source)
+        if: ${{ inputs.build-from-source == true }}
+        run: |
+          cd hb && go build -o hb main.go
+          echo "$(pwd)" >> $GITHUB_PATH
 
       - name: Run Governance Audit
         run: hb harness audit --deep
