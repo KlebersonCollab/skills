@@ -6,6 +6,7 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/klebersonromero/hb/internal/harness"
+	"github.com/klebersonromero/hb/internal/rules"
 	"github.com/klebersonromero/hb/internal/syncer"
 	"github.com/spf13/cobra"
 )
@@ -62,11 +63,22 @@ var syncCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		color.Green("✨ Sincronização concluída com sucesso!")
+		rulesFlag, _ := cmd.Flags().GetBool("rules")
+		if rulesFlag {
+			color.Blue("🔨 Compilando regras do projeto (.cursorrules)...")
+			if err := rules.CompileRules(root); err != nil {
+				color.Red("❌ Erro ao compilar regras: %v", err)
+			} else {
+				color.Green("✨ .cursorrules atualizado com sucesso!")
+			}
+		}
+
+		color.Green("🚀 Sincronização concluída!")
 	},
 }
 
 func init() {
 	syncCmd.Flags().BoolVarP(&remoteSync, "remote", "r", false, "Baixa os mandatos globais do repositório remoto antes de sincronizar")
+	syncCmd.Flags().Bool("rules", false, "Compila as regras do projeto (.cursorrules)")
 	rootCmd.AddCommand(syncCmd)
 }
