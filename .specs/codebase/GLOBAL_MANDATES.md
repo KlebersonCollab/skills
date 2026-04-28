@@ -5,10 +5,11 @@ These instructions are fundamental and must be followed by all agents operating 
 ## 🔒 0. SESSION BOOTSTRAP (EXECUTE BEFORE ANY RESPONSE)
 Before responding to the user, the agent **MUST** perform this mental and operational checklist:
 1. **Rehydrate Context**: Run **`hb project context`** to instantly align state, memory, and learnings.
-2. **Onboarding Check**: Consult `onboarding-navigator` to align with the project culture.
-3. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
-4. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
-5. **SDD Verification**: Use `hb sdd review <feature>` to verify compliance.
+2. **Progress Insight**: Run **`hb sdd status --ui`** to visualize the global progress and identify features in development.
+3. **Onboarding Check**: Consult `onboarding-navigator` to align with the project culture.
+4. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
+5. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
+6. **SDD Verification**: Use `hb sdd review <feature>` to verify compliance.
 
 
 
@@ -41,6 +42,7 @@ Any construction, development, or significant refactoring task **MUST** utilize 
   - **Reports**: Generate or update `validation-report.md`.
   - **Context Graph**: Update the project's **`DECISIONS.md`** with rationale and patterns discovered.
   - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via **HB CLI** (Use `hb project focus` to mark milestones).
+- **Monitoring**: Use **`hb sdd status --ui --watch`** in a secondary terminal to monitor task completion and global project health in real-time.
 
 ## 2. Architectural Integrity
 - **Architecture-First**: Critical decisions must be recorded in an **ADR** in the `.specs/architecture/` folder.
@@ -86,7 +88,8 @@ Before ending the session or delivering the task, the agent **MUST** validate:
     1. **Adversarial Evaluation**: Run **`hb harness evaluate <feature>`**. A score below **7.0** blocks final delivery.
     2. **Deep Audit**: Run **`hb harness audit --deep`** to ensure ADRs are documented and SDD feature structure is intact.
     3. **Validation**: Run **`hb harness audit`** and `hb sdd review <feature>`.
-4. **Benchmarking**: Run **`hb bench`** to verify performance against baselines.
+4. **Progress Audit**: Run **`hb sdd status --ui`** to ensure the session's impact is correctly reflected in the global progress.
+5. **Benchmarking**: Run **`hb bench`** to verify performance against baselines.
 5. **Tasks Update**: Does `tasks.md` reflect the real state of implementation?
 6. **State Sync**: Execute **`hb sync`** to persist the state across the ecosystem.
 7. **Learnings Capture**: Use **`hb learn`** to capture technical insights or patterns discovered.

@@ -100,7 +100,11 @@
     - Cálculo automático de custo USD.
     - Integração com métricas Git (+/- linhas).
     - Persistência atômica via `STATS.tmp`.
-- [x] **CLI Bugfix**: Exposição dos comandos `hb session start/stop` na CLI (estavam ocultos).
+- [x] **New Feature: Premium Terminal UI (`hb sdd status --ui`)**:
+    - Implementação de barra de status ANSI persistente no rodapé do terminal.
+    - Suporte a monitoramento em tempo real via flag `--watch`.
+    - Cálculo automático de progresso global e por feature.
+    - Isolamento de interface (não polui o scrollback).
 - [ ] CI/CD: Automação de distribuição de binários multi-OS.
 
 ## Blockers / Next Steps

@@ -6,11 +6,16 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/fatih/color"
 	"github.com/klebersonromero/hb/internal/sdd"
+	"github.com/klebersonromero/hb/internal/ui"
 	"github.com/spf13/cobra"
 )
+
+var uiEnabled bool
+var watchEnabled bool
 
 var sddCmd = &cobra.Command{
 	Use:   "sdd",
@@ -41,12 +46,12 @@ var sddInitCmd = &cobra.Command{
 
 		// Templates de Feature (Rigorosos)
 		files := map[string]string{
-			"spec.md":                fmt.Sprintf("# Specification: %s\n\n## Goal\n\n## Acceptance Criteria (BDD)\n", name),
-			"plan.md":                fmt.Sprintf("# Technical Plan: %s\n\n## Architecture\n\n## Mermaid Diagrams\n", name),
-			"tasks.md":               fmt.Sprintf("# Tasks: %s\n\n- [ ] 1. Define specifications\n- [ ] 2. Technical design\n- [ ] 3. Implementation\n- [ ] 4. Verification\n", name),
-			"contract.md":            fmt.Sprintf("# Validation Contract: %s\n\n## Validation Sensors\n- [ ] Sensor 1\n", name),
-			"validation-report.md":   fmt.Sprintf("# Validation Report: %s\n\n## Results\n\n## Evidence\n", name),
-			"verification-report.md": fmt.Sprintf("# Quality Verification: %s\n\n## Checklist\n- [ ] Clean Code\n- [ ] Security\n", name),
+			"spec.md": fmt.Sprintf("# Specification: %s\n\n## Goal\n\n## Acceptance Criteria (BDD)\n- **Given** \n- **When** \n- **Then** \n", name),
+			"plan.md": fmt.Sprintf("# Technical Plan: %s\n\n## Architecture\n\n## Mermaid Diagrams\n```mermaid\ngraph TD\n    A --> B\n```\n", name),
+			"tasks.md": fmt.Sprintf("# Tasks: %s\n\n## Phase 1: Planning\n- [ ] T1: Define specifications. `id: TASK-001`\n- [ ] T2: Technical design. `id: TASK-002`\n\n## Phase 2: Implementation\n- [ ] T3: Core logic. `id: TASK-003`\n\n## Phase 3: Verification\n- [ ] T4: Quality audit. `id: TASK-004`\n", name),
+			"contract.md": fmt.Sprintf("# Validation Contract: %s\n\n## Validation Sensors\n- [ ] Sensor: Test Coverage > 80%%\n- [ ] Sensor: Lint Passing\n- [ ] Sensor: BDD Scenarios Validated\n", name),
+			"validation-report.md": fmt.Sprintf("# Validation Report: %s\n\n## Results\n- **Score**: 0/100\n- **Status**: Pending\n\n## Evidence\n- [ ] Evidence 1\n", name),
+			"verification-report.md": fmt.Sprintf("# Quality Verification: %s\n\n## Checklist\n- [ ] Clean Code (SOLID, DRY)\n- [ ] Security Audit\n- [ ] Performance Baseline\n", name),
 		}
 
 		for filename, content := range files {
@@ -55,6 +60,7 @@ var sddInitCmd = &cobra.Command{
 		}
 
 		color.Green("✨ Feature '%s' inicializada com estrutura completa em %s", name, dir)
+		color.Cyan("💡 Arquivos padrão gerados, pode editá-los conforme nosso padrão.")
 	},
 }
 
@@ -127,6 +133,9 @@ var sddStatusCmd = &cobra.Command{
 
 		re := regexp.MustCompile(`- \[(.)\]`)
 
+		totalDoneGlobal := 0
+		totalTasksGlobal := 0
+
 		for _, entry := range entries {
 			if entry.IsDir() {
 				taskFile := filepath.Join(specsDir, entry.Name(), "tasks.md")
@@ -144,6 +153,9 @@ var sddStatusCmd = &cobra.Command{
 					}
 				}
 
+				totalDoneGlobal += done
+				totalTasksGlobal += total
+
 				percent := 0.0
 				if total > 0 {
 					percent = float64(done) / float64(total) * 100
@@ -158,6 +170,32 @@ var sddStatusCmd = &cobra.Command{
 
 				fmt.Printf("%-30s %-15s %-15s\n", entry.Name(), fmt.Sprintf("%d/%d (%.0f%%)", done, total, percent), status)
 			}
+		}
+
+		if uiEnabled {
+			manager := ui.NewUIManager(os.Stdout)
+			manager.Start()
+			defer manager.Stop()
+
+			percentGlobal := 0.0
+			if totalTasksGlobal > 0 {
+				percentGlobal = float64(totalDoneGlobal) / float64(totalTasksGlobal)
+			}
+
+			manager.SetState(ui.UIState{
+				FeatureName: "ALL FEATURES",
+				CurrentTask: fmt.Sprintf("Total Progress: %d/%d tasks", totalDoneGlobal, totalTasksGlobal),
+				Progress:    percentGlobal,
+				Status:      "Monitoring",
+			})
+
+			if watchEnabled {
+				color.Cyan("\n👀 Watch mode enabled. Press Ctrl+C to exit.")
+				for {
+					time.Sleep(1 * time.Second)
+				}
+			}
+			time.Sleep(1 * time.Second)
 		}
 	},
 }
@@ -393,6 +431,9 @@ var sddUltraplanCmd = &cobra.Command{
 }
 
 func init() {
+	sddStatusCmd.Flags().BoolVar(&uiEnabled, "ui", false, "Habilita a interface premium do terminal")
+	sddStatusCmd.Flags().BoolVar(&watchEnabled, "watch", false, "Monitora as mudanças em tempo real")
+
 	sddCmd.AddCommand(sddUltraplanCmd)
 	sddCmd.AddCommand(sddInitCmd) // Mantendo compatibilidade
 	sddCmd.AddCommand(sddStartCmd)

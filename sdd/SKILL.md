@@ -52,6 +52,10 @@ To prevent hallucinations and pattern drift, follow this strict hierarchy:
 - **On-Demand**: Only load sub-skill definitions and specific feature specs when active in that phase.
 - **Limit**: Target <30k tokens for the base environment to leave maximum room for reasoning.
 
+### 4. Real-Time Progress Monitoring
+- **Mandatory View**: Use **`hb sdd status --ui`** at the beginning and end of each session.
+- **Watch Mode**: During implementation (ACT phase), use **`hb sdd status --ui --watch`** to ensure task atomicity and progress visibility.
+
 ---
 
 ## 🏗️ Production Patterns
