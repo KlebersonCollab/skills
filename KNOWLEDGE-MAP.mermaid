@@ -1,10 +1,6 @@
 graph TD
     %% Nodes and Hierarchical Grouping
 
-    subgraph "Navigation & Orchestration"
-        swarm_facilitator["swarm-facilitator (1.2.0) 🛡️"]
-    end
-
     subgraph "Architecture & Design"
         api_architect["api-architect (1.4.0) 🛡️"]
         architecture["architecture (2.0.1) 🛡️"]
@@ -163,6 +159,10 @@ graph TD
         youtube_transcript["youtube-transcript (1.0.0) 🛡️"]
     end
 
+    subgraph "Navigation & Orchestration"
+        swarm_facilitator["swarm-facilitator (1.2.0) 🛡️"]
+    end
+
     %% Relations
     api_architect --(references)--> architecture
     api_architect --(references)--> token_distiller
@@ -246,6 +246,10 @@ graph TD
     youtube_transcript --(references)--> token_distiller
 
     %% Styling
+    style api_architect fill:#f3e5f5,stroke:#4a148c
+    style architecture fill:#f3e5f5,stroke:#4a148c
+    style architecture fill:#f3e5f5,stroke:#4a148c
+    style clean_code_mentor fill:#f3e5f5,stroke:#4a148c
     style azure_devops fill:#e8f5e9,stroke:#1b5e20
     style django_expert fill:#e8f5e9,stroke:#1b5e20
     style fastapi_expert fill:#e8f5e9,stroke:#1b5e20
@@ -263,10 +267,6 @@ graph TD
     style scaffolding_expert fill:#fff3e0,stroke:#e65100
     style youtube_transcript fill:#fff3e0,stroke:#e65100
     style swarm_facilitator fill:#fce4ec,stroke:#880e4f
-    style api_architect fill:#f3e5f5,stroke:#4a148c
-    style architecture fill:#f3e5f5,stroke:#4a148c
-    style architecture fill:#f3e5f5,stroke:#4a148c
-    style clean_code_mentor fill:#f3e5f5,stroke:#4a148c
 
     %% Legend
     subgraph "Legend"
