@@ -73,19 +73,19 @@ graph TD
         golang_testing_expert["golang-testing-expert ()"]
         golang_testing_expert["golang-testing-expert ()"]
         harness_expert["harness-expert ()"]
+        harness_expert["harness-expert ()"]
+        harness_expert["harness-expert ()"]
         harness_expert["harness-expert (3.1.0) 🛡️"]
         harness_expert["harness-expert ()"]
-        harness_expert["harness-expert ()"]
-        harness_expert["harness-expert ()"]
         knowledge_architect["knowledge-architect ()"]
         knowledge_architect["knowledge-architect ()"]
         knowledge_architect["knowledge-architect ()"]
         knowledge_architect["knowledge-architect ()"]
+        mcp_expert["mcp-expert ()"]
+        mcp_expert["mcp-expert ()"]
         mcp_expert["mcp-expert (1.0.0) 🛡️"]
         mcp_expert["mcp-expert ()"]
         mcp_expert["mcp-expert ()"]
-        mcp_expert["mcp-expert ()"]
-        mcp_expert["mcp-expert ()"]
         observability_expert["observability-expert ()"]
         observability_expert["observability-expert ()"]
         observability_expert["observability-expert ()"]
@@ -98,6 +98,7 @@ graph TD
         python_uv["python-uv ()"]
         python_uv["python-uv ()"]
         python_uv["python-uv ()"]
+        remotion_expert["remotion ()"]
         scaffolding_expert["scaffolding-expert ()"]
         scaffolding_expert["scaffolding-expert ()"]
         scaffolding_expert["scaffolding-expert ()"]
@@ -110,6 +111,8 @@ graph TD
         skill_factory["skill-factory ()"]
         skill_factory["skill-factory ()"]
         skill_factory["skill-factory ()"]
+        stitch_expert["stitch-expert ()"]
+        stitch_loop["stitch-loop ()"]
         swarm_facilitator["swarm-facilitator ()"]
         swarm_facilitator["swarm-facilitator ()"]
         swarm_facilitator["swarm-facilitator ()"]
@@ -221,6 +224,7 @@ graph TD
     onboarding_navigator --(references)--> token_distiller
     python_uv --(references)--> architecture
     python_uv --(references)--> token_distiller
+    remotion_expert --(references)--> architecture
     scaffolding_expert --(references)--> architecture
     scaffolding_expert --(references)--> token_distiller
     sdd --(references)--> architecture
@@ -229,6 +233,7 @@ graph TD
     sdd --(references)--> token_distiller
     skill_factory --(references)--> architecture
     skill_factory --(references)--> token_distiller
+    stitch_expert --(references)--> architecture
     swarm_facilitator --(references)--> api_architect
     swarm_facilitator --(references)--> architecture
     swarm_facilitator --(references)--> brainstorming
@@ -246,6 +251,7 @@ graph TD
     youtube_transcript --(references)--> token_distiller
 
     %% Styling
+    style swarm_facilitator fill:#fce4ec,stroke:#880e4f
     style api_architect fill:#f3e5f5,stroke:#4a148c
     style architecture fill:#f3e5f5,stroke:#4a148c
     style architecture fill:#f3e5f5,stroke:#4a148c
@@ -266,7 +272,6 @@ graph TD
     style skill_factory fill:#e1f5fe,stroke:#01579b
     style scaffolding_expert fill:#fff3e0,stroke:#e65100
     style youtube_transcript fill:#fff3e0,stroke:#e65100
-    style swarm_facilitator fill:#fce4ec,stroke:#880e4f
 
     %% Legend
     subgraph "Legend"
