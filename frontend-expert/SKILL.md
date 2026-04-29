@@ -62,6 +62,23 @@ The execution of this skill results in the following artifacts:
 
 ---
 
+## 🧩 Shadcn/UI Integration Rules
+
+- **Direct Installation**: Use `npx shadcn@latest add [component]` to install components directly into the codebase.
+- **Customization via `cn()`**: Always use the `cn()` utility (clsx + tailwind-merge) for composing and overriding classes cleanly.
+- **Component Variants**: Rely on `class-variance-authority` (`cva`) for deterministic component variations (e.g., button sizes, alert colors).
+- **Extensibility**: Do not modify the primitive inside `components/ui` directly unless necessary; instead, compose them in `components/[custom]`.
+
+## 🎨 Stitch HTML-to-React Conversion
+
+- **Modularization**: Break downloaded Stitch HTML into modular, independent files. Do not output massive single-file components.
+- **Logic Isolation**: Move all state, event handlers, and business logic into custom hooks in `src/hooks/`.
+- **Data Decoupling**: Move static text, image URLs, and lists out of the view layer into `src/data/mockData.ts`.
+- **Style Mapping**: Extract Tailwind classes from the Stitch HTML, sync them with the project's style guide (or Shadcn theme), and use theme-mapped utilities over raw hex codes.
+- **Type Safety**: Enforce `Readonly<[ComponentName]Props>` on every converted component.
+
+---
+
 ## 🔄 Workflow
 
 ### Phase 1: Design Review
