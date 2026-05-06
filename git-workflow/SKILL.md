@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-version: 2.2.0
+version: 2.3.0
 description: "Git workflow standards, including branching strategies, commit conventions, and SDD integration."
 category: development-workflow
 ---
@@ -9,10 +9,44 @@ category: development-workflow
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
 0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
 1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
-2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
-3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
-4. **Contract Check**: Was the `contract.md` file established with validation sensors?
-5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
+2. **Knowledge Check**: Follow the **Knowledge Verification Chain** (see below).
+
+---
+
+## 🧩 Delegation Matrix
+
+The `git-workflow` skill maps lifecycle stages to specialized protocols to ensure a linear and traceable history:
+
+| Phase | Resource / Protocol | Primary Artifact | Purpose |
+|---|---|---|---|
+| **DISCOVERY** | `references/branching-strategies.md` | Feature Branch | Selection of the branching model (GitHub Flow recommended). |
+| **SPECIFY** | `examples/gitmessage.template` | Git Config | Configuration of the mandatory commit message template. |
+| **IMPLEMENT** | `references/conventional-commits.md` | Atomic Commits | Standardized commits mapped to `tasks.md` IDs. |
+| **VERIFY** | `examples/pull-request.md` | Pull Request | Final audit, review documentation, and evidence collection. |
+
+---
+
+## 🔄 4-Phase Workflow
+
+### 1. DISCOVERY
+*   **Goal**: Align local state with remote and select strategy.
+*   **Action**: `git pull --rebase origin main`. Select branching strategy from `references/branching-strategies.md`.
+*   **Output**: Synchronized `main` and active `feature/` branch.
+
+### 2. SPECIFY
+*   **Goal**: Configure environment for standardized contributions.
+*   **Action**: Set up `.gitmessage` template. Verify scope definitions for Conventional Commits.
+*   **Output**: Configured local Git environment.
+
+### 3. IMPLEMENT
+*   **Goal**: Create a traceable, atomic history.
+*   **Action**: Execute commits using the mandatory format. Each commit MUST map to a task in `tasks.md`.
+*   **Output**: Atomic commits with English messages and correct types.
+
+### 4. VERIFY
+*   **Goal**: Finalize and integrate changes.
+*   **Action**: Rebase against `main`. Open PR using `examples/pull-request.md`. Update `STATE.md` with evidence.
+*   **Output**: Merged PR and clean linear history.
 
 ---
 
@@ -112,6 +146,23 @@ graph TD
 ### Use MERGE for:
 - Integrating a completed feature branch into `main`.
 - When the branch is shared with other developers (to avoid force pushing to public branches).
+
+---
+
+## 🛠️ Operational Protocols
+
+### 1. Knowledge Verification Chain
+Follow this hierarchy to maintain Git integrity:
+1.  **Git State**: Inspect `git status`, `git branch`, and `git log -n 5`.
+2.  **Implementation Trace**: Check `tasks.md` for task-commit mapping requirements.
+3.  **Internal Standards**: `git-workflow/references/` for naming and commit formats.
+4.  **Global Mandates**: Section 6 of `.specs/codebase/GLOBAL_MANDATES.md`.
+
+### 2. The Linear History Mandate
+Rebasing is the default for local synchronization. Merge commits are reserved for integration points (PR merges).
+
+### 3. English-Only Policy
+All Git metadata (commits, branches, PR titles) MUST be in English.
 
 ---
 

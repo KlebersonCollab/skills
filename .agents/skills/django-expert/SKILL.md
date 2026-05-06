@@ -148,3 +148,16 @@ Clear contracts and security first.
 | [Background Tasks](references/background_tasks.md) | Celery, Redis, and Idempotency. |
 | [Forms & Validation](references/forms.md) | Advanced validation and ModelForms. |
 | [Debugging](references/debugging.md) | Systematic debugging and Logs. |
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.370428Z"
+evidence_checksum: "NONE"
+```

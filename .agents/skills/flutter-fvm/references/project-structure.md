@@ -38,3 +38,16 @@ fvm flutter run --flavor dev --dart-define-from-file=env/dev.json
 - [ ] Are `sealed classes` used in `domain/` to represent states?
 - [ ] Is `main.dart` clean, delegating logic to `core/`?
 - [ ] Are entry points per flavor (`main_dev.dart`, etc.) configured?
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.367515Z"
+evidence_checksum: "NONE"
+```

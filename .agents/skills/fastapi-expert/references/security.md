@@ -72,3 +72,16 @@ def verify_password(plain_password, hashed_password):
 - **Pydantic-Settings**: Never put API keys in code. Use `BaseSettings`.
 - **HTTPS Redirect**: In production, always use `HTTPSRedirectMiddleware`.
 - **CORS**: Configure `CORSMiddleware` restrictively, never use `allow_origins=["*"]` in production.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.361986Z"
+evidence_checksum: "NONE"
+```

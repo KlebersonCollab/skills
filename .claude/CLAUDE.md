@@ -1,7 +1,3 @@
-# CLAUDE Project Instructions
-
-<!-- GLOBAL_MANDATES_START -->
-
 # Global Engineering Mandates (SDD v2.3.0 Observable)
 
 These instructions are fundamental and must be followed by all agents operating in this Hub. They prioritize logic-first governance, deterministic SDD workflows, and centralized project memory.
@@ -54,7 +50,7 @@ Any construction, development, or significant refactoring task **MUST** utilize 
 - **Skill-Driven Execution**: Identifying and using the most appropriate skill for each task is mandatory. Executing technical activities without the support of a specific skill's instructions is prohibited.
 
 ## 6. Version Control & Git
-Every agent **MUST** strictly follow the project's versioning standards:
+Every agent **MUST** strictly follow the project's versioning standards as defined in [git-workflow/SKILL.md](.agents/skills/git-workflow/SKILL.md):
 - **English-Only Commits**: All commit messages must be written in **English**.
 - **Conventional Commits**: Use the standard format (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`).
 - **Atomic Commits**: Commits must be atomic and, whenever possible, reference task IDs from `tasks.md`.
@@ -91,9 +87,3 @@ status: "COMPLETED"
 last_update: "2026-05-06T13:15:00Z"
 evidence_checksum: "NONE"
 ```
-
-
-<!-- GLOBAL_MANDATES_END -->
-
---- 
-*Mandate updated via HB-CLI.*

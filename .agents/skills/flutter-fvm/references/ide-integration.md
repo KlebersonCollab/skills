@@ -51,3 +51,16 @@ If VS Code continues to warn that the SDK was not found:
 2. In VS Code, press `Cmd+Shift+P` (macOS) or `Ctrl+Shift+P` (Windows).
 3. Type `Flutter: Change SDK`.
 4. Select the option that points to the FVM path in your project.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.366928Z"
+evidence_checksum: "NONE"
+```

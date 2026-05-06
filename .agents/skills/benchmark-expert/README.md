@@ -16,3 +16,16 @@ See the [SKILL.md](./SKILL.md) file for detailed workflow instructions and comma
 - `SKILL.md`: Master execution guide.
 - `references/`: Performance targets and analysis guides.
 - `examples/`: Examples of baselines and reports.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.358765Z"
+evidence_checksum: "NONE"
+```

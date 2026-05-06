@@ -45,3 +45,16 @@ brainstorming/
 - *"Let's brainstorm how to reduce the latency of our search API."*
 - *"Use the SCAMPER technique to propose new features for our dashboard."*
 - *"What are the trade-offs between using a relational or NoSQL database for this use case?"*
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.373854Z"
+evidence_checksum: "NONE"
+```

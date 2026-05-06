@@ -31,3 +31,16 @@ def send_external_notification(self, user_id):
 - **Atomic Tasks**: Ensure tasks are idempotent (they can run twice without issues).
 - **Avoid Large Payloads**: Pass only the object ID, not the entire object or large strings.
 - **Monitoring**: Use **Flower** to monitor queues in real-time.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.371012Z"
+evidence_checksum: "NONE"
+```

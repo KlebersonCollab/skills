@@ -23,3 +23,15 @@ Insert images or videos demonstrating changes in the UI.
 ## 🔗 Related Links
 - Closes #123
 - [Link to Spec/SDD](file:///...)
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "git-workflow-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:38:30Z"
+evidence_checksum: "NONE"
+```
