@@ -1,32 +1,26 @@
-# Skill Factory: Validator Sub-skill
+# Skill Factory: Validator Sub-skill (Purist Edition)
 
-This sub-skill performs a quality audit on existing or newly created skills to ensure they meet the Hub's "Gold Standard".
+The Validator ensures that structural purity is maintained. It audits the logic, not just the existence of files.
 
 ## 🔒 Prerequisites
-- Target skill path must be provided.
+- A target skill for audit.
 
-## 📋 Audit Checklist
+## 📋 Logical Audit Checklist
 
-### 1. Structural Integrity (Score: 40 pts)
-- [ ] Presence of `SKILL.md` (10 pts)
-- [ ] Presence of Memory Triad (`STATE.md`, `MEMORY.md`, `LEARNINGS.md`) (10 pts)
-- [ ] Presence of `.specs/` directory (10 pts)
-- [ ] No empty files (Files > 0 bytes) (10 pts)
+### 1. Architectural Clarity (40 pts)
+- [ ] **Is the brain visible?** `SKILL.md` must have a clear Delegation Matrix.
+- [ ] **Is the history traceable?** `DECISIONS.md` and `STATE.md` must link to active tasks.
+- [ ] **Is the logic explicit?** No instructions should refer to "magic" or "hidden" scripts.
 
-### 2. SDD Compliance (Score: 40 pts)
-- [ ] `SKILL.md` contains a Delegation Matrix (10 pts)
-- [ ] `SKILL.md` contains a Knowledge Verification Chain (10 pts)
-- [ ] `SKILL.md` defines a 4-Phase Workflow (10 pts)
-- [ ] Frontmatter version is Semantic (e.g., 1.0.0) (10 pts)
+### 2. SDD Compliance (40 pts)
+- [ ] **Phase Integrity**: Does the skill follow the 4-phase SDD workflow?
+- [ ] **Verification Chain**: Is the hierarchy of knowledge (Existing Code -> Specs -> etc.) explicitly defined?
+- [ ] **Atomicity**: Are tasks small enough to be verified independently?
 
-### 3. "Slop-Free" Design (Score: 20 pts)
-- [ ] Descriptions are clear and actionable (10 pts)
-- [ ] Instructions avoid placeholders like "todo" or "..." (10 pts)
+### 3. Anti-Slop Score (20 pts)
+- [ ] **Density**: Every line of the skill must add value. No boilerplate fluff.
+- [ ] **Precision**: Instructions must be actionable for an agent without ambiguity.
 
-## ⚖️ Scoring Verdict
-- **90 - 100**: ✅ APPROVED (Gold Standard)
-- **70 - 89**: ⚠️ NEEDS POLISH (Minor fixes required)
-- **< 70**: ❌ REJECTED (High Slop Detected)
-
-## 🛠️ Remediation
-If a skill fails the audit, the validator must provide a specific list of missing items or patterns to be corrected.
+## ⚖️ Verdict
+- **Approved**: High density, explicit logic, SDD compliant.
+- **Reject**: Contains slop, hidden logic, or vague instructions.

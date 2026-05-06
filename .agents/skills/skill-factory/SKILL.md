@@ -24,17 +24,17 @@ The Skill Factory delegates specific lifecycle tasks to its sub-agents:
 
 | Phase | Sub-Skill | Primary Artifact | Purpose |
 |---|---|---|---|
-| **BOOTSTRAP** | `skill-factory-bootstrap` | New Skill Directory | Scaffolding of folders, base files, and memory artifacts. |
-| **VALIDATE** | `skill-factory-validator` | `audit-report.md` | Verification of structural integrity and SDD compliance. |
+| **DESIGN** | `skill-factory-bootstrap` | Skill Blueprint | Conceptual and physical mapping of the skill's logic. |
+| **AUDIT** | `skill-factory-validator` | `audit-report.md` | Verification of structural and logical integrity. |
 
 ---
 
 ## 🔄 Factory Workflow
 
-### 1. Creation (Bootstrap)
-*   **Goal**: Zero-to-hero skill initialization.
-*   **Action**: Use `skill-factory-bootstrap` to create the directory structure.
-*   **Output**: A fully populated directory with `SKILL.md`, `README.md`, and the `.specs/` hierarchy.
+### 1. Design (Bootstrap)
+*   **Goal**: Define the skill's ontological structure.
+*   **Action**: Use `skill-factory-bootstrap` to design the directory and file logic.
+*   **Output**: A clean, structured skill repository following the SDD v2.2.0 spec.
 
 ### 2. Validation (Audit)
 *   **Goal**: Ensure the new skill isn't "Slop".
@@ -45,11 +45,11 @@ The Skill Factory delegates specific lifecycle tasks to its sub-agents:
 
 ## 🛠️ Operational Protocols
 
-### 1. The "Gold Standard" Mandate
-Every skill created MUST include:
-- **Semantic Frontmatter**: Accurate metadata for the Skill Router.
-- **Memory Triad**: `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
-- **SDD Hierarchy**: Feature specs must live in `.specs/features/`.
+### 1. The "Structural Purity" Mandate
+Every skill created MUST be self-documenting:
+- **Explicit Logic**: No hidden dependencies or "magic" CLI commands.
+- **Memory Triad**: Mandatory `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+- **Atomic Intent**: Every task and spec must have a clear ID and verification method.
 
 ### 2. Knowledge Verification Chain
 To prevent pattern drift, the Factory follows:
