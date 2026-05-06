@@ -8,82 +8,94 @@ def extract_metadata(path):
     with open(path, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Pattern para o bloco de metadados SDD
-    # Busca blocos que NÃO estão dentro de outro bloco de código (evita templates em documentação)
-    # Procuramos pela última ocorrência que pareça ser um estado real
+    # Pattern to find SDD state blocks
+    # We look for the marker and the following yaml block
     pattern = r'<!-- @sdd-state -->\s*```yaml\s*(.*?)\s*```'
-    matches = re.findall(pattern, content, re.DOTALL)
+    matches = re.finditer(pattern, content, re.DOTALL)
     
-    if matches:
-        # Filtramos para pegar o último que não seja um template
-        for yaml_content in reversed(matches):
-            metadata = {}
-            for line in yaml_content.split('\n'):
-                if ':' in line:
-                    key, value = line.split(':', 1)
-                    metadata[key.strip()] = value.strip().strip('"').strip("'")
+    valid_metadata = None
+    
+    for match in matches:
+        start_idx = match.start()
+        
+        # Security check: verify this block is NOT inside another code block
+        # We count the number of ``` before the match
+        prefix = content[:start_idx]
+        if prefix.count('```') % 2 != 0:
+            # We are likely inside a code block (odd number of fences before us)
+            continue
             
-            # Se não for um template (contém placeholders), retornamos este
-            if metadata.get('feature_id') != 'FEAT-ID' and metadata.get('last_update') != 'ISO-TIMESTAMP':
-                return metadata
+        yaml_content = match.group(1)
+        metadata = {}
+        for line in yaml_content.split('\n'):
+            if ':' in line:
+                key, value = line.split(':', 1)
+                metadata[key.strip()] = value.strip().strip('"').strip("'")
+        
+        # Check if it's a real state (not a template)
+        if metadata.get('feature_id') != 'FEAT-ID' and metadata.get('last_update') != 'ISO-TIMESTAMP':
+            valid_metadata = metadata
             
-    return None
+    return valid_metadata
 
 def get_targets():
     targets = []
     
-    # 1. Arquivos na raiz
+    # 1. Root and Core Artifacts
+    core_dirs = [".specs/project", ".specs/codebase"]
     root_files = ["README.md", "PROJECT-ONBOARDING.md"]
+    
     for f in root_files:
         if os.path.exists(f):
             targets.append(f)
             
-    # 2. Specs de Projeto
-    spec_project = ".specs/project"
-    if os.path.exists(spec_project):
-        for f in sorted(os.listdir(spec_project)):
-            if f.endswith(".md"):
-                targets.append(os.path.join(spec_project, f))
+    for d in core_dirs:
+        if os.path.exists(d):
+            for f in sorted(os.listdir(d)):
+                if f.endswith(".md"):
+                    targets.append(os.path.join(d, f))
 
-    # 3. Codebase Specs
-    spec_codebase = ".specs/codebase"
-    if os.path.exists(spec_codebase):
-        for f in sorted(os.listdir(spec_codebase)):
-            if f.endswith(".md"):
-                targets.append(os.path.join(spec_codebase, f))
-
-    # 4. Descoberta Dinâmica de Skills
-    # Varre todos os diretórios em busca de SKILL.md
+    # 2. Dynamic Skill Discovery
+    exclude_dirs = {'.git', 'bin', 'node_modules', 'venv', '.agents', '.gemini', '.cursor'}
+    
     for root, dirs, files in os.walk("."):
-        # Ignorar diretórios ocultos ou de sistema
-        dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ['bin', 'examples', 'resources', 'node_modules', 'venv']]
+        # Prune excluded directories
+        dirs[:] = [d for d in dirs if d not in exclude_dirs and not d.startswith('.')]
         
+        if any(excl in root.split(os.sep) for excl in exclude_dirs):
+            continue
+
         if "SKILL.md" in files:
-            # Encontramos uma skill!
-            # Adicionamos os arquivos padrão de uma skill
-            skill_files = ["SKILL.md", "README.md", "CHANGELOG.md"]
-            for sf in skill_files:
+            # Found a skill directory
+            for sf in ["SKILL.md", "README.md", "CHANGELOG.md"]:
                 path = os.path.join(root, sf)
-                if os.path.exists(path) and path not in targets:
+                if os.path.exists(path):
                     targets.append(path)
             
-            # Adicionamos arquivos .skill.md e referências
+            # Sub-skills
             for f in files:
                 if f.endswith(".skill.md"):
-                    path = os.path.join(root, f)
-                    if path not in targets:
-                        targets.append(path)
+                    targets.append(os.path.join(root, f))
             
-            # Checar referências se existirem
+            # References
             ref_path = os.path.join(root, "references")
             if os.path.exists(ref_path):
                 for rf in sorted(os.listdir(ref_path)):
                     if rf.endswith(".md"):
-                        path = os.path.join(ref_path, rf)
-                        if path not in targets:
-                            targets.append(path)
+                        targets.append(os.path.join(ref_path, rf))
 
-    return sorted(list(set(targets)))
+    # De-duplicate and normalize
+    seen = set()
+    unique_targets = []
+    for t in targets:
+        nt = os.path.normpath(t)
+        if nt.startswith("./"):
+            nt = nt[2:]
+        if nt not in seen:
+            unique_targets.append(nt)
+            seen.add(nt)
+            
+    return unique_targets
 
 if __name__ == "__main__":
     print("--- 🛡️ SDD v2.3.0 Observable Governance Audit ---")
@@ -95,17 +107,13 @@ if __name__ == "__main__":
     
     errors = 0
     for target in targets:
-        # Normaliza o path para exibição (remove ./ inicial)
-        display_path = target[2:] if target.startswith("./") else target
-        
         meta = extract_metadata(target)
         if meta:
             ver = meta.get('version', '???')
             status = meta.get('status', '???')
-            print(f"✅ {display_path:<57} | {ver:<8} | {status:<12}")
+            print(f"✅ {target:<57} | {ver:<8} | {status:<12}")
         else:
-            # Se o arquivo existe mas não tem metadados, é falha
-            print(f"❌ {display_path:<57} | {'MISSING':<8} | {'FAILED':<12}")
+            print(f"❌ {target:<57} | {'MISSING':<8} | {'FAILED':<12}")
             errors += 1
     
     print("\n" + "="*85)

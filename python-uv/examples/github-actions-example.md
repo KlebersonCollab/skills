@@ -144,3 +144,15 @@ Always use `uv sync --locked` in CI to ensure exact reproduction. If the lockfil
 
 ### Optimized Matrix
 Quality checks run once (no matrix needed). Heavy tests run in a matrix for cross-platform validation.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:35:33Z"
+evidence_checksum: "NONE"
+```

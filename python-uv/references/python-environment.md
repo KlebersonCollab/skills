@@ -173,3 +173,14 @@ uv cache info
 | 0.9.0-0.9.5 | ✅ | ✅ | ✅ | ✅ (default) | Beta | Experimental |
 | 0.9.6+ | ✅ | ✅ | ✅ | ✅ | ✅ (default) | Stable |
 | 0.9.7+ | ✅ | ✅ | ✅ | ✅ | ✅ (default) | Stable |
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.665826Z"
+evidence_checksum: "NONE"
+```

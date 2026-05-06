@@ -47,3 +47,16 @@ git rebase origin/main
 - [Branching Strategies](references/branching-strategies.md)
 - [Commit Template](examples/gitmessage.template)
 - [PR Template](examples/pull-request.md)
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.362588Z"
+evidence_checksum: "NONE"
+```

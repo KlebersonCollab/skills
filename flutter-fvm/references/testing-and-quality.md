@@ -45,3 +45,16 @@ analyzer:
 - [ ] Critical widgets have Semantics tests?
 - [ ] Goldens were updated for the target platform?
 - [ ] Used `mocktail` to isolate external dependencies?
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.367830Z"
+evidence_checksum: "NONE"
+```

@@ -53,3 +53,16 @@ final (lat, lng) = getCoordinates();
 - [ ] Is the `switch` an expression (with return) whenever possible?
 - [ ] Avoided `dynamic` by enabling `strict-casts` in the analyzer?
 - [ ] Used `records` for simple multiple returns?
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.367171Z"
+evidence_checksum: "NONE"
+```

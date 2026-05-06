@@ -21,3 +21,16 @@ New code can introduce imperceptible slowness in development environments, but c
 ## How to Report
 Use clear tables that highlight negative changes in red and positive changes in green.
 See [examples/comparison_report.md](../examples/comparison_report.md) for a template.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.359236Z"
+evidence_checksum: "NONE"
+```

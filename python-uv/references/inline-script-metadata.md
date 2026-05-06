@@ -257,3 +257,14 @@ uv run --python 3.11 script.py
 | First time (download + setup) | 5-30s (depends on deps) |
 | Subsequent executions (cache) | <1s |
 | After `uv cache clean` | Reverts to first-time duration |
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.665607Z"
+evidence_checksum: "NONE"
+```

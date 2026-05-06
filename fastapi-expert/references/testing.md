@@ -71,3 +71,16 @@ async def setup_db():
 uv add --dev pytest pytest-asyncio httpx aiosqlite
 uv run pytest
 ```
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.362093Z"
+evidence_checksum: "NONE"
+```

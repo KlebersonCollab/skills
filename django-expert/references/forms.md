@@ -35,3 +35,16 @@ widgets = {
 - **ModelForms**: Use whenever the form maps directly to a model.
 - **CSRF**: Never forget the `{% csrf_token %}` tag in the template.
 - **Error Messages**: Customize error messages to improve UX.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.371335Z"
+evidence_checksum: "NONE"
+```

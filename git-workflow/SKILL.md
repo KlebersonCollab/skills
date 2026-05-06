@@ -139,3 +139,16 @@ graph TD
 - [Detailed Branching Strategies](references/branching-strategies.md)
 - [Git Message Template](examples/gitmessage.template)
 - [Pull Request Template](examples/pull-request.md)
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.362355Z"
+evidence_checksum: "NONE"
+```

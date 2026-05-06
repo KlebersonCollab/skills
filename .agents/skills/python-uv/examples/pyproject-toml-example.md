@@ -163,3 +163,15 @@ uv run mypy .
 # Build
 uv build --clear
 ```
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:35:33Z"
+evidence_checksum: "NONE"
+```

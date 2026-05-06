@@ -190,3 +190,14 @@ yt-dlp --sleep-interval 5 "https://www.youtube.com/watch?v=VIDEO_ID"
 - [yt-dlp Documentation](https://github.com/yt-dlp/yt-dlp)
 - [YouTube Video ID Format](https://en.wikipedia.org/wiki/YouTube#Video_format)
 - [Subtitle Formats](https://en.wikipedia.org/wiki/Subtitle_(captioning)#Formats)
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "YT-TRANSCRIPT-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T10:48:00Z"
+evidence_checksum: "NONE"
+```

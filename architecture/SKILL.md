@@ -103,3 +103,16 @@ The execution of this skill results in the following mandatory artifacts in `.sp
 - [`references/adr-template.md`](references/adr-template.md) — Official ADR template.
 
 
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.372120Z"
+evidence_checksum: "NONE"
+```

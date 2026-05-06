@@ -41,3 +41,16 @@ class ProductViewSet(viewsets.ModelViewSet):
 ## Auth & Permissions
 - Use `IsAuthenticated` by default.
 - Create custom permissions for business rules (e.g., `IsOwnerOrReadOnly`).
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.370801Z"
+evidence_checksum: "NONE"
+```

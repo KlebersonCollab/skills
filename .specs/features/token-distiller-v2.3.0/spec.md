@@ -11,10 +11,10 @@ The `token-distiller` skill is currently at version 2.2.0. To comply with the la
 - **FR-5**: Remove local `tasks.md` to prevent context fragmentation.
 
 ## 3. Acceptance Criteria (AC)
-- [ ] `SKILL.md` version is `2.3.0`.
-- [ ] All `.md` files in `token-distiller/` (except references/examples) contain the `@sdd-state` block.
-- [ ] `token-distiller/tasks.md` is deleted.
-- [ ] Project-wide `make audit` passes with 100% compliance.
+- [x] `SKILL.md` version is `2.3.0`.
+- [x] All `.md` files in `token-distiller/` (except references/examples) contain the `@sdd-state` block.
+- [x] `token-distiller/tasks.md` is deleted.
+- [x] Project-wide `make audit` passes with 100% compliance.
 
 ---
 
@@ -22,8 +22,8 @@ The `token-distiller` skill is currently at version 2.2.0. To comply with the la
 ```yaml
 version: "2.3.0"
 feature_id: "TOKEN-DISTILLER-V2.3.0"
-phase: "IMPLEMENT"
+phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-06T12:55:00Z"
+last_update: "2026-05-06T10:14:12Z"
 evidence_checksum: "NONE"
 ```
