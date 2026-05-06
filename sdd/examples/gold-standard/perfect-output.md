@@ -1,7 +1,7 @@
-# Gold Standard Output: SDD Execution
+# Gold Standard Output: SDD Execution (Multi-File)
 
-## 1. Spec Analysis (spec.md)
-The agent generated a clear specification with Acceptance Criteria in BDD:
+## 1. Requirements (spec.md)
+The agent generated a clear specification focusing on behavior:
 
 ```markdown
 ### AC-1: Token Generation
@@ -11,7 +11,7 @@ The agent generated a clear specification with Acceptance Criteria in BDD:
 ```
 
 ## 2. Technical Design (plan.md)
-The plan includes a Mermaid sequence diagram:
+The plan includes a Mermaid sequence diagram and schema definitions:
 
 ```mermaid
 sequenceDiagram
@@ -22,9 +22,18 @@ sequenceDiagram
     API-->>User: 200 OK (token)
 ```
 
-## 3. Rationale
+## 3. Atomic Tasks (tasks.md)
+Broken down into implementable chunks:
+
+```markdown
+- [x] Create Auth Service with JWT signing logic.
+- [ ] Implement /login route and controller.
+- [ ] Add integration tests for success/fail login scenarios.
+```
+
+## 4. Rationale
 This output is Gold Standard because:
-- Correctly follows **Auto-Sizing** (Medium).
-- Uses **BDD** for acceptance criteria.
-- Includes visualization via **Mermaid**.
-- Breaks down tasks **atomically** in `tasks.md`.
+- **Separation of Concerns**: Spec defines "What", Plan defines "How", Tasks define "When".
+- **BDD-First**: Acceptance criteria are readable and testable.
+- **Traceability**: Each task maps back to an AC in the spec.
+- **Visual Evidence**: Uses Mermaid to prevent architectural hallucinations.

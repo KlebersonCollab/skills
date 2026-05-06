@@ -1,6 +1,6 @@
 ---
 name: sdd-reviewer
-version: 1.5.0
+version: 2.2.0
 description: "Reviewer agent for Spec Driven Development. Validates implementation against spec acceptance criteria with pass/fail evidence reporting."
 category: development-workflow
 parameters:

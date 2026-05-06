@@ -133,3 +133,4 @@
 - **Learning**: Durante fases de integração acelerada (ex: Stitch Skills), há uma tendência natural de negligenciar os hooks de governança (SDD Hooks) e arquivos mandatórios (`CHANGELOG.md`) nas novas habilidades criadas.
 - **Pattern**: Auditorias SDD periódicas são essenciais para identificar esse "drift" documental antes que ele comprometa a capacidade de futuros agentes de operar com segurança no repositório.
 - **Mitigation**: Implementar verificação de conformidade de habilidades no pipeline de CI/CD para garantir que nenhuma nova habilidade seja integrada sem os requisitos mínimos de governança.
+- **ADK-Based Architecture [2026-05-06]**: A adoção do modelo de 5 camadas do Agent Development Kit permite uma separação clara entre as regras de longo prazo (CLAUDE.md) e as capacidades sob demanda (Skills), reduzindo drasticamente o consumo de tokens e a fadiga do contexto.

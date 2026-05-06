@@ -18,6 +18,7 @@
 - **Mandatory Use of Skills**: As per `GLOBAL_MANDATES.md`, any technical execution MUST be mediated by a specific Hub skill.
 - **Deterministic Lifecycle**: Every agent operating in the Hub must mandatorily execute the **Session Bootstrap** (start) and the **Session Exit Gate** (end).
 - **Hardened SDD Governance (2026-04-25)**: Established Zero-Tolerance for skipping Plan/Explore phases in Medium+ tasks. Every new skill must be linked to a `.specs/features/` folder.
+- **ADK Alignment (2026-05-06)**: Integrated the 5-layer Agent Development Kit model (Memory, Knowledge, Guardrails, Delegation, Distribution) as the core architectural standard for the Hub.
 
 ## Git Workflow Conventions
 - **Conventional Commits**: Mandatory for all commits in the repository. Messages must be written in **English**.

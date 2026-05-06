@@ -5,6 +5,14 @@ description: Especialista no Agent Development Kit (ADK). Framework de 5 camadas
 category: architecture
 ---
 
+## 🔒 Prerequisites (Mandatory)
+Esta skill opera dentro do framework **SDD**. Antes de qualquer execução técnica:
+0. **Mode Check**: Verifique o modo operacional atual (`.hub-mode`).
+1. **Context Check**: Reidrate o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md`.
+2. **Layer Check**: Certifique-se de que a camada 1 (CLAUDE.md) está devidamente configurada.
+
+---
+
 # 🤖 The Agent Development Kit (ADK) Expert
 
 > Guia mestre para arquiteturas agenticas baseadas no modelo de 5 camadas.

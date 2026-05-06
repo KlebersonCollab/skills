@@ -1,6 +1,6 @@
 ---
 name: sdd-implementer
-version: 2.1.0
+version: 2.2.0
 description: "Implementer agent for Spec Driven Development. Surgically writes code and tests following Safety-Valve and Knowledge Chain protocols."
 category: development-workflow
 ---
