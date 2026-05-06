@@ -84,7 +84,17 @@ Before execution:
 Every artifact generated MUST include a structured metadata block.
 
 #### Metadata Protocol
-At the end of every `.md` artifact, append the following block:
+Every artifact MUST include this block. Use the following guide for the `status` and `phase` fields:
+
+| Activity | Metadata `phase` | Metadata `status` |
+|---|---|---|
+| Initializing Spec/Plan | `SPECIFY` | `IN_PROGRESS` |
+| Spec/Plan Frozen | `SPECIFY` | `COMPLETED` |
+| Coding in progress | `IMPLEMENT` | `IN_PROGRESS` |
+| Tasks done, ready for audit | `IMPLEMENT` | `COMPLETED` |
+| Reviewing results | `VERIFY` | `IN_PROGRESS` |
+| Project signed-off | `VERIFY` | `COMPLETED` |
+
 ```markdown
 <!-- @sdd-state -->
 ```yaml

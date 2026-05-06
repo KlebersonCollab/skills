@@ -67,7 +67,19 @@ The SDD follows a rigorous cycle to ensure integrity and traceability:
 
 ## 🛠️ Operational Protocols
 
-### 1. The Safety Valve (Automatic Escalation)
+### 1. The Gated Workflow Mandate (Gated Transition)
+Progress between phases is strictly sequential and permission-gated:
+- **Rule**: You CANNOT set `phase: [NEXT_PHASE]` in `STATE.md` if the current `tasks.md` does not have 100% status coverage and verifiable evidence for the current phase.
+- **Initial State**: New feature artifacts (`spec.md`, `plan.md`, `tasks.md`) MUST start with `status: IN_PROGRESS`.
+- **Completion Hook**: An artifact only moves to `status: COMPLETED` when its specific content is frozen and approved for the next phase.
+
+### 2. State Machine Integrity
+Every agent interaction must validate the "State Triad":
+1. **STATE.md** `phase` must match the current focus.
+2. **tasks.md** must have at least one open task for the current phase.
+3. **Artifact Metadata** must show `status: IN_PROGRESS` for files currently being edited.
+
+### 3. The Safety Valve (Automatic Escalation)
 Every implementation task must be continuously monitored for complexity drift.
 - **Trigger**: If a task reveals unexpected structural changes, touches >3 files, or modifies components listed as "Fragile" in `TECHNICAL-MAP.md`.
 - **Action**: **STOP** execution. Notify the user: *"Task complexity has escalated beyond initial sizing. Re-evaluating the plan."*

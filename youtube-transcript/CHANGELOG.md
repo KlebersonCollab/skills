@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [2.3.0] - 2026-05-06
+
+### Changed
+- **Governance Upgrade**: Aligned with SDD v2.3.0 Observable Governance.
+- **Metadata Injection**: Added `<!-- @sdd-state -->` to all skill artifacts.
+- **Purity Sweep**: Removed local `audit-report.md` in favor of centralized memory.
+
 ## [2.0.0] - 2026-05-06
 
 ### Changed
@@ -20,3 +27,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **SKILL.md**: Main skill definition with decision flow and fallback.
 - **README.md**: Overview and usage documentation.
 - **Base Structure**: Initial scaffolding following Skills Hub standards.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "YT-TRANSCRIPT-ALIGNMENT"
+phase: "IMPLEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T10:17:00Z"
+evidence_checksum: "NONE"
+```
