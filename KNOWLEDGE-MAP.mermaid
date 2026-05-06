@@ -1,14 +1,6 @@
 graph TD
     %% Nodes and Hierarchical Grouping
 
-    subgraph "Architecture & Design"
-        adk_expert["adk-expert (1.0.0) 🛡️"]
-        api_architect["api-architect (1.4.0) 🛡️"]
-        architecture["architecture (2.0.1) 🛡️"]
-        architecture["architecture (2.0.1) 🛡️"]
-        clean_code_mentor["clean-code-mentor (1.0.0) 🛡️"]
-    end
-
     subgraph "Miscellaneous"
         api_architect["api-architect ()"]
         api_architect["api-architect ()"]
@@ -148,6 +140,14 @@ graph TD
         swarm_facilitator["swarm-facilitator (1.2.0) 🛡️"]
     end
 
+    subgraph "Architecture & Design"
+        adk_expert["adk-expert (1.0.0) 🛡️"]
+        api_architect["api-architect (1.4.0) 🛡️"]
+        architecture["architecture (2.0.1) 🛡️"]
+        architecture["architecture (2.0.1) 🛡️"]
+        clean_code_mentor["clean-code-mentor (1.0.0) 🛡️"]
+    end
+
     %% Relations
     adk_expert --(references)--> architecture
     api_architect --(references)--> architecture
@@ -213,6 +213,7 @@ graph TD
     sdd --(references)--> architecture
     sdd --(references)--> context_graph
     sdd --(references)--> git_workflow
+    sdd --(references)--> tlc_spec_driven
     sdd --(references)--> token_distiller
     skill_factory --(references)--> architecture
     skill_factory --(references)--> token_distiller

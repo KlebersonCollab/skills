@@ -80,6 +80,7 @@ For complex user-facing features, you MUST:
 
 - **Fact-Based**: Evaluation is not subjective. Everything must be anchored in sensor evidence or explicit test coverage.
 - **Acceptance Standards**: Use the [BDD Guide](references/bdd-guide.md) as a reference to understand how to audit scenarios.
+- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md) when passing the final verdict to the Planner.
 
 ## Prohibited
 
