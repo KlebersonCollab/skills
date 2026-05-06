@@ -1,14 +1,14 @@
 ---
 name: observability-expert
-version: 1.0.0
+version: 2.2.0
 description: "Skill for SRE and Observability specialist. Focuses on Structured Logs, OpenTelemetry, SLIs/SLOs, and proactive monitoring to ensure system resilience."
 category: site-reliability-engineering
 ---
 
 ## 🔒 Prerequisites (Mandatory)
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
-0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
-1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
+1. **Context Check**: Rehydrate state by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
 2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
 3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
 4. **Contract Check**: Was the `contract.md` file established with validation sensors?

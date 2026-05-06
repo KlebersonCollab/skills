@@ -18,7 +18,7 @@ Context management is vital to maintaining logical reasoning capacity in long ta
 ## Context Zones
 - 🟢 **Healthy** (<40k total tokens): Silent.
 - 🟡 **Moderate** (40-60k): Discreet footer warning.
-- 🔴 **Critical** (>60k): Active warning, suggests context optimization (e.g., using `hb distill` or archiving logs).
+- 🔴 **Critical** (>60k): Active warning, suggests context optimization (e.g., using `token-distiller` or archiving logs).
 
 ## Operational Principles
 1. **Target:** Maintain less than 40k active tokens loaded.

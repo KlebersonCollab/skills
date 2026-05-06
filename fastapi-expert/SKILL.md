@@ -1,6 +1,6 @@
 ---
 name: fastapi-expert
-version: 1.1.0
+version: 2.2.0
 description: "Expert level FastAPI implementation focused on performance, clean architecture, and Python-UV integration."
 category: development-python
 ---
@@ -52,7 +52,7 @@ Escrita dos endpoints e handlers de exceção.
 ### Phase 4: VALIDATION & PERF
 Auditoria de performance e documentação.
 - **Check**: Validar se não há código bloqueante dentro de `async def`.
-- **Mandate**: Executar **`hb bench <target>`** para garantir que a latência dos serviços críticos não sofreu regressão.
+- **Mandate**: Perform performance audits using standardized benchmarking tools and document results.
 
 ### Phase 5: TESTING
 Implementação de testes unitários e de integração.

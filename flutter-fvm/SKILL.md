@@ -1,6 +1,6 @@
 ---
 name: flutter-fvm
-version: 1.3.0
+version: 2.2.0
 description: "Skill for professional Flutter development with FVM. Includes Dart 3+ patterns, optimized performance, mandatory accessibility, OWASP security, and resilience management (Error Handling)."
 category: development-workflow
 ---
@@ -13,8 +13,8 @@ category: development-workflow
 
 ## 🔒 Prerequisites (Mandatory)
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
-0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
-1. **Context Check**: Did you rehydrate the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
+0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
+1. **Context Check**: Rehydrate state by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
 2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
 3. **Plan Check**: Does the `plan.md` file define the architecture and schemas, and include **Mermaid** diagrams?
 4. **Contract Check**: Was the `contract.md` file established with validation sensors?
