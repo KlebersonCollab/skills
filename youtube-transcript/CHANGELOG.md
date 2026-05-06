@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [2.0.0] - 2026-05-06
+
+### Changed
+- **Governance Upgrade**: Retrofitted to SDD v2.2.0 and Skill Factory v2.2.0 standards.
+- **Centralized Memory**: Migrated operational context to `.specs/project/`.
+- **Prerequisites**: Aligned with `agent.md` mental and operational checklists.
+- **Audit Report**: Standardized validation via `audit-report.md`.
+
 ## [1.0.0] - 2026-04-15
 
 ### Added

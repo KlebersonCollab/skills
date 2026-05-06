@@ -1,72 +1,73 @@
 ---
 name: youtube-transcript
-version: 1.0.0
-description: "Skill to automate the extraction of transcripts from YouTube videos with AI fallback (Whisper)."
+version: 2.0.0
+description: "High-performance extraction of YouTube transcripts with AI fallback (Whisper) and advanced deduplication."
 category: automation
 ---
 
 ## 🔒 Prerequisites (Mandatory)
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
-0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
-1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
-2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
-3. **Plan Check**: Does the `plan.md` file define architecture, schemas, and include **Mermaid** diagrams?
-4. **Contract Check**: Was the `contract.md` file established with validation sensors?
-5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
----
-# YouTube Transcript
-
-> Skill to automate the extraction of transcripts from YouTube videos with AI fallback (Whisper).
-
----
-
-## Goal
-
-The primary goal of this skill is to provide a fast and robust way to obtain the textual content of YouTube videos, prioritizing existing captions (manual or automatic) to save resources and time, and using AI models (Whisper) only when necessary.
+0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
+1. **Session Bootstrap**: 
+   - Rehydrate context from `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
+   - Align with `onboarding-navigator` for project culture.
+2. **SDD Verification**: 
+   - Validate if `spec.md` and `plan.md` exist for the target feature.
+   - Use `hb sdd review <feature>` if applicable.
+3. **Task Integrity**: Ensure tasks in `tasks.md` are atomized and mapped to Git commits.
 
 ---
 
-## Protocol
+# YouTube Transcript Expert (v2.0.0)
 
-### Phase 1: Context & Metadata
-1.  **Extract Info:** Execute `yt-dlp --get-title --list-subs "{{url}}"` to get the video title and map available captions.
-2.  **Sanitize Title:** Clean the title of special characters for use as a filename.
+> "Content is king, but structure is the kingdom. Precision in extraction, rigor in cleanup."
 
-### Phase 2: Selection Strategy
-Follow the priority order to obtain the transcript:
+---
 
-1.  **Manual Subtitles:** If manual captions exist (`--write-sub`), download them in VTT format.
-2.  **Automatic Subtitles:** If no manual ones exist, but automatic ones do (`--write-auto-sub`), download them in VTT format.
-3.  **AI Fallback (Whisper):** If no captions exist:
-    - Request confirmation from the user to download only the audio (`bestaudio`).
-    - Execute transcription via Whisper using `uv run --with openai-whisper whisper audio_file.mp3 --model base`.
+## 🎯 Goal
+Provide a fast and robust mechanism to obtain textual content from YouTube videos, prioritizing existing captions (manual or automatic) to save resources, and using AI models (Whisper) only as a verified fallback.
 
-### Phase 3: Text Processing (Cleanup)
-Regardless of the source (VTT or Whisper), process the final text to ensure absolute cleanliness using the inline Python script:
+---
+
+## 🧩 Protocol (4-Phase Workflow)
+
+### Phase 1: DISCOVERY (Metadata & Mapping)
+*   **Goal**: Understand the video's available resources.
+*   **Action**: Execute `yt-dlp --get-title --list-subs "{{url}}"`.
+*   **Logic**: Map if manual captions exist for the desired language.
+
+### Phase 2: SPECIFY (Selection Strategy)
+Choose the source in order of descending accuracy:
+1.  **Manual Subtitles** (`--write-sub`): Highest accuracy. Use VTT format.
+2.  **Automatic Subtitles** (`--write-auto-sub`): Medium accuracy. Download if manual is unavailable.
+3.  **AI Fallback (Whisper)**: Last resort.
+    - Download audio only (`bestaudio`).
+    - Run: `uv run --with openai-whisper whisper audio_file.mp3 --model base`.
+
+### Phase 3: IMPLEMENT (Advanced Cleanup)
+Process the raw output (VTT or Whisper) through the standard deduplication script.
+
+**Deduplication Logic (Why?)**: Automatic captions often "roll" text, repeating previous lines. The script deduplicates by checking if a new line starts with the previous one.
 
 ```python
+# standard-cleanup.py
 import sys, re
 
-def clean_vtt(content):
-    # Remove VTT Header and Timestamps
+def clean_transcript(content):
     lines = content.split('\n')
     cleaned = []
     for line in lines:
-        if '-->' in line or line.strip() == 'WEBVTT' or line.strip().isdigit() or 'Kind:' in line or 'Language:' in line:
+        if '-->' in line or line.strip() == 'WEBVTT' or line.strip().isdigit():
             continue
-        # Remove HTML tags and extra whitespace
         line = re.sub(r'<[^>]+>', '', line).strip()
         if line: cleaned.append(line)
     
-    # Advanced Deduplication for rolling auto-subs
     final = []
     for line in cleaned:
         if not final:
             final.append(line)
             continue
-        
-        # If current line starts with previous line, replace previous with current (more complete)
         if line.startswith(final[-1]):
             final[-1] = line
         else:
@@ -75,34 +76,34 @@ def clean_vtt(content):
 
 if __name__ == "__main__":
     with open(sys.argv[1], 'r', encoding='utf-8') as f:
-        print(clean_vtt(f.read()))
+        print(clean_transcript(f.read()))
 ```
 
-Execute via: `uv run python -c "..." input.vtt > output.txt`
-
-### Phase 4: Delivery & Cleanup
-1.  Save the final file as `{video_title}.txt`.
-2.  Remove temporary files (`.vtt`, `.mp3`, `.wav`) created during the process.
-
----
-
-## Output Structure
-
-Execution of this skill results in the following artifacts:
-
-- **Transcript (.txt):** Plain text file with cleaned and formatted video content.
-- **Metadata:** Video title integrated into the filename.
+### Phase 4: VERIFY (Delivery & Cleanup)
+1.  Save as `{video_title}.txt`.
+2.  Purge temporary files (`.vtt`, `.mp3`, `.wav`).
+3.  Validate readability.
 
 ---
 
-## Quality Rules
+## 🏗️ Output Structure
+- **Transcript (.txt)**: Cleaned, plain-text content.
+- **Metadata**: Filename based on sanitized video title.
 
-- **Accuracy First:** Always prioritize manual captions over automatic or AI-generated ones.
-- **Clean Text:** The final result must not contain HTML tags, VTT timestamps, or automatic caption redundancies.
-- **Dependency Check:** Validate `yt-dlp` and `ffmpeg`. For `whisper`, use `uv run --with`.
+---
 
-## Prohibited
+## ⚖️ Quality Rules
+- **Manual > Auto > Whisper**: Never use AI if captions exist.
+- **Resource Economy**: Never download video files; audio or text only.
+- **Cleanliness**: Zero HTML tags or timestamps in the final delivery.
 
-- NEVER download the full video if only audio or captions are needed.
-- NEVER overwrite existing files without confirmation.
-- NEVER ignore download failures without reporting a clear reason.
+---
+
+## 🚫 Prohibited
+- NEVER commit audio files to the repository.
+- NEVER skip the deduplication phase for auto-captions.
+- NEVER overwrite files without user verification.
+
+---
+
+> **Law of the Transcript**: A transcript without cleanup is just noise. Precision is the metric of success.
