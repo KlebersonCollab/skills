@@ -120,10 +120,18 @@ Siga o ciclo **Red-Green-Refactor**:
 
 ## 📚 References & Resources
 
+- [Installation & Setup](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/installation-and-setup.md)
 - [Project Management](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/project-management.md)
-- [Django Workflow](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/django-workflow.md)
-- [Async Development](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/async-development.md)
-- [Python Environment (3.14)](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/python-environment.md)
-- [Testing Standards](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/testing.md)
-- [CI/CD & Docker](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/ci-cd-workflows.md)
-- [PEP 723 Metadata](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/inline-script-metadata.md)
+- [Django Workflow (Performance & Pro)](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/django-workflow.md)
+- [Async Development Mastery](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/async-development.md)
+- [Advanced Patterns & Protocols](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/patterns.md)
+- [Python Environment (3.14 & Free-threading)](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/python-environment.md)
+- [Testing Standards (TDD)](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/testing.md)
+- [CI/CD & Docker Workflows](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/ci-cd-workflows.md)
+- [Tool Management (uv tool)](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/tool-management.md)
+- [PEP 723 Metadata (Inline Scripts)](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/references/inline-script-metadata.md)
+
+### 📋 Templates & Examples
+- [Template: pyproject.toml](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/resources/pyproject-template.toml)
+- [Example: pyproject.toml](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/examples/pyproject-toml-example.md)
+- [Example: GitHub Actions](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/examples/github-actions-example.md)
