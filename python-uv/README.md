@@ -22,15 +22,12 @@ Esta skill orienta o desenvolvimento Python moderno usando o `uv`. Ela cobre des
 
 ```text
 python-uv/
-├── SKILL.md                 # Definição e workflow (v2.3.0)
+├── SKILL.md                 # Definição e workflow (v4.0.0 Purista)
 ├── README.md                # Este guia
 ├── CHANGELOG.md             # Histórico de versões
-├── references/              # Referências Detalhadas
-│   ├── django-workflow.md   # NOVO: Performance & Pro!
-│   ├── async-development.md
-│   ├── project-management.md
-│   ├── ...
-└── examples/                # Exemplos Práticos
+├── references/              # Referências Detalhadas (Django, Async, Setup, etc.)
+├── examples/                # Exemplos Práticos (CI/CD, pyproject, patterns)
+└── resources/               # Templates e Ativos
 ```
 
 ---
