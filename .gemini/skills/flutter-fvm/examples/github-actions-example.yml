@@ -1,0 +1,53 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. Instalar FVM
+      - name: Install FVM
+        run: dart pub global activate fvm
+
+      # 2. Configurar Flutter via FVM
+      - name: Setup Flutter with FVM
+        run: |
+          export PATH="$PATH":"$HOME/.pub-cache/bin"
+          fvm install
+          echo "FLUTTER_ROOT=$(fvm flutter --version --machine | jq -r '.flutterRoot')" >> $GITHUB_ENV
+          echo "$(fvm flutter --version --machine | jq -r '.flutterRoot')/bin" >> $GITHUB_PATH
+
+      # 3. Instalar dependências
+      - name: Install dependencies
+        run: fvm flutter pub get
+
+      # 4. Verificar formatação
+      - name: Check formatting
+        run: fvm dart format --set-exit-if-changed .
+
+      # 5. Análise estática
+      - name: Analyze project
+        run: fvm flutter analyze
+
+      # 6. Rodar testes com cobertura
+      - name: Run tests
+        run: fvm flutter test --coverage
+
+      # 7. Opcional: Upload de cobertura para Codecov
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v4
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     file: coverage/lcov.info
+
+      # 8. Opcional: Build de Release (APK) para garantir que compila
+      # - name: Build APK
+      #   run: fvm flutter build apk --release

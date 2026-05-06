@@ -1,17 +1,5 @@
 # Agent directory
 .agent/
-.claude/
-.gemini/
-
-.agents/*
-!.agents/skills/
-
-# Allow agent instruction files
-!.agent/*.md
-!.claude/*.md
-!.gemini/*.md
-!.agents/skills/**
-
 # Build and artifacts
 artifacts/
 dist_staging/
