@@ -1,18 +1,17 @@
 ---
 name: architecture
-version: 2.0.1
+version: 2.2.1
 description: "Systems Architect — guides the agent to design scalable, resilient, and distributed systems (CQRS, Event-Driven) using mandatory ADRs, Fitness Functions, and Mermaid Diagrams for visualization."
 category: architecture
 uses:
   - sdd
   - token-distiller
-  - context-graph
 references:
   - clean-code-mentor
   - api-architect
 ---
 
-# Architecture (v2.0.1)
+# Architecture (v2.2.1)
 
 > High-performance systems designer and guardian of evolutionary simplicity. "Architecture is what remains when you take all the code away."
 
@@ -21,21 +20,12 @@ references:
 ## 🔒 Prerequisites (Mandatory)
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
 0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the guidelines of the `token-distiller` skill.
-1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
-2. **Meta-Knowledge Check**: Consult the **Context Graph** (`DECISIONS.md`) to verify if any existing architectural patterns or precedents apply.
+1. **Context Check**: Rehydrate the context by reading `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
+2. **Knowledge Check**: Follow the **Knowledge Verification Chain** (Codebase Docs -> Project Docs -> Existing Code -> Web Search).
 3. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
-3. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
-4. **Contract Check**: Was the `contract.md` file established with validation sensors?
-5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
-
----
-
-## 🔒 Mandatory Tooling
-The use of **HB CLI** is **MANDATORY** for this skill:
-- **Focus**: Use `hb harness focus "Task"` to mark architectural design milestones.
-- **ADR Management**: Every critical decision **MUST** be recorded via `hb adr new "Title"`.
-- **Discovery**: Use `hb adr list` to ensure alignment with previous decisions.
-- **Audit**: Use `hb arch audit` to verify ADR coverage across features.
+4. **Plan Check**: Does the `plan.md` file define the architecture, schemas, and include **Mermaid** diagrams?
+5. **Contract Check**: Was the `contract.md` file established with validation sensors?
+6. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 
@@ -45,39 +35,31 @@ Empower the agent to design high-quality and complex software architectures, spa
 
 ---
 
-## When to Use This Skill
+## Workflow (4 Phases)
 
-- When designing systems that require high read/write scalability (CQRS).
-- When designing asynchronous and decoupled workflows (Event-Driven).
-- During major refactorings or architecture migrations (e.g., Monolith to Microservices).
-- To define automated governance rules via Fitness Functions.
-- To document critical technical decisions that impact the long term (ADRs).
-
----
-
-## Workflow (4 Fases)
-
-### Phase 1: CONTEXT — Requirements Discovery
-1.  **Map Constraints**: Identify time limits, budget, and current stack.
+### Phase 1: DISCOVERY — Requirements & Constraints
+1.  **Map Terrain**: Identify technical, financial, and team constraints.
 2.  **Identify Load Patterns**: Differentiate read vs. write volumes (indicative of CQRS).
 3.  **Need for Decoupling**: Evaluate if synchronous communication is a bottleneck (indicative of Event-Driven).
+4.  **Memory Capture**: Review previous ADRs in `.specs/architecture/` to ensure continuity.
 
-### Phase 2: ANALYSIS — Trade-off Evaluation
-1.  **Explore Alternatives**: Compare approaches (e.g., Simple vs. Scalable).
-2.  **Consistency Analysis**: Evaluate if the business tolerates Eventual Consistency or requires Strong Consistency.
-3.  **Simplicity Analysis**: Justify the introduction of complex patterns (CQRS/Events) only if the scale requirement demands it.
+### Phase 2: SPECIFY — Trade-offs & Design
+1.  **Explore Alternatives**: Compare approaches (Simple vs. Scalable) in a Trade-off Matrix.
+2.  **Consistency Analysis**: Evaluate if the business requires Strong Consistency or tolerates Eventual Consistency.
+3.  **Visual Modeling**: Create **Mermaid** diagrams (System Map, Sequence) to validate the flow.
+4.  **ADR Creation**: Document the technical choice by creating a new ADR file in `.specs/architecture/` following the official template.
 
-### Phase 3: DESIGN — Pattern Selection and Contracts
+### Phase 3: IMPLEMENT — Pattern Selection & Logic
 1.  **Command/Query Modeling**: If using CQRS, clearly define Read and Write models.
-2.  **Event Design**: Define message schemas, idempotency strategies, and DLQs (Dead Letter Queues).
-3.  **Design Components**: Apply SOLID, DRY, and YAGNI to the proposed design.
+2.  **Event Design**: Define message schemas, idempotency strategies, and DLQs.
+3.  **Design Components**: Apply SOLID, DRY, and YAGNI. Ensure components are focused and decoupled.
+4.  **Fitness Functions**: Define automated tests/scripts to protect architectural integrity.
 
-### Phase 4: DOCUMENT — Recording and Governance (ADR & Fitness)
-1.  **Write the ADR**: Use **HB CLI** to record the technical choice:
-    - `hb adr new "Decision Title"`: Creates the ADR artifact with the official template.
-    - `hb adr list`: Reviews existing decisions to ensure alignment.
-2.  **Define Fitness Functions**: Propose scripts or automated tests to validate that the proposed architecture will not suffer regressions (e.g., avoiding circular coupling).
-3.  **Handoff**: Deliver the architectural specification ready for implementation.
+### Phase 4: REVIEW — Documentation & Governance
+1.  **Verdict via Sensors**: Audit the delivery against the original `spec.md` and `plan.md` using evidence from code and tests.
+2.  **Finalize ADR**: Ensure the ADR reflects the final implementation and documented impacts.
+3.  **Update Knowledge Map**: Update the project's visual architecture in `.specs/architecture/KNOWLEDGE-MAP.mermaid`.
+4.  **Persistence**: Capture new architectural patterns in `.specs/project/LEARNINGS.md`.
 
 ---
 
@@ -100,7 +82,7 @@ The execution of this skill results in the following mandatory artifacts in `.sp
 - **Mandatory Idempotency**: Every event-oriented design must provide for repeated processing without side effects.
 - **Fitness-Driven**: Every important architectural constraint must have a way to be automatically validated.
 - **Visual-First**: Every complex component or flow must be documented with Mermaid in the `System Map`.
-- **Justified Decisions**: Structural changes require a documented "Why."
+- **Justified Decisions**: Structural changes require a documented "Why" (ADR).
 
 ## Prohibited
 
@@ -108,12 +90,16 @@ The execution of this skill results in the following mandatory artifacts in `.sp
 - NEVER use events for communication that requires an immediate (synchronous) response.
 - NEVER ignore the complexity of managing eventual consistency on the front-end.
 - NEVER start design without understanding throughput and availability requirements.
+- NEVER create local memory files (`STATE.md`, etc.); use `.specs/project/`.
+- NEVER rely on CLI tools for governance; the Markdown artifacts are the single source of truth.
 
 ---
 
 ## References
 
 - [`references/architectural-principles.md`](references/architectural-principles.md) — SOLID, KISS, YAGNI.
-- [`references/cqrs-and-events.md`](references/cqrs-and-events.md) — (New) Command and event design.
-- [`references/evolutionary-architecture.md`](references/evolutionary-architecture.md) — (New) Fitness Functions and evolution.
+- [`references/cqrs-and-events.md`](references/cqrs-and-events.md) — Command and event design.
+- [`references/evolutionary-architecture.md`](references/evolutionary-architecture.md) — Fitness Functions and evolution.
 - [`references/adr-template.md`](references/adr-template.md) — Official ADR template.
+
+

@@ -1,24 +1,26 @@
-# Changelog — Architecture
+# Changelog: architecture
 
-## [2.0.1] - 2026-04-14
+## [2.2.1] - 2026-05-06
+### Changed
+- **Purist Refactor**: Removed all references to `hb` CLI and "magic" automation.
+- **Logic-First**: Re-aligned the skill to focus on Markdown artifact creation and manual architectural logic.
+- Updated `SKILL.md` and `README.md` to reflect version 2.2.1.
+
+## [2.2.0] - 2026-05-06
 ### Added
-- **Mermaid Diagrams** are now mandatory for the `System Map`.
-- Focus on visualizing distributed components and flows.
+- Explicit "Structural Purity" mandate.
+- "Knowledge Verification Chain" integration.
+- BDD requirement for Medium+ specifications.
 
-## [2.0.0] - 2026-04-14
+### Changed
+- Aligned workflow phases with SDD v2.2.0 (Discovery, Specify, Implement, Review).
+- Updated version to 2.2.0 to match core skill standards.
+- Refined HB CLI command references (unified `hb audit`).
 
-### Added
-- **CQRS Blueprint**: Guidance for separating read and write models for high scale.
-- **Event-Driven Architecture**: Support for asynchronous message flows, idempotency, and eventual consistency.
-- **Evolutionary Architecture**: Introduction of **Fitness Functions** for automating architectural governance.
-- New reference guides for CQRS/Events and Evolutionary Architecture.
-- Mermaid diagram examples for CQRS and Event flows.
+### Removed
+- **Local Memory Files**: Deleted local `STATE.md`, `MEMORY.md`, `LEARNINGS.md`, and `tasks.md`.
+- **Slop**: Removed outdated `activate_skill` references and redundant local context checks.
+- Redundant `context-graph` from `uses` (now part of SDD core).
 
-## [1.0.0] - 2026-04-14
-
-### Added
-- Initial version of the Systems Architect skill.
-- 4-phase workflow: Context, Analysis, Design, and Document.
-- Focus on Simplicity as top priority ("Less is more").
-- Integration of ADRs (Architecture Decision Records) into the flow.
-- References for principles (SOLID, DRY, YAGNI) and pattern selection.
+## [2.0.1] - 2026-05-01
+- Initial version (Legacy).
