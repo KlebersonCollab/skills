@@ -79,8 +79,8 @@
 
 ### [2026-04-22] SDD-Git Compliance & Mandatory Rigor
 - **Learning**: Technical rigor is not optional. The absence of explicit prohibitive mandates can lead to the relaxation of critical workflows (like atomic commits per task). Governance must be encoded as an insurmountable "guardrail", not just a recommendation.
-- **Pattern (Atomic Cycle)**: The `Task -> Test -> Commit` cycle must be the indivisible atom of development. Any progress marking in `tasks.md` without the corresponding validation artifacts (tests) and persistence (git) is an integrity failure.
-- **Enforcement (Prohibitive Mandates)**: Inserting prohibitive mandates ("NEVER...") in the core skills (`sdd`) is more effective for Hub consistency than passive guidelines, as it creates a clear Exit Gate for agent intelligence.
+- **Pattern**: The `Task -> Test -> Commit` cycle must be the indivisible atom of development. Any progress marking in `tasks.md` without the corresponding validation artifacts (tests) and persistence (git) is an integrity failure.
+- **Enforcement**: Inserting prohibitive mandates ("NEVER...") in the core skills (`sdd`) is more effective for Hub consistency than passive guidelines, as it creates a clear Exit Gate for agent intelligence.
 - **Branching Strategy (GitHub Flow)**: Committing directly to `main` is an anti-pattern that compromises stability. Using **Feature Branches** is mandatory to isolate development and allow audits before integration. The Hub must operate in "Always Shippable" mode.
 
 ### [2026-04-22] Python Expert Enrichment & UV Synergy
@@ -139,3 +139,8 @@
 - **UV v0.9.6+ Evolution [2026-05-06]**: The shift to Python 3.14 as default and the stabilization of Free-threaded Python (no-GIL) marks a new era for Python performance. Integrating PEP 723 (Inline Script Metadata) allows for zero-setup automation, reducing friction in DevOps workflows.
 - **Expert Domain Fusion [2026-05-06]**: Merging specialized knowledge (Django Pro, Async Mastery) directly into a core environmental skill (`python-uv`) provides the agent with a "Double-Axe" capability: managing the environment while simultaneously applying architectural best practices.
 - **Git Index Caution [2026-05-06]**: When switching branches (`git checkout`) while having untracked files from a different feature, `git add .` can accidentally stage deletions of files that are present in the other branch but not in the target branch. Use specific file/folder staging (`git add <path>`) in these scenarios to maintain repository integrity.
+
+### [2026-05-06] Documentation Drift and Localization
+- **Learning**: Technical documentation can easily "drift" into non-primary languages if refactored without a localization-first mindset. Even high-fidelity refactors can leave examples or sub-folders in the original language.
+- **Pattern**: When performing a "Purist" refactor, include a **Localization Audit** task in the initial SDD plan to ensure 100% English coverage across all directories (`examples/`, `references/`, `resources/`).
+- **Detection**: Using recursive `grep` for common non-English keywords is an effective way to find hidden pockets of un-translated text in large repositories.
