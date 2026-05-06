@@ -14,7 +14,7 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
    - Align with `onboarding-navigator` for project culture.
 2. **SDD Verification**: 
    - Validate if `spec.md` and `plan.md` exist for the target feature.
-   - Use `hb sdd review <feature>` if applicable.
+   - Perform a final review against the Acceptance Criteria (ACs).
 3. **Task Integrity**: Ensure tasks in `tasks.md` are atomized and mapped to Git commits.
 
 ---

@@ -1,6 +1,6 @@
 ---
 name: sdd
-version: 2.2.0
+version: 2.2.1
 description: Spec-Driven Development. High-performance modular workflow with Explore-Plan-Act Loop and Safety-Valve protocols. Orchestrates specialized sub-skills. [TLC Spec Driven](https://github.com/tech-leads-club/agent-skills/tree/main/packages/skills-catalog/skills/(development)/tlc-spec-driven)
 category: development-workflow
 ---
@@ -13,7 +13,7 @@ This skill operates as the central brain for the **SDD** framework. Before any t
 
 ---
 
-# SDD: Modular & Adaptive Workflow (v2.2.0)
+# SDD: Modular & Adaptive Workflow (v2.2.1)
 
 > Precision at scale. Rigor when needed, speed when possible.
 
@@ -86,9 +86,10 @@ To prevent hallucinations and pattern drift, follow this strict hierarchy:
 - **On-Demand**: Only load sub-skill definitions and specific feature specs when active in that phase.
 - **Limit**: Target <30k tokens for the base environment to leave maximum room for reasoning.
 
-### 4. Real-Time Progress Monitoring
-- **Mandatory View**: Use **`hb sdd status --ui`** at the beginning and end of each session.
-- **Watch Mode**: During implementation (IMPLEMENT phase), use **`hb sdd status --ui --watch`** to ensure task atomicity and progress visibility.
+### 4. Manual Progress Tracking
+- **Atomicity**: Every task must be mapped to a specific commit.
+- **State Check**: Update `tasks.md` and `STATE.md` immediately after every significant milestone.
+- **Traceability**: If it's not in the Markdown logs, it didn't happen.
 
 ### 5. Swarm & Multi-Agent Execution
 When working with multiple parallel agents or personas:

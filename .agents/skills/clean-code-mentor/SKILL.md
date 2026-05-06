@@ -1,6 +1,6 @@
 ---
 name: clean-code-mentor
-version: 1.0.0
+version: 2.2.0
 description: "Skill for technical mentorship and code review with total focus on SOLID, YAGNI, DRY, and KISS. Identifies design violations and suggests refactorings for simpler and more maintainable code."
 category: code-quality
 ---
@@ -13,14 +13,6 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 3. **Plan Check**: Does the `plan.md` file define the architecture and schemas, and include **Mermaid** diagrams?
 4. **Contract Check**: Was the `contract.md` file established with validation sensors?
 5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
-
----
-
-## 🔒 Mandatory Tooling
-The use of **HB CLI** is **MANDATORY** for this skill:
-- **Focus**: Use `hb harness focus "Task"` to mark review and refactoring milestones.
-- **Audit**: Run `hb harness audit` to identify quality violations and hub compliance.
-- **Learning**: Use `hb learn` to document patterns or optimizations found.
 
 ---
 
@@ -53,8 +45,8 @@ Empower the agent to act as an experienced code reviewer and technical mentor, a
 
 ### Phase 4: MENTOR — Technical Rationale
 1.  **Foundational Support**: Explain the theory behind the fix (e.g., "This reduces coupling...").
-2.  **Automated Audit**: 
-    - Run **`hb harness audit`** to generate the Hub Score and identify automated violations.
+2.  **Quality Audit**:
+    - Perform a manual audit against the Hub's `CONVENTIONS.md` and identified quality standards.
 3.  **Handoff**: Deliver a structured "Quality Report" with Severity and Recommendations.
 
 ---

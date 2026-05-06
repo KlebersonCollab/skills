@@ -1,6 +1,6 @@
 ---
 name: git-workflow
-version: 1.0.0
+version: 2.2.0
 description: "Git workflow standards, including branching strategies, commit conventions, and SDD integration."
 category: development-workflow
 ---
@@ -75,15 +75,15 @@ Mandatory format: `<type>(<scope>): <subject>`
 
 Integrating Git with the SDD cycle is fundamental for traceability and history integrity:
 
-1.  **Discovery Phase**: Before starting, ensure your local `main` is synchronized with the remote using **`hb git sync`**.
+1.  **Discovery Phase**: Before starting, ensure your local `main` is synchronized with the remote using **`git pull --rebase origin main`**.
 2.  **Implementation Phase**: 
-    - **Atomic Branches**: Each feature/fix must have its own branch. Initialize it with **`hb git start <feature-name>`**.
+    - **Atomic Branches**: Each feature/fix must have its own branch. Initialize it with **`git checkout -b feature/<name>`**.
     - **Commits per Task**: Each completed task in `tasks.md` must generate at least one clear commit.
-    - **Conventional Commits**: Use **`hb git commit "<message>"`** with the appropriate `--type` and `--scope` flags.
+    - **Conventional Commits**: Use **`git commit -m "<type>(<scope>): <message>"`**.
     - **Language**: All commit messages **MUST** be written in **English**, even if technical documentation is in Portuguese.
     - **Atomicity**: Do not mix changes from different tasks in the same commit.
 3.  **Review Phase**:
-    - **Linearity**: Always run **`hb git sync`** before pushing to keep history clean and resolve conflicts early via rebase.
+    - **Linearity**: Always run **`git pull --rebase origin main`** before pushing to keep history clean and resolve conflicts early via rebase.
     - **Evidence**: The Pull Request link must be included in `validation-report.md`.
 
 ### SDD Commit Cycle Diagram
@@ -93,7 +93,7 @@ graph TD
     B --> C[Local Test Execution]
     C --> D{Passed?}
     D -- No --> B
-    D -- Yes --> E["hb git commit 'description'"]
+    D -- Yes --> E["git commit -m 'type: description'"]
     E --> F[Update tasks.md as Completed]
     F --> G{More tasks?}
     G -- Yes --> B
