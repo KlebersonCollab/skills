@@ -1,47 +1,47 @@
-# Python com UV — Skill
+# Python with UV — Skill
 
-Gerenciador de pacotes e projetos Python extremamente rápido, escrito em Rust. Substitui pip, pipx, poetry, pyenv e mais.
-
----
-
-## 🚀 Visão Geral
-
-Esta skill orienta o desenvolvimento Python moderno usando o `uv`. Ela cobre desde a inicialização de projetos simples até arquiteturas corporativas complexas (Django Pro), garantindo performance extrema e segurança.
-
-### Capacidades Principais:
-- **Gestão de Projetos**: Inicialização (`uv init`), dependências e lockfiles.
-- **Django Pro**: Padrões de Service Layer, Async Django e Bulk Operations.
-- **Otimização de Performance**: Resolução de N+1 (ORM), Profiling e Memory Management.
-- **Desenvolvimento Async**: Padrões para FastAPI, httpx e testes assíncronos.
-- **Segurança**: Auditoria de BOLA/IDOR e ferramentas de segurança integrada.
-- **Scripts PEP 723**: Execução de scripts únicos com dependências declaradas.
+Extremely fast Python package and project manager, written in Rust. Replaces pip, pipx, poetry, pyenv, and more.
 
 ---
 
-## 📂 Estrutura da Skill
+## 🚀 Overview
+
+This skill guides modern Python development using `uv`. It covers everything from initializing simple projects to complex enterprise architectures (Django Pro), ensuring extreme performance and security.
+
+### Core Capabilities:
+- **Project Management**: Initialization (`uv init`), dependencies, and lockfiles.
+- **Django Pro**: Service Layer patterns, Async Django, and Bulk Operations.
+- **Performance Optimization**: N+1 Resolution (ORM), Profiling, and Memory Management.
+- **Async Development**: Patterns for FastAPI, httpx, and asynchronous testing.
+- **Security**: BOLA/IDOR auditing and integrated security tools.
+- **PEP 723 Scripts**: Execution of single-file scripts with declared dependencies.
+
+---
+
+## 📂 Skill Structure
 
 ```text
 python-uv/
-├── SKILL.md                 # Definição e workflow (v4.0.0 Purista)
-├── README.md                # Este guia
-├── CHANGELOG.md             # Histórico de versões
-├── references/              # Referências Detalhadas (Django, Async, Setup, etc.)
-├── examples/                # Exemplos Práticos (CI/CD, pyproject, patterns)
-└── resources/               # Templates e Ativos
+├── SKILL.md                 # Definition and workflow (v4.0.0 Purist)
+├── README.md                # This guide
+├── CHANGELOG.md             # Version history
+├── references/              # Detailed References (Django, Async, Setup, etc.)
+├── examples/                # Practical Examples (CI/CD, pyproject, patterns)
+└── resources/               # Templates and Assets
 ```
 
 ---
 
-## 🛠️ Como Usar
+## 🛠️ How to Use
 
-1. **Inicie um projeto**: `uv init meu-app`
-2. **Otimize seu Django**: Consulte `references/django-workflow.md` para padrões de N+1.
-3. **Analise Performance**: Use `uv run python manage.py shell_plus --print-sql`.
+1. **Start a project**: `uv init my-app`
+2. **Optimize your Django**: Consult `references/django-workflow.md` for N+1 patterns.
+3. **Analyze Performance**: Use `uv run python manage.py shell_plus --print-sql`.
 
 ---
 
-## 🎯 Exemplos de Comandos
+## 🎯 Command Examples
 
-- *"Refatore esta view Django para resolver o problema de N+1 queries usando select_related."*
-- *"Configure uma Service Layer para este projeto Django gerenciado pelo uv."*
-- *"Como uso o uv para rodar o bandit e auditar a segurança do meu projeto?"*
+- *"Refactor this Django view to resolve the N+1 queries issue using select_related."*
+- *"Set up a Service Layer for this Django project managed by uv."*
+- *"How do I use uv to run bandit and audit my project's security?"*
