@@ -1,4 +1,4 @@
-# Global Engineering Mandates (SDD v2.2.0 Purist)
+# Global Engineering Mandates (SDD v2.3.0 Observable)
 
 These instructions are fundamental and must be followed by all agents operating in this Hub. They prioritize logic-first governance, deterministic SDD workflows, and centralized project memory.
 
@@ -68,3 +68,22 @@ Before ending the session or delivering the task, the agent **MUST** validate:
 The root directory is the ONLY allowed location for editing instructions and skills.
 - **Root-Only Edits**: Agents MUST NEVER edit `.agents/`, `.agent/`, `.claude/`, or `.gemini/` folders directly.
 - **Conflict Resolution**: If a divergence is detected, the root version always prevails. Any improvement found in runtime folders must be backported to the root.
+
+## 9. Observable Governance (Gated Workflow)
+Every action must be traceable and permission-gated by the SDD state machine:
+- **State Machine Integrity**: You MUST NOT change the global `phase` in `STATE.md` until all tasks of the current phase are marked `[x]` with verifiable evidence (commit hashes or logs).
+- **Metadata Mandate**: Every Markdown artifact created or modified MUST end with the `<!-- @sdd-state -->` block.
+- **Initial State Policy**: All new feature artifacts must be initialized with `status: IN_PROGRESS`. Only freeze to `status: COMPLETED` when transitioning between handoff points.
+- **Prohibited**: Never jump to `VERIFY` phase without completing the `IMPLEMENT` cycle.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:15:00Z"
+evidence_checksum: "NONE"
+```

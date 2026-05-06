@@ -2,7 +2,7 @@
 
 > Precision at scale. Rigor when needed, speed when possible.
 
-[![Version](https://img.shields.io/badge/Version-2.2.0-blue)](#changelog)
+[![Version](https://img.shields.io/badge/Version-2.3.0-blue)](#changelog)
 [![Sub-skills](https://img.shields.io/badge/Sub--skills-5-brightgreen)](#-sub-skills)
 - [Handoff Protocol](references/handoff-protocol.md)
 
@@ -12,7 +12,7 @@
 
 A skill for **spec-driven development** with a modular and adaptive workflow. SDD automatically adjusts the depth of the process to the complexity of the task (Auto-Sizing), ensuring rigor when necessary and speed when possible.
 
-Version `2.2.0` integrates high-performance modular orchestration, **Software Development Contracts (SDC)**, deterministic validation via **Sensors**, and a structured **4-Phase Workflow**.
+Version `2.3.0` integrates **Observable Governance**, mandatory metadata blocks, and evidence-based auditing via structured task tables.
 
 > **Law of SDD**: If it's not in the spec, it doesn't exist. If it hasn't been verified, it's not done.
 
@@ -96,3 +96,16 @@ Always update `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` at the end of every se
 ## 📝 Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for full version history.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:41:00Z"
+evidence_checksum: "NONE"
+```
+

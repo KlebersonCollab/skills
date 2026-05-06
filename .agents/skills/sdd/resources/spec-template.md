@@ -26,3 +26,13 @@ This is the source of truth for **functional requirements** and **business logic
 
 ---
 *Note: Technical implementation details go to `plan.md`.*
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "FEAT-ID"
+phase: "SPECIFY"
+status: "COMPLETED"
+last_update: "ISO-TIMESTAMP"
+evidence_checksum: "NONE"
+```

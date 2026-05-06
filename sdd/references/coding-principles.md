@@ -42,3 +42,15 @@ Behavioral bias, not just a checklist. Read before every implementation.
 ## After Each Change
 Ask yourself: *"Would a senior engineer call this over-engineering?"*
 If the answer is yes → **simplify before proceeding**.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "SDD-CORE"
+phase: "MANAGEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T09:42:30Z"
+evidence_checksum: "NONE"
+```

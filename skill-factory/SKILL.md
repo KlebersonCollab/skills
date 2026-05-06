@@ -1,6 +1,6 @@
 ---
 name: skill-factory
-version: 2.2.0
+version: 2.3.0
 description: "Governance and Automation engine for high-performance Skill Authoring. Implements Anthropics's 14 patterns synthesized with SDD v2.2.0 operational rigor."
 category: skill-management
 ---
@@ -97,7 +97,13 @@ Every skill created MUST be self-documenting:
 ### 3. Safety Valve
 If a skill design exceeds 5 sub-skills or complex external dependencies, **STOP** and re-evaluate for orchestration.
 
+### 4. Observable Governance (v2.3.0)
+Every skill created MUST support the automated auditing protocol.
+- **Metadata**: Append `<!-- @sdd-state -->` to all `.md` files.
+- **Evidence**: All tasks MUST be tracked via an evidence-based table in `tasks.md`.
+
 ---
+
 
 ## 🚫 Prohibited
 
@@ -109,3 +115,15 @@ If a skill design exceeds 5 sub-skills or complex external dependencies, **STOP*
 ---
 
 > **Law of the Factory**: A skill without structure is just a prompt. Structure is the bridge to autonomy.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:48:00Z"
+evidence_checksum: "NONE"
+```

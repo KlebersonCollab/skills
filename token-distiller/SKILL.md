@@ -1,6 +1,6 @@
 ---
 name: token-distiller
-version: 2.2.0
+version: 2.3.0
 description: "Token density manager. Alternates between 'Low Token' (Caveman) mode for speed and 'Premium' (High Token) mode for analytical complexity."
 category: utility
 ---
@@ -14,7 +14,7 @@ This skill operates integrated with the **SDD** framework. Before any technical 
 
 ---
 
-# Token Distiller: Dual-Mode Communication (v2.2.0)
+# Token Distiller: Dual-Mode Communication (v2.3.0)
 
 > "Density is the currency of autonomy. Spend wisely."
 
@@ -97,3 +97,16 @@ As a utility skill, Token Distiller operates as a unified agent across all phase
 ---
 
 > **Law of Density**: All substance, no fluff. Efficiency is precision.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "TOKEN-DISTILLER-V2.3.0"
+phase: "IMPLEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T12:57:00Z"
+evidence_checksum: "NONE"
+```
+

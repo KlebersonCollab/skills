@@ -1,6 +1,6 @@
 ---
 name: sdd
-version: 2.2.1
+version: 2.3.0
 description: Spec-Driven Development. High-performance modular workflow with Explore-Plan-Act Loop and Safety-Valve protocols. Orchestrates specialized sub-skills. [TLC Spec Driven](https://github.com/tech-leads-club/agent-skills/tree/main/packages/skills-catalog/skills/(development)/tlc-spec-driven)
 category: development-workflow
 ---
@@ -152,7 +152,28 @@ Always update `STATE.md` at the end of every session or after major decisions.
 - `CONVENTIONS.md`: Coding patterns and linting.
 - `ARCHITECTURE.md`: High-level structural view.
 
+### 7. Observable Governance (Mandatory v2.3.0)
+To enable real-time monitoring and automated auditing, every artifact generated MUST include a structured metadata block.
+
+#### Metadata Protocol
+At the end of every `.md` artifact, append the following block:
+```markdown
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "FEAT-ID"
+phase: "DISCOVERY | SPECIFY | IMPLEMENT | VERIFY"
+status: "IN_PROGRESS | COMPLETED | BLOCKED"
+last_update: "ISO-TIMESTAMP"
+evidence_checksum: "GIT-HASH | LOG-PATH | NONE"
+```
+```
+
+#### Evidence Mandate
+Tasks in `tasks.md` MUST NOT be marked as complete without a valid entry in the `Evidence` column (e.g., a commit hash or a link to a test log).
+
 ---
+
 
 > **Law of SDD**: If it's not in the spec, it doesn't exist. If it's not verified, it's not done.
 

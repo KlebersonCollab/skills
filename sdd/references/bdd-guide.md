@@ -42,3 +42,15 @@ Describes the expected result or change in state after the action.
 ## Integration with SDD
 - Include BDD scenarios in your `spec.md` for Medium+ complexity tasks.
 - Use these scenarios to drive your test implementation and validation report.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "SDD-CORE"
+phase: "MANAGEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T09:42:30Z"
+evidence_checksum: "NONE"
+```

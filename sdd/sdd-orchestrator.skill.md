@@ -1,6 +1,6 @@
 ---
 name: sdd-orchestrator
-version: 2.2.0
+version: 2.3.0
 description: "Orchestrator agent for Spec Driven Development. Creates specification, plan, and task breakdown before any code is written."
 category: development-workflow
 parameters:
@@ -81,10 +81,25 @@ Create `spec/contract.md`. This is the formal agreement between implementation a
 - [ ] Requirements are traceable and verifiable.
 - [ ] Out of scope is explicitly defined.
 - [ ] No "hallucination leak" — every tech choice is backed by the codebase or documentation.
-- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md) when passing the contract to the Implementer.
+- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md).
+- **Observable Governance**:
+    - `spec.md`, `plan.md` and `contract.md` MUST include the `<!-- @sdd-state -->` block with `status: COMPLETED`.
+    - `tasks.md` MUST use the structured table format with the `Evidence` column.
 
 ## Prohibited
 
 - NO implementation code.
 - NO unverified assumptions.
 - NO vague "polishing" tasks without specific criteria.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:48:00Z"
+evidence_checksum: "NONE"
+```

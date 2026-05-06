@@ -2,7 +2,7 @@
 
 > "Structure is the bridge to autonomy. Precision in design, rigor in execution."
 
-[![Version](https://img.shields.io/badge/Version-2.2.0-blue)](#changelog)
+[![Version](https://img.shields.io/badge/Version-2.3.0-blue)](#changelog)
 [![Sub-skills](https://img.shields.io/badge/Sub--skills-2-brightgreen)](#-sub-skills)
 
 ---
@@ -21,7 +21,7 @@ Instead of manual file creation which leads to inconsistency, the agent utilizes
 
 ---
 
-## ⚙️ Standard Structure (SDD v2.2.0)
+## ⚙️ Standard Structure (SDD v2.3.0)
 
 | Mode | Use Case | Generated Artifacts |
 |------|-------------|-----------------|
@@ -91,3 +91,14 @@ Every skill created by the framework is validated against this checklist:
 ## 📝 Changelog
 
 Consult the [CHANGELOG.md](CHANGELOG.md) for the full version history.
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "FACTORY-REF-01"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:40:00Z"
+evidence_checksum: "NONE"
+```

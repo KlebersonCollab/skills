@@ -25,3 +25,15 @@ graph TD
 - **Isolation**: Which modules will be touched?
 - **Testing Strategy**: How will we test this (Unit/Int)?
 - **Migrations**: Database or config changes needed.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "FEAT-ID"
+phase: "SPECIFY"
+status: "COMPLETED"
+last_update: "ISO-TIMESTAMP"
+evidence_checksum: "NONE"
+```

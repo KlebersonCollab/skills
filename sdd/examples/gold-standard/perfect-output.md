@@ -1,19 +1,22 @@
-# Gold Standard Output: SDD Execution (Multi-File)
+# Gold Standard Output: SDD Execution (Observable Governance v2.3.0)
 
 ## 1. Requirements (spec.md)
-The agent generated a clear specification focusing on behavior:
+The agent generated a clear specification with metadata:
 
 ```markdown
 ### AC-1: Token Generation
-**Given** that the user provides valid credentials
-**When** the /login route is called
-**Then** a JWT token must be returned with 1h expiration.
+**Given** valid credentials, **When** /login is called, **Then** a JWT is returned.
+
+<!-- @sdd-state -->
+{ "version": "2.3.0", "phase": "SPECIFY", "status": "COMPLETED" }
 ```
 
 ## 2. Technical Design (plan.md)
-The plan includes a Mermaid sequence diagram and schema definitions:
+The plan includes metadata at the end:
 
-```mermaid
+```markdown
+## Design
+``mermaid
 sequenceDiagram
     User->>API: POST /login (credentials)
     API->>DB: Validate User
@@ -22,18 +25,37 @@ sequenceDiagram
     API-->>User: 200 OK (token)
 ```
 
-## 3. Atomic Tasks (tasks.md)
-Broken down into implementable chunks:
-
-```markdown
-- [x] Create Auth Service with JWT signing logic.
-- [ ] Implement /login route and controller.
-- [ ] Add integration tests for success/fail login scenarios.
+<!-- @sdd-state -->
+{ "version": "2.3.0", "phase": "SPECIFY", "status": "COMPLETED" }
 ```
 
-## 4. Rationale
-This output is Gold Standard because:
-- **Separation of Concerns**: Spec defines "What", Plan defines "How", Tasks define "When".
-- **BDD-First**: Acceptance criteria are readable and testable.
-- **Traceability**: Each task maps back to an AC in the spec.
-- **Visual Evidence**: Uses Mermaid to prevent architectural hallucinations.
+## 3. Atomic Tasks (tasks.md)
+**Mandatory Table Format with Evidence**:
+
+| Phase | Task | Status | Evidence (Commit/Log) |
+| :--- | :--- | :---: | :--- |
+| **1. AUTH** | Create JWT signing logic | [x] | commit: 4a2b1c3 |
+| **2. API** | Implement /login route | [ ] | |
+
+---
+
+<!-- @sdd-state -->
+{ "version": "2.3.0", "status": "IN_PROGRESS" }
+```
+
+## 4. Why this is Gold Standard (v2.3.0)
+- **Machine-Readable**: Every artifact can be audited by tools via the `<!-- @sdd-state -->` block.
+- **Evidence-Based**: Completion is proven by commit hashes, not just checkmarks.
+- **Traceability**: Full lifecycle visibility from Spec to Verification.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "GOLD-STANDARD"
+phase: "MANAGEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T09:42:00Z"
+evidence_checksum: "NONE"
+```
