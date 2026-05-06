@@ -12,6 +12,7 @@
 ## Phase 3: Verification
 - [x] Executar o script.
 - [x] Verificar se as pastas foram copiadas corretamente para `.agents/skills` e `.gemini/skills`.
+- [x] Sincronizar `GLOBAL_MANDATES.md` para arquivos de governança.
 - [x] Limpar arquivos temporários se houver.
 
 <!-- @sdd-state -->
@@ -19,7 +20,7 @@
 version: "2.3.0"
 feature_id: "SKILL-SYNC"
 phase: "VERIFY"
-status: "COMPLETED"
-last_update: "2026-05-06T13:43:40Z"
+status: COMPLETED
+last_update: "2026-05-06T13:47:40Z"
 evidence_checksum: "NONE"
 ```

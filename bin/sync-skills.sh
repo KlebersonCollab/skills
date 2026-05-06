@@ -48,5 +48,28 @@ for dest in "${DESTINATIONS[@]}"; do
     done
 done
 
+# Sincronização do GLOBAL_MANDATES.md para arquivos de governança
+MANDATES_SOURCE="$ROOT_DIR/.specs/codebase/GLOBAL_MANDATES.md"
+MANDATES_TARGETS=(
+    ".gemini/GEMINI.md"
+    ".gemini/rules/agent.md"
+    ".claude/CLAUDE.md"
+    ".agents/rules/agent.md"
+    ".agents/AGENTS.md"
+)
+
+if [ -f "$MANDATES_SOURCE" ]; then
+    echo ""
+    echo "📜 Sincronizando GLOBAL_MANDATES.md..."
+    for target in "${MANDATES_TARGETS[@]}"; do
+        TARGET_PATH="$ROOT_DIR/$target"
+        mkdir -p "$(dirname "$TARGET_PATH")"
+        cp "$MANDATES_SOURCE" "$TARGET_PATH"
+        echo "  - Copiado para: $target"
+    done
+else
+    echo "⚠️  GLOBAL_MANDATES.md não encontrado em $MANDATES_SOURCE"
+fi
+
 echo ""
 echo "✅ Todas as skills foram sincronizadas com sucesso!"
