@@ -1,6 +1,6 @@
 ---
 name: sdd-planner
-version: 2.2.0
+version: 2.3.0
 description: "Planner agent for Spec Driven Development. Manages project vision, feature roadmaps, and persistent session memory (STATE.md)."
 category: project-planning
 ---
@@ -62,10 +62,23 @@ This is the most critical tool for long-running projects. It should be updated:
 - **Zero Ceremony**: Keep the roadmap and vision concise. Focus on Value.
 - **Explicit Decisions**: Never leave an architectural or business decision to "vague memory".
 - **Actionable State**: The `STATE.md` should answer "What do I do now?" if the agent's memory was completely wiped.
-- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md) for session transitions.
+- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md).
+- **Observable Governance**: `STATE.md` MUST include the `<!-- @sdd-state -->` block as the source of truth for the project's health and completion.
 - **Strict Limits**: Respect the [Context Limits](references/context-limits.md) rules.
 
 ## Prohibited
 
 - NEVER add detailed technical design to the planner documents (use `spec/plan.md` for that).
 - NEVER assume the user remembers a deferred idea—always log it.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:52:00Z"
+evidence_checksum: "NONE"
+```

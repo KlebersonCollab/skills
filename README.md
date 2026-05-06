@@ -1,7 +1,7 @@
 # 🧠 AI Agent Skills Hub (v6.0.0)
 
 > **The Centralized Engine for Agentic Excellence.**  
-> A modular repository of specialized "Skills" for AI agents, governed by the strict standards of **Purist SDD v2.2.0**.
+> A modular repository of specialized "Skills" for AI agents, governed by the strict standards of **Purist SDD v2.3.0**.
 
 ---
 
@@ -13,7 +13,7 @@ Every skill in this hub is an independent, verifiable module that ensures AI age
 
 ---
 
-## 🏗️ Core Methodology: Purist SDD
+## 🏗️ Core Methodology: SDD
 
 This hub is powered by **Spec-Driven Development (SDD)**. Every development cycle follows a rigorous 4-phase protocol:
 
@@ -96,3 +96,15 @@ graph TD
 **Built for the next generation of Agentic Workflows.**  
 Created by [Kleberson Romero](https://github.com/KlebersonCollab)
 </div>
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:46:00Z"
+evidence_checksum: "NONE"
+```

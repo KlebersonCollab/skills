@@ -6,7 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
  
+ ## [2.3.0] - 2026-05-06
+ 
+ ### Added
+ - **Observable Governance**: Integrated mandatory `<!-- @sdd-state -->` metadata blocks for all skill artifacts.
+ - **Evidence Table**: Refactored `tasks.md` format to a structured table requiring physical evidence (commits/logs).
+ - **Automated Auditing**: Upgraded `skill-factory-validator` to enforce metadata and evidence compliance.
+ 
+ ### Changed
+ - **Gold Standard Templates**: Updated bootstrap templates to include observability protocols by default.
+ 
  ## [2.2.0] - 2026-05-06
+
  
  ### Added
  - **Purist Mandate**: Enforced logic-first instructions (Markdown protocols) over hidden CLI dependencies.
@@ -33,3 +44,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **skill-factory-bootstrap.skill.md**: Sub-skill for automated scaffolding with standardized templates for `SKILL.md`, `README.md`, `CHANGELOG.md`, and sub-skills.
 - **skill-factory-validator.skill.md**: Sub-skill for compliance validation with 5 checks (Structural, Frontmatter, Content, Naming, Registry) and evidence report.
 - **README.md**: Detailed documentation with usage examples for both modes (Quick and Standard).
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "FACTORY-REF-01"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:40:10Z"
+evidence_checksum: "NONE"
+```

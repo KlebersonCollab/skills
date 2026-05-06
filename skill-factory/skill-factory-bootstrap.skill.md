@@ -1,6 +1,6 @@
 ---
 name: skill-factory-bootstrap
-version: 2.2.0
+version: 2.3.0
 description: "Bootstrap agent for Skill Factory. Designs and generates the logic-first scaffolding for a new skill (Purist Edition)."
 category: skill-management
 ---
@@ -13,7 +13,7 @@ Before execution:
 
 ---
 
-# Skill Factory: Bootstrap Agent (v2.2.0)
+# Skill Factory: Bootstrap Agent (v2.3.0)
 
 > "A skill's soul is defined by its structure."
 
@@ -28,7 +28,7 @@ Design the directory `<skill_name>/` at the repository root. Map out which sub-s
 Instead of local files, update the global project memory:
 - **STATE.md**: Log the new skill creation and status.
 - **DECISIONS.md**: Log architectural trade-offs for the new skill.
-- **tasks.md**: Create a task list in the skill's folder for execution tracking.
+- **tasks.md**: Create a task list using the **Observable Table Format** (Table with Evidence column).
 
 ### Step 3: Generate Core Instruction (`SKILL.md`)
 Apply the **Gold Standard Template** below. Ensure the `Knowledge Verification Chain` is present to prevent hallucinations.
@@ -80,9 +80,38 @@ Before execution:
 
 ---
 
+### 3. Observable Governance (Mandatory v2.3.0)
+Every artifact generated MUST include a structured metadata block.
+
+#### Metadata Protocol
+Every artifact MUST include this block. Use the following guide for the `status` and `phase` fields:
+
+| Activity | Metadata `phase` | Metadata `status` |
+|---|---|---|
+| Initializing Spec/Plan | `SPECIFY` | `IN_PROGRESS` |
+| Spec/Plan Frozen | `SPECIFY` | `COMPLETED` |
+| Coding in progress | `IMPLEMENT` | `IN_PROGRESS` |
+| Tasks done, ready for audit | `IMPLEMENT` | `COMPLETED` |
+| Reviewing results | `VERIFY` | `IN_PROGRESS` |
+| Project signed-off | `VERIFY` | `COMPLETED` |
+
+```markdown
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "FEAT-ID"
+phase: "PHASE"
+status: "STATUS"
+last_update: "ISO-TIMESTAMP"
+evidence_checksum: "EVIDENCE"
+```
+```
+
+---
+
 ## 🚫 Prohibited
-- NEVER skip verification.
-- NEVER use placeholders.
+- NEVER skip the **Knowledge Verification Chain** in the template.
+- NEVER skip the **Observable Governance** metadata block in generated artifacts.
 ```
 
 ### Memory Asset Template
@@ -99,3 +128,15 @@ Before execution:
 - NEVER create local `STATE.md`, `MEMORY.md`, or `LEARNINGS.md` files; use `.specs/project/`.
 - NEVER create empty instruction files.
 - NEVER skip the **Knowledge Verification Chain** in the template.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:51:00Z"
+evidence_checksum: "NONE"
+```

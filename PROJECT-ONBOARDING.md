@@ -1,6 +1,6 @@
-# AI Agent Skills Hub - Project Governance (Purist SDD)
+# AI Agent Skills Hub - Project Governance
 
-This document explains how to adopt the governance and intelligence of this Hub in your projects using the **Purist SDD v2.2.0** standard.
+This document explains how to adopt the governance and intelligence of this Hub in your projects using the **SDD v2.3.0** standard.
 
 ## 1. Governance Architecture
 
@@ -47,3 +47,15 @@ All development MUST follow the 4-phase SDD cycle:
 - **Conventional Commits**: Mandatory for clear history.
 - **Mermaid Diagrams**: Mandatory for visualizing complex flows in `plan.md`.
 - **Atomic Progress**: Never mark a task as done without a corresponding commit and validation.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:46:00Z"
+evidence_checksum: "NONE"
+```

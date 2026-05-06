@@ -45,3 +45,15 @@ Instead of a single large file, the Explorer generates a set of targeted artifac
 - **Evidence-Based:** Reference specific file paths for every claim.
 - **Current State Only:** Document what IS, not what you think it should be.
 - **Granularity:** Keep information in the correct file to avoid context bloat.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "SDD-CORE"
+phase: "MANAGEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T09:42:30Z"
+evidence_checksum: "NONE"
+```

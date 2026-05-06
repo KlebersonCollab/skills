@@ -24,3 +24,15 @@ Context management is vital to maintaining logical reasoning capacity in long ta
 1. **Target:** Maintain less than 40k active tokens loaded.
 2. **On-Demand Loading:** Never load all feature specs simultaneously.
 3. **Hierarchy of Importance:** `STATE.md` and `TECHNICAL-MAP.md` are the primary anchors for consistency.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "SDD-CORE"
+phase: "MANAGEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T09:42:30Z"
+evidence_checksum: "NONE"
+```

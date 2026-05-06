@@ -17,3 +17,15 @@ If, upon starting the task in *Quick Mode*, you realize that the implementation 
 In this case, declare to the user:
 > *"This task seemed quick, but it involves deep architectural changes. Aborting Quick Mode and elevating to Small/Medium scope."*
 Then, start the conventional steps of the SDD framework (generate spec, tasks, etc).
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "SDD-CORE"
+phase: "MANAGEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T09:42:30Z"
+evidence_checksum: "NONE"
+```

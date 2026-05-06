@@ -11,3 +11,15 @@
 2.  **Orchestration**: Generates `spec.md` and `plan.md` before writing any implementation code.
 3.  **Implementation**: Follows the plan, creating the auth service and routes.
 4.  **Review**: Validates against the spec and issues a report.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "GOLD-STANDARD"
+phase: "MANAGEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T09:42:40Z"
+evidence_checksum: "NONE"
+```

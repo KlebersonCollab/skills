@@ -1,6 +1,6 @@
 ---
 name: sdd-explorer
-version: 2.2.0
+version: 2.3.0
 description: "Explorer agent for Spec Driven Development. Maps existing codebases into consolidated technical artifacts."
 category: project-mapping
 ---
@@ -32,8 +32,21 @@ Follow the [Brownfield Mapping Guide](references/brownfield-mapping.md) for deta
 - **Reality First**: Document what IS, not what SHOULD BE.
 - **Evidence-Based**: Reference specific files or lines for every claim.
 - **Maintainable**: Update the map if core architectural changes occur.
-- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md) when passing context to the Orchestrator.
+- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md).
+- **Observable Governance**: Every artifact generated MUST include the `<!-- @sdd-state -->` block with `status: COMPLETED`.
 
 ## Prohibited
 - NEVER suggest code changes during exploration.
 - NEVER fabricate documentation—mark unclear patterns as `INCONSISTENT`.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:48:00Z"
+evidence_checksum: "NONE"
+```

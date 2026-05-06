@@ -6,7 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
-## [2.2.0] - 2026-05-06
+## [2.3.0] - 2026-05-06
+ 
+ ### Added
+ - **Observable Governance**: Mandatory metadata blocks (`<!-- @sdd-state -->`) for all SDD artifacts.
+ - **Audit Protocols**: Integrated metadata validation into `sdd-reviewer` and `sdd-orchestrator`.
+ - **Evidence-based Tasks**: Shifted `tasks.md` to a structured table format with a mandatory Evidence column.
+ 
+ ### Changed
+ - **Handoff Protocol**: Added "Metadata Audit" as a prerequisite for all baton passes.
+ 
+ ## [2.2.0] - 2026-05-06
+
 
 ### Added
 - **Structured 4-Phase Workflow**: Explicit integration of the Discovery, Specify, Implement, and Verify phases into the core `SKILL.md`.
@@ -81,3 +92,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **sdd-orchestrator.skill.md**: Sub-skill for technical specification with Knowledge Verification Chain.
 - **sdd-implementer.skill.md**: Sub-skill for atomic and test-driven implementation.
 - **sdd-reviewer.skill.md**: Sub-skill for auditing against acceptance criteria with evidence.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T09:41:10Z"
+evidence_checksum: "NONE"
+```

@@ -1,21 +1,28 @@
 # SDD Tasks: tasks.md
 
-Atomic task list for implementation tracking.
+Atomic task list for implementation tracking. 
+*Mandatory: Each [x] must correspond to at least one atomic Git commit and valid evidence.*
 
 ---
 
-## 📋 Task List
+## 📊 Phase Progress Monitoring
 
-### Phase 1: Preparation
-- [ ] Task 1: [Setup/Bootstrap] (Verification: [How to test])
-
-### Phase 2: Core Implementation
-- [ ] Task 2: [Core Logic] (Verification: [How to test])
-- [ ] Task 3: [Integration] (Verification: [How to test])
-
-### Phase 3: Finalization & Cleanup
-- [ ] Task 4: [Refactoring/Docs] (Verification: [Check tests])
-- [ ] Task 5: [Final Verification] (Verification: [Run audit])
+| Phase | Task | Status | Evidence (Commit/Log) |
+| :--- | :--- | :---: | :--- |
+| **1. PREP** | [Setup/Bootstrap] | [ ] | |
+| **2. CORE** | [Core Logic] | [ ] | |
+| **2. CORE** | [Integration] | [ ] | |
+| **3. FINAL** | [Refactoring/Docs] | [ ] | |
+| **3. FINAL** | [Final Verification] | [ ] | |
 
 ---
-*Mandatory: Each [x] must correspond to at least one atomic Git commit.*
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "FEAT-ID"
+phase: "IMPLEMENT"
+status: "IN_PROGRESS"
+last_update: "ISO-TIMESTAMP"
+evidence_checksum: "NONE"
+```

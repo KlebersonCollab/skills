@@ -48,3 +48,15 @@ Organize the workspace to prevent cognitive load during swarm operations:
 ---
 
 > **Law of the Swarm**: Coordination is more important than speed. A synchronized swarm is unstoppable.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "SDD-CORE"
+phase: "MANAGEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T09:42:30Z"
+evidence_checksum: "NONE"
+```
