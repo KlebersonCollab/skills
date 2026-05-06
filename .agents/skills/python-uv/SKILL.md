@@ -1,120 +1,120 @@
 ---
 name: python-uv
-description: Expert em ecossistema Python moderno com UV, focado em performance (Django/Async), segurança e governança SDD.
+description: Expert in the modern Python ecosystem with UV, focused on performance (Django/Async), security, and SDD governance.
 version: 4.0.0
 tags: [python, uv, django, async, performance, devops]
 ---
 
 # Python UV Expert
 
-Esta skill governa o desenvolvimento de aplicações Python de alta performance utilizando o `uv` como motor de execução e gestão. Ela integra padrões avançados de Django, desenvolvimento assíncrono e conformidade rigorosa com o framework **SDD (Spec-Driven Development)**.
+This skill governs the development of high-performance Python applications using `uv` as the primary execution and management engine. It integrates advanced Django patterns, asynchronous development, and strict compliance with the **SDD (Spec-Driven Development)** framework.
 
 ## 🔒 Prerequisites (Mandatory)
 
-Este skill opera DENTRO do framework **SDD**. Antes de iniciar qualquer execução técnica:
-0. **Mode Check**: Verifique o modo operacional atual (`.hub-mode`) e aplique as diretrizes do `token-distiller`.
-1. **Context Check**: Você reidratou o contexto lendo `STATE.md`, `MEMORY.md` e `LEARNINGS.md` em `.specs/project/`?
-2. **Spec Check**: O arquivo `spec.md` existe com requisitos claros e Critérios de Aceite (ACs)? (BDD obrigatório para Medium+).
-3. **Plan Check**: O arquivo `plan.md` define arquitetura, esquemas e inclui diagramas **Mermaid**?
-4. **Contract Check**: O arquivo `contract.md` foi estabelecido com sensores de validação?
-5. **Task Check**: A lista de tarefas em `tasks.md` está detalhada e atomizada?
+This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
+0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply `token-distiller` guidelines.
+1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` in `.specs/project/`?
+2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+ tasks).
+3. **Plan Check**: Does the `plan.md` file define architecture and schemas, and include **Mermaid** diagrams?
+4. **Contract Check**: Has the `contract.md` file been established with validation sensors?
+5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
 
 ---
 
 ## 🚀 Core Knowledge: UV & Environment Management
 
-O `uv` é a "Source of Truth" para o ambiente. Substitui pip, poetry, pyenv e pipx com performance Rust.
+`uv` is the "Source of Truth" for the environment. It replaces pip, poetry, pyenv, and pipx with Rust-powered performance.
 
-### 1. Gestão de Versões (Python 3.14+)
-- **Novo Padrão**: A partir do UV 0.9.6, o padrão é o **Python 3.14**.
-- **Free-Threading (PEP 703)**: Suporte nativo ao Python 3.14t (no-GIL) para paralelismo real em multi-core.
-- **Comandos**:
-    - `uv python install 3.14` (Instalação)
-    - `uv python pin 3.14` (Fixa versão no projeto via `.python-version`)
-    - `uv run --python 3.14t script.py` (Execução em modo free-threaded)
+### 1. Version Management (Python 3.14+)
+- **New Standard**: As of UV 0.9.6, the standard is **Python 3.14**.
+- **Free-Threading (PEP 703)**: Native support for Python 3.14t (no-GIL) for true multi-core parallelism.
+- **Commands**:
+    - `uv python install 3.14` (Installation)
+    - `uv python pin 3.14` (Pins the version in the project via `.python-version`)
+    - `uv run --python 3.14t script.py` (Execution in free-threaded mode)
 
-### 2. Gestão de Projetos e Dependências
-- **Inicialização**: `uv init project-name` (Estrutura `src/` layout recomendada).
-- **Sincronização**: `uv sync --dev --locked` (Garante paridade total com `uv.lock`).
-- **Adição de Pacotes**: 
-    - `uv add requests` (Produção)
-    - `uv add --dev ruff mypy pytest` (Desenvolvimento)
-    - `uv add --optional group-name package` (Dependências opcionais)
+### 2. Project and Dependency Management
+- **Initialization**: `uv init project-name` (Recommended `src/` layout structure).
+- **Synchronization**: `uv sync --dev --locked` (Ensures total parity with `uv.lock`).
+- **Adding Packages**: 
+    - `uv add requests` (Production)
+    - `uv add --dev ruff mypy pytest` (Development)
+    - `uv add --optional group-name package` (Optional dependencies)
 
-### 3. PEP 723: Scripts Inline
-Para automações e ferramentas de arquivo único, use metadados inline:
+### 3. PEP 723: Inline Scripts
+For automations and single-file tools, use inline metadata:
 ```python
 # /// script
 # requires-python = ">=3.11"
 # dependencies = ["httpx", "rich"]
 # ///
 import httpx
-# ... lógica aqui
+# ... logic here
 ```
-Execute com: `uv run script.py`.
+Execute with: `uv run script.py`.
 
 ---
 
 ## 🏗️ Expert Domain: Django Professional
 
-Focado em escalabilidade corporativa e eliminação de gargalos comuns.
+Focused on enterprise scalability and eliminating common bottlenecks.
 
-### 1. Performance ORM (N+1 Resolution)
-- **Regra de Ouro**: NUNCA realize queries em loops.
-- **select_related**: Use para Foreign Keys e One-to-One (SQL JOIN).
-- **prefetch_related**: Use para Many-to-Many e relações reversas (Queries separadas com IN).
-- **Bulk Ops**: Use `bulk_create` e `bulk_update` para operações em massa.
+### 1. ORM Performance (N+1 Resolution)
+- **Golden Rule**: NEVER perform queries inside loops.
+- **select_related**: Use for Foreign Keys and One-to-One (SQL JOIN).
+- **prefetch_related**: Use for Many-to-Many and reverse relations (Separate queries with IN).
+- **Bulk Ops**: Use `bulk_create` and `bulk_update` for mass operations.
 
 ### 2. Service Layer & Architecture
-- **Fat Models/Views são Proibidos**: Mova a lógica de negócio complexa para `services.py`.
-- **Secure Querysets**: Sempre filtre por `owner` ou `tenant` no `get_queryset` para evitar **BOLA/IDOR**.
+- **Fat Models/Views are Prohibited**: Move complex business logic to `services.py`.
+- **Secure Querysets**: Always filter by `owner` or `tenant` in `get_queryset` to prevent **BOLA/IDOR**.
 
 ### 3. Async Django (ASGI)
-- Use views assíncronas (`async def`) para operações de I/O bloqueante (chamadas de API externas).
-- Motor recomendado: `uvicorn` via `uv run`.
+- Use asynchronous views (`async def`) for blocking I/O operations (external API calls).
+- Recommended engine: `uvicorn` via `uv run`.
 
 ---
 
 ## ⚡ Expert Domain: Async Mastery
 
-### 1. Padrões de Concorrência
-- **gather**: Execute múltiplas tarefas simultâneas.
-- **Semaphores**: Limite a concorrência para proteger recursos externos.
+### 1. Concurrency Patterns
+- **gather**: Execute multiple tasks simultaneously.
+- **Semaphores**: Limit concurrency to protect external resources.
 ```python
 sem = asyncio.Semaphore(10)
 async with sem:
     await call_external_api()
 ```
-- **uvloop**: Utilize para ganhos de performance de 2-4x em Linux/macOS.
+- **uvloop**: Utilize for performance gains of 2-4x on Linux/macOS.
 
 ### 2. Testing Async
-- Configure `pytest-asyncio` no `pyproject.toml` com `asyncio_mode = "auto"`.
+- Configure `pytest-asyncio` in `pyproject.toml` with `asyncio_mode = "auto"`.
 
 ---
 
 ## 🛠️ Operational Workflows
 
-### 1. Pipeline de Qualidade (TDD)
-Siga o ciclo **Red-Green-Refactor**:
+### 1. Quality Pipeline (TDD)
+Follow the **Red-Green-Refactor** cycle:
 1. `uv add --dev pytest pytest-cov`
-2. Escreva o teste em `tests/`.
-3. Execute: `uv run pytest`.
-4. Implemente o código mínimo.
-5. Refatore.
+2. Write the test in `tests/`.
+3. Run: `uv run pytest`.
+4. Implement the minimum code.
+5. Refactor.
 
 ### 2. CI/CD & Docker
-- **GitHub Actions**: Use `astral-sh/setup-uv@v4` com `enable-cache: true`.
-- **Docker**: Utilize builds multi-stage para manter imagens leves, copiando apenas o `.venv`.
+- **GitHub Actions**: Use `astral-sh/setup-uv@v4` with `enable-cache: true`.
+- **Docker**: Use multi-stage builds to keep images light, copying only the `.venv`.
 
 ---
 
 ## 🔒 Prohibitive Mandates & Anti-Patterns
 
-- **NUNCA** use `pip install` globalmente. Use `uv tool install` para ferramentas ou `uv venv` para projetos.
-- **NUNCA** ignore o arquivo `uv.lock`. Ele deve ser versionado no Git.
-- **NUNCA** execute comandos de gerenciamento sem o prefixo `uv run` (ex: `uv run python manage.py migrate`).
-- **NUNCA** use argumentos padrão mutáveis (`list`, `dict`) em funções.
-- **EVITE** o uso de `type()` para checagem; prefira `isinstance()`.
+- **NEVER** use `pip install` globally. Use `uv tool install` for tools or `uv venv` for projects.
+- **NEVER** ignore the `uv.lock` file. It must be versioned in Git.
+- **NEVER** execute management commands without the `uv run` prefix (e.g., `uv run python manage.py migrate`).
+- **NEVER** use mutable default arguments (`list`, `dict`) in functions.
+- **AVOID** using `type()` for checking; prefer `isinstance()`.
 
 ---
 
