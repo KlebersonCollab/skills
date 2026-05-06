@@ -1,5 +1,14 @@
 # Changelog — Python with UV
 
+## [4.0.0] - 2026-05-06
+
+### Added
+- **Purist SDD v2.2.0 Refactor**: Skill completely rebuilt to follow the logic-first, purist governance standards.
+- **Python 3.14 Support**: Integration of the new UV default (3.14) and Free-threaded Python (no-GIL).
+- **Expert Domain Integration**: Direct consolidation of Django Pro (N+1, Service Layer) and Async Mastery (uvloop, gather) into the core workflow.
+- **PEP 723 (Inline Scripts)**: Added support and patterns for self-contained scripts with dependencies.
+- **Centralized Memory**: Alignment with the "Zero Local Memory" mandate (operational state moved to `.specs/project/`).
+
 ## [3.0.0] - 2026-04-22
 
 ### Added
