@@ -129,10 +129,10 @@
 
 ### [BENCHMARK] ./internal/benchmark: 1140608.00 ns/op (2026-04-24)
 
-### [2026-05-06] Débito de Governança em Integrações Rápidas
-- **Learning**: Durante fases de integração acelerada (ex: Stitch Skills), há uma tendência natural de negligenciar os hooks de governança (SDD Hooks) e arquivos mandatórios (`CHANGELOG.md`) nas novas habilidades criadas.
-- **Pattern**: Auditorias SDD periódicas são essenciais para identificar esse "drift" documental antes que ele comprometa a capacidade de futuros agentes de operar com segurança no repositório.
-- **Mitigation**: Implementar verificação de conformidade de habilidades no pipeline de CI/CD para garantir que nenhuma nova habilidade seja integrada sem os requisitos mínimos de governança.
-- **ADK-Based Architecture [2026-05-06]**: A adoção do modelo de 5 camadas do Agent Development Kit permite uma separação clara entre as regras de longo prazo (CLAUDE.md) e as capacidades sob demanda (Skills), reduzindo drasticamente o consumo de tokens e a fadiga do contexto.
-- **Centralização de Memória Operacional (SDD v2.2.0) [2026-05-06]**: Skills individuais não devem carregar seus próprios arquivos `STATE.md`, `MEMORY.md` ou `LEARNINGS.md`. Toda memória operacional deve ser agregada em `.specs/project/` para manter uma "Fonte da Verdade" única para o projeto. A criação de memórias locais gera fragmentação e desvio de padrão.
-- **Governança de Root Integrity [2026-05-06]**: Alterações em diretórios ocultos de sistema (`.agents/`) são proibidas. O desenvolvimento e a governança de habilidades devem ocorrer de forma explícita na raiz do projeto para garantir transparência e conformidade com o princípio de "Explicit Logic" do SDD.
+### [2026-05-06] Governance Debt in Rapid Integrations
+- **Learning**: During accelerated integration phases (e.g., Stitch Skills), there is a natural tendency to neglect governance hooks (SDD Hooks) and mandatory files (`CHANGELOG.md`) in newly created skills.
+- **Pattern**: Periodic SDD audits are essential to identify this "documentary drift" before it compromises the safety and reliability of future agents operating in the repository.
+- **Mitigation**: Implement skill compliance verification in the CI/CD pipeline to ensure no new skill is integrated without meeting the minimum governance requirements.
+- **ADK-Based Architecture [2026-05-06]**: Adopting the 5-layer Agent Development Kit model enables a clear separation between long-term rules (`CLAUDE.md`) and on-demand capabilities (Skills), drastically reducing token consumption and context fatigue.
+- **Operational Memory Centralization (SDD v2.2.0) [2026-05-06]**: Individual skills should not carry their own `STATE.md`, `MEMORY.md`, or `LEARNINGS.md` files. All operational memory must be aggregated in `.specs/project/` to maintain a single "Source of Truth" for the project. Creating local memories leads to fragmentation and pattern deviation.
+- **Root Integrity Governance [2026-05-06]**: Modifications to hidden system directories (`.agents/`) are prohibited. Skill development and governance must occur explicitly at the project root to ensure transparency and compliance with the SDD "Explicit Logic" principle.

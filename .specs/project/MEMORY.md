@@ -28,4 +28,4 @@
 - **PR Quality**: Every Pull Request must follow the official template and include the SDD quality checklist.
 +
 +## Technical UI Governance
-+- **Premium Terminal UI (2026-04-27)**: Decidido pelo uso de ANSI Escape Codes puros (Save/Restore Cursor) em vez de frameworks de alto nível para permitir a "auto-injeção" de status bars no CLI `hb` sem quebrar o fluxo de logs e manter alta performance cross-platform.
++- **Premium Terminal UI (2026-04-27)**: Decided to use pure ANSI Escape Codes (Save/Restore Cursor) instead of high-level frameworks to allow "auto-injection" of status bars in the `hb` CLI without breaking log flow, maintaining high cross-platform performance.
