@@ -10,6 +10,7 @@
 - SDD artifacts (Spec, Plan, Tasks) created and finalized in `.specs/features/stitch-skills-integration/`.
 - **Project Integrity Audit (SDD)**: Completed. Identified documentation debt in `stitch-*` skills and fixed `KNOWLEDGE-MAP.mermaid` duplicates.
 - Updated `KNOWLEDGE-MAP.mermaid`.
+- **ADK Expert Skill**: Created based on "The Agent Development Kit" architecture. Documentation and SDD specs completed.
 
 ## Current Blockers
 - None.

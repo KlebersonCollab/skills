@@ -1,6 +1,6 @@
 ---
 name: sdd-planner
-version: 1.5.0
+version: 2.2.0
 description: "Planner agent for Spec Driven Development. Manages project vision, feature roadmaps, and persistent session memory (STATE.md)."
 category: project-planning
 ---
@@ -21,16 +21,17 @@ The planning consists of the following project-wide documents (stored in `.specs
 |-------|---------|
 | `PROJECT.md` | Core vision, goals, and target audience. The "North Star". |
 | `ROADMAP.md` | High-level features, milestones, and release status. |
-| `STATE.md` | **Operational Memory**: Tasks, session status, blockers, and next steps. |
-| `MEMORY.md` | **Persistent Knowledge**: Enduring facts, style guides, stacks, and user preferences. |
-| `LEARNINGS.md` | **Incremental Wisdom**: Solutions to bugs, code patterns, and technical insights. |
+| `STATE.md` | **Operational Memory**: Active tasks, session status, and blockers. |
+| `MEMORY.md` | **Persistent Knowledge**: Enduring facts, style guides, and preferences. |
+| `LEARNINGS.md` | **Incremental Wisdom**: Bug solutions and technical patterns. |
+| `DECISIONS.md` | **Decisions Log**: Record of architectural decisions and the "Why". |
 
 ## Persistent Memory Protocol (STATE.md, MEMORY.md, LEARNINGS.md)
 
 This is the most critical tool for long-running projects. It should be updated:
 - **At start of session**: Read all memory files to "rehydrate" context.
-- **When a decision is made**: Document the "Why" in `STATE.md` (decisions log) or `MEMORY.md` (if it's a permanent standard).
-- **When a bug is fixed**: Capture the root cause and solution in `LEARNINGS.md` to avoid future recurrence.
+- **When a decision is made**: Document the "Why" in `DECISIONS.md`.
+- **When a bug is fixed**: Capture the root cause and solution in `LEARNINGS.md`.
 - **When a preference is expressed**: Store it in `MEMORY.md` (e.g., "prefer snake_case").
 - **At end of session**: Summarize status in `STATE.md`.
 
@@ -56,22 +57,12 @@ This is the most critical tool for long-running projects. It should be updated:
 - [Description] - [Priority: Low/Med/High]
 ```
 
-### MEMORY.md Structure (Persistent Knowledge)
-- **Core Truths**: List of unchangeable project/user preferences.
-- **Architecture Standards**: Decisions on stack, libraries, and patterns.
-- **Global Context**: External dependencies, API keys (names only), and environment notes.
-
-### LEARNINGS.md Structure (Incremental Wisdom)
-- **Solved Issues**: [Problem] -> [Root Cause] -> [Solution/Command].
-- **Code Patterns**: "When doing X, we always use Y approach".
-- **Tooling Tricks**: Commands or flags discovered during development.
-
 ## Quality Rules
 
 - **Zero Ceremony**: Keep the roadmap and vision concise. Focus on Value.
 - **Explicit Decisions**: Never leave an architectural or business decision to "vague memory".
-- **Actionable State**: The `STATE.md` should answer "What do I do now?" if the agent's memory was completely wiped. Always consider the [Session Handoff Protocol](references/session-handoff.md).
-- **Strict Limits**: The planner must not let `STATE.md` bloat infinitely. Respect the [Context Limits](references/context-limits.md) rules.
+- **Actionable State**: The `STATE.md` should answer "What do I do now?" if the agent's memory was completely wiped.
+- **Strict Limits**: Respect the [Context Limits](references/context-limits.md) rules.
 
 ## Prohibited
 

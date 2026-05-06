@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [2.2.0] - 2026-05-06
+
+### Added
+- **Structured 4-Phase Workflow**: Explicit integration of the Discovery, Specify, Implement, and Verify phases into the core `SKILL.md`.
+- **Harness Memory Integration**: Formalized the generation and maintenance of `.specs/project/` artifacts (`PROJECT`, `ROADMAP`, `STATE`, `MEMORY`, `LEARNINGS`, `DECISIONS`) across all phases.
+- **Granular Codebase Mapping**: Expanded `sdd-explorer` to explicitly generate individual codebase artifacts (`STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `CONCERNS.md`) instead of a single file.
+- **Full English Standardization**: Migrated all skill files, sub-skills, and documentation to English for cross-model consistency and performance.
+
+### Changed
+- **Unified Versioning**: Synchronized all sub-skills to version 2.2.0.
+- **Directory Structure Update**: Updated `SKILL.md` and `README.md` to reflect the mandatory structure for `.specs/project/` and `.specs/codebase/`.
+
 ## [2.1.0] - 2026-04-27
 
 ### Added
