@@ -14,3 +14,15 @@
 ## Architectural Decisions
 - [ADR-001] Transition to Purist SDD: Removing CLI dependencies in favor of Markdown-based governance artifacts.
 - [ADR-002] Centralized Memory: All project state and context must reside in `.specs/project/`.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T10:39:00Z"
+evidence_checksum: "NONE"
+```

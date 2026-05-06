@@ -43,3 +43,15 @@ The Hub hosts specialized modules that can be consumed by AI agents to perform c
 - **Structure**: All skills must reside in their own directory with a mandatory `SKILL.md`.
 - **Interoperability**: Skills are designed to be "equipped" by agents via direct reference or local mirroring.
 - **Quality**: Continuous validation against the SDD mandates.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T10:38:00Z"
+evidence_checksum: "NONE"
+```
