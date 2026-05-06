@@ -6,6 +6,7 @@
 - **CLI Flexbox Layout (Yoga-inspired)**: Planning complete, starting implementation.
 
 ## Recent Progress
+- **CI/CD Cleanup**: Removed all obsolete GitHub Actions and workflows as per project modernization.
 - **Python UV Refactor**: Upgraded `python-uv` to v4.0.0 (Purist SDD). Integrated Django Pro, Async Mastery, and Python 3.14.
 - Integrated `stitch-expert`, `remotion-expert`, and `stitch-loop` into the Hub.
 - Aggregated React and Shadcn knowledge into `frontend-expert`.
