@@ -35,3 +35,16 @@ Always follow the **Arrange, Act, Assert** pattern for readability:
 3.  **Assert**: Verify that the result was as expected.
 
 **Tip**: A good test should tell a story. Use descriptive names (e.g., `test_should_throw_exception_when_user_is_null`).
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.380746Z"
+evidence_checksum: "NONE"
+```

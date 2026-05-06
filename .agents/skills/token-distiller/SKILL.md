@@ -74,9 +74,10 @@ As a utility skill, Token Distiller operates as a unified agent across all phase
 ## 🛠️ Operational Protocols
 
 ### 1. Knowledge Verification Chain
-1. **Core SDD Skill**: Reference for task sizing and workflow.
-2. **Project Specs**: `.specs/project/STATE.md` for current context.
-3. **Internal Governance**: `skill-factory` standards for documentation.
+1. **Global Mandates**: `.specs/codebase/GLOBAL_MANDATES.md` for engineering standards.
+2. **Core SDD Skill**: Reference for task sizing and workflow.
+3. **Project Specs**: `.specs/project/STATE.md` for current context.
+4. **Internal Governance**: `skill-factory` standards for documentation.
 
 ### 2. Micro-Compaction (Stubbing)
 - **Trigger**: Tool results > 10 turns old AND > 5000 characters.
@@ -104,9 +105,9 @@ As a utility skill, Token Distiller operates as a unified agent across all phase
 ```yaml
 version: "2.3.0"
 feature_id: "TOKEN-DISTILLER-V2.3.0"
-phase: "IMPLEMENT"
+phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-06T12:57:00Z"
+last_update: "2026-05-06T13:30:00Z"
 evidence_checksum: "NONE"
 ```
 

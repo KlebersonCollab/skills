@@ -209,3 +209,14 @@ ls /path/to/project/pyproject.toml
 # Use absolute path with --from
 uvx --from /absolute/path/to/project script.py
 ```
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.666082Z"
+evidence_checksum: "NONE"
+```

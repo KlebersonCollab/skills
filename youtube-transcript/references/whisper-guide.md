@@ -232,3 +232,14 @@ model = whisper.load_model("tiny", device="cpu")
 - [OpenAI Whisper GitHub](https://github.com/openai/whisper)
 - [Whisper Paper](https://arxiv.org/abs/2212.04356)
 - [FFmpeg Documentation](https://ffmpeg.org/documentation.html)
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "YT-TRANSCRIPT-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T10:48:00Z"
+evidence_checksum: "NONE"
+```

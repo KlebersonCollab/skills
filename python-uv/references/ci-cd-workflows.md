@@ -270,3 +270,14 @@ repos:
 uv tool install pre-commit
 pre-commit install
 ```
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.663721Z"
+evidence_checksum: "NONE"
+```

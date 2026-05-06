@@ -39,6 +39,18 @@ Define the expected artifacts or responses.
 - This significantly improves the agent's ability to follow complex patterns.
 
 ## 8. Iterative Refinement
-Prompts are never final. Use `LEARNINGS.md` to identify failures and improve the instructions.
+Prompts are never final. Use the global `.specs/project/LEARNINGS.md` to identify failures and improve the instructions.
 - **Rule**: Update the prompt based on real-world edge cases encountered by the agents.
 - **Good Example**: "Added a rule to ignore `.DS_Store` files after a common listing error."
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "REFACTOR-SKILL-FACTORY-V230"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T10:28:00Z"
+evidence_checksum: "NONE"
+```

@@ -182,3 +182,14 @@ uv tool install mypy
 uv python install 3.12
 uv python pin 3.12
 ```
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.666298Z"
+evidence_checksum: "NONE"
+```

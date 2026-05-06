@@ -125,3 +125,16 @@ Para um mergulho profundo em cada tópico, consulte os guias especializados:
 | [Performance](references/performance.md) | Async vs Sync e Pydantic Rust core. |
 | [Testing](references/testing.md) | Pytest, AsyncClient e Integration Tests. |
 | [Migrations](references/migrations.md) | Alembic Assíncrono e versionamento de banco. |
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.359394Z"
+evidence_checksum: "NONE"
+```

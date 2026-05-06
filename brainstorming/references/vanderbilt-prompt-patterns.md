@@ -21,3 +21,16 @@ Ask for different ways to describe a problem to find new solutions.
 ## 5. Template Pattern
 Force the agent to respond in a specific format to ensure completeness.
 - **Prompt**: "For every idea you generate, follow this template: Idea | Rationale | Potential Risk | Mitigation."
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.375414Z"
+evidence_checksum: "NONE"
+```

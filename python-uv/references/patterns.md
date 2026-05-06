@@ -180,3 +180,14 @@ class User:
 2. **Bare Except**: Never use `except:`. Catch specific exceptions or `Exception`.
 3. **Type Checking with `type()`**: Use `isinstance(obj, class)`.
 4. **Comparison with `None`**: Use `is None` instead of `== None`.
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.665217Z"
+evidence_checksum: "NONE"
+```

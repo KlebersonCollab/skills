@@ -45,3 +45,14 @@ python-uv/
 - *"Refactor this Django view to resolve the N+1 queries issue using select_related."*
 - *"Set up a Service Layer for this Django project managed by uv."*
 - *"How do I use uv to run bandit and audit my project's security?"*
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.662837Z"
+evidence_checksum: "NONE"
+```

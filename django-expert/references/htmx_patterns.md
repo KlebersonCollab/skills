@@ -33,3 +33,16 @@ Validate form fields while the user types.
 It is recommended to use `django-htmx` to facilitate header manipulation.
 - `request.htmx`: Checks if the request came from HTMX.
 - `HX-Trigger`: Trigger events on the frontend from the backend.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.371439Z"
+evidence_checksum: "NONE"
+```

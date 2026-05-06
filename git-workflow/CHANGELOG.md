@@ -7,3 +7,16 @@
 - Conventional Commits and Branching Strategies guides.
 - Mandates for using Merge vs. Rebase.
 - Pull Request templates and Git configuration.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.362953Z"
+evidence_checksum: "NONE"
+```

@@ -91,3 +91,16 @@ User.objects.raw('SELECT * FROM users WHERE email = %s', [email])
 # NEVER THIS
 User.objects.raw(f'SELECT * FROM users WHERE email = {email}')
 ```
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.371678Z"
+evidence_checksum: "NONE"
+```

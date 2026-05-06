@@ -10,3 +10,16 @@ All notable changes to this skill will be documented in this file.
 - Mandatory integration with the SDD framework.
 - Reference guides for performance targets and regression analysis.
 - Comparison report examples.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.358903Z"
+evidence_checksum: "NONE"
+```

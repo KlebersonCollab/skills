@@ -14,10 +14,44 @@ This skill governs the development of high-performance Python applications using
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
 0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply `token-distiller` guidelines.
 1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` in `.specs/project/`?
-2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+ tasks).
-3. **Plan Check**: Does the `plan.md` file define architecture and schemas, and include **Mermaid** diagrams?
-4. **Contract Check**: Has the `contract.md` file been established with validation sensors?
-5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
+2. **Knowledge Check**: Follow the **Knowledge Verification Chain** (see below).
+
+---
+
+## 🧩 Delegation Matrix
+
+This skill maps development phases to specialized technical references to ensure structural integrity:
+
+| Phase | Resource / Protocol | Primary Artifact | Purpose |
+|---|---|---|---|
+| **DISCOVERY** | `references/python-environment.md` | `pyproject.toml` | Environment mapping and stack selection (Python 3.14+). |
+| **SPECIFY** | `references/patterns.md`, `django-workflow.md` | `spec.md`, `plan.md` | Architectural design, ORM optimization, and Service Layer. |
+| **IMPLEMENT** | `references/testing.md`, `async-development.md` | Tested Code | Implementation with TDD, atomic commits, and `uv run`. |
+| **VERIFY** | `references/ci-cd-workflows.md` | CI/CD Logs | Final audit against performance and security benchmarks. |
+
+---
+
+## 🔄 4-Phase Workflow
+
+### 1. DISCOVERY
+*   **Goal**: Define the environment and dependency baseline.
+*   **Action**: Use `uv sync` to align with the lockfile. Check for Python 3.14/Free-threading requirements.
+*   **Output**: Verified `uv.lock` and project structure.
+
+### 2. SPECIFY
+*   **Goal**: Design the technical solution (Specs & Plan).
+*   **Action**: Define ORM schemas (avoiding N+1) and service boundaries. Establish `pyproject.toml` requirements.
+*   **Output**: `spec.md` and `plan.md` with **Mermaid** diagrams.
+
+### 3. IMPLEMENT
+*   **Goal**: Deliver tested, high-performance code.
+*   **Action**: Apply Red-Green-Refactor with `pytest`. Use `uv run` for all execution. Implement async for I/O.
+*   **Output**: Atomic commits referencing task IDs.
+
+### 4. VERIFY
+*   **Goal**: Ensure production readiness and compliance.
+*   **Action**: Validate through GitHub Actions (`setup-uv`). Perform security/performance audit.
+*   **Output**: Updated `LEARNINGS.md` with performance gains or solved bottlenecks.
 
 ---
 
@@ -108,6 +142,24 @@ Follow the **Red-Green-Refactor** cycle:
 
 ---
 
+## 🛠️ Operational Protocols
+
+### 1. Knowledge Verification Chain
+To prevent pattern drift and ensure technical excellence, follow this hierarchy:
+1.  **Environment State**: Current `uv sync` status and `pyproject.toml` configurations.
+2.  **Internal Specs**: Project-specific `spec.md`, `plan.md`, and `tasks.md`.
+3.  **Expert References**: Local domain guides in `python-uv/references/`.
+4.  **Global Mandates**: `.specs/codebase/GLOBAL_MANDATES.md`.
+5.  **Official Documentation**: Astral (uv), Django, and Python (3.14+) official sources.
+
+### 2. The Gated Workflow Mandate
+Phase transitions (e.g., Specify to Implement) require 100% task completion and metadata synchronization in `STATE.md`.
+
+### 3. Safety Valve
+If `uv sync` fails or dependency conflicts arise during implementation, **STOP** and re-evaluate the `pyproject.toml` design.
+
+---
+
 ## 🔒 Prohibitive Mandates & Anti-Patterns
 
 - **NEVER** use `pip install` globally. Use `uv tool install` for tools or `uv venv` for projects.
@@ -135,3 +187,14 @@ Follow the **Red-Green-Refactor** cycle:
 - [Template: pyproject.toml](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/resources/pyproject-template.toml)
 - [Example: pyproject.toml](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/examples/pyproject-toml-example.md)
 - [Example: GitHub Actions](file:///Users/klebersonromero/Projetos/Kleberson/skills/python-uv/examples/github-actions-example.md)
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.662256Z"
+evidence_checksum: "NONE"
+```

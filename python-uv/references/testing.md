@@ -145,3 +145,14 @@ async def test_async_endpoint(async_client):
 - **Do not share state**: Tests should be independent and able to run in any order.
 - **Do not ignore failures**: A failing test is an immediate blocker.
 - **Do not use `print`**: Use logs or pytest output in case of failure.
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.664731Z"
+evidence_checksum: "NONE"
+```

@@ -70,3 +70,16 @@ class Meta:
 
 ## 5. Bulk Operations
 Always use `bulk_create`, `bulk_update`, and `QuerySet.update()` for handling large volumes of data.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.371553Z"
+evidence_checksum: "NONE"
+```

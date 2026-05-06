@@ -14,7 +14,7 @@ The **Skill Factory** is the central engine for standardized skill authoring wit
 Instead of manual file creation which leads to inconsistency, the agent utilizes this skill to:
 1. **Design**: Perform a conceptual blueprinting of the skill's logic.
 2. **Generate**: Scaffold all necessary files from logic-first templates.
-3. **Validate**: Audit the skill against SDD v2.2.0 and structural purity checklists.
+3. **Validate**: Audit the skill against SDD v2.3.0 and structural purity checklists.
 4. **Register**: Ensure the skill is correctly indexed in the project's global memory and roadmap.
 
 > **Principle**: If SDD ensures code is specified before being written, the Skill Factory ensures every skill is structured before being defined.
@@ -25,8 +25,10 @@ Instead of manual file creation which leads to inconsistency, the agent utilizes
 
 | Mode | Use Case | Generated Artifacts |
 |------|-------------|-----------------|
-| **Quick** | Simple skill without sub-skills | `SKILL.md`, `README.md`, `CHANGELOG.md`, `tasks.md` |
-| **Standard** | Complex skill with sub-skills | All above + `<skill>-<sub>.skill.md` (N) + `DECISIONS.md` |
+| **Quick** | Simple skill without sub-skills | `SKILL.md`, `README.md`, `CHANGELOG.md` |
+| **Standard** | Complex skill with sub-skills | All above + `<skill>-<sub>.skill.md` (N) |
+
+> **Note**: Operational files like `tasks.md`, `spec.md`, and `plan.md` MUST reside in `.specs/features/`.
 
 ---
 
@@ -53,14 +55,13 @@ No sub-skills.
 **The agent executes:**
 1. `skill-factory-bootstrap` with `skill_name=deep-research`, `description="Advanced web research with result synthesis"`, `category=research`.
 2. `skill-factory-validator` to audit `deep-research/`.
-3. Update project roadmap in `.specs/project/ROADMAP.md`.
+3. Update project roadmap in `.specs/project/STATE.md`.
 
 **Result:**
 ```
 deep-research/
-├── SKILL.md          # Definition with placeholders for completion
+├── SKILL.md          # Definition with Logic-First protocols
 ├── README.md         # Documentation with badges and structure
-├── tasks.md          # Initial task list for execution
 └── CHANGELOG.md      # Entry [1.0.0] with today's date
 ```
 
@@ -73,9 +74,9 @@ Every skill created by the framework is validated against this checklist:
 | # | Check | Description |
 |---|-------|-----------|
 | 1 | **Structural** | All mandatory files exist (Root Integrity) |
-| 2 | **Memory** | Operational memory is aggregated in `.specs/project/` (No local triad) |
+| 2 | **Memory** | Zero fragmentation: no local `STATE.md`, `MEMORY.md`, or `tasks.md` |
 | 3 | **Frontmatter** | Valid YAML with `name`, `version`, `description`, `category` |
-| 4 | **Content** | Mandatory H2 sections present (Goal, Prerequisites, Quality Rules, Prohibited) |
+| 4 | **Content** | Mandatory H2 sections present (Goal, Prerequisites, Knowledge Chain, Prohibited) |
 | 5 | **Naming** | Directory, files, and frontmatter follow standard patterns |
 
 ---
@@ -96,9 +97,9 @@ Consult the [CHANGELOG.md](CHANGELOG.md) for the full version history.
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "FACTORY-REF-01"
+feature_id: "REFACTOR-SKILL-FACTORY-V230"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-06T09:40:00Z"
+last_update: "2026-05-06T10:35:00Z"
 evidence_checksum: "NONE"
 ```

@@ -60,3 +60,16 @@ feat(db):! migrate to postgresql
 
 BREAKING CHANGE: The database layer now requires a PostgreSQL connection string.
 ```
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.363366Z"
+evidence_checksum: "NONE"
+```

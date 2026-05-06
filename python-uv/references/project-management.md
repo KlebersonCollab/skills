@@ -290,3 +290,14 @@ uv run ruff check .
 uv run mypy .
 uv run pytest --cov=src/
 ```
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.664964Z"
+evidence_checksum: "NONE"
+```

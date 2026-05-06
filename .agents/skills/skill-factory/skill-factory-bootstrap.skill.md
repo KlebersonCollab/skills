@@ -26,9 +26,9 @@ Design the directory `<skill_name>/` at the repository root. Map out which sub-s
 
 ### Step 2: Update Project Memory
 Instead of local files, update the global project memory:
-- **STATE.md**: Log the new skill creation and status.
-- **DECISIONS.md**: Log architectural trade-offs for the new skill.
-- **tasks.md**: Create a task list using the **Observable Table Format** (Table with Evidence column).
+- **STATE.md**: Log the new skill creation and status in `.specs/project/STATE.md`.
+- **DECISIONS.md**: Log architectural trade-offs in `.specs/architecture/`.
+- **tasks.md**: Create a task list in `.specs/features/[feature_name]/tasks.md` using the **Observable Table Format**.
 
 ### Step 3: Generate Core Instruction (`SKILL.md`)
 Apply the **Gold Standard Template** below. Ensure the `Knowledge Verification Chain` is present to prevent hallucinations.
@@ -48,8 +48,9 @@ category: {{category}}
 
 ## 🔒 Prerequisites (Mandatory)
 Before execution:
-0. **Context Check**: Read `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
-1. **Knowledge Check**: Follow the **Knowledge Verification Chain**.
+0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
+1. **Context Check**: Read `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
+2. **Knowledge Check**: Follow the **Knowledge Verification Chain**.
 
 ---
 
@@ -69,10 +70,10 @@ Before execution:
 ## 🛠️ Operational Protocols
 
 ### 1. Knowledge Verification Chain
-1. **Existing Code**: Scan for established patterns.
+1. **Existing Code**: Scan for established patterns in the repository.
 2. **Internal Specs**: Consult `.specs/features/` and `STATE.md`.
-3. **Project Documentation**: Check READMEs and official docs.
-4. **MCP/External Tools**: Query `context-graph` or web.
+3. **Global Mandates**: Read `.specs/codebase/GLOBAL_MANDATES.md`.
+4. **Project Memory**: Check `.specs/project/MEMORY.md`.
 5. **Flag Uncertainty**: Never assume.
 
 ### 2. Safety Valve
@@ -82,6 +83,7 @@ Before execution:
 
 ### 3. Observable Governance (Mandatory v2.3.0)
 Every artifact generated MUST include a structured metadata block.
+- **Zero Local Memory**: DO NOT create `STATE.md`, `MEMORY.md`, `LEARNINGS.md`, or `tasks.md` in this directory. Use `.specs/` instead.
 
 #### Metadata Protocol
 Every artifact MUST include this block. Use the following guide for the `status` and `phase` fields:
@@ -112,6 +114,7 @@ evidence_checksum: "EVIDENCE"
 ## 🚫 Prohibited
 - NEVER skip the **Knowledge Verification Chain** in the template.
 - NEVER skip the **Observable Governance** metadata block in generated artifacts.
+- NEVER create local `tasks.md`, `STATE.md`, or `MEMORY.md` files.
 ```
 
 ### Memory Asset Template

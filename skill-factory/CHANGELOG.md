@@ -9,12 +9,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
  ## [2.3.0] - 2026-05-06
  
  ### Added
- - **Observable Governance**: Integrated mandatory `<!-- @sdd-state -->` metadata blocks for all skill artifacts.
- - **Evidence Table**: Refactored `tasks.md` format to a structured table requiring physical evidence (commits/logs).
- - **Automated Auditing**: Upgraded `skill-factory-validator` to enforce metadata and evidence compliance.
+ - **Observable Governance v2.3.0**: Full alignment with dynamic discovery and hardened metadata extraction.
+ - **Zero-Fragment Memory Mandate**: Prohibited local `tasks.md`, `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+ - **Evidence Table**: Centralized tasks in `.specs/features/` with required physical evidence.
  
  ### Changed
- - **Gold Standard Templates**: Updated bootstrap templates to include observability protocols by default.
+ - **Gold Standard Templates**: Updated bootstrap templates to remove local `tasks.md` and point to global memory.
+ - **Validator Protocol**: Refactored `skill-factory-validator` to reject skills with local memory fragments.
+ - **Knowledge Chain**: Integrated `.specs/codebase/GLOBAL_MANDATES.md` into standard protocols.
  
  ## [2.2.0] - 2026-05-06
 
@@ -50,9 +52,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "FACTORY-REF-01"
+feature_id: "REFACTOR-SKILL-FACTORY-V230"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-06T09:40:10Z"
+last_update: "2026-05-06T10:32:00Z"
 evidence_checksum: "NONE"
 ```

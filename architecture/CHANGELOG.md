@@ -24,3 +24,16 @@
 
 ## [2.0.1] - 2026-05-01
 - Initial version (Legacy).
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.372351Z"
+evidence_checksum: "NONE"
+```

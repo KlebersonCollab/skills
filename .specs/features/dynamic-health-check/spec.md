@@ -8,11 +8,11 @@ Refactor the audit system (`bin/check-health.py`) to dynamically discover skills
 - **US2**: As a maintainer, I want the audit to distinguish between "documentation of metadata" (templates) and "actual metadata" (state).
 
 ## ✅ Acceptance Criteria (AC)
-- **AC1**: `bin/check-health.py` must scan the root directory and all subdirectories for `SKILL.md`, `README.md`, and `CHANGELOG.md`.
-- **AC2**: The script must include `youtube-transcript` and any other newly created skills.
-- **AC3**: Metadata extraction must prioritize the *real* state block (usually at the very end of the file) and ignore blocks inside code fences (like in documentation).
-- **AC4**: `sdd/SKILL.md` must have a real metadata block added.
-- **AC5**: The audit result must be 100% compliant after the fix.
+- [x] **AC1**: `bin/check-health.py` must scan the root directory and all subdirectories for `SKILL.md`, `README.md`, and `CHANGELOG.md`.
+- [x] **AC2**: The script must include `youtube-transcript` and any other newly created skills.
+- [x] **AC3**: Metadata extraction must prioritize the *real* state block (usually at the very end of the file) and ignore blocks inside code fences (like in documentation).
+- [x] **AC4**: `sdd/SKILL.md` must have a real metadata block added.
+- [x] **AC5**: The audit result must be 100% compliant after the fix.
 
 ---
 
@@ -20,8 +20,8 @@ Refactor the audit system (`bin/check-health.py`) to dynamically discover skills
 ```yaml
 version: "2.3.0"
 feature_id: "DYNAMIC-HEALTH-CHECK"
-phase: "SPECIFY"
-status: "IN_PROGRESS"
-last_update: "2026-05-06T10:10:00Z"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T10:16:35Z"
 evidence_checksum: "NONE"
 ```

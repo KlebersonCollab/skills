@@ -13,7 +13,7 @@ This skill acts as the architect for the Hub's capabilities. Before execution:
 
 ---
 
-# Skill Factory: Capability Architect (v2.2.0)
+# Skill Factory: Capability Architect (v2.3.0)
 
 > "Structure is the bridge to autonomy. Precision in design, rigor in execution."
 
@@ -84,15 +84,15 @@ The Skill Factory delegates specific lifecycle tasks to its sub-agents:
 ## 🛠️ Operational Protocols
 
 ### 1. The "Structural Purity" Mandate
-Every skill created MUST be self-documenting:
+Every skill created MUST be self-documenting and logically isolated:
 - **Explicit Logic**: No hidden dependencies or "magic" CLI commands.
-- **Centralized Memory**: Skills do NOT store their own `STATE.md`, `MEMORY.md`, or `LEARNINGS.md`. Operational memory MUST be aggregated in `.specs/project/`.
+- **Zero-Fragment Memory**: Skills MUST NOT store their own `STATE.md`, `MEMORY.md`, `LEARNINGS.md`, or `tasks.md`. All operational memory MUST be aggregated in `.specs/project/` or `.specs/features/`.
 - **Atomic Intent**: Every task and spec must have a clear ID.
 
 ### 2. Knowledge Verification Chain
 1. **Core SDD Skill**: Ultimate truth for workflow patterns.
 2. **Existing Skills**: High-performance references (e.g., `sdd`, `git-workflow`).
-3. **Internal Governance**: `.specs/codebase/CONVENTIONS.md`.
+3. **Internal Governance**: `.specs/codebase/GLOBAL_MANDATES.md`.
 
 ### 3. Safety Valve
 If a skill design exceeds 5 sub-skills or complex external dependencies, **STOP** and re-evaluate for orchestration.
@@ -100,7 +100,8 @@ If a skill design exceeds 5 sub-skills or complex external dependencies, **STOP*
 ### 4. Observable Governance (v2.3.0)
 Every skill created MUST support the automated auditing protocol.
 - **Metadata**: Append `<!-- @sdd-state -->` to all `.md` files.
-- **Evidence**: All tasks MUST be tracked via an evidence-based table in `tasks.md`.
+- **Task Evidence**: Tasks for skill development MUST reside in `.specs/features/` and include an evidence-based table.
+- **Discovery**: Ensure the skill folder contains a valid `SKILL.md` for `bin/check-health.py` discovery.
 
 ---
 

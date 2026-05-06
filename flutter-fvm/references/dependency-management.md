@@ -65,3 +65,16 @@ Pub maintains a global package cache. If you encounter strange dependency errors
 fvm flutter pub cache clean
 fvm flutter pub get
 ```
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.365832Z"
+evidence_checksum: "NONE"
+```

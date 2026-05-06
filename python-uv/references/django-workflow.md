@@ -146,3 +146,14 @@ async def my_async_view(request):
 - [ ] **Bulk**: Multiple creation/update operations use `bulk_` methods?
 - [ ] **Security**: Does `get_queryset` filter data by the logged-in user/tenant?
 - [ ] **Async**: External network operations are using `async` views and `httpx`?
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "python-uv-alignment"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:12:14.664151Z"
+evidence_checksum: "NONE"
+```
