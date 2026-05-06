@@ -1,116 +1,72 @@
-# Global Engineering Mandates
+# Global Engineering Mandates (SDD v2.2.0 Purist)
 
-These instructions are fundamental and must be followed by all agents operating in this Hub.
+These instructions are fundamental and must be followed by all agents operating in this Hub. They prioritize logic-first governance, deterministic SDD workflows, and centralized project memory.
 
 ## 🔒 0. SESSION BOOTSTRAP (EXECUTE BEFORE ANY RESPONSE)
 Before responding to the user, the agent **MUST** perform this mental and operational checklist:
-1. **Rehydrate Context**: Run **`hb project context`** to instantly align state, memory, and learnings.
-2. **Progress Insight**: Run **`hb sdd status --ui`** to visualize the global progress and identify features in development.
-3. **Onboarding Check**: Consult `onboarding-navigator` to align with the project culture.
-4. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
-5. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
-6. **SDD Verification**: Use `hb sdd review <feature>` to verify compliance.
-
-
+1. **Rehydrate Context**: Read `.specs/project/STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+2. **Onboarding Alignment**: Consult `PROJECT-ONBOARDING.md` and the `sdd` skill to align with the project culture.
+3. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
+4. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
+5. **SDD Verification**: If it is a development task, validate if `spec.md` and `plan.md` exist in `.specs/features/[feature]/`.
 
 ## 📍 SKILL ROUTER
 Use this guide to identify the mandatory skill for each context:
 
 | If the task involves... | USE this skill |
 |-------------------------|----------------|
-| Project/Feature Start   | `onboarding-navigator` |
 | Specification & Planning | `sdd` (`orchestrator`, `planner`) |
-| Python Development (FastAPI/Django) | `python-uv` + `fastapi-expert` / `django-expert` |
-| Frontend Development (React/Next) | `frontend-expert` |
-| Mobile Development (Flutter) | `flutter-fvm` |
-| Backend Development (Go) | `golang-expert` |
-| Architecture & ADRs     | `architecture` + `api-architect` |
-| Quality & Clean Code    | `clean-code-mentor` |
-| Observability & SRE     | `observability-expert` |
-| Brainstorming & Ideation | `brainstorming` |
-| Automation & Scaffolding | `scaffolding-expert` |
-| Knowledge Management    | `knowledge-architect` |
-| Meta-Knowledge / Rationale | `context-graph` |
-| State Synchronization   | `harness-expert` |
-| Git & Commit Management | `git-workflow` |
+| Python & Environment | `python-uv` (includes Django/Async expert domains) |
+| Frontend Development | `frontend-expert` (aggregated React/Stitch) |
+| Architecture & ADRs | `architecture` + `api-architect` |
+| Quality & Clean Code | `clean-code-mentor` |
+| Knowledge Management | `skill-factory` + `knowledge-architect` |
+| Backend (Go) | `golang-expert` + `golang-testing-expert` |
+| Mobile (Flutter) | `flutter-fvm` |
+| Security & DevOps | `devsecops-expert` + `azure-devops` |
+| Observability & SRE | `observability-expert` |
+| Git & Versioning | `git-workflow` |
+| Token Management | `token-distiller` |
 
 ## 1. SDD Framework (Mandatory for Development)
-Any construction, development, or significant refactoring task **MUST** utilize the **SDD (Spec-Driven Development)** framework from the initial planning stage.
-- **Lifecycle Mastery**: At the start of any SDD-related task, the agent **MUST** read the **`sdd/SKILL.md`** file to synchronize with the latest workflow protocols (v2.1.0+), delegation matrix, and safety-valve triggers.
-- **Initialization**: Use the **`sdd` skill** (`sdd-orchestrator`) to initialize the standardized structure (Spec, Plan, Tasks) for any new feature in the `.specs/features/[name]/` directory.
+Any construction, development, or significant refactoring task **MUST** utilize the **SDD (Spec-Driven Development)** framework.
 - **Workflow & Persistence**: Upon technically completing a task, the agent **MUST** proactively perform SDD Phase 4 (Review & Persistence).
-  - **Update Specs**: Mark tasks as completed in `tasks.md` and update `plan.md`.
-  - **Reports**: Generate or update `validation-report.md`.
-  - **Context Graph**: Update the project's **`DECISIONS.md`** with rationale and patterns discovered.
-  - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via the **`sdd-planner`** skill to ensure context continuity.
-- **Verification**: Use the **`sdd-reviewer`** skill to audit task completion and global project health against the established **Contract (SDC)**.
+- **Artifact Ownership**: All technical specifications, plans, and task lists must reside in `.specs/features/[feature_name]/`.
+- **State Synchronization**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated manually at the end of every significant milestone.
 
 ## 2. Architectural Integrity
-- **Architecture-First**: Critical decisions must be recorded in an **ADR** in the `.specs/architecture/` folder.
-- **Rationale-First**: Every architectural change must be justified in the **Context Graph** (`DECISIONS.md`).
-- **Skill Standardization**: New skills must be validated via `skill-factory-validator`.
-- **Diagram-as-Code**: Technical drawings must use **Mermaid** integrated into Markdown.
+- **Architecture-First**: Critical decisions must be recorded in an **ADR** (Architectural Decision Record) in the `.specs/architecture/` folder.
+- **Diagram-as-Code**: All technical drawings and flows must use **Mermaid** syntax integrated into Markdown.
+- **Logic-First**: Avoid hidden logic or CLI dependencies for governance; all rules must be visible in Markdown.
 
 ## 3. Quality Standards (Clean Code)
 - Strictly follow **SOLID, YAGNI, DRY, and KISS**.
 - Prioritize simplicity and maintainability; avoid over-engineering.
-- All code must pass automated validation (linters/tests).
+- All code must pass verification (manual audit or automated tests).
 
-## 4. Operational Infrastructure (Harness Expert)
-- **State Synchronization**: The agent **MUST** ensure that the operational state is synchronized via **`hb sync`** at the end of each iteration.
-- **Quality Gate**: Synchronization via `hb sync` is strictly blocked if the **GAN-style score** (generated by `hb harness evaluate`) is below **7.0**.
-- **Context Efficiency**: Proactively use context compression to avoid token saturation.
-
-## 5. Knowledge Management (Knowledge Architect)
+## 4. Knowledge Management
 - **Local Knowledge Graph (LKG)**: Every new feature or significant architectural change **MUST** be mapped in `KNOWLEDGE-MAP.mermaid`.
-- **Impact Analysis**: Before modifying existing code, the agent **MUST** use **`hb map --impact <file>`** to identify potential side effects on other skills or docs.
-- **Decision Audit**: Consult the **Context Graph** (`DECISIONS.md`) to verify if the proposed change conflicts with previous rationale.
+- **Relationship Mapping**: Before major refactors, analyze the impact on existing entities and relationships using the knowledge map.
 
-## 6. Mandatory Skill Usage
-- **Skill-Driven Execution**: The agent **MUST** identify and use the most appropriate skill for each task. Executing any technical activity without the support of a specific skill or the Hub's automation framework is prohibited.
+## 5. Mandatory Skill Usage
+- **Skill-Driven Execution**: Identifying and using the most appropriate skill for each task is mandatory. Executing technical activities without the support of a specific skill's instructions is prohibited.
 
-## 7. Dynamic Scaffolding (Scaffolding Expert)
-- **Zero-Boilerplate Policy**: The agent **SHOULD** prefer using template CLI tools (like `uvx copier` via `scaffolding-expert`) to initialize the structure of projects and complex files (like `pyproject.toml`, Dockerfiles). Boilerplate code should NEVER be written line by line if a scaffolding template is available.
-
-## 8. Autonomous Skill Discovery & Installation
-- **On-Demand Intelligence**: If a task requires a specialized domain where no local skill is installed, the agent **MUST** proactively use `hb listskills` to discover if a relevant skill exists in the remote Hub.
-- **Just-in-Time Setup**: If found, the agent **MUST** use `hb install <skill> --remote` to equip itself with the necessary intelligence before starting execution.
-
-## 9. Version Control & Git (Git Workflow)
-Every agent **MUST** strictly follow the `git-workflow` skill and use the **HB CLI** for any versioning operation:
+## 6. Version Control & Git
+Every agent **MUST** strictly follow the project's versioning standards:
 - **English-Only Commits**: All commit messages must be written in **English**.
-- **Conventional Commits**: Use **`hb git commit`** to ensure standard formatting (feat, fix, docs).
-- **Branching**: Use **`hb git start <feature>`** to initialize atomic branches.
-- **SDD Linking**: Commits must be atomic and reference task IDs from `tasks.md`.
-- **History Integrity**: Use **`hb git sync`** to maintain a linear history via rebase before merging.
+- **Conventional Commits**: Use the standard format (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`).
+- **Atomic Commits**: Commits must be atomic and, whenever possible, reference task IDs from `tasks.md`.
+- **History Integrity**: Use `rebase` to maintain a linear history before merging into `main`.
 
-## 🔒 10. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
+## 🔒 7. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
 Before ending the session or delivering the task, the agent **MUST** validate:
-    1. **Adversarial Evaluation**: Run **`hb harness evaluate <feature>`**. A score below **7.0** blocks final delivery.
-    2. **Deep Audit**: Run **`hb harness audit --deep`** to ensure ADRs are documented and SDD feature structure is intact.
-    3. **Validation**: Run **`hb harness audit`** and `hb sdd review <feature>`.
-4. **Progress Audit**: Run **`hb sdd status --ui`** to ensure the session's impact is correctly reflected in the global progress.
-5. **Benchmarking**: Run **`hb bench`** to verify performance against baselines.
-5. **Tasks Update**: Does `tasks.md` reflect the real state of implementation?
-6. **State Sync**: Execute **`hb sync`** to persist the state across the ecosystem.
-7. **Learnings Capture**: Use **`hb learn`** to capture technical insights or patterns discovered.
-8. **Knowledge Update**: Use `hb map` to refresh the relational graph.
-9. **Meta-Knowledge Sync**: Ensure all new decisions and rationale are captured in the **Context Graph** (`DECISIONS.md`).
-10. **Handoff & Exit**: Run **`hb session handoff`** to generate the final summary for the next agent.
+1. **Validation**: Check if all Acceptance Criteria (ACs) from `spec.md` were met.
+2. **Tasks Update**: Does `tasks.md` reflect the real state of implementation?
+3. **State Sync**: Has `STATE.md` been updated with progress and next steps?
+4. **Learnings Capture**: Update `LEARNINGS.md` with new patterns or fixed bugs.
+5. **Knowledge Update**: Refresh `KNOWLEDGE-MAP.mermaid` if the project structure changed.
 
-## 11. Mandatory HB-CLI Governance
-Every agent **MUST** use the **HB CLI** (`hb`) as the primary interface for repository maintenance.
-- **Architectural Change**: Use `hb adr new` for any decision.
-- **New Skill**: Use `hb skill new` for scaffolding.
-- **Token Management**: Use **`hb harness distill`** when context exceeds 80% of the limit.
-- **Quality Gate**: **`hb harness audit`** is the mandatory gate for all merges.
-- **Contract Enforcement**: Use `hb sdd contract <feature> --check` to validate code against `contract.md`.
-- **Governance Check**: Run `hb sdd audit` to verify documentation completeness before PRs.
-- **Auto-Sync**: Use `hb sdd reconcile` to keep artifacts updated with the codebase.
-- **Context Governance**: Use `hb project context` for session start and `hb session handoff` for session end.
-
-## 12. Single Source of Truth (Root First)
+## 8. Single Source of Truth (Root First)
 The root directory is the ONLY allowed location for editing instructions and skills.
-- **Root-Only Edits**: Agents MUST NEVER edit `.agents/`, `.agent/`, `.claude/`, or `.gemini/` folders directly. These are derived runtime environments.
-- **Mandatory Synchronization**: After any change to root skills or instructions, the agent MUST execute **`hb sync`** to propagate changes to runtime folders.
-- **Conflict Resolution**: If a divergence is detected, the root version always prevails. Any improvement found in runtime folders must be backported to the root before synchronization.
+- **Root-Only Edits**: Agents MUST NEVER edit `.agents/`, `.agent/`, `.claude/`, or `.gemini/` folders directly.
+- **Conflict Resolution**: If a divergence is detected, the root version always prevails. Any improvement found in runtime folders must be backported to the root.
