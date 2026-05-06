@@ -1,20 +1,23 @@
 # Project State: Skills Hub Alignment
 
-## Current Phase: [PHASE 1: DISCOVERY]
-Refactoring the project core to align with SDD v2.2.0 Purist standards.
+## Current Phase: [PHASE 3: IMPLEMENT]
+Refactoring the skill catalog to the "Purist" SDD v2.2.0 standard.
 
 ## Active Goals
 - [x] Align `.specs/project/PROJECT.md` with SDD v2.2.0 mandates.
-- [x] Create missing memory triad files (`STATE.md`, `MEMORY.md`, `LEARNINGS.md`).
-- [x] Recreate root `README.md` with professional English standards and hub-centric vision.
+- [x] Create memory triad files (`STATE.md`, `MEMORY.md`, `LEARNINGS.md`).
+- [x] Recreate root `README.md` (Professional English).
+- [ ] Refactor remaining legacy skill catalog to Purist v2.2.0.
 
 ## Progress Tracking
-- [x] Initial codebase analysis.
-- [x] Refactor `PROJECT.md`.
-- [x] Recreate `README.md`.
-- [x] Final validation.
-
+- [x] Core Purity: Updated `sdd/SKILL.md` to v2.2.1 (Removed HB CLI).
+- [x] Skill Refactor: Updated `clean-code-mentor` to v2.2.0 (Removed HB CLI).
+- [x] Skill Refactor: Updated `git-workflow` to v2.2.0 (Removed HB CLI).
+- [ ] Skill Refactor: `benchmark-expert` alignment.
+- [ ] Skill Refactor: `brainstorming` alignment.
+- [ ] Skill Refactor: `django-expert`, `fastapi-expert`, `flutter-fvm` alignment.
 
 ## Next Steps
-1. Refactor `PROJECT.md` to reflect the "Skill Hub" vision and SDD compliance.
-2. Draft and write the new `README.md`.
+1. Refactor `benchmark-expert` and `brainstorming`.
+2. Align `django-expert` and `fastapi-expert`.
+3. Perform a global audit for any remaining `hb` or automated tool references.
