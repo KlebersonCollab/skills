@@ -5,6 +5,7 @@
 - **CLI Flexbox Layout (Yoga-inspired)**: Planning complete, starting implementation.
 
 ## Recent Progress
+- **CI/CD Cleanup**: Removed all obsolete GitHub Actions and workflows as per project modernization.
 - Integrated `stitch-expert`, `remotion-expert`, and `stitch-loop` into the Hub.
 - Aggregated React and Shadcn knowledge into `frontend-expert`.
 - SDD artifacts (Spec, Plan, Tasks) created and finalized in `.specs/features/stitch-skills-integration/`.
