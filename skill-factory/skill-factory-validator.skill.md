@@ -7,7 +7,7 @@ category: skill-management
 
 ## 🔒 Prerequisites (Mandatory)
 Before execution:
-0. **Context Check**: Read `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+0. **Context Check**: Read `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
 1. **Target Access**: Ensure the target skill directory is accessible.
 
 ---
@@ -23,8 +23,8 @@ Before execution:
 ### 1. Structural Integrity (Root Files)
 - [ ] `SKILL.md` (Main entry point)
 - [ ] `README.md` (General documentation)
-- [ ] `MEMORY.md`, `STATE.md`, `LEARNINGS.md` (The Memory Triad)
 - [ ] `tasks.md` (Task tracker)
+- [ ] **Absence of Local Memory**: No `STATE.md`, `MEMORY.md`, or `LEARNINGS.md` in the skill folder.
 
 ### 2. SDD Compliance (Protocol Check)
 - [ ] **Prerequisites Lock**: Does `SKILL.md` start with `## 🔒 Prerequisites (Mandatory)`?
@@ -48,6 +48,6 @@ If a skill is rejected, the validator must provide a specific list of missing pr
 ---
 
 ## 🚫 Prohibited
-- NEVER approve a skill without a **Memory Triad**.
+- NEVER approve a skill with local `STATE.md`, `MEMORY.md`, or `LEARNINGS.md` files.
 - NEVER skip the **Prerequisites Lock** check.
 - NEVER modify the skill files during validation.

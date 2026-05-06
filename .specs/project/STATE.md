@@ -11,6 +11,7 @@
 - **Project Integrity Audit (SDD)**: Completed. Identified documentation debt in `stitch-*` skills and fixed `KNOWLEDGE-MAP.mermaid` duplicates.
 - Updated `KNOWLEDGE-MAP.mermaid`.
 - **ADK Expert Skill**: Created based on "The Agent Development Kit" architecture. Documentation and SDD specs completed.
+- **Skill Factory Revival**: Completed. Upgraded to v2.2.0 (Purist SDD Gold Standard). All logic moved to project root.
 
 ## Current Blockers
 - None.

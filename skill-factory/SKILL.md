@@ -8,7 +8,7 @@ category: skill-management
 ## 🔒 Prerequisites (Mandatory)
 This skill acts as the architect for the Hub's capabilities. Before execution:
 0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
-1. **Context Check**: Rehydrate state by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+1. **Context Check**: Rehydrate state by reading `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
 2. **Knowledge Check**: Follow the **Knowledge Verification Chain** (see below).
 
 ---
@@ -86,7 +86,7 @@ The Skill Factory delegates specific lifecycle tasks to its sub-agents:
 ### 1. The "Structural Purity" Mandate
 Every skill created MUST be self-documenting:
 - **Explicit Logic**: No hidden dependencies or "magic" CLI commands.
-- **Memory Triad**: Mandatory `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+- **Centralized Memory**: Skills do NOT store their own `STATE.md`, `MEMORY.md`, or `LEARNINGS.md`. Operational memory MUST be aggregated in `.specs/project/`.
 - **Atomic Intent**: Every task and spec must have a clear ID.
 
 ### 2. Knowledge Verification Chain
@@ -102,7 +102,7 @@ If a skill design exceeds 5 sub-skills or complex external dependencies, **STOP*
 ## 🚫 Prohibited
 
 - NEVER modify system directories (e.g., `.agents/`, `.gemini/`) unless explicitly authorized.
-- NEVER skip the **Memory Triad** initialization.
+- NEVER create local `STATE.md`, `MEMORY.md`, or `LEARNINGS.md` within a skill; use `.specs/project/` instead.
 - NEVER approve a skill that doesn't follow the 4-Phase SDD workflow.
 - NEVER use placeholders like "todo" or "..." in instructions.
 

@@ -2,7 +2,8 @@
 
 ## Skill Conventions
 - **Marker**: A folder is considered a skill if it contains a `SKILL.md` file in its root.
-- **Standard Structure**: A skill must contain `CHANGELOG.md`, `README.md`, `SKILL.md` and optionally `references/` and `resources/` folders.
+- **Standard Structure (SDD v2.2.0)**: A skill directory must follow the root-first integrity. Mandatory files: `SKILL.md`, `README.md`, `tasks.md`, `DECISIONS.md`.
+- **Memory Triad**: Skills do NOT store their own `STATE.md`, `MEMORY.md`, or `LEARNINGS.md`. All operational memory is aggregated in `.specs/project/`.
 - **Mandatory Hook**: Execution skills MUST contain the `🔒 Prerequisites (Mandatory)` section linking them to SDD.
 
 ## Agent Mapping
@@ -19,6 +20,7 @@
 - **Deterministic Lifecycle**: Every agent operating in the Hub must mandatorily execute the **Session Bootstrap** (start) and the **Session Exit Gate** (end).
 - **Hardened SDD Governance (2026-04-25)**: Established Zero-Tolerance for skipping Plan/Explore phases in Medium+ tasks. Every new skill must be linked to a `.specs/features/` folder.
 - **ADK Alignment (2026-05-06)**: Integrated the 5-layer Agent Development Kit model (Memory, Knowledge, Guardrails, Delegation, Distribution) as the core architectural standard for the Hub.
+- **Skill Factory Purist Mandate (2026-05-06)**: All skill instructions must be logic-first (Markdown protocols). "Magic" CLI scripts in instructions are prohibited to maintain structural purity.
 
 ## Git Workflow Conventions
 - **Conventional Commits**: Mandatory for all commits in the repository. Messages must be written in **English**.

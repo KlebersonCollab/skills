@@ -8,7 +8,7 @@ category: skill-management
 ## 🔒 Prerequisites (Mandatory)
 Before execution:
 0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
-1. **Context Check**: Read `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+1. **Context Check**: Read `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
 2. **Intent Audit**: Clearly define the skill's functional domain and core task.
 
 ---
@@ -24,12 +24,11 @@ Before execution:
 ### Step 1: Design the Blueprint
 Design the directory `<skill_name>/` at the repository root. Map out which sub-skills are needed and which logical patterns from the **14 Anthropic Patterns** apply.
 
-### Step 2: Initialize Memory Assets
-Every skill must start with a clean slate of knowledge:
-- `STATE.md`: Ephemeral progress tracker.
-- `MEMORY.md`: Long-term patterns and style preferences.
-- `LEARNINGS.md`: Log for bug fixes and insights.
-- `DECISIONS.md`: Log for architectural trade-offs.
+### Step 2: Update Project Memory
+Instead of local files, update the global project memory:
+- **STATE.md**: Log the new skill creation and status.
+- **DECISIONS.md**: Log architectural trade-offs for the new skill.
+- **tasks.md**: Create a task list in the skill's folder for execution tracking.
 
 ### Step 3: Generate Core Instruction (`SKILL.md`)
 Apply the **Gold Standard Template** below. Ensure the `Knowledge Verification Chain` is present to prevent hallucinations.
@@ -49,7 +48,7 @@ category: {{category}}
 
 ## 🔒 Prerequisites (Mandatory)
 Before execution:
-0. **Context Check**: Read `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+0. **Context Check**: Read `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
 1. **Knowledge Check**: Follow the **Knowledge Verification Chain**.
 
 ---
@@ -97,5 +96,6 @@ Before execution:
 
 ## 🚫 Prohibited
 - NEVER modify system directories (e.g., `.agents/`).
+- NEVER create local `STATE.md`, `MEMORY.md`, or `LEARNINGS.md` files; use `.specs/project/`.
 - NEVER create empty instruction files.
 - NEVER skip the **Knowledge Verification Chain** in the template.
