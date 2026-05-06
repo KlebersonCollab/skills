@@ -32,6 +32,7 @@ Follow the [Brownfield Mapping Guide](references/brownfield-mapping.md) for deta
 - **Reality First**: Document what IS, not what SHOULD BE.
 - **Evidence-Based**: Reference specific files or lines for every claim.
 - **Maintainable**: Update the map if core architectural changes occur.
+- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md) when passing context to the Orchestrator.
 
 ## Prohibited
 - NEVER suggest code changes during exploration.

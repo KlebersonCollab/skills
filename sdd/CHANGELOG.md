@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **Harness Memory Integration**: Formalized the generation and maintenance of `.specs/project/` artifacts (`PROJECT`, `ROADMAP`, `STATE`, `MEMORY`, `LEARNINGS`, `DECISIONS`) across all phases.
 - **Granular Codebase Mapping**: Expanded `sdd-explorer` to explicitly generate individual codebase artifacts (`STACK.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `CONCERNS.md`) instead of a single file.
 - **Full English Standardization**: Migrated all skill files, sub-skills, and documentation to English for cross-model consistency and performance.
+- **Handoff Protocol**: Defined a formal "Baton Pass" mechanism between phases to ensure zero context loss.
 
 ### Changed
 - **Unified Versioning**: Synchronized all sub-skills to version 2.2.0.

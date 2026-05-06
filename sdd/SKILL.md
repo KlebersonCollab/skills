@@ -1,7 +1,7 @@
 ---
 name: sdd
 version: 2.2.0
-description: Spec-Driven Development. High-performance modular workflow with Explore-Plan-Act Loop and Safety-Valve protocols. Orchestrates specialized sub-skills.
+description: Spec-Driven Development. High-performance modular workflow with Explore-Plan-Act Loop and Safety-Valve protocols. Orchestrates specialized sub-skills. [TLC Spec Driven](https://github.com/tech-leads-club/agent-skills/tree/main/packages/skills-catalog/skills/(development)/tlc-spec-driven)
 category: development-workflow
 ---
 
@@ -39,24 +39,28 @@ The SDD follows a rigorous cycle to ensure integrity and traceability:
 *   **Goal**: Understand the terrain and align with the project vision.
 *   **Action**: Use `sdd-planner` to read `PROJECT.md` and `ROADMAP.md`. Use `sdd-explorer` to map stack and architecture.
 *   **Output**: Updated `TECHNICAL-MAP.md` and "rehydrated" context via `STATE.md`.
+*   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 1.
 *   **Trigger**: Session start or new complex feature.
 
 ### 2. SPECIFY
 *   **Goal**: Define "what", "how" and record technical decisions.
 *   **Action**: Use `sdd-orchestrator` for Specs/Plan and `sdd-planner` to update Roadmap and record decisions.
 *   **Outputs**: `spec.md`, `plan.md`, `tasks.md`, `contract.md` + updates to `DECISIONS.md` and `ROADMAP.md`.
+*   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 2.
 *   **Trigger**: Before any implementation (**Small+**).
 
 ### 3. IMPLEMENT
 *   **Goal**: Technical execution with continuous progress tracking.
 *   **Action**: Use `sdd-implementer` for code/tests. Update `STATE.md` continuously with task progress.
 *   **Output**: Verified code and updated `tasks.md`.
+*   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 3.
 *   **Trigger**: After Phase 2 is approved.
 
 ### 4. VERIFY
 *   **Goal**: Validate delivery and capture learnings.
 *   **Action**: Use `sdd-reviewer` for audit and `sdd-planner` to capture discovered patterns and update memory.
 *   **Output**: Updated `validation-report.md`, `LEARNINGS.md`, and `MEMORY.md`. State finalization in `STATE.md`.
+*   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 4.
 *   **Trigger**: Technical completion of Phase 3 tasks.
 
 ---
@@ -152,3 +156,4 @@ Always update `STATE.md` at the end of every session or after major decisions.
 - [Coding Principles](references/coding-principles.md)
 - [Context Management](references/context-limits.md)
 - [BDD Standard](references/bdd-guide.md)
+- [Handoff Protocol](references/handoff-protocol.md)

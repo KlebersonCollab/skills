@@ -62,6 +62,7 @@ This is the most critical tool for long-running projects. It should be updated:
 - **Zero Ceremony**: Keep the roadmap and vision concise. Focus on Value.
 - **Explicit Decisions**: Never leave an architectural or business decision to "vague memory".
 - **Actionable State**: The `STATE.md` should answer "What do I do now?" if the agent's memory was completely wiped.
+- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md) for session transitions.
 - **Strict Limits**: Respect the [Context Limits](references/context-limits.md) rules.
 
 ## Prohibited

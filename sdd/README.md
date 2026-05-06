@@ -4,6 +4,7 @@
 
 [![Version](https://img.shields.io/badge/Version-2.2.0-blue)](#changelog)
 [![Sub-skills](https://img.shields.io/badge/Sub--skills-5-brightgreen)](#-sub-skills)
+- [Handoff Protocol](references/handoff-protocol.md)
 
 ---
 

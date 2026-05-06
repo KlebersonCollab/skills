@@ -81,6 +81,7 @@ Create `spec/contract.md`. This is the formal agreement between implementation a
 - [ ] Requirements are traceable and verifiable.
 - [ ] Out of scope is explicitly defined.
 - [ ] No "hallucination leak" — every tech choice is backed by the codebase or documentation.
+- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md) when passing the contract to the Implementer.
 
 ## Prohibited
 

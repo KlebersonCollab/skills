@@ -35,6 +35,7 @@ For each task:
 - **Simplicity**: Follow the [Coding Principles](references/coding-principles.md).
 - **Alignment**: Adhere strictly to the naming and style in `CONVENTIONS.md`.
 - **Integrity**: NO "ghost" features and NO skipped error handling.
+- **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md) when providing evidence to the Reviewer.
 
 ## Prohibited
 - NO modifying the specification or technical design without a re-plan.
