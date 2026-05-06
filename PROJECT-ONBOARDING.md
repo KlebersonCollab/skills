@@ -1,68 +1,49 @@
-# AI Agent Skills Hub - Project Governance
+# AI Agent Skills Hub - Project Governance (Purist SDD)
 
-This document explains how to use the governance of this Hub in **new projects**.
+This document explains how to adopt the governance and intelligence of this Hub in your projects using the **Purist SDD v2.2.0** standard.
 
-## 1. Quick Installation (One-Liner)
+## 1. Governance Architecture
 
-To enable HB-CLI governance in any project, run:
+We follow a **Logic-First** approach. Governance is not enforced by a closed CLI, but by transparent Markdown artifacts and strict operational mandates.
 
-```bash
-curl -sSL https://raw.githubusercontent.com/KlebersonCollab/skills/main/scripts/install-hb.sh | bash
-```
+### The Triad of Memory
+Every project MUST maintain the following structure in `.specs/project/`:
+- `STATE.md`: Captures the current active feature, progress, and next steps.
+- `MEMORY.md`: Stores long-term facts, user preferences, and architectural decisions.
+- `LEARNINGS.md`: Documents technical insights, bug fixes, and discovered patterns.
 
-This will install `hb` in `~/.local/bin/hb`. Ensure this directory is in your PATH.
+## 2. Project Bootstrapping (Manual)
 
-## 2. Project Bootstrapping
+To initialize a project with this governance:
 
-After installation, initialize governance in the root directory of your new project:
+1.  **Create the Specs Directory**:
+    ```bash
+    mkdir -p .specs/project .specs/architecture .specs/features
+    ```
+2.  **Initialize Memory**:
+    Copy the templates or create empty files for `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+3.  **Define Global Mandates**:
+    Link to or copy the `GLOBAL_MANDATES.md` from this Hub to your project's `.specs/codebase/`.
 
-```bash
-hb sdd bootstrap
-```
+## 3. Adopting Skills
 
-This will create the **Triad of Memory** structure in `.specs/project/`:
-- `STATE.md`: Progress and current focus.
-- `MEMORY.md`: Long-term context and decisions.
-- `LEARNINGS.md`: Technical insights and patterns.
+Since we no longer rely on a specialized installer CLI, you can "equip" your agent by:
 
-## 3. GitHub Actions Integration
+1.  **Root Reference**: Directing your agent to read the `SKILL.md` and `references/` folders from this repository.
+2.  **Local Mirroring**: Copying the desired skill folder (e.g., `python-uv/`) to your project root.
+3.  **System Instruction**: Adding the core mandates to your agent's system prompt or `.cursorrules`.
 
-To have your project automatically audited following the Hub's standards, create a `.github/workflows/governance.yml` file in your project:
+## 4. The SDD Workflow
 
-```yaml
-name: Project Governance Audit
+All development MUST follow the 4-phase SDD cycle:
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
+1.  **DISCOVERY**: Map the codebase and rehydrate context from the Triad of Memory.
+2.  **SPECIFY**: Create `spec.md`, `plan.md`, `contract.md`, and `tasks.md` in `.specs/features/[feature]`.
+3.  **IMPLEMENT**: Execute tasks atomically with TDD and individual commits.
+4.  **REVIEW**: Audit against Acceptance Criteria and update the Triad of Memory.
 
-jobs:
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      # Use the official Skills Hub Action to setup HB-CLI
-      - uses: KlebersonCollab/skills/.github/actions/hb-setup@main
-      
-      - name: Run Integrity Audit
-        run: hb harness audit --deep
-        
-      - name: Check SDD Compliance
-        run: hb sdd audit
-```
+## 5. Quality Standards
 
-## 4. Using Hub Skills
-
-You can "equip" your project with specific intelligence from the Hub:
-
-```bash
-# Install Python support with all governance rules
-hb install python-uv --remote
-```
-
-## 5. Available Templates
-
-You can use our base templates as a starting point:
-- `templates/go-service`: Base structure for Go services with native governance.
+- **Conventional Commits**: Mandatory for clear history.
+- **Mermaid Diagrams**: Mandatory for visualizing complex flows in `plan.md`.
+- **Atomic Progress**: Never mark a task as done without a corresponding commit and validation.

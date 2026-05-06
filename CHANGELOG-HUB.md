@@ -1,8 +1,17 @@
 # Hub Global Changelog
 
-*Last updated: 2026-04-23 23:03:43*
+*Last updated: 2026-05-06 01:50:00*
 
 This file consolidates the most recent updates from all skills in the Hub.
+
+## [6.0.0] - 2026-05-06
+### 🚀 The Purist Revolution (Logic-First Governance)
+- **Zero CLI Dependency**: Removal of all mandatory `hb` CLI commands. Governance is now performed via manual audit and Markdown artifacts.
+- **Purist SDD v2.2.0**: The Spec-Driven Development framework is now the singular, authoritative standard for all development, enforced by logic hooks.
+- **Mandates Hardening**: Completely refactored `GLOBAL_MANDATES.md` to remove tool-magic and focus on behavioral rigor.
+- **Project Memory Consolidation**: All project state (`STATE.md`, `MEMORY.md`, `LEARNINGS.md`) centralized in `.specs/project/`.
+- **Skill Consolidation**: Merged `onboarding-navigator` and `harness-expert` logic into the core `sdd` and `GLOBAL_MANDATES`.
+- **Root Integrity Mandate**: Stricter rules protecting root skill definitions from runtime environment drift.
 
 ## [5.0.0] - 2026-04-28
 ### 🚀 The Layout Revolution & Governance Hardening
