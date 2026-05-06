@@ -30,7 +30,6 @@ caveman-main/
 .DS_Store
 
 # Binaries
-bin/
 hb-bin
 hb/hb-bin
 *.exe
