@@ -3,7 +3,7 @@
 ## [4.0.0] - 2026-05-06
 
 ### Added
-- **Purist SDD v2.2.0 Refactor**: Skill completely rebuilt to follow the logic-first, purist governance standards.
+- **Purist SDD v2.2.0 Refactor**: Skill completely rebuilt to follow logic-first, purist governance standards.
 - **Python 3.14 Support**: Integration of the new UV default (3.14) and Free-threaded Python (no-GIL).
 - **Expert Domain Integration**: Direct consolidation of Django Pro (N+1, Service Layer) and Async Mastery (uvloop, gather) into the core workflow.
 - **PEP 723 (Inline Scripts)**: Added support and patterns for self-contained scripts with dependencies.
@@ -12,15 +12,15 @@
 ## [3.0.0] - 2026-04-22
 
 ### Added
-- **Expert Enrichment**: Integration of high-level knowledge about Python patterns and testing.
+- **Expert Enrichment**: Integration of high-level knowledge regarding Python patterns and testing.
 - **Python Patterns**: New reference in `references/patterns.md` covering EAFP, Protocol, Type Hints, and Performance.
-- **Advanced Testing**: New reference in `references/testing.md` covering TDD cycle, advanced Fixtures, and Mocking.
+- **Advanced Testing**: New reference in `references/testing.md` covering the TDD cycle, advanced Fixtures, and Mocking.
 - **Modern Python**: Explicit support for Python 3.9+ idioms and `__slots__` for memory efficiency.
 
 ## [2.6.0] - 2026-04-20
 
 ### Added
-- `🔒 Prerequisites (Mandatory)` section linking the skill mandatorily to the SDD framework.
+- `🔒 Prerequisites (Mandatory)` section mandatorily linking the skill to the SDD framework.
 
 ## [2.5.0] - 2026-04-14
 

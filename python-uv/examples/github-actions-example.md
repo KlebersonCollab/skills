@@ -1,10 +1,10 @@
-# Exemplo: GitHub Actions CI/CD Completo
+# Example: Complete GitHub Actions CI/CD
 
-Workflow de produção com matrix de versões, caching, quality checks e publicação automática.
+Production workflow with version matrix, caching, quality checks, and automatic publishing.
 
 ---
 
-## Workflow CI (Validação em PRs e Pushes)
+## CI Workflow (Validation on PRs and Pushes)
 
 ```yaml
 name: CI
@@ -50,7 +50,7 @@ jobs:
         run: uv run mypy .
 
   # ────────────────────────────────────────────
-  # Tests com matrix de versões e OS
+  # Tests with Version and OS Matrix
   # ────────────────────────────────────────────
   test:
     name: Test (Python ${{ matrix.python-version }}, ${{ matrix.os }})
@@ -89,7 +89,7 @@ jobs:
 
 ---
 
-## Workflow CD (Publicação ao criar Release)
+## CD Workflow (Publishing on Release Creation)
 
 ```yaml
 name: Publish
@@ -103,7 +103,7 @@ jobs:
     name: Build & Publish
     runs-on: ubuntu-latest
     permissions:
-      id-token: write  # Para trusted publishing do PyPI
+      id-token: write  # For trusted PyPI publishing
 
     steps:
       - uses: actions/checkout@v4
@@ -134,13 +134,13 @@ jobs:
 
 ---
 
-## Dicas
+## Tips
 
-### Cache eficiente
-O `astral-sh/setup-uv@v4` com `enable-cache: true` cacheia automaticamente pacotes entre runs, reduzindo o tempo de CI significativamente.
+### Efficient Caching
+`astral-sh/setup-uv@v4` with `enable-cache: true` automatically caches packages between runs, significantly reducing CI time.
 
-### `--locked` é essencial
-Sempre use `uv sync --locked` em CI para garantir reprodução exata. Se o lockfile estiver desatualizado, o CI falhará — forçando atualização explícita.
+### `--locked` is Essential
+Always use `uv sync --locked` in CI to ensure exact reproduction. If the lockfile is out of date, CI will fail — forcing an explicit update.
 
-### Matrix otimizada
-Quality checks rodam uma vez (não precisam de matrix). Testes pesados rodam em matrix para validação cross-platform.
+### Optimized Matrix
+Quality checks run once (no matrix needed). Heavy tests run in a matrix for cross-platform validation.

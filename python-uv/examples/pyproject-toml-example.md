@@ -1,26 +1,26 @@
-# Exemplo: `pyproject.toml` Completo
+# Example: Complete `pyproject.toml`
 
-Template anotado de `pyproject.toml` para projetos Python modernos com UV.
+Annotated `pyproject.toml` template for modern Python projects with UV.
 
 ---
 
-## Template Completo
+## Complete Template
 
 ```toml
 # ============================================================
 # PROJECT METADATA
 # ============================================================
 [project]
-name = "meu-projeto"
+name = "my-project"
 version = "0.1.0"
-description = "Descrição concisa do projeto"
+description = "Concise project description"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"
 authors = [
-    { name = "Seu Nome", email = "seu@email.com" },
+    { name = "Your Name", email = "your@email.com" },
 ]
-keywords = ["python", "uv", "exemplo"]
+keywords = ["python", "uv", "example"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -57,7 +57,7 @@ docs = [
 # ENTRY POINTS (CLI commands)
 # ============================================================
 [project.scripts]
-meu-cli = "meu_projeto.cli:main"
+my-cli = "my_project.cli:main"
 
 # ============================================================
 # BUILD SYSTEM
@@ -91,7 +91,7 @@ ignore = [
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["meu_projeto"]
+known-first-party = ["my_project"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -146,16 +146,16 @@ dev-dependencies = [
 
 ---
 
-## Uso
+## Usage
 
 ```bash
-# Instalar todas as dependências
+# Install all dependencies
 uv sync --dev
 
-# Executar testes
+# Run tests
 uv run pytest
 
-# Verificar qualidade
+# Verify quality
 uv run ruff format --check .
 uv run ruff check .
 uv run mypy .
