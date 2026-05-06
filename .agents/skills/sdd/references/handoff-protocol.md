@@ -4,6 +4,14 @@ This protocol defines the "Baton Pass" between different phases and sub-skills t
 
 ---
 
+## 0. State Transition Validation (Gated Check)
+Before initiating any handoff, the agent MUST perform a "Metadata Audit":
+- [ ] `STATE.md` phase reflects the *source* phase of the handoff.
+- [ ] All source artifacts (`spec.md`, `plan.md`, etc.) are marked `status: COMPLETED`.
+- [ ] `tasks.md` has evidence for all tasks in the source phase.
+- [ ] **Prohibited**: Never jump to `VERIFY` if `IMPLEMENT` tasks are still in `IN_PROGRESS`.
+
+
 ## 1. Discovery ➡️ Specify (The Context Pass)
 **Performed by**: `sdd-explorer` ➡️ `sdd-orchestrator`
 

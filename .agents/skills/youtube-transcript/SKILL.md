@@ -1,6 +1,6 @@
 ---
 name: youtube-transcript
-version: 2.0.0
+version: 2.3.0
 description: "High-performance extraction of YouTube transcripts with AI fallback (Whisper) and advanced deduplication."
 category: automation
 ---
@@ -13,9 +13,9 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
    - Rehydrate context from `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
    - Align with `onboarding-navigator` for project culture.
 2. **SDD Verification**: 
-   - Validate if `spec.md` and `plan.md` exist for the target feature.
+   - Validate if `spec.md` and `plan.md` exist for the target feature in `.specs/features/`.
    - Perform a final review against the Acceptance Criteria (ACs).
-3. **Task Integrity**: Ensure tasks in `tasks.md` are atomized and mapped to Git commits.
+3. **Task Integrity**: Ensure tasks in `tasks.md` are atomized and mapped to Git commits with evidence.
 
 ---
 
@@ -107,3 +107,15 @@ if __name__ == "__main__":
 ---
 
 > **Law of the Transcript**: A transcript without cleanup is just noise. Precision is the metric of success.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "YT-TRANSCRIPT-ALIGNMENT"
+phase: "IMPLEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T10:11:00Z"
+evidence_checksum: "NONE"
+```

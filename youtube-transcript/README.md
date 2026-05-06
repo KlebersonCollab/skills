@@ -2,8 +2,8 @@
 
 > Skill to automate the extraction of transcripts from YouTube videos with AI fallback (Whisper).
 
-[![Version](https://img.shields.io/badge/Version-1.0.0-blue)](#changelog)
-[![Status](https://img.shields.io/badge/Status-Beta-yellow)](#)
+[![Version](https://img.shields.io/badge/Version-2.3.0-blue)](#changelog)
+[![Status](https://img.shields.io/badge/Status-Stable-green)](#)
 
 ---
 
@@ -59,3 +59,15 @@ Hello, today we are going to learn how to make coffee in a simple and fast way..
 ## 📝 Changelog
 
 Consult the [CHANGELOG.md](CHANGELOG.md) for the full version history.
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "YT-TRANSCRIPT-ALIGNMENT"
+phase: "IMPLEMENT"
+status: "COMPLETED"
+last_update: "2026-05-06T10:15:00Z"
+evidence_checksum: "NONE"
+```
