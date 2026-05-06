@@ -5,6 +5,20 @@ All notable changes to this skill will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+ 
+ ## [2.2.0] - 2026-05-06
+ 
+ ### Added
+ - **Purist Mandate**: Enforced logic-first instructions (Markdown protocols) over hidden CLI dependencies.
+ - **Memory Centralization**: Integrated pointers to `.specs/project/` global memory, prohibiting redundant local files.
+ - **Gold Standard Alignment**: Upgraded to SDD v2.2.0 operational rigor, including Prerequisites Locks and Knowledge Verification Chains.
+ - **Root Integrity**: Formalized development at the project root, prohibiting modifications to system-level `.agents/` directories.
+ 
+ ### Changed
+ - **SKILL.md**: Refactored for v2.2.0 with the 14 Anthropic pattern synthesis.
+ - **skill-factory-bootstrap**: Refactored as a conceptual blueprint agent.
+ - **skill-factory-validator**: Refactored to audit memory centralization and structural purity.
+ 
 
 ## [1.1.0] - 2026-04-16
 

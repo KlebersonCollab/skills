@@ -1,118 +1,93 @@
-# Skill Factory — Core Framework
+# Skill Factory — Capability Architect
 
-> Every skill deserves a solid foundation. Consistency breeds quality.
+> "Structure is the bridge to autonomy. Precision in design, rigor in execution."
 
-[![Versão](https://img.shields.io/badge/Versão-1.0.0-blue)](#changelog)
+[![Version](https://img.shields.io/badge/Version-2.2.0-blue)](#changelog)
 [![Sub-skills](https://img.shields.io/badge/Sub--skills-2-brightgreen)](#-sub-skills)
 
 ---
 
-## 📖 Visão Geral
+## 📖 Overview
 
-Skill dedicada à **criação padronizada de novas skills** no Skills Hub. O Skill Factory automatiza o scaffolding, validação e registro, garantindo que toda nova skill siga os mesmos padrões de qualidade e estrutura.
+The **Skill Factory** is the central engine for standardized skill authoring within the Skills Hub. It automates scaffolding, validation, and registration, ensuring every new capability adheres to the project's premium "Gold Standards" and structural integrity.
 
-Em vez de criar arquivos manualmente e risco de inconsistência, o agente executa esta skill que:
-1. **Gera** todos os arquivos necessários a partir de templates padronizados.
-2. **Valida** a conformidade da skill contra o checklist do hub.
-3. **Registra** a skill no `README.md` raiz.
+Instead of manual file creation which leads to inconsistency, the agent utilizes this skill to:
+1. **Design**: Perform a conceptual blueprinting of the skill's logic.
+2. **Generate**: Scaffold all necessary files from logic-first templates.
+3. **Validate**: Audit the skill against SDD v2.2.0 and structural purity checklists.
+4. **Register**: Ensure the skill is correctly indexed in the project's global memory and roadmap.
 
-> **Princípio**: Se a skill SDD garante que o código é especificado antes de ser escrito, o Skill Factory garante que toda skill é estruturada antes de ser definida.
+> **Principle**: If SDD ensures code is specified before being written, the Skill Factory ensures every skill is structured before being defined.
 
 ---
 
-## ⚙️ Auto-Sizing
+## ⚙️ Standard Structure (SDD v2.2.0)
 
-| Mode | Quando Usar | Arquivos Gerados |
+| Mode | Use Case | Generated Artifacts |
 |------|-------------|-----------------|
-| **Quick** | Skill simples, sem sub-skills | `SKILL.md`, `README.md`, `CHANGELOG.md` |
-| **Standard** | Skill com sub-skills | Todos acima + `<skill>-<sub>.skill.md` (N) |
+| **Quick** | Simple skill without sub-skills | `SKILL.md`, `README.md`, `CHANGELOG.md`, `tasks.md` |
+| **Standard** | Complex skill with sub-skills | All above + `<skill>-<sub>.skill.md` (N) + `DECISIONS.md` |
 
 ---
 
 ## 🧩 Sub-skills
 
-| Sub-skill | Arquivo | Responsabilidade |
+| Sub-skill | File | Responsibility |
 |-----------|---------|------------------|
-| **Bootstrap** | [skill-factory-bootstrap.skill.md](skill-factory-bootstrap.skill.md) | Gera o scaffolding completo da nova skill a partir dos templates padronizados. |
-| **Validator** | [skill-factory-validator.skill.md](skill-factory-validator.skill.md) | Audita a skill criada contra o checklist de conformidade e emite relatório COMPLIANT/NON-COMPLIANT. |
+| **Bootstrap** | [skill-factory-bootstrap.skill.md](skill-factory-bootstrap.skill.md) | Generates the complete scaffolding of the new skill using logic-first templates. |
+| **Validator** | [skill-factory-validator.skill.md](skill-factory-validator.skill.md) | Audits the created skill against the compliance checklist and emits an audit report. |
 
 ---
 
-## 🚀 Como Usar
+## 🚀 How to Use
 
-### Exemplo 1: Criar Skill Simples (Quick Mode)
+### Example 1: Creating a Simple Skill (Quick Mode)
 
 **Input:**
 ```
-Criar uma nova skill chamada "deep-research" para pesquisa avançada na web.
-Categoria: research.
-Sem sub-skills.
+Create a new skill named "deep-research" for advanced web research.
+Category: research.
+No sub-skills.
 ```
 
-**O agente executa:**
-1. `skill-factory-bootstrap` com `skill_name=deep-research`, `description="Pesquisa avançada na web com síntese de resultados"`, `category=research`.
-2. `skill-factory-validator` para auditar `deep-research/`.
-3. Atualiza `README.md` raiz com a nova entrada na tabela.
+**The agent executes:**
+1. `skill-factory-bootstrap` with `skill_name=deep-research`, `description="Advanced web research with result synthesis"`, `category=research`.
+2. `skill-factory-validator` to audit `deep-research/`.
+3. Update project roadmap in `.specs/project/ROADMAP.md`.
 
-**Resultado:**
+**Result:**
 ```
 deep-research/
-├── SKILL.md          # Definição com placeholders para preenchimento
-├── README.md         # Documentação com badges e estrutura
-└── CHANGELOG.md      # Entry [1.0.0] com data de hoje
+├── SKILL.md          # Definition with placeholders for completion
+├── README.md         # Documentation with badges and structure
+├── tasks.md          # Initial task list for execution
+└── CHANGELOG.md      # Entry [1.0.0] with today's date
 ```
 
 ---
 
-### Exemplo 2: Criar Skill com Sub-skills (Standard Mode)
+## ✅ Compliance Checklist
 
-**Input:**
-```
-Criar uma nova skill chamada "infra-automation" para automação de infraestrutura.
-Categoria: automation.
-Sub-skills: provisioner, monitor, rollback.
-```
+Every skill created by the framework is validated against this checklist:
 
-**O agente executa:**
-1. `skill-factory-bootstrap` com `sub_skills=["provisioner", "monitor", "rollback"]`.
-2. `skill-factory-validator` para auditar `infra-automation/`.
-3. Atualiza `README.md` raiz.
-
-**Resultado:**
-```
-infra-automation/
-├── SKILL.md
-├── README.md
-├── CHANGELOG.md
-├── infra-automation-provisioner.skill.md
-├── infra-automation-monitor.skill.md
-└── infra-automation-rollback.skill.md
-```
-
----
-
-## ✅ Checklist de Conformidade
-
-Toda skill criada pelo framework é validada contra este checklist:
-
-| # | Check | Descrição |
+| # | Check | Description |
 |---|-------|-----------|
-| 1 | **Structural** | Todos os arquivos obrigatórios existem |
-| 2 | **Frontmatter** | YAML válido com `name`, `version`, `description`, `category` |
-| 3 | **Content** | Seções obrigatórias presentes (`Goal`, `Output Structure`, `Quality Rules`, `Prohibited`) |
-| 4 | **Naming** | Diretório, arquivos e frontmatter seguem padrão de nomenclatura |
-| 5 | **Registry** | Skill registrada na tabela do `README.md` raiz |
+| 1 | **Structural** | All mandatory files exist (Root Integrity) |
+| 2 | **Memory** | Operational memory is aggregated in `.specs/project/` (No local triad) |
+| 3 | **Frontmatter** | Valid YAML with `name`, `version`, `description`, `category` |
+| 4 | **Content** | Mandatory H2 sections present (Goal, Prerequisites, Quality Rules, Prohibited) |
+| 5 | **Naming** | Directory, files, and frontmatter follow standard patterns |
 
 ---
 
-## 📐 Versão Policy
+## 📐 Versioning Policy
 
-- Toda nova skill inicia na versão **`1.0.0`**.
-- O changelog segue o formato [Keep a Changelog](https://keepachangelog.com/pt-BR/).
-- O versionamento segue [Semantic Versioning](https://semver.org/lang/pt-BR/).
+- Every new skill starts at version **`1.0.0`**.
+- Changelogs follow the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
+- Versioning adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
 ## 📝 Changelog
 
-Consulte o [CHANGELOG.md](CHANGELOG.md) para o histórico completo de versões.
+Consult the [CHANGELOG.md](CHANGELOG.md) for the full version history.
