@@ -1,98 +1,111 @@
 ---
 name: skill-factory
-version: 2.0.0
-description: "Core Framework for high-performance Skill Authoring. Implements Anthropics's 14 patterns (Activation Metadata, Progressive Disclosure, Execution Checklist) for standardized, efficient, and robust agent extensions."
+version: 2.2.0
+description: "Governance and Automation engine for high-performance Skill Authoring. Implements Anthropics's 14 patterns synthesized with SDD v2.2.0 operational rigor."
 category: skill-management
 ---
 
 ## 🔒 Prerequisites (Mandatory)
-This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
-0. **Mode Check**: Verify the current operational mode (`.hub-mode`) and apply the `token-distiller` skill guidelines.
-1. **Context Check**: Have you rehydrated the context by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`?
-2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)?
-3. **Plan Check**: Does the `plan.md` file define architecture, schemas, and include **Mermaid** diagrams?
-
----
-# Skill Factory: Core Framework (v2.0.0)
-
-> "Every skill deserves a solid foundation. Consistency breeds quality."
+This skill acts as the architect for the Hub's capabilities. Before execution:
+0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
+1. **Context Check**: Rehydrate state by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+2. **Knowledge Check**: Follow the **Knowledge Verification Chain** (see below).
 
 ---
 
-## 🏗️ Skill Authoring Patterns
+# Skill Factory: Capability Architect (v2.2.0)
+
+> "Structure is the bridge to autonomy. Precision in design, rigor in execution."
+
+---
+
+## 🧩 Delegation Matrix
+The Skill Factory delegates specific lifecycle tasks to its sub-agents:
+
+| Phase | Sub-Skill | Primary Artifact | Purpose |
+|---|---|---|---|
+| **DESIGN** | `skill-factory-bootstrap` | Skill Blueprint | Conceptual and physical mapping of the skill's logic. |
+| **AUDIT** | `skill-factory-validator` | `audit-report.md` | Verification of structural and logical integrity. |
+
+---
+
+## 🏗️ Skill Authoring Patterns (The Core)
 
 ### Group 1: Discovery & Selection
-1.  **Activation Metadata**: Write "pushy" and clear descriptions (capped at 1024 chars) that trigger Claude correctly.
-2.  **Exclusion Clause**: Use explicit "Do NOT use for..." lines to prevent skill hijacking and over-triggering.
+1.  **Activation Metadata**: Precise descriptions that trigger the agent correctly.
+2.  **Exclusion Clause**: Explicit "Do NOT use for..." lines to prevent hijacking.
 
 ### Group 2: Context Economy
-3.  **Context Budget**: Every sentence must justify its token cost. Avoid re-explaining common knowledge.
-4.  **Progressive Disclosure**: Treat `SKILL.md` as a Table of Contents; move details to sub-files (`REFERENCE.md`, `FORMS.md`).
+3.  **Context Budget**: Every sentence must justify its token cost.
+4.  **Progressive Disclosure**: Move details to sub-files (`REFERENCE.md`, `FORMS.md`).
 
 ### Group 3: Instruction Calibration
-5.  **Control Tuning**: Match instruction freedom to task fragility (High freedom for reviews, Low for migrations).
-6.  **Explain-the-Why**: State the rule, then explain *why* so Claude can generalize to edge cases.
-7.  **Template Scaffold**: Provide explicit placeholders for reports/logs to ensure machine-parsable output.
-8.  **In-Skill Examples**: Embed 2-3 Input/Output pairs to calibrate style and tone (Few-shot prompting).
-9.  **Known Gotchas**: Document concrete failure modes (e.g., "Empty JSON returns on timeout") to prevent hallucinations.
+5.  **Control Tuning**: Match instruction freedom to task fragility.
+6.  **Explain-the-Why**: State rules + rationale for better generalization.
+7.  **Template Scaffold**: Provide explicit placeholders for reports/logs.
+8.  **In-Skill Examples**: Embed 2-3 Few-shot pairs for style calibration.
+9.  **Known Gotchas**: Document failure modes to prevent hallucinations.
 
 ### Group 4: Workflow Control
-10. **Execution Checklist**: Provide a copyable checklist that Claude ticks off in the chat to track progress.
-11. **Self-Correcting Loop**: Wire in explicit "produce-validate-fix" loops for quality-critical output.
-12. **Plan-Validate-Execute**: Insert a verifiable plan (JSON/YAML) before performing side effects.
+10. **Execution Checklist**: Copyable checklists to track progress.
+11. **Self-Correcting Loop**: "Produce-validate-fix" loops for quality.
+12. **Plan-Validate-Execute**: Verified plan before performing side effects.
 
-### Group 5: Executable Code
-13. **Utility Bundle**: Ship purpose-built scripts in `scripts/` for deterministic logic.
-14. **Autonomy Calibration**: Declare `allowed-tools` in frontmatter to minimize approval friction.
-
----
-
-## Workflow (3 Phases)
-
-### Phase 1: BOOTSTRAP — Designing the Soul
-1.  **Intent Audit**: Define the core task and triggers (**Activation Metadata**).
-2.  **Scaffolding**: Run `hb skill new <skill_name>` to generate the directory structure.
-3.  **Tiering**: Decide which content goes into `SKILL.md` vs. sub-files (**Progressive Disclosure**).
-
-### Phase 2: AUTHOR — Calibrating instructions
-1.  **Gotcha Discovery**: Analyze common failures and document them.
-2.  **Instruction Design**: Apply **Control Tuning** and **Explain-the-Why**.
-3.  **Few-Shotting**: Select 2 representative examples for the **In-Skill Examples** section.
-
-### Phase 3: VALIDATE — Compliance Audit
-1.  **Validator Audit**: Run `skill-factory-validator` to check for pattern compliance.
-2.  **Token Audit**: Verify that `SKILL.md` stays under the ~500 line target.
-3.  **Registry Update**: Register the new skill in the root `README.md`.
+### Group 5: Executable Logic
+13. **Utility Bundle**: Purpose-built scripts for deterministic logic.
+14. **Autonomy Calibration**: Declare `allowed-tools` to minimize friction.
 
 ---
 
-## Output Structure
+## 🔄 4-Phase Workflow
 
-| Artifact | Description |
-|----------|-----------|
-| `SKILL.md` | The "Central Brain" of the skill (Patterns 1-12). |
-| `scripts/` | Deterministic helpers (Pattern 13). |
-| `references/` | Deep-dive documentation (Pattern 4). |
-| `examples/` | Contextual samples for the agent. |
+### 1. DISCOVERY
+*   **Goal**: Understand the functional domain and intent.
+*   **Action**: Use `skill-factory-bootstrap` to perform an **Intent Audit**.
+*   **Output**: Defined triggers and core task scope.
 
----
+### 2. SPECIFY
+*   **Goal**: Design the skill's soul and instructions.
+*   **Action**: Apply **Control Tuning** and **Explain-the-Why**. Define the sub-file structure.
+*   **Output**: Initial draft of `SKILL.md` and required sub-files.
 
-## Quality Rules
+### 3. IMPLEMENT
+*   **Goal**: Calibrate and finalize instructions.
+*   **Action**: Add **Few-Shot Examples** and **Known Gotchas**.
+*   **Output**: Verified skill directory.
 
-- **Zero Redundancy**: If a rule is in `GLOBAL_MANDATES.md`, do not repeat it in the skill.
-- **Pushy Descriptions**: The description must explicitly tell the agent *when* to activate.
-- **Human-Readable, Agent-Executable**: The skill must be clear to a human author but optimized for LLM attention.
-
-## Prohibited
-
-- NEVER use all-caps imperatives (MUST/ALWAYS) without an explanation (**Pattern 6**).
-- NEVER stuff a `SKILL.md` with >800 lines of content; use **Pattern 4**.
-- NEVER register a skill without a **Gotchas** section if the domain has known edge cases.
-- NEVER create a skill without a corresponding SDD feature folder (e.g., `.specs/features/<skill-name>`) containing `spec.md` and `plan.md`.
+### 4. VERIFY
+*   **Goal**: Audit against SDD and Slop-Free standards.
+*   **Action**: Use `skill-factory-validator` to produce an audit score.
+*   **Output**: Final `audit-report.md` and registration.
 
 ---
 
-## References
+## 🛠️ Operational Protocols
 
-- [Skill Authoring Patterns from Anthropic's Best Practices](https://generativeprogrammer.com/p/skill-authoring-patterns-from-anthropics)
-- [Anthropic Skill Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
+### 1. The "Structural Purity" Mandate
+Every skill created MUST be self-documenting:
+- **Explicit Logic**: No hidden dependencies or "magic" CLI commands.
+- **Memory Triad**: Mandatory `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+- **Atomic Intent**: Every task and spec must have a clear ID.
+
+### 2. Knowledge Verification Chain
+1. **Core SDD Skill**: Ultimate truth for workflow patterns.
+2. **Existing Skills**: High-performance references (e.g., `sdd`, `git-workflow`).
+3. **Internal Governance**: `.specs/codebase/CONVENTIONS.md`.
+
+### 3. Safety Valve
+If a skill design exceeds 5 sub-skills or complex external dependencies, **STOP** and re-evaluate for orchestration.
+
+---
+
+## 🚫 Prohibited
+
+- NEVER modify system directories (e.g., `.agents/`, `.gemini/`) unless explicitly authorized.
+- NEVER skip the **Memory Triad** initialization.
+- NEVER approve a skill that doesn't follow the 4-Phase SDD workflow.
+- NEVER use placeholders like "todo" or "..." in instructions.
+
+---
+
+> **Law of the Factory**: A skill without structure is just a prompt. Structure is the bridge to autonomy.
