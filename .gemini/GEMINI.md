@@ -40,13 +40,14 @@ Use this guide to identify the mandatory skill for each context:
 
 ## 1. SDD Framework (Mandatory for Development)
 Any construction, development, or significant refactoring task **MUST** utilize the **SDD (Spec-Driven Development)** framework from the initial planning stage.
-- **Initialization**: Use **`hb sdd start <feature>`** to create the standardized structure for any new feature.
+- **Lifecycle Mastery**: At the start of any SDD-related task, the agent **MUST** read the **`sdd/SKILL.md`** file to synchronize with the latest workflow protocols (v2.1.0+), delegation matrix, and safety-valve triggers.
+- **Initialization**: Use the **`sdd` skill** (`sdd-orchestrator`) to initialize the standardized structure (Spec, Plan, Tasks) for any new feature in the `.specs/features/[name]/` directory.
 - **Workflow & Persistence**: Upon technically completing a task, the agent **MUST** proactively perform SDD Phase 4 (Review & Persistence).
   - **Update Specs**: Mark tasks as completed in `tasks.md` and update `plan.md`.
   - **Reports**: Generate or update `validation-report.md`.
   - **Context Graph**: Update the project's **`DECISIONS.md`** with rationale and patterns discovered.
-  - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via **HB CLI** (Use `hb project focus` to mark milestones).
-- **Monitoring**: Use **`hb sdd status --ui --watch`** in a secondary terminal to monitor task completion and global project health in real-time.
+  - **State**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated via the **`sdd-planner`** skill to ensure context continuity.
+- **Verification**: Use the **`sdd-reviewer`** skill to audit task completion and global project health against the established **Contract (SDC)**.
 
 ## 2. Architectural Integrity
 - **Architecture-First**: Critical decisions must be recorded in an **ADR** in the `.specs/architecture/` folder.

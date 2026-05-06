@@ -129,7 +129,7 @@
 
 ### [BENCHMARK] ./internal/benchmark: 1140608.00 ns/op (2026-04-24)
 
-### [2026-04-27] CLI Visibility & Native Dependencies
-- **Learning**: Implementar lógica interna (`internal/`) sem expor o comando correspondente no `cmd/` cria "funcionalidades fantasmas" que degradam a experiência do usuário. Auditoria de comandos via `hb` deve ser parte do Exit Gate.
-- **Pattern**: Em binários CLI nativos (Go), prefira o uso de bibliotecas padrão (`text/tabwriter`) em vez de dependências externas complexas para visualização de tabelas, garantindo portabilidade e build rápido sem conflitos de API.
-- **YOLO Mode Success**: O modo de alta autonomia permitiu a correção imediata da estrutura de sessões ao descobrir que os comandos de controle estavam faltando no CLI.
+### [2026-05-06] Débito de Governança em Integrações Rápidas
+- **Learning**: Durante fases de integração acelerada (ex: Stitch Skills), há uma tendência natural de negligenciar os hooks de governança (SDD Hooks) e arquivos mandatórios (`CHANGELOG.md`) nas novas habilidades criadas.
+- **Pattern**: Auditorias SDD periódicas são essenciais para identificar esse "drift" documental antes que ele comprometa a capacidade de futuros agentes de operar com segurança no repositório.
+- **Mitigation**: Implementar verificação de conformidade de habilidades no pipeline de CI/CD para garantir que nenhuma nova habilidade seja integrada sem os requisitos mínimos de governança.
