@@ -2,7 +2,7 @@
 
 > Centralized hub for modular **Skills** and **Intelligence Governance**. Powered by the **HB-CLI**.
 
-[![Skills](https://img.shields.io/badge/Skills-26-brightgreen)](#-available-skills)
+[![Skills](https://img.shields.io/badge/Skills-25-brightgreen)](#-available-skills)
 [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 [![Build Status](https://github.com/KlebersonCollab/skills/actions/workflows/validate.yml/badge.svg)](https://github.com/KlebersonCollab/skills/actions)
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen)](#-roadmap)

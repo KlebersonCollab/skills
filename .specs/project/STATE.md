@@ -10,6 +10,7 @@
 - SDD artifacts (Spec, Plan, Tasks) created and finalized in `.specs/features/stitch-skills-integration/`.
 - **Project Integrity Audit (SDD)**: Completed.
 - **Skill Standardization**: `token-distiller` and `youtube-transcript` upgraded to v2.2.0 (Purist SDD). Local memory eliminated.
+- **Governance Consolidation**: `swarm-facilitator` merged into `sdd` core logic. Redundancy eliminated.
 
 ## Current Blockers
 - None.
