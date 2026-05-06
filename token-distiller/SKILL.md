@@ -1,107 +1,99 @@
 ---
 name: token-distiller
-description: >
-  Token density manager. Alternates between 'Low Token' (Caveman) mode 
-  for speed and 'Premium' (High Token) mode for analytical complexity.
-version: 1.2.0
+version: 2.2.0
+description: "Token density manager. Alternates between 'Low Token' (Caveman) mode for speed and 'Premium' (High Token) mode for analytical complexity."
+category: utility
 ---
-
-# Token Distiller: Dual-Mode Communication
 
 ## 🔒 Prerequisites (Mandatory)
 This skill operates integrated with the **SDD** framework. Before any technical execution:
-1. **Context Check**: Validate the current operational mode in `.hub-mode`.
+0. **Mode Check**: Verify the current operational mode in `.hub-mode`.
+1. **Context Check**: Rehydrate state by reading `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
 2. **Spec Check**: Does the `spec.md` file exist with clear requirements?
 3. **Plan Check**: Does the `plan.md` file define the compression architecture?
-4. **Contract Check**: Does the `contract.md` file define token limits?
-5. **Task Sizing**: Define if the task is Quick/Small (Caveman) or Medium+ (Premium).
-6. **Task Check**: Is the task list in `tasks.md` detailed?
 
 ---
 
-## 🔒 Mandatory Tooling
-The use of **HB CLI** is **MANDATORY** for this skill:
-- **Focus**: Use `hb harness focus "Task"` to track optimization milestones.
-- **Optimization**: Use `hb harness distill` if the context exceeds 80% of the token limit (Snip, Micro-compact, Collapse).
+# Token Distiller: Dual-Mode Communication (v2.2.0)
+
+> "Density is the currency of autonomy. Spend wisely."
 
 ---
 
-## Goal
-Optimize token consumption and technical precision through a dual-fidelity communication system (Caveman/Premium), ensuring agents operate with maximum efficiency in restricted contexts.
+## 🧩 Delegation Matrix
+As a utility skill, Token Distiller operates as a unified agent across all phases:
 
-## Output Structure
-Execution of this skill results in:
-- Compressed responses (Low Token Mode).
-- Analytical documentation (Premium Mode).
-- Dynamic adjustment of token density.
-
-## Quality Rules
-- **Terse-First**: In Low Token mode, eliminate all "fluff" without loss of substance.
-- **Substance-Preservation**: Technical patterns and task IDs must be preserved.
-- **Safety-First**: Exit compressed mode for safety warnings or critical errors.
-
-## Prohibited
-- **NEVER** compress source code or technical error messages.
-- **NEVER** use Caveman mode for tasks of high architectural complexity.
-- **NEVER** omit task IDs from `tasks.md` in commits, even in Low Token mode.
+| Phase | Sub-Skill | Primary Artifact | Purpose |
+|---|---|---|---|
+| **AUDIT** | Self | Context Report | Assess token pressure and context health. |
+| **DENSITY** | Self | Distilled Output | Execute linguistic compression or prose expansion. |
 
 ---
 
-This agent operates in two levels of linguistic fidelity to optimize token consumption and technical precision.
+## 🔄 4-Phase Workflow
 
-## 1. Operating Modes
+### 1. DISCOVERY
+*   **Goal**: Audit current context health and token pressure.
+*   **Action**: Assess if context exceeds 80% capacity. If so, perform manual context pruning by summarizing previous tool outputs and removing redundant thought paths. Identify task complexity (Quick/Small vs Medium+).
+*   **Output**: Context health report and mode selection.
+
+### 2. SPECIFY
+*   **Goal**: Define the required fidelity for the next interaction.
+*   **Action**: Set `/mode low` (Caveman) for speed or `/mode high` (Premium) for analysis.
+*   **Output**: Mode activation in session state.
+
+### 3. IMPLEMENT
+*   **Goal**: Execute communication according to the selected mode.
+*   **Action**: Apply linguistic filters (Caveman fragments or Premium prose). Perform micro-compaction of tool results.
+*   **Output**: Compressed or high-fidelity responses.
+
+### 4. VERIFY
+*   **Goal**: Ensure substance preservation and safety.
+*   **Action**: Validate that task IDs and technical patterns are intact. Exit Low Token mode for safety warnings.
+*   **Output**: Verified, dense communication.
+
+---
+
+## 🏗️ Operating Modes
 
 ### 🪨 Low Token Mode (Caveman)
-**Activation:** 'Quick', 'Small' tasks, `/mode low`, `/caveman` commands.
+**Activation:** 'Quick', 'Small' tasks, `/mode low`, `/caveman`.
 **Rules:**
-- Respond in an ultra-terse manner like an intelligent caveman.
-- All technical substance must remain; only the "fluff" dies.
-- **Eliminate:** Articles (the, a, an), filler (just, really, basically, actually), greetings, courtesies.
-- **Syntax:** Use fragments and short synonyms (e.g., 'fix' instead of 'implement a solution for').
-- **Pattern:** `[object] [action] [reason]. [next step].`
+- Eliminate articles (the, a, an), fillers (really, basically), and greetings.
+- Use fragments: `[object] [action] [reason]. [next step].`
 - **Example:** "Bug in middleware. Expiry check uses `<` not `<=`. Fix applied."
 
 ### 💎 Premium Mode (High Token)
-**Activation:** 'Medium', 'Large', 'Complex' tasks, `/mode high`, `/premium` commands.
+**Activation:** 'Medium', 'Large', 'Complex' tasks, `/mode high`, `/premium`.
 **Rules:**
-- Respond in an analytical, grammatically complete, and professional manner.
+- Analytical, grammatically complete, and professional prose.
 - Focus on traceability, technical justification, and exhaustive documentation.
-- Ideal for architectural planning, security reviews, and ADRs.
-- **Example:** "The identified problem in the authentication middleware stems from an incorrect logic comparison. We replaced the comparison operator to ensure strict validation of token expiration."
 
-## 2. Context Maintenance Protocols (Micro-Compaction)
+---
 
-Independente do modo de linguagem, o agente deve gerenciar a "saúde" do contexto seguindo estes protocolos técnicos:
+## 🛠️ Operational Protocols
 
-### 🗜️ Micro-Compaction (Stubbing)
-- **O que:** Substituir resultados de ferramentas antigos ou excessivamente longos por "stubs" (resumos técnicos).
-- **Gatilho:** Resultados de ferramentas (bash, read_file, grep) com mais de 10 turns de idade E mais de 5000 caracteres.
-- **Ação:** Substituir o conteúdo por: `[Old tool result content cleared to save tokens. Tool: {name}. Summary: {breve resumo de 1 linha}].`
-- **Exceção:** Nunca limpe resultados que contenham dados críticos para a tarefa atual em execução.
+### 1. Knowledge Verification Chain
+1. **Core SDD Skill**: Reference for task sizing and workflow.
+2. **Project Specs**: `.specs/project/STATE.md` for current context.
+3. **Internal Governance**: `skill-factory` standards for documentation.
 
-### 📦 API-Round Grouping
-- **O que:** Agrupar raciocínio por rodadas de interação.
-- **Protocolo:** A cada 5 interações (API Round-trips), o agente deve fazer um "Self-Summary" interno para consolidar o progresso e descartar caminhos de raciocínio obsoletos.
+### 2. Micro-Compaction (Stubbing)
+- **Trigger**: Tool results > 10 turns old AND > 5000 characters.
+- **Action**: Replace with: `[Old tool result cleared. Tool: {name}. Summary: {summary}].`
 
-### 🖼️ Media & Noise Pruning
-- **Imagens:** Após 5 turns, referenciar imagens por ID em vez de manter dados base64 (se aplicável).
-- **Lixo de Terminal:** Remover saídas repetitivas de comandos `ls`, `grep` ou logs de build após a extração da informação necessária.
+### 3. Safety Valve
+- **Prohibited**: NEVER compress source code, safety warnings, or confirmations of irreversible actions.
+- **Escalation**: Abandon Low Token mode if ambiguity causes execution errors.
 
-## 3. Persistence and Toggle
+---
 
-- The mode persists until the end of the session or until changed.
-- Manual triggers: `/mode low`, `/mode high`.
-- Automatic detection based on SDD **Task Sizing**.
+## 🚫 Prohibited
 
-## 4. Auto-Clarity (Safety Rule)
+- NEVER create local `STATE.md`, `MEMORY.md`, or `LEARNINGS.md` within the skill folder.
+- NEVER use placeholders like "todo" or "..." in instructions.
+- NEVER compress technical error messages.
 
-**The agent MUST abandon Low Token mode and use clear prose for:**
-- Safety warnings.
-- Confirmations of irreversible actions (e.g., delete database).
-- Multi-step sequences where fragment ambiguity might cause execution errors.
-- When the user asks for clarification.
+---
 
-## 5. Limits
-
-- **Code:** Always write in a normal and readable way, regardless of the mode.
-- **Commits:** Follow the `git-workflow` (Conventional Commits), but prefer extreme brevity in Low Token mode.
+> **Law of Density**: All substance, no fluff. Efficiency is precision.
