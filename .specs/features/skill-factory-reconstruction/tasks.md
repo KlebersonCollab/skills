@@ -8,22 +8,22 @@
   - [x] Add the Knowledge Verification Chain.
   - `ID: SF-001`
 
-- [ ] **Task 2: Bootstrap Sub-skill**
-  - [ ] Populate `skill-factory-bootstrap.skill.md`.
-  - [ ] Define the structural requirements for new skills.
+- [x] **Task 2: Bootstrap Sub-skill**
+  - [x] Populate `skill-factory-bootstrap.skill.md`.
+  - [x] Define the structural requirements for new skills.
   - `ID: SF-002`
 
-- [ ] **Task 3: Validator Sub-skill**
-  - [ ] Populate `skill-factory-validator.skill.md`.
-  - [ ] Define the audit checklist.
+- [x] **Task 3: Validator Sub-skill**
+  - [x] Populate `skill-factory-validator.skill.md`.
+  - [x] Define the audit checklist.
   - `ID: SF-003`
 
-- [ ] **Task 4: Template Resources**
-  - [ ] Create basic templates in `resources/templates/`.
+- [x] **Task 4: Template Resources**
+  - [x] Create basic templates in `resources/templates/`.
   - `ID: SF-004`
 
-- [ ] **Task 5: Factory Metadata**
-  - [ ] Populate `README.md`, `MEMORY.md`, and `LEARNINGS.md`.
+- [x] **Task 5: Factory Metadata**
+  - [x] Populate `README.md`, `MEMORY.md`, and `LEARNINGS.md`.
   - `ID: SF-005`
 
 ## Phase 4: Review
