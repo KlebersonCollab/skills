@@ -198,3 +198,16 @@ Tasks in `tasks.md` MUST NOT be marked as complete without a valid entry in the 
 - [BDD Standard](references/bdd-guide.md)
 - [Handoff Protocol](references/handoff-protocol.md)
 - [Swarm Execution Guide](references/swarm-execution.md)
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "SDD-CORE-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T10:35:00Z"
+evidence_checksum: "NONE"
+```
+
