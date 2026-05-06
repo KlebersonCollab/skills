@@ -1,15 +1,17 @@
 # Project State
 
 ## Active Feature
+- **Python UV v4.0.0 Purist Refactor**: Completed.
 - **Stitch Skills Integration**: Completed.
 - **CLI Flexbox Layout (Yoga-inspired)**: Planning complete, starting implementation.
 
 ## Recent Progress
+- **Python UV Refactor**: Upgraded `python-uv` to v4.0.0 (Purist SDD). Integrated Django Pro, Async Mastery, and Python 3.14.
 - Integrated `stitch-expert`, `remotion-expert`, and `stitch-loop` into the Hub.
 - Aggregated React and Shadcn knowledge into `frontend-expert`.
-- SDD artifacts (Spec, Plan, Tasks) created and finalized in `.specs/features/stitch-skills-integration/`.
+- SDD artifacts (Spec, Plan, Tasks) created and finalized in `.specs/features/python-uv-v2-refactor/`.
 - **Project Integrity Audit (SDD)**: Completed.
-- **Skill Standardization**: `token-distiller` and `youtube-transcript` upgraded to v2.2.0 (Purist SDD). Local memory eliminated.
+- **Skill Standardization**: `token-distiller`, `youtube-transcript`, and `python-uv` upgraded to v2.2.0+ (Purist SDD). Local memory eliminated.
 - **Governance Consolidation**: `swarm-facilitator` merged into `sdd` core logic. Redundancy eliminated.
 
 ## Current Blockers
