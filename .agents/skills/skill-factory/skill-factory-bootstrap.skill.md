@@ -1,34 +1,101 @@
-# Skill Factory: Bootstrap Sub-skill (Purist Edition)
+---
+name: skill-factory-bootstrap
+version: 2.2.0
+description: "Bootstrap agent for Skill Factory. Designs and generates the logic-first scaffolding for a new skill (Purist Edition)."
+category: skill-management
+---
 
-This sub-skill defines the structural blueprint of a new capability. It focuses on the logical arrangement of intelligence.
+## 🔒 Prerequisites (Mandatory)
+Before execution:
+0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
+1. **Context Check**: Read `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
+2. **Intent Audit**: Clearly define the skill's functional domain and core task.
 
-## 🔒 Prerequisites
-- Clear functional domain (e.g., `fastapi-expert`).
-- Alignment with the Hub's naming conventions.
+---
+
+# Skill Factory: Bootstrap Agent (v2.2.0)
+
+> "A skill's soul is defined by its structure."
+
+---
 
 ## 🛠️ Execution Protocol
 
-### 1. The Blueprint
-The agent must design the skill structure as a first-class citizen. This is not just about folders, but about the *reasoning flow*.
+### Step 1: Design the Blueprint
+Design the directory `<skill_name>/` at the repository root. Map out which sub-skills are needed and which logical patterns from the **14 Anthropic Patterns** apply.
 
-**Standard Layout:**
-1.  **Entry Point**: `SKILL.md` (The "Brain").
-2.  **Metadata**: `README.md` (The "Identity").
-3.  **Memory Assets**:
-    - `STATE.md`: Ephemeral progress.
-    - `MEMORY.md`: Long-term patterns/preferences.
-    - `LEARNINGS.md`: Discovered wisdom.
-    - `DECISIONS.md`: Architectural log.
-4.  **Verification**: `tasks.md` and `.specs/` hierarchy.
+### Step 2: Update Project Memory
+Instead of local files, update the global project memory:
+- **STATE.md**: Log the new skill creation and status.
+- **DECISIONS.md**: Log architectural trade-offs for the new skill.
+- **tasks.md**: Create a task list in the skill's folder for execution tracking.
 
-### 2. Implementation Strategy
-Instead of relying on automated scripts, the agent must manually construct the environment to ensure each file is initialized with the correct context.
+### Step 3: Generate Core Instruction (`SKILL.md`)
+Apply the **Gold Standard Template** below. Ensure the `Knowledge Verification Chain` is present to prevent hallucinations.
 
-**Initialization Sequence:**
-- [ ] Define the `SKILL.md` frontmatter.
-- [ ] Establish the **Delegation Matrix**.
-- [ ] Create the **Knowledge Verification Chain**.
-- [ ] Initialize the **Memory Triad** with contextual seeds.
+---
 
-### 3. Safety Valve
-If the skill design requires more than 5 sub-skills or complex external dependencies, **STOP** and re-evaluate if it should be a "Multi-Agent Orchestrator" instead.
+## 🏗️ Gold Standard Templates
+
+### SKILL.md Template
+```markdown
+---
+name: {{skill_name}}
+version: 0.1.0
+description: "{{description}}"
+category: {{category}}
+---
+
+## 🔒 Prerequisites (Mandatory)
+Before execution:
+0. **Context Check**: Read `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
+1. **Knowledge Check**: Follow the **Knowledge Verification Chain**.
+
+---
+
+# {{Title}}
+
+> {{tagline}}
+
+---
+
+## 🧩 Delegation Matrix
+| Phase | Sub-Skill | Primary Artifact | Purpose |
+|---|---|---|---|
+| PHASE | SUB-SKILL | ARTIFACT | PURPOSE |
+
+---
+
+## 🛠️ Operational Protocols
+
+### 1. Knowledge Verification Chain
+1. **Existing Code**: Scan for established patterns.
+2. **Internal Specs**: Consult `.specs/features/` and `STATE.md`.
+3. **Project Documentation**: Check READMEs and official docs.
+4. **MCP/External Tools**: Query `context-graph` or web.
+5. **Flag Uncertainty**: Never assume.
+
+### 2. Safety Valve
+[Define complexity triggers for escalation]
+
+---
+
+## 🚫 Prohibited
+- NEVER skip verification.
+- NEVER use placeholders.
+```
+
+### Memory Asset Template
+```markdown
+# [Asset Name]: [Skill Name]
+- Status: Initialized
+- Current Focus: [Current Focus]
+```
+
+---
+
+## 🚫 Prohibited
+- NEVER modify system directories (e.g., `.agents/`).
+- NEVER create local `STATE.md`, `MEMORY.md`, or `LEARNINGS.md` files; use `.specs/project/`.
+- NEVER create empty instruction files.
+- NEVER skip the **Knowledge Verification Chain** in the template.

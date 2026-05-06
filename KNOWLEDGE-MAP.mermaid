@@ -1,10 +1,6 @@
 graph TD
     %% Nodes and Hierarchical Grouping
 
-    subgraph "Navigation & Orchestration"
-        swarm_facilitator["swarm-facilitator (1.2.0) 🛡️"]
-    end
-
     subgraph "Architecture & Design"
         adk_expert["adk-expert (1.0.0) 🛡️"]
         api_architect["api-architect (1.4.0) 🛡️"]
@@ -70,8 +66,6 @@ graph TD
         remotion_expert["remotion ()"]
         scaffolding_expert["scaffolding-expert ()"]
         scaffolding_expert["scaffolding-expert ()"]
-        skill_factory["skill-factory (1.0.0) 🛡️"]
-        skill_factory["skill-factory ()"]
         stitch_expert["stitch-expert ()"]
         stitch_expert["stitch-expert ()"]
         stitch_expert["stitch-expert ()"]
@@ -80,8 +74,8 @@ graph TD
         stitch_loop["stitch-loop ()"]
         swarm_facilitator["swarm-facilitator ()"]
         swarm_facilitator["swarm-facilitator ()"]
-        token_distiller["token-distiller ()"]
-        token_distiller["token-distiller ()"]
+        token_distiller["token-distiller (2.2.0) 🛡️"]
+        token_distiller["token-distiller (2.2.0) 🛡️"]
         token_distiller["token-distiller (2.2.0) 🛡️"]
         youtube_transcript["youtube-transcript ()"]
         youtube_transcript["youtube-transcript ()"]
@@ -106,11 +100,17 @@ graph TD
         sdd["sdd (2.2.0) 🛡️"]
         sdd["sdd (2.2.0) 🛡️"]
         skill_factory["skill-factory (2.2.0) 🛡️"]
+        skill_factory["skill-factory (2.2.0) 🛡️"]
+        skill_factory["skill-factory (2.2.0) 🛡️"]
     end
 
     subgraph "Automation & Utils"
         scaffolding_expert["scaffolding-expert (1.0.0) 🛡️"]
-        youtube_transcript["youtube-transcript (1.0.0) 🛡️"]
+        youtube_transcript["youtube-transcript (2.0.0) 🛡️"]
+    end
+
+    subgraph "Navigation & Orchestration"
+        swarm_facilitator["swarm-facilitator (1.2.0) 🛡️"]
     end
 
     %% Relations
@@ -194,7 +194,8 @@ graph TD
     swarm_facilitator --(references)--> token_distiller
     token_distiller --(references)--> architecture
     token_distiller --(references)--> skill_factory
-    youtube_transcript --(references)--> architecture
+    youtube_transcript --(references)--> onboarding_navigator
+    youtube_transcript --(references)--> sdd
     youtube_transcript --(references)--> token_distiller
 
     %% Styling
@@ -216,6 +217,8 @@ graph TD
     style sdd fill:#e1f5fe,stroke:#01579b
     style sdd fill:#e1f5fe,stroke:#01579b
     style sdd fill:#e1f5fe,stroke:#01579b
+    style skill_factory fill:#e1f5fe,stroke:#01579b
+    style skill_factory fill:#e1f5fe,stroke:#01579b
     style skill_factory fill:#e1f5fe,stroke:#01579b
     style scaffolding_expert fill:#fff3e0,stroke:#e65100
     style youtube_transcript fill:#fff3e0,stroke:#e65100
