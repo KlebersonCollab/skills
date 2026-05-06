@@ -1,7 +1,3 @@
----
-trigger: always_on
----
-
 # Global Engineering Mandates (SDD v2.3.0 Observable)
 
 These instructions are fundamental and must be followed by all agents operating in this Hub. They prioritize logic-first governance, deterministic SDD workflows, and centralized project memory.

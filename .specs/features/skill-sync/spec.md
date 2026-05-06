@@ -16,6 +16,7 @@ Criar um script Bash (`bin/sync-skills.sh`) que:
 - [x] O script utiliza caminhos relativos à raiz do projeto.
 - [x] O script reporta o progresso de forma clara.
 - [x] Integração com `Makefile` via comando `make sync`.
+- [x] Sincronização do `GLOBAL_MANDATES.md` para arquivos de instrução dos agentes (.gemini, .claude, .agents).
 
 ## Skills List
 - architecture
@@ -38,7 +39,7 @@ Criar um script Bash (`bin/sync-skills.sh`) que:
 version: "2.3.0"
 feature_id: "SKILL-SYNC"
 phase: "VERIFY"
-status: "COMPLETED"
-last_update: "2026-05-06T13:44:25Z"
+status: COMPLETED
+last_update: "2026-05-06T13:47:30Z"
 evidence_checksum: "NONE"
 ```
