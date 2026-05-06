@@ -28,7 +28,12 @@
 
 ## Phase 4: Review
 
-- [x] **Task 6: Final Audit**
-  - [x] Run `hb audit` or equivalent logic.
-  - [x] Verify if "Clarity" and "SDD Pattern" requirements are met.
+- [x] **Task 6: Final Audit (Purist Edition)**
+  - [x] Run mental/logical audit for explicit protocols.
+  - [x] Verify removal of "magic" CLI scripts from instructions.
   - `ID: SF-006`
+
+- [x] **Task 7: Purist Alignment**
+  - [x] Refactor sub-skills for logic-first scaffolding.
+  - [x] Update memory with Purist Mandate.
+  - `ID: SF-007`
