@@ -1,109 +1,98 @@
-# 🧠 AI Agent Skills Hub (v5.0.0)
+# 🧠 AI Agent Skills Hub (v6.0.0)
 
-> Centralized hub for modular **Skills** and **Intelligence Governance**. Powered by the **HB-CLI**.
-
-[![Skills](https://img.shields.io/badge/Skills-25-brightgreen)](#-available-skills)
-[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
-[![Build Status](https://github.com/KlebersonCollab/skills/actions/workflows/validate.yml/badge.svg)](https://github.com/KlebersonCollab/skills/actions)
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](#-roadmap)
+> **The Centralized Engine for Agentic Excellence.**  
+> A modular repository of specialized "Skills" for AI agents, governed by the strict standards of **Purist SDD v2.2.0**.
 
 ---
 
-## 📖 About the Project
+## 📖 Project Vision
 
-This repository is the **source of truth** for modular AI agent skills. Every skill is an independent, versioned, and documented module that follows the **[SDD](sdd/)** (Spec-Driven Development) methodology.
+The **AI Agent Skills Hub** is designed to serve the modern developer by providing a standardized ecosystem of high-performance agentic capabilities. We move away from opaque tooling and legacy CLIs, embracing a **Logic-First** approach where governance is transparently driven by Markdown artifacts and deterministic operational mandates.
 
-Instead of manual downloads, we provide a high-performance CLI tool (**HB-CLI**) to manage your agent's intelligence with a single command.
-
----
-
-## 🏗️ For New Projects
-If you want to apply this governance and these skills to a **new project**, check our **[Project Onboarding Guide](PROJECT-ONBOARDING.md)**. It includes:
-- **One-liner installation** for the HB-CLI.
-- **GitHub Actions integration** for automatic auditing.
-- **Ready-to-use templates**.
+Every skill in this hub is an independent, verifiable module that ensures AI agents operate with maximum precision, security, and architectural integrity.
 
 ---
 
-## 🚀 HB-CLI: The Intelligence Manager
+## 🏗️ Core Methodology: Purist SDD
 
-The **HB-CLI** (Harness Binary) is a standalone tool that makes the Hub **Plug & Play**. It handles installations, recursive dependencies, and agent rule distribution.
+This hub is powered by **Spec-Driven Development (SDD)**. Every development cycle follows a rigorous 4-phase protocol:
 
-### 📥 Download the CLI
-Download the binary for your OS and add it to your PATH:
+1.  **DISCOVERY**: Context rehydration from the **Triad of Memory**.
+2.  **SPECIFY**: Creation of deterministic specs, plans, and contracts.
+3.  **IMPLEMENT**: Atomic, task-driven execution with TDD.
+4.  **REVIEW**: Formal validation against Acceptance Criteria and memory persistence.
 
-| Platform | Download |
-|----------|----------|
-| **macOS (M1/M2/M3)** | [📥 hb-darwin-arm64](https://github.com/KlebersonCollab/skills/releases/latest/download/hb-darwin-arm64) |
-| **macOS (Intel)** | [📥 hb-darwin-amd64](https://github.com/KlebersonCollab/skills/releases/latest/download/hb-darwin-amd64) |
-| **Linux (x64)** | [📥 hb-linux-amd64](https://github.com/KlebersonCollab/skills/releases/latest/download/hb-linux-amd64) |
-| **Windows (x64)** | [📥 hb-windows-amd64.exe](https://github.com/KlebersonCollab/skills/releases/latest/download/hb-windows-amd64.exe) |
-
-> [!TIP]
-> **macOS Users**: If you see a "malware" or "unverified developer" warning, run:
-> `xattr -d com.apple.quarantine /path/to/hb-darwin-arm64`
-> Or go to **System Settings > Privacy & Security** and click **"Allow Anyway"**.
+> [!IMPORTANT]
+> **The Law of SDD**: If it's not in the spec, it doesn't exist. If it's not verified, it's not done.
 
 ---
 
-## 🛠️ Quick Start (Plug & Play)
+## 🧭 The Skill Hub Catalog
 
-Once you have the `hb` binary, you can bootstrap your environment in seconds:
+The hub hosts a diverse range of skills categorized to meet developer demands:
 
-```bash
-# 1. List available skills on GitHub
-hb listskills
+### 🛡️ Governance & Standards
+- **[SDD](sdd/)**: The core framework for deterministic agentic workflows.
+- **[Skill Factory](skill-factory/)**: The engine for standardizing and bootstrapping new skills.
+- **[Git Workflow](git-workflow/)**: Conventional commits and atomic versioning standards.
 
-# 2. List locally registered skills
-hb list
+### 🏛️ Engineering & Architecture
+- **[Architecture](architecture/)**: System design, ADR management, and Mermaid visualization.
+- **[Clean Code Mentor](clean-code-mentor/)**: Enforcement of SOLID, YAGNI, DRY, and KISS.
+- **[Benchmark Expert](benchmark-expert/)**: Performance baselines and regression detection.
+- **[Observability Expert](observability-expert/)**: SRE, OpenTelemetry, and resilient monitoring.
 
-# 3. Install a skill (it will automatically install all dependencies!)
-# Example: Architecture depends on SDD and Token-Distiller
-hb install architecture --remote
+### 🐍 Languages & Frameworks
+- **[Python UV](python-uv/)**: Modern Python management (Django, Async, PEP 723).
+- **[Django Expert](django-expert/)**: Production-ready Django hardening and architecture.
+- **[FastAPI Expert](fastapi-expert/)**: High-performance FastAPI implementation patterns.
+- **[Flutter FVM](flutter-fvm/)**: Professional Flutter development with version management.
 
-# 4. Distribute rules to your agents (.gemini, .claude, .agent)
-hb rules
+### 🧠 Advanced Intelligence
+- **[Brainstorming](brainstorming/)**: Facilitation for complex problem exploration.
+- **[Token Distiller](token-distiller/)**: Dynamic token density management (Caveman vs. Premium).
+- **[YouTube Transcript](youtube-transcript/)**: High-performance extraction and data processing.
 
-# 5. Check ecosystem integrity
-hb doctor
+---
+
+## 🚀 How to Use (Equipping Your Agent)
+
+Since we prioritize **Logic-First** governance, you "equip" an agent by providing it with the Markdown instructions found in each skill's `SKILL.md` file.
+
+1.  **Reference**: Direct your agent to read the `SKILL.md` of the desired module.
+2.  **Context Rehydration**: Ensure the agent adopts the **Triad of Memory** (`STATE.md`, `MEMORY.md`, `LEARNINGS.md`) located in `.specs/project/`.
+3.  **Execute**: Follow the SDD 4-Phase loop documented in the `sdd` skill.
+
+---
+
+## 📊 Knowledge Map
+
+```mermaid
+graph TD
+    Hub[AI Agent Skills Hub] --> Governance[Governance Layer]
+    Hub --> Engineering[Engineering Layer]
+    Hub --> Lang[Languages & Frameworks]
+    
+    Governance --> SDD[SDD Core]
+    Governance --> SF[Skill Factory]
+    Governance --> GW[Git Workflow]
+    
+    Engineering --> Arch[Architecture]
+    Engineering --> CCM[Clean Code Mentor]
+    Engineering --> OBS[Observability]
+    
+    Lang --> UV[Python UV]
+    Lang --> Flutter[Flutter FVM]
+    
+    SDD --- Triad[Triad of Memory]
+    Triad --> State[STATE.md]
+    Triad --> Memory[MEMORY.md]
+    Triad --> Learn[LEARNINGS.md]
 ```
 
-### 🧠 Intelligent Dependency Management
-When you install a skill using `hb install <skill> --remote`, the CLI reads the metadata and **automatically downloads all dependencies**. You get a ready-to-use intelligence package with no manual work.
-
 ---
-
-## 🧭 SDD Governance (Spec-Driven Development)
-
-The HB-CLI replaces legacy scripts for managing the SDD lifecycle:
-
-| Command | Purpose |
-|---------|---------|
-| `hb sdd start <name>` | Initializes a new feature with full SDD structure (6 artifacts). |
-| `hb sdd status` | Shows real-time progress of all features in development. |
-| `hb sdd bootstrap` | Initializes the project's **Triad of Memory** (State, Memory, Learnings). |
-| `hb map` | Generates the **Knowledge Map** of the whole ecosystem (Mermaid). |
-| `hb bench` | Runs **Performance Benchmarks** and compares with historical baseline. |
-
----
-
-## 🛠️ Available Skills (26 Total)
-
-| Skill | Purpose | Version |
-|-------|---------|---------|
-| **[SDD](sdd/)** | Spec-Driven Development Framework. | `1.5.0` |
-| **[Architecture](architecture/)** | Systems Architect & ADR Management. | `2.0.1` |
-| **[Context Graph](context-graph/)** | Meta-Knowledge & Decision Intelligence. | `1.0.0` |
-| **[Harness Expert](harness-expert/)** | Agentic support for Sync & Rehydration. | `2.1.0` |
-| **[Golang Expert](golang-expert/)** | High-performance Go development. | `1.2.0` |
-| **[Token Distiller](token-distiller/)** | Token optimization & dual modes. | `1.1.0` |
-| ... and 20 more in the [Full Catalog](onboarding-navigator/references/skills-catalog.md). | | |
-
----
-
-## 📄 License
-This project is licensed under the [MIT License](LICENSE).
 
 <div align="center">
-**Built with 🧠 by [Kleberson Romero](https://github.com/KlebersonCollab)**
+**Built for the next generation of Agentic Workflows.**  
+Created by [Kleberson Romero](https://github.com/KlebersonCollab)
 </div>

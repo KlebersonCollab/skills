@@ -1,31 +1,16 @@
-# Project Persistent Memory
+# Project Memory: Skills Hub
 
-## Skill Conventions
-- **Marker**: A folder is considered a skill if it contains a `SKILL.md` file in its root.
-- **Standard Structure (SDD v2.2.0)**: A skill directory must follow the root-first integrity. Mandatory files: `SKILL.md`, `README.md`, `tasks.md`, `DECISIONS.md`.
-- **Memory Triad**: Skills do NOT store their own `STATE.md`, `MEMORY.md`, or `LEARNINGS.md`. All operational memory is aggregated in `.specs/project/`.
-- **Mandatory Hook**: Execution skills MUST contain the `🔒 Prerequisites (Mandatory)` section linking them to SDD.
+## Project Identity
+- **Name**: AI Agent Skills Hub
+- **Purpose**: A centralized repository of modular, specialized skills for AI agents, governed by SDD v2.2.0.
+- **Core Philosophy**: Logic-First, Markdown-based governance, and Purist SDD (Spec-Driven Development).
 
-## Agent Mapping
-- **Claude**: `.claude/` folder, `CLAUDE.md` master file.
-- **Gemini**: `.gemini/` folder, `GEMINI.md` master file.
-- **Agent**: `.agent/` folder, `AGENT.md` master file.
+## Context Facts
+- The project is transitioning to a "Purist" SDD model (SDD v2.2.0).
+- Multiple specialized skills exist (e.g., `python-uv`, `sdd`, `architecture`).
+- Language standard for external documentation: English.
+- Language standard for communication with user: Brazilian Portuguese (per user global rule).
 
-## Distribution Pipeline
-- Artifacts are generated dynamically by collecting skills from the root.
-- The final structure in the ZIPs preserves the agent's folder name (e.g., `.claude/`) to facilitate direct installation.
-
-## Operational Governance
-- **Mandatory Use of Skills**: As per `GLOBAL_MANDATES.md`, any technical execution MUST be mediated by a specific Hub skill.
-- **Deterministic Lifecycle**: Every agent operating in the Hub must mandatorily execute the **Session Bootstrap** (start) and the **Session Exit Gate** (end).
-- **Hardened SDD Governance (2026-04-25)**: Established Zero-Tolerance for skipping Plan/Explore phases in Medium+ tasks. Every new skill must be linked to a `.specs/features/` folder.
-- **ADK Alignment (2026-05-06)**: Integrated the 5-layer Agent Development Kit model (Memory, Knowledge, Guardrails, Delegation, Distribution) as the core architectural standard for the Hub.
-- **Skill Factory Purist Mandate (2026-05-06)**: All skill instructions must be logic-first (Markdown protocols). "Magic" CLI scripts in instructions are prohibited to maintain structural purity.
-
-## Git Workflow Conventions
-- **Conventional Commits**: Mandatory for all commits in the repository. Messages must be written in **English**.
-- **SDD Alignment**: Commits must be linked to task IDs in `tasks.md` when applicable.
-- **PR Quality**: Every Pull Request must follow the official template and include the SDD quality checklist.
-+
-+## Technical UI Governance
-+- **Premium Terminal UI (2026-04-27)**: Decided to use pure ANSI Escape Codes (Save/Restore Cursor) instead of high-level frameworks to allow "auto-injection" of status bars in the `hb` CLI without breaking log flow, maintaining high cross-platform performance.
+## Architectural Decisions
+- [ADR-001] Transition to Purist SDD: Removing CLI dependencies in favor of Markdown-based governance artifacts.
+- [ADR-002] Centralized Memory: All project state and context must reside in `.specs/project/`.

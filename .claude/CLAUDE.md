@@ -8,6 +8,7 @@ These instructions are fundamental and must be followed by all agents operating 
 
 ## 🔒 0. SESSION BOOTSTRAP (EXECUTE BEFORE ANY RESPONSE)
 Before responding to the user, the agent **MUST** perform this mental and operational checklist:
+0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
 1. **Rehydrate Context**: Read `.specs/project/STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
 2. **Onboarding Alignment**: Consult `PROJECT-ONBOARDING.md` and the `sdd` skill to align with the project culture.
 3. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
@@ -20,14 +21,11 @@ Use this guide to identify the mandatory skill for each context:
 | If the task involves... | USE this skill |
 |-------------------------|----------------|
 | Specification & Planning | `sdd` (`orchestrator`, `planner`) |
-| Python & Environment | `python-uv` (includes Django/Async expert domains) |
-| Frontend Development | `frontend-expert` (aggregated React/Stitch) |
-| Architecture & ADRs | `architecture` + `api-architect` |
+| Python & Environment | `python-uv` (includes Django/Async expert domains) + `django-expert` + `fastai-expert`|
+| Architecture & ADRs | `architecture` |
 | Quality & Clean Code | `clean-code-mentor` |
-| Knowledge Management | `skill-factory` + `knowledge-architect` |
-| Backend (Go) | `golang-expert` + `golang-testing-expert` |
+| Knowledge Management | `skill-factory`|
 | Mobile (Flutter) | `flutter-fvm` |
-| Security & DevOps | `devsecops-expert` + `azure-devops` |
 | Observability & SRE | `observability-expert` |
 | Git & Versioning | `git-workflow` |
 | Token Management | `token-distiller` |
