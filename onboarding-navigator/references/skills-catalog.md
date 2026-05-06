@@ -1,6 +1,6 @@
 # Skills Catalog: AI Agent Hub
 
-This guide provides a detailed overview of all 26 abilities available in this repository, serving as a compass for the Onboarding Navigator.
+This guide provides a detailed overview of all 25 abilities available in this repository, serving as a compass for the Onboarding Navigator.
 
 ## 🗺️ Visual Map of the Skills Ecosystem
 
@@ -45,7 +45,7 @@ flowchart TD
     Automation --> Scaffolding{scaffolding-expert}
     
     Navigation --> Self{onboarding-navigator}
-    Navigation --> Facilitator{swarm-facilitator}
+    Navigation --> Self{onboarding-navigator}
     
     style Start fill:#e1f5fe
     style Onboarding fill:#81c784
@@ -53,7 +53,7 @@ flowchart TD
 
 ---
 
-## 📚 Complete Skills Catalog (26 Total)
+## 📚 Complete Skills Catalog (25 Total)
 
 ### 1. 🏗️ Core Frameworks (Methodology and Creation)
 
@@ -104,7 +104,6 @@ flowchart TD
 | Skill | Version | Purpose | When to Invoke |
 |-------|--------|-----------|------------------|
 | **[Onboarding Navigator](../../onboarding-navigator/)** | `1.2.1` | Skills Hub master guide. Provides overview and mentorship. | **At session start** to understand the hub. |
-| **[Swarm Facilitator](../../swarm-facilitator/)** | `1.1.0` | Agent team choreography (Architect, Dev, QA) and handoff protocols. | In large epics requiring multiple coordinated agents. |
 
 ---
 
@@ -124,7 +123,7 @@ flowchart LR
     Decision --> NewSkill["✨ Create new skill"]
     Decision --> YoutubeVid["🎥 Transcribe video"]
     Decision --> Scaffold["📦 Generate Base Template"]
-    Decision --> Orchestrate["🤖 Giant Project"]
+    Decision --> Orchestrate["🤖 Giant Project (Swarm)"]
     Decision --> MapKnowledge["🧠 Map Relationships"]
     Decision --> SaveState["💾 Save Progress"]
     Decision --> NewAPI["🔌 Design New API"]
@@ -142,7 +141,7 @@ flowchart LR
     NewSkill --> Path8[skill-factory]
     YoutubeVid --> Path9[youtube-transcript]
     Scaffold --> Path10[scaffolding-expert]
-    Orchestrate --> Path11[swarm-facilitator]
+    Orchestrate --> Path11[sdd]
     MapKnowledge --> Path12[knowledge-architect]
     SaveState --> Path13[harness-expert]
     NewAPI --> Path14[api-architect]
@@ -158,10 +157,10 @@ flowchart LR
 
 ## 📈 Hub Statistics
 
-- **Total Skills**: 26
+- **Total Skills**: 25
 - **Methodology Skills**: 7
 - **Architecture Skills**: 3  
 - **DevOps/Framework Skills**: 12
 - **Automation Skills**: 2
-- **Navigation/Orchestration Skills**: 2
-- **Last Update**: April 25, 2026
+- **Navigation/Orchestration Skills**: 1
+- **Last Update**: May 06, 2026

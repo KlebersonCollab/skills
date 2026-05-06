@@ -90,6 +90,12 @@ To prevent hallucinations and pattern drift, follow this strict hierarchy:
 - **Mandatory View**: Use **`hb sdd status --ui`** at the beginning and end of each session.
 - **Watch Mode**: During implementation (IMPLEMENT phase), use **`hb sdd status --ui --watch`** to ensure task atomicity and progress visibility.
 
+### 5. Swarm & Multi-Agent Execution
+When working with multiple parallel agents or personas:
+- **Infrastructure**: Utilize Tmux or iTerm2 for session persistence and visual tracking.
+- **Security**: Propagate `DANGEROUS_BASH_PATTERNS` to all swarm members.
+- **Protocol**: Follow the [Swarm Execution Guide](references/swarm-execution.md).
+
 ---
 
 ## 🏗️ Production Patterns
@@ -157,3 +163,4 @@ Always update `STATE.md` at the end of every session or after major decisions.
 - [Context Management](references/context-limits.md)
 - [BDD Standard](references/bdd-guide.md)
 - [Handoff Protocol](references/handoff-protocol.md)
+- [Swarm Execution Guide](references/swarm-execution.md)
