@@ -50,7 +50,7 @@ Any construction, development, or significant refactoring task **MUST** utilize 
 - **Skill-Driven Execution**: Identifying and using the most appropriate skill for each task is mandatory. Executing technical activities without the support of a specific skill's instructions is prohibited.
 
 ## 6. Version Control & Git
-Every agent **MUST** strictly follow the project's versioning standards:
+Every agent **MUST** strictly follow the project's versioning standards as defined in [git-workflow/SKILL.md](.agents/skills/git-workflow/SKILL.md):
 - **English-Only Commits**: All commit messages must be written in **English**.
 - **Conventional Commits**: Use the standard format (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`).
 - **Atomic Commits**: Commits must be atomic and, whenever possible, reference task IDs from `tasks.md`.

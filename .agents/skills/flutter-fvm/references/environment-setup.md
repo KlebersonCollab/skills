@@ -83,3 +83,16 @@ But **do not** add `fvm_config.json`; it must be versioned so the team uses the 
 - [ ] Is the `.fvm/flutter_sdk` folder in `.gitignore`?
 - [ ] Did you run `fvm flutter doctor` and are all dependencies OK?
 - [ ] Is the Flutter version in the project the same as in `fvm list`?
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.366473Z"
+evidence_checksum: "NONE"
+```

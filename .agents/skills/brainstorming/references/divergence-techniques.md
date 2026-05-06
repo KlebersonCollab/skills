@@ -42,3 +42,16 @@ Pick a random word and force a connection to the problem. This can spark unexpec
 1. **Defer Judgment**: Generate many ideas first, then evaluate them in a separate turn.
 2. **Seek Divergent Perspectives**: Ask the agent to play different roles (e.g., "Think like a Security Expert", "Think like a UI Designer").
 3. **Encourage Wild Ideas**: Don't limit yourself to what is currently implemented; explore what is technically possible.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.375072Z"
+evidence_checksum: "NONE"
+```

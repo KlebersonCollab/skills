@@ -35,3 +35,16 @@ This guide defines the acceptable limits for performance metrics in our ecosyste
 - **Dependency Bloat**: Adding giant libs for simple functions.
 - **Waterfall Requests**: Network waterfall that blocks rendering.
 - **Synchronous JS at Top**: Script tags without `defer` or `async`.
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.359088Z"
+evidence_checksum: "NONE"
+```

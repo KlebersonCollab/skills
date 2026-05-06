@@ -86,3 +86,16 @@ The execution of this skill should result in the following standardized artifact
 | **Review Report** | `.md` | Structured audit report with severity (Critical, Warning, Info). |
 | **Refactoring Diff** | Markdown/Diff | Before vs. After comparison with the suggested logic. |
 | **Mentoring Summary** | `.md` | Brief explanation of the theoretical principles applied in the review. |
+
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T13:16:19.380072Z"
+evidence_checksum: "NONE"
+```
