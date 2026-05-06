@@ -1,10 +1,13 @@
 graph TD
     %% Nodes and Hierarchical Grouping
 
+    subgraph "Navigation & Orchestration"
+        swarm_facilitator["swarm-facilitator (1.2.0) 🛡️"]
+    end
+
     subgraph "Architecture & Design"
         adk_expert["adk-expert (1.0.0) 🛡️"]
         api_architect["api-architect (1.4.0) 🛡️"]
-        architecture["architecture (2.0.1) 🛡️"]
         architecture["architecture (2.0.1) 🛡️"]
         clean_code_mentor["clean-code-mentor (1.0.0) 🛡️"]
     end
@@ -17,8 +20,8 @@ graph TD
         azure_devops["azure-devops ()"]
         azure_devops["azure-devops ()"]
         benchmark_expert["benchmark-expert ()"]
-        benchmark_expert["benchmark-expert (1.0.0) 🛡️"]
         benchmark_expert["benchmark-expert ()"]
+        benchmark_expert["benchmark-expert (1.0.0) 🛡️"]
         brainstorming["brainstorming ()"]
         brainstorming["brainstorming ()"]
         clean_code_mentor["clean-code-mentor ()"]
@@ -26,20 +29,20 @@ graph TD
         cli_expert["cli-expert ()"]
         cli_expert["cli-expert ()"]
         cli_expert["cli-expert (1.0.0) 🛡️"]
-        context_graph["context-graph ()"]
         context_graph["context-graph (1.1.0) 🛡️"]
         context_graph["context-graph ()"]
+        context_graph["context-graph ()"]
+        devsecops_expert["devsecops-expert ()"]
         devsecops_expert["devsecops-expert ()"]
         devsecops_expert["devsecops-expert (1.1.0) 🛡️"]
-        devsecops_expert["devsecops-expert ()"]
         django_expert["django-expert ()"]
         django_expert["django-expert ()"]
         fastapi_expert["fastapi-expert ()"]
         fastapi_expert["fastapi-expert ()"]
         flutter_fvm["flutter-fvm ()"]
         flutter_fvm["flutter-fvm ()"]
-        frontend_expert["frontend-expert (1.1.0) 🛡️"]
         frontend_expert["frontend-expert ()"]
+        frontend_expert["frontend-expert (1.1.0) 🛡️"]
         frontend_expert["frontend-expert ()"]
         git_workflow["git-workflow ()"]
         git_workflow["git-workflow ()"]
@@ -79,8 +82,7 @@ graph TD
         swarm_facilitator["swarm-facilitator ()"]
         token_distiller["token-distiller ()"]
         token_distiller["token-distiller ()"]
-        token_distiller["token-distiller (1.1.0) 🛡️"]
-        token_distiller["token-distiller (1.2.0) 🛡️"]
+        token_distiller["token-distiller (2.2.0) 🛡️"]
         youtube_transcript["youtube-transcript ()"]
         youtube_transcript["youtube-transcript ()"]
     end
@@ -101,7 +103,6 @@ graph TD
         onboarding_navigator["onboarding-navigator (1.5.0) 🛡️"]
         python_uv["python-uv (3.0.0) 🛡️"]
         sdd["sdd (2.2.0) 🛡️"]
-        sdd["sdd (1.5.0) 🛡️"]
         sdd["sdd (2.2.0) 🛡️"]
         sdd["sdd (2.2.0) 🛡️"]
         skill_factory["skill-factory (2.2.0) 🛡️"]
@@ -110,10 +111,6 @@ graph TD
     subgraph "Automation & Utils"
         scaffolding_expert["scaffolding-expert (1.0.0) 🛡️"]
         youtube_transcript["youtube-transcript (1.0.0) 🛡️"]
-    end
-
-    subgraph "Navigation & Orchestration"
-        swarm_facilitator["swarm-facilitator (1.2.0) 🛡️"]
     end
 
     %% Relations
@@ -180,7 +177,6 @@ graph TD
     scaffolding_expert --(references)--> token_distiller
     sdd --(references)--> architecture
     sdd --(references)--> context_graph
-    sdd --(references)--> git_workflow
     sdd --(references)--> token_distiller
     skill_factory --(references)--> git_workflow
     skill_factory --(references)--> sdd
@@ -197,14 +193,13 @@ graph TD
     swarm_facilitator --(references)--> observability_expert
     swarm_facilitator --(references)--> token_distiller
     token_distiller --(references)--> architecture
-    token_distiller --(references)--> git_workflow
+    token_distiller --(references)--> skill_factory
     youtube_transcript --(references)--> architecture
     youtube_transcript --(references)--> token_distiller
 
     %% Styling
     style adk_expert fill:#f3e5f5,stroke:#4a148c
     style api_architect fill:#f3e5f5,stroke:#4a148c
-    style architecture fill:#f3e5f5,stroke:#4a148c
     style architecture fill:#f3e5f5,stroke:#4a148c
     style clean_code_mentor fill:#f3e5f5,stroke:#4a148c
     style azure_devops fill:#e8f5e9,stroke:#1b5e20
@@ -218,7 +213,6 @@ graph TD
     style knowledge_architect fill:#e1f5fe,stroke:#01579b
     style onboarding_navigator fill:#e1f5fe,stroke:#01579b
     style python_uv fill:#e1f5fe,stroke:#01579b
-    style sdd fill:#e1f5fe,stroke:#01579b
     style sdd fill:#e1f5fe,stroke:#01579b
     style sdd fill:#e1f5fe,stroke:#01579b
     style sdd fill:#e1f5fe,stroke:#01579b
