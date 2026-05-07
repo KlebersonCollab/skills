@@ -50,7 +50,7 @@ The SDD follows a rigorous cycle to ensure integrity and traceability:
 *   **Trigger**: Before any implementation (**Small+**).
 
 ### 3. IMPLEMENT
-*   **Goal**: Technical execution with continuous progress tracking.
+*   **Goal**: Technical execution. If resolving an issue, **reproduce the bug first** before coding.
 *   **Action**: Use `sdd-implementer` for code/tests. Update `STATE.md` continuously with task progress.
 *   **Output**: Verified code and updated `tasks.md`.
 *   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 3.
@@ -58,7 +58,7 @@ The SDD follows a rigorous cycle to ensure integrity and traceability:
 
 ### 4. VERIFY
 *   **Goal**: Validate delivery and capture learnings.
-*   **Action**: Use `sdd-reviewer` for audit and `sdd-planner` to capture discovered patterns and update memory.
+*   **Action**: **Drive app to verify** (boot application and test functionality/UI). Use `sdd-reviewer` for audit and `sdd-planner` to capture discovered patterns.
 *   **Output**: Updated `validation-report.md`, `LEARNINGS.md`, and `MEMORY.md`. State finalization in `STATE.md`.
 *   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 4.
 *   **Trigger**: Technical completion of Phase 3 tasks.
@@ -87,7 +87,7 @@ Every implementation task must be continuously monitored for complexity drift.
 
 ### 2. Knowledge Verification Chain
 To prevent hallucinations and pattern drift, follow this strict hierarchy:
-1. **Existing Code**: Scan for established patterns, conventions, and similar logic.
+1. **Existing Code**: Scan for established patterns. **Managing Entropy**: Do not blindly replicate technical debt. If existing code violates `CONVENTIONS.md`, initiate a "Garbage Collection" refactor instead of perpetuating bad patterns.
 2. **Internal Specs**: Consult `TECHNICAL-MAP.md`, `CONVENTIONS.md`, and `STATE.md`.
 3. **Project Documentation**: Check READMEs and official internal docs.
 4. **MCP/External Tools**: Query `context-graph` or perform targeted web searches.
@@ -118,6 +118,10 @@ Strict permission-gated flow:
 - **EXPLORE**: No code modifications allowed.
 - **PLAN**: Design validation via **Plan-Validate-Execute (PVE)**.
 - **ACT**: Atomic execution on feature branches.
+
+### Agent-First Legibility & Observability
+- **Bootable Environments**: The project must offer standardized, agent-friendly commands to easily boot and test the application per worktree.
+- **Legible Failures**: Expose structured logs, metrics, and traces so the agent can query and reason about isolated test/execution failures autonomously.
 
 ### Visual-First Mandate
 All technical plans (`plan.md`) MUST include **Mermaid** diagrams to visualize data flow and component relationships.
