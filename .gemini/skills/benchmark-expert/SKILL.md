@@ -1,6 +1,6 @@
 ---
 name: benchmark-expert
-version: 2.2.0
+version: 2.3.0
 description: "Expert Skill for measuring performance baselines, detecting regressions, and comparing stacks."
 category: performance
 ---
@@ -130,5 +130,5 @@ feature_id: "HUB-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-06T13:16:19.358445Z"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```

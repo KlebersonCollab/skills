@@ -68,5 +68,5 @@ feature_id: "python-uv-alignment"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-06T13:12:14.663305Z"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```

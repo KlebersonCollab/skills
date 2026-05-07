@@ -1,6 +1,6 @@
 ---
 name: python-uv
-description: Expert in the modern Python ecosystem with UV, focused on performance (Django/Async), security, and SDD governance.
+description: Expert in the modern Python ecosystem with UV, focused on performance (Django/Async), security, and SDD v2.3.0 governance.
 version: 4.0.0
 tags: [python, uv, django, async, performance, devops]
 ---
@@ -196,5 +196,5 @@ feature_id: "python-uv-alignment"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-06T13:12:14.662256Z"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```

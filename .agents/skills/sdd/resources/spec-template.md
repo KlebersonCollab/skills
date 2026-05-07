@@ -34,5 +34,5 @@ feature_id: "FEAT-ID"
 phase: "SPECIFY"
 status: "COMPLETED"
 last_update: "ISO-TIMESTAMP"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```

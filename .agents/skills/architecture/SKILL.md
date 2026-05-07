@@ -1,6 +1,6 @@
 ---
 name: architecture
-version: 2.2.1
+version: 2.3.0
 description: "Systems Architect — guides the agent to design scalable, resilient, and distributed systems (CQRS, Event-Driven) using mandatory ADRs, Fitness Functions, and Mermaid Diagrams for visualization."
 category: architecture
 uses:
@@ -114,5 +114,5 @@ feature_id: "HUB-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-06T13:16:19.372120Z"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```

@@ -30,5 +30,5 @@ feature_id: "TOKEN-DISTILLER-V2.3.0"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-06T13:30:00Z"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```

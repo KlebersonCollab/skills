@@ -1,7 +1,7 @@
 ---
 name: skill-factory
 version: 2.3.0
-description: "Governance and Automation engine for high-performance Skill Authoring. Implements Anthropics's 14 patterns synthesized with SDD v2.2.0 operational rigor."
+description: "Governance and Automation engine for high-performance Skill Authoring. Implements Anthropics's 14 patterns synthesized with SDD v2.3.0 operational rigor."
 category: skill-management
 ---
 
@@ -126,5 +126,5 @@ feature_id: "HUB-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-06T09:48:00Z"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```

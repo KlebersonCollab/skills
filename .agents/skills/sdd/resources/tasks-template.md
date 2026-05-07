@@ -24,5 +24,5 @@ feature_id: "FEAT-ID"
 phase: "IMPLEMENT"
 status: "IN_PROGRESS"
 last_update: "ISO-TIMESTAMP"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```

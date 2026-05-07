@@ -52,5 +52,5 @@ feature_id: "REFACTOR-SKILL-FACTORY-V230"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-06T10:28:00Z"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```

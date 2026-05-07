@@ -73,8 +73,9 @@ The root directory is the ONLY allowed location for editing instructions and ski
 Every action must be traceable and permission-gated by the SDD state machine:
 - **State Machine Integrity**: You MUST NOT change the global `phase` in `STATE.md` until all tasks of the current phase are marked `[x]` with verifiable evidence (commit hashes or logs).
 - **Metadata Mandate**: Every Markdown artifact created or modified MUST end with the `<!-- @sdd-state -->` block.
-- **Initial State Policy**: All new feature artifacts must be initialized with `status: IN_PROGRESS`. Only freeze to `status: COMPLETED` when transitioning between handoff points.
-- **Prohibited**: Never jump to `VERIFY` phase without completing the `IMPLEMENT` cycle.
+- **Initial State Policy**: All new feature artifacts must be initialized with `status: IN_PROGRESS` and `evidence_checksum: NONE`.
+- **Completion Evidence Protocol (STRICT)**: You MUST NOT set `status: COMPLETED` without providing a real git commit hash or test log path in `evidence_checksum`. Setting `status: COMPLETED` with `evidence_checksum: NONE` is a CRITICAL VIOLATION.
+- **Prohibited**: Never jump to `VERIFY` phase without completing the `IMPLEMENT` cycle and securing evidence.
 
 ---
 
@@ -85,5 +86,5 @@ feature_id: "HUB-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-06T13:15:00Z"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```

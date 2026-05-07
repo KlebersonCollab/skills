@@ -13,7 +13,7 @@ This skill operates as the central brain for the **SDD** framework. Before any t
 
 ---
 
-# SDD: Modular & Adaptive Workflow (v2.2.1)
+# SDD: Modular & Adaptive Workflow (v2.3.0)
 
 > Precision at scale. Rigor when needed, speed when possible.
 
@@ -70,8 +70,9 @@ The SDD follows a rigorous cycle to ensure integrity and traceability:
 ### 1. The Gated Workflow Mandate (Gated Transition)
 Progress between phases is strictly sequential and permission-gated:
 - **Rule**: You CANNOT set `phase: [NEXT_PHASE]` in `STATE.md` if the current `tasks.md` does not have 100% status coverage and verifiable evidence for the current phase.
-- **Initial State**: New feature artifacts (`spec.md`, `plan.md`, `tasks.md`) MUST start with `status: IN_PROGRESS`.
-- **Completion Hook**: An artifact only moves to `status: COMPLETED` when its specific content is frozen and approved for the next phase.
+- **Initial State**: New feature artifacts (`spec.md`, `plan.md`, `tasks.md`) MUST start with `status: IN_PROGRESS` and `evidence_checksum: NONE`.
+- **Completion Hook**: An artifact only moves to `status: COMPLETED` when its specific content is frozen and approved.
+- **EVIDENCE LOCK**: You MUST NOT set `status: COMPLETED` without replacing `NONE` with a real `evidence_checksum` (e.g., git commit hash). The audit will fail if `COMPLETED` is matched with `NONE`.
 
 ### 2. State Machine Integrity
 Every agent interaction must validate the "State Triad":
@@ -183,6 +184,7 @@ evidence_checksum: "GIT-HASH | LOG-PATH | NONE"
 
 #### Evidence Mandate
 Tasks in `tasks.md` MUST NOT be marked as complete without a valid entry in the `Evidence` column (e.g., a commit hash or a link to a test log).
+Furthermore, when updating an artifact's `@sdd-state` block to `status: COMPLETED`, the agent MUST replace `evidence_checksum: NONE` with the actual commit hash generated from the implementation. Using `NONE` alongside `COMPLETED` is an immediate compliance failure.
 
 ---
 
@@ -208,6 +210,6 @@ feature_id: "SDD-CORE-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-06T10:35:00Z"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```
 

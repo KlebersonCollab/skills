@@ -57,5 +57,5 @@ feature_id: "GOLD-STANDARD"
 phase: "MANAGEMENT"
 status: "COMPLETED"
 last_update: "2026-05-06T09:42:00Z"
-evidence_checksum: "NONE"
+evidence_checksum: "8e52f6a"
 ```
