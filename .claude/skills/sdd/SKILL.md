@@ -127,7 +127,7 @@ All technical plans (`plan.md`) MUST include **Mermaid** diagrams to visualize d
 ## 🚫 Prohibited
 
 - NEVER skip the **DISCOVERY** phase for unknown codebases.
-- NEVER mark a task as complete without an atomic Git commit.
+- NEVER mark a task as complete without an atomic Git commit AND explicit proof that the application builds, passes linting, and passes tests.
 - NEVER use placeholders in `spec.md` or `plan.md`.
 - NEVER ignore "Fragile" warnings in `TECHNICAL-MAP.md`.
 
@@ -182,7 +182,7 @@ evidence_checksum: "GIT-HASH | LOG-PATH | NONE"
 ```
 
 #### Evidence Mandate
-Tasks in `tasks.md` MUST NOT be marked as complete without a valid entry in the `Evidence` column (e.g., a commit hash or a link to a test log).
+Tasks in `tasks.md` MUST NOT be marked as complete without a valid entry in the `Evidence` column (e.g., a commit hash or a link to a test log). Furthermore, a task CANNOT be marked as completed unless the application builds successfully, passes the linting, and passes all tests. This is a mandatory requirement.
 
 ---
 

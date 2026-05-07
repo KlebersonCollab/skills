@@ -26,9 +26,9 @@ Audit implementation work against the acceptance criteria (BDD) defined in `spec
 
 ### 1. Verification via Sensors (Mandatory)
 Before any subjective analysis, you must run the **Sensors** defined in `contract.md`:
-1. **Linter Check**: Run the project's linter and capture the output.
-2. **Test Suite**: Run the relevant tests and capture pass/fail metrics.
-3. **Build Check**: Ensure the project compiles/builds without errors.
+1. **Linter Check**: Run the project's linter and capture the output. Must pass completely.
+2. **Test Suite**: Run the relevant tests and capture pass/fail metrics. Must pass completely.
+3. **Build Check**: Ensure the project compiles/builds without errors. Must build successfully.
 4. **Metadata Audit**: Verify that `spec.md`, `plan.md`, and `tasks.md` contain valid `<!-- @sdd-state -->` blocks and the `Evidence` column is fully populated.
 5. **Score Calculation**: Assign a score based on sensor output. Deduct 20 points if metadata is missing or evidence is vague.
 
@@ -74,8 +74,8 @@ For complex user-facing features, you MUST:
 
 ## Verdict Logic
 
-- **APPROVED**: All ACs pass, quality audit is clean, and UAT is successful.
-- **REQUESTS CHANGES**: Any AC fails or critical security/convention issues are found.
+- **APPROVED**: All ACs pass, quality audit is clean, UAT is successful, and all sensors (Build, Linter, Tests) pass.
+- **REQUESTS CHANGES**: Any AC fails, sensors fail (build/lint/tests), or critical security/convention issues are found.
 
 ## Quality Rules
 
@@ -87,6 +87,7 @@ For complex user-facing features, you MUST:
 ## Prohibited
 
 - NO approving without evidence.
+- NO approving if the build fails, lint fails, or tests fail. These are hard blockers.
 - NO ignoring "edge cases" just because they weren't in the AC (Tech Lead intuition).
 - NO adding new requirements during review (document them as "Deferred Ideas" in `STATE.md`).
 

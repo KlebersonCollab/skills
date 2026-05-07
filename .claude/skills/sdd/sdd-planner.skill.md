@@ -63,7 +63,7 @@ This is the most critical tool for long-running projects. It should be updated:
 - **Explicit Decisions**: Never leave an architectural or business decision to "vague memory".
 - **Actionable State**: The `STATE.md` should answer "What do I do now?" if the agent's memory was completely wiped.
 - **Handoff**: Follow the [Handoff Protocol](references/handoff-protocol.md).
-- **Observable Governance**: `STATE.md` MUST include the `<!-- @sdd-state -->` block as the source of truth for the project's health and completion.
+- **Observable Governance**: `STATE.md` MUST include the `<!-- @sdd-state -->` block as the source of truth for the project's health and completion. You CANNOT update the phase to complete without guaranteeing passing tests, linting, and build.
 - **Strict Limits**: Respect the [Context Limits](references/context-limits.md) rules.
 
 ## Prohibited

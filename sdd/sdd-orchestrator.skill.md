@@ -69,7 +69,7 @@ Create `spec/contract.md`. This is the formal agreement between implementation a
 
 ### Contract Core
 - **Deliverables**: Explicit list of files and features to be modified.
-- **Sensors**: Definition of which tools (linters, test suites) will be used to validate the work.
+- **Sensors**: Definition of which tools (linters, test suites) will be used to validate the work. Passing tests, passing linter, and successful builds are MANDATORY.
 - **Success Score**: Definition of the minimum score (e.g., 90/100) required for approval.
 - **Constraints Verification**: How to verify that architectural constraints (from `plan.md`) were respected.
 
@@ -85,6 +85,7 @@ Create `spec/contract.md`. This is the formal agreement between implementation a
 - **Observable Governance**:
     - `spec.md`, `plan.md` and `contract.md` MUST include the `<!-- @sdd-state -->` block with `status: COMPLETED`.
     - `tasks.md` MUST use the structured table format with the `Evidence` column.
+    - Tasks MUST explicitly state the requirement to pass tests, lint, and build before being marked as completed.
 
 ## Prohibited
 

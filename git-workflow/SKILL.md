@@ -118,6 +118,7 @@ Integrating Git with the SDD cycle is fundamental for traceability and history i
     - **Atomicity**: Do not mix changes from different tasks in the same commit.
 3.  **Review Phase**:
     - **Linearity**: Always run **`git pull --rebase origin main`** before pushing to keep history clean and resolve conflicts early via rebase.
+    - **Gated Push (Hook)**: You MUST configure the SDD hook (`resources/pre-push.sh` -> `.git/hooks/pre-push`) in your project to mathematically guarantee that code failing tests, lint, or build cannot be pushed to the remote repository.
     - **Evidence**: The Pull Request link must be included in `validation-report.md`.
 
 ### SDD Commit Cycle Diagram
@@ -190,6 +191,7 @@ All Git metadata (commits, branches, PR titles) MUST be in English.
 - [Detailed Branching Strategies](references/branching-strategies.md)
 - [Git Message Template](examples/gitmessage.template)
 - [Pull Request Template](examples/pull-request.md)
+- [Pre-Push Hook Template](resources/pre-push.sh)
 
 
 ---

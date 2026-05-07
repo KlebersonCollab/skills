@@ -30,7 +30,7 @@ For each task:
 1. **List Steps**: Write 2-3 implementation steps in the chat.
 2. **TDD Cycle**: Write/update a test, see it fail, then make it pass.
 3. **Commit**: Use atomic commits (e.g., `feat: [description] (FR-X)`).
-4. **Log Evidence**: Update the `Evidence` column in `tasks.md` with the commit hash or test result.
+4. **Log Evidence**: Update the `Evidence` column in `tasks.md` with the commit hash or test result. You CANNOT mark a task as complete unless you verify that the build succeeds, lint passes, and tests pass.
 
 ## Quality Rules
 - **Simplicity**: Follow the [Coding Principles](references/coding-principles.md).
@@ -43,6 +43,7 @@ For each task:
 - NO modifying the specification or technical design without a re-plan.
 - NO leaving unused variables, imports, or "TODOs".
 - NO committing without running tests.
+- NO marking a task as complete without passing tests, passing lint, and a successful build.
 
 ---
 
