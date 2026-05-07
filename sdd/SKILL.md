@@ -51,15 +51,15 @@ The SDD follows a rigorous cycle to ensure integrity and traceability:
 
 ### 3. IMPLEMENT
 *   **Goal**: Technical execution. If resolving an issue, **reproduce the bug first** before coding.
-*   **Action**: Use `sdd-implementer` for code/tests. Update `STATE.md` continuously with task progress.
-*   **Output**: Verified code and updated `tasks.md`.
+*   **Action**: **Create a feature branch** (refer to `git-workflow`). Use `sdd-implementer` for code/tests. Update `STATE.md` continuously.
+*   **Output**: Verified code on a dedicated branch and updated `tasks.md`.
 *   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 3.
 *   **Trigger**: After Phase 2 is approved.
 
 ### 4. VERIFY
 *   **Goal**: Validate delivery and capture learnings.
-*   **Action**: **Drive app to verify** (boot application and test functionality/UI). Use `sdd-reviewer` for audit and `sdd-planner` to capture discovered patterns.
-*   **Output**: Updated `validation-report.md`, `LEARNINGS.md`, and `MEMORY.md`. State finalization in `STATE.md`.
+*   **Action**: **Drive app to verify** (boot application and test functionality/UI). Use `sdd-reviewer` for audit, **open a Pull Request**, and use `sdd-planner` to capture discovered patterns.
+*   **Output**: PR created, updated `validation-report.md`, `LEARNINGS.md`, and `MEMORY.md`. State finalization in `STATE.md`.
 *   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 4.
 *   **Trigger**: Technical completion of Phase 3 tasks.
 
@@ -122,6 +122,10 @@ Strict permission-gated flow:
 ### Agent-First Legibility & Observability
 - **Bootable Environments**: The project must offer standardized, agent-friendly commands to easily boot and test the application per worktree.
 - **Legible Failures**: Expose structured logs, metrics, and traces so the agent can query and reason about isolated test/execution failures autonomously.
+
+### The Autonomy PR Loop (Mandatory)
+- **Branch First**: Before writing any code in `IMPLEMENT`, you MUST create a branch following the `git-workflow` skill (e.g., `feat/FEAT-ID-...`). **Never commit directly to `main` or `master`.**
+- **Verify then PR**: After successful `VERIFY` ("Drive app to verify" + sensors passed), you MUST open a Pull Request. The PR description must link to the `validation-report.md` as evidence.
 
 ### Visual-First Mandate
 All technical plans (`plan.md`) MUST include **Mermaid** diagrams to visualize data flow and component relationships.
