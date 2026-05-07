@@ -1,6 +1,6 @@
 ---
 name: python-uv
-description: Expert in the modern Python ecosystem with UV, focused on performance (Django/Async), security, and SDD governance.
+description: Expert in the modern Python ecosystem with UV, focused on performance (Django/Async), security, and SDD v2.3.0 governance.
 version: 4.0.0
 tags: [python, uv, django, async, performance, devops]
 ---

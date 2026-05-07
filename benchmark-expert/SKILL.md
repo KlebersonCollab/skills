@@ -1,6 +1,6 @@
 ---
 name: benchmark-expert
-version: 2.2.0
+version: 2.3.0
 description: "Expert Skill for measuring performance baselines, detecting regressions, and comparing stacks."
 category: performance
 ---

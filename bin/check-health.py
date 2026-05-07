@@ -102,8 +102,8 @@ if __name__ == "__main__":
     
     targets = get_targets()
     
-    print(f"{'FILE':<60} | {'VER':<8} | {'STATUS':<12}")
-    print("-" * 85)
+    print(f"{'FILE':<60} | {'VER':<8} | {'STATUS':<12} | {'EVIDENCE':<10}")
+    print("-" * 100)
     
     errors = 0
     for target in targets:
@@ -111,14 +111,34 @@ if __name__ == "__main__":
         if meta:
             ver = meta.get('version', '???')
             status = meta.get('status', '???')
-            print(f"✅ {target:<57} | {ver:<8} | {status:<12}")
+            evidence = meta.get('evidence_checksum', 'NONE')
+            
+            # Validation Rules
+            is_valid = True
+            error_reason = ""
+            
+            # Rule 1: Must match version
+            if ver != "2.3.0":
+                is_valid = False
+                error_reason = "WRONG_VERSION"
+                
+            # Rule 2: If COMPLETED, MUST have evidence
+            if status == "COMPLETED" and evidence == "NONE":
+                is_valid = False
+                error_reason = "NO_EVIDENCE"
+                
+            if is_valid:
+                print(f"✅ {target:<57} | {ver:<8} | {status:<12} | {evidence:<10}")
+            else:
+                print(f"❌ {target:<57} | {ver:<8} | {status:<12} | {error_reason:<10}")
+                errors += 1
         else:
-            print(f"❌ {target:<57} | {'MISSING':<8} | {'FAILED':<12}")
+            print(f"❌ {target:<57} | {'MISSING':<8} | {'FAILED':<12} | {'NO_META':<10}")
             errors += 1
     
-    print("\n" + "="*85)
+    print("\n" + "="*100)
     if errors == 0:
         print("🏆 RESULT: 100% COMPLIANT (v2.3.0)")
     else:
-        print(f"⚠️ RESULT: {errors} FILES FAILED AUDIT")
-    print("="*85)
+        print(f"⚠️ RESULT: {errors} FILES FAILED AUDIT (Strict Evidence Check)")
+    print("="*100)

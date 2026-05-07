@@ -23,40 +23,40 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 ---
 ## Goal
 
-Prover um framework de decisão e implementação para APIs de alto desempenho, garantindo o uso correto de Injeção de Dependências, Tipagem Estrita (Annotated) e integração nativa com o ecossistema `python-uv`.
+Provide a decision and implementation framework for high-performance APIs, ensuring the correct use of Dependency Injection, Strict Typing (Annotated), and native integration with the `python-uv` ecosystem.
 
 ---
 
 ## Workflow (6 Phases)
 
 ### Phase 0: ARCHITECTURE_DESIGN
-Definição da estrutura do projeto (Clean Architecture).
-- **Rule**: Decidir entre Repository Pattern ou Service Layer antes de codar.
-- **Reference**: Ver [Architecture Guide](references/architecture.md).
+Define the project structure (Clean Architecture).
+- **Rule**: Decide between Repository Pattern or Service Layer before coding.
+- **Reference**: See [Architecture Guide](references/architecture.md).
 
 ### Phase 1: SCHEMA_DESIGN
-Definição dos contratos de dados usando Pydantic V2.
-- **Rule**: NUNCA usar `RootModel`. Preferir `TypeAdapter` ou modelos estruturados.
-- **Mandate**: Todo campo deve ter `Field(description=...)` para documentação automática.
+Define data contracts using Pydantic V2.
+- **Rule**: NEVER use `RootModel`. Prefer `TypeAdapter` or structured models.
+- **Mandate**: Every field must have `Field(description=...)` for automatic documentation.
 
 ### Phase 2: DEPENDENCY_ARCHITECTURE
-Mapeamento de dependências e segurança (JWT).
-- **Rule**: Usar exclusivamente `Annotated[Type, Depends(func)]`.
-- **Logic**: Criar aliases para dependências reutilizáveis.
+Map dependencies and security (JWT).
+- **Rule**: Exclusively use `Annotated[Type, Depends(func)]`.
+- **Logic**: Create aliases for reusable dependencies.
 
 ### Phase 3: IMPLEMENTATION & ERROR_HANDLING
-Escrita dos endpoints e handlers de exceção.
-- **Rule**: Usar `async def` apenas para operações verdadeiramente I/O async.
-- **Mandate**: Implementar handlers globais para exceções de domínio.
+Write endpoints and exception handlers.
+- **Rule**: Use `async def` only for truly asynchronous I/O operations.
+- **Mandate**: Implement global handlers for domain exceptions.
 
 ### Phase 4: VALIDATION & PERF
-Auditoria de performance e documentação.
-- **Check**: Validar se não há código bloqueante dentro de `async def`.
+Performance audit and documentation.
+- **Check**: Validate that there is no blocking code inside `async def`.
 - **Mandate**: Perform performance audits using standardized benchmarking tools and document results.
 
 ### Phase 5: TESTING
-Implementação de testes unitários e de integração.
-- **Rule**: Garantir 100% de cobertura nos serviços críticos com Pytest.
+Implement unit and integration tests.
+- **Rule**: Ensure 100% coverage in critical services with Pytest.
 
 ---
 
@@ -77,7 +77,7 @@ async def read_item(item_id: int = Path(...)):
 ```
 
 ### 2. UV Integration
-Sempre inicializar e gerenciar dependências via `python-uv`:
+Always initialize and manage dependencies via `python-uv`:
 ```bash
 uv add fastapi pydantic-settings
 uv run fastapi dev main.py
@@ -87,44 +87,44 @@ uv run fastapi dev main.py
 
 ## Quality Rules
 
-- **Clean Code**: Seguir SOLID. Endpoints devem ser "magros" (logic in services/dependencies).
-- **Security**: Utilizar `OAuth2PasswordBearer` e escopos para controle de acesso.
-- **Performance**: Pydantic V2 (Rust core) deve ser a única fonte de serialização.
+- **Clean Code**: Follow SOLID principles. Endpoints should be "thin" (logic in services/dependencies).
+- **Security**: Utilize `OAuth2PasswordBearer` and scopes for access control.
+- **Performance**: Pydantic V2 (Rust core) must be the sole source of serialization.
 
 ---
 
 ## Prohibited
 
-- NUNCA usar `...` (Ellipsis) em modelos Pydantic ou parâmetros obrigatórios.
-- NUNCA misturar lógica de banco de dados diretamente no endpoint (usar Dependências).
-- NUNCA usar bibliotecas de serialização depreciadas (ujson/orjson).
+- NEVER use `...` (Ellipsis) in Pydantic models or mandatory parameters.
+- NEVER mix database logic directly in the endpoint (use Dependencies instead).
+- NEVER use deprecated serialization libraries (ujson/orjson).
 
 ## Output Structure
 
-A execução desta skill deve resultar em APIs que seguem a seguinte estrutura de arquivos recomendada:
+Execution of this skill should result in APIs that follow this recommended file structure:
 
-| Artefato | Localização | Descrição |
+| Artifact | Location | Description |
 |----------|-------------|-----------|
-| **Entrypoint** | `src/main.py` | Inicialização do FastAPI e inclusão de routers. |
-| **Schemas** | `src/schemas/` | Modelos Pydantic V2 para request/response. |
-| **Endpoints** | `src/api/` | Routers organizados por domínio (tags). |
-| **Dependencies** | `src/dependencies.py` | Fábrica de dependências injetáveis. |
-| **Config** | `src/config.py` | Gestão de ambiente via `pydantic-settings`. |
-| **Migrations** | `migrations/` | Scripts de evolução do banco de dados (Alembic). |
+| **Entrypoint** | `src/main.py` | FastAPI initialization and router inclusion. |
+| **Schemas** | `src/schemas/` | Pydantic V2 models for request/response. |
+| **Endpoints** | `src/api/` | Routers organized by domain (tags). |
+| **Dependencies** | `src/dependencies.py` | Injectable dependency factory. |
+| **Config** | `src/config.py` | Environment management via `pydantic-settings`. |
+| **Migrations** | `migrations/` | Database evolution scripts (Alembic). |
 
 ## Detailed References
 
-Para um mergulho profundo em cada tópico, consulte os guias especializados:
+For a deep dive into each topic, consult the specialized guides:
 
-| Guia | Tópico |
+| Guide | Topic |
 |------|--------|
-| [Architecture](references/architecture.md) | Repositories, Services e Lifespan. |
-| [API Design](references/api_design.md) | Padrões REST, Status Codes e Naming. |
-| [Security](references/security.md) | JWT, OAuth2 e Password Hashing. |
-| [Error Handling](references/error_handling.md) | Exceções de Domínio e Handlers Globais. |
-| [Performance](references/performance.md) | Async vs Sync e Pydantic Rust core. |
-| [Testing](references/testing.md) | Pytest, AsyncClient e Integration Tests. |
-| [Migrations](references/migrations.md) | Alembic Assíncrono e versionamento de banco. |
+| [Architecture](references/architecture.md) | Repositories, Services, and Lifespan. |
+| [API Design](references/api_design.md) | REST Patterns, Status Codes, and Naming. |
+| [Security](references/security.md) | JWT, OAuth2, and Password Hashing. |
+| [Error Handling](references/error_handling.md) | Domain Exceptions and Global Handlers. |
+| [Performance](references/performance.md) | Async vs Sync and Pydantic Rust core. |
+| [Testing](references/testing.md) | Pytest, AsyncClient, and Integration Tests. |
+| [Migrations](references/migrations.md) | Async Alembic and database versioning. |
 
 
 ---

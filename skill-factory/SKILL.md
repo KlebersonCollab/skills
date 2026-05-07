@@ -1,7 +1,7 @@
 ---
 name: skill-factory
 version: 2.3.0
-description: "Governance and Automation engine for high-performance Skill Authoring. Implements Anthropics's 14 patterns synthesized with SDD v2.2.0 operational rigor."
+description: "Governance and Automation engine for high-performance Skill Authoring. Implements Anthropics's 14 patterns synthesized with SDD v2.3.0 operational rigor."
 category: skill-management
 ---
 

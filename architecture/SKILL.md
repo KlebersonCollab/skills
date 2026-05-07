@@ -1,6 +1,6 @@
 ---
 name: architecture
-version: 2.2.1
+version: 2.3.0
 description: "Systems Architect — guides the agent to design scalable, resilient, and distributed systems (CQRS, Event-Driven) using mandatory ADRs, Fitness Functions, and Mermaid Diagrams for visualization."
 category: architecture
 uses:

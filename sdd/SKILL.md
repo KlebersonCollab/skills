@@ -13,7 +13,7 @@ This skill operates as the central brain for the **SDD** framework. Before any t
 
 ---
 
-# SDD: Modular & Adaptive Workflow (v2.2.1)
+# SDD: Modular & Adaptive Workflow (v2.3.0)
 
 > Precision at scale. Rigor when needed, speed when possible.
 

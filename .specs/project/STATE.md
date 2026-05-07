@@ -13,6 +13,10 @@ Refactoring to Observable Governance (SDD v2.3.0) is in progress.
 - [x] Harden SDD Skill (Gated Workflow Mandate).
 - [x] Harden Handoff Protocol (State Transition Validation).
 - [x] Update Skill-Factory Bootstrap Template (State Guide).
+- [x] Fix Cerimonial Governance (Enforce evidence_checksum in check-health.py).
+- [x] Fix version inconsistencies across `SKILL.md` files (v2.3.0).
+- [x] Standardize `fastapi-expert` to English.
+- [x] Create executable examples for `benchmark-expert` and `token-distiller`.
 
 ## Progress Tracking
 - [x] Core Purity: `sdd/SKILL.md` (v2.3.0).
