@@ -22,6 +22,7 @@ SKILLS=(
 DESTINATIONS=(
     ".agents/skills"
     ".gemini/skills"
+    ".claude/skills"
 )
 
 # Diretório raiz do projeto
