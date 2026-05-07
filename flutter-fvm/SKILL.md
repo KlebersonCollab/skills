@@ -1,6 +1,6 @@
 ---
 name: flutter-fvm
-version: 2.2.0
+version: 2.3.0
 description: "Skill for professional Flutter development with FVM. Includes Dart 3+ patterns, optimized performance, mandatory accessibility, OWASP security, and resilience management (Error Handling)."
 category: development-workflow
 ---
@@ -14,11 +14,11 @@ category: development-workflow
 ## 🔒 Prerequisites (Mandatory)
 This skill operates WITHIN the **SDD** framework. Before starting any technical execution:
 0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
-1. **Context Check**: Rehydrate state by reading `STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
+1. **Context Check**: Rehydrate state by reading `.specs/project/STATE.md`, `.specs/project/MEMORY.md`, and `.specs/project/LEARNINGS.md`.
 2. **Spec Check**: Does the `spec.md` file exist with clear requirements and Acceptance Criteria (ACs)? (BDD mandatory for Medium+).
 3. **Plan Check**: Does the `plan.md` file define the architecture and schemas, and include **Mermaid** diagrams?
 4. **Contract Check**: Was the `contract.md` file established with validation sensors?
-5. **Task Check**: Is the task list in `tasks.md` detailed and atomized?
+5. **Task Check**: Is the task list in `.specs/project/tasks.md` (or feature-specific) detailed and atomized?
 
 ---
 ## Goal
@@ -130,7 +130,7 @@ The execution of this skill results in the generation or update of the following
 - **Do Not Use Global Flutter**: Maintain project isolation via FVM.
 
 ---
-*Updated on April 22, 2026, to align with ECC standards.*
+
 
 
 ---

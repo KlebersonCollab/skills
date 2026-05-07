@@ -24,3 +24,15 @@ This checklist serves as a guide for code reviews focused on quality and maintai
 ## 4. Security and Performance
 - [ ] **Security**: Is there any risk of injection (SQL, XSS, etc)? Is any sensitive data being improperly exposed?
 - [ ] **Performance**: Is there any obvious bottleneck (N+1 queries, heavy nested loops, etc)?
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T14:05:00Z"
+evidence_checksum: "NONE"
+```

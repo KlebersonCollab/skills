@@ -1,47 +1,47 @@
-# Guia de Estrutura de API FastAPI Escalável
+# Scalable FastAPI API Structure Guide
 
-Este guia define a estrutura recomendada para projetos FastAPI que precisam escalar em complexidade e volume de dados.
+This guide defines the recommended structure for FastAPI projects that need to scale in complexity and data volume.
 
-## Estrutura de Pastas Recomendada
+## Recommended Folder Structure
 
 ```text
 app/
-├── main.py              # Ponto de entrada da aplicação
-├── api/                 # Camada de roteamento (v1, v2, etc.)
+├── main.py              # Application entry point
+├── api/                 # Routing layer (v1, v2, etc.)
 │   ├── api_v1/
-│   │   ├── api.py       # Agregador de routers
-│   │   └── endpoints/   # Implementação das rotas
+│   │   ├── api.py       # Router aggregator
+│   │   └── endpoints/   # Route implementations
 │   │       ├── users.py
 │   │       └── items.py
-├── core/                # Configurações globais e segurança
+├── core/                # Global configurations and security
 │   ├── config.py
 │   └── security.py
-├── crud/                # Operações de banco de dados (Create, Read, Update, Delete)
-├── db/                  # Configuração da Database e Session
-│   ├── base.py          # Importa todos os modelos para o Alembic
+├── crud/                # Database operations (Create, Read, Update, Delete)
+├── db/                  # Database and Session configuration
+│   ├── base.py          # Imports all models for Alembic
 │   └── session.py
-├── dependencies/        # Injeção de dependência (Auth, DB, etc.)
-├── models/              # Modelos de banco de dados (SQLAlchemy/SQLModel)
-├── schemas/             # Schemas de validação Pydantic (Request/Response)
-└── services/            # Lógica de negócio complexa
+├── dependencies/        # Dependency injection (Auth, DB, etc.)
+├── models/              # Database models (SQLAlchemy/SQLModel)
+├── schemas/             # Pydantic validation schemas (Request/Response)
+└── services/            # Complex business logic
 ```
 
-## Princípios Chave
+## Key Principles
 
-### 1. Routers Modulares
-Use `APIRouter` para separar as rotas por domínio. Evite colocar muita lógica diretamente nos endpoints; delegue para `crud` ou `services`.
+### 1. Modular Routers
+Use `APIRouter` to separate routes by domain. Avoid putting too much logic directly in endpoints; delegate to `crud` or `services`.
 
-### 2. Schemas Pydantic
-Mantenha seus modelos de banco de dados (`models/`) separados dos seus modelos de API (`schemas/`). Isso permite que a API evolua sem quebrar o contrato com o cliente.
+### 2. Pydantic Schemas
+Keep your database models (`models/`) separate from your API schemas (`schemas/`). This allows the API to evolve without breaking the contract with the client.
 
-### 3. Injeção de Dependências
-Use o sistema de `Depends()` do FastAPI para gerenciar sessões de banco de dados e autenticação. Isso facilita o teste unitário através de overrides.
+### 3. Dependency Injection
+Use FastAPI's `Depends()` system to manage database sessions and authentication. This facilitates unit testing through overrides.
 
-### 4. Camada de CRUD vs Service
-- **CRUD**: Operações puras de banco de dados.
-- **Service**: Lógica de negócio que pode envolver múltiplos CRUDs, chamadas externas ou processamento complexo.
+### 4. CRUD vs Service Layer
+- **CRUD**: Pure database operations.
+- **Service**: Business logic that may involve multiple CRUDs, external calls, or complex processing.
 
-## Exemplo de Endpoint Limpo
+## Clean Endpoint Example
 
 ```python
 @router.post("/", response_model=schemas.User)
@@ -52,10 +52,22 @@ def create_user(
     current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     """
-    Cria um novo usuário.
+    Creates a new user.
     """
     user = crud.user.get_by_email(db, email=user_in.email)
     if user:
         raise HTTPException(status_code=400, detail="User already exists")
     return crud.user.create(db, obj_in=user_in)
+```
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T14:00:00Z"
+evidence_checksum: "NONE"
 ```

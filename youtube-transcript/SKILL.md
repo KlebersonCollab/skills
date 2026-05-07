@@ -19,7 +19,7 @@ This skill operates WITHIN the **SDD** framework. Before starting any technical 
 
 ---
 
-# YouTube Transcript Expert (v2.0.0)
+# YouTube Transcript Expert (v2.3.0)
 
 > "Content is king, but structure is the kingdom. Precision in extraction, rigor in cleanup."
 

@@ -1,8 +1,8 @@
 # Boilerplate FastAPI + UV
 
-Este exemplo demonstra a estrutura recomendada usando a skill `fastapi-expert`.
+This example demonstrates the recommended structure using the `fastapi-expert` skill.
 
-## Estrutura de Arquivos
+## File Structure
 
 ```text
 .
@@ -42,8 +42,20 @@ async def read_items(
     return []
 ```
 
-## Como rodar
+## How to run
 ```bash
 uv sync
 uv run fastapi dev src/main.py
+```
+
+---
+
+<!-- @sdd-state -->
+```yaml
+version: "2.3.0"
+feature_id: "HUB-ALIGNMENT"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-06T14:00:00Z"
+evidence_checksum: "NONE"
 ```
