@@ -15,7 +15,7 @@ sync:
 ## install-hooks: Installs the SDD pre-push hook into the local repository
 install-hooks:
 	@echo "Installing pre-push hook..."
-	@cp git-workflow/resources/pre-push.sh .git/hooks/pre-push
+	@cp bin/pre-push.sh .git/hooks/pre-push
 	@chmod +x .git/hooks/pre-push
 	@echo "✅ SDD pre-push hook installed successfully!"
 
