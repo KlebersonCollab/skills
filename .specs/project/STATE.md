@@ -26,6 +26,7 @@ Refactoring to Observable Governance (SDD v2.3.0) is in progress.
 - [x] Sub-skill: `sdd-reviewer` (v2.3.0).
 - [x] Sub-skill: `sdd-planner` (v2.3.0).
 - [x] Global Compliance: 100% Audit Pass.
+- [x] Feature: `hub-ui-skills` (Completed).
 
 ---
 
@@ -35,6 +36,7 @@ version: "2.3.0"
 feature_id: "HUB-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-06T10:17:00Z"
+last_update: "2026-05-08T23:03:00Z"
 evidence_checksum: "NONE"
 ```
+
