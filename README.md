@@ -1,25 +1,50 @@
-# 🧠 AI Agent Skills Hub (v6.0.0)
+# 🧠 AI Agent Skills Hub (v6.1.0)
 
-> **The Centralized Engine for Agentic Excellence.**  
-> A modular repository of specialized "Skills" for AI agents, governed by the strict standards of **Purist SDD v2.3.0**.
+<div align="center">
+  <img src="docs/screenshots/dashboard.png" alt="Agent Skills Hub Dashboard" width="100%">
+  <p><em>The Centralized Engine for Agentic Excellence.</em></p>
+  
+  [![SDD v2.3.0](https://img.shields.io/badge/SDD-v2.3.0-blueviolet?style=for-the-badge)](https://github.com/tech-leads-club/agent-skills)
+  [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+  [![Purist Architecture](https://img.shields.io/badge/Architecture-Purist-black?style=for-the-badge)](AGENTS.md)
+</div>
 
 ---
 
 ## 📖 Project Vision
 
-The **AI Agent Skills Hub** is designed to serve the modern developer by providing a standardized ecosystem of high-performance agentic capabilities. We move away from opaque tooling and legacy CLIs, embracing a **Logic-First** approach where governance is transparently driven by Markdown artifacts and deterministic operational mandates.
+The **AI Agent Skills Hub** is a standardized ecosystem of high-performance agentic capabilities. We move away from opaque tooling and legacy CLIs, embracing a **Logic-First** approach where governance is transparently driven by Markdown artifacts and deterministic operational mandates.
 
 Every skill in this hub is an independent, verifiable module that ensures AI agents operate with maximum precision, security, and architectural integrity.
 
 ---
 
-## 🏗️ Core Methodology: SDD
+## 🖥️ Visual Dashboard (Agent Skills Hub)
 
-This hub is powered by **Spec-Driven Development (SDD)**. Every development cycle follows a rigorous 4-phase protocol:
+We now feature an interactive visual interface to explore and audit our skills:
 
-1.  **DISCOVERY**: Context rehydration from the **Triad of Memory**.
+- **Ecosystem Graph:** Visualize real dependencies between skills extracted directly from content and the Global Router.
+- **Skill Catalog:** Quick access to technical documentation and governance state (LIVE/DRAFT).
+- **Interactive Audit:** Explore prerequisites and workflow sections in real-time.
+
+### 🕹️ Quick Commands (Dashboard)
+
+| Command | Description |
+|---------|-----------|
+| `make dash-install` | Installs UI dependencies |
+| `make dash-start` | Syncs data and launches the dashboard |
+| `make dash-stop` | Terminates the dashboard process |
+| `make dash-restart` | Restarts the visual environment |
+
+---
+
+## 🏗️ Core Methodology: SDD v2.3.0
+
+This hub is powered by **Spec-Driven Development (SDD)**. Every cycle follows a rigorous 4-phase protocol:
+
+1.  **DISCOVERY**: Context rehydration via the **Memory Triad**.
 2.  **SPECIFY**: Creation of deterministic specs, plans, and contracts.
-3.  **IMPLEMENT**: Atomic, task-driven execution with TDD.
+3.  **IMPLEMENT**: Atomic, task-driven execution.
 4.  **REVIEW**: Formal validation against Acceptance Criteria and memory persistence.
 
 > [!IMPORTANT]
@@ -27,14 +52,12 @@ This hub is powered by **Spec-Driven Development (SDD)**. Every development cycl
 
 ---
 
-## 🧭 The Skill Hub Catalog
-
-The hub hosts a diverse range of skills categorized to meet developer demands:
+## 🧭 Skill Catalog
 
 ### 🛡️ Governance & Standards
-- **[SDD](sdd/)**: The core framework for deterministic agentic workflows.
-- **[Skill Factory](skill-factory/)**: The engine for standardizing and bootstrapping new skills.
-- **[Git Workflow](git-workflow/)**: Conventional commits and atomic versioning standards.
+- **[SDD](sdd/)**: The core framework for deterministic workflows.
+- **[Skill Factory](skill-factory/)**: The engine for standardizing new skills.
+- **[Git Workflow](git-workflow/)**: Conventional commit and atomic versioning standards.
 
 ### 🏛️ Engineering & Architecture
 - **[Architecture](architecture/)**: System design, ADR management, and Mermaid visualization.
@@ -45,7 +68,7 @@ The hub hosts a diverse range of skills categorized to meet developer demands:
 ### 🐍 Languages & Frameworks
 - **[Python UV](python-uv/)**: Modern Python management (Django, Async, PEP 723).
 - **[Django Expert](django-expert/)**: Production-ready Django hardening and architecture.
-- **[FastAPI Expert](fastapi-expert/)**: High-performance FastAPI implementation patterns.
+- **[FastAPI Expert](fastapi-expert/)**: High-performance implementation patterns.
 - **[Flutter FVM](flutter-fvm/)**: Professional Flutter development with version management.
 
 ### 🧠 Advanced Intelligence
@@ -55,23 +78,14 @@ The hub hosts a diverse range of skills categorized to meet developer demands:
 
 ---
 
-## 🚀 How to Use (Equipping Your Agent)
-
-Since we prioritize **Logic-First** governance, you "equip" an agent by providing it with the Markdown instructions found in each skill's `SKILL.md` file.
-
-1.  **Reference**: Direct your agent to read the `SKILL.md` of the desired module.
-2.  **Context Rehydration**: Ensure the agent adopts the **Triad of Memory** (`STATE.md`, `MEMORY.md`, `LEARNINGS.md`) located in `.specs/project/`.
-3.  **Execute**: Follow the SDD 4-Phase loop documented in the `sdd` skill.
-
----
-
-## 📊 Knowledge Map
+## 📊 Knowledge Map (LKG)
 
 ```mermaid
 graph TD
     Hub[AI Agent Skills Hub] --> Governance[Governance Layer]
     Hub --> Engineering[Engineering Layer]
     Hub --> Lang[Languages & Frameworks]
+    Hub --> UI[Visual Dashboard]
     
     Governance --> SDD[SDD Core]
     Governance --> SF[Skill Factory]
@@ -84,7 +98,10 @@ graph TD
     Lang --> UV[Python UV]
     Lang --> Flutter[Flutter FVM]
     
-    SDD --- Triad[Triad of Memory]
+    UI --> Graph[Ecosystem Graph]
+    UI --> Detail[Detail Panel]
+    
+    SDD --- Triad[Memory Triad]
     Triad --> State[STATE.md]
     Triad --> Memory[MEMORY.md]
     Triad --> Learn[LEARNINGS.md]
@@ -105,6 +122,6 @@ version: "2.3.0"
 feature_id: "HUB-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-06T09:46:00Z"
-evidence_checksum: "8e52f6a"
+last_update: "2026-05-08T23:08:00Z"
+evidence_checksum: "NONE"
 ```
