@@ -1,0 +1,18 @@
+# <type>(<scope>): <subject>
+# # MANDATE: Commit messages MUST be in ENGLISH.
+# # Types: feat, fix, docs, style, refactor, test, chore, perf, ci, revert
+# # Scope: api, ui, db, auth, etc.
+# # Subject: imperative mood, no period at the end, max 50 characters
+#
+# [optional body] - explain the WHY, not the what
+#
+# [optional footer] - Breaking changes, refs #issue
+#
+# ---
+# Example:
+# feat(auth): add google oauth provider
+#
+# Users can now sign in using their Google accounts. 
+# Implemented using the passport-google-oauth20 library.
+#
+# Closes #123

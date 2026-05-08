@@ -1,0 +1,61 @@
+[
+  {
+    "description": "API Request Log (Success)",
+    "payload": {
+      "timestamp": "2026-04-14T20:15:01.234Z",
+      "severity": "INFO",
+      "trace_id": "5f8d9e2a1b3c4d5e6f7g8h9i0j",
+      "span_id": "a1b2c3d4",
+      "message": "HTTP Request Completed",
+      "service": "order-service",
+      "version": "2.1.0",
+      "http": {
+        "method": "POST",
+        "path": "/v1/orders",
+        "status_code": 201,
+        "latency_ms": 145,
+        "user_agent": "Mozilla/5.0..."
+      },
+      "context": {
+        "user_id": "usr_8823",
+        "tenant_id": "tnt_001"
+      }
+    }
+  },
+  {
+    "description": "Database Error Log (Timeout)",
+    "payload": {
+      "timestamp": "2026-04-14T20:16:45.999Z",
+      "severity": "ERROR",
+      "trace_id": "5f8d9e2a1b3c4d5e6f7g8h9i0j",
+      "span_id": "e5f6g7h8",
+      "message": "Database Query Timeout",
+      "service": "order-service",
+      "error": {
+        "code": "DB_TIMEOUT",
+        "stack_trace": "Error: Timeout at Client.query...",
+        "target": "postgres-primary"
+      },
+      "db": {
+        "statement": "INSERT INTO orders ...",
+        "timeout_seconds": 5
+      }
+    }
+  },
+  {
+    "description": "Business Event Log (Audit)",
+    "payload": {
+      "timestamp": "2026-04-14T20:17:10.000Z",
+      "severity": "INFO",
+      "trace_id": "5f8d9e2a1b3c4d5e6f7g8h9i0j",
+      "message": "Order Payment Confirmed",
+      "service": "payment-worker",
+      "event": {
+        "type": "ORDER_PAID",
+        "id": "ord_5521",
+        "amount": 299.90,
+        "currency": "USD"
+      }
+    }
+  }
+]

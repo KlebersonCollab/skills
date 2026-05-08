@@ -1,0 +1,15 @@
+graph LR
+    P[Producer: Order Service] -- OrderCreated --> B[Message Broker: Kafka/RabbitMQ]
+    
+    B -- Subscribe --> C1[Consumer: Inventory Service]
+    B -- Subscribe --> C2[Consumer: Email Service]
+    B -- Subscribe --> C3[Consumer: Shipping Service]
+
+    subgraph Error_Handling
+        C1 -- Failed 3x --> DLQ[(Dead Letter Queue)]
+        DLQ -- Manual Analysis --> Dev[Developer/Ops]
+    end
+
+    C1 --> DB1[(Inventory DB)]
+    C2 --> SMTP[SMTP Server]
+    C3 --> API[Logistics API]
