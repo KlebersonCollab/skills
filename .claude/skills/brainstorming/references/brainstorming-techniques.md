@@ -28,7 +28,14 @@ Instead of asking "How can I solve this?", ask "How could I cause this problem?"
 
 ---
 
-## 5. Choice Matrix (Diverge -> Converge)
+## 5. GAN (Generative Adversarial Brainstorming)
+Uses the concept of Generative Adversarial Networks to refine ideas through tension between two opposing roles.
+- **Role A (Generator)**: Proposes highly creative, sometimes experimental, or "out of the box" solutions to the problem.
+- **Role B (Discriminator)**: Acts as a strict critic, identifying technical flaws, edge cases, security risks, or feasibility issues.
+- **Goal**: Iterate until the Generator produces a solution that the Discriminator can no longer invalidate.
+- **When to use**: To validate architecture security, stress-test experimental features, or reach a highly robust design.
+
+## 6. Choice Matrix (Diverge -> Converge)
 
 | Criterion | Option A (Simple) | Option B (Robust) | Option C (Innovative) |
 |----------|-------------------|-------------------|---------------------|

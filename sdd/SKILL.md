@@ -44,7 +44,7 @@ The SDD follows a rigorous cycle to ensure integrity and traceability:
 
 ### 2. SPECIFY
 *   **Goal**: Define "what", "how" and record technical decisions.
-*   **Action**: Use `sdd-orchestrator` for Specs/Plan and `sdd-planner` to update Roadmap and record decisions.
+*   **Action**: Use `sdd-orchestrator` for Specs/Plan and `sdd-planner` to update Roadmap and record decisions. For critical architectures, use **Adversarial Review (GAN Concept)**: assign a "Generator" persona to build the plan and a "Discriminator" persona to identify flaws.
 *   **Outputs**: `spec.md`, `plan.md`, `tasks.md`, `contract.md` + updates to `DECISIONS.md` and `ROADMAP.md`.
 *   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 2.
 *   **Trigger**: Before any implementation (**Small+**).
@@ -107,6 +107,7 @@ To prevent hallucinations and pattern drift, follow this strict hierarchy:
 When working with multiple parallel agents or personas:
 - **Infrastructure**: Utilize Tmux or iTerm2 for session persistence and visual tracking.
 - **Security**: Propagate `DANGEROUS_BASH_PATTERNS` to all swarm members.
+- **GAN Pattern**: Implement **Generative Adversarial** loops where agents alternate between creating (Generator) and auditing (Discriminator) to maximize quality.
 - **Protocol**: Follow the [Swarm Execution Guide](references/swarm-execution.md).
 
 ---

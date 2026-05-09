@@ -52,7 +52,7 @@ Enable the agent to facilitate high-quality brainstorming sessions, using diverg
 
 ### Phase 2: DIVERGE — Idea Exploration
 1.  **Multiplicity**: Generate at least 3 distinct approaches (e.g., Simple, Scalable, Experimental).
-2.  **Creative Techniques**: Use SCAMPER or First Principles to challenge the status quo.
+2.  **Creative Techniques**: Use SCAMPER, First Principles, or **GAN (Generative Adversarial)** to challenge the status quo.
 3.  **Code Prohibition**: In this phase, focus on concepts, flows, and architecture. **DO NOT WRITE PRODUCTION CODE**.
 
 ### Phase 3: CONVERGE — Evaluation and Choice
