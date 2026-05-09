@@ -58,7 +58,7 @@ Empower the agent to design high-quality and complex software architectures, spa
 ### Phase 4: REVIEW — Documentation & Governance
 1.  **Verdict via Sensors**: Audit the delivery against the original `spec.md` and `plan.md` using evidence from code and tests.
 2.  **Finalize ADR**: Ensure the ADR reflects the final implementation and documented impacts.
-3.  **Update Knowledge Map**: Update the project's visual architecture in `.specs/architecture/KNOWLEDGE-MAP.mermaid`.
+3.  **Update Knowledge Map**: Update the visual architecture in the Central Knowledge Map (Global Mandates).
 4.  **Persistence**: Capture new architectural patterns in `.specs/project/LEARNINGS.md`.
 
 ---

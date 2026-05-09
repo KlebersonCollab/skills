@@ -42,7 +42,7 @@ def get_targets():
     targets = []
     
     # 1. Root and Core Artifacts
-    core_dirs = [".specs/project", ".specs/codebase"]
+    core_dirs = [".specs/project", ".specs/codebase", ".specs/features"]
     root_files = ["README.md", "PROJECT-ONBOARDING.md"]
     
     for f in root_files:

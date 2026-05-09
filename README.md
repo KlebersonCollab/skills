@@ -81,37 +81,43 @@ This hub is powered by **Spec-Driven Development (SDD)**. Every cycle follows a 
 
 ## 📊 Knowledge Map (LKG)
 
+### 🗺️ Knowledge Hub (Central Ecosystem)
+
 ```mermaid
 graph TD
-    Hub[AI Agent Skills Hub] --> Governance[Governance Layer]
-    Hub --> Engineering[Engineering Layer]
-    Hub --> Lang[Languages & Frameworks]
-    Hub --> UI[Visual Dashboard]
-    
-    Governance --> SDD[SDD Core]
-    Governance --> SF[Skill Factory]
-    Governance --> GW[Git Workflow]
-    
-    Engineering --> Arch[Architecture]
-    Engineering --> CCM[Clean Code Mentor]
-    Engineering --> OBS[Observability]
-    
-    Lang --> Patterns[Python Patterns]
-    Lang --> UV[Python UV]
-    Lang --> Flutter[Flutter FVM]
-    
-    Patterns --> UV
-    Patterns --> FastAPI
-    Patterns --> Django
-    
-    UI --> Graph[Ecosystem Graph]
-    UI --> Detail[Detail Panel]
-    
-    SDD --- Triad[Memory Triad]
-    Triad --> State[STATE.md]
-    Triad --> Memory[MEMORY.md]
-    Triad --> Learn[LEARNINGS.md]
+    subgraph Core ["Core Workflow"]
+        SDD[sdd] --> BR[brainstorming]
+        SDD --> ARCH[architecture]
+        SDD --> GIT[git-workflow]
+    end
+
+    subgraph Quality ["Quality & Governance"]
+        CCM[clean-code-mentor]
+        OBS[observability-expert]
+        GIT --> SDD
+    end
+
+    subgraph Domain ["Expert Domains"]
+        SDD --> DJ[django-expert]
+        SDD --> FA[fastapi-expert]
+        SDD --> FL[flutter-fvm]
+    end
+
+    subgraph Operational ["Operational Support"]
+        TD[token-distiller]
+        UV[python-uv]
+        YT[youtube-transcript]
+    end
+
+    %% Relationships
+    ARCH --> CCM
+    FA --> UV
+    DJ --> UV
+    BR --> ARCH
+    CCM --> OBS
+    GIT --> CCM
 ```
+
 
 ---
 
@@ -129,5 +135,5 @@ feature_id: "HUB-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-08T23:08:00Z"
-evidence_checksum: "NONE"
+evidence_checksum: "b134813"
 ```

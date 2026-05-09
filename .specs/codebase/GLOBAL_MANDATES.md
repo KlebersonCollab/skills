@@ -26,6 +26,9 @@ Use this guide to identify the mandatory skill for each context:
 | Git & Versioning | `git-workflow` |
 | Token Management | `token-distiller` |
 
+> [!TIP]
+> **Skill Chain Loading**: Skills are often interdependent. For example, `python-patterns` should always be followed by `python-uv` and a domain expert like `django-expert` to ensure architectural alignment from decision to implementation.
+
 ## 1. SDD Framework (Mandatory for Development)
 Any construction, development, or significant refactoring task **MUST** utilize the **SDD (Spec-Driven Development)** framework.
 - **Workflow & Persistence**: Upon technically completing a task, the agent **MUST** proactively perform SDD Phase 4 (Review & Persistence).
@@ -43,8 +46,44 @@ Any construction, development, or significant refactoring task **MUST** utilize 
 - All code must pass verification (manual audit or automated tests).
 
 ## 4. Knowledge Management
-- **Local Knowledge Graph (LKG)**: Every new feature or significant architectural change **MUST** be mapped in `KNOWLEDGE-MAP.mermaid`.
+- **Local Knowledge Graph (LKG)**: Every new feature or significant architectural change **MUST** be updated in the Central Knowledge Map (see below).
 - **Relationship Mapping**: Before major refactors, analyze the impact on existing entities and relationships using the knowledge map.
+
+### 🗺️ Central Knowledge Map (Ecosystem)
+```mermaid
+graph TD
+    subgraph Core ["Core Workflow"]
+        SDD[sdd] --> BR[brainstorming]
+        SDD --> ARCH[architecture]
+        SDD --> GIT[git-workflow]
+    end
+
+    subgraph Quality ["Quality & Governance"]
+        CCM[clean-code-mentor]
+        OBS[observability-expert]
+        GIT --> SDD
+    end
+
+    subgraph Domain ["Expert Domains"]
+        SDD --> DJ[django-expert]
+        SDD --> FA[fastapi-expert]
+        SDD --> FL[flutter-fvm]
+    end
+
+    subgraph Operational ["Operational Support"]
+        TD[token-distiller]
+        UV[python-uv]
+        YT[youtube-transcript]
+    end
+
+    %% Relationships
+    ARCH --> CCM
+    FA --> UV
+    DJ --> UV
+    BR --> ARCH
+    CCM --> OBS
+    GIT --> CCM
+```
 
 ## 5. Mandatory Skill Usage
 - **Skill-Driven Execution**: Identifying and using the most appropriate skill for each task is mandatory. Executing technical activities without the support of a specific skill's instructions is prohibited.
@@ -62,7 +101,8 @@ Before ending the session or delivering the task, the agent **MUST** validate:
 2. **Tasks Update**: Does `tasks.md` reflect the real state of implementation?
 3. **State Sync**: Has `STATE.md` been updated with progress and next steps?
 4. **Learnings Capture**: Update `LEARNINGS.md` with new patterns or fixed bugs.
-5. **Knowledge Update**: Refresh `KNOWLEDGE-MAP.mermaid` if the project structure changed.
+6. **Audit Pass**: Execute `make audit` and ensure "100% COMPLIANT" status. Failures MUST be fixed before session delivery.
+7. **Knowledge Update**: Refresh the Central Knowledge Map (embedded in Section 4) if the project structure or skill relationships changed.
 
 ## 8. Single Source of Truth (Root First)
 The root directory is the ONLY allowed location for editing instructions and skills.
@@ -82,9 +122,9 @@ Every action must be traceable and permission-gated by the SDD state machine:
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "HUB-ALIGNMENT"
-phase: "VERIFY"
+feature_id: "GOVERNANCE-HARDENING"
+phase: "IMPLEMENT"
 status: "COMPLETED"
-last_update: "2026-05-06T13:15:00Z"
-evidence_checksum: "NONE"
+last_update: "2026-05-09T12:08:00Z"
+evidence_checksum: "b134813"
 ```
