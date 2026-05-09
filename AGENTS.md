@@ -17,7 +17,7 @@ Use this guide to identify the mandatory skill for each context:
 | If the task involves... | USE this skill |
 |-------------------------|----------------|
 | Specification & Planning | `sdd` (`orchestrator`, `planner`) |
-| Python & Environment | `python-uv` (includes Django/Async expert domains) + `django-expert` + `fastai-expert`|
+| Python & Environment | `python-patterns` (Decision Matrix) + `python-uv` (includes Django/Async expert domains) + `django-expert` + `fastai-expert`|
 | Architecture & ADRs | `architecture` |
 | Quality & Clean Code | `clean-code-mentor` |
 | Knowledge Management | `skill-factory`|
@@ -68,6 +68,7 @@ Before ending the session or delivering the task, the agent **MUST** validate:
 The root directory is the ONLY allowed location for editing instructions and skills.
 - **Root-Only Edits**: Agents MUST NEVER edit `.agents/`, `.agent/`, `.claude/`, or `.gemini/` folders directly.
 - **Conflict Resolution**: If a divergence is detected, the root version always prevails. Any improvement found in runtime folders must be backported to the root.
+- **Mandates Governance**: From now on, any changes to global mandates must be made exclusively in `.specs/codebase/GLOBAL_MANDATES.md`, followed by the `make sync` command to propagate the changes to the entire ecosystem.
 
 ## 9. Observable Governance (Gated Workflow)
 Every action must be traceable and permission-gated by the SDD state machine:
@@ -75,9 +76,6 @@ Every action must be traceable and permission-gated by the SDD state machine:
 - **Metadata Mandate**: Every Markdown artifact created or modified MUST end with the `<!-- @sdd-state -->` block.
 - **Initial State Policy**: All new feature artifacts must be initialized with `status: IN_PROGRESS`. Only freeze to `status: COMPLETED` when transitioning between handoff points.
 - **Prohibited**: Never jump to `VERIFY` phase without completing the `IMPLEMENT` cycle.
-
-## 10. Design & UI Standards
-- **Design System**: All frontend development, styling, and UI component creation **MUST** strictly adhere to the design tokens, typography, and aesthetics defined in [DESIGN.md](DESIGN.md).
 
 ---
 

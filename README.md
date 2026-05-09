@@ -66,6 +66,7 @@ This hub is powered by **Spec-Driven Development (SDD)**. Every cycle follows a 
 - **[Observability Expert](observability-expert/)**: SRE, OpenTelemetry, and resilient monitoring.
 
 ### 🐍 Languages & Frameworks
+- **[Python Patterns](python-patterns/)**: Architectural decision-making (FastAPI vs Django, Async vs Sync).
 - **[Python UV](python-uv/)**: Modern Python management (Django, Async, PEP 723).
 - **[Django Expert](django-expert/)**: Production-ready Django hardening and architecture.
 - **[FastAPI Expert](fastapi-expert/)**: High-performance implementation patterns.
@@ -95,8 +96,13 @@ graph TD
     Engineering --> CCM[Clean Code Mentor]
     Engineering --> OBS[Observability]
     
+    Lang --> Patterns[Python Patterns]
     Lang --> UV[Python UV]
     Lang --> Flutter[Flutter FVM]
+    
+    Patterns --> UV
+    Patterns --> FastAPI
+    Patterns --> Django
     
     UI --> Graph[Ecosystem Graph]
     UI --> Detail[Detail Panel]

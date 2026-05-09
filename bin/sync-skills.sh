@@ -11,6 +11,7 @@ SKILLS=(
     "flutter-fvm"
     "git-workflow"
     "observability-expert"
+    "python-patterns"
     "python-uv"
     "sdd"
     "skill-factory"
@@ -52,6 +53,7 @@ done
 # Sincronização do GLOBAL_MANDATES.md para arquivos de governança
 MANDATES_SOURCE="$ROOT_DIR/.specs/codebase/GLOBAL_MANDATES.md"
 MANDATES_TARGETS=(
+    "AGENTS.md"
     ".gemini/GEMINI.md"
     ".gemini/rules/agent.md"
     ".claude/CLAUDE.md"
