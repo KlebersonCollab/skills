@@ -94,6 +94,8 @@ Every agent **MUST** strictly follow the project's versioning standards as defin
 - **Conventional Commits**: Use the standard format (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`).
 - **Atomic Commits**: Commits must be atomic and, whenever possible, reference task IDs from `tasks.md`.
 - **History Integrity**: Use `rebase` to maintain a linear history before merging into `main`.
+- **Isolated Execution (Worktree)**: For **Medium+** tasks or when working on parallel features, agents **MUST** use `git worktree` to maintain isolated environments and prevent context contamination between branches.
+
 
 ## 🔒 7. SESSION EXIT GATE (EXECUTE BEFORE ENDING)
 Before ending the session or delivering the task, the agent **MUST** validate:

@@ -111,8 +111,10 @@ Integrating Git with the SDD cycle is fundamental for traceability and history i
 
 1.  **Discovery Phase**: Before starting, ensure your local `main` is synchronized with the remote using **`git pull --rebase origin main`**.
 2.  **Implementation Phase**: 
-    - **Atomic Branches**: Each feature/fix must have its own branch. Initialize it with **`git checkout -b feature/<name>`**.
+    - **Atomic Branches**: Each feature/fix must have its own branch.
+    - **Isolated Workspaces (Worktree)**: For tasks sized **Medium+**, instead of `checkout`, use **`git worktree add ../<branch-name> <branch-name>`**. This ensures a clean, isolated environment for implementation and testing without affecting the main working directory.
     - **Commits per Task**: Each completed task in `tasks.md` must generate at least one clear commit.
+
     - **Conventional Commits**: Use **`git commit -m "<type>(<scope>): <message>"`**.
     - **Language**: All commit messages **MUST** be written in **English**, even if technical documentation is in Portuguese.
     - **Atomicity**: Do not mix changes from different tasks in the same commit.
