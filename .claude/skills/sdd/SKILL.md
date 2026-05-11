@@ -59,7 +59,7 @@ The SDD follows a rigorous cycle to ensure integrity and traceability:
 ### 4. VERIFY
 *   **Goal**: Validate delivery and capture learnings.
 *   **Action**: **Drive app to verify** (boot application and test functionality/UI). Use `sdd-reviewer` for audit, **open a Pull Request**, and use `sdd-planner` to capture discovered patterns.
-*   **Output**: PR created, updated `validation-report.md`, `LEARNINGS.md`, and `MEMORY.md`. State finalization in `STATE.md`.
+*   **Output**: PR created, `validation-report.md`, `LEARNINGS.md`, and `MEMORY.md` updated. State finalization in `STATE.md` and PR opened and submitted for human review.
 *   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 4.
 *   **Trigger**: Technical completion of Phase 3 tasks.
 
@@ -69,7 +69,7 @@ The SDD follows a rigorous cycle to ensure integrity and traceability:
 
 ### 1. The Gated Workflow Mandate (Gated Transition)
 Progress between phases is strictly sequential and permission-gated:
-- **Rule**: You CANNOT set `phase: [NEXT_PHASE]` in `STATE.md` if the current `tasks.md` does not have 100% status coverage and verifiable evidence for the current phase.
+- **Rule**: You CANNOT set `phase: [NEXT_PHASE]` in `STATE.md` if the current `tasks.md` does not have 100% test coverage and status and verifiable evidence for the current phase.
 - **Initial State**: New feature artifacts (`spec.md`, `plan.md`, `tasks.md`) MUST start with `status: IN_PROGRESS`.
 - **Completion Hook**: An artifact only moves to `status: COMPLETED` when its specific content is frozen and approved for the next phase.
 
@@ -81,7 +81,7 @@ Every agent interaction must validate the "State Triad":
 
 ### 3. The Safety Valve (Automatic Escalation)
 Every implementation task must be continuously monitored for complexity drift.
-- **Trigger**: If a task reveals unexpected structural changes, touches >3 files, or modifies components listed as "Fragile" in `TECHNICAL-MAP.md`.
+- **Trigger**: If a task reveals unexpected structural changes, touches >3 files, or modifies components.
 - **Action**: **STOP** execution. Notify the user: *"Task complexity has escalated beyond initial sizing. Re-evaluating the plan."*
 - **Outcome**: Re-invoke `sdd-orchestrator` to update `plan.md` or `tasks.md`.
 
@@ -139,6 +139,13 @@ All technical plans (`plan.md`) MUST include **Mermaid** diagrams to visualize d
 - NEVER mark a task as complete without an atomic Git commit AND explicit proof that the application builds, passes linting, and passes tests.
 - NEVER use placeholders in `spec.md` or `plan.md`.
 - NEVER ignore "Fragile" warnings in `TECHNICAL-MAP.md`.
+- NEVER force a phase transition if the current `tasks.md` does not have 100% status coverage and verifiable evidence for the current phase.
+- NEVER exit the implementation cycle without pushing to the branch.
+- NEVER submit a PR without tests.
+- NEVER ignore the modification of 3 or more files without going through an adversarial review.
+- NEVER modify a file without assessing the impact.
+- NEVER ignore adversarial critique.
+- NEVER ignore the safety valve.
 
 ---
 
