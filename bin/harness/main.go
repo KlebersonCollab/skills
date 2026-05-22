@@ -821,7 +821,7 @@ func runSwarm() {
 	fmt.Println("🐝 Harness Multi-Agent Swarm")
 	fmt.Println("1) Centralized  2) Sequential  3) GAN")
 	fmt.Print("Escolha (1-3) [1]: ")
-	choice, _ := reader.ReadString("\n")
+	choice, _ := reader.ReadString('\n')
 	topology := "centralized"
 	switch strings.TrimSpace(choice) {
 	case "2":
@@ -834,13 +834,13 @@ func runSwarm() {
 	orch := NewSwarmOrchestrator(cfg)
 	fmt.Printf("Topology: %s | Agents: %d\n", topology, len(cfg.Agents))
 	fmt.Print("\nObjetivo: ")
-	goal, _ := reader.ReadString("\n")
+	goal, _ := reader.ReadString('\n')
 	goal = strings.TrimSpace(goal)
 	if goal == "" {
 		goal = "Sessão exploratória geral"
 	}
 	fmt.Print("Contexto (opcional): ")
-	context, _ := reader.ReadString("\n")
+	context, _ := reader.ReadString('\n')
 	context = strings.TrimSpace(context)
 	for name := range orch.Agents {
 		agentName := name
