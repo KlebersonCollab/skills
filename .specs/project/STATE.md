@@ -2,7 +2,7 @@
 # Project State: Skills Hub Alignment
 
 ## Current Phase: [PHASE 4: VERIFY] - Feature: harness-streaming-sse ✅
-Streaming SSE implementado — feedback parcial do LLM em tempo real.
+Streaming SSE implementado — feedback parcial do LLM em tempo real. Flag `--stream` / `-s` ativa streaming no CLI.
 
 ## Active Goals
 - [x] Implement Harness XML Parser & Safety Gate.
