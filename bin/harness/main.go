@@ -71,8 +71,9 @@ func runInitWizard() {
 	fmt.Println("Escolha o Provider:")
 	fmt.Println("1) Gemini (Google Generative AI)")
 	fmt.Println("2) Ollama (Local Llama/Deepseek)")
-	fmt.Println("3) Custom (Qualquer API compatível REST JSON)")
-	fmt.Print("Selecione (1-3) [1]: ")
+	fmt.Println("3) DeepSeek (API Oficial)")
+	fmt.Println("4) Custom (Qualquer API compatível REST JSON)")
+	fmt.Print("Selecione (1-4) [1]: ")
 	choice, _ := reader.ReadString('\n')
 	choice = strings.TrimSpace(choice)
 	if choice == "" {
@@ -133,6 +134,39 @@ func runInitWizard() {
 		fmt.Printf("✅ Ollama (%s) configurado como default.\n", model)
 
 	case "3":
+		activeProvider = "deepseek"
+		fmt.Print("Digite a API Key do DeepSeek [ou pressione Enter para usar {{DEEPSEEK_API_KEY}}]: ")
+		apiKey, _ := reader.ReadString('\n')
+		apiKey = strings.TrimSpace(apiKey)
+		if apiKey != "" {
+			os.Setenv("DEEPSEEK_API_KEY", apiKey)
+			fmt.Println("💡 API Key temporariamente guardada nesta sessão de console. Defina a variável de ambiente DEEPSEEK_API_KEY permanentemente em seu shell.")
+		}
+
+		fmt.Println("Escolha o Modelo:")
+		fmt.Println("1) deepseek-v4-pro")
+		fmt.Println("2) deepseek-v4-flash")
+		fmt.Print("Selecione (1-2) [1]: ")
+		mChoice, _ := reader.ReadString('\n')
+		mChoice = strings.TrimSpace(mChoice)
+
+		model := "deepseek-v4-pro"
+		if mChoice == "2" {
+			model = "deepseek-v4-flash"
+		}
+
+		providers["deepseek"] = ProviderConfig{
+			URL: "https://api.deepseek.com/chat/completions",
+			Headers: map[string]string{
+				"Content-Type":  "application/json",
+				"Authorization": "Bearer {{DEEPSEEK_API_KEY}}",
+			},
+			BodyTemplate: fmt.Sprintf(`{"model": "%s", "messages": [{"role": "user", "content": "{{prompt}}"}], "thinking": {"type": "enabled"}, "reasoning_effort": "high", "stream": false}`, model),
+			ResponsePath: "choices.0.message.content",
+		}
+		fmt.Printf("✅ DeepSeek (%s) configurado como default.\n", model)
+
+	case "4":
 		fmt.Print("Nome do Provider Custom: ")
 		name, _ := reader.ReadString('\n')
 		name = strings.TrimSpace(name)
@@ -199,6 +233,11 @@ func runInteractiveLoop() {
 	if config.ActiveProvider == "gemini" && os.Getenv("GEMINI_API_KEY") == "" {
 		fmt.Println("⚠️  Alerta: A variável de ambiente GEMINI_API_KEY não está definida!")
 		fmt.Println("Por favor, defina a chave rodando: export GEMINI_API_KEY=sua_chave")
+		fmt.Println()
+	}
+	if config.ActiveProvider == "deepseek" && os.Getenv("DEEPSEEK_API_KEY") == "" {
+		fmt.Println("⚠️  Alerta: A variável de ambiente DEEPSEEK_API_KEY não está definida!")
+		fmt.Println("Por favor, defina a chave rodando: export DEEPSEEK_API_KEY=sua_chave")
 		fmt.Println()
 	}
 
