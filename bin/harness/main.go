@@ -42,6 +42,9 @@ func main() {
 	if len(remainingArgs) > 0 {
 		cmd := remainingArgs[0]
 		switch cmd {
+		case "swarm":
+			runSwarm()
+			return
 		case "mcp-server":
 			runMCPServer()
 			return
