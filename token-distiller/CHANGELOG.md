@@ -1,5 +1,11 @@
 # Changelog - Token Distiller
 
+## [2.4.0] - 2026-05-22
+### Added
+- **Advanced Caveman Mode**: Introduced three levels of compression intensity (`lite`, `full`, `ultra`).
+- **Auto-Clarity Protocol**: Implemented auto-suspension safety valve triggers for security warnings, destructive actions, multi-step instructions, or extreme linguistic ambiguity.
+- **Structural Response Pattern**: Enforced strict `[thing] [action] [reason]. [next step].` formatting rule.
+
 ## [2.3.0] - 2026-05-06
 ### Added
 - **Observable Governance**: Integrated SDD v2.3.0 metadata blocks.
@@ -26,9 +32,9 @@
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "TOKEN-DISTILLER-V2.3.0"
-phase: "VERIFY"
-status: "COMPLETED"
-last_update: "2026-05-06T13:30:00Z"
-evidence_checksum: "8e52f6a"
+feature_id: "TOKEN-DISTILLER-ADVANCED-CAVEMAN"
+phase: "IMPLEMENT"
+status: "IN_PROGRESS"
+last_update: "2026-05-22T14:02:46Z"
+evidence_checksum: "NONE"
 ```
