@@ -25,7 +25,7 @@ The SDD workflow delegates heavy lifting to specialized sub-skills to maintain a
 | Phase | Sub-Skill | Primary Artifact | Purpose |
 |---|---|---|---|
 | **DISCOVERY** | `sdd-explorer` | `TECHNICAL-MAP.md` | Read-only mapping of stack, architecture, and risks. |
-| **SPECIFY** | `sdd-orchestrator` | `spec.md`, `plan.md` | Requirement analysis (BDD) and technical design. |
+| **SPECIFY** | `sdd-orchestrator`, `grill-with-docs` | `spec.md`, `plan.md`, `CONTEXT.md`, `ADRs` | Domain glossary alignment (Sabatina/Grilling), requirement analysis, and architectural decisions. |
 | **IMPLEMENT** | `sdd-implementer` | Tested Code | Surgical implementation with TDD and atomic commits. |
 | **VERIFY** | `sdd-reviewer` | `validation-report.md` | Evidence-based audit against Acceptance Criteria. |
 
@@ -43,9 +43,12 @@ The SDD follows a rigorous cycle to ensure integrity and traceability:
 *   **Trigger**: Session start or new complex feature.
 
 ### 2. SPECIFY
-*   **Goal**: Define "what", "how" and record technical decisions.
-*   **Action**: Use `sdd-orchestrator` for Specs/Plan and `sdd-planner` to update Roadmap and record decisions. For critical architectures, use **Adversarial Review (GAN Concept)**: assign a "Generator" persona to build the plan and a "Discriminator" persona to identify flaws.
-*   **Outputs**: `spec.md`, `plan.md`, `tasks.md`, `contract.md` + updates to `DECISIONS.md` and `ROADMAP.md`.
+*   **Goal**: Define "what", "how", refine terminology and record technical decisions.
+*   **Action**: 
+    1. **Grilling Session**: Challenge the plan relentlessly against the existing domain model. Sharpen vague language and update `CONTEXT.md` (Domain Glossary) inline.
+    2. **Specification & Plan**: Use `sdd-orchestrator` to generate `spec.md`, `plan.md`, `tasks.md`, and `contract.md`. Use adversarial review (GAN concept) for critical architectures.
+    3. **ADRs Logging**: Create Architectural Decision Records (ADRs) under `.specs/architecture/` (or `docs/adr/`) only for hard-to-reverse, surprising, or trade-off-heavy decisions.
+*   **Outputs**: `spec.md`, `plan.md`, `tasks.md`, `contract.md`, `CONTEXT.md` + new ADRs (if applicable).
 *   **Handoff**: Follow [Handoff Protocol](references/handoff-protocol.md) Section 2.
 *   **Trigger**: Before any implementation (**Small+**).
 
@@ -167,18 +170,20 @@ Always update `STATE.md` at the end of every session or after major decisions.
 - `tasks.md`: Atomic task list with status.
 - `contract.md`: Delivery agreement and validation sensors.
 
-### Project-Wide (`.specs/project/`)
+### Project-Wide (`.specs/project/` or Root)
 - `PROJECT.md`: Core vision and "North Star".
 - `ROADMAP.md`: Milestones and feature status.
 - `STATE.md`: Operational memory (current status, blockers).
 - `MEMORY.md`: Persistent knowledge (patterns, preferences).
 - `LEARNINGS.md`: Incremental wisdom (solved bugs, tricks).
 - `DECISIONS.md`: Log of architectural and design decisions.
+- `CONTEXT.md`: **Domain Glossary**: Centralized list of precise terms and vocabulary unique to this domain (totally devoid of implementation details).
 
-### Codebase Mapping (`.specs/codebase/`)
+### Codebase Mapping & Architecture (`.specs/codebase/` and `.specs/architecture/`)
 - `TECHNICAL-MAP.md`: Mapping of stack and dependencies.
 - `CONVENTIONS.md`: Coding patterns and linting.
 - `ARCHITECTURE.md`: High-level structural view.
+- `.specs/architecture/[0001-slug].md` (or `docs/adr/`): **Architectural Decision Records (ADRs)**: Concise records of critical design choices and their trade-offs.
 
 ### 7. Observable Governance (Mandatory v2.3.0)
 To enable real-time monitoring and automated auditing, every artifact generated MUST include a structured metadata block.
@@ -214,6 +219,7 @@ Tasks in `tasks.md` MUST NOT be marked as complete without a valid entry in the 
 - [BDD Standard](references/bdd-guide.md)
 - [Handoff Protocol](references/handoff-protocol.md)
 - [Swarm Execution Guide](references/swarm-execution.md)
+- [Grilling Session Guide](references/grilling-session.md)
 
 ---
 
@@ -223,7 +229,7 @@ version: "2.3.0"
 feature_id: "SDD-CORE-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-06T10:35:00Z"
+last_update: "2026-05-22T14:23:00Z"
 evidence_checksum: "8e52f6a"
 ```
 

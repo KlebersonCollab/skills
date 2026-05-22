@@ -18,6 +18,7 @@
 - [ADR-002] Centralized Memory: All project state and context must reside in `.specs/project/`.
 - [ADR-003] Skills Visualization: Implementation of a React-based Dashboard and Graph to visualize the ecosystem (hub-ui-skills).
 - [ADR-004] Governance as Code: Mandatory automated auditing of SDD metadata and evidence via `make audit`.
+- [ADR-005] Integração do Grill-with-Docs: Práticas de Grilling Session (Phase 0: ALIGN), glossário central de terminologia (CONTEXT.md) e diretrizes rígidas de ADRs em .specs/architecture/.
 
 ---
 
@@ -27,7 +28,7 @@ version: "2.3.0"
 feature_id: "HUB-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-08T19:32:00Z"
-evidence_checksum: "b134813"
+last_update: "2026-05-22T14:18:00Z"
+evidence_checksum: "make-audit-success"
 ```
 

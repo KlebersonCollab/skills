@@ -36,11 +36,19 @@ Before specifying or designing, you MUST follow this chain in strict order:
 4. **Web Search**: Consult official docs or reputable source (if needed).
 5. **Flag Uncertainty**: If Step 1-4 fail, explicitly flag to the user: "I'm uncertain about X".
 
+## Phase 0: ALIGN (Grilling Session)
+
+Before specifying requirements or design, align on terminology and validate the plan:
+- **Execute Grilling**: Follow the protocol in [Grilling Session Guide](references/grilling-session.md) to challenge plans relentlessly, resolve fuzzy or vague language, and map domain relationships.
+- **Update CONTEXT.md (Glossary)**: Create or update `CONTEXT.md` (Domain Glossary) at the project root or `.specs/project/` as detailed in the guide.
+- **Identify Surprising Choices**: Evaluate if the proposed design needs an ADR (Architectural Decision Record) according to the 3 criteria.
+
 ## Phase 1: SPECIFY
 
 Create/Update requirements in a `spec/spec.md` (decentralized) or `.specs/features/` (centralized).
 
 ### Specification Core
+- **Domain Alignment**: All requirements must use the exact terms defined in `CONTEXT.md`.
 - **User Stories**: `As a [user], I want [action], so that [value]`.
 - **Traceable IDs**: Every Requirement must have an ID (e.g., `FR-1`, `AC-1`).
 - **Acceptance Criteria**: Defined in `Given/When/Then` format.
@@ -53,6 +61,10 @@ Create/Update technical architecture in `spec/plan.md` or `.specs/features/[feat
 - **Component Map**: Sequence diagrams or component hierarchy.
 - **Data Schemas**: Types, DTOs, or Database schemas.
 - **Constraints**: Security, performance, and scaling limits.
+- **Architectural Decisions (ADRs)**: Document hard-to-reverse, trade-off-heavy, or surprising decisions in a concise ADR file under `.specs/architecture/` following sequential naming (e.g., `0001-slug.md`). Only offer to create an ADR if the choice is:
+  1. Hard to reverse.
+  2. Surprising without context.
+  3. The result of a real trade-off.
 
 ## Phase 3: TASKS
 
@@ -101,6 +113,6 @@ version: "2.3.0"
 feature_id: "HUB-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-06T09:48:00Z"
+last_update: "2026-05-22T14:14:00Z"
 evidence_checksum: "8e52f6a"
 ```

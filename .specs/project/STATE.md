@@ -29,6 +29,7 @@ Refactoring to Observable Governance (SDD v2.3.0) is in progress.
 - [x] Feature: `hub-ui-skills` (Completed).
 - [x] Feature: `python-patterns-integration` (Completed).
 - [x] Feature: `governance-hardening` (Completed).
+- [x] Feature: `sdd-grill-integration` (Completed).
 
 ## Next Steps
 - Brainstorm new skill categories (e.g., Cloud, Security, Data).
@@ -42,7 +43,7 @@ version: "2.3.0"
 feature_id: "GOVERNANCE-HARDENING"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-09T12:09:00Z"
-evidence_checksum: "b134813"
+last_update: "2026-05-22T14:17:00Z"
+evidence_checksum: "make-audit-success"
 ```
 
