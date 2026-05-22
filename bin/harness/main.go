@@ -529,13 +529,33 @@ func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string
 			}
 		}
 
-		// Load AGENTS.md as mandatory system instructions (industry standard: Cursor, Claude Code, Gemini CLI)
+		// Load workspace mandate files — agnostic to all market standards
+		// Supports: AGENTS.md (Google), CLAUDE.md (Anthropic), GEMINI.md (Gemini CLI),
+		// COPILOT.md (GitHub), CONVENTIONS.md (generic), .cursorrules (Cursor),
+		// .windsurfrules (Windsurf/Codeium), .github/copilot-instructions.md (GitHub Copilot)
 		agentsMandates := ""
 		if err == nil {
-			agentsMDPath := filepath.Join(root, "AGENTS.md")
-			if agentsMDContent, readErr := os.ReadFile(agentsMDPath); readErr == nil {
-				agentsMandates = "# MANDATOS GLOBAIS DO WORKSPACE (AGENTS.md)\nAs regras a seguir foram carregadas automaticamente do arquivo AGENTS.md na raiz do workspace e são OBRIGATÓRIAS para toda e qualquer ação do agente:\n\n" + string(agentsMDContent) + "\n\n---\n\n"
-				fmt.Printf("\033[38;5;99m│\033[0m  📜 AGENTS.md carregado (%d bytes) como instrução mandatória.\n", len(agentsMDContent))
+			mandateFiles := []string{
+				"AGENTS.md",
+				"CLAUDE.md",
+				"GEMINI.md",
+				"COPILOT.md",
+				"CONVENTIONS.md",
+				".cursorrules",
+				".windsurfrules",
+				filepath.Join(".github", "copilot-instructions.md"),
+			}
+			loadedCount := 0
+			for _, mf := range mandateFiles {
+				mfPath := filepath.Join(root, mf)
+				if content, readErr := os.ReadFile(mfPath); readErr == nil {
+					agentsMandates += fmt.Sprintf("# MANDATOS DO WORKSPACE (%s)\nAs regras a seguir foram carregadas automaticamente do arquivo %s e são OBRIGATÓRIAS:\n\n%s\n\n---\n\n", mf, mf, string(content))
+					fmt.Printf("\033[38;5;99m│\033[0m  📜 %s carregado (%d bytes) como instrução mandatória.\n", mf, len(content))
+					loadedCount++
+				}
+			}
+			if loadedCount == 0 {
+				fmt.Printf("\033[38;5;99m│\033[0m  ⚠️  Nenhum arquivo de mandato encontrado (AGENTS.md, CLAUDE.md, etc.).\n")
 			}
 		}
 
