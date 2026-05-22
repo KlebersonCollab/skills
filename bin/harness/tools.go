@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
 )
 
 // resolvePath returns the absolute path within the workspace root
@@ -156,70 +157,141 @@ func ExecuteCommand(command string) (string, int, error) {
 	return output, exitCode, nil
 }
 
-// SearchFiles performs pure Go OS-agnostic search on files by name patterns and/or contents query
+// isBinary checks if a file is binary by reading its first 512 bytes.
+// Returns true if a null byte is found (typical binary indicator).
+func isBinary(path string) bool {
+	f, err := os.Open(path)
+	if err != nil {
+		return false
+	}
+	defer f.Close()
+	buf := make([]byte, 512)
+	n, err := io.ReadFull(f, buf)
+	if err != nil && err != io.ErrUnexpectedEOF && err != io.EOF {
+		return false
+	}
+	buf = buf[:n]
+	for _, b := range buf {
+		if b == 0 {
+			return true
+		}
+	}
+	return false
+}
+
+var bufferPool = sync.Pool{
+	New: func() interface{} {
+		b := make([]byte, 64*1024) // 64KB buffer
+		return &b
+	},
+}
+
+// SearchFiles performs highly parallel, pure Go OS-agnostic search on files by name patterns and/or contents query.
+// Uses a worker pool pattern: dispatcher walks the tree, workers read and match files concurrently.
 func SearchFiles(pattern string, query string) (string, error) {
 	root, err := FindWorkspaceRoot()
 	if err != nil {
 		return "", err
 	}
 
-	var results []string
 	patternLower := strings.ToLower(pattern)
 	queryLower := strings.ToLower(query)
 
-	err = filepath.WalkDir(root, func(path string, d os.DirEntry, err error) error {
-		if err != nil {
-			return nil // ignore individual path errors to continue walk
-		}
+	const maxMatches = 100
+	results := make([]string, 0, maxMatches)
+	resultsMu := sync.Mutex{}
 
-		name := d.Name()
-		nameLower := strings.ToLower(name)
+	// Channel for file paths (buffered)
+	jobs := make(chan string, 1024)
 
-		// Performance: Skip system, harness or build dirs
-		if d.IsDir() {
-			if strings.HasPrefix(name, ".") && name != "." && name != ".." {
-				return filepath.SkipDir
+	// Worker pool
+	numWorkers := runtime.NumCPU()
+	if numWorkers < 2 {
+		numWorkers = 2 // at least 2 workers for parallelism
+	}
+	var wg sync.WaitGroup
+
+	type matchResult struct {
+		lines []string
+	}
+	resultsChan := make(chan matchResult, numWorkers*2)
+
+	// Worker function
+	worker := func() {
+		defer wg.Done()
+		for path := range jobs {
+			name := filepath.Base(path)
+			nameLower := strings.ToLower(name)
+
+			// Match filename pattern if provided
+			if pattern != "" {
+				match, err := filepath.Match(patternLower, nameLower)
+				if err != nil || !match {
+					continue
+				}
 			}
-			if name == "node_modules" || name == "dist" || name == "build" || name == "vendor" {
-				return filepath.SkipDir
-			}
-			return nil
-		}
 
-		// Match filename pattern if provided
-		if pattern != "" {
-			match, err := filepath.Match(patternLower, nameLower)
-			if err != nil || !match {
-				return nil
+			// If only matching by name (no query), send result directly
+			if query == "" {
+				relPath, err := filepath.Rel(root, path)
+				if err != nil {
+					relPath = path
+				}
+				resultsChan <- matchResult{lines: []string{relPath}}
+				continue
 			}
-		}
 
-		// Match content query if provided
-		if query != "" {
-			file, err := os.Open(path)
+			// Binary detection (only if we need to read content)
+			if isBinary(path) {
+				continue // skip binary files
+			}
+
+			// Open file
+			f, err := os.Open(path)
 			if err != nil {
-				return nil
-			}
-			defer file.Close()
-
-			fi, err := file.Stat()
-			if err != nil || fi.Size() > 2*1024*1024 {
-				return nil // Skip large files (2MB limit) to prevent token bloat/OOM
+				continue
 			}
 
-			contentBytes, err := io.ReadAll(file)
+			fi, err := f.Stat()
 			if err != nil {
-				return nil
+				f.Close()
+				continue
+			}
+			if fi.Size() > 2*1024*1024 {
+				f.Close()
+				continue // skip files > 2MB
+			}
+
+			// Use buffer pool for small files
+			var contentBytes []byte
+			if fi.Size() <= 64*1024 {
+				bufPtr := bufferPool.Get().(*[]byte)
+				buf := *bufPtr
+				n, readErr := io.ReadFull(f, buf)
+				f.Close()
+				if readErr != nil && readErr != io.ErrUnexpectedEOF && readErr != io.EOF {
+					bufferPool.Put(bufPtr)
+					continue
+				}
+				contentBytes = make([]byte, n)
+				copy(contentBytes, buf[:n])
+				bufferPool.Put(bufPtr)
+			} else {
+				contentBytes, err = io.ReadAll(f)
+				f.Close()
+				if err != nil {
+					continue
+				}
 			}
 
 			contentStr := string(contentBytes)
 			if !strings.Contains(strings.ToLower(contentStr), queryLower) {
-				return nil
+				continue
 			}
 
-			// Extract matched lines with line numbers
+			// Extract matched lines
 			lines := strings.Split(contentStr, "\n")
-			matchedInFile := false
+			var matchedLines []string
 			relPath, err := filepath.Rel(root, path)
 			if err != nil {
 				relPath = path
@@ -227,43 +299,112 @@ func SearchFiles(pattern string, query string) (string, error) {
 
 			for idx, line := range lines {
 				if strings.Contains(strings.ToLower(line), queryLower) {
-					matchedInFile = true
 					preview := strings.TrimSpace(line)
 					if len(preview) > 100 {
 						preview = preview[:97] + "..."
 					}
-					results = append(results, fmt.Sprintf("%s:%d: %s", relPath, idx+1, preview))
+					matchedLines = append(matchedLines, fmt.Sprintf("%s:%d: %s", relPath, idx+1, preview))
 				}
 			}
 
-			if !matchedInFile {
-				results = append(results, fmt.Sprintf("%s: (matched in binary/unstructured format)", relPath))
+			if len(matchedLines) == 0 {
+				matchedLines = append(matchedLines, fmt.Sprintf("%s: (matched in binary/unstructured format)", relPath))
 			}
-		} else {
-			// Just matching the file name pattern
-			relPath, err := filepath.Rel(root, path)
-			if err != nil {
-				relPath = path
-			}
-			results = append(results, relPath)
+
+			resultsChan <- matchResult{lines: matchedLines}
 		}
+	}
 
-		return nil
-	})
+	// Start workers
+	wg.Add(numWorkers)
+	for i := 0; i < numWorkers; i++ {
+		go worker()
+	}
 
-	if err != nil {
-		return "", err
+	// Dispatcher: walk directory tree
+	dispatcherDone := make(chan error, 1)
+	go func() {
+		err := filepath.WalkDir(root, func(path string, d os.DirEntry, walkErr error) error {
+			if walkErr != nil {
+				return nil // skip problematic paths
+			}
+
+			name := d.Name()
+			// Skip hidden directories, build artifacts
+			if d.IsDir() {
+				if strings.HasPrefix(name, ".") && name != "." && name != ".." {
+					return filepath.SkipDir
+				}
+				if name == "node_modules" || name == "dist" || name == "build" || name == "vendor" {
+					return filepath.SkipDir
+				}
+				return nil
+			}
+
+			// Optional: pre-filter by name pattern to reduce jobs sent (only if both pattern and query)
+			if pattern != "" && query == "" {
+				// If only pattern, we already match in worker, but we can send all matching names to reduce jobs
+				nameLower := strings.ToLower(name)
+				match, _ := filepath.Match(patternLower, nameLower)
+				if !match {
+					return nil
+				}
+			}
+
+			jobs <- path
+			return nil
+		})
+		close(jobs)
+		dispatcherDone <- err
+	}()
+
+	// Wait for all workers to finish, then close results channel
+	go func() {
+		wg.Wait()
+		close(resultsChan)
+	}()
+
+	// Collector: read from resultsChan and aggregate
+	collectorWg := sync.WaitGroup{}
+	collectorWg.Add(1)
+	go func() {
+		defer collectorWg.Done()
+		for res := range resultsChan {
+			resultsMu.Lock()
+			if len(results) >= maxMatches {
+				resultsMu.Unlock()
+				continue // skip extra results after cap
+			}
+			remaining := maxMatches - len(results)
+			for _, line := range res.lines {
+				if remaining <= 0 {
+					break
+				}
+				results = append(results, line)
+				remaining--
+			}
+			resultsMu.Unlock()
+		}
+	}()
+
+	// Wait for dispatcher
+	dispatchErr := <-dispatcherDone
+
+	// Wait for collector to finish
+	collectorWg.Wait()
+
+	if dispatchErr != nil {
+		return "", dispatchErr
 	}
 
 	if len(results) == 0 {
 		return "Nenhum arquivo correspondente foi encontrado.", nil
 	}
 
-	// Cap results to prevent token blowout
-	const maxMatches = 100
-	if len(results) > maxMatches {
-		truncatedCount := len(results) - maxMatches
-		results = append(results[:maxMatches], fmt.Sprintf("... (e mais %d correspondências foram truncadas)", truncatedCount))
+	// Log if truncated
+	if cap(results) > maxMatches {
+		truncatedCount := cap(results) - maxMatches
+		results = append(results, fmt.Sprintf("... (e mais %d correspondências foram truncadas)", truncatedCount))
 	}
 
 	return strings.Join(results, "\n"), nil

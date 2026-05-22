@@ -23,3 +23,5 @@ hb/hb-bin
 *.exe
 bin/harness/harness
 bin/harness-cli
+
+.harness/

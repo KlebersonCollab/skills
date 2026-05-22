@@ -19,6 +19,7 @@
 - [ADR-003] Skills Visualization: Implementation of a React-based Dashboard and Graph to visualize the ecosystem (hub-ui-skills).
 - [ADR-004] Governance as Code: Mandatory automated auditing of SDD metadata and evidence via `make audit`.
 - [ADR-005] Integração do Grill-with-Docs: Práticas de Grilling Session (Phase 0: ALIGN), glossário central de terminologia (CONTEXT.md) e diretrizes rígidas de ADRs em .specs/architecture/.
+- [ADR-006] Token Distiller Nativo no Harness: Decisão de incorporar as funcionalidades de compressão de tokens (Caveman lite/full/ultra, Safety Valve, micro-compaction) diretamente no código Go do harness, eliminando dependência de skill externa e ganhando performance nativa.
 
 ---
 
