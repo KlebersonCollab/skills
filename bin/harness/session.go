@@ -131,9 +131,36 @@ func (t *SessionTree) FormatLinearHistoryText(startNodeID string) (string, error
 	return builder, nil
 }
 
-// PrintTree renders the DAG of sessions in a structured console directory format
-func (t *SessionTree) PrintTree() {
-	// Find roots (nodes with empty parent ID)
+func (t *SessionTree) GetTotalTokens() int {
+	totalTokens := 0
+	for _, n := range t.Nodes {
+		totalTokens += n.Tokens
+	}
+	return totalTokens
+}
+
+func (t *SessionTree) EstimateUSD(provider string) float64 {
+	totalTokens := t.GetTotalTokens()
+	ratePerToken := 0.0
+	switch strings.ToLower(provider) {
+	case "deepseek":
+		ratePerToken = 0.000002 // Média de $2.00 por 1M de tokens
+	case "gemini":
+		ratePerToken = 0.0000035 // Média de $3.50 por 1M de tokens
+	default:
+		ratePerToken = 0.0 // Ollama local ou custom grátis
+	}
+	return float64(totalTokens) * ratePerToken
+}
+
+func GetSkillsMetrics(root string) (available int, active int) {
+	skills := DiscoverSkills(root)
+	// For now, we consider all discovered skills as available and active
+	return len(skills), len(skills)
+}
+
+// PrintTree renders the DAG of sessions in a structured premium console box format
+func (t *SessionTree) PrintTree(provider string, rootPath string) {
 	var roots []Node
 	for _, n := range t.Nodes {
 		if n.ParentID == "" {
@@ -141,52 +168,90 @@ func (t *SessionTree) PrintTree() {
 		}
 	}
 
-	// Sort roots chronologically by timestamp
 	sort.Slice(roots, func(i, j int) bool {
 		return roots[i].Timestamp < roots[j].Timestamp
 	})
 
-	fmt.Printf("🌳 Sessão: %s | Objetivo: \"%s\"\n", t.SessionID, t.RootTask)
-	for _, root := range roots {
-		t.renderNode(root.NodeID, "", true)
+	totalNodes := len(t.Nodes)
+	totalTokens := t.GetTotalTokens()
+	cost := t.EstimateUSD(provider)
+	availSkills, activeSkills := GetSkillsMetrics(rootPath)
+
+	costStr := fmt.Sprintf("$%.4f USD", cost)
+	if cost == 0.0 {
+		costStr = "$0.00 (Local/Free)"
 	}
+
+	fmt.Printf("\n\033[38;5;99m┌── 🌳 HISTÓRICO E DAG DE DECISÃO DA SESSÃO ──────────────────────────────────────────\033[0m\n")
+	fmt.Printf("\033[38;5;99m│\033[0m  🆔 ID da Sessão : \033[35m%s\033[0m\n", t.SessionID)
+	fmt.Printf("\033[38;5;99m│\033[0m  🎯 Objetivo     : \"%s\"\n", t.RootTask)
+	fmt.Printf("\033[38;5;99m│\033[0m  📊 Estatísticas : \033[1m%d\033[0m nós | 🪙  \033[32m%d\033[0m tokens gastos | 💰 Est. Custo: \033[38;5;220m%s\033[0m\n", totalNodes, totalTokens, costStr)
+	fmt.Printf("\033[38;5;99m│\033[0m  🎓 Skills Hub   : \033[1;36m%d\033[0m skills registradas | \033[1;32m%d\033[0m skills ativas\n", availSkills, activeSkills)
+	fmt.Printf("\033[38;5;99m├── 🌲 ÁRVORE DE DECISÃO ─────────────────────────────────────────────────────────────\033[0m\n")
+
+	for _, r := range roots {
+		t.renderNode(r.NodeID, "│  ", true)
+	}
+
+	fmt.Printf("\033[38;5;99m└── ──────────────────────────────────────────────────────────────────────────────────\033[0m\n")
 }
 
 func (t *SessionTree) renderNode(nodeID string, indent string, isLast bool) {
 	node := t.Nodes[nodeID]
 
-	// Determine bullet character
-	marker := "├── "
-	nextIndent := indent + "│   "
+	connectorColor := "\033[38;5;242m"
+	marker := connectorColor + "├── "
+	nextIndent := indent + "\033[38;5;242m│\033[0m   "
 	if isLast {
-		marker = "└── "
+		marker = connectorColor + "└── "
 		nextIndent = indent + "    "
 	}
 
 	activeMarker := ""
 	if nodeID == t.ActiveNode {
-		activeMarker = " 🌟 (ATIVO)"
+		activeMarker = " \033[1;33m★ ATIVO\033[0m"
 	}
 
-	roleColor := "\033[36m" // Cyan for system
+	roleIcon := "⚙️"
+	roleColor := "\033[38;5;86m" // Ciano claro para system
+	roleLabel := "System"
 	switch node.Role {
 	case "user":
-		roleColor = "\033[32m" // Green for user
+		roleIcon = "👤"
+		roleColor = "\033[38;5;120m" // Verde para user
+		roleLabel = "User"
 	case "assistant":
-		roleColor = "\033[33m" // Yellow for assistant
+		roleIcon = "🤖"
+		roleColor = "\033[38;5;99m" // Roxo para assistant
+		roleLabel = "Assistant"
 	}
 	resetColor := "\033[0m"
 
-	// Short preview of content
-	preview := node.Content
-	if len(preview) > 50 {
-		preview = preview[:47] + "..."
+	timeStr := ""
+	tParsed, err := time.Parse(time.RFC3339, node.Timestamp)
+	if err == nil {
+		timeStr = tParsed.Format("15:04:05")
+	} else if len(node.Timestamp) >= 19 {
+		timeStr = node.Timestamp[11:19]
+	} else {
+		timeStr = node.Timestamp
 	}
+
+	tokenInfo := ""
+	if node.Tokens > 0 {
+		tokenInfo = fmt.Sprintf(" \033[90m(🪙 %dt)\033[0m", node.Tokens)
+	}
+
+	preview := node.Content
 	preview = strings.ReplaceAll(preview, "\n", " ")
+	preview = strings.ReplaceAll(preview, "\r", "")
+	if len(preview) > 55 {
+		preview = preview[:52] + "..."
+	}
 
-	fmt.Printf("%s%s[%s%s%s%s] %s%s%s\n", indent, marker, roleColor, node.NodeID, resetColor, activeMarker, roleColor, preview, resetColor)
+	fmt.Printf("%s%s[%s%s%s%s] %s%s %s%s - \033[38;5;248m%s\033[0m%s%s\n",
+		indent, marker, roleColor, node.NodeID, resetColor, activeMarker, roleColor, roleIcon, roleLabel, resetColor, timeStr, tokenInfo, resetColor)
 
-	// Find children
 	var children []Node
 	for _, n := range t.Nodes {
 		if n.ParentID == nodeID {
@@ -194,7 +259,6 @@ func (t *SessionTree) renderNode(nodeID string, indent string, isLast bool) {
 		}
 	}
 
-	// Sort children chronologically
 	sort.Slice(children, func(i, j int) bool {
 		return children[i].Timestamp < children[j].Timestamp
 	})

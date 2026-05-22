@@ -6,8 +6,8 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
-	"syscall"
 )
 
 // resolvePath returns the absolute path within the workspace root
@@ -117,7 +117,7 @@ func PatchFile(path string, target string, replacement string) error {
 	return nil
 }
 
-// ExecuteCommand executes a subprocess command via bash (enforcing SDD gate)
+// ExecuteCommand executes a subprocess command via system shell (enforcing SDD gate)
 func ExecuteCommand(command string) (string, int, error) {
 	if err := VerifySDDGated(); err != nil {
 		return "", -1, err
@@ -128,7 +128,17 @@ func ExecuteCommand(command string) (string, int, error) {
 		return "", -1, err
 	}
 
-	cmd := exec.Command("bash", "-c", command)
+	// OS-agnostic command routing
+	var shell, shellFlag string
+	if runtime.GOOS == "windows" {
+		shell = "cmd.exe"
+		shellFlag = "/c"
+	} else {
+		shell = "bash"
+		shellFlag = "-c"
+	}
+
+	cmd := exec.Command(shell, shellFlag, command)
 	cmd.Dir = root
 
 	outputBytes, err := cmd.CombinedOutput()
@@ -137,8 +147,7 @@ func ExecuteCommand(command string) (string, int, error) {
 	exitCode := 0
 	if err != nil {
 		if exitError, ok := err.(*exec.ExitError); ok {
-			ws := exitError.Sys().(syscall.WaitStatus)
-			exitCode = ws.ExitStatus()
+			exitCode = exitError.ExitCode()
 		} else {
 			return output, -1, err
 		}
@@ -146,3 +155,117 @@ func ExecuteCommand(command string) (string, int, error) {
 
 	return output, exitCode, nil
 }
+
+// SearchFiles performs pure Go OS-agnostic search on files by name patterns and/or contents query
+func SearchFiles(pattern string, query string) (string, error) {
+	root, err := FindWorkspaceRoot()
+	if err != nil {
+		return "", err
+	}
+
+	var results []string
+	patternLower := strings.ToLower(pattern)
+	queryLower := strings.ToLower(query)
+
+	err = filepath.WalkDir(root, func(path string, d os.DirEntry, err error) error {
+		if err != nil {
+			return nil // ignore individual path errors to continue walk
+		}
+
+		name := d.Name()
+		nameLower := strings.ToLower(name)
+
+		// Performance: Skip system, harness or build dirs
+		if d.IsDir() {
+			if strings.HasPrefix(name, ".") && name != "." && name != ".." {
+				return filepath.SkipDir
+			}
+			if name == "node_modules" || name == "dist" || name == "build" || name == "vendor" {
+				return filepath.SkipDir
+			}
+			return nil
+		}
+
+		// Match filename pattern if provided
+		if pattern != "" {
+			match, err := filepath.Match(patternLower, nameLower)
+			if err != nil || !match {
+				return nil
+			}
+		}
+
+		// Match content query if provided
+		if query != "" {
+			file, err := os.Open(path)
+			if err != nil {
+				return nil
+			}
+			defer file.Close()
+
+			fi, err := file.Stat()
+			if err != nil || fi.Size() > 2*1024*1024 {
+				return nil // Skip large files (2MB limit) to prevent token bloat/OOM
+			}
+
+			contentBytes, err := io.ReadAll(file)
+			if err != nil {
+				return nil
+			}
+
+			contentStr := string(contentBytes)
+			if !strings.Contains(strings.ToLower(contentStr), queryLower) {
+				return nil
+			}
+
+			// Extract matched lines with line numbers
+			lines := strings.Split(contentStr, "\n")
+			matchedInFile := false
+			relPath, err := filepath.Rel(root, path)
+			if err != nil {
+				relPath = path
+			}
+
+			for idx, line := range lines {
+				if strings.Contains(strings.ToLower(line), queryLower) {
+					matchedInFile = true
+					preview := strings.TrimSpace(line)
+					if len(preview) > 100 {
+						preview = preview[:97] + "..."
+					}
+					results = append(results, fmt.Sprintf("%s:%d: %s", relPath, idx+1, preview))
+				}
+			}
+
+			if !matchedInFile {
+				results = append(results, fmt.Sprintf("%s: (matched in binary/unstructured format)", relPath))
+			}
+		} else {
+			// Just matching the file name pattern
+			relPath, err := filepath.Rel(root, path)
+			if err != nil {
+				relPath = path
+			}
+			results = append(results, relPath)
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		return "", err
+	}
+
+	if len(results) == 0 {
+		return "Nenhum arquivo correspondente foi encontrado.", nil
+	}
+
+	// Cap results to prevent token blowout
+	const maxMatches = 100
+	if len(results) > maxMatches {
+		truncatedCount := len(results) - maxMatches
+		results = append(results[:maxMatches], fmt.Sprintf("... (e mais %d correspondências foram truncadas)", truncatedCount))
+	}
+
+	return strings.Join(results, "\n"), nil
+}
+

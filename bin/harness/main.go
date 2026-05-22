@@ -519,11 +519,12 @@ func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string
 		root, err := FindWorkspaceRoot()
 		skillsText := "Nenhuma skill ativa encontrada no Hub."
 		if err == nil {
-			activeSkills := GetActiveSkillsList(root)
+			activeSkills := DiscoverSkills(root)
 			if len(activeSkills) > 0 {
 				skillsText = "As seguintes Skills de Engenharia estão ativas e disponíveis no Hub (cada uma possui regras rígidas e diretrizes de desenvolvimento no arquivo SKILL.md de seu respectivo diretório):\n"
 				for _, sk := range activeSkills {
-					skillsText += fmt.Sprintf("  - %s (caminho: %s/SKILL.md)\n", sk, sk)
+					// Padrão de mercado: injetar NOME e DESCRIÇÃO para o agente entender o contexto sem precisar ler o arquivo cego
+					skillsText += fmt.Sprintf("  - %s: %s (caminho: %s/SKILL.md)\n", sk.Name, sk.Description, sk.Path)
 				}
 				skillsText += "\n💡 REQUISITO DE CONFORMIDADE OBRIGATÓRIA: Se o usuário pedir para usar uma skill ou se a tarefa envolver o domínio de uma delas (por exemplo, usar 'sdd', 'python-uv', 'clean-code-mentor', 'git-workflow', etc.), você DEVE obrigatoriamente ler o arquivo SKILL.md correspondente utilizando a ferramenta de leitura <tool:read_file path=\"nome_da_skill/SKILL.md\"/> para entender e aplicar todas as regras de qualidade, governança e engenharia nela especificadas. Não adivinhe as diretrizes; leia a Skill correspondente antes de continuar a execução.\n"
 			}
@@ -770,24 +771,4 @@ func filepathWalkDir(root string, fn func(path string, d fs.DirEntry, err error)
 	return filepath.WalkDir(root, fn)
 }
 
-func GetActiveSkillsList(root string) []string {
-	files, err := os.ReadDir(root)
-	if err != nil {
-		return nil
-	}
-	var list []string
-	for _, file := range files {
-		if file.IsDir() && !strings.HasPrefix(file.Name(), ".") && file.Name() != "bin" && file.Name() != "architecture" && file.Name() != "docs" {
-			skillMD := filepath.Join(root, file.Name(), "SKILL.md")
-			if _, err := os.Stat(skillMD); err == nil {
-				list = append(list, file.Name())
-			} else {
-				subSkillMD := filepath.Join(root, file.Name(), ".agents", "skills", file.Name(), "SKILL.md")
-				if _, err := os.Stat(subSkillMD); err == nil {
-					list = append(list, file.Name())
-				}
-			}
-		}
-	}
-	return list
-}
+
