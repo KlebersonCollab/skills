@@ -6,7 +6,7 @@
 - [x] TASK-1: Adicionar campo `StreamResponsePath string` e `Streaming bool` em `ProviderConfig` (client.go)
 - [x] TASK-2: Implementar `CallLLMStream` — leitura chunked SSE, extração parcial, callback onChunk (client.go)
 - [x] TASK-3: Implementar `extractStreamToken` — parser genérico para SSE (Gemini, DeepSeek, Ollama) com fallback automático (client.go)
-- [x] TASK-4: Adicionar flag `--stream` / `-s` e modificar `agentExecutionLoop` para usar streaming (main.go)
+- [x] TASK-4: Adicionar flag `--stream` / `-s` e modificar `agentExecutionLoop` para usar streaming (main.go) ✅
 - [x] TASK-5: Atualizar wizard `init` para salvar `Streaming` e `StreamResponsePath` por provider (main.go)
 - [x] TASK-6: Testes unitários — 11 testes: extração de tokens, integração mock SSE, DeepSeek delta, Ollama NDJSON, fallback, erro HTTP, stream vazio (harness_test.go)
 - [x] TASK-7: `go vet` ✅, `go test` ✅ (100% passing), `go build` ✅
