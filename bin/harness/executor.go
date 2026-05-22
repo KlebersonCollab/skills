@@ -63,4 +63,4 @@ func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string
 		systemInstructions := agentsMandates
 		systemInstructions += "Você é um Harness AI Agent. Você tem acesso às seguintes ferramentas de console em formato XML:\n"
 		systemInstructions += "- Ler Arquivo: <tool:read_file path=\"caminho/relativo\"/>\n"
-		systemInstructions += "- Escrever/Sobrescrever: <tool:write_file path=\"caminho/relativo\">conteudo</tool:write_file>\n"</tool:write_file>\n"
+		systemInstructions += "- Escrever/Sobrescrever: <tool:write_file path=\"caminho/relativo\">conteudo</tool:write_file>\n"
