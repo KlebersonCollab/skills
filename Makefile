@@ -1,7 +1,22 @@
-.PHONY: audit help sync install-hooks dash-install dash-start dash-stop dash-restart
+.PHONY: audit help sync install-hooks dash-install dash-start dash-stop dash-restart harness-build harness-start harness-stop
 
 # Default target
 all: help
+
+## harness-build: Compiles the Go agent harness
+harness-build:
+	@echo "Compiling harness..."
+	@cd bin/harness && go build -o ../harness-cli .
+	@echo "✅ Harness compiled to bin/harness-cli"
+
+## harness-start: Starts the interactive Go agent harness
+harness-start: harness-build
+	@./bin/harness-cli
+
+## harness-stop: Stops any running harness processes
+harness-stop:
+	@echo "Stopping harness processes..."
+	@pkill -f bin/harness-cli || echo "No running harness found."
 
 ## audit: Runs the SDD v2.3.0 Observable Governance health check
 audit:
