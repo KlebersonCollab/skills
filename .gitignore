@@ -21,3 +21,4 @@ caveman-main/
 hb-bin
 hb/hb-bin
 *.exe
+bin/harness/harness

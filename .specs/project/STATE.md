@@ -17,8 +17,10 @@ Refactoring to Observable Governance (SDD v2.3.0) is in progress.
 - [x] Fix version inconsistencies across `SKILL.md` files (v2.3.0).
 - [x] Standardize `fastapi-expert` to English.
 - [x] Create executable examples for `benchmark-expert` and `token-distiller`.
+- [x] Transform Skills Hub to execution harness in Go (pi.dev equal) (TASK-1 to TASK-7).
 
 ## Progress Tracking
+- [x] Feature: `harness-transformation` (Completed).
 - [x] Core Purity: `sdd/SKILL.md` (v2.3.0).
 - [x] Sub-skill: `sdd-explorer` (v2.3.0).
 - [x] Sub-skill: `sdd-orchestrator` (v2.3.0).
@@ -42,10 +44,10 @@ Refactoring to Observable Governance (SDD v2.3.0) is in progress.
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "GLOBAL-MANDATES-EVOLUTION"
+feature_id: "HARNESS-TRANSFORMATION"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-22T14:30:00Z"
-evidence_checksum: "ffb546e"
+last_update: "2026-05-22T14:48:00Z"
+evidence_checksum: "go-test-pass-005"
 ```
 
