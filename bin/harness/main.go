@@ -529,8 +529,19 @@ func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string
 			}
 		}
 
+		// Load AGENTS.md as mandatory system instructions (industry standard: Cursor, Claude Code, Gemini CLI)
+		agentsMandates := ""
+		if err == nil {
+			agentsMDPath := filepath.Join(root, "AGENTS.md")
+			if agentsMDContent, readErr := os.ReadFile(agentsMDPath); readErr == nil {
+				agentsMandates = "# MANDATOS GLOBAIS DO WORKSPACE (AGENTS.md)\nAs regras a seguir foram carregadas automaticamente do arquivo AGENTS.md na raiz do workspace e são OBRIGATÓRIAS para toda e qualquer ação do agente:\n\n" + string(agentsMDContent) + "\n\n---\n\n"
+				fmt.Printf("\033[38;5;99m│\033[0m  📜 AGENTS.md carregado (%d bytes) como instrução mandatória.\n", len(agentsMDContent))
+			}
+		}
+
 		// Inject system rules about tool usage so the agent knows how to use tools
-		systemInstructions := `Você é um Harness AI Agent. Você tem acesso às seguintes ferramentas de console em formato XML:\n` +
+		systemInstructions := agentsMandates +
+			`Você é um Harness AI Agent. Você tem acesso às seguintes ferramentas de console em formato XML:\n` +
 			`- Ler Arquivo: <tool:read_file path="caminho/relativo"/>\n` +
 			`- Escrever/Sobrescrever: <tool:write_file path="caminho/relativo">conteudo</tool:write_file>\n` +
 			`- Remendo cirúrgico de bloco único (Patch): <tool:patch_file path="caminho/relativo"><target>conteudo_exato_antigo</target><replacement>novo_conteudo</replacement></tool:patch_file>\n` +
