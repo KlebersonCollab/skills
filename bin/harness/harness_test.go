@@ -2,11 +2,15 @@ package main
 
 import (
 	"encoding/json"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
+	"sync/atomic"
 	"testing"
+	"time"
 )
 
 func TestLoadSaveConfig(t *testing.T) {
@@ -204,5 +208,52 @@ func TestRegexSearchFiles(t *testing.T) {
 	}
 	if query != "" {
 		t.Errorf("expected query to be empty, got %q", query)
+	}
+}
+
+func TestCallLLMRetryOnTimeout(t *testing.T) {
+	// Atomic counter to track request attempts
+	var callCount int64
+
+	// Create a slow mock HTTP server
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		atomic.AddInt64(&callCount, 1)
+		// Delay response to trigger context timeout
+		time.Sleep(50 * time.Millisecond)
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte(`{"text":"should timeout and retry"}`))
+	}))
+	defer server.Close()
+
+	// Redefine llmRequestTimeout to 15ms so it triggers timeout on the 50ms delayed server
+	originalTimeout := llmRequestTimeout
+	llmRequestTimeout = 15 * time.Millisecond
+	defer func() {
+		llmRequestTimeout = originalTimeout
+	}()
+
+	cfg := &AppConfig{
+		ActiveProvider: "mock-llm",
+		Providers: map[string]ProviderConfig{
+			"mock-llm": {
+				URL:          server.URL,
+				Headers:      map[string]string{"Content-Type": "application/json"},
+				BodyTemplate: `{"prompt": "{{prompt}}"}`,
+				ResponsePath: "text",
+			},
+		},
+	}
+
+	// Suppress stderr to keep stdout clean during retry prints if necessary
+	// But it prints on stdout, so we just run normally.
+	_, err := CallLLM(cfg, "test prompt", "")
+	if err == nil {
+		t.Errorf("expected CallLLM to fail after all attempts timed out, but got success")
+	}
+
+	expectedAttempts := int64(3)
+	actualAttempts := atomic.LoadInt64(&callCount)
+	if actualAttempts != expectedAttempts {
+		t.Errorf("expected exact %d attempts due to retry on timeout, got %d", expectedAttempts, actualAttempts)
 	}
 }

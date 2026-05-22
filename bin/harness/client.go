@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -9,7 +10,10 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
+
+var llmRequestTimeout = 2 * time.Minute
 
 type ProviderConfig struct {
 	URL          string            `json:"url"`
@@ -121,41 +125,83 @@ func CallLLM(config *AppConfig, prompt string, history string) (string, error) {
 	bodyStr := strings.ReplaceAll(provider.BodyTemplate, "{{prompt}}", escapedPrompt)
 	bodyStr = strings.ReplaceAll(bodyStr, "{{history}}", escapedHistory)
 
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer([]byte(bodyStr)))
-	if err != nil {
-		return "", fmt.Errorf("failed to create request: %w", err)
+	maxAttempts := 3
+	var lastErr error
+	var extractedText string
+
+	for attempt := 1; attempt <= maxAttempts; attempt++ {
+		var err error
+		extractedText, err = func() (string, error) {
+			ctx, cancel := context.WithTimeout(context.Background(), llmRequestTimeout)
+			defer cancel()
+
+			req, err := http.NewRequest("POST", url, bytes.NewBuffer([]byte(bodyStr)))
+			if err != nil {
+				return "", fmt.Errorf("failed to create request: %w", err)
+			}
+
+			for k, v := range provider.Headers {
+				resolvedVal := resolveEnvVars(v)
+				req.Header.Set(k, resolvedVal)
+			}
+
+			req = req.WithContext(ctx)
+			client := &http.Client{}
+			resp, err := client.Do(req)
+			if err != nil {
+				return "", err
+			}
+			defer resp.Body.Close()
+
+			respBody, err := io.ReadAll(resp.Body)
+			if err != nil {
+				return "", fmt.Errorf("failed to read response body: %w", err)
+			}
+
+			if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+				return "", fmt.Errorf("API error (status %d): %s", resp.StatusCode, string(respBody))
+			}
+
+			var jsonResponse interface{}
+			if err := json.Unmarshal(respBody, &jsonResponse); err != nil {
+				return "", fmt.Errorf("failed to parse JSON response: %w", err)
+			}
+
+			text, err := getJSONValue(jsonResponse, provider.ResponsePath)
+			if err != nil {
+				return "", fmt.Errorf("failed to extract text from path '%s': %w", provider.ResponsePath, err)
+			}
+
+			return text, nil
+		}()
+
+		if err == nil {
+			return extractedText, nil
+		}
+
+		lastErr = err
+		// Detect if the error was due to timeout (either context timeout or net timeout)
+		isTimeout := false
+		if err == context.DeadlineExceeded {
+			isTimeout = true
+		} else if netErr, ok := err.(interface{ Timeout() bool }); ok && netErr.Timeout() {
+			isTimeout = true
+		} else if strings.Contains(err.Error(), "context deadline exceeded") || strings.Contains(err.Error(), "Client.Timeout") {
+			isTimeout = true
+		}
+
+		if attempt < maxAttempts {
+			// Clear the current spinner output dynamically before logging the warning
+			fmt.Print("\r\033[K")
+			if isTimeout {
+				fmt.Printf("\033[38;5;208m⚠️  Timeout de 2 minutos atingido para %s. Iniciando nova tentativa (%d/%d)...\033[0m\n", strings.ToUpper(providerName), attempt+1, maxAttempts)
+			} else {
+				fmt.Printf("\033[38;5;196m⚠️  Erro na chamada para %s: %v. Iniciando nova tentativa (%d/%d)...\033[0m\n", strings.ToUpper(providerName), err, attempt+1, maxAttempts)
+			}
+			// Small delay before retrying to prevent connection flooding
+			time.Sleep(500 * time.Millisecond)
+		}
 	}
 
-	for k, v := range provider.Headers {
-		resolvedVal := resolveEnvVars(v)
-		req.Header.Set(k, resolvedVal)
-	}
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		return "", fmt.Errorf("HTTP request failed: %w", err)
-	}
-	defer resp.Body.Close()
-
-	respBody, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return "", fmt.Errorf("failed to read response body: %w", err)
-	}
-
-	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
-		return "", fmt.Errorf("API error (status %d): %s", resp.StatusCode, string(respBody))
-	}
-
-	var jsonResponse interface{}
-	if err := json.Unmarshal(respBody, &jsonResponse); err != nil {
-		return "", fmt.Errorf("failed to parse JSON response: %w", err)
-	}
-
-	extractedText, err := getJSONValue(jsonResponse, provider.ResponsePath)
-	if err != nil {
-		return "", fmt.Errorf("failed to extract text from path '%s': %w", provider.ResponsePath, err)
-	}
-
-	return extractedText, nil
+	return "", fmt.Errorf("HTTP request failed after %d attempts: %w", maxAttempts, lastErr)
 }
