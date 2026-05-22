@@ -42,5 +42,5 @@ feature_id: "GLOBAL-MANDATES-EVOLUTION"
 phase: "VERIFY"
 status: "COMPLETED"
 last_update: "2026-05-22T14:30:00Z"
-evidence_checksum: "make-audit-success"
+evidence_checksum: "ffb546e"
 ```

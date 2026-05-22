@@ -131,5 +131,5 @@ feature_id: "GLOBAL-MANDATES-EVOLUTION"
 phase: "IMPLEMENT"
 status: "COMPLETED"
 last_update: "2026-05-22T14:46:00Z"
-evidence_checksum: "aa6d72b"
+evidence_checksum: "ffb546e"
 ```
