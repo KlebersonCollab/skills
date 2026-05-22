@@ -1,5 +1,5 @@
 
-# Tasks — Multi-Agent Swarm (Completo)
+# Tasks — Multi-Agent Swarm
 
 ## Phase 1: Core Types ✅
 - [x] **T1.1**: Define SwarmConfig, SwarmAgent, SwarmRole types in `swarm.go`
