@@ -18,7 +18,7 @@ var (
 	writeFileRegex   = regexp.MustCompile(`(?s)<tool:write_file\s+path="([^"]+)">([\s\S]*?)</tool:write_file>`)
 	patchFileRegex   = regexp.MustCompile(`(?s)<tool:patch_file\s+path="([^"]+)"><target>([\s\S]*?)</target><replacement>([\s\S]*?)</replacement></tool:patch_file>`)
 	execCmdRegex     = regexp.MustCompile(`(?s)<tool:execute_command>([\s\S]*?)</tool:execute_command>`)
-	searchFilesRegex = regexp.MustCompile(`<tool:search_files\s+([^/>]*)/?>`)
+	searchFilesRegex = regexp.MustCompile(`<tool:search_files\s+([\s\S]*?)\s*/?>`)
 	patternAttrRegex = regexp.MustCompile(`pattern="([^"]*)"`)
 	queryAttrRegex   = regexp.MustCompile(`query="([^"]*)"`)
 )
@@ -516,6 +516,19 @@ func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string
 			return
 		}
 
+		root, err := FindWorkspaceRoot()
+		skillsText := "Nenhuma skill ativa encontrada no Hub."
+		if err == nil {
+			activeSkills := GetActiveSkillsList(root)
+			if len(activeSkills) > 0 {
+				skillsText = "As seguintes Skills de Engenharia estão ativas e disponíveis no Hub (cada uma possui regras rígidas e diretrizes de desenvolvimento no arquivo SKILL.md de seu respectivo diretório):\n"
+				for _, sk := range activeSkills {
+					skillsText += fmt.Sprintf("  - %s (caminho: %s/SKILL.md)\n", sk, sk)
+				}
+				skillsText += "\n💡 REQUISITO DE CONFORMIDADE OBRIGATÓRIA: Se o usuário pedir para usar uma skill ou se a tarefa envolver o domínio de uma delas (por exemplo, usar 'sdd', 'python-uv', 'clean-code-mentor', 'git-workflow', etc.), você DEVE obrigatoriamente ler o arquivo SKILL.md correspondente utilizando a ferramenta de leitura <tool:read_file path=\"nome_da_skill/SKILL.md\"/> para entender e aplicar todas as regras de qualidade, governança e engenharia nela especificadas. Não adivinhe as diretrizes; leia a Skill correspondente antes de continuar a execução.\n"
+			}
+		}
+
 		// Inject system rules about tool usage so the agent knows how to use tools
 		systemInstructions := `Você é um Harness AI Agent. Você tem acesso às seguintes ferramentas de console em formato XML:\n` +
 			`- Ler Arquivo: <tool:read_file path="caminho/relativo"/>\n` +
@@ -523,7 +536,8 @@ func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string
 			`- Remendo cirúrgico de bloco único (Patch): <tool:patch_file path="caminho/relativo"><target>conteudo_exato_antigo</target><replacement>novo_conteudo</replacement></tool:patch_file>\n` +
 			`- Buscar Arquivos: <tool:search_files pattern="*.go" query="texto_busca"/> (Ambos os atributos são opcionais. Filtra por nome e/ou busca ocorrências de texto recursivamente no workspace de forma extremamente rápida e cross-platform)\n` +
 			`- Executar Comando: <tool:execute_command>bash_comando</tool:execute_command>\n\n` +
-			`Para usar qualquer ferramenta, emita a tag correspondente. Suas ações de escrita e comandos de bash são automaticamente filtrados pela governança SDD. Você só pode modificar arquivos se o STATE.md estiver em fase de IMPLEMENT ou VERIFY.\n\n`
+			`Para usar qualquer ferramenta, emita a tag correspondente. Suas ações de escrita e comandos de bash são automaticamente filtrados pela governança SDD. Você só pode modificar arquivos se o STATE.md estiver em fase de IMPLEMENT ou VERIFY.\n\n` +
+			skillsText + "\n"
 
 		promptWithContext := systemInstructions + "Histórico atual da sessão:\n" + historyText + "\nContinue respondendo ao usuário ou chame uma ferramenta se necessário."
 
@@ -723,4 +737,26 @@ func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string
 
 func filepathWalkDir(root string, fn func(path string, d fs.DirEntry, err error) error) error {
 	return filepath.WalkDir(root, fn)
+}
+
+func GetActiveSkillsList(root string) []string {
+	files, err := os.ReadDir(root)
+	if err != nil {
+		return nil
+	}
+	var list []string
+	for _, file := range files {
+		if file.IsDir() && !strings.HasPrefix(file.Name(), ".") && file.Name() != "bin" && file.Name() != "architecture" && file.Name() != "docs" {
+			skillMD := filepath.Join(root, file.Name(), "SKILL.md")
+			if _, err := os.Stat(skillMD); err == nil {
+				list = append(list, file.Name())
+			} else {
+				subSkillMD := filepath.Join(root, file.Name(), ".agents", "skills", file.Name(), "SKILL.md")
+				if _, err := os.Stat(subSkillMD); err == nil {
+					list = append(list, file.Name())
+				}
+			}
+		}
+	}
+	return list
 }

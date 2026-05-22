@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"testing"
 )
@@ -144,5 +145,64 @@ func TestExecuteCommand(t *testing.T) {
 
 	if !strings.Contains(out, "harness_run") {
 		t.Errorf("expected output to contain 'harness_run', got '%s'", out)
+	}
+}
+
+func TestSearchFiles(t *testing.T) {
+	// 1. Test seeking tools.go by name pattern
+	res, err := SearchFiles("tools.go", "")
+	if err != nil {
+		t.Fatalf("SearchFiles failed: %v", err)
+	}
+	if !strings.Contains(res, "bin/harness/tools.go") {
+		t.Errorf("expected search result to contain 'bin/harness/tools.go', got:\n%s", res)
+	}
+
+	// 2. Test seeking a query inside main.go
+	res2, err := SearchFiles("main.go", "runInteractiveLoop")
+	if err != nil {
+		t.Fatalf("SearchFiles failed: %v", err)
+	}
+	if !strings.Contains(res2, "bin/harness/main.go:") {
+		t.Errorf("expected search results to find 'runInteractiveLoop' inside main.go, got:\n%s", res2)
+	}
+
+	// 3. Test non-matching query
+	res3, err := SearchFiles("*", "non_existent_"+"token_antigravity_xyz")
+	if err != nil {
+		t.Fatalf("SearchFiles failed: %v", err)
+	}
+	if res3 != "Nenhum arquivo correspondente foi encontrado." {
+		t.Errorf("expected no files match result, got: %s", res3)
+	}
+}
+
+func TestRegexSearchFiles(t *testing.T) {
+	searchFilesRegex := regexp.MustCompile(`<tool:search_files\s+([\s\S]*?)\s*/?>`)
+	patternAttrRegex := regexp.MustCompile(`pattern="([^"]*)"`)
+	queryAttrRegex := regexp.MustCompile(`query="([^"]*)"`)
+
+	input := `<tool:search_files pattern="*" query="" path="/home/kleberson/Documentos/skills/hub-ui-skills"/>`
+	matches := searchFilesRegex.FindAllStringSubmatch(input, -1)
+	if len(matches) == 0 {
+		t.Fatalf("expected regex to match input string, got 0 matches")
+	}
+
+	attrs := matches[0][1]
+	pattern := ""
+	query := ""
+
+	if patMatch := patternAttrRegex.FindStringSubmatch(attrs); len(patMatch) > 1 {
+		pattern = patMatch[1]
+	}
+	if qMatch := queryAttrRegex.FindStringSubmatch(attrs); len(qMatch) > 1 {
+		query = qMatch[1]
+	}
+
+	if pattern != "*" {
+		t.Errorf("expected pattern to be '*', got %q", pattern)
+	}
+	if query != "" {
+		t.Errorf("expected query to be empty, got %q", query)
 	}
 }
