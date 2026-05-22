@@ -1,0 +1,6 @@
+sem fechar`)
+	if err == nil { t.Error("expected error for malformed input") }
+}
+
+func TestIsMalformed_Valid(t *testing.T) {
+	if err := isMalformed(`<tool:read_file path="a"/> <tool:write_file path="b">ok

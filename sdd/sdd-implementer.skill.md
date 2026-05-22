@@ -53,6 +53,6 @@ version: "2.3.0"
 feature_id: "HUB-ALIGNMENT"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-06T09:46:10Z"
+last_update: "2026-05-22T15:00:00Z"
 evidence_checksum: "8e52f6a"
 ```

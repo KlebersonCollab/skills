@@ -1,4 +1,4 @@
-.PHONY: audit help sync install-hooks dash-install dash-start dash-stop dash-restart harness-build harness-start harness-stop
+.PHONY: audit skill-validate help sync install-hooks dash-install dash-start dash-stop dash-restart harness-build harness-start harness-stop
 
 # Default target
 all: help
@@ -18,9 +18,13 @@ harness-stop:
 	@echo "Stopping harness processes..."
 	@pkill -f bin/harness-cli || echo "No running harness found."
 
-## audit: Runs the SDD v2.3.0 Observable Governance health check
-audit:
+## audit: Runs the SDD v2.3.0 Observable Governance health check (includes skill validation)
+audit: skill-validate
 	@python3 bin/check-health.py
+
+## skill-validate: Validates all .skill.md files for metadata integrity and internal links
+skill-validate:
+	@python3 bin/validate-skills.py
 
 ## sync: Synchronizes skills to .agents and .gemini governance directories
 sync:

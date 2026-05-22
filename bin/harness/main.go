@@ -24,9 +24,38 @@ var (
 )
 
 func main() {
-	if len(os.Args) > 1 {
-		cmd := os.Args[1]
+	// Parse flags before positional commands
+	streamMode := false
+	remainingArgs := os.Args[1:]
+
+	for i := 0; i < len(remainingArgs); i++ {
+		arg := remainingArgs[i]
+		if arg == "--stream" || arg == "-s" {
+			streamMode = true
+			remainingArgs = append(remainingArgs[:i], remainingArgs[i+1:]...)
+			i--
+		} else if arg == "--help" || arg == "-h" {
+			remainingArgs[i] = "help"
+		}
+	}
+
+	if len(remainingArgs) > 0 {
+		cmd := remainingArgs[0]
 		switch cmd {
+		case "mcp-server":
+			runMCPServer()
+			return
+		case "mcp-client":
+			if len(remainingArgs) < 3 {
+				fmt.Println("Usage: harness mcp-client <transport> <address>")
+				fmt.Println("  transport: \x27stdio\x27 or \x27sse\x27")
+				fmt.Println("  address: command+args for stdio, URL for sse")
+				return
+			}
+			transportType := remainingArgs[1]
+			address := strings.Join(remainingArgs[2:], " ")
+			runMCPClient(transportType, address)
+			return
 		case "init":
 			runInitWizard()
 			return
@@ -34,26 +63,29 @@ func main() {
 			printHelp()
 			return
 		default:
-			fmt.Printf("Comando desconhecido: %s. Use 'harness help' para ver os comandos disponíveis.\n", cmd)
+			fmt.Printf("Comando desconhecido: %s. Use 'harness help' para ver os comandos disponiveis.\n", cmd)
 			return
 		}
 	}
 
-	runInteractiveLoop()
+	runInteractiveLoop(streamMode)
 }
 
 func printHelp() {
 	fmt.Println("🚀 Harness - AI Agent Execution Engine (Go Edition)")
 	fmt.Println("\nUso:")
-	fmt.Println("  harness        - Inicia o loop de console interativo do agente")
-	fmt.Println("  harness init   - Assistente interativo de configuração de LLM Providers")
-	fmt.Println("  harness help   - Exibe esta mensagem de ajuda")
+	fmt.Println("  harness          - Inicia o loop de console interativo do agente")
+	fmt.Println("  harness init     - Assistente interativo de configuração de LLM Providers")
+	fmt.Println("  harness help     - Exibe esta mensagem de ajuda")
+	fmt.Println("\nFlags:")
+	fmt.Println("  --stream, -s     - Habilita modo SSE streaming (tokens em tempo real)")
+	fmt.Println("  --help, -h       - Exibe esta mensagem de ajuda")
 	fmt.Println("\nComandos de console (/slash commands):")
-	fmt.Println("  /history       - Desenha a árvore DAG cronológica da sessão atual")
-	fmt.Println("  /checkout <id> - Altera o ponteiro ativo para o nó selecionado (branching)")
-	fmt.Println("  /sessions      - Lista todas as sessões salvas no diretório local")
-	fmt.Println("  /skills        - Lista todas as skills disponíveis no workspace")
-	fmt.Println("  /exit, /quit   - Encerra a execução do harness")
+	fmt.Println("  /history         - Desenha a árvore DAG cronológica da sessão atual")
+	fmt.Println("  /checkout <id>   - Altera o ponteiro ativo para o nó selecionado (branching)")
+	fmt.Println("  /sessions        - Lista todas as sessões salvas no diretório local")
+	fmt.Println("  /skills          - Lista todas as skills disponíveis no workspace")
+	fmt.Println("  /exit, /quit     - Encerra a execução do harness")
 }
 
 func runInitWizard() {
@@ -217,7 +249,7 @@ func runInitWizard() {
 	fmt.Printf("🎉 Configuração salva com sucesso em %s!\n", configPath)
 }
 
-func runInteractiveLoop() {
+func runInteractiveLoop(streamMode bool) {
 	root, err := FindWorkspaceRoot()
 	if err != nil {
 		fmt.Printf("❌ Erro de Workspace: %v\n", err)
@@ -384,7 +416,7 @@ func runInteractiveLoop() {
 		tree.AddNode("user", userInput, len(userInput)/4)
 		tree.Save(sessionFile)
 
-		agentExecutionLoop(config, tree, sessionFile)
+		agentExecutionLoop(config, tree, sessionFile, streamMode)
 	}
 }
 
@@ -504,7 +536,7 @@ func startSpinner(suffix string) chan struct{} {
 	return stopChan
 }
 
-func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string) {
+func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string, streamMode bool) {
 	maxIterations := 25
 	consecutiveFailures := 0
 	maxConsecutiveFailures := 8
@@ -573,9 +605,17 @@ func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string
 
 		promptWithContext := systemInstructions + "Histórico atual da sessão:\n" + historyText + "\nContinue respondendo ao usuário ou chame uma ferramenta se necessário."
 
-		stopSpinner := startSpinner(fmt.Sprintf("Chamando LLM (%s) [Iteração %d/%d, Falhas Consecutivas: %d/%d]...", config.ActiveProvider, i+1, maxIterations, consecutiveFailures, maxConsecutiveFailures))
-		llmResponse, err := CallLLM(config, promptWithContext, "")
-		close(stopSpinner)
+				useStreaming := streamMode || (config.Providers[config.ActiveProvider].Streaming)
+		stopSpinner := startSpinner(fmt.Sprintf("Chamando LLM (%s) [Iteracao %d/%d, Falhas Consecutivas: %d/%d]...", config.ActiveProvider, i+1, maxIterations, consecutiveFailures, maxConsecutiveFailures))
+		var llmResponse string
+		if useStreaming {
+			close(stopSpinner)
+			fmt.Printf(" stream tokens > ")
+			llmResponse, err = CallLLMStream(config, promptWithContext, "")
+		} else {
+			llmResponse, err = CallLLM(config, promptWithContext, "")
+			close(stopSpinner)
+		}
 		time.Sleep(50 * time.Millisecond)
 
 		if err != nil {

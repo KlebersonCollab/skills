@@ -3,6 +3,7 @@ const path = require('path');
 
 const SKILLS_DIR = path.join(__dirname, '../../.agents/skills');
 const GLOBAL_MANDATES_PATH = path.join(__dirname, '../../.specs/codebase/GLOBAL_MANDATES.md');
+const HARNESS_DIR = path.join(__dirname, '../../.harness');
 const OUTPUT_FILE = path.join(__dirname, '../public/registry.json');
 
 function parseMarkdown(content) {
@@ -36,7 +37,6 @@ function scanSkills() {
   const skills = [];
   const dirs = fs.readdirSync(SKILLS_DIR).filter(d => fs.statSync(path.join(SKILLS_DIR, d)).isDirectory());
 
-  // First pass: gather all metadata and content
   dirs.forEach(dir => {
     const skillPath = path.join(SKILLS_DIR, dir, 'SKILL.md');
     if (fs.existsSync(skillPath)) {
@@ -51,14 +51,11 @@ function scanSkills() {
     }
   });
 
-  // Second pass: detect relationships (how they "talk" to each other)
   const skillIds = skills.map(s => s.id);
   
-  // Parse Global Mandates for mandatory routing
   let globalMandateConns = [];
   if (fs.existsSync(GLOBAL_MANDATES_PATH)) {
     const mandates = fs.readFileSync(GLOBAL_MANDATES_PATH, 'utf8');
-    // Extract skill IDs from the Skill Router table
     const tableMatch = mandates.match(/## 📍 SKILL ROUTER[\s\S]*?\|([\s\S]*?)\n\n/);
     if (tableMatch) {
       const rows = tableMatch[1].split('\n').filter(r => r.includes('`'));
@@ -77,7 +74,6 @@ function scanSkills() {
   skills.forEach(skill => {
     skill.conversesWith = [];
     
-    // If it's a global mandate, it talks to SDD by default (orchestration)
     if (globalMandateConns.includes(skill.id) && skill.id !== 'sdd') {
       skill.conversesWith.push('sdd');
     }
@@ -95,7 +91,67 @@ function scanSkills() {
   return skills;
 }
 
-// Ensure scripts and public dir exists
+function scanHarness() {
+  const harness = {
+    active_provider: 'unknown',
+    providers: {},
+    sessions: [],
+    session_count: 0,
+    last_session: null
+  };
+
+  // Read config
+  const configPath = path.join(HARNESS_DIR, 'config.json');
+  if (fs.existsSync(configPath)) {
+    try {
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+      harness.active_provider = config.active_provider || 'unknown';
+      harness.providers = config.providers || {};
+    } catch (e) {
+      console.error('Error reading harness config:', e.message);
+    }
+  }
+
+  // Read sessions
+  const sessionsDir = path.join(HARNESS_DIR, 'sessions');
+  if (fs.existsSync(sessionsDir)) {
+    try {
+      const sessionFiles = fs.readdirSync(sessionsDir).filter(f => f.endsWith('.json'));
+      harness.session_count = sessionFiles.length;
+      
+      sessionFiles.forEach(f => {
+        const sessionPath = path.join(sessionsDir, f);
+        try {
+          const session = JSON.parse(fs.readFileSync(sessionPath, 'utf8'));
+          // Extract summary
+          const summary = {
+            session_id: session.session_id,
+            root_task: session.root_task?.substring(0, 80) || '',
+            active_node: session.active_node || '',
+            node_count: Object.keys(session.nodes || {}).length,
+            timestamp: session.nodes?.[Object.keys(session.nodes || {})[0]]?.timestamp || ''
+          };
+          harness.sessions.push(summary);
+        } catch (e) {
+          console.error(`Error parsing session ${f}:`, e.message);
+        }
+      });
+
+      // Sort sessions by timestamp descending
+      harness.sessions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      
+      if (harness.sessions.length > 0) {
+        harness.last_session = harness.sessions[0];
+      }
+    } catch (e) {
+      console.error('Error reading sessions dir:', e.message);
+    }
+  }
+
+  return harness;
+}
+
+// Ensure directories exist
 const scriptsDir = path.join(__dirname);
 if (!fs.existsSync(scriptsDir)) {
   fs.mkdirSync(scriptsDir, { recursive: true });
@@ -105,6 +161,21 @@ if (!fs.existsSync(publicDir)) {
   fs.mkdirSync(publicDir, { recursive: true });
 }
 
-const data = scanSkills();
-fs.writeFileSync(OUTPUT_FILE, JSON.stringify({ skills: data }, null, 2));
-console.log(`Registry updated: ${data.length} skills found.`);
+// Copy session files to public/sessions/ for client-side fetch
+const sessionsDir = path.join(HARNESS_DIR, 'sessions');
+const publicSessionsDir = path.join(publicDir, 'sessions');
+if (!fs.existsSync(publicSessionsDir)) {
+  fs.mkdirSync(publicSessionsDir, { recursive: true });
+}
+if (fs.existsSync(sessionsDir)) {
+  fs.readdirSync(sessionsDir).filter(f => f.endsWith('.json')).forEach(f => {
+    fs.copyFileSync(path.join(sessionsDir, f), path.join(publicSessionsDir, f));
+  });
+}
+
+const skills = scanSkills();
+const harness = scanHarness();
+
+const data = { skills, harness };
+fs.writeFileSync(OUTPUT_FILE, JSON.stringify(data, null, 2));
+console.log(`Registry updated: ${data.skills.length} skills, ${data.harness.session_count} harness sessions found.`);
