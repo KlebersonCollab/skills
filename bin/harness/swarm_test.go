@@ -163,7 +163,7 @@ func TestExecuteSwarm_Sequential(t *testing.T) {
 		t.Fatalf("sequential swarm failed: %v", err)
 	}
 	if !strings.Contains(result, "output from") {
-		t.Errorf("expected a1 output in result, got: %s", result)
+		t.Errorf("expected agent output in result, got: %s", result)
 	}
 }
 
