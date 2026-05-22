@@ -202,8 +202,8 @@ func TestCollectResults(t *testing.T) {
 	cfg := DefaultSwarmConfig()
 	orch := NewSwarmOrchestrator(cfg)
 	
-	o.Results <- SwarmResult{AgentName: "a1", Output: "out1"}
-	o.Results <- SwarmResult{AgentName: "a2", Output: "out2"}
+	orch.Results <- SwarmResult{AgentName: "a1", Output: "out1"}
+	orch.Results <- SwarmResult{AgentName: "a2", Output: "out2"}
 	
 	results := orch.collectResults()
 	if len(results) != 2 {
