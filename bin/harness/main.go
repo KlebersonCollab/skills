@@ -42,6 +42,20 @@ func main() {
 	if len(remainingArgs) > 0 {
 		cmd := remainingArgs[0]
 		switch cmd {
+		case "mcp-server":
+			runMCPServer()
+			return
+		case "mcp-client":
+			if len(remainingArgs) < 3 {
+				fmt.Println("Usage: harness mcp-client <transport> <address>")
+				fmt.Println("  transport: \x27stdio\x27 or \x27sse\x27")
+				fmt.Println("  address: command+args for stdio, URL for sse")
+				return
+			}
+			transportType := remainingArgs[1]
+			address := strings.Join(remainingArgs[2:], " ")
+			runMCPClient(transportType, address)
+			return
 		case "init":
 			runInitWizard()
 			return

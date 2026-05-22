@@ -25,9 +25,16 @@ type ProviderConfig struct {
 	StreamResponsePath string            `json:"stream_response_path"`
 }
 
+type MCPServerConfig struct {
+	Name      string `json:"name"`
+	Transport string `json:"transport"`
+	Address   string `json:"address"`
+}
+
 type AppConfig struct {
 	ActiveProvider string                    `json:"active_provider"`
 	Providers      map[string]ProviderConfig `json:"providers"`
+	MCPServers     []MCPServerConfig         `json:"mcp_servers,omitempty"`
 }
 
 func LoadConfig(path string) (*AppConfig, error) {
