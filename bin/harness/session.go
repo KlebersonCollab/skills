@@ -267,3 +267,53 @@ func (t *SessionTree) renderNode(nodeID string, indent string, isLast bool) {
 		t.renderNode(child.NodeID, nextIndent, i == len(children)-1)
 	}
 }
+
+func listSessions(root string) {
+	sessionsDir := filepath.Join(root, ".harness", "sessions")
+	files, err := os.ReadDir(sessionsDir)
+	if err != nil {
+		fmt.Printf("Erro ao listar diretório de sessões: %v\n", err)
+		return
+	}
+
+	fmt.Println("\n🗂️  Sessões ativas no diretório:")
+	found := false
+	for _, file := range files {
+		if !file.IsDir() && filepath.Ext(file.Name()) == ".json" {
+			filePath := filepath.Join(sessionsDir, file.Name())
+			t, err := LoadSessionTree(filePath)
+			if err == nil {
+				fmt.Printf("  • ID: \033[35m%s\033[0m | Objetivo: \"%s\" (Nós: %d)\n", t.SessionID, t.RootTask, len(t.Nodes))
+				found = true
+			}
+		}
+	}
+	if !found {
+		fmt.Println("  Nenhuma sessão encontrada.")
+	}
+}
+
+func listSkills(root string) {
+	fmt.Println("\n🎓 Skills disponíveis no hub:")
+	files, err := os.ReadDir(root)
+	if err != nil {
+		fmt.Printf("Erro ao ler diretório raiz: %v\n", err)
+		return
+	}
+
+	for _, file := range files {
+		if file.IsDir() && !strings.HasPrefix(file.Name(), ".") && file.Name() != "bin" && file.Name() != "architecture" && file.Name() != "docs" {
+			skillMD := filepath.Join(root, file.Name(), "SKILL.md")
+			if _, err := os.Stat(skillMD); err == nil {
+				fmt.Printf("  • \033[32m%s\033[0m - %s/SKILL.md\n", file.Name(), file.Name())
+			} else {
+				subSkillMD := filepath.Join(root, file.Name(), ".agents", "skills", file.Name(), "SKILL.md")
+				if _, err := os.Stat(subSkillMD); err == nil {
+					fmt.Printf("  • \033[32m%s\033[0m (Complex) - %s\n", file.Name(), subSkillMD)
+				} else {
+					fmt.Printf("  • \033[32m%s\033[0m (Diretório de Skill)\n", file.Name())
+				}
+			}
+		}
+	}
+}
