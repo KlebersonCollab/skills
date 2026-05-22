@@ -30,6 +30,7 @@ Refactoring to Observable Governance (SDD v2.3.0) is in progress.
 - [x] Feature: `python-patterns-integration` (Completed).
 - [x] Feature: `governance-hardening` (Completed).
 - [x] Feature: `sdd-grill-integration` (Completed).
+- [x] Feature: `sdd-de-ambiguation` (Completed).
 
 ## Next Steps
 - Brainstorm new skill categories (e.g., Cloud, Security, Data).
@@ -40,10 +41,10 @@ Refactoring to Observable Governance (SDD v2.3.0) is in progress.
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "GOVERNANCE-HARDENING"
+feature_id: "SDD-DE-AMBIGUATION"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-22T14:17:00Z"
+last_update: "2026-05-22T14:38:00Z"
 evidence_checksum: "make-audit-success"
 ```
 
