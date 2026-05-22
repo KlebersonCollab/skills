@@ -428,3 +428,76 @@ func DefaultSwarmConfig() SwarmConfig {
 		TimeoutSec:  120,
 	}
 }
+	config, _ := LoadConfig(configPath)
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("🐝 Harness Multi-Agent Swarm")
+	fmt.Println("1) Centralized  2) Sequential  3) GAN")
+	fmt.Print("Escolha (1-3) [1]: ")
+	choice, _ := reader.ReadString('\n')
+	topology := "centralized"
+	switch strings.TrimSpace(choice) {
+	case "2":
+		topology = "sequential"
+	case "3":
+		topology = "gan"
+	}
+	cfg := DefaultSwarmConfig()
+	cfg.Topology = topology
+	orch := NewSwarmOrchestrator(cfg)
+	fmt.Printf("Topology: %s | Agents: %d\n", topology, len(cfg.Agents))
+	fmt.Print("\nObjetivo: ")
+	goal, _ := reader.ReadString('\n')
+	goal = strings.TrimSpace(goal)
+	if goal == "" {
+		goal = "Sessão exploratória geral"
+	}
+	fmt.Print("Contexto (opcional): ")
+	context, _ := reader.ReadString('\n')
+	context = strings.TrimSpace(context)
+	for name := range orch.Agents {
+		agentName := name
+		if config != nil {
+			orch.BindLLM(agentName, func(prompt string) (string, error) {
+				agent := orch.Agents[agentName]
+				augmentedPrompt := agent.Config.SystemPrompt
+				if augmentedPrompt != "" {
+					augmentedPrompt += "\n\n"
+				}
+				augmentedPrompt += prompt
+				if config.Providers[config.ActiveProvider].Streaming {
+					fmt.Printf(" [%s streaming...] ", agentName)
+					return CallLLMStream(config, augmentedPrompt, "")
+				}
+				return CallLLM(config, augmentedPrompt, "")
+			})
+		} else {
+			orch.BindLLM(agentName, func(prompt string) (string, error) {
+				return fmt.Sprintf("[%s - Demo]\nRecebido: %.200s...\n(Configure \"harness init\" para LLM real)", agentName, prompt), nil
+			})
+		}
+	}
+	fmt.Println("\n⚙️  Swarm em execução...")
+	stopSpinner := startSpinner(fmt.Sprintf("Swarm %s com %d agentes", topology, len(cfg.Agents)))
+	result, swarmErr := orch.ExecuteSwarm(goal, context)
+	close(stopSpinner)
+	if swarmErr != nil {
+		fmt.Printf("\n⚠️  Concluído com ressalvas: %v\n", swarmErr)
+	}
+	fmt.Printf("\n📋 Resultado:\n%s\n", result)
+	if config != nil {
+		sessionHash := md5.Sum([]byte(time.Now().Format(time.RFC3339) + goal))
+		sessionID := "swarm-" + hex.EncodeToString(sessionHash[:4])
+		sessionFile := filepath.Join(root, ".harness", "sessions", sessionID+".json")
+		tree := NewSessionTree(sessionID, "Swarm: "+goal)
+		tree.AddNode("system", fmt.Sprintf("topology=%s, agents=%d", topology, len(cfg.Agents)), 0)
+		tree.AddNode("user", goal, len(goal)/4)
+		tree.AddNode("assistant", result, len(result)/4)
+		tree.Save(sessionFile)
+		fmt.Printf("💾 Sessão: %s\n", sessionFile)
+	}
+}
+
+func filepathWalkDir(root string, fn func(path string, d fs.DirEntry, err error) error) error {
+	return filepath.WalkDir(root, fn)
+}
+
