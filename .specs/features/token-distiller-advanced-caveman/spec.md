@@ -27,8 +27,8 @@ The `token-distiller` skill needs an upgrade to support advanced compression lev
 ```yaml
 version: "2.3.0"
 feature_id: "TOKEN-DISTILLER-ADVANCED-CAVEMAN"
-phase: "IMPLEMENT"
-status: "IN_PROGRESS"
-last_update: "2026-05-22T14:02:46Z"
-evidence_checksum: "NONE"
+phase: "VERIFY"
+status: "COMPLETED"
+last_update: "2026-05-22T14:04:20Z"
+evidence_checksum: "8b96edd"
 ```

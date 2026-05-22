@@ -1,6 +1,6 @@
 ---
 name: token-distiller
-version: 2.3.0
+version: 2.4.0
 description: "Token density manager. Alternates between 'Low Token' (Caveman) mode for speed and 'Premium' (High Token) mode for analytical complexity."
 category: utility
 ---
@@ -14,7 +14,7 @@ This skill operates integrated with the **SDD** framework. Before any technical 
 
 ---
 
-# Token Distiller: Dual-Mode Communication (v2.3.0)
+# Token Distiller: Dual-Mode Communication (v2.4.0)
 
 > "Density is the currency of autonomy. Spend wisely."
 
@@ -57,11 +57,24 @@ As a utility skill, Token Distiller operates as a unified agent across all phase
 ## 🏗️ Operating Modes
 
 ### 🪨 Low Token Mode (Caveman)
-**Activation:** 'Quick', 'Small' tasks, `/mode low`, `/caveman`.
-**Rules:**
-- Eliminate articles (the, a, an), fillers (really, basically), and greetings.
-- Use fragments: `[object] [action] [reason]. [next step].`
-- **Example:** "Bug in middleware. Expiry check uses `<` not `<=`. Fix applied."
+**Activation:** 'Quick', 'Small' tasks, `/mode low [lite|full|ultra]`, `/caveman [lite|full|ultra]`.
+**Persistence:** Active every response. Reverts only on "stop caveman" or "normal mode".
+**Strict Response Pattern:** `[thing] [action] [reason]. [next step].`
+
+#### 📊 Intensity Levels:
+- **lite**:
+  - No filler or hedging.
+  - Keep articles (a/an/the) and complete grammatical sentences.
+  - Professional but tight, crisp communication.
+- **full** (default):
+  - Drop articles (a/an/the) and filler words (really, basically, just, actually).
+  - Sentence fragments are welcome. Use short, direct synonyms (e.g., "big" instead of "extensive", "fix" instead of "implement a solution for").
+  - Technical terms, code blocks, errors must remain completely unchanged.
+- **ultra**:
+  - Max compression: abbreviate prose words (e.g., DB, auth, config, req, res, fn, impl).
+  - Strip all conjunctions.
+  - Use arrows for causality: `[cause] → [effect]`.
+  - **Never** abbreviate code symbols, function names, API names, error strings.
 
 ### 💎 Premium Mode (High Token)
 **Activation:** 'Medium', 'Large', 'Complex' tasks, `/mode high`, `/premium`.
@@ -83,9 +96,14 @@ As a utility skill, Token Distiller operates as a unified agent across all phase
 - **Trigger**: Tool results > 10 turns old AND > 5000 characters.
 - **Action**: Replace with: `[Old tool result cleared. Tool: {name}. Summary: {summary}].`
 
-### 3. Safety Valve
-- **Prohibited**: NEVER compress source code, safety warnings, or confirmations of irreversible actions.
-- **Escalation**: Abandon Low Token mode if ambiguity causes execution errors.
+### 3. Safety Valve & Auto-Clarity
+- **Auto-Clarity Trigger (Skip Caveman)**: Automatically suspend Caveman mode and write full prose when:
+  1. **Security Warnings**: Explaining security vulnerabilities or configurations.
+  2. **Irreversible Action Confirmations**: Prior to destructive actions (e.g., `DROP TABLE`, deletion, overwriting).
+  3. **Multi-step Sequences**: Where fragment order or missing conjunctions risk misinterpretation.
+  4. **Linguistic Ambiguity**: If compressing information creates confusion (e.g., "migrate table drop column backup first" is ambiguous about execution order).
+  5. **Direct Clarification**: User asks to clarify or repeats a question.
+- **Resumption**: Resume selected Caveman intensity level immediately after the clear safety segment is completed.
 
 ---
 
@@ -104,10 +122,10 @@ As a utility skill, Token Distiller operates as a unified agent across all phase
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "TOKEN-DISTILLER-V2.3.0"
+feature_id: "TOKEN-DISTILLER-ADVANCED-CAVEMAN"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-06T13:30:00Z"
-evidence_checksum: "8e52f6a"
+last_update: "2026-05-22T14:04:20Z"
+evidence_checksum: "8b96edd"
 ```
 
