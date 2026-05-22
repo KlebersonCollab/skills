@@ -215,7 +215,7 @@ Tasks in `tasks.md` MUST NOT be marked as complete without a valid entry in the 
 ## References
 - [Brownfield Mapping Guide](references/brownfield-mapping.md)
 - [Coding Principles](references/coding-principles.md)
-- [Context Management](references/context-limits.md)
+- [Operational Guidelines](references/operational-guidelines.md)
 - [BDD Standard](references/bdd-guide.md)
 - [Handoff Protocol](references/handoff-protocol.md)
 - [Swarm Execution Guide](references/swarm-execution.md)

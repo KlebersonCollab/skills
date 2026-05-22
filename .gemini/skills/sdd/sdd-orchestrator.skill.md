@@ -88,7 +88,7 @@ Create `spec/contract.md`. This is the formal agreement between implementation a
 ## Quality Rules
 
 - **Sub-Agent Delegation**: In large implementations, create the plan and delegate to the implementer.
-- **Context Limits**: Constantly monitor the number of loaded artifacts. See [Context Limits](references/context-limits.md).
+- **Context Limits**: Constantly monitor the number of loaded artifacts. See [Operational Guidelines](references/operational-guidelines.md).
 - [ ] All research followed the Verification Chain.
 - [ ] Requirements are traceable and verifiable.
 - [ ] Out of scope is explicitly defined.
