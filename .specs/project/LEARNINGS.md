@@ -16,15 +16,16 @@
 - **Automated Link Verification**: Using simple scratch scripts to verify the presence of `SKILL.md` and directory structures across a large number of modules is highly effective for maintaining repository integrity at scale.
 - **Grilling Alignment Value**: Integrating the glossary (`CONTEXT.md`) and Architectural Decision Records (ADRs) with an interactive "sabatina" (grill-with-docs) drastically reduces semantic noise and design misalignment before the specification and implementation phases begin.
 - **De-ambiguation via File Consolidation**: Observed that a large number of reference files (e.g. 24 files in a skill directory) increases token cost and can lead to semantic confusion. Fusing files of the same nature (like phase and session handoffs into a single `handoff-protocol.md`, and `quick-mode`/`context-limits` into `operational-guidelines.md`) clarifies rules and maximizes cognitive efficiency for LLMs.
+- **Root Mandate Synchronization**: Elevating local SDD developments (such as context budget check zones, Document Purity, and Phase 0 Grilling) to global mandates ensures that all active sub-agents (Gemini, Claude, and Core) execute with optimized focus and context-awareness.
 
 ---
 
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "SDD-DE-AMBIGUATION"
+feature_id: "GLOBAL-MANDATES-EVOLUTION"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-22T14:39:00Z"
+last_update: "2026-05-22T14:30:00Z"
 evidence_checksum: "make-audit-success"
 ```

@@ -6,10 +6,11 @@ These instructions are fundamental and must be followed by all agents operating 
 Before responding to the user, the agent **MUST** perform this mental and operational checklist:
 0. **Mode Check**: Verify `.hub-mode` and apply `token-distiller` guidelines.
 1. **Rehydrate Context**: Read `.specs/project/STATE.md`, `MEMORY.md`, and `LEARNINGS.md`.
-2. **Onboarding Alignment**: Consult `PROJECT-ONBOARDING.md` and the `sdd` skill to align with the project culture.
-3. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
-4. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
-5. **SDD Verification**: If it is a development task, validate if `spec.md` and `plan.md` exist in `.specs/features/[feature]/`.
+2. **Context Budget Check**: Target active tokens under 40k. If over 60k, actively trigger context optimization.
+3. **Onboarding Alignment**: Consult `PROJECT-ONBOARDING.md` and the `sdd` skill to align with the project culture.
+4. **Task Sizing**: Classify task complexity (Quick, Small, Medium, Large, Complex) according to the SDD table.
+5. **Skill Matching**: Consult the **Skill Router** below to select the appropriate tools.
+6. **SDD Verification**: If it is a development task, validate if `spec.md` and `plan.md` exist in `.specs/features/[feature]/`.
 
 ## 📍 SKILL ROUTER
 Use this guide to identify the mandatory skill for each context:
@@ -31,6 +32,7 @@ Use this guide to identify the mandatory skill for each context:
 
 ## 1. SDD Framework (Mandatory for Development)
 Any construction, development, or significant refactoring task **MUST** utilize the **SDD (Spec-Driven Development)** framework.
+- **Phase 0: ALIGN (Relentless Grilling)**: Before specifying, the agent MUST challenge plans relentlessly against the domain model (Grilling Session) and align precise domain terminology inside `CONTEXT.md` (Glossary).
 - **Workflow & Persistence**: Upon technically completing a task, the agent **MUST** proactively perform SDD Phase 4 (Review & Persistence).
 - **Artifact Ownership**: All technical specifications, plans, and task lists must reside in `.specs/features/[feature_name]/`.
 - **State Synchronization**: Keep `STATE.md`, `MEMORY.md`, and `LEARNINGS.md` updated manually at the end of every significant milestone.
@@ -43,6 +45,7 @@ Any construction, development, or significant refactoring task **MUST** utilize 
 ## 3. Quality Standards (Clean Code)
 - Strictly follow **SOLID, YAGNI, DRY, and KISS**.
 - Prioritize simplicity and maintainability; avoid over-engineering.
+- **Document Purity Principle (Anti-Fragmentation)**: Avoid fragmenting operational instructions or specs. Unified references (such as `handoff-protocol.md` and `operational-guidelines.md`) must be favored to minimize LLM token bloat and cognitive friction.
 - All code must pass verification (manual audit or automated tests).
 
 ## 4. Knowledge Management
@@ -124,9 +127,9 @@ Every action must be traceable and permission-gated by the SDD state machine:
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "GOVERNANCE-HARDENING"
+feature_id: "GLOBAL-MANDATES-EVOLUTION"
 phase: "IMPLEMENT"
 status: "COMPLETED"
-last_update: "2026-05-09T12:08:00Z"
-evidence_checksum: "b134813"
+last_update: "2026-05-22T14:46:00Z"
+evidence_checksum: "aa6d72b"
 ```
