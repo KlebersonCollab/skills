@@ -2,6 +2,11 @@
 package main
 
 import (
+	"bufio"
+	"crypto/md5"
+	"encoding/hex"
+	"os"
+	"path/filepath"
 	"encoding/json"
 	"fmt"
 	"math/rand"
@@ -428,6 +433,13 @@ func DefaultSwarmConfig() SwarmConfig {
 		TimeoutSec:  120,
 	}
 }
+
+func runSwarm() {
+	root, err := FindWorkspaceRoot()
+	if err != nil {
+		root, _ = os.Getwd()
+	}
+	configPath := filepath.Join(root, ".harness", "config.json")
 	config, _ := LoadConfig(configPath)
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("🐝 Harness Multi-Agent Swarm")
@@ -496,8 +508,3 @@ func DefaultSwarmConfig() SwarmConfig {
 		fmt.Printf("💾 Sessão: %s\n", sessionFile)
 	}
 }
-
-func filepathWalkDir(root string, fn func(path string, d fs.DirEntry, err error) error) error {
-	return filepath.WalkDir(root, fn)
-}
-

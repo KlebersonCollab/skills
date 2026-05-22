@@ -810,11 +810,8 @@ func agentExecutionLoop(config *AppConfig, tree *SessionTree, sessionFile string
 	fmt.Println("\n⚠️  Atingido limite de iterações consecutivas de execução de ferramentas.")
 }
 
-func runSwarm() {
-	root, err := FindWorkspaceRoot()
-	if err != nil {
-		root, _ = os.Getwd()
-	}
-	configPath := filepath.Join(root, ".harness", "config.json")
+func filepathWalkDir(root string, fn func(path string, d fs.DirEntry, err error) error) error {
+	return filepath.WalkDir(root, fn)
+}
 
 
