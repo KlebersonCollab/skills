@@ -120,9 +120,10 @@ func (t *SessionTree) FormatLinearHistoryText(startNodeID string) (string, error
 	var builder string
 	for _, node := range history {
 		roleLabel := "User"
-		if node.Role == "system" {
+		switch node.Role {
+		case "system":
 			roleLabel = "System"
-		} else if node.Role == "assistant" {
+		case "assistant":
 			roleLabel = "Assistant"
 		}
 		builder += fmt.Sprintf("[%s]: %s\n", roleLabel, node.Content)
@@ -168,9 +169,10 @@ func (t *SessionTree) renderNode(nodeID string, indent string, isLast bool) {
 	}
 
 	roleColor := "\033[36m" // Cyan for system
-	if node.Role == "user" {
+	switch node.Role {
+	case "user":
 		roleColor = "\033[32m" // Green for user
-	} else if node.Role == "assistant" {
+	case "assistant":
 		roleColor = "\033[33m" // Yellow for assistant
 	}
 	resetColor := "\033[0m"
