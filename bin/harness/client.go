@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"context"
 	"encoding/json"
@@ -16,10 +17,12 @@ import (
 var llmRequestTimeout = 2 * time.Minute
 
 type ProviderConfig struct {
-	URL          string            `json:"url"`
-	Headers      map[string]string `json:"headers"`
-	BodyTemplate string            `json:"body_template"`
-	ResponsePath string            `json:"response_path"`
+	URL                string            `json:"url"`
+	Headers            map[string]string `json:"headers"`
+	BodyTemplate       string            `json:"body_template"`
+	ResponsePath       string            `json:"response_path"`
+	Streaming          bool              `json:"streaming"`
+	StreamResponsePath string            `json:"stream_response_path"`
 }
 
 type AppConfig struct {
@@ -107,6 +110,191 @@ func getJSONValue(data interface{}, path string) (string, error) {
 	default:
 		return fmt.Sprintf("%v", val), nil
 	}
+}
+
+
+
+// CallLLMStream sends a streaming request to the LLM provider, prints tokens in real-time,
+// and returns the full accumulated text once the stream ends.
+func CallLLMStream(config *AppConfig, prompt string, history string) (string, error) {
+	providerName := config.ActiveProvider
+	provider, exists := config.Providers[providerName]
+	if !exists {
+		return "", fmt.Errorf("provider '%s' not found in configuration", providerName)
+	}
+
+	url := resolveEnvVars(provider.URL)
+	escapedPromptBytes, _ := json.Marshal(prompt)
+	escapedPrompt := string(escapedPromptBytes[1 : len(escapedPromptBytes)-1])
+	escapedHistoryBytes, _ := json.Marshal(history)
+	escapedHistory := string(escapedHistoryBytes[1 : len(escapedHistoryBytes)-1])
+
+	bodyStr := strings.ReplaceAll(provider.BodyTemplate, "{{prompt}}", escapedPrompt)
+	bodyStr = strings.ReplaceAll(bodyStr, "", escapedHistory)
+
+	// Ensure streaming is enabled in the body template by overriding "stream": false -> true
+	bodyStr = strings.ReplaceAll(bodyStr, `"stream": false`, `"stream": true`)
+
+	maxAttempts := 3
+	var lastErr error
+	var fullText string
+
+	for attempt := 1; attempt <= maxAttempts; attempt++ {
+		var err error
+		fullText, err = func() (string, error) {
+			ctx, cancel := context.WithTimeout(context.Background(), llmRequestTimeout)
+			defer cancel()
+
+			req, err := http.NewRequestWithContext(ctx, "POST", url, bytes.NewBuffer([]byte(bodyStr)))
+			if err != nil {
+				return "", fmt.Errorf("failed to create request: %w", err)
+			}
+
+			for k, v := range provider.Headers {
+				resolvedVal := resolveEnvVars(v)
+				req.Header.Set(k, resolvedVal)
+			}
+
+			client := &http.Client{}
+			resp, err := client.Do(req)
+			if err != nil {
+				return "", err
+			}
+			defer resp.Body.Close()
+
+			if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+				bodyBytes, _ := io.ReadAll(resp.Body)
+				return "", fmt.Errorf("API error (status %d): %s", resp.StatusCode, string(bodyBytes))
+			}
+
+			reader := bufio.NewReader(resp.Body)
+			var accumulated strings.Builder
+			streamPath := provider.StreamResponsePath
+			if streamPath == "" {
+				streamPath = "candidates.0.content.parts.0.text" // Gemini default
+			}
+
+			for {
+				line, err := reader.ReadString('\n')
+				if err != nil {
+					if err == io.EOF {
+						break
+					}
+					return "", fmt.Errorf("stream read error: %w", err)
+				}
+
+				line = strings.TrimSpace(line)
+
+				// SSE format: "data: {...}"
+				if strings.HasPrefix(line, "data:") {
+					dataStr := strings.TrimSpace(line[5:])
+					if dataStr == "" || dataStr == "[DONE]" {
+						continue
+					}
+
+					token := extractStreamToken(dataStr, streamPath, providerName)
+					if token != "" {
+						fmt.Print(token)
+						accumulated.WriteString(token)
+					}
+					continue
+				}
+
+				// Ollama NDJSON format: {...}\n
+				if strings.HasPrefix(line, "{") {
+					token := extractStreamToken(line, streamPath, providerName)
+					if token != "" {
+						fmt.Print(token)
+						accumulated.WriteString(token)
+					}
+				}
+			}
+
+			fmt.Println() // newline after stream ends
+			return accumulated.String(), nil
+		}()
+
+		if err == nil {
+			return fullText, nil
+		}
+
+		lastErr = err
+		isTimeout := false
+		if err == context.DeadlineExceeded {
+			isTimeout = true
+		} else if strings.Contains(err.Error(), "context deadline exceeded") || strings.Contains(err.Error(), "Client.Timeout") {
+			isTimeout = true
+		}
+
+		if attempt < maxAttempts {
+			fmt.Print("\r\033[K")
+			if isTimeout {
+				fmt.Printf("\033[38;5;208m⚠️  Timeout de 2 minutos atingido para %s. Iniciando nova tentativa (%d/%d)...\033[0m\n", strings.ToUpper(providerName), attempt+1, maxAttempts)
+			} else {
+				fmt.Printf("\033[38;5;196m⚠️  Erro na chamada para %s: %v. Iniciando nova tentativa (%d/%d)...\033[0m\n", strings.ToUpper(providerName), err, attempt+1, maxAttempts)
+			}
+			time.Sleep(500 * time.Millisecond)
+		}
+	}
+
+	return "", fmt.Errorf("HTTP request failed after %d attempts: %w", maxAttempts, lastErr)
+}
+
+// extractStreamToken parses a JSON chunk from SSE and extracts the partial token
+// based on the provider format. Supports Gemini, DeepSeek (Chat Completions), and Ollama.
+func extractStreamToken(dataStr string, streamPath string, providerName string) string {
+	var jsonData interface{}
+	if err := json.Unmarshal([]byte(dataStr), &jsonData); err != nil {
+		return ""
+	}
+
+	providerLower := strings.ToLower(providerName)
+
+	// DeepSeek / OpenAI Chat Completions format: choices[0].delta.content
+	if providerLower == "deepseek" || strings.Contains(streamPath, "delta") || strings.Contains(streamPath, "choices") {
+		// Try to extract from delta
+		token, err := getJSONValue(jsonData, "choices.0.delta.content")
+		if err == nil && token != "" {
+			return token
+		}
+		// Fallback: choices.0.message.content (non-streaming compatibility)
+		token, err = getJSONValue(jsonData, "choices.0.message.content")
+		if err == nil && token != "" {
+			return token
+		}
+		return ""
+	}
+
+	// Gemini format: candidates[0].content.parts[0].text
+	if providerLower == "gemini" || strings.Contains(streamPath, "candidates") {
+		token, err := getJSONValue(jsonData, streamPath)
+		if err == nil && token != "" {
+			return token
+		}
+		// Try alternate Gemini SSE format
+		token, err = getJSONValue(jsonData, "candidates.0.content.parts.0.text")
+		if err == nil && token != "" {
+			return token
+		}
+		return ""
+	}
+
+	// Ollama format: {"response": "...", "done": false}
+	if providerLower == "ollama" || strings.Contains(streamPath, "response") {
+		token, err := getJSONValue(jsonData, "response")
+		if err == nil && token != "" {
+			return token
+		}
+		return ""
+	}
+
+	// Default: try the configured stream path
+	token, err := getJSONValue(jsonData, streamPath)
+	if err == nil {
+		return token
+	}
+
+	return ""
 }
 
 func CallLLM(config *AppConfig, prompt string, history string) (string, error) {
