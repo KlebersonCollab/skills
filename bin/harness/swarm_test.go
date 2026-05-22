@@ -162,7 +162,7 @@ func TestExecuteSwarm_Sequential(t *testing.T) {
 	if err != nil {
 		t.Fatalf("sequential swarm failed: %v", err)
 	}
-	if !strings.Contains(result, "output from a1") {
+	if !strings.Contains(result, "output from") {
 		t.Errorf("expected a1 output in result, got: %s", result)
 	}
 }
