@@ -1,6 +1,7 @@
 package voice
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"os/exec"
@@ -140,24 +141,48 @@ func (vs *Session) InteractiveLoop(callback func(string) (string, error)) error 
 	fmt.Fprintf(os.Stderr, "╚══════════════════════════════════════════════╝\n")
 	fmt.Fprintf(os.Stderr, "\033[0m\n")
 
+	reader := bufio.NewReader(os.Stdin)
+
 	for {
-		fmt.Fprintf(os.Stderr, "\033[1;35m🎤 Press Enter to speak (or /q to quit):\033[0m ")
-		var input string
-		fmt.Scanln(&input)
-		input = strings.TrimSpace(input)
+		var text string
+		var err error
 
-		if input == "/q" || input == "/quit" || input == "/exit" {
-			break
+		if vs.apiKey != "" {
+			fmt.Fprintf(os.Stderr, "\033[1;35m🎤 Press Enter to speak (type '/t' for text, '/q' to quit):\033[0m ")
+			var promptConfirm string
+			fmt.Scanln(&promptConfirm)
+			promptConfirm = strings.TrimSpace(promptConfirm)
+
+			if promptConfirm == "/q" || promptConfirm == "/quit" || promptConfirm == "/exit" {
+				break
+			}
+
+			if promptConfirm == "/t" || promptConfirm == "/text" {
+				fmt.Fprintf(os.Stderr, "\033[1;33m⌨️  Digite sua mensagem:\033[0m ")
+				keyboardInput, _ := reader.ReadString('\n')
+				text = strings.TrimSpace(keyboardInput)
+			} else {
+				// Record and transcribe
+				text, err = vs.Listen()
+				if err != nil {
+					fmt.Fprintf(os.Stderr, "\033[38;5;208m⚠️  Voice STT error: %v\033[0m\n", err)
+					fmt.Fprintf(os.Stderr, "\033[1;33m👉 Fallback (Keyboard): Digite sua mensagem:\033[0m ")
+					keyboardInput, _ := reader.ReadString('\n')
+					text = strings.TrimSpace(keyboardInput)
+				}
+			}
+		} else {
+			// No API key - use local/free keyboard resource
+			fmt.Fprintf(os.Stderr, "\033[1;30m[STT Offline — GEMINI_API_KEY missing]\033[0m\n")
+			fmt.Fprintf(os.Stderr, "\033[1;33m⌨️  Digite sua mensagem (or /q to quit):\033[0m ")
+			keyboardInput, _ := reader.ReadString('\n')
+			text = strings.TrimSpace(keyboardInput)
+			if text == "/q" || text == "/quit" || text == "/exit" {
+				break
+			}
 		}
 
-		// Record and transcribe
-		text, err := vs.Listen()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "\033[38;5;196m⚠️  %v\033[0m\n", err)
-			continue
-		}
 		if text == "" {
-			fmt.Fprintf(os.Stderr, "\033[38;5;208m⚠️  No speech detected\033[0m\n")
 			continue
 		}
 
