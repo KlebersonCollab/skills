@@ -270,6 +270,47 @@ func Speak(text string) error {
 		return cmd.Run()
 
 	case "linux":
+		// 0. Try gTTS (Google Text-to-Speech) if gtts-cli is installed (100% free, neural, high-quality)
+		if _, err := exec.LookPath("gtts-cli"); err == nil {
+			tempMP3 := filepath.Join(os.TempDir(), "harness_tts.mp3")
+			tempWAV := filepath.Join(os.TempDir(), "harness_tts.wav")
+
+			// Run gtts-cli
+			cmd := exec.Command("gtts-cli", "--lang", "pt-br", text, "--output", tempMP3)
+			if err := cmd.Run(); err == nil {
+				// Convert to WAV using ffmpeg if available
+				if _, err := exec.LookPath("ffmpeg"); err == nil {
+					convCmd := exec.Command("ffmpeg", "-y", "-i", tempMP3, tempWAV)
+					convCmd.Stderr = nil
+					if err := convCmd.Run(); err == nil {
+						// Play the WAV file
+						if playErr := PlayAudio(tempWAV); playErr == nil {
+							os.Remove(tempMP3)
+							os.Remove(tempWAV)
+							return nil // Successful neural speech!
+						}
+					}
+				}
+				// Fallback: If no ffmpeg but we have mpg123, play MP3 directly
+				if _, err := exec.LookPath("mpg123"); err == nil {
+					playCmd := exec.Command("mpg123", "-q", tempMP3)
+					if err := playCmd.Run(); err == nil {
+						os.Remove(tempMP3)
+						return nil
+					}
+				}
+				// Fallback: If we have ffplay, play MP3 directly
+				if _, err := exec.LookPath("ffplay"); err == nil {
+					playCmd := exec.Command("ffplay", "-nodisp", "-autoexit", tempMP3)
+					playCmd.Stderr = nil
+					if err := playCmd.Run(); err == nil {
+						os.Remove(tempMP3)
+						return nil
+					}
+				}
+			}
+		}
+
 		// Linux uses spd-say, espeak-ng, espeak
 		providers := []struct {
 			name string
