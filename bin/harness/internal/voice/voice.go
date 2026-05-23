@@ -22,7 +22,7 @@ import (
 
 const (
 	defaultDuration  = 8           // seconds per recording
-	geminiModel      = "gemini-1.5-flash"
+	geminiModel      = "gemini-2.5-flash"
 	sampleFormat     = "cd"        // CD quality: 16-bit 44100Hz stereo
 )
 
