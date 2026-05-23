@@ -3,164 +3,147 @@
 # ═══════════════════════════════════════════════════════════════
 title = "AI Provider Secret Scanner"
 
-# ── Regras ─────────────────────────────────────────────────────
+# ── Regras contextuais (só detecta quando perto do nome do provider) ──
 
 # 1) Anthropic (Claude)
 [[rules]]
 id = "anthropic-api-key"
 description = "Anthropic API Key (Claude)"
-regex = '''(?i)(?:anthropic)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?(sk-ant-[a-zA-Z0-9]{20,})['\"\`]?'''
-tags = ["anthropic", "llm", "ai"]
-
-[[rules]]
-id = "anthropic-key-standalone"
-description = "Anthropic sk-ant- key (bare)"
-regex = '''['"\`]?(sk-ant-[a-zA-Z0-9]{20,})['"\`]?'''
+regex = '''(?i)(?:anthropic)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?(sk-ant-[a-zA-Z0-9]{20,})['"`]?'''
 tags = ["anthropic", "llm", "ai"]
 
 # 2) OpenAI
 [[rules]]
 id = "openai-api-key"
-description = "OpenAI API Key (GPT, Embeddings, etc)"
-regex = '''(?i)(?:openai)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?(sk-[a-zA-Z0-9]{20,})['\"\`]?'''
+description = "OpenAI API Key (GPT, Embeddings)"
+regex = '''(?i)(?:openai)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?(sk-[a-zA-Z0-9]{20,})['"`]?'''
 tags = ["openai", "llm", "ai"]
-
-[[rules]]
-id = "openai-key-standalone"
-description = "OpenAI sk- key (bare)"
-regex = '''['"\`]?(sk-[a-zA-Z0-9]{20,})['"\`]?'''
-# Exclude Anthropic keys (sk-ant-) to avoid double-match
-allowlist = "sk-ant-"
 
 # 3) Google / Gemini
 [[rules]]
 id = "google-ai-api-key"
 description = "Google AI / Gemini API Key"
-regex = '''(?i)(?:google|gemini|gcp|vertex)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?(AIza[0-9A-Za-z_-]{35})['\"\`]?'''
-tags = ["google", "gemini", "ai"]
-
-[[rules]]
-id = "google-ai-key-standalone"
-description = "Google AI key (AIza...) bare"
-regex = '''['"\`]?(AIza[0-9A-Za-z_-]{35})['"\`]?'''
+regex = '''(?i)(?:google|gemini|gcp|vertex)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?(AIza[0-9A-Za-z_-]{35})['"`]?'''
 tags = ["google", "gemini", "ai"]
 
 # 4) DeepSeek
 [[rules]]
 id = "deepseek-api-key"
 description = "DeepSeek API Key"
-regex = '''(?i)(?:deepseek)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?(sk-[a-zA-Z0-9]{20,})['\"\`]?'''
+regex = '''(?i)(?:deepseek)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?(sk-[a-zA-Z0-9]{20,})['"`]?'''
 tags = ["deepseek", "llm", "ai"]
 
 # 5) Groq
 [[rules]]
 id = "groq-api-key"
 description = "Groq API Key"
-regex = '''(?i)(?:groq)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?(gsk_[a-zA-Z0-9]{20,})['\"\`]?'''
-tags = ["groq", "llm", "ai"]
-
-[[rules]]
-id = "groq-key-standalone"
-description = "Groq gsk_ key (bare)"
-regex = '''['"\`]?(gsk_[a-zA-Z0-9]{20,})['"\`]?'''
+regex = '''(?i)(?:groq)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?(gsk_[a-zA-Z0-9]{20,})['"`]?'''
 tags = ["groq", "llm", "ai"]
 
 # 6) Cohere
 [[rules]]
 id = "cohere-api-key"
 description = "Cohere API Key"
-regex = '''(?i)(?:cohere)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?([a-zA-Z0-9]{40})['\"\`]?'''
+regex = '''(?i)(?:cohere)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?([a-zA-Z0-9]{40})['"`]?'''
 tags = ["cohere", "llm", "ai"]
 
 # 7) Hugging Face
 [[rules]]
 id = "huggingface-api-key"
 description = "Hugging Face API Token"
-regex = '''(?i)(?:hugging|huggingface|hf)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?(hf_[a-zA-Z0-9]{20,})['\"\`]?'''
-tags = ["huggingface", "ai", "ml"]
-
-[[rules]]
-id = "huggingface-key-standalone"
-description = "Hugging Face token (bare)"
-regex = '''['"\`]?(hf_[a-zA-Z0-9]{20,})['"\`]?'''
-tags = ["huggingface", "ai", "ml"]
+regex = '''(?i)(?:hugging|huggingface)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?(hf_[a-zA-Z0-9]{20,})['"`]?'''
+tags = ["huggingface", "ai"]
 
 # 8) Replicate
 [[rules]]
 id = "replicate-api-key"
 description = "Replicate API Token"
-regex = '''(?i)(?:replicate)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?(r8_[a-zA-Z0-9]{20,})['\"\`]?'''
-tags = ["replicate", "ai"]
-
-[[rules]]
-id = "replicate-key-standalone"
-description = "Replicate r8_ key (bare)"
-regex = '''['"\`]?(r8_[a-zA-Z0-9]{20,})['"\`]?'''
+regex = '''(?i)(?:replicate)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?(r8_[a-zA-Z0-9]{20,})['"`]?'''
 tags = ["replicate", "ai"]
 
 # 9) Perplexity
 [[rules]]
 id = "perplexity-api-key"
 description = "Perplexity API Key"
-regex = '''(?i)(?:perplexity|pplx)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?(pplx-[a-zA-Z0-9]{20,})['\"\`]?'''
+regex = '''(?i)(?:perplexity|pplx)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?(pplx-[a-zA-Z0-9]{20,})['"`]?'''
 tags = ["perplexity", "search", "ai"]
 
 # 10) Exa
 [[rules]]
 id = "exa-api-key"
 description = "Exa API Key"
-regex = '''(?i)(?:exa)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?([a-f0-9]{32})['\"\`]?'''
+regex = '''(?i)(?:exa)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?([a-f0-9]{32})['"`]?'''
 tags = ["exa", "search", "ai"]
 
 # 11) Mistral AI
 [[rules]]
 id = "mistral-api-key"
 description = "Mistral AI API Key"
-regex = '''(?i)(?:mistral)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?([a-zA-Z0-9]{32})['\"\`]?'''
+regex = '''(?i)(?:mistral)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?([a-zA-Z0-9]{32})['"`]?'''
 tags = ["mistral", "llm", "ai"]
 
 # 12) Together AI
 [[rules]]
 id = "togetherai-api-key"
 description = "Together AI API Key"
-regex = '''(?i)(?:together|togetherai)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?([a-f0-9]{32,})['\"\`]?'''
+regex = '''(?i)(?:together|togetherai)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?([a-f0-9]{32,})['"`]?'''
 tags = ["togetherai", "llm", "ai"]
 
 # 13) ElevenLabs
 [[rules]]
 id = "elevenlabs-api-key"
 description = "ElevenLabs API Key"
-regex = '''(?i)(?:elevenlabs|eleven)(?:.|\\n{0,2})?(?:api[_-]?key|secret[_-]?key|token)(?:.|\\n{0,2})?['\"\`]?([a-f0-9]{32})['\"\`]?'''
+regex = '''(?i)(?:elevenlabs|eleven)(?:.|\n){0,2}?(?:api[_-]?key|secret[_-]?key|token)(?:.|\n){0,2}?['"`]?([a-f0-9]{32})['"`]?'''
 tags = ["elevenlabs", "voice", "ai"]
 
-# 14) GitHub Token (comum em CI/CD de IA)
+# 14) GitHub PAT (comum em CI/CD de IA)
 [[rules]]
 id = "github-pat"
 description = "GitHub Personal Access Token"
-regex = '''(?i)(?:github)(?:.|\\n{0,2})?(?:token|pat|secret)(?:.|\\n{0,2})?['\"\`]?(ghp_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9_]{82}|gho_[a-zA-Z0-9]{36})['\"\`]?'''
+regex = '''(?i)(?:github)(?:.|\n){0,2}?(?:token|pat|secret)(?:.|\n){0,2}?['"`]?(ghp_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9_]{82}|gho_[a-zA-Z0-9]{36})['"`]?'''
 tags = ["github", "token", "ci"]
 
-[[rules]]
-id = "github-pat-standalone"
-description = "GitHub PAT (bare)"
-regex = '''['"\`]?(ghp_[a-zA-Z0-9]{36}|github_pat_[a-zA-Z0-9_]{82}|gho_[a-zA-Z0-9]{36})['"\`]?'''
-tags = ["github", "token", "ci"]
-
-# 15) OpenAI Project Key (proj_...)
+# 15) OpenAI Project Key
 [[rules]]
 id = "openai-project-key"
 description = "OpenAI Project API Key"
-regex = '''(?i)(?:openai)(?:.|\\n{0,2})?(?:project|proj)(?:.|\\n{0,2})?['\"\`]?(proj_[a-zA-Z0-9]{20,})['\"\`]?'''
+regex = '''(?i)(?:openai)(?:.|\n){0,2}?(?:project|proj)(?:.|\n){0,2}?['"`]?(proj_[a-zA-Z0-9]{20,})['"`]?'''
 tags = ["openai", "llm", "ai"]
 
-# 16) Generic AI key in .env / env exports
+# 16) Generic AI env var assignment (alta confiança)
 [[rules]]
 id = "generic-ai-env"
-description = "Generic AI provider env key assignment (high confidence)"
-regex = '''(?i)(export\s+)?(ANTHROPIC_API_KEY|OPENAI_API_KEY|GEMINI_API_KEY|DEEPSEEK_API_KEY|GROQ_API_KEY|PERPLEXITY_API_KEY|COHERE_API_KEY|MISTRAL_API_KEY|TOGETHER_API_KEY|ELEVENLABS_API_KEY|EXA_API_KEY|REPLICATE_API_TOKEN|HUGGINGFACE_API_KEY|HF_TOKEN|OPENAI_ORG_ID|AZURE_OPENAI_KEY|AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY)\s*=\s*['"\`]?[^\s'"]{8,}['"\`]?'''
+description = "Generic AI provider env key assignment"
+regex = '''(?i)(?:export\s+)?(?:ANTHROPIC_API_KEY|OPENAI_API_KEY|GEMINI_API_KEY|DEEPSEEK_API_KEY|GROQ_API_KEY|PERPLEXITY_API_KEY|COHERE_API_KEY|MISTRAL_API_KEY|TOGETHER_API_KEY|ELEVENLABS_API_KEY|EXA_API_KEY|REPLICATE_API_TOKEN|HUGGINGFACE_API_KEY|HF_TOKEN|OPENAI_ORG_ID|AZURE_OPENAI_KEY|AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY)\s*=\s*['"`]?[^\s'"]{8,}['"`]?(?:\s|$)'''
 tags = ["env", "credential", "ai"]
 
-# ── Allowlist (falsos positivos conhecidos) ────────────────────
+# ── Regras standalone (chave solta, sem o nome do provider perto) ──
+
+[[rules]]
+id = "google-ai-key-standalone"
+description = "Google AI key (AIza...) bare"
+regex = '''['"`]?(AIza[0-9A-Za-z_-]{35})['"`]?(?:\s|$)'''
+tags = ["google", "gemini", "ai"]
+
+[[rules]]
+id = "groq-key-standalone"
+description = "Groq key (gsk_...) bare"
+regex = '''['"`]?(gsk_[a-zA-Z0-9]{20,})['"`]?(?:\s|$)'''
+tags = ["groq", "llm", "ai"]
+
+[[rules]]
+id = "huggingface-key-standalone"
+description = "HuggingFace token (hf_...) bare"
+regex = '''['"`]?(hf_[a-zA-Z0-9]{20,})['"`]?(?:\s|$)'''
+tags = ["huggingface", "ai"]
+
+[[rules]]
+id = "replicate-key-standalone"
+description = "Replicate key (r8_...) bare"
+regex = '''['"`]?(r8_[a-zA-Z0-9]{20,})['"`]?(?:\s|$)'''
+tags = ["replicate", "ai"]
+
+# ── Allowlist global ──────────────────────────────────────────
 
 [allowlist]
 description = "Known false positives — test fixtures, docs examples, dummy keys"
@@ -176,12 +159,12 @@ paths = [
   '''(?i)\.git/''',
 ]
 regexes = [
-  '''sk-test-''',          # Chaves de teste
-  '''sk-dummy-''',         # Chaves dummy
-  '''YOUR_API_KEY''',      # Placeholder
-  '''CHANGE_ME''',         # Placeholder
-  '''REPLACE_ME''',        # Placeholder
-  '''your-api-key''',      # Placeholder em docs
-  '''<[^>]+>''',           # Placeholders em template <...>
-  '''[Ee]xample\s''',      # Exemplos em documentação
+  '''sk-test-''',
+  '''sk-dummy-''',
+  '''YOUR_API_KEY''',
+  '''CHANGE_ME''',
+  '''REPLACE_ME''',
+  '''your-api-key''',
+  '''<[^>]+>''',
+  '''[Ee]xample\s''',
 ]
