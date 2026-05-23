@@ -22,6 +22,7 @@ caveman-main/
 # Environment variables (API keys)
 .env
 .env.local
+registry.json
 
 hb-bin
 hb/hb-bin

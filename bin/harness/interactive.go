@@ -243,6 +243,7 @@ func runInteractivePrompt(tree *session.Tree, sessionFile string, appCfg *config
 			}
 			if result != "" {
 				tc.MessageBubble("assistant", result, len(result)/4)
+				tc.Footer(tree, tree.EstimateUSD(appCfg.ActiveProvider))
 			}
 			tree.Save(sessionFile)
 
@@ -259,6 +260,7 @@ func runInteractivePrompt(tree *session.Tree, sessionFile string, appCfg *config
 					}
 					if r2 != "" {
 						tc.MessageBubble("assistant", r2, len(r2)/4)
+						tc.Footer(tree, tree.EstimateUSD(appCfg.ActiveProvider))
 					}
 					tree.Save(sessionFile)
 				default:
