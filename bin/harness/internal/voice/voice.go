@@ -343,14 +343,16 @@ func Speak(text, apiKey string) error {
 	if apiKey != "" {
 		wavPath, err := SynthesizeGeminiTTS(text, apiKey)
 		if err == nil {
-			if playErr := PlayAudio(wavPath); playErr == nil {
+			playErr := PlayAudio(wavPath)
+			if playErr == nil {
 				os.Remove(wavPath)
 				return nil // Success with premium Gemini AI voice!
 			}
 			os.Remove(wavPath)
+			fmt.Fprintf(os.Stderr, "\033[90m⟲ Gemini TTS play error: %v. Falling back...\033[0m\n", playErr)
+		} else {
+			fmt.Fprintf(os.Stderr, "\033[90m⟲ Gemini TTS generation error: %v. Falling back...\033[0m\n", err)
 		}
-		// If it fails (rate limit, offline, etc.), gracefully log and fall back to local resources
-		fmt.Fprintf(os.Stderr, "\033[90m⟲ Gemini TTS unavailable, falling back to local voice...\033[0m\n")
 	}
 
 	// 2. Fallback: OS-native or local synthesizer tools
