@@ -31,12 +31,59 @@
 
 ---
 
+## Harness SOLID Refactor — Key Learnings (2026-05-22)
+
+### SRP na Prática
+- **Before**: `main.go` (396 linhas) fazia parsing de flags, wizard de init, loop interativo, árvore de sessão, cards de UI.
+- **After**: `main.go` (272 linhas) faz APENAS parsing de flags + roteamento. Wizard → `cmd_init.go`, Swarm → `cmd_swarm.go`, MCP → `cmd_mcp.go`, UI → `internal/ui/`, session → `internal/session/`, LLM → `internal/llm/`.
+- **Ganho**: Cada arquivo tem exatamente uma responsabilidade. Manutenção drasticamente mais fácil.
+
+### OCP via Registry Pattern
+- **Before**: `handleRequest()` no MCP usava um switch monstruoso para cada método. Adicionar método = modificar o switch.
+- **After**: `mcp.Server.RegisterMethod()` permite registrar handlers. Novo método = `server.RegisterMethod("tools/execute", myHandler)`. O código do server nunca precisa ser modificado.
+- **Padrão análogo**: `tools.Registry.Register()` para ferramentas, `llm.ProviderRegistry.Register()` para providers.
+
+### LSP — SSETransport Corrigido
+- **Before**: `SSETransport.Receive()` sempre retornava `"SSE transport receive not implemented"` — violação clara de LSP.
+- **After**: `SSETransport` usa um canal interno (`httpCh`) que recebe dados da resposta do POST via goroutine. `Receive()` agora espera nesse canal. A interface é honesta.
+
+### ISP — Interfaces Segregadas
+- **Before**: `MCPTransport` forçava `Send`, `Receive`, `Close` em todos os transports.
+- **After**: Interfaces segregadas `Sender`, `Receiver`, `Closer`. `Transport` combina as três, mas implementações parciais são possíveis.
+- **LLMProvider**: Interface limpa com `Complete()` e `Stream()` — sem acoplamento a HTTP.
+
+### DIP — Injeção de Dependência
+- **Before**: `CallLLM(config, prompt, history)` — função de package que lia diretamente de `http.Client`, fazia parsing JSON, etc.
+- **After**: `agent.Run(ctx, cfg, logger, provider, toolReg, tree, ...)` — recebe interfaces. O core do agente não sabe se o provider é Gemini, DeepSeek, Ollama ou mock.
+- **Testabilidade**: `mockProvider` implementa `LLMProvider` em 3 linhas. Testes de swarm não precisam de HTTP real.
+
+### Closure Bug no Swarm (Go específico)
+- **Problema**: `for name := range orch.Agents { orch.BindLLM(agentName, func(...){ ... agentName ... }) }` — todas as closures capturam a MESMA variável `name`, que recebe o último valor do map.
+- **Solução**: Criar cópia local `agentName := name` dentro do loop, ou iterar sobre slice em vez de map.
+- **Aplicada em**: `cmd_swarm.go:runSwarm()` — `for _, agentCfg := range cfg.Agents { agentName := agentCfg.Name }`
+
+### Interface Segregation para CompactHistory
+- **Problema**: `CompactHistory` genérico com genérica (`[T any]`) era complexo e não funcionava com tipos concretos de `session.Node`.
+- **Solução**: Criar `distiller.HasContent` interface com `GetContent()`, `SetContent()`, `GetRole()`. `Compact()` aceita `[]HasContent`.
+- **Flexibilidade**: Qualquer struct que implemente essas 3 funções pode ser compactada.
+
+### Migração Incremental Funciona
+- Estratégia de criar `internal/` primeiro, manter `package main` intacto, depois deletar arquivos velhos UM A UM.
+- A cada deleção, compilar e testar. Isso evitou refactoring catastrófico e manteve o binário funcional durante todo o processo.
+
+### Encapsulamento de PCM em WAV para Gemini TTS (2026-05-23)
+- **Problema**: O modelo `gemini-3.1-flash-tts-preview` retorna o áudio de síntese em formato **PCM bruto (24kHz, 16-bit, mono)** dentro do campo `inlineData`. Ao salvar esses bytes diretamente em arquivo com extensão `.wav` e reproduzir em mixadores modernos (como PipeWire ou PulseAudio do Zorin OS via `mpv` ou `pw-play`), o player falha com erro de formato não reconhecido ou reproduz apenas ruído branco devido à falta de metadados.
+- **Solução**: Implementar uma função auxiliar pura em Go (`addWavHeader`) que monta o cabeçalho RIFF/WAVE padrão de 44 bytes em Little-Endian com as propriedades corretas da amostragem (24000 Hz, 1 channel, 16 bits por sample) e concatena os bytes do PCM bruto.
+- **Resultado**: Compatibilidade nativa imediata com todos os players (`mpv`, `pw-play`, `aplay`) de forma limpa e com excelente fidelidade, eliminando ruídos.
+
+---
+
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "HARNESS-TIMEOUT-RETRY"
+feature_id: "HARNESS-VOICE-ENHANCEMENTS"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-22T15:42:00Z"
-evidence_checksum: "go-test-pass-retry-002"
+last_update: "2026-05-23T00:37:00Z"
+evidence_checksum: "go-build-and-test-pass"
 ```

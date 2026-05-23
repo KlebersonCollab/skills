@@ -18,6 +18,11 @@ caveman-main/
 .DS_Store
 
 # Binaries
+
+# Environment variables (API keys)
+.env
+.env.local
+
 hb-bin
 hb/hb-bin
 *.exe

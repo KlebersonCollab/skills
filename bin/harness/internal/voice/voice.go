@@ -184,7 +184,7 @@ func TranscribeWAV(audioPath, apiKey string) (string, error) {
 	url := fmt.Sprintf("https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent?key=%s",
 		geminiModel, apiKey)
 
-	client := &http.Client{Timeout: 30 * time.Second}
+	client := &http.Client{Timeout: 60 * time.Second}
 	resp, err := client.Post(url, "application/json", bytes.NewReader(body))
 	if err != nil {
 		return "", fmt.Errorf("gemini API call: %w", err)
@@ -203,6 +203,72 @@ func TranscribeWAV(audioPath, apiKey string) (string, error) {
 	}
 
 	return strings.TrimSpace(text), nil
+}
+
+// TranscribeLocalOrGemini transcribes a WAV file. It first tries local offline STT utilities
+// (whisper, pocketsphinx, vosk-transcriber) to save internet data and API quota.
+// If no local tool is installed or execution fails, it falls back to the premium Google Gemini STT API.
+func TranscribeLocalOrGemini(audioPath, apiKey string) (string, error) {
+	// 1. Try local Whisper CLI (if installed)
+	if _, err := exec.LookPath("whisper"); err == nil {
+		tempDir := filepath.Dir(audioPath)
+		// Run whisper: whisper <audioPath> --language pt --model base --output_format txt --output_dir <tempDir>
+		cmd := exec.Command("whisper", audioPath, "--language", "pt", "--model", "base", "--output_format", "txt", "--output_dir", tempDir)
+		if err := cmd.Run(); err == nil {
+			// Read the generated txt file
+			baseName := strings.TrimSuffix(filepath.Base(audioPath), filepath.Ext(audioPath))
+			txtPath := filepath.Join(tempDir, baseName+".txt")
+			if content, err := os.ReadFile(txtPath); err == nil {
+				os.Remove(txtPath) // cleanup
+				text := strings.TrimSpace(string(content))
+				if text != "" {
+					fmt.Fprintf(os.Stderr, "\033[32m⟲ Transcribed locally via Whisper: %s\033[0m\n", text)
+					return text, nil
+				}
+			}
+		}
+	}
+
+	// 2. Try pocketsphinx (if installed)
+	if _, err := exec.LookPath("pocketsphinx"); err == nil {
+		// Run pocketsphinx: pocketsphinx single -infile <audioPath>
+		cmd := exec.Command("pocketsphinx", "single", "-infile", audioPath)
+		var out bytes.Buffer
+		cmd.Stdout = &out
+		if err := cmd.Run(); err == nil {
+			text := strings.TrimSpace(out.String())
+			if text != "" {
+				fmt.Fprintf(os.Stderr, "\033[32m⟲ Transcribed locally via Pocketsphinx: %s\033[0m\n", text)
+				return text, nil
+			}
+		}
+	}
+
+	// 3. Try vosk-transcriber (if installed)
+	if _, err := exec.LookPath("vosk-transcriber"); err == nil {
+		tempDir := filepath.Dir(audioPath)
+		txtPath := filepath.Join(tempDir, fmt.Sprintf("vosk_stt_%d.txt", time.Now().UnixNano()))
+		// Run vosk-transcriber: vosk-transcriber -i <audioPath> -o <txtPath>
+		cmd := exec.Command("vosk-transcriber", "-i", audioPath, "-o", txtPath)
+		if err := cmd.Run(); err == nil {
+			if content, err := os.ReadFile(txtPath); err == nil {
+				os.Remove(txtPath) // cleanup
+				text := strings.TrimSpace(string(content))
+				if text != "" {
+					fmt.Fprintf(os.Stderr, "\033[32m⟲ Transcribed locally via Vosk: %s\033[0m\n", text)
+					return text, nil
+				}
+			}
+		}
+	}
+
+	// 4. Fallback to official premium Google Gemini STT API
+	if apiKey == "" {
+		return "", fmt.Errorf("local STT not found and GEMINI_API_KEY is not configured")
+	}
+
+	fmt.Fprintf(os.Stderr, "\033[90m⟲ Local STT not available or failed. Falling back to Gemini Cloud STT...\033[0m\n")
+	return TranscribeWAV(audioPath, apiKey)
 }
 
 // extractGeminiText parses the Gemini API JSON response.
@@ -241,6 +307,76 @@ func extractGeminiText(data []byte) (string, error) {
 
 // ── Speech Synthesis (TTS) ──────────────────────────────────────────────
 
+// addWavHeader prepends the canonical 44-byte RIFF/WAVE header to a raw PCM stream.
+// It assumes little-endian byte ordering, which is the standard for RIFF/WAVE.
+func addWavHeader(pcm []byte, sampleRate int, numChannels int, bitsPerSample int) []byte {
+	header := make([]byte, 44)
+
+	// 1-4: ChunkID "RIFF"
+	copy(header[0:4], []byte("RIFF"))
+
+	// 5-8: ChunkSize = 36 + Subchunk2Size
+	totalSize := uint32(36 + len(pcm))
+	header[4] = byte(totalSize & 0xff)
+	header[5] = byte((totalSize >> 8) & 0xff)
+	header[6] = byte((totalSize >> 16) & 0xff)
+	header[7] = byte((totalSize >> 24) & 0xff)
+
+	// 9-12: Format "WAVE"
+	copy(header[8:12], []byte("WAVE"))
+
+	// 13-16: Subchunk1ID "fmt "
+	copy(header[12:16], []byte("fmt "))
+
+	// 17-20: Subchunk1Size = 16 for PCM
+	header[16] = 16
+	header[17] = 0
+	header[18] = 0
+	header[19] = 0
+
+	// 21-22: AudioFormat = 1 (linear PCM)
+	header[20] = 1
+	header[21] = 0
+
+	// 23-24: NumChannels
+	header[22] = byte(numChannels & 0xff)
+	header[23] = byte((numChannels >> 8) & 0xff)
+
+	// 25-28: SampleRate
+	header[24] = byte(sampleRate & 0xff)
+	header[25] = byte((sampleRate >> 8) & 0xff)
+	header[26] = byte((sampleRate >> 16) & 0xff)
+	header[27] = byte((sampleRate >> 24) & 0xff)
+
+	// 29-32: ByteRate = SampleRate * NumChannels * BitsPerSample/8
+	byteRate := uint32(sampleRate * numChannels * bitsPerSample / 8)
+	header[28] = byte(byteRate & 0xff)
+	header[29] = byte((byteRate >> 8) & 0xff)
+	header[30] = byte((byteRate >> 16) & 0xff)
+	header[31] = byte((byteRate >> 24) & 0xff)
+
+	// 33-34: BlockAlign = NumChannels * BitsPerSample/8
+	blockAlign := uint16(numChannels * bitsPerSample / 8)
+	header[32] = byte(blockAlign & 0xff)
+	header[33] = byte((blockAlign >> 8) & 0xff)
+
+	// 35-36: BitsPerSample
+	header[34] = byte(bitsPerSample & 0xff)
+	header[35] = byte((bitsPerSample >> 8) & 0xff)
+
+	// 37-40: Subchunk2ID "data"
+	copy(header[36:40], []byte("data"))
+
+	// 41-44: Subchunk2Size = len(pcm)
+	pcmSize := uint32(len(pcm))
+	header[40] = byte(pcmSize & 0xff)
+	header[41] = byte((pcmSize >> 8) & 0xff)
+	header[42] = byte((pcmSize >> 16) & 0xff)
+	header[43] = byte((pcmSize >> 24) & 0xff)
+
+	return append(header, pcm...)
+}
+
 // SynthesizeGeminiTTS calls the gemini-3.1-flash-tts-preview model to generate audio.
 // Returns the path to the temporary WAV file.
 func SynthesizeGeminiTTS(text, apiKey string) (string, error) {
@@ -270,7 +406,7 @@ func SynthesizeGeminiTTS(text, apiKey string) (string, error) {
 
 	url := fmt.Sprintf("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-tts-preview:generateContent?key=%s", apiKey)
 
-	client := &http.Client{Timeout: 30 * time.Second}
+	client := &http.Client{Timeout: 90 * time.Second}
 	resp, err := client.Post(url, "application/json", bytes.NewReader(body))
 	if err != nil {
 		return "", fmt.Errorf("gemini TTS call: %w", err)
@@ -316,9 +452,12 @@ func SynthesizeGeminiTTS(text, apiKey string) (string, error) {
 		return "", fmt.Errorf("base64 decode: %w", err)
 	}
 
+	// Prepend a standard WAV header so modern players (mpv, pw-play) recognize the format
+	wavBytes := addWavHeader(audioBytes, 24000, 1, 16)
+
 	voiceDir := EnsureTempDir("")
 	tempWAV := filepath.Join(voiceDir, fmt.Sprintf("gemini_tts_%d.wav", time.Now().UnixNano()))
-	if err := os.WriteFile(tempWAV, audioBytes, 0644); err != nil {
+	if err := os.WriteFile(tempWAV, wavBytes, 0644); err != nil {
 		return "", fmt.Errorf("write wav file: %w", err)
 	}
 
@@ -327,14 +466,14 @@ func SynthesizeGeminiTTS(text, apiKey string) (string, error) {
 
 // Speak synthesizes and plays text through speakers.
 // Prioritizes the premium Google Gemini 3.1 Flash TTS model if an API key is available.
-// Otherwise, falls back to native/local OS systems (say, PowerShell, gtts-cli, espeak-ng).
+// Otherwise, falls back to Google TTS (gtts-cli) and then to local offline synthesizers (say, PowerShell, espeak-ng).
 func Speak(text, apiKey string) error {
 	if text == "" {
 		return nil
 	}
 
 	// Limit text length to avoid endless speaking
-	const maxLen = 1000
+	const maxLen = 2500
 	if len(text) > maxLen {
 		text = text[:maxLen] + "..."
 	}
@@ -355,7 +494,76 @@ func Speak(text, apiKey string) error {
 		}
 	}
 
-	// 2. Fallback: OS-native or local synthesizer tools
+	// 2. Fallback 1: Google Translate TTS via gtts-cli (universal, high-quality free voice)
+	if _, err := exec.LookPath("gtts-cli"); err == nil {
+		voiceDir := EnsureTempDir("")
+		tempMP3 := filepath.Join(voiceDir, fmt.Sprintf("harness_gtts_%d.mp3", time.Now().UnixNano()))
+
+		// Run gtts-cli (using 'pt' for Portuguese to avoid pt-br warnings)
+		cmd := exec.Command("gtts-cli", "--lang", "pt", text, "--output", tempMP3)
+		if err := cmd.Run(); err == nil {
+			var played bool
+
+			// Try mpg123
+			if _, err := exec.LookPath("mpg123"); err == nil {
+				playCmd := exec.Command("mpg123", "-q", tempMP3)
+				if playCmd.Run() == nil {
+					played = true
+				}
+			}
+
+			// Try mpv
+			if !played {
+				if _, err := exec.LookPath("mpv"); err == nil {
+					playCmd := exec.Command("mpv", "--no-video", "--really-quiet", tempMP3)
+					if playCmd.Run() == nil {
+						played = true
+					}
+				}
+			}
+
+			// Try play (SoX)
+			if !played {
+				if _, err := exec.LookPath("play"); err == nil {
+					playCmd := exec.Command("play", "-q", tempMP3)
+					if playCmd.Run() == nil {
+						played = true
+					}
+				}
+			}
+
+			// Try play via PlayAudio after ffmpeg conversion
+			if !played {
+				if _, err := exec.LookPath("ffmpeg"); err == nil {
+					tempWAV := filepath.Join(voiceDir, fmt.Sprintf("harness_gtts_%d.wav", time.Now().UnixNano()))
+					convCmd := exec.Command("ffmpeg", "-y", "-i", tempMP3, tempWAV)
+					if convCmd.Run() == nil {
+						if PlayAudio(tempWAV) == nil {
+							played = true
+						}
+						os.Remove(tempWAV)
+					}
+				}
+			}
+
+			// Try ffplay
+			if !played {
+				if _, err := exec.LookPath("ffplay"); err == nil {
+					playCmd := exec.Command("ffplay", "-nodisp", "-autoexit", tempMP3)
+					if playCmd.Run() == nil {
+						played = true
+					}
+				}
+			}
+
+			os.Remove(tempMP3)
+			if played {
+				return nil // Success with free Google Translate TTS!
+			}
+		}
+	}
+
+	// 3. Fallback 2: OS-native local offline synthesizers
 	escapedText := strings.ReplaceAll(text, "'", "''")
 
 	switch runtime.GOOS {
@@ -371,61 +579,7 @@ func Speak(text, apiKey string) error {
 		return cmd.Run()
 
 	case "linux":
-		// 0. Try gTTS (Google Text-to-Speech) if gtts-cli is installed (100% free, neural, high-quality)
-		if _, err := exec.LookPath("gtts-cli"); err == nil {
-			// Save in local workspace to allow sandboxed snap ffmpeg to read/write
-			voiceDir := EnsureTempDir("")
-			tempMP3 := filepath.Join(voiceDir, "harness_tts.mp3")
-			tempWAV := filepath.Join(voiceDir, "harness_tts.wav")
-
-			// Run gtts-cli (using 'pt' to avoid 'pt-br' deprecation warnings)
-			cmd := exec.Command("gtts-cli", "--lang", "pt", text, "--output", tempMP3)
-			if err := cmd.Run(); err == nil {
-				// 1. If mpg123 is available, play MP3 directly (Fastest, zero conversion, no Snap GPU lag)
-				if _, err := exec.LookPath("mpg123"); err == nil {
-					playCmd := exec.Command("mpg123", "-q", tempMP3)
-					if err := playCmd.Run(); err == nil {
-						os.Remove(tempMP3)
-						return nil
-					}
-				}
-
-				// 2. If mpv is available, play MP3 directly (Very fast, zero conversion)
-				if _, err := exec.LookPath("mpv"); err == nil {
-					playCmd := exec.Command("mpv", "--no-video", "--really-quiet", tempMP3)
-					if err := playCmd.Run(); err == nil {
-						os.Remove(tempMP3)
-						return nil
-					}
-				}
-
-				// 3. Fallback: Convert to WAV using ffmpeg and play via PlayAudio
-				if _, err := exec.LookPath("ffmpeg"); err == nil {
-					convCmd := exec.Command("ffmpeg", "-y", "-i", tempMP3, tempWAV)
-					convCmd.Stderr = nil
-					if err := convCmd.Run(); err == nil {
-						// Play the WAV file
-						if playErr := PlayAudio(tempWAV); playErr == nil {
-							os.Remove(tempMP3)
-							os.Remove(tempWAV)
-							return nil // Successful neural speech!
-						}
-					}
-				}
-
-				// 4. Fallback: If we have ffplay, play MP3 directly
-				if _, err := exec.LookPath("ffplay"); err == nil {
-					playCmd := exec.Command("ffplay", "-nodisp", "-autoexit", tempMP3)
-					playCmd.Stderr = nil
-					if err := playCmd.Run(); err == nil {
-						os.Remove(tempMP3)
-						return nil
-					}
-				}
-			}
-		}
-
-		// Linux uses spd-say, espeak-ng, espeak
+		// Linux offline synthesizers (spd-say, espeak-ng, espeak)
 		providers := []struct {
 			name string
 			args []string
@@ -449,7 +603,7 @@ func Speak(text, apiKey string) error {
 			}
 			return nil // success
 		}
-		return fmt.Errorf("no TTS available (try: sudo apt install espeak-ng): %w", lastErr)
+		return fmt.Errorf("no offline TTS available (try: sudo apt install espeak-ng): %w", lastErr)
 
 	default:
 		return fmt.Errorf("TTS not supported on OS: %s", runtime.GOOS)

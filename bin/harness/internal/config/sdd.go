@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"bufio"
@@ -8,36 +8,8 @@ import (
 	"strings"
 )
 
-// FindWorkspaceRoot searches upwards from the current directory for the .specs directory
-func FindWorkspaceRoot() (string, error) {
-	dir, err := os.Getwd()
-	if err != nil {
-		return "", err
-	}
-
-	for {
-		specsPath := filepath.Join(dir, ".specs")
-		if info, err := os.Stat(specsPath); err == nil && info.IsDir() {
-			return dir, nil
-		}
-
-		parent := filepath.Dir(dir)
-		if parent == dir {
-			break
-		}
-		dir = parent
-	}
-
-	return "", fmt.Errorf("workspace root (.specs directory) not found")
-}
-
-// GetSDDPhase reads .specs/project/STATE.md and returns the current phase
-func GetSDDPhase() (string, error) {
-	root, err := FindWorkspaceRoot()
-	if err != nil {
-		return "", err
-	}
-
+// GetSDDPhase reads .specs/project/STATE.md and returns the current phase.
+func GetSDDPhase(root string) (string, error) {
 	statePath := filepath.Join(root, ".specs", "project", "STATE.md")
 	file, err := os.Open(statePath)
 	if err != nil {
@@ -62,8 +34,7 @@ func GetSDDPhase() (string, error) {
 			if strings.HasPrefix(line, "phase:") {
 				parts := strings.SplitN(line, ":", 2)
 				if len(parts) == 2 {
-					phase := strings.Trim(parts[1], " \t\"'")
-					return phase, nil
+					return strings.Trim(parts[1], " \t\"'"), nil
 				}
 			}
 		}
@@ -76,11 +47,11 @@ func GetSDDPhase() (string, error) {
 	return "", fmt.Errorf("phase not found in .specs/project/STATE.md")
 }
 
-// VerifySDDGated checks if the current SDD phase allows file mutations
-func VerifySDDGated() error {
-	phase, err := GetSDDPhase()
+// VerifySDDGated checks if the current SDD phase allows file mutations.
+// Returns nil if mutations are allowed (IMPLEMENT or VERIFY), error otherwise.
+func VerifySDDGated(root string) error {
+	phase, err := GetSDDPhase(root)
 	if err != nil {
-		// If we can't find or read the state, default to strict: block the operation
 		return fmt.Errorf("sdd check failed: %w", err)
 	}
 

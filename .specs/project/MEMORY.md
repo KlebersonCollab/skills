@@ -20,16 +20,17 @@
 - [ADR-004] Governance as Code: Mandatory automated auditing of SDD metadata and evidence via `make audit`.
 - [ADR-005] Integração do Grill-with-Docs: Práticas de Grilling Session (Phase 0: ALIGN), glossário central de terminologia (CONTEXT.md) e diretrizes rígidas de ADRs em .specs/architecture/.
 - [ADR-006] Token Distiller Nativo no Harness: Decisão de incorporar as funcionalidades de compressão de tokens (Caveman lite/full/ultra, Safety Valve, micro-compaction) diretamente no código Go do harness, eliminando dependência de skill externa e ganhando performance nativa.
+- [ADR-007] Priorização e Fallbacks de Voz (STT & TTS): Estruturação de fluxo prioritário para escuta local (Whisper/Pocketsphinx) com fallback para Gemini API, priorização de fala com o modelo premium Gemini 3.1 Flash (corrigido com encapsulamento WAV) e fallbacks universais para gTTS e offline locais.
 
 ---
 
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "HUB-ALIGNMENT"
+feature_id: "HARNESS-VOICE-ENHANCEMENTS"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-22T14:18:00Z"
-evidence_checksum: "make-audit-success"
+last_update: "2026-05-23T00:37:00Z"
+evidence_checksum: "go-build-and-test-pass"
 ```
 

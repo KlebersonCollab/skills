@@ -98,10 +98,10 @@ func (vs *Session) Listen() (string, error) {
 		return "", fmt.Errorf("audio too short (%d bytes)", info.Size())
 	}
 
-	vs.logger.Log("Transcribing via Gemini...")
+	vs.logger.Log("Transcribing...")
 	fmt.Fprintf(os.Stderr, "\033[90m⟲ Transcribing...\033[0m\n")
 
-	text, err := TranscribeWAV(recordPath, vs.apiKey)
+	text, err := TranscribeLocalOrGemini(recordPath, vs.apiKey)
 	if err != nil {
 		return "", fmt.Errorf("transcribe: %w", err)
 	}
@@ -219,7 +219,7 @@ func (vs *Session) OneShot() (string, error) {
 
 // truncateForSpeech cuts text at a natural sentence boundary within max length.
 func truncateForSpeech(text string) string {
-	const maxSpeechLen = 500
+	const maxSpeechLen = 2000
 	if len(text) <= maxSpeechLen {
 		return text
 	}
