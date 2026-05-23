@@ -31,3 +31,6 @@ bin/harness/harness
 bin/harness-cli
 
 .harness/
+# Hub UI skill session files (contain API keys)
+hub-ui-skills/public/sessions/
+hub-ui-skills/public/registry.json
