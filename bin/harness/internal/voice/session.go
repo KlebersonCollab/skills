@@ -124,7 +124,7 @@ func (vs *Session) Speak(text string) error {
 	vs.logger.Log("Speaking (%d chars)...", len(spoken))
 	fmt.Fprintf(os.Stderr, "\033[90m🔊 Speaking...\033[0m\n")
 
-	return Speak(spoken)
+	return Speak(spoken, vs.apiKey)
 }
 
 // InteractiveLoop runs a continuous voice interaction loop.

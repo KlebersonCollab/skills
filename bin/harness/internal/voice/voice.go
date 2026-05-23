@@ -241,9 +241,94 @@ func extractGeminiText(data []byte) (string, error) {
 
 // ── Speech Synthesis (TTS) ──────────────────────────────────────────────
 
+// SynthesizeGeminiTTS calls the gemini-3.1-flash-tts-preview model to generate audio.
+// Returns the path to the temporary WAV file.
+func SynthesizeGeminiTTS(text, apiKey string) (string, error) {
+	reqBody := map[string]interface{}{
+		"contents": []map[string]interface{}{
+			{
+				"parts": []map[string]interface{}{
+					{
+						"text": text,
+					},
+				},
+			},
+		},
+		"generationConfig": map[string]interface{}{
+			"responseModalities": []string{"AUDIO"},
+			"speechConfig": map[string]interface{}{
+				"voiceConfig": map[string]interface{}{
+					"prebuiltVoiceConfig": map[string]interface{}{
+						"voiceName": "Aoede", // Aoede is a highly natural voice (others: Puck, Kore, Fenrir, Charon)
+					},
+				},
+			},
+		},
+	}
+
+	body, _ := json.Marshal(reqBody)
+
+	url := fmt.Sprintf("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-tts-preview:generateContent?key=%s", apiKey)
+
+	client := &http.Client{Timeout: 30 * time.Second}
+	resp, err := client.Post(url, "application/json", bytes.NewReader(body))
+	if err != nil {
+		return "", fmt.Errorf("gemini TTS call: %w", err)
+	}
+	defer resp.Body.Close()
+
+	respData, _ := io.ReadAll(resp.Body)
+
+	if resp.StatusCode != 200 {
+		return "", fmt.Errorf("gemini TTS returned %d: %s", resp.StatusCode, string(respData))
+	}
+
+	var result map[string]interface{}
+	if err := json.Unmarshal(respData, &result); err != nil {
+		return "", fmt.Errorf("json unmarshal: %w", err)
+	}
+
+	candidates, _ := result["candidates"].([]interface{})
+	if len(candidates) == 0 {
+		return "", fmt.Errorf("no candidates in response")
+	}
+
+	candidate, _ := candidates[0].(map[string]interface{})
+	content, _ := candidate["content"].(map[string]interface{})
+	parts, _ := content["parts"].([]interface{})
+	if len(parts) == 0 {
+		return "", fmt.Errorf("no parts in candidate")
+	}
+
+	part, _ := parts[0].(map[string]interface{})
+	inlineData, _ := part["inlineData"].(map[string]interface{})
+	if inlineData == nil {
+		return "", fmt.Errorf("no inlineData in part")
+	}
+
+	b64Audio, _ := inlineData["data"].(string)
+	if b64Audio == "" {
+		return "", fmt.Errorf("empty audio data")
+	}
+
+	audioBytes, err := base64.StdEncoding.DecodeString(b64Audio)
+	if err != nil {
+		return "", fmt.Errorf("base64 decode: %w", err)
+	}
+
+	voiceDir := EnsureTempDir("")
+	tempWAV := filepath.Join(voiceDir, fmt.Sprintf("gemini_tts_%d.wav", time.Now().UnixNano()))
+	if err := os.WriteFile(tempWAV, audioBytes, 0644); err != nil {
+		return "", fmt.Errorf("write wav file: %w", err)
+	}
+
+	return tempWAV, nil
+}
+
 // Speak synthesizes and plays text through speakers.
-// Uses native solutions on Windows (PowerShell) and macOS (say), or tools on Linux.
-func Speak(text string) error {
+// Prioritizes the premium Google Gemini 3.1 Flash TTS model if an API key is available.
+// Otherwise, falls back to native/local OS systems (say, PowerShell, gtts-cli, espeak-ng).
+func Speak(text, apiKey string) error {
 	if text == "" {
 		return nil
 	}
@@ -254,7 +339,21 @@ func Speak(text string) error {
 		text = text[:maxLen] + "..."
 	}
 
-	// Clean single quotes for powershell/shell commands
+	// 1. Prioritize official Gemini 3.1 Flash TTS Model (Premium, human-like voice)
+	if apiKey != "" {
+		wavPath, err := SynthesizeGeminiTTS(text, apiKey)
+		if err == nil {
+			if playErr := PlayAudio(wavPath); playErr == nil {
+				os.Remove(wavPath)
+				return nil // Success with premium Gemini AI voice!
+			}
+			os.Remove(wavPath)
+		}
+		// If it fails (rate limit, offline, etc.), gracefully log and fall back to local resources
+		fmt.Fprintf(os.Stderr, "\033[90m⟲ Gemini TTS unavailable, falling back to local voice...\033[0m\n")
+	}
+
+	// 2. Fallback: OS-native or local synthesizer tools
 	escapedText := strings.ReplaceAll(text, "'", "''")
 
 	switch runtime.GOOS {
