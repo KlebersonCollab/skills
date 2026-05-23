@@ -76,14 +76,36 @@
 - **Solução**: Implementar uma função auxiliar pura em Go (`addWavHeader`) que monta o cabeçalho RIFF/WAVE padrão de 44 bytes em Little-Endian com as propriedades corretas da amostragem (24000 Hz, 1 channel, 16 bits por sample) e concatena os bytes do PCM bruto.
 - **Resultado**: Compatibilidade nativa imediata com todos os players (`mpv`, `pw-play`, `aplay`) de forma limpa e com excelente fidelidade, eliminando ruídos.
 
+### Environment-Driven Configuration Fallback & Overrides (2026-05-23)
+- **Problema**: O Harness exigia obrigatoriamente `.harness/config.json` para rodar, gerando erro fatal imediato se estivesse ausente. O arquivo `.env` e seu template ficavam escondidos e isolados dentro de `bin/harness/`, e as variáveis de ambiente de override (`HARNESS_PROVIDER`, `HARNESS_MODEL`) só funcionavam se o respectivo provider já existisse no `config.json` customizado.
+- **Solução**: 
+  - Mover o `.env.example` para a raiz do workspace.
+  - Implementar uma função `buildDefaultAppConfig()` em Go que cria dinamicamente uma configuração em memória para todos os principais LLM providers (Gemini, DeepSeek, OpenAI, Anthropic, Groq, Ollama) caso o `config.json` não exista.
+  - Auto-injetar os templates de provedores padrão ausentes no dicionário de providers carregado do arquivo JSON, permitindo que a variável de ambiente `HARNESS_PROVIDER` selecione instantaneamente qualquer provedor padrão de forma plug-and-play.
+  - Habilitar suporte unificado a chaves de ambiente `HARNESS_PROVIDER` / `ACTIVE_PROVIDER` e `HARNESS_MODEL` / `ACTIVE_MODEL`.
+- **Ganho**: Zero-configuration DX imediato. Se chaves estiverem presentes em `.env`, a ferramenta inicia imediatamente, priorizando a centralização de segredos em um arquivo `.env` standard na raiz do repositório.
+
+### Desacoplamento Completo de Modelos e URLs (2026-05-23)
+- **Problema**: Vários provedores (OpenAI, Groq, Anthropic, Gemini, DeepSeek, GeminiWeb e os provedores genéricos OpenAI-Compatíveis) continham modelos e URLs hardcoded nas structs internas, ignorando overrides do `.env` se não fossem passados explicitamente.
+- **Solução**: 
+  - Refatorar todos os construtores de provedores (`NewOpenAIProvider`, `NewGroqProvider`, `NewAnthropicProvider`, `NewGeminiProvider`, `NewDeepSeekProvider`, `NewOpenAICompatibleProvider`) para lerem dinamicamente as variáveis de ambiente equivalentes (ex: `OPENAI_MODEL`, `GROQ_MODEL`, `ANTHROPIC_MODEL`, `GEMINI_MODEL`, `DEEPSEEK_MODEL`, `[PROVIDER]_MODEL`) e bases de URL customizadas (ex: `OPENAI_BASE_URL`, `GROQ_BASE_URL`, `ANTHROPIC_BASE_URL`, `DEEPSEEK_BASE_URL`, `[PROVIDER]_BASE_URL`).
+  - Atualizar o resolvedor `oacp` e a inicialização central em `providers.go` para extrair os modelos a partir dos templates com `extractModelFromTemplate(pc.BodyTemplate)` e passá-los diretamente para os provedores instanciados.
+  - Implementar resolução automática no `geminiweb.go` para ler de `GEMINI_WEB_MODEL` ou `GEMINI_MODEL`.
+- **Ganho**: Independência absoluta de valores hardcoded, permitindo migrações de modelos locais e corporativos instantaneamente via ambiente.
+
+### Otimização de Performance e Eliminação de Loop no parser de HTML (2026-05-23)
+- **Problema**: O parser auxiliar `stripHTML` do `devtools.go` utilizava `strings.ToLower(html[i:])` em cada iteração `i` de um loop de caracteres. Para arquivos HTML de tamanho médio a grande (ex: UOL com ~800KB), isso causava uma complexidade de tempo de CPU quadrática de O(n^2) e alocava gigabytes de memória temporária na heap do Go, resultando em travamento do binário e loop infinito invisível ao usuário.
+- **Solução**: Substituir a verificação de prefixo e conversão de strings por comparações locais O(1) usando slices de tamanho fixo juntamente com `strings.EqualFold()` (ex: `strings.EqualFold(html[i:i+7], "<script")`).
+- **Ganho**: Redução drástica da complexidade de CPU de O(n^2) para linear O(n), com alocação de memória virtualmente nula, permitindo fazer o parse de páginas enormes instantaneamente sem travar o agente.
+
 ---
 
 <!-- @sdd-state -->
 ```yaml
 version: "2.3.0"
-feature_id: "HARNESS-VOICE-ENHANCEMENTS"
+feature_id: "HARNESS-ENV-OVERRIDES"
 phase: "VERIFY"
 status: "COMPLETED"
-last_update: "2026-05-23T00:37:00Z"
+last_update: "2026-05-23T03:28:00Z"
 evidence_checksum: "go-build-and-test-pass"
 ```

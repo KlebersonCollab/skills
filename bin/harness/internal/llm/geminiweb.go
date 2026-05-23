@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
 )
 
 // GeminiWebProvider implements WebSearchProvider using Gemini's search grounding.
@@ -19,7 +20,14 @@ func NewGeminiWebProvider(apiKey string) *GeminiWebProvider {
 func (g *GeminiWebProvider) Name() string { return "gemini" }
 
 func (g *GeminiWebProvider) Search(ctx context.Context, query string, opts WebSearchOpts) (*WebSearchResult, error) {
-	url := "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=" + g.apiKey
+	model := os.Getenv("GEMINI_WEB_MODEL")
+	if model == "" {
+		model = os.Getenv("GEMINI_MODEL")
+	}
+	if model == "" {
+		model = "gemini-2.0-flash-exp"
+	}
+	url := fmt.Sprintf("https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent?key=%s", model, g.apiKey)
 
 	headers := map[string]string{
 		"Content-Type": "application/json",

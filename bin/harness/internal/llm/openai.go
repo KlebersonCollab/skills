@@ -3,6 +3,7 @@ package llm
 import (
 	"context"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -13,8 +14,11 @@ type OpenAIProvider struct {
 }
 
 // NewOpenAIProvider creates a new OpenAI provider.
-// If model is empty, "gpt-4o" is used.
+// If model is empty, it checks the OPENAI_MODEL environment variable, defaulting to "gpt-4o".
 func NewOpenAIProvider(apiKey string, model string) *OpenAIProvider {
+	if model == "" {
+		model = os.Getenv("OPENAI_MODEL")
+	}
 	if model == "" {
 		model = "gpt-4o"
 	}
@@ -26,8 +30,16 @@ func NewOpenAIProvider(apiKey string, model string) *OpenAIProvider {
 
 func (o *OpenAIProvider) Name() string { return "openai" }
 
+func (o *OpenAIProvider) getURL() string {
+	baseURL := os.Getenv("OPENAI_BASE_URL")
+	if baseURL == "" {
+		baseURL = "https://api.openai.com/v1"
+	}
+	return strings.TrimSuffix(baseURL, "/") + "/chat/completions"
+}
+
 func (o *OpenAIProvider) Complete(ctx context.Context, prompt string, opts map[string]any) (string, error) {
-	url := "https://api.openai.com/v1/chat/completions"
+	url := o.getURL()
 
 	headers := map[string]string{
 		"Content-Type":  "application/json",
@@ -49,7 +61,7 @@ func (o *OpenAIProvider) Complete(ctx context.Context, prompt string, opts map[s
 }
 
 func (o *OpenAIProvider) Stream(ctx context.Context, prompt string, opts map[string]any) (<-chan string, error) {
-	url := "https://api.openai.com/v1/chat/completions"
+	url := o.getURL()
 
 	headers := map[string]string{
 		"Content-Type":  "application/json",

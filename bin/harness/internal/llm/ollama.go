@@ -3,6 +3,7 @@ package llm
 import (
 	"context"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -13,11 +14,17 @@ type OllamaProvider struct {
 }
 
 // NewOllamaProvider creates a new Ollama provider.
-// If host is empty, "http://localhost:11434" is used.
-// If model is empty, "llama3" is used.
+// If host is empty, it checks OLLAMA_HOST environment variable, defaulting to "http://localhost:11434".
+// If model is empty, it checks OLLAMA_MODEL environment variable, defaulting to "llama3".
 func NewOllamaProvider(host string, model string) *OllamaProvider {
 	if host == "" {
+		host = os.Getenv("OLLAMA_HOST")
+	}
+	if host == "" {
 		host = "http://localhost:11434"
+	}
+	if model == "" {
+		model = os.Getenv("OLLAMA_MODEL")
 	}
 	if model == "" {
 		model = "llama3"

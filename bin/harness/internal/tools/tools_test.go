@@ -203,3 +203,18 @@ func (m *mockTool) Execute(name string, args map[string]any) ToolResult {
 	}
 	return ToolResult{Output: m.output}
 }
+
+func TestStripHTML(t *testing.T) {
+	input := `<html><head><title>My Title</title></head><body><h1>Hello World</h1><script type="text/javascript">console.log("secret");</script><p>This is a <a href="http://link">link</a>.</p></body></html>`
+	output := stripHTML(input)
+	
+	if strings.Contains(output, "console.log") {
+		t.Errorf("expected script block to be stripped, but output was: %q", output)
+	}
+	if strings.Contains(output, "<html>") || strings.Contains(output, "<h1>") {
+		t.Errorf("expected tags to be stripped, but output was: %q", output)
+	}
+	if !strings.Contains(output, "Hello World") {
+		t.Errorf("expected output to contain 'Hello World', got %q", output)
+	}
+}

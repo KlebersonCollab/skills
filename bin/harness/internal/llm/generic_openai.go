@@ -3,6 +3,7 @@ package llm
 import (
 	"context"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -25,7 +26,15 @@ type OpenAICompatibleProvider struct {
 //   - model: model name (e.g., "mistral-large", "grok-2")
 func NewOpenAICompatibleProvider(name, apiKey, url, model string) *OpenAICompatibleProvider {
 	if model == "" {
+		envModelKey := strings.ToUpper(name) + "_MODEL"
+		model = os.Getenv(envModelKey)
+	}
+	if model == "" {
 		model = "default"
+	}
+	if url == "" {
+		envURLKey := strings.ToUpper(name) + "_BASE_URL"
+		url = os.Getenv(envURLKey)
 	}
 	if url == "" {
 		url = "https://api.openai.com/v1/chat/completions"

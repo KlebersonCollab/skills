@@ -3,6 +3,7 @@ package llm
 import (
 	"context"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -14,8 +15,11 @@ type GroqProvider struct {
 }
 
 // NewGroqProvider creates a new Groq provider.
-// If model is empty, "llama-3.3-70b-versatile" is used.
+// If model is empty, it checks the GROQ_MODEL environment variable, defaulting to "llama-3.3-70b-versatile".
 func NewGroqProvider(apiKey string, model string) *GroqProvider {
+	if model == "" {
+		model = os.Getenv("GROQ_MODEL")
+	}
 	if model == "" {
 		model = "llama-3.3-70b-versatile"
 	}
@@ -27,8 +31,16 @@ func NewGroqProvider(apiKey string, model string) *GroqProvider {
 
 func (g *GroqProvider) Name() string { return "groq" }
 
+func (g *GroqProvider) getURL() string {
+	baseURL := os.Getenv("GROQ_BASE_URL")
+	if baseURL == "" {
+		baseURL = "https://api.groq.com/openai/v1"
+	}
+	return strings.TrimSuffix(baseURL, "/") + "/chat/completions"
+}
+
 func (g *GroqProvider) Complete(ctx context.Context, prompt string, opts map[string]any) (string, error) {
-	url := "https://api.groq.com/openai/v1/chat/completions"
+	url := g.getURL()
 
 	headers := map[string]string{
 		"Content-Type":  "application/json",
@@ -50,7 +62,7 @@ func (g *GroqProvider) Complete(ctx context.Context, prompt string, opts map[str
 }
 
 func (g *GroqProvider) Stream(ctx context.Context, prompt string, opts map[string]any) (<-chan string, error) {
-	url := "https://api.groq.com/openai/v1/chat/completions"
+	url := g.getURL()
 
 	headers := map[string]string{
 		"Content-Type":  "application/json",

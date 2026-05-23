@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -15,8 +16,11 @@ type AnthropicProvider struct {
 }
 
 // NewAnthropicProvider creates a new Anthropic provider.
-// If model is empty, "claude-sonnet-4-20250514" is used.
+// If model is empty, it checks the ANTHROPIC_MODEL environment variable, defaulting to "claude-sonnet-4-20250514".
 func NewAnthropicProvider(apiKey string, model string) *AnthropicProvider {
+	if model == "" {
+		model = os.Getenv("ANTHROPIC_MODEL")
+	}
 	if model == "" {
 		model = "claude-sonnet-4-20250514"
 	}
@@ -28,8 +32,16 @@ func NewAnthropicProvider(apiKey string, model string) *AnthropicProvider {
 
 func (a *AnthropicProvider) Name() string { return "anthropic" }
 
+func (a *AnthropicProvider) getURL() string {
+	baseURL := os.Getenv("ANTHROPIC_BASE_URL")
+	if baseURL == "" {
+		baseURL = "https://api.anthropic.com"
+	}
+	return strings.TrimSuffix(baseURL, "/") + "/v1/messages"
+}
+
 func (a *AnthropicProvider) Complete(ctx context.Context, prompt string, opts map[string]any) (string, error) {
-	url := "https://api.anthropic.com/v1/messages"
+	url := a.getURL()
 
 	headers := map[string]string{
 		"Content-Type":      "application/json",
@@ -61,7 +73,7 @@ func (a *AnthropicProvider) Complete(ctx context.Context, prompt string, opts ma
 }
 
 func (a *AnthropicProvider) Stream(ctx context.Context, prompt string, opts map[string]any) (<-chan string, error) {
-	url := "https://api.anthropic.com/v1/messages"
+	url := a.getURL()
 
 	headers := map[string]string{
 		"Content-Type":      "application/json",

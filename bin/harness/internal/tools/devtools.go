@@ -335,13 +335,15 @@ func stripHTML(html string) string {
 	inScript := false
 	for i := 0; i < len(html); i++ {
 		if inScript {
-			if strings.HasPrefix(html[i:], "</script") {
+			if i+8 <= len(html) && strings.EqualFold(html[i:i+8], "</script") {
 				inScript = false
+				i += 7
 			}
 			continue
 		}
-		if strings.HasPrefix(strings.ToLower(html[i:]), "<script") {
+		if i+7 <= len(html) && strings.EqualFold(html[i:i+7], "<script") {
 			inScript = true
+			i += 6
 			continue
 		}
 		if html[i] == '<' {

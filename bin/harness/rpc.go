@@ -73,6 +73,9 @@ func runRPCMode() {
 			fmt.Println(string(resp))
 		}
 	}
+	if err := scanner.Err(); err != nil {
+		fmt.Fprintf(os.Stderr, "RPC scanner error: %v\n", err)
+	}
 }
 
 func emitEvent(v interface{}) {

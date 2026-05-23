@@ -43,41 +43,61 @@ func buildSingleProvider(name string, appCfg *config.AppConfig) (llm.LLMProvider
 
 	switch name {
 	case "gemini":
-		return llm.NewGeminiProvider(os.Getenv("GEMINI_API_KEY"), ""), nil
+		model := extractModelFromTemplate(pc.BodyTemplate)
+		return llm.NewGeminiProvider(os.Getenv("GEMINI_API_KEY"), model), nil
 	case "deepseek":
 		model := extractModelFromTemplate(pc.BodyTemplate)
 		return llm.NewDeepSeekProvider(os.Getenv("DEEPSEEK_API_KEY"), model, pc.Models), nil
 	case "openai":
-		return llm.NewOpenAIProvider(os.Getenv("OPENAI_API_KEY"), ""), nil
+		model := extractModelFromTemplate(pc.BodyTemplate)
+		return llm.NewOpenAIProvider(os.Getenv("OPENAI_API_KEY"), model), nil
 	case "anthropic":
-		return llm.NewAnthropicProvider(os.Getenv("ANTHROPIC_API_KEY"), ""), nil
+		model := extractModelFromTemplate(pc.BodyTemplate)
+		return llm.NewAnthropicProvider(os.Getenv("ANTHROPIC_API_KEY"), model), nil
 	case "groq":
-		return llm.NewGroqProvider(os.Getenv("GROQ_API_KEY"), ""), nil
+		model := extractModelFromTemplate(pc.BodyTemplate)
+		return llm.NewGroqProvider(os.Getenv("GROQ_API_KEY"), model), nil
 	case "openrouter":
-		return oacp("openrouter", "OPENROUTER_API_KEY", "https://api.openrouter.ai/v1/chat/completions")
+		return oacp("openrouter", "OPENROUTER_API_KEY", "https://openrouter.ai/api/v1/chat/completions", appCfg)
 	case "together":
-		return oacp("together", "TOGETHER_API_KEY", "https://api.together.xyz/v1/chat/completions")
+		return oacp("together", "TOGETHER_API_KEY", "https://api.together.xyz/v1/chat/completions", appCfg)
 	case "fireworks":
-		return oacp("fireworks", "FIREWORKS_API_KEY", "https://api.fireworks.ai/inference/v1/chat/completions")
+		return oacp("fireworks", "FIREWORKS_API_KEY", "https://api.fireworks.ai/inference/v1/chat/completions", appCfg)
 	case "mistral":
-		return oacp("mistral", "MISTRAL_API_KEY", "https://api.mistral.ai/v1/chat/completions")
+		return oacp("mistral", "MISTRAL_API_KEY", "https://api.mistral.ai/v1/chat/completions", appCfg)
 	case "xai":
-		return oacp("xai", "XAI_API_KEY", "https://api.x.ai/v1/chat/completions")
+		return oacp("xai", "XAI_API_KEY", "https://api.x.ai/v1/chat/completions", appCfg)
 	case "cerebras":
-		return oacp("cerebras", "CEREBRAS_API_KEY", "https://api.cerebras.ai/v1/chat/completions")
+		return oacp("cerebras", "CEREBRAS_API_KEY", "https://api.cerebras.ai/v1/chat/completions", appCfg)
 	case "deepinfra":
-		return oacp("deepinfra", "DEEPINFRA_API_KEY", "https://api.deepinfra.com/v1/openai/chat/completions")
+		return oacp("deepinfra", "DEEPINFRA_API_KEY", "https://api.deepinfra.com/v1/openai/chat/completions", appCfg)
 	case "huggingface":
-		return oacp("huggingface", "HF_API_KEY", "https://api-inference.huggingface.co/v1/chat/completions")
+		return oacp("huggingface", "HF_API_KEY", "https://api-inference.huggingface.co/v1/chat/completions", appCfg)
 	case "ollama":
 		host := url
 		if idx := strings.Index(host, "/api/generate"); idx > 0 {
 			host = host[:idx]
 		}
-		return llm.NewOllamaProvider(host, ""), nil
+		model := extractModelFromTemplate(pc.BodyTemplate)
+		return llm.NewOllamaProvider(host, model), nil
 	default:
 		return &genericProvider{cfg: pc}, nil
 	}
+}
+
+// extractCurrentModel returns the current model name for the active provider.
+
+func oacp(name, envKey, url string, appCfg *config.AppConfig) (llm.LLMProvider, error) {
+	key := os.Getenv(envKey)
+	if key == "" {
+		return nil, fmt.Errorf("%s not set", envKey)
+	}
+	var model string
+	if pc, ok := appCfg.Providers[name]; ok {
+		model = extractModelFromTemplate(pc.BodyTemplate)
+		url = config.ResolveEnvVars(pc.URL)
+	}
+	return llm.NewOpenAICompatibleProvider(name, key, url, model), nil
 }
 
 // extractModelFromTemplate parses a body_template JSON to find the "model" field.
@@ -98,13 +118,6 @@ func extractModelFromTemplate(tmpl string) string {
 	return ""
 }
 
-func oacp(name, envKey, url string) (llm.LLMProvider, error) {
-	key := os.Getenv(envKey)
-	if key == "" {
-		return nil, fmt.Errorf("%s not set", envKey)
-	}
-	return llm.NewOpenAICompatibleProvider(name, key, url, ""), nil
-}
 
 type genericProvider struct {
 	cfg config.ProviderConfig

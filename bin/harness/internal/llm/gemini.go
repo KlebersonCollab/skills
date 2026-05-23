@@ -3,6 +3,7 @@ package llm
 import (
 	"context"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -13,8 +14,11 @@ type GeminiProvider struct {
 }
 
 // NewGeminiProvider creates a new Gemini provider.
-// If model is empty, "gemini-1.5-pro" is used.
+// If model is empty, it checks the GEMINI_MODEL environment variable, defaulting to "gemini-1.5-pro".
 func NewGeminiProvider(apiKey string, model string) *GeminiProvider {
+	if model == "" {
+		model = os.Getenv("GEMINI_MODEL")
+	}
 	if model == "" {
 		model = "gemini-1.5-pro"
 	}

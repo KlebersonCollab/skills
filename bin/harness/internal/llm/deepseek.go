@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
 	"strings"
 
 	"harness/internal/config"
@@ -53,9 +54,12 @@ type DeepSeekProvider struct {
 }
 
 // NewDeepSeekProvider creates a new DeepSeek provider.
-// If model is empty, "deepseek-chat" is used.
+// If model is empty, it checks the DEEPSEEK_MODEL environment variable, defaulting to "deepseek-chat".
 // modelCosts can be nil (cost tracking disabled) or from config.json.
 func NewDeepSeekProvider(apiKey string, model string, modelCosts []config.ModelConfig) *DeepSeekProvider {
+	if model == "" {
+		model = os.Getenv("DEEPSEEK_MODEL")
+	}
 	if model == "" {
 		model = "deepseek-chat"
 	}
@@ -91,6 +95,14 @@ func (d *DeepSeekProvider) Name() string {
 	return "deepseek"
 }
 
+func (d *DeepSeekProvider) getURL() string {
+	baseURL := os.Getenv("DEEPSEEK_BASE_URL")
+	if baseURL == "" {
+		baseURL = "https://api.deepseek.com"
+	}
+	return strings.TrimSuffix(baseURL, "/") + "/chat/completions"
+}
+
 func (d *DeepSeekProvider) Complete(ctx context.Context, prompt string, opts map[string]any) (string, error) {
 	// Check for multimodal images in opts
 	if images, ok := opts["images"].([]string); ok && len(images) > 0 {
@@ -110,7 +122,7 @@ func (d *DeepSeekProvider) Complete(ctx context.Context, prompt string, opts map
 		prompt += "O modelo atual não processa imagens visualmente. Use <tool:image_info path=\"...\"/> para metadados ou troque para um modelo com visão (deepseek-vl2, deepseek-vl3)."
 	}
 
-	url := "https://api.deepseek.com/chat/completions"
+	url := d.getURL()
 
 	headers := map[string]string{
 		"Content-Type":  "application/json",
@@ -167,7 +179,7 @@ func (d *DeepSeekProvider) parseUsage(respBody []byte) *Usage {
 // completeMultimodal sends a multimodal message with text + images.
 // DeepSeek supports the OpenAI-compatible vision format.
 func (d *DeepSeekProvider) completeMultimodal(ctx context.Context, prompt string, images []string, opts map[string]any) (string, error) {
-	url := "https://api.deepseek.com/chat/completions"
+	url := d.getURL()
 
 	headers := map[string]string{
 		"Content-Type":  "application/json",
@@ -233,7 +245,7 @@ func (d *DeepSeekProvider) Stream(ctx context.Context, prompt string, opts map[s
 		return d.streamMultimodal(ctx, prompt, images, opts)
 	}
 
-	url := "https://api.deepseek.com/chat/completions"
+	url := d.getURL()
 
 	headers := map[string]string{
 		"Content-Type":  "application/json",
@@ -282,8 +294,8 @@ func (d *DeepSeekProvider) Stream(ctx context.Context, prompt string, opts map[s
 }
 
 // streamMultimodal sends a streaming multimodal message with text + images.
-func (d *DeepSeekProvider) streamMultimodal(ctx context.Context, prompt string, images []string, opts map[string]any) (<-chan string, error) {
-	url := "https://api.deepseek.com/chat/completions"
+func (d *DeepSeekProvider) streamMultimodal(ctx context.Context, prompt string, images []string, _ map[string]any) (<-chan string, error) {
+	url := d.getURL()
 
 	headers := map[string]string{
 		"Content-Type":  "application/json",

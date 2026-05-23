@@ -38,7 +38,13 @@ func runInitWizard() {
 		if host == "" {
 			host = "http://localhost:11434"
 		}
-		providers["ollama"] = config.ProviderConfig{URL: host + "/api/generate", Headers: map[string]string{"Content-Type": "application/json"}, BodyTemplate: `{"model":"llama3","prompt":"{{prompt}}","stream":false}`, ResponsePath: "response"}
+		fmt.Print("Model [llama3]: ")
+		model, _ := reader.ReadString('\n')
+		model = strings.TrimSpace(model)
+		if model == "" {
+			model = "llama3"
+		}
+		providers["ollama"] = config.ProviderConfig{URL: host + "/api/generate", Headers: map[string]string{"Content-Type": "application/json"}, BodyTemplate: fmt.Sprintf(`{"model":"%s","prompt":"{{prompt}}","stream":false}`, model), ResponsePath: "response"}
 	case "3":
 		active = "deepseek"
 		fmt.Print("API Key: ")

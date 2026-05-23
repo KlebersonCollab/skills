@@ -47,6 +47,7 @@ func runInteractiveLoop(streamMode bool) {
 	tc := tui.New()
 	modelName := extractCurrentModel(cfg)
 	tc.WelcomeHeader(cfg.ActiveProvider, modelName, sessionID, task, len(skillDefs))
+	tc.Footer(tree, tree.EstimateUSD(cfg.ActiveProvider))
 	ac := agent.DefaultConfig()
 	ac.StreamMode = streamMode
 	ac.WorkspaceRoot = root
@@ -248,6 +249,7 @@ func runInteractivePrompt(tree *session.Tree, sessionFile string, appCfg *config
 			tree.Save(sessionFile)
 
 			agentBusy = false
+		msgLoop:
 			for len(msgQueue) > 0 {
 				select {
 				case queued := <-msgQueue:
@@ -264,7 +266,7 @@ func runInteractivePrompt(tree *session.Tree, sessionFile string, appCfg *config
 					}
 					tree.Save(sessionFile)
 				default:
-					break
+					break msgLoop
 				}
 			}
 		}(userInput)

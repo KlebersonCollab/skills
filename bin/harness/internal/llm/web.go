@@ -88,9 +88,9 @@ func (r *WebSearchRegistry) SearchParallel(ctx context.Context, queries []string
 }
 
 // fallbackSearch is a last resort when no API keys are configured.
-func (r *WebSearchRegistry) fallbackSearch(ctx context.Context, query string, opts WebSearchOpts) (*WebSearchResult, error) {
+func (r *WebSearchRegistry) fallbackSearch(_ context.Context, query string, _ WebSearchOpts) (*WebSearchResult, error) {
 	return &WebSearchResult{
-		Answer:    fmt.Sprintf("Web search não disponível. Nenhuma chave de API configurada.\n\nPara ativar, configure alguma destas variáveis de ambiente:\n  PERPLEXITY_API_KEY  (recomendado)\n  EXA_API_KEY\n  GEMINI_API_KEY"),
+		Answer:    "Web search não disponível. Nenhuma chave de API configurada.\n\nPara ativar, configure alguma destas variáveis de ambiente:\n  PERPLEXITY_API_KEY  (recomendado)\n  EXA_API_KEY\n  GEMINI_API_KEY",
 		Sources:   []string{},
 		Provider:  "none",
 		QueryUsed: query,

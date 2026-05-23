@@ -91,18 +91,19 @@ func runWithSession(sessionFlag string, streamMode bool, promptArgs []string) {
 			fmt.Printf("\nError: %v\n", err)
 		}
 		if result != "" {
-			tc.MessageBubble("assistant", result, len(result)/4)
+			tc.MessageBubble("assistant", result, 0)
 		}
 		tree.Save(sessionFile)
 		return
 	}
 	modelName := extractCurrentModel(cfg)
 	tc.WelcomeHeader(cfg.ActiveProvider, modelName, tree.SessionID, tree.RootTask, len(skillDefs))
+	tc.Footer(tree, tree.EstimateUSD(cfg.ActiveProvider))
 	runInteractivePrompt(tree, sessionFile, cfg, ac, toolReg, tc, loadMandates(root), root)
 }
 
 
-func runForkMode(forkID string, streamMode bool, sessionDir string) {
+func runForkMode(forkID string, _ bool, sessionDir string) {
 	root := getRoot()
 	if sessionDir == "" {
 		sessionDir = session.SessionDir(root)

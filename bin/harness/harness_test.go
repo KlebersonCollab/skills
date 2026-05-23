@@ -243,3 +243,25 @@ func TestCallLLMRetryOnTimeout(t *testing.T) {
 		t.Errorf("expected at least 1 HTTP call, got %d", actualAttempts)
 	}
 }
+
+func TestBuildDefaultAppConfig_OpenRouter(t *testing.T) {
+	// 1. Test registration of OpenRouter
+	cfg := buildDefaultAppConfig()
+	prov, exists := cfg.Providers["openrouter"]
+	if !exists {
+		t.Fatalf("expected openrouter provider to be registered in default app config")
+	}
+	if prov.URL != "https://openrouter.ai/api/v1/chat/completions" {
+		t.Errorf("expected URL 'https://openrouter.ai/api/v1/chat/completions', got %q", prov.URL)
+	}
+
+	// 2. Test auto-detection
+	os.Setenv("OPENROUTER_API_KEY", "test-or-key")
+	defer os.Unsetenv("OPENROUTER_API_KEY")
+
+	cfg2 := buildDefaultAppConfig()
+	if cfg2.ActiveProvider != "openrouter" {
+		t.Errorf("expected active provider to be 'openrouter' when OPENROUTER_API_KEY is configured, got %q", cfg2.ActiveProvider)
+	}
+}
+
