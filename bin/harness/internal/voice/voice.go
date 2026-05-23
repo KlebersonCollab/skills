@@ -272,11 +272,13 @@ func Speak(text string) error {
 	case "linux":
 		// 0. Try gTTS (Google Text-to-Speech) if gtts-cli is installed (100% free, neural, high-quality)
 		if _, err := exec.LookPath("gtts-cli"); err == nil {
-			tempMP3 := filepath.Join(os.TempDir(), "harness_tts.mp3")
-			tempWAV := filepath.Join(os.TempDir(), "harness_tts.wav")
+			// Save in local workspace to allow sandboxed snap ffmpeg to read/write
+			voiceDir := EnsureTempDir("")
+			tempMP3 := filepath.Join(voiceDir, "harness_tts.mp3")
+			tempWAV := filepath.Join(voiceDir, "harness_tts.wav")
 
-			// Run gtts-cli
-			cmd := exec.Command("gtts-cli", "--lang", "pt-br", text, "--output", tempMP3)
+			// Run gtts-cli (using 'pt' to avoid 'pt-br' deprecation warnings)
+			cmd := exec.Command("gtts-cli", "--lang", "pt", text, "--output", tempMP3)
 			if err := cmd.Run(); err == nil {
 				// Convert to WAV using ffmpeg if available
 				if _, err := exec.LookPath("ffmpeg"); err == nil {
