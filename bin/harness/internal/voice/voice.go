@@ -458,6 +458,22 @@ func Speak(text, apiKey string) error {
 func PlayAudio(path string) error {
 	switch runtime.GOOS {
 	case "linux":
+		// 1. Try mpv if available (uses system mixing, extremely robust and supports PipeWire/PulseAudio)
+		if _, err := exec.LookPath("mpv"); err == nil {
+			cmd := exec.Command("mpv", "--no-video", "--really-quiet", path)
+			return cmd.Run()
+		}
+		// 2. Try paplay (PulseAudio) if available
+		if _, err := exec.LookPath("paplay"); err == nil {
+			cmd := exec.Command("paplay", path)
+			return cmd.Run()
+		}
+		// 3. Try pw-play (PipeWire) if available
+		if _, err := exec.LookPath("pw-play"); err == nil {
+			cmd := exec.Command("pw-play", path)
+			return cmd.Run()
+		}
+		// 4. Fall back to aplay (ALSA)
 		if _, err := exec.LookPath("aplay"); err == nil {
 			cmd := exec.Command("aplay", "-q", path)
 			return cmd.Run()
