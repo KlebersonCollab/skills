@@ -280,7 +280,25 @@ func Speak(text string) error {
 			// Run gtts-cli (using 'pt' to avoid 'pt-br' deprecation warnings)
 			cmd := exec.Command("gtts-cli", "--lang", "pt", text, "--output", tempMP3)
 			if err := cmd.Run(); err == nil {
-				// Convert to WAV using ffmpeg if available
+				// 1. If mpg123 is available, play MP3 directly (Fastest, zero conversion, no Snap GPU lag)
+				if _, err := exec.LookPath("mpg123"); err == nil {
+					playCmd := exec.Command("mpg123", "-q", tempMP3)
+					if err := playCmd.Run(); err == nil {
+						os.Remove(tempMP3)
+						return nil
+					}
+				}
+
+				// 2. If mpv is available, play MP3 directly (Very fast, zero conversion)
+				if _, err := exec.LookPath("mpv"); err == nil {
+					playCmd := exec.Command("mpv", "--no-video", "--really-quiet", tempMP3)
+					if err := playCmd.Run(); err == nil {
+						os.Remove(tempMP3)
+						return nil
+					}
+				}
+
+				// 3. Fallback: Convert to WAV using ffmpeg and play via PlayAudio
 				if _, err := exec.LookPath("ffmpeg"); err == nil {
 					convCmd := exec.Command("ffmpeg", "-y", "-i", tempMP3, tempWAV)
 					convCmd.Stderr = nil
@@ -293,15 +311,8 @@ func Speak(text string) error {
 						}
 					}
 				}
-				// Fallback: If no ffmpeg but we have mpg123, play MP3 directly
-				if _, err := exec.LookPath("mpg123"); err == nil {
-					playCmd := exec.Command("mpg123", "-q", tempMP3)
-					if err := playCmd.Run(); err == nil {
-						os.Remove(tempMP3)
-						return nil
-					}
-				}
-				// Fallback: If we have ffplay, play MP3 directly
+
+				// 4. Fallback: If we have ffplay, play MP3 directly
 				if _, err := exec.LookPath("ffplay"); err == nil {
 					playCmd := exec.Command("ffplay", "-nodisp", "-autoexit", tempMP3)
 					playCmd.Stderr = nil
